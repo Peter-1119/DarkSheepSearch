@@ -163,6 +163,9 @@ def dmg_family(num, rest, lang):
             return zh + mod + '傷害減免'
         if tgt:
             zh += ('對' if kind in ('傷害', '防禦', '造成傷害', '傷害減免') else '受到') + tgt
+            # 目標與限定詞同時存在時補「的」，否則會黏成一長串難斷句
+            if mod:
+                zh += '的'
         if mod:
             zh += mod
         return zh + kind
