@@ -138,8 +138,11 @@ dbfile = os.path.join(ROOT, 'data', 'items_database.json')
 data_date = VER.get('data_date') or datetime.datetime.fromtimestamp(
     os.path.getmtime(dbfile)).strftime('%Y-%m-%d')
 meta = {
+    'siteVersion': (VER.get('site_version') or '').strip(),
     'mapVersion': (VER.get('map_version') or '').strip(),
     'dataDate': data_date,
+    # 建置日期只到「日」，避免每次重跑都製造無意義的 git 差異
+    'builtAt': datetime.date.today().strftime('%Y-%m-%d'),
     'items': len(items),
     'icons': sum(1 for v in items.values() if v['img']),
 }

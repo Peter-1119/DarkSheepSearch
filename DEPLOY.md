@@ -119,12 +119,16 @@ vanilla-javascript   i18n   multilingual   no-dependencies
 
 ## 步驟 5 — 之後更新
 
-改完資料或翻譯後，先重建再推：
-
 ```powershell
 cd "D:\Notebook Program Scripts\Python_Scripts\DarkSheep\tools"
+
+# 1) 改網站版本號（v1.0 -> v1.1），這樣才知道部署有沒有生效
+notepad version.json
+
+# 2) 重建
 .\build.ps1
 
+# 3) 推上去
 cd ..
 git add .
 git commit -m "更新說明"
@@ -132,6 +136,21 @@ git push
 ```
 
 約 1 分鐘後網站自動更新，可在 repo 的 **Actions** 分頁看部署進度。
+
+### 怎麼確認部署成功了
+
+打開 `https://peter-1119.github.io/DarkSheepSearch/`，看**標題右邊的版本徽章**：
+
+```
+裝備圖鑑  v1.1   肥羊的聖誕禮物 · Underground Defence
+          ^^^^
+```
+
+- 顯示新版本 → 部署完成
+- 還是舊版本 → 按 **Ctrl + Shift + R** 強制重新整理（GitHub Pages 的 HTML 快取是 10 分鐘）
+- 強制重新整理後仍是舊的 → 去 repo 的 Actions 分頁看部署有沒有失敗
+
+左側欄最下方的「資料」區塊也有完整資訊：網站版本、建置日、資料擷取日、道具數。
 
 ---
 

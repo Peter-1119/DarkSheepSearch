@@ -55,6 +55,11 @@ input{font:inherit}
 .brand{display:flex;align-items:baseline;gap:10px;white-space:nowrap}
 .brand b{font-size:15px;letter-spacing:.2px}
 .brand span{font-size:11.5px;color:var(--ink-3)}
+.brand .sv{
+  font:11px/1 ui-monospace,monospace;color:var(--ink-2);
+  background:var(--surface);border:1px solid var(--line);
+  border-radius:99px;padding:3px 8px;letter-spacing:.02em;
+}
 
 .search{position:relative;flex:1;max-width:420px}
 .search input{
@@ -443,6 +448,7 @@ body[data-resizing="1"]{cursor:col-resize;user-select:none}
   <header class="topbar">
     <div class="brand">
       <b data-i="title">裝備圖鑑</b>
+      <span class="sv" id="sv"></span>
       <span data-i="sub">肥羊的聖誕禮物 · Underground Defence</span>
     </div>
 
@@ -509,6 +515,7 @@ const UI = {
       hint:'點擊看詳細，再點一次收合 · 相關素材會在格子中高亮', hint2:'搜尋',
       shopL:'商店', setL:'套裝', close:'關閉', results:'搜尋結果',
       dataL:'資料', dateL:'擷取日', cntL:'道具', icoL:'圖示', verUnknown:'版本未知',
+      siteL:'網站', builtL:'建置日',
       rankL:'排行', rankOff:'不排行（瀏覽）', rankBy:'依 %s 排行',
       rankNote:'只計算固定加成；「對英雄傷害」這類條件加成不列入比較',
       cycL:'扭曲循環', cycNote:'再用一次扭曲卷軸就會變成右邊那件，走完 29 件回到起點',
@@ -524,6 +531,7 @@ const UI = {
       hint:'Click for details, click again to close · related pieces light up',
       hint2:'search', shopL:'Shop', setL:'Set', close:'Close', results:'Results',
       dataL:'Data', dateL:'Extracted', cntL:'Items', icoL:'Icons', verUnknown:'version unknown',
+      siteL:'Site', builtL:'Built',
       rankL:'Rank', rankOff:'Off (browse)', rankBy:'Ranked by %s',
       rankNote:'Flat bonuses only; conditional ones like "damage vs heroes" are excluded',
       cycL:'Distortion cycle', cycNote:'Another Scroll of Distortion turns it into the next one; 29 steps loop back',
@@ -540,6 +548,7 @@ const UI = {
       hint2:'поиск', shopL:'Магазин', setL:'Комплект', close:'Закрыть',
       results:'Результаты', dataL:'Данные', dateL:'Выгрузка', cntL:'Предметов',
       icoL:'Иконок', verUnknown:'версия неизвестна',
+      siteL:'Сайт', builtL:'Сборка',
       rankL:'Рейтинг', rankOff:'Выкл. (обзор)', rankBy:'Рейтинг по: %s',
       rankNote:'Только фиксированные бонусы; условные не участвуют',
       cycL:'Цикл искажения', cycNote:'Ещё один свиток искажения даёт следующий предмет; 29 шагов по кругу',
@@ -623,6 +632,8 @@ function renderRail(){
     <div class="meta">
       <span class="ver">${esc(M.mapVersion || t('verUnknown'))}</span>
       <dl>
+        <dt>${esc(t('siteL'))}</dt><dd>${esc(M.siteVersion || '—')}</dd>
+        <dt>${esc(t('builtL'))}</dt><dd>${esc(M.builtAt || '—')}</dd>
         <dt>${esc(t('dateL'))}</dt><dd>${esc(M.dataDate || '—')}</dd>
         <dt>${esc(t('cntL'))}</dt><dd>${M.items ?? IDS.length}</dd>
         <dt>${esc(t('icoL'))}</dt><dd>${M.icons ?? ''}</dd>
@@ -964,8 +975,11 @@ function applyLang(){
   document.documentElement.lang = S.lang === 'zh' ? 'zh-Hant' : S.lang;
   document.querySelectorAll('[data-i]').forEach(el => el.textContent = t(el.dataset.i));
   q.placeholder = t('ph');
-  const mv = (DATA.meta || {}).mapVersion;
-  document.title = t('title') + (mv ? ' ' + mv : '') + ' · ' + t('sub');
+  const M = DATA.meta || {};
+  $('#sv').textContent = M.siteVersion || '';
+  $('#sv').hidden = !M.siteVersion;
+  document.title = t('title') + (M.siteVersion ? ' ' + M.siteVersion : '')
+                 + (M.mapVersion ? ' · ' + M.mapVersion : '') + ' · ' + t('sub');
   $('#lang').querySelectorAll('button').forEach(b =>
     b.setAttribute('aria-pressed', String(b.dataset.v === S.lang)));
 }
