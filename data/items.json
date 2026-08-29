@@ -2925,7 +2925,7 @@
   },
   "vamp": {
    "id": "vamp",
-   "name": "龍之護符",
+   "name": "龍之守衛",
    "name_ru": "Драконий оберег",
    "name_old": "龙之护符",
    "shop": null,
@@ -2977,7 +2977,7 @@
   },
   "pinv": {
    "id": "pinv",
-   "name": "神祕之戒",
+   "name": "神秘之戒",
    "name_ru": "Мистическое кольцо",
    "name_old": "神秘之戒",
    "shop": null,
@@ -3114,7 +3114,7 @@
   },
   "tret": {
    "id": "tret",
-   "name": "捕夢網",
+   "name": "追夢者",
    "name_ru": "Ловец снов",
    "name_old": "辉煌法杖",
    "shop": null,
@@ -3282,7 +3282,7 @@
   },
   "sneg": {
    "id": "sneg",
-   "name": "暗夜之刃",
+   "name": "暗影之刃",
    "name_ru": "Теневое лезвие",
    "name_old": "暗夜之刃",
    "shop": null,
@@ -3378,7 +3378,7 @@
   },
   "shea": {
    "id": "shea",
-   "name": "裂隙權杖",
+   "name": "扭曲權杖",
    "name_ru": "Скипетр разлома",
    "name_old": "扭曲权杖",
    "shop": null,
@@ -3488,7 +3488,7 @@
   },
   "tgrh": {
    "id": "tgrh",
-   "name": "間隔礫石",
+   "name": "間隔爍石",
    "name_ru": "Интервальный гравий",
    "name_old": "间隔砾石",
    "shop": null,
@@ -4757,7 +4757,7 @@
   },
   "srrc": {
    "id": "srrc",
-   "name": "紫緋",
+   "name": "斑岩",
    "name_ru": "Порфира",
    "name_old": null,
    "shop": null,
@@ -4778,7 +4778,7 @@
   },
   "sand": {
    "id": "sand",
-   "name": "深淵菌菇",
+   "name": "深淵蘑菇",
    "name_ru": "Глубинный гриб",
    "name_old": null,
    "shop": null,
@@ -4799,7 +4799,7 @@
   },
   "sror": {
    "id": "sror",
-   "name": "碎裂螯肢",
+   "name": "毀滅者的觸手",
    "name_ru": "Сокрушающий хелицер",
    "name_old": null,
    "shop": null,
@@ -4820,7 +4820,7 @@
   },
   "fgdg": {
    "id": "fgdg",
-   "name": "拜亞基之爪",
+   "name": "比亞基之爪",
    "name_ru": "Коготь бьякхи",
    "name_old": null,
    "shop": null,
@@ -4862,7 +4862,7 @@
   },
   "pghe": {
    "id": "pghe",
-   "name": "輝耀之石",
+   "name": "閃耀之石",
    "name_ru": "Сияющий камень",
    "name_old": null,
    "shop": null,
@@ -4937,7 +4937,7 @@
   },
   "pdiv": {
    "id": "pdiv",
-   "name": "海之混沌",
+   "name": "海嘯",
    "name_ru": "Морской хаос",
    "name_old": null,
    "shop": null,
@@ -12561,6 +12561,14 @@
   ]
  ],
  "cycle": [
+  "shea",
+  "pinv",
+  "spro",
+  "ssan",
+  "skul",
+  "pman",
+  "rnec",
+  "wneg",
   "silk",
   "shas",
   "moon",
@@ -12581,15 +12589,19 @@
   "sor1",
   "pgin",
   "fwss",
-  "shdt",
-  "shea",
-  "pinv",
-  "spro",
-  "ssan",
-  "skul",
-  "pman",
-  "rnec",
-  "wneg"
+  "shdt"
+ ],
+ "ritual": [
+  "sand",
+  "srrc",
+  "sres",
+  "sror",
+  "fgdg",
+  "totw",
+  "pghe",
+  "pres",
+  "pgma",
+  "pdiv"
  ],
  "gem": [
   [

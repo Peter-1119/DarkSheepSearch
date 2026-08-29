@@ -151,13 +151,35 @@ statmeta = [m for m in stat_values.META if _have[m['k']] >= 8]
 for m in statmeta:
     m['n'] = _have[m['k']]
 
+# ---------------------------------------------------------------- 順序資訊
+# 扭曲：舊合成表畫成封閉迴圈，箭頭有明確方向，只有「第一次轉出」是隨機
+#       → 之後每次用扭曲卷軸都是固定的下一件
+# 折射：同一張表在折射區寫了 9 次「隨機」，Wiki 也只說「換成另一件折射裝備」
+#       → 視為 4 件一組的池子，順序不保證
+CYC = {i: n for n, i in enumerate(SITE['cycle'])}
+RIT = {i: n for n, i in enumerate(SITE.get('ritual', []))}
+REF = {}
+for gi, (q1, q2, relic, group, perfect) in enumerate(SITE['refract']):
+    for n, i in enumerate(group):
+        REF[i] = {'g': gi, 'n': n, 'relic': relic, 'group': group, 'perfect': perfect}
+for i, v in items.items():
+    if i in CYC:
+        v['cyc'] = CYC[i]
+    if i in RIT:
+        v['rit'] = RIT[i]
+    if i in REF:
+        v['ref'] = REF[i]
+
 out = {
     'meta': meta,
     'stats': statmeta,
+    'cycle': SITE['cycle'],
+    'ritual': SITE.get('ritual', []),
     'items': items,
     'groups': [{'zh': g[0], 'ru': g[1], 'en': g[2]} for g in GROUPS],
     'ladder': SITE['ladder'], 'refract': SITE['refract'],
-    'cycle': SITE['cycle'], 'gem': SITE['gem'],
+    'cycle': SITE['cycle'],
+    'ritual': SITE.get('ritual', []), 'gem': SITE['gem'],
     'recipes': SITE['recipes'],
 }
 json.dump(out, open(os.path.join(ROOT, 'data', 'site.json'), 'w', encoding='utf-8'),

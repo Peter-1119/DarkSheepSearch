@@ -354,6 +354,52 @@ body[data-resizing="1"]{cursor:col-resize;user-select:none}
 .rel .t span{font-size:11px;color:var(--ink-3)}
 .rel .arrow{color:var(--ink-3);font-size:12px;flex:0 0 auto}
 
+/* 順序條：用「一排會走動的圖示」表達序列，
+   比兩行「上一件／下一件」更能讓人看出這是個連續的環 */
+.seq{display:flex;align-items:flex-end;gap:6px;margin-top:2px}
+.seq button{
+  flex:1 1 0;min-width:0;display:flex;flex-direction:column;align-items:center;gap:5px;
+  padding:7px 3px;border-radius:9px;border:1px solid transparent;background:none;
+  transition:background var(--dur),border-color var(--dur),transform var(--dur);
+}
+.seq button:hover{background:var(--surface);border-color:var(--line-2);transform:translateY(-2px)}
+.seq .sq-img{width:34px;height:34px;border-radius:7px;overflow:hidden;flex:0 0 auto;
+  background:#0c0f15;box-shadow:0 0 0 1.5px var(--c2,#39415a);opacity:.55;
+  transition:opacity var(--dur),transform var(--dur)}
+.seq button:hover .sq-img{opacity:1}
+.seq .sq-img img{width:100%;height:100%;object-fit:cover;display:block}
+.seq .sq-img .ph{width:100%;height:100%;display:grid;place-items:center;
+  font:8px/1 ui-monospace,monospace;color:var(--ink-3)}
+.seq .sq-n{font-size:10px;line-height:1.3;color:var(--ink-3);text-align:center;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;width:100%}
+/* 目前這一件放大、全亮，其餘退到背景 */
+.seq .cur .sq-img{width:46px;height:46px;opacity:1;
+  box-shadow:0 0 0 2px var(--c2,var(--accent)),0 8px 20px -8px var(--c2,var(--accent))}
+.seq .cur .sq-n{color:var(--ink);font-weight:600}
+.seq .arw{flex:0 0 auto;color:var(--ink-3);font-size:11px;padding-bottom:18px}
+
+.pool{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:2px}
+.pool button{
+  display:flex;flex-direction:column;align-items:center;gap:5px;padding:8px 4px;
+  border-radius:9px;border:1px solid var(--line);background:var(--surface);
+  transition:background var(--dur),border-color var(--dur),transform var(--dur);
+}
+.pool button:hover{background:var(--surface-2);border-color:var(--line-2);transform:translateY(-2px)}
+.pool button.cur{border-color:var(--c2,var(--accent));
+  box-shadow:0 0 0 1px var(--c2,var(--accent))}
+.pool .sq-img{width:36px;height:36px;border-radius:7px;overflow:hidden;
+  background:#0c0f15;box-shadow:0 0 0 1.5px var(--c2,#39415a)}
+.pool .sq-img img{width:100%;height:100%;object-fit:cover;display:block}
+.pool .sq-img .ph{width:100%;height:100%;display:grid;place-items:center;
+  font:8px/1 ui-monospace,monospace;color:var(--ink-3)}
+.pool .sq-n{font-size:10.5px;line-height:1.3;text-align:center;color:var(--ink-2);
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;width:100%}
+.pool button.cur .sq-n{color:var(--ink);font-weight:600}
+
+.seq-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:6px}
+.seq-head .pos{font:11px/1 ui-monospace,monospace;color:var(--ink-2)}
+.seq-head .pos b{color:var(--accent)}
+
 .note{font-size:11.5px;color:var(--ink-3);line-height:1.7}
 
 /* -------- toast / hint */
@@ -464,7 +510,11 @@ const UI = {
       shopL:'商店', setL:'套裝', close:'關閉', results:'搜尋結果',
       dataL:'資料', dateL:'擷取日', cntL:'道具', icoL:'圖示', verUnknown:'版本未知',
       rankL:'排行', rankOff:'不排行（瀏覽）', rankBy:'依 %s 排行',
-      rankNote:'只計算固定加成；「對英雄傷害」這類條件加成不列入比較'},
+      rankNote:'只計算固定加成；「對英雄傷害」這類條件加成不列入比較',
+      cycL:'扭曲循環', cycNote:'再用一次扭曲卷軸就會變成右邊那件，走完 29 件回到起點',
+      ritL:'儀式循環', ritNote:'再轉一次就會變成右邊那件，10 件循環（深淵之矛不在循環內）',
+      refL:'折射循環', refNote:'第一次由聖物隨機轉出，之後每用一次折射卷軸就往右走一件，4 件循環',
+      fromRelic:'來源聖物', toPerfect:'完美階'},
   en:{title:'Item Codex', sub:"Fat Sheep's Christmas Gift · Underground Defence",
       ph:'Search items…', density:'Density', d1:'Roomy', d2:'Compact', d3:'Icons',
       all:'All items', tiers:'Tiers', legend:'Legend', sel:'Selected',
@@ -475,7 +525,11 @@ const UI = {
       hint2:'search', shopL:'Shop', setL:'Set', close:'Close', results:'Results',
       dataL:'Data', dateL:'Extracted', cntL:'Items', icoL:'Icons', verUnknown:'version unknown',
       rankL:'Rank', rankOff:'Off (browse)', rankBy:'Ranked by %s',
-      rankNote:'Flat bonuses only; conditional ones like "damage vs heroes" are excluded'},
+      rankNote:'Flat bonuses only; conditional ones like "damage vs heroes" are excluded',
+      cycL:'Distortion cycle', cycNote:'Another Scroll of Distortion turns it into the next one; 29 steps loop back',
+      ritL:'Ritual cycle', ritNote:'Rerolling steps to the next one; 10 items loop (Spear of the Depths is outside the cycle)',
+      refL:'Refraction cycle', refNote:'The relic rolls a random one first; each further scroll steps to the next, looping through 4',
+      fromRelic:'From relic', toPerfect:'Perfected'},
   ru:{title:'Кодекс предметов', sub:'Underground Defence', ph:'Поиск предметов…',
       density:'Плотность', d1:'Свободно', d2:'Плотно', d3:'Иконки',
       all:'Все предметы', tiers:'Классы', legend:'Легенда', sel:'Выбрано',
@@ -487,7 +541,11 @@ const UI = {
       results:'Результаты', dataL:'Данные', dateL:'Выгрузка', cntL:'Предметов',
       icoL:'Иконок', verUnknown:'версия неизвестна',
       rankL:'Рейтинг', rankOff:'Выкл. (обзор)', rankBy:'Рейтинг по: %s',
-      rankNote:'Только фиксированные бонусы; условные не участвуют'}
+      rankNote:'Только фиксированные бонусы; условные не участвуют',
+      cycL:'Цикл искажения', cycNote:'Ещё один свиток искажения даёт следующий предмет; 29 шагов по кругу',
+      ritL:'Ритуальный цикл', ritNote:'Следующий бросок даёт следующий предмет; цикл из 10',
+      refL:'Цикл преломления', refNote:'Реликвия даёт случайный первый; далее каждый свиток — следующий по кругу из 4',
+      fromRelic:'Реликвия', toPerfect:'Совершенный'}
 };
 
 /* ---------------------------------------------------------------- state */
@@ -743,6 +801,9 @@ function openItem(id, scroll){
   if (it.e.length) b += `<div class="sect"><h4>${esc(t('effects'))}</h4>${
     it.e.map(e => `<div class="eff"><span class="tag">${esc(e.l[L])}</span>
       <span class="txt">${num(e.t[L])}</span></div>`).join('')}</div>`;
+  if (it.cyc != null) b += cycleBlock(it, DATA.cycle, 'cycL', 'cycNote');
+  if (it.rit != null) b += cycleBlock(it, DATA.ritual, 'ritL', 'ritNote', 'rit');
+  if (it.ref) b += refractBlock(it);
   if (it.r.length) b += relBlock(t('recipe'), it.r, '＋');
   if (it.u.length) b += relBlock(t('usedin'), it.u, '↑');
   pbody.innerHTML = b || `<div class="note">—</div>`;
@@ -770,6 +831,63 @@ function rankedIds(){
 }
 const rankOf = id => rankedIds().indexOf(id) + 1;
 const rankTotal = () => rankedIds().length;
+
+/* 扭曲：固定 29 件循環。顯示前後各兩件，目前這件放大置中，
+   一眼就能回答「再轉一次會變成什麼」。 */
+function cycleBlock(it, list, labelKey, noteKey, field){
+  const C = list || [], L = C.length, at = field ? it[field] : it.cyc;
+  const slot = n => {
+    const id = C[((at + n) % L + L) % L];
+    const cur = n === 0;
+    return `<button data-goto="${id}" class="${cur ? 'cur' : ''}"
+              style="--c2:${ITEMS[id].k || '#39415a'}" title="${esc(nm(id))}">
+              <span class="sq-img">${thumb(id)}</span>
+              <span class="sq-n">${esc(nm(id))}</span>
+            </button>`;
+  };
+  return `<div class="sect">
+      <div class="seq-head">
+        <h4 style="margin:0">${esc(t(labelKey))}</h4>
+        <span class="pos"><b>${at + 1}</b> / ${L}</span>
+      </div>
+      <div class="seq">
+        ${L <= 6
+          ? C.map((_, n) => slot(n - at)).join('<span class="arw">▶</span>')
+          : `${slot(-2)}${slot(-1)}<span class="arw">▶</span>${slot(0)}<span class="arw">▶</span>${slot(1)}${slot(2)}`}
+      </div>
+      <div class="note" style="margin-top:8px">${esc(t(noteKey))}</div>
+    </div>`;
+}
+
+/* 折射：跟扭曲同一套機制 —— 第一次由聖物隨機轉出，
+   之後每次用折射卷軸都往下一件走，4 件走完回到起點。
+   只有 4 件，所以整圈直接攤開比「前後各兩件」清楚。 */
+function refractBlock(it){
+  const R = it.ref, G = R.group;
+  const one = (id, n) => `<button data-goto="${id}" class="${id === it.id ? 'cur' : ''}"
+        style="--c2:${ITEMS[id].k || '#39415a'}" title="${esc(nm(id))}">
+        <span class="sq-img">${thumb(id)}</span>
+        <span class="sq-n">${esc(nm(id))}</span></button>`;
+  const seq = G.map((id, n) => one(id, n))
+               .join('<span class="arw">▶</span>');
+  let h = `<div class="sect">
+      <div class="seq-head"><h4 style="margin:0">${esc(t('refL'))}</h4>
+        <span class="pos"><b>${R.n + 1}</b> / ${G.length}　↺</span></div>
+      <div class="seq">${seq}</div>
+      <div class="note" style="margin-top:8px">${esc(t('refNote'))}</div>`;
+  const extra = [];
+  if (ITEMS[R.relic]) extra.push([t('fromRelic'), R.relic, '↑']);
+  if (ITEMS[R.perfect]) extra.push([t('toPerfect'), R.perfect, '★']);
+  if (extra.length){
+    h += `<div class="rel" style="margin-top:8px">` + extra.map(([lab, id, ar]) =>
+      `<button data-goto="${id}" style="--c2:${ITEMS[id].k || '#39415a'}">
+         ${thumb(id)}
+         <span class="t"><b>${esc(nm(id))}</b><span>${esc(lab)}</span></span>
+         <span class="arrow">${ar}</span>
+       </button>`).join('') + `</div>`;
+  }
+  return h + `</div>`;
+}
 
 function relBlock(title, ids, arrow){
   return `<div class="sect"><h4>${esc(title)}</h4><div class="rel">${

@@ -162,10 +162,17 @@ REFRACT = [('I00I', 'I00J', 'I00T', ['woms', 'mnst', 'whwd', 'fgsk'], 'pams'),
            ('I026', 'I027', 'I029', ['wshs', 'wcyc', 'will', 'wlsd'], 'nflg'),
            ('I039', 'I03C', 'I03D', ['pomn', 'hlst', 'ankh', 'infs'], 'stpg'),
            ('I00Z', 'I010', 'I028', ['rej3', 'wild', 'fgrg', 'pnvu'], 'pspd')]
-CYCLE = ['silk', 'shas', 'moon', 'sneg', 'tsct', 'sman', 'vamp', 'phea', 'sreg',
-         'wneu', 'hslv', 'tcas', 'mcri', 'tret', 'stwp', 'pnvl', 'tgrh', 'sor1',
-         'pgin', 'fwss', 'shdt', 'shea', 'pinv', 'spro', 'ssan', 'skul', 'pman',
-         'rnec', 'wneg']
+# 扭曲循環（29 件）。從 synthesis.xlsx 的箭頭圖抽出，
+# 之後由玩家提供的遊戲內順序獨立驗證過 —— 集合與順序完全一致，只差起點。
+# 這裡採用玩家的起點（扭曲權杖），方便跟遊戲內對照。
+CYCLE = ['shea', 'pinv', 'spro', 'ssan', 'skul', 'pman', 'rnec', 'wneg', 'silk',
+         'shas', 'moon', 'sneg', 'tsct', 'sman', 'vamp', 'phea', 'sreg', 'wneu',
+         'hslv', 'tcas', 'mcri', 'tret', 'stwp', 'pnvl', 'tgrh', 'sor1', 'pgin',
+         'fwss', 'shdt']
+
+# 儀式循環（玩家提供）。深淵之矛 ram1 不在名單內，暫時視為不參與循環。
+RITUAL = ['sand', 'srrc', 'sres', 'sror', 'fgdg', 'totw', 'pghe', 'pres',
+          'pgma', 'pdiv']
 GEM = [('lmbr', 'rma2', 'I00P'), ('gfor', 'sor3', 'I00Q'), ('gomn', 'sor2', 'I00F'),
        ('tpow', 'sor5', 'I00E'), ('guvi', 'sor4', 'I00O')]
 
@@ -175,7 +182,7 @@ recipes = [{'row': r['row'],
            for r in RECIPES]
 
 data = {'items': items, 'order': ORDER, 'ladder': LADDER, 'refract': REFRACT,
-        'cycle': CYCLE, 'gem': GEM, 'recipes': recipes}
+        'cycle': CYCLE, 'ritual': RITUAL, 'gem': GEM, 'recipes': recipes}
 json.dump(data, open(os.path.join(ROOT, 'data', 'items.json'), 'w', encoding='utf-8'),
           ensure_ascii=False, indent=1)
 
