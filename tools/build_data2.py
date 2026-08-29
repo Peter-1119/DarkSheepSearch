@@ -170,9 +170,9 @@ CYCLE = ['shea', 'pinv', 'spro', 'ssan', 'skul', 'pman', 'rnec', 'wneg', 'silk',
          'hslv', 'tcas', 'mcri', 'tret', 'stwp', 'pnvl', 'tgrh', 'sor1', 'pgin',
          'fwss', 'shdt']
 
-# 儀式循環（玩家提供）。深淵之矛 ram1 不在名單內，暫時視為不參與循環。
+# 儀式循環（11 件，玩家提供）。深淵之矛 ram1 是最後一個，之後繞回深淵蘑菇。
 RITUAL = ['sand', 'srrc', 'sres', 'sror', 'fgdg', 'totw', 'pghe', 'pres',
-          'pgma', 'pdiv']
+          'pgma', 'pdiv', 'ram1']
 GEM = [('lmbr', 'rma2', 'I00P'), ('gfor', 'sor3', 'I00Q'), ('gomn', 'sor2', 'I00F'),
        ('tpow', 'sor5', 'I00E'), ('guvi', 'sor4', 'I00O')]
 
