@@ -375,7 +375,7 @@ const UI = {
       tiers:'品質分類', legend:'圖例', sel:'已選取', mat:'合成素材', into:'可合成為',
       stats:'屬性', effects:'效果', recipe:'合成配方', usedin:'用於合成',
       alias:'舊表名稱', none:'沒有符合的裝備', tryOther:'換個關鍵字或清除篩選',
-      hint:'點擊裝備看詳細 · 相關素材會在格子中高亮', hint2:'搜尋',
+      hint:'點擊看詳細，再點一次收合 · 相關素材會在格子中高亮', hint2:'搜尋',
       shopL:'商店', setL:'套裝', close:'關閉', results:'搜尋結果'},
   en:{title:'Item Codex', sub:"Fat Sheep's Christmas Gift · Underground Defence",
       ph:'Search items…', density:'Density', d1:'Roomy', d2:'Compact', d3:'Icons',
@@ -383,7 +383,7 @@ const UI = {
       mat:'Component', into:'Builds into', stats:'Bonuses', effects:'Effects',
       recipe:'Recipe', usedin:'Used in', alias:'Old sheet name',
       none:'No items match', tryOther:'Try another keyword or clear the filter',
-      hint:'Click an item for details · related pieces light up in the grid',
+      hint:'Click for details, click again to close · related pieces light up',
       hint2:'search', shopL:'Shop', setL:'Set', close:'Close', results:'Results'},
   ru:{title:'Кодекс предметов', sub:'Underground Defence', ph:'Поиск предметов…',
       density:'Плотность', d1:'Свободно', d2:'Плотно', d3:'Иконки',
@@ -391,7 +391,7 @@ const UI = {
       mat:'Компонент', into:'Входит в', stats:'Бонусы', effects:'Эффекты',
       recipe:'Рецепт', usedin:'Используется в', alias:'Старое название',
       none:'Ничего не найдено', tryOther:'Измените запрос или сбросьте фильтр',
-      hint:'Нажмите на предмет · связанные предметы подсветятся',
+      hint:'Нажмите для деталей, ещё раз — закрыть · связанное подсветится',
       hint2:'поиск', shopL:'Магазин', setL:'Комплект', close:'Закрыть',
       results:'Результаты'}
 };
@@ -625,7 +625,10 @@ function closeItem(){
 /* ---------------------------------------------------------------- events */
 main.addEventListener('click', e => {
   const tile = e.target.closest('.tile');
-  if (tile) openItem(tile.dataset.id);
+  if (!tile) return;
+  /* toggle: clicking the already-selected tile closes the panel */
+  if (tile.dataset.id === S.sel) closeItem();
+  else openItem(tile.dataset.id);
 });
 pbody.addEventListener('click', e => {
   const b = e.target.closest('[data-goto]');
