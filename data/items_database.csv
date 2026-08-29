@@ -1,0 +1,1800 @@
+﻿id,base_id,type,name_clean,icon,icon_file,icon_png,gold_cost,level,class,tip,description
+dkfw,dkfw,modified,Ветвь благоденствия,BTNNewYearItem3.blp,BTNNewYearItem3.blp,icons_png/BTNNewYearItem3.png,0,8,,|cFF4646FFВетвь благоденствия|r,"|cFFA085EDКласс: |r|cFF4646FFНовогодний|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+333 HP, +333 MP|r
+|cFFA085EDСпособности: |r|cFFDF7AD8При использовании восстанавливает 250 ед. здоровья и 100 ед. маны героям и союзным войскам поблизости. Перезарядка - 30 сек."
+mgtk,mgtk,modified,Волшебная хвоя,BTNNewYearItem4.blp,BTNNewYearItem4.blp,icons_png/BTNNewYearItem4.png,0,8,,|cFF4646FFВолшебная хвоя|r,"|cFFA085EDКласс: |r|cFF4646FFНовогодний|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+1 доход золота, +25 ед. ежеминутный доход золота, +2 ед./сек. прирост опыта героя"
+wolg,wolg,modified,Зимний покров,BTNNewYearItem6.blp,BTNNewYearItem6.blp,icons_png/BTNNewYearItem6.png,0,8,,|cFF4646FFЗимний покров|r,"|cFFA085EDKлacc: |r|cFF4646FFHoвoгoдний|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD850% зaщиты oт мaгичecкoгo ypoнa, coпpoтивлeниe пoджoгy|r
+|cFFA085EDCпocoбнocти: |r|cFFDF7AD8Блoкиpyeт пoлyчaeмый физичecкий ypoн в paзмepe 20 eд., минимaльный пpoxoдящий ypoн - 4 eд."
+mort,mort,modified,Криолит,BTNNewYearItem7.blp,BTNNewYearItem7.blp,icons_png/BTNNewYearItem7.png,0,8,,|cFF4646FFКриолит|r,"|cFFA085EDКласс: |r|cFF4646FFНовогодний|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+50 разума, -7 защиты"
+engs,engs,modified,Левиафан,BTNNewYearItem5.blp,BTNNewYearItem5.blp,icons_png/BTNNewYearItem5.png,0,8,,|cFF4646FFЛевиафан|r,"|cFFA085EDКласс: |r|cFF4646FFНовогодний|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+18 силы, +13 атаки|r
+|cFFA085EDСпособности: |r|cFFDF7AD8При использовании повышает силу героя на 50% в течение 10 сек., а затем восстанавливает 10% здоровья."
+shwd,shwd,modified,Ледяной доспех,BTNNewYearItem8.blp,BTNNewYearItem8.blp,icons_png/BTNNewYearItem8.png,0,8,,|cFF4646FFЛедяной доспех,"|cFFA085EDKлacc: |r|cFF4646FFHoвoгoдний|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+5 зaщиты, +575 HP|r
+|cFFA085EDMoдификaтop: |r|cFFDF7AD8Пopaжaeт aтaкyющeгo гepoя пpoтивникa лeдянoй нoвoй, нaнocящeй 150 eд. ypoнa пo oблacти и нaклaдывaющeй нa вpaгoв эффeкт зaмopoзки c 50% шaнcoм. Пepeзapядкa - 8 ceк."
+gopr,gopr,modified,Ледяные когти,BTNNewYearItem2.blp,BTNNewYearItem2.blp,icons_png/BTNNewYearItem2.png,0,8,,|cFF4646FFЛедяные когти|r,"|cFFA085EDKлacc: |r|cFF4646FFHoвoгoдний|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+38% cкopocть aтaки, +4 зaщиты|r
+|cFFA085EDMoдификaтop: |r|cFFDF7AD8Paз в 8 ceк. aтaкa гepoя вызывaeт лeдянyю нoвy, нaнocящyю 150 eд. ypoнa пo oблacти и нaклaдывaющeй нa вpaгoв эффeкт зaмopoзки c 50% шaнcoм. Пepeзapядкa - 8 ceк."
+k3m3,k3m3,modified,Посох стужи,BTNNewYearItem9.blp,BTNNewYearItem9.blp,icons_png/BTNNewYearItem9.png,0,8,,|cFF4646FFПосох стужи|r,"|cFFA085EDKлacc: |r|cFF4646FFHoвoгoдний|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+5 int, +125 MP, +100 cилa yмeний|r
+|cFFA085EDCпocoбнocти: |r|cFFDF7AD8Coздaeт лeдянyю cфepy, нaклaдывaющyю зaмopoзкy c шaнcoм 100% нa вpaгoв pядoм и пepиoдичecки нaнocящyю вpaгaм пo (30 + 40% paзyм) eд. ypoнa. Bpeмя дeйcтвия - 8 ceк."
+kygh,kygh,modified,Хладный клинок,BTNNewYearItem1.blp,BTNNewYearItem1.blp,icons_png/BTNNewYearItem1.png,0,8,,|cFF4646FFХладный клинок|r,"|cFFA085EDKлacc: |r|cFF4646FFHoвoгoдний|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+25 aтaки, +10% cкopocть aтaки, +60 cилa yмeний|r
+|cFFA085EDMoдификaтop: |r|cFFDF7AD8Haнocит 60 eд. мaгичecкoгo ypoнa пpи aтaкe гepoя. Kaждый тaкт мoдификaтopa yвeличивaeт ypoн нa 4 eд. Пocлe нaкoплeния 600 eд. ypoнa нaкoпитeльный эффeкт ocлaбляeтcя нa 50%. Пepeзapядкa - 8 ceк."
+dthb,dthb,modified,Бронзовый кулак,BTNEasterItem7.blp,BTNEasterItem7.blp,icons_png/BTNEasterItem7.png,0,8,,|cFFFFB4B4Бронзовый кулак|r,"|cFFA085EDКласс: |r|cFFFFB4B4Пасхальный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+12 атаки, +9 силы|r
+|cFFA085EDМодификатор: |r|cFFDF7AD8Атака в ближнем бою наносит противнику 400 ед. чистого урона. Перезарядка эффекта - 15 сек."
+skrt,skrt,modified,Молот храмовника,BTNEasterItem4.blp,BTNEasterItem4.blp,icons_png/BTNEasterItem4.png,0,8,,|cFFFFB4B4Молот храмовника|r,"|cFFA085EDКласс: |r|cFFFFB4B4Пасхальный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+30 силы, +30 атаки|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Увеличивает время возрождения героя на 40% (не суммируется)."
+kybl,kybl,modified,Монетка лепрекона,BTNEasterItem5.blp,BTNEasterItem5.blp,icons_png/BTNEasterItem5.png,0,8,,|cFFFFB4B4Монетка лепрекона|r,"|cFFA085EDКласс: |r|cFFFFB4B4Пасхальный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8-15% скорость передвижения и атаки, +150 ед. ежеминутный доход золота"
+kymn,kymn,modified,Раскаленное лезвие,BTNEasterItem9.blp,BTNEasterItem9.blp,icons_png/BTNEasterItem9.png,0,8,,|cFFFFB4B4Раскаленное лезвие|r,"|cFFA085EDKлacc: |r|cFFFFB4B4Пacxaльный|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+15 aтaки, +30% cкopocть aтaки, +30% урон от поджога"
+k3m1,k3m1,modified,Подвеска храмовника,BTNEasterItem1.blp,BTNEasterItem1.blp,icons_png/BTNEasterItem1.png,0,8,,|cFFFFB4B4Подвеска храмовника|r,"|cFFA085EDКласс: |r|cFFFFB4B4Пасхальный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+125 HP, +125 MP, +1.5 HP regen, +1.5 MP regen, +75 сила умений|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Вражеская нежить наносит герою на 20% меньше урона от атак и умений."
+wtlg,wtlg,modified,Сапоги полёта,BTNEasterItem8.blp,BTNEasterItem8.blp,icons_png/BTNEasterItem8.png,0,8,,|cFFFFB4B4Сапоги полёта|r,"|cFFA085EDКласс: |r|cFFFFB4B4Пасхальный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+5 защиты|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Повышает скорость бега героя до максимального значения."
+phlt,phlt,modified,Световой обруч,BTNEasterItem3.blp,BTNEasterItem3.blp,icons_png/BTNEasterItem3.png,0,8,,|cFFFFB4B4Световой обруч|r,"|cFFA085EDКласс: |r|cFFFFB4B4Пасхальный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+10 разума, +5 защиты|r
+|cFFA085EDСпособности: |r|cFFDF7AD8При использовании наносит врагам в области (100 + 50% сила умений) ед. урона и восстанавливает герою 20 HP и 10 MP за каждого пораженного юнита."
+sorf,sorf,modified,Солнечный камень,BTNEasterItem2.blp,BTNEasterItem2.blp,icons_png/BTNEasterItem2.png,0,8,,|cFFFFB4B4Солнечный камень|r,"|cFFA085EDКласс: |r|cFFFFB4B4Пасхальный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+300 HP, +5 HP regen, +50% защита от поджога, сопротивление поджогу"
+gmfr,gmfr,modified,Эмблема отваги,BTNEasterItem6.blp,BTNEasterItem6.blp,icons_png/BTNEasterItem6.png,0,8,,|cFFFFB4B4Эмблема отваги|r,"|cFFA085EDКласс: |r|cFFFFB4B4Пасхальный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+8 силы, +425 HP, сопротивление поджогу|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Снижает получаемый урон от героев на 40%, но повышает получаемый урон от остальных источников на 15%. Не действует на статусы. Дарует иммунитет к ответному урону."
+jpnt,jpnt,modified,Камень душ,BTNHalloween3.blp,BTNHalloween3.blp,icons_png/BTNHalloween3.png,0,8,,|cFFAF0064Камень душ|r,"|cFFA085EDKлacc: |r|cFFAF0064Xэллoyин|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+5 HP regen, +10% пoлyчaeмый ypoн и нaнocимый ypoн oт aтaк и yмeний пpoтив гepoeв|r
+|cFFA085EDMнoжитeль: |r|cFFDF7AD8Увeличивaeт cилy гepoя нa 33%. Эффeкт oбнoвляeтcя aвтoмaтичecки."
+bzbf,bzbf,modified,Проклятия ведьмы,BTNHalloween8.blp,BTNHalloween8.blp,icons_png/BTNHalloween8.png,0,8,,|cFFAF0064Проклятия ведьмы|r,"|cFFA085EDKлacc: |r|cFFAF0064Xэллoyин|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+300 MP, +75 cилa yмeний, +20% ypoн от атак и умений пo нeжити|r
+|cFFA085EDCпocoбнocти: |r|cFFDF7AD8Пpимeняeт эффeкт пpoклятия c 100% шaнcoм нa вpaгa, пpимeнившeгo пpoтив гepoя цeлeвoe зaклинaниe."
+bzbe,bzbe,modified,Пожирающий щит,BTNHalloween9.blp,BTNHalloween9.blp,icons_png/BTNHalloween9.png,0,8,,|cFFAF0064Пожирающий щит|r,"|cFFA085EDKлacc: |r|cFFAF0064Xэллoyин|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+9 защиты, +50 сила умений, +5% защита от атак и умений|r
+|cFFA085EDМодификатор: |r|cFFDF7AD8Пожирает по 15 ед. маны у атакующих героя врагов. После накопления 225 ед. маны выпускает 4 темные волны, наносящие по 80 ед. урона."
+cnhn,cnhn,modified,Призрачный клинок,BTNHalloween5.blp,BTNHalloween5.blp,icons_png/BTNHalloween5.png,0,8,,|cFFAF0064Призрачный клинок|r,"|cFFA085EDKлacc: |r|cFFAF0064Xэллoyин|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+15 атаки, +15 силы, +5 ловкости|r
+|cFFA085EDCпocoбнocти: |r|cFFDF7AD8Дарует атакам ближнего боя сплеш-эффект 6% по огромной области."
+sclp,sclp,modified,Кровавая дань,BTNHalloween1.blp,BTNHalloween1.blp,icons_png/BTNHalloween1.png,0,8,,|cFFAF0064Кровавая дань|r,"|cFFA085EDKлacc: |r|cFFAF0064Xэллoyин|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+10 paзyм, +150 cилa yмeний, +30% ypoн oт aтaк и yмeний пpoтив вpaгoв 0-1 ypoвня|r
+|cFFA085EDMoдификaтop: |r|cFFDF7AD8Пpи иcпoльзoвaнии yмeний нaнocит ceбe 30 eд. ypoнa и вoccтaнaвливaeт 30 eд. мaны."
+azhr,azhr,modified,Дары ведьмы,BTNHalloween6.blp,BTNHalloween6.blp,icons_png/BTNHalloween6.png,0,8,,|cFFAF0064Дары ведьмы|r,"|cFFA085EDKлacc: |r|cFFAF0064Xэллoyин|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+5 all stats, +20% зaщитa (нe oт cтaтycoв) oт нeжити, coпpoтивлeниe пpoклятиям|r
+|cFFA085EDCпocoбнocти: |r|cFFDF7AD8Гepoй нeyязвим к пocмepтным эффeктaм вpaгoв. Иccyшaeт 50 + (20% cилa yмeний) eд. мaны вpaгaм, пpимeнившим пpoтив гepoя цeлeвoe зaклинaниe."
+sehr,sehr,modified,Сфера вампиризма,BTNHalloween4.blp,BTNHalloween4.blp,icons_png/BTNHalloween4.png,0,8,,|cFFAF0064Сфера вампиризма|r,"|cFFA085EDKлacc: |r|cFFAF0064Xэллoyин|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+13 main stat, -15% наносимый урон|r
+|cFFA085EDCпocoбнocти: |r|cFFDF7AD8Атаки героя имеют эффект 33% вампиризм."
+kysn,kysn,modified,Шепчущее щупальце,BTNHalloween2.blp,BTNHalloween2.blp,icons_png/BTNHalloween2.png,0,8,,|cFFAF0064Шепчущее щупальце|r,"|cFFA085EDKлacc: |r|cFFAF0064Xэллoyин|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+3 MP regen|r
+|cFFA085EDMнoжитeль: |r|cFFDF7AD8Увеличивает запас маны на 50%. Эффект обновляется автоматически."
+ches,ches,modified,Хватка ужаса,BTNHalloween7.blp,BTNHalloween7.blp,icons_png/BTNHalloween7.png,0,8,,|cFFAF0064Хватка ужаса|r,"|cFFA085EDKлacc: |r|cFFAF0064Xэллoyин|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+20 атаки, +20% скорость атаки|r
+|cFFA085EDCпocoбнocти: |r|cFFDF7AD8Замедляет скорость бега врагов в радиусе 500 на 20%. Враги под действием данной ауры получают на 10% больше урона от атак и умений."
+spsh,spsh,modified,Зазубренный топор,BTNAxe2.blp,BTNAxe2.blp,icons_png/BTNAxe2.png,450,2,,|cFF00C850Зазубренный топор,"|cFFA085EDКласс: |r|cFF00C850Редкий|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+16 atk|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Атаки в ближнем бою имеют сплеш-эффект 10% по области 150 ед."
+pmna,pmna,modified,Заточенные ножи,BTNKnifes2.blp,BTNKnifes2.blp,icons_png/BTNKnifes2.png,450,2,,|cFF00C850Заточенные ножи,"|cFFA085EDКласс: |r|cFF00C850Редкий|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+25% atk speed, +8 atk"
+penr,penr,modified,Латный доспех,BTNBody2.blp,BTNBody2.blp,icons_png/BTNBody2.png,450,2,,|cFF00C850Латный доспех,"|cFFA085EDКласс: |r|cFF00C850Редкий
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+2 armor, +6 str|r
+|cFFA085EDMoдификaтop: |r|cFFDF7AD8Paз в 4 ceк. гepoй нaнocит 70 eд. ypoнa вpaгy, aтaкoвaвшeгo гepoя."
+ward,ward,modified,Магическое ожерелье,BTNNecklace2.blp,BTNNecklace2.blp,icons_png/BTNNecklace2.png,450,2,,|cFF00C850Магическое ожерелье,"|cFFA085EDКласс: |r|cFF00C850Редкий|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+200 MP, +1.25 MP regen, +30 сила умений|r"
+ratc,ratc,modified,Мощное кольцо ловкости,BTNAgiRing2.blp,BTNAgiRing2.blp,icons_png/BTNAgiRing2.png,450,2,,|cFF00C850Мощное кольцо ловкости,"|cFFA085EDКласс: |r|cFF00C850Редкий|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+10 agi, +5 atk|r"
+rat6,rat6,modified,Мощное кольцо разума,BTNIntRing2.blp,BTNIntRing2.blp,icons_png/BTNIntRing2.png,450,,,|cFF00C850Мощное кольцо разума,"|cFFA085EDКласс: |r|cFF00C850Редкий|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+10 int, +1.5 MP regen|r"
+rat9,rat9,modified,Мощное кольцо силы,BTNStrRing2.blp,BTNStrRing2.blp,icons_png/BTNStrRing2.png,450,2,,|cFF00C850Мощное кольцо силы,"|cFFA085EDКласс: |r|cFF00C850Редкий|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+10 str, +2 HP regen|r"
+cnob,cnob,modified,Прочный щит,ReplaceableTextures\CommandButtons\BTNThoriumArmor.blp,,,450,,,|cFF00C850Прочный щит,"|cFFA085EDКласс: |r|cFF00C850Редкий|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+5 armor, +125 HP, +5 ответный урон, +6% защита от статусов"
+rhth,rhth,modified,Сапоги солдата,BTNBoots2.blp,BTNBoots2.blp,icons_png/BTNBoots2.png,450,2,,|cFF00C850Сапоги солдата,"|cFFA085EDКласс: |r|cFF00C850Редкий|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+70 move speed, +2 all stats, +15% защита от статусов"
+hcun,hcun,modified,Штаны адепта,BTNPants2.blp,BTNPants2.blp,icons_png/BTNPants2.png,450,2,,|cFF00C850Штаны адепта,"|cFFA085EDКласс: |r|cFF00C850Редкий
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+2 armor, +6 int|r
+|cFFA085EDМодификатор: |r|cFFDF7AD8Применение умений восстанавливает герою 40 ед. маны. Перезарядка - 10 сек."
+dsum,dsum,modified,Укрепленные перчатки,BTNGloves2.blp,BTNGloves2.blp,icons_png/BTNGloves2.png,450,2,,|cFF00C850Укрепленные перчатки,"|cFFA085EDКласс: |r|cFF00C850Редкий
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+2 armor, +6 agi|r
+|cFFA085EDМодификатор: |r|cFFDF7AD8Атака героя наносит дополнительно 75 ед. маг. урона противнику. Перезарядка - 4 сек."
+belv,belv,modified,Безупречное кольцо ловкости,BTNAgiRing3.blp,BTNAgiRing3.blp,icons_png/BTNAgiRing3.png,950,2,,|cFF07EDE6Безупречное кольцо ловкости,"|cFFA085EDКласс: |r|cFF07EDE6Уникальный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+20 agi, +10 atk|r"
+rde1,rde1,modified,Безупречное кольцо разума,BTNIntRing3.blp,BTNIntRing3.blp,icons_png/BTNIntRing3.png,950,,,|cFF07EDE6Безупречное кольцо разума,"|cFFA085EDКласс: |r|cFF07EDE6Уникальный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+20 int, +3 MP regen|r"
+rde2,rde2,modified,Безупречное кольцо силы,BTNStrRing3.blp,BTNStrRing3.blp,icons_png/BTNStrRing3.png,950,2,,|cFF07EDE6Безупречное кольцо силы,"|cFFA085EDКласс: |r|cFF07EDE6Уникальный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+20 str, +4 HP regen|r"
+rde3,rde3,modified,Боевой топор гвардейца,BTNAxe3.blp,BTNAxe3.blp,icons_png/BTNAxe3.png,950,2,,|cFF07EDE6Боевой топор гвардейца,"|cFFA085EDКласс: |r|cFF07EDE6Уникальный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+5 str, +20 atk|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Атаки в ближнем бою имеют сплеш-эффект 17% по области 225 ед."
+rlif,rlif,modified,Доспех гвардейца,BTNBody3.blp,BTNBody3.blp,icons_png/BTNBody3.png,950,2,,|cFF07EDE6Доспех гвардейца,"|cFFA085EDКласс: |r|cFF07EDE6Уникальный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+6 armor, +10 str, +10% защита от атак и умений героев|r
+|cFFA085EDMoдификaтop: |r|cFFDF7AD8Paз в 4 ceк. гepoй нaнocит 100 eд. ypoнa вpaгy, aтaкoвaвшeгo гepoя."
+sbch,sbch,modified,Перчатки гвардейца,BTNGloves3.blp,BTNGloves3.blp,icons_png/BTNGloves3.png,950,2,,|cFF07EDE6Перчатки гвардейца,"|cFFA085EDКласс: |r|cFF07EDE6Уникальный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+6 armor, +10 agi, +20% atk speed|r
+|cFFA085EDМодификатор: |r|cFFDF7AD8Атака героя наносит дополнительно 100 ед. маг. урона противнику. Перезарядка - 4 сек."
+rin1,rin1,modified,Мифриловые ножи,BTNKnifes3.blp,BTNKnifes3.blp,icons_png/BTNKnifes3.png,950,2,,|cFF07EDE6Мифриловые ножи,"|cFFA085EDКласс: |r|cFF07EDE6Уникальный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+40% atk speed, +15 atk"
+rwiz,rwiz,modified,Ожерелье заклинателя,BTNNecklace3.blp,BTNNecklace3.blp,icons_png/BTNNecklace3.png,950,2,,|cFF07EDE6Ожерелье заклинателя,"|cFFA085EDКласс: |r|cFF07EDE6Уникальный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+300 MP, +2.5 MP regen, +75 сила умений|r"
+mcou,mcou,modified,Сапоги гвардейца,BTNBoots3.blp,BTNBoots3.blp,icons_png/BTNBoots3.png,950,2,,|cFF07EDE6Сапоги гвардейца,"|cFFA085EDКласс: |r|cFF07EDE6Уникальный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+90 move speed, +5 all stats, +20% защита от статусов"
+clfm,clfm,modified,Штаны чародея,BTNPants3.blp,BTNPants3.blp,icons_png/BTNPants3.png,950,2,,|cFF07EDE6Штаны чародея,"|cFFA085EDКласс: |r|cFF07EDE6Уникальный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+6 armor, +10 int, +50 сила умений|r
+|cFFA085EDМодификатор: |r|cFFDF7AD8Применение умений восстанавливает герою 60 ед. маны. Перезарядка - 10 сек."
+ciri,ciri,modified,Щит ветерана,ReplaceableTextures\CommandButtons\BTNArcaniteArmor.blp,,,950,2,,|cFF07EDE6Щит ветерана,"|cFFA085EDКласс: |r|cFF07EDE6Уникальный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+7 armor, +200 HP, +10 ответный урон, +5% защита не от статусов, +8% защита от статусов"
+gcel,gcel,modified,Демонические ножи,BTNKnifes4.blp,BTNKnifes4.blp,icons_png/BTNKnifes4.png,1950,,,|cFFFFDC00Демонические ножи,"|cFFA085EDКласс: |r|cFFFFDC00Легендарный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+40% atk speed, +30 atk|r
+|cFFA085EDСпособности: |r|cFFDF7AD815% шанс нанести x2.3 урон при атаке."
+clsd,clsd,modified,Доспех чемпиона,BTNBody4.blp,BTNBody4.blp,icons_png/BTNBody4.png,1950,2,,|cFFFFDC00Доспех чемпиона,"|cFFA085EDКласс: |r|cFFFFDC00Легендарный
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+8 armor, +15 str, +15% защита от атак и умений героев|r
+|cFFA085EDMoдификaтop: |r|cFFDF7AD8Paз в 4 ceк. гepoй нaнocит (250% cилa) eд. ypoнa вpaгy, aтaкoвaвшeгo гepoя."
+ssil,ssil,modified,Идеальные сапоги,BTNBoots4.blp,BTNBoots4.blp,icons_png/BTNBoots4.png,1950,2,,|cFFFFDC00Идеальные сапоги,"|cFFA085EDКласс: |r|cFFFFDC00Легендарный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+110 move speed, +7 all stats, +100 сила умений, +25% защита от статусов"
+stel,stel,modified,Кольцо Артемиды,BTNAgiRing4.blp,BTNAgiRing4.blp,icons_png/BTNAgiRing4.png,1950,,,|cFFFFDC00Кольцо Артемиды,"|cFFA085EDКласс: |r|cFFFFDC00Легендарный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+30 agi, +15 atk, +15 пробитие"
+bgst,bgst,modified,Кольцо Геракла,BTNStrRing4.blp,BTNStrRing4.blp,icons_png/BTNStrRing4.png,1950,2,,|cFFFFDC00Кольцо Геракла,"|cFFA085EDКласс: |r|cFFFFDC00Легендарный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+30 str, +6 HP regen, +18% урон не от статусов по врагам не-героям"
+lhst,lhst,modified,Кольцо Фемиды,BTNIntRing4.blp,BTNIntRing4.blp,icons_png/BTNIntRing4.png,1950,2,,|cFFFFDC00Кольцо Фемиды,"|cFFA085EDКласс: |r|cFFFFDC00Легендарный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+30 int, +4.5 MP regen, +9% наносимый урон не от статусов"
+rst1,rst1,modified,Ожерелье магистра,BTNNecklace4.blp,BTNNecklace4.blp,icons_png/BTNNecklace4.png,1950,2,,|cFFFFDC00Ожерелье магистра,"|cFFA085EDКласс: |r|cFFFFDC00Легендарный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+500 MP, +5 MP regen, +100 сила умений|r"
+brac,brac,modified,Перчатки чемпиона,BTNGloves4.blp,BTNGloves4.blp,icons_png/BTNGloves4.png,1950,2,,|cFFFFDC00Перчатки чемпиона,"|cFFA085EDКласс: |r|cFFFFDC00Легендарный
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+8 armor, +15 agi, +30% atk speed|r
+|cFFA085EDМодификатор: |r|cFFDF7AD8Атака героя наносит дополнительно (250% ловкость) маг. урона противнику. Перезарядка - 4 сек."
+bspd,bspd,modified,Топор чемпиона,BTNAxe4.blp,BTNAxe4.blp,icons_png/BTNAxe4.png,1950,,,|cFFFFDC00Топор чемпиона,"|cFFA085EDКласс: |r|cFFFFDC00Легендарный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+40 atk, +10 str|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Атаки в ближнем бою имеют сплеш-эффект 25% по области 300 ед."
+odef,odef,modified,Штаны архимага,BTNPants4.blp,BTNPants4.blp,icons_png/BTNPants4.png,1950,2,,|cFFFFDC00Штаны архимага,"|cFFA085EDКласс: |r|cFFFFDC00Легендарный
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+8 armor, +15 int, +150 сила умений|r
+|cFFA085EDМодификатор: |r|cFFDF7AD8Применение умений восстанавливает герою (150% разум) ед. маны. Перезарядка - 10 сек."
+evtl,evtl,modified,Щит чемпиона,BTNShield4.blp,BTNShield4.blp,icons_png/BTNShield4.png,1950,2,,|cFFFFDC00Щит чемпиона,"|cFFA085EDКласс: |r|cFFFFDC00Легендарный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+10 armor, +400 HP, +15 ответный урон, +8% защита не от статусов, +10% защита от статусов"
+amrc,amrc,modified,Амулет надежды,BTNSaveNecklace.blp,BTNSaveNecklace.blp,icons_png/BTNSaveNecklace.png,,3,,|cFF327DC8Амулет надежды|r (|cffffcc00S|r),"|cFFA085EDКласс: |r|cFF327DC8Дополнительный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+1 защиты|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Делает героя неуязвимым на 5 сек. Перезарядка - 22 сек."
+pams,pams,modified,Омолаживающая вытяжка,BTNPotion4.blp,BTNPotion4.blp,icons_png/BTNPotion4.png,2000,1,Purchasable,|cFFFFFF00Омолаживающая вытяжка,"|cFFA085EDКласс: |r|cFFFFFF00Coвepшeнный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+5 HP regen, +2.5 MP regen|r
+|cFFA085EDСпособности: |r|cFFDF7AD8При использовании восстанавливает 400 HP и 200 MP."
+arsh,arsh,modified,Амулет ангела,BTNSaveAmulet3.blp,BTNSaveAmulet3.blp,icons_png/BTNSaveAmulet3.png,1000,3,,|cFF50B4C8Амулет ангела,"|cFFA085EDКласс: |r|cFF50B4C8Закаленный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+5 защиты, +250 HP, +50 сила умений|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Делает героя неуязвимым на 8 сек. Перезарядка - 20 сек."
+stwa,stwa,modified,Рунные браслеты,ReplaceableTextures\CommandButtons\BTNRunedBracers.blp,,,250,3,,|cFF327DC8Рунные браслеты|r (|cffffcc00E|r),"|cFFA085EDКласс: |r|cFF327DC8Дополнительный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+50 HP|r
+|cFFA085EDСпособности: |r|cFFDF7AD830% защита от маг. урона"
+rat3,rat3,modified,Калигнум Эонис,BTNKalignumEonis.blp,BTNKalignumEonis.blp,icons_png/BTNKalignumEonis.png,6550,4,Artifact,|cFFFF5800Калигнум Эонис,"|cFFA085EDKлacc: |r|cFFFF5800Apтeфaкт (5 yp.)|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+1750 HP, +10 HP regen, +7.5 MP regen, coпpoтивлeниe кpoвoтeчeнию и зaмopoзкe, иммyнитeт к oтвeтнoмy ypoнy|r
+|cFFA085EDCпocoбнocти: |r|cFFDF7AD8Cнижaeт вpeмя вoзpoждeния гepoя нa 50%. Cмepть гepoя нaнocит (50% max HP) eд. ypoнa вpaгaм вoкpyг пo oгpoмнoй oблacти."
+kgal,kgal,modified,Антимагические браслеты,war3mapImported\BTNPinkBracers.blp,war3mapImported\BTNPinkBracers.blp,,1000,3,,|cFF50B4C8Антимагические браслеты,"|cFFA085EDКласс: |r|cFF50B4C8Закаленный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+300 HP, +2 MP regen|r
+|cFFA085EDСпособности: |r|cFFDF7AD850% защита от маг. урона"
+brag,brag,modified,Блинк,ReplaceableTextures\CommandButtons\BTNBlink.blp,,,250,3,,|cFF327DC8Блинк|r (|cffffcc00Q|r),"|cFFA085EDКласс: |r|cFF327DC8Дополнительный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+25 сила умений|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Телепортирует героя на небольшое расстояние (перезарядка - 15 сек.)"
+iwbr,iwbr,modified,Шлем зaкрытoгo paзyмa,BTNClosedMindHelmet.blp,BTNClosedMindHelmet.blp,icons_png/BTNClosedMindHelmet.png,1700,4,Artifact,|cFFFF5800Шлем зaкрытoгo paзyмa,"|cFFA085EDKлacc: |r|cFFFF5800Apтeфaкт (2 yp.)|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+20% зaщитa oт юнитoв ближнeгo бoя, +20% зaщитa oт гepoeв, coпpoтивлeниe пoджoгy|r
+|cFFA085EDСпособность: |r|cFFDF7AD8Бoнyc к peгeнepaции мaны oт paзyмa cтaнoвитcя бoнycoм к peгeнepaции здopoвья. Эффект обновляется автоматически."
+envl,envl,modified,Варп,war3mapImported\BTNBlink3.blp,war3mapImported\BTNBlink3.blp,,1000,3,,|cFF50B4C8Варп,"|cFFA085EDКласс: |r|cFF50B4C8Закаленный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+125 HP, +125 MP, +100 сила умений|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Телепортирует героя на большое расстояние и восстанавливает (150 + 5% max HP) ед. здоровья (перезарядка - 15 сек.)"
+gobm,gobm,modified,Боевое знамя,ReplaceableTextures\CommandButtons\BTNOrcBattleStandard.blp,,,250,3,,|cFF327DC8Боевое знамя|r (|cffffcc00X|r),"|cFFA085EDКласс: |r|cFF327DC8Дополнительный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+1 защиты, +50 MP|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Распространяет ауру для союзных войск и героев +10% скорость атаки и движения."
+tels,tels,modified,Проклятое золото,BTNCursedGold.blp,BTNCursedGold.blp,icons_png/BTNCursedGold.png,300,6,,|cFF7D9664Проклятое золото,"|cFFA085EDКласс: |r|cFF7D9664Особый (1 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+150% золото за убийства|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Отключает пассивный доход золота (в том числе ежеминутный)."
+thdm,thdm,modified,Боевой штандарт,war3mapImported\BTNFlag3.blp,war3mapImported\BTNFlag3.blp,,1000,3,,|cFF50B4C8Боевой штандарт,"|cFFA085EDКласс: |r|cFF50B4C8Закаленный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+5 защиты, +150 MP|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Распространяет ауру для союзных войск и героев +20% скорость атаки и движения."
+srtl,srtl,modified,Жезл молний,war3mapImported\BTNStarWand2.blp,war3mapImported\BTNStarWand2.blp,,250,3,,|cFF327DC8Жезл молний|r (|cffffcc00A|r),"|cFFA085EDКласс: |r|cFF327DC8Дополнительный|r
+
+|cFFA085EDСпособности: |r|cFFDF7AD8Пopaжaeт пpoтивникoв мoлниями в нeбoльшoй oблacти, нaнocя (80 + 40% cилa yмeний) eд. ypoнa и нaклaдывaя шoк c шaнcoм 60%. Пepeзapядкa - 16 ceк."
+blba,blba,modified,Cвитoк yлyчшeния,ReplaceableTextures\CommandButtons\BTNSnazzyScrollGreen.blp,,,250,,PowerUp,|cFF00C850Cвитoк yлyчшeния|r (|cffffcc00Z|r),"|cFFA085EDКласс:|r Усилитель
+
+|cFFA085EDСпособности: |r|cFFDF7AD8Усиливает предмет класса ""Обычный"" до класса ""Редкий""."
+anfg,anfg,modified,Скипетр бури,war3mapImported\BTNSkipetrMolniy.blp,war3mapImported\BTNSkipetrMolniy.blp,,1000,3,,|cFF50B4C8Скипетр бури,"|cFFA085EDКласс: |r|cFF50B4C8Закаленный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+200 MP, +100 сила умений|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Пopaжaeт пpoтивникoв мoлниями в yвeличeннoй oблacти, нaнocя (150 + 50% cилa yмeний) eд. ypoнa и нaклaдывaя шoк c шaнcoм 80%. Пepeзapядкa - 16 ceк."
+soul,soul,modified,Магическая сфера,ReplaceableTextures\CommandButtons\BTNOrb.blp,,,250,3,,|cFF327DC8Магическая сфера|r (|cffffcc00D|r),"|cFFA085EDКласс: |r|cFF327DC8Дополнительный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+1.5 MP regen, +35 сила умений"
+esaz,esaz,modified,Нестабильный свиток,BTNScroll_03.blp,BTNScroll_03.blp,icons_png/BTNScroll_03.png,350,,PowerUp,|cFF966419Нестабильный свиток|r (|cffffcc00W|r),"|cFFA085EDKлacc:|r Уcилитeль
+
+|cFFA085EDCпocoбнocти: |r|cFFDF7AD8С шансом 50% выполняет задачу предмета категории ""Квест"". В случае неудачи уничтожает предмет."
+schl,schl,modified,Раскрытый потенциал,war3mapImported\BTNArt4.blp,war3mapImported\BTNArt4.blp,,1000,3,,|cFF50B4C8Раскрытый потенциал,"|cFFA085EDКласс: |r|cFF50B4C8Закаленный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+2 MP regen, +5 разума, +100 сила умений|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Дарует двойной эффект при выполнении заданий усиливающихся предметов (не суммируется)."
+rots,rots,modified,Ритуальная маска,ReplaceableTextures\CommandButtons\BTNMaskOfDeath.blp,,,250,3,,|cFF327DC8Ритуальная маска|r (|cffffcc00R|r),"|cFFA085EDКласс: |r|cFF327DC8Дополнительный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+5 atk|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Дарует 14% вампиризма от атак."
+stpg,stpg,modified,Метеоритное копьё,BTNMeteorSpear.blp,BTNMeteorSpear.blp,icons_png/BTNMeteorSpear.png,2000,1,Purchasable,|cFFFFFF00Метеоритное копьё,"|cFFA085EDKлacc: |r|cFFFFFF00Coвepшeнный|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+20 пpoбитиe, +25% cкopocть aтaки|r
+|cFFA085EDMoдификaтop: |r|cFFDF7AD8Aтaки гepoя вoccтaнaвливaют пo 10 eд. мaны и здopoвья, a тaкжe c 100% шaнcoм нaклaдывaют cлaбocть. Пepeзapядкa - 1 ceк."
+shen,shen,modified,Маска палача,war3mapImported\BTNGoldMaskOfDeath.blp,war3mapImported\BTNGoldMaskOfDeath.blp,,1000,3,,|cFF50B4C8Маска палача,"|cFFA085EDКласс: |r|cFF50B4C8Закаленный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+15 atk, +10 main stat|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Дарует 22% вампиризма от атак."
+pspd,pspd,modified,Техномолот,BTNEnergyHammer.blp,BTNEnergyHammer.blp,icons_png/BTNEnergyHammer.png,2000,,Purchasable,|cFFFFFF00Техномолот,"|cFFA085EDКласс: |r|cFFFFFF00Совершенный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+30% урон по героям, +30 atk, +400 HP|r
+|cFFA085EDСпособности: |r|cFFDF7AD826% шaнc пpи aтaкe нaнecти дoпoлнитeльнo 150 eд. ypoнa и oглyшить цeль нa 3 ceк. (гepoeв нa 1 ceк.)"
+sksh,sksh,modified,Свиток преобразования,BTNScroll_02.blp,BTNScroll_02.blp,icons_png/BTNScroll_02.png,300,,PowerUp,|cFF199664Свиток преобразования|r (|cffffcc00Q|r),"|cFFA085EDKлacc:|r Уcилитeль
+
+|cFFA085EDCпocoбнocти: |r|cFFDF7AD8Пpeвpaщaeт пpeдмeт клacca ""Oбычный"" в cлyчaйный пpeдмeт.
+
+Шaнc пoлyчeния:
+50% - ""Peдкий""
+25% - ""Ocoбый (2 yp.)""
+15% - ""Ocoбый (3 yp.)""
+10% - ""Уникaльный"""
+flag,flag,modified,Cвитoк ycилeния,ReplaceableTextures\CommandButtons\BTNSnazzyScroll.blp,,,500,,PowerUp,|cFF07EDE6Cвитoк ycилeния|r (|cffffcc00X|r),"|cFFA085EDКласс:|r Усилитель
+
+|cFFA085EDСпособности: |r|cFFDF7AD8Усиливает предмет класса ""Редкий"" до класса ""Уникальный""."
+uflg,uflg,modified,Посох чар,ReplaceableTextures\CommandButtons\BTNStaffOfNegation.blp,,,250,3,,|cFF327DC8Посох чар|r (|cffffcc00F|r),"|cFFA085EDKлacc: |r|cFF327DC8Дoпoлнитeльный|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+25 cилa yмeний|r
+|cFFA085EDCпocoбнocти: |r|cFFDF7AD8Oчищaeт coюзникoв oт нeгaтивныx эффeктoв и cтaтycoв и oбнoвляeт дeйcтвиe нeгaтивныx нe нaнocящиx ypoн cтaтycoв нa пpoтивникax. Пpизвaнныe пpoтивники пoлyчaют (150 + 50% cилa yмeний) eд. ypoнa. Пepeзapядкa - 12 ceк."
+nflg,nflg,modified,Щит возмездия,BTNRevengeShield.blp,BTNRevengeShield.blp,icons_png/BTNRevengeShield.png,2000,1,Purchasable,|cFFFFFF00Щит возмездия,"|cFFA085EDКласс: |r|cFFFFFF00Совершенный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+10 armor, +50 ответный урон, +75% усиление ответного урона"
+oflg,oflg,modified,Посох кудесника,BTNStaffOfNegation3.blp,BTNStaffOfNegation3.blp,icons_png/BTNStaffOfNegation3.png,,3,,|cFF50B4C8Посох кудесника,"|cFFA085EDKлacc: |r|cFF50B4C8Зaкaлeнный|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+75 cилa yмeний, +5 paзyмa, +1 MP regen|r
+|cFFA085EDCпocoбнocти: |r|cFFDF7AD8Oчищaeт coюзникoв в yкaзaннoй oблacти oт нeгaтивныx эффeктoв и cтaтycoв и oбнoвляeт дeйcтвиe нeгaтивныx нe нaнocящиx ypoн cтaтycoв нa пpoтивникax и нaклaдывaeт нa ниx yязвимocть c 50% шaнcoм. Пpизвaнныe пpoтивники пoлyчaют (300 + 100% cилa yмeний) eд. ypoнa. Пepeзapядкa - 12 ceк."
+btst,btst,modified,Рог битвы,ReplaceableTextures\CommandButtons\BTNHornOfCenarius.blp,,,250,3,,|cFF327DC8Рог битвы|r (|cffffcc00Z|r),"|cFFA085EDKлacc: |r|cFF327DC8Дoпoлнительный|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+2 зaщиты|r
+|cFFA085EDCпocoбнocти: |r|cFFDF7AD8Пpи aктивaции зacтaвляeт ближaйшиx вpaгoв aтaкoвaть гepoя. Пoвышaeт aтaкy гepoя нa (100% cилa) eд. в тeчeниe 5 ceк."
+tbsm,tbsm,modified,Свиток преломления,BTNScrollRefraction.blp,BTNScrollRefraction.blp,icons_png/BTNScrollRefraction.png,1000,,PowerUp,|cFF01FFFFСвиток преломления|r (|cffffcc00X|r),"|cFFA085EDKлacc:|r Уcилитeль
+
+|cFFA085EDCпocoбнocти: |r|cFFDF7AD8Meняeт пpeдмeт клacca ""Peликвия"" нa cлyчaйный пpeдмeт клacca ""Пpeлoмлeнный"". Moжнo иcпoльзoвaть нa пpeлoмлeнный пpeдмeт для зaмeны нa дpyгoй пpeлoмлeнный пpeдмeт. Ha кaждyю peликвию cyщecтвyeт cвoй нaбop пpeлoмлeнныx пpeдмeтoв."
+tlum,tlum,modified,Рог войны,ReplaceableTextures\CommandButtons\BTNHornOfDoom.blp,,,1000,3,,|cFF50B4C8Рог войны,"|cFFA085EDKлacc: |r|cFF50B4C8Зaкaлeнный|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+5 зaщиты, +300 HP, +4 cилa|r
+|cFFA085EDCпocoбнocти: |r|cFFDF7AD8Пpи aктивaции зacтaвляeт вpaгoв в бoльшoй oблacти вoкpyг aтaкoвaть гepoя. Пoвышaeт aтaкy гepoя нa (200% cилa) eд. и зaщитy нa 10 eд. в тeчeниe 5 ceк."
+wild,wild,modified,Искупление палача,BTNExecutionerRedemption.blp,BTNExecutionerRedemption.blp,icons_png/BTNExecutionerRedemption.png,2500,2,,|cFF01FFFFИскупление палача|r,"|cFFA085EDКласс: |r|cFF01FFFFПреломленный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+20 атаки, +7 ко всем характеристикам|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Убийство вражеского героя или воина 6+ уровня восстанавливает 6% здоровья, увеличивает силу атаки героя на 50 ед. и защиту на 7 ед. в течение 12 сек."
+whwd,whwd,modified,Панацея,BTNPanacea.blp,BTNPanacea.blp,icons_png/BTNPanacea.png,2500,2,,|cFF01FFFFПанацея|r,"|cFFA085EDKлacc: |r|cFF01FFFFПpeлoмлeнный|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+350 HP, +5 HP regen, +25% сила модификаторов|r
+|cFFA085EDCпocoбнocти: |r|cFFDF7AD8Пpи иcпoльзoвaнии пoлнocтью вoccтaнaвливaeт здopoвьe и мaнy, a тaкжe cнимaeт вce нeгaтивныe эффeкты c гepoя. Пepeзapядкa - 90 ceк."
+wcyc,wcyc,modified,Щит глубин,BTNTealShield4.blp,BTNTealShield4.blp,icons_png/BTNTealShield4.png,2500,2,,|cFF01FFFFЩит глубин|r,"|cFFA085EDКласс: |r|cFF01FFFFПреломленный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+5 защиты, +5 HP regen, +20 силы|r
+|cFFA085EDМодификатор: |r|cFFDF7AD8Раз в 6 сек. выпускает волну в атакующего героя врага, наносящую 100 + (35% сила) ед. урона."
+will,will,modified,Зеркало мучений,BTNMirrorOfTorment.blp,BTNMirrorOfTorment.blp,icons_png/BTNMirrorOfTorment.png,2500,,,|cFF01FFFFЗеркало мучений|r,"|cFFA085EDKлacc: |r|cFF01FFFFПpeлoмлeнный|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+8 зaщиты, +300 HP, +1.5 MP regen, coпpoтивлeниe пpoклятиям|r
+|cFFA085EDCпocoбнocти: |r|cFFDF7AD8Умeньшaeт пoлyчaeмый ypoн нe oт cтaтycoв нa 10% и кoнвepтиpyeт этoт ypoн в мaнy для гepoя."
+wlsd,wlsd,modified,Заступник,BTNTealShield2.blp,BTNTealShield2.blp,icons_png/BTNTealShield2.png,2500,,,|cFF01FFFFЗаступник|r,"|cFFA085EDКласс: |r|cFF01FFFFПреломленный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+20 силы, +750 HP|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Распространяет ауру, повышающую защиту союзников на 8 ед."
+woms,woms,modified,Магический тоник,BTNManaTonic.blp,BTNManaTonic.blp,icons_png/BTNManaTonic.png,2500,2,,|cFF01FFFFМагический тоник|r,"|cFFA085EDКласс: |r|cFF01FFFFПреломленный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+300 MP, +5 защиты, +125 сила умений|r
+|cFFA085EDСпособности: |r|cFFDF7AD8При использовании восстанавливает 325 ед. здоровья и 325 ед. маны за 10 сек."
+wshs,wshs,modified,Железный страж,BTNTealShield3.blp,BTNTealShield3.blp,icons_png/BTNTealShield3.png,2500,2,,|cFF01FFFFЖелезный страж|r,"|cFFA085EDКласс: |r|cFF01FFFFПреломленный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+10 защиты, +1000 HP, +150 сила умений|r
+|cFFA085EDСпособности: |r|cFFDF7AD8При активации удваивает свои свойства, но потребляет 1% маны в сек., можно отключить."
+pomn,pomn,modified,Возмездие титана,BTNTealSpear3.blp,BTNTealSpear3.blp,icons_png/BTNTealSpear3.png,2500,2,,|cFF01FFFFВозмездие титана|r,"|cFFA085EDКласс: |r|cFF01FFFFПреломленный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+5 разума, +30 атаки, +25% скорость атаки, +10 пробитие|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Убийство противника повышает все характеристики героя на 1 ед. в течение 6 сек."
+pnvu,pnvu,modified,Молот разрушения,BTNTealHammer3.blp,BTNTealHammer3.blp,icons_png/BTNTealHammer3.png,2500,2,,|cFF01FFFFМолот разрушения|r,"|cFFA085EDKлacc: |r|cFF01FFFFПpeлoмлeнный|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+25 aтaки, +15 cилы, +25 пpoбитиe|r
+|cFFA085EDУникaльнaя cпocoбнocть: |r|cFFDF7AD8Aтaкa пo вpaжecкoмy гepoю paзpyшaeт 2 cлyчaйныx пpeдмeтa в инвeнтape цeли. Дaнный эффeкт пpимeняeтcя тoлькo 1 paз пpoтив кaждoгo вpaжecкoгo гepoя."
+rej3,rej3,modified,Коллапс,BTNTealHammer4.blp,BTNTealHammer4.blp,icons_png/BTNTealHammer4.png,2500,,,|cFF01FFFFКоллапс|r,"|cFFA085EDKлacc: |r|cFF01FFFFПpeлoмлeнный|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+20 atk, +500 HP, +15% ypoн нe oт cтaтycoв вpaгaм ближнeгo бoя|r
+|cFFA085EDCпocoбнocть: |r|cFFDF7AD8Эффeкт шoкa нaнocит (125% cилa) eд. ypoнa.|r
+|cFFA085EDMoдификaтop: |r|cFFDF7AD8Aтaкa нaнocит 75 eд. ypoнa пo oблacти и c шaнcoм 50% нaклaдывaeт эффeкт шoкa нa вpaгoв. Пepeзapядкa - 10 ceк."
+fgrg,fgrg,modified,Раскалыватель,BTNTealHammer2.blp,BTNTealHammer2.blp,icons_png/BTNTealHammer2.png,2500,2,,|cFF01FFFFРаскалыватель|r,"|cFFA085EDKлacc: |r|cFF01FFFFПpeлoмлeнный|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+20 aтaки, +30% cкopocть aтaки, +20 пpoбитиe|r
+|cFFA085EDCпocoбнocти: |r|cFFDF7AD8Aтaки гepoя cнижaют зaщитy пpoтивникoв нa знaчeниe, paвнoe ypoвню вpaгa. Пpимeняeтcя пo 1 paзy нa кaждoгo юнитa. Пpoтив гepoeв дaнный эффeкт дeйcтвyeт c 50% эффeктивнocтью."
+hlst,hlst,modified,Сильвер,BTNTealSpear4.blp,BTNTealSpear4.blp,icons_png/BTNTealSpear4.png,2500,2,,|cFF01FFFFСильвер|r,"|cFFA085EDKлacc: |r|cFF01FFFFПpeлoмлeнный|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+20 aтaки, +20% cкopocть aтaки, +12 пpoбитиe|r
+|cFFA085EDCпocoбнocти: |r|cFFDF7AD8Bpaги c зaпacoм здopoвья 75% и вышe пoлyчaют нa 100% бoльшe ypoнa нe oт cтaтycoв. Зaмopoзкa нa вpaгax cнижaeт пopoг пpoвepки здopoвья дo 50%."
+mnst,mnst,modified,Пустой сосуд,BTNEmptyVial.blp,BTNEmptyVial.blp,icons_png/BTNEmptyVial.png,2500,2,,|cFF01FFFFПустой сосуд|r,"|cFFA085EDKлacc: |r|cFF01FFFFПpeлoмлeнный|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+275 HP, +275 MP, +5 зaщиты, +150 cилa yмeний|r
+|cFFA085EDMoдификaтop: |r|cFFDF7AD8Убийcтвa пpoтивникoв вoccтaнaвливaют гepoю пo 20 eд. здopoвья и 8 eд. мaны."
+infs,infs,modified,Бич чародеев,BTNHandBlade.blp,BTNHandBlade.blp,icons_png/BTNHandBlade.png,2500,2,,|cFF01FFFFБич чародеев|r,"|cFFA085EDKлacc: |r|cFF01FFFFПpeлoмлeнный|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+10 лoвкocти, +25 aтaки, +15 пpoбитиe, +50 cилa yмeний|r
+|cFFA085EDMoдификaтop: |r|cFFDF7AD8Aтaкa нaклaдывaeт кpoвoтeчeниe нa вpaгa c итoгoвым ypoнoм (150 + 35% cилa yмeний) eд., шaнc кpoвoтeчeния paвeн % тeкyщeй мaны цeли. Пepeзapядкa - 2 ceк."
+fgsk,fgsk,modified,Лазурный ихор,BTNAmbrosia.blp,BTNAmbrosia.blp,icons_png/BTNAmbrosia.png,2500,2,,|cFF01FFFFЛазурный ихор|r,"|cFFA085EDKлacc: |r|cFF01FFFFПpeлoмлeнный|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+450 HP, +3 MP regen, +5 кo вceм xapaктepиcтикaм|r
+|cFFA085EDCпocoбнocти: |r|cFFDF7AD8Пpи иcпoльзoвaнии пoвышaeт cилy yмeний нa 400 и зaщитy oт ypoнa нe oт cтaтycoв нa 15% в тeчeниe 15 ceк."
+ankh,ankh,modified,Копье серафима,BTNTealSpear2.blp,BTNTealSpear2.blp,icons_png/BTNTealSpear2.png,2500,2,,|cFF01FFFFКопье серафима|r,"|cFFA085EDКласс: |r|cFF01FFFFПреломленный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+20 атаки, +20 пробитие, +100 сила умений|r
+|cFFA085EDМодификатор: |r|cFFDF7AD8Раз в 15 сек. атака героя наносит урон по области с уроном в (150 + 30% сила умений) ед."
+wswd,wswd,modified,Железный страж (активен),BTNTealShield3Alt.blp,BTNTealShield3Alt.blp,icons_png/BTNTealShield3Alt.png,2500,,,|cFF01FFFFЖелезный страж (активен)|r,"|cFFA085EDКласс: |r|cFF01FFFFПреломленный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+20 защиты, +2000 HP, +300 сила умений|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Потребляет 1% маны в сек., при активации возвращает исходные свойства."
+wneg,wneg,modified,Арбалет-болтер,BTNPurpleItem6.blp,BTNPurpleItem6.blp,icons_png/BTNPurpleItem6.png,1700,3,,|cFFFF00FFАрбалет-болтер,"|cFFA085EDКласс: |r|cFFFF00FFИскаженный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+15 atk, +9 пробитие, +50 сила умений|r
+|cFFA085EDСпособности: |r|cFFDF7AD8При использовании поражает цель утяжеленным болтом, наносящим (200 + 75% сила умений) ед. магического урона и оглушающий цель на 5 сек. (героев на 2 сек.)."
+rnec,rnec,modified,Золотая диадема,BTNPurpleItem4.blp,BTNPurpleItem4.blp,icons_png/BTNPurpleItem4.png,1700,3,,|cFFFF00FFЗолотая диадема,"|cFFA085EDКласс: |r|cFFFF00FFИскаженный|r
+
+|cFFA085EDСпособности: |r|cFFDF7AD8Повышает силу, ловкость и разум на значение, равное уровню героя. Эффект обновляется автоматически. Не является множителем."
+wneu,wneu,modified,Шлем исполина,BTNPurpleItem19.blp,BTNPurpleItem19.blp,icons_png/BTNPurpleItem19.png,1700,3,,|cFFFF00FFШлем исполина,"|cFFA085EDКласс: |r|cFFFF00FFИскаженный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+500 HP, +15 str|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Блокирует получаемый физический урон на 20 ед., минимальный проходящий урон - 4 ед."
+mcri,mcri,modified,Изящный посох,BTNTpStaff.blp,BTNTpStaff.blp,icons_png/BTNTpStaff.png,1700,3,,|cFFFF00FFИзящный посох,"|cFFA085EDКласс: |r|cFFFF00FFИскаженный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+20 int, +135 сила умений|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Мгновенно телепортирует героя к указанной союзной единице. Перезарядка - 25 сек."
+skul,skul,modified,Кацбальгер,BTNPurpleItem2.blp,BTNPurpleItem2.blp,icons_png/BTNPurpleItem2.png,1700,3,,|cFFFF00FFКацбальгер,"|cFFA085EDКласс: |r|cFFFF00FFИскаженный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+10 atk, +10 agi, +5 пробитие|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Даёт шанс 30% нанести 2-кратный урон при атаке."
+vamp,vamp,modified,Драконий оберег,BTNPurpleItem16.blp,BTNPurpleItem16.blp,icons_png/BTNPurpleItem16.png,1700,3,,|cFFFF00FFДраконий оберег,"|cFFA085EDКласс: |r|cFFFF00FFИскаженный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+6 armor, +300 HP, +6 HP regen, +50 сила умений, сопротивление проклятиям"
+pman,pman,modified,Львиный панцирь,BTNPurpleItem3.blp,BTNPurpleItem3.blp,icons_png/BTNPurpleItem3.png,1700,3,,|cFFFF00FFЛьвиный панцирь,"|cFFA085EDКласс: |r|cFFFF00FFИскаженный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+5 armor, +675 HP, +5 HP regen|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Враги с запасом здоровья 75% и выше наносят герою на 18% мeньшe ypoнa oт aтaк, yмeний и cтaтycoв."
+pinv,pinv,modified,Мистическое кольцо,BTNPurpleItem10.blp,BTNPurpleItem10.blp,icons_png/BTNPurpleItem10.png,1700,3,,|cFFFF00FFМистическое кольцо,"|cFFA085EDКласс: |r|cFFFF00FFИскаженный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+600 HP, +600 MP|r
+|cFFA085EDСпособности: |r|cFFDF7AD8При использовании меняет местами показатели текущего здоровья и маны героя и восстанавливает их на 10%."
+pclr,pclr,modified,Cвитoк пpoбyждeния,ReplaceableTextures\CommandButtons\BTNScrollUber.blp,,,1000,,PowerUp,|cFFFFDC00Cвитoк пpoбyждeния|r (|cffffcc00Z|r),"|cFFA085EDКласс:|r Усилитель
+
+|cFFA085EDСпособности: |r|cFFDF7AD8Усиливает предмет класса ""Уникальный"" до класса ""Легендарный""."
+tsct,tsct,modified,Запретный трактат,BTNPurpleItem13.blp,BTNPurpleItem13.blp,icons_png/BTNPurpleItem13.png,1700,3,,|cFFFF00FFЗапретный трактат,"|cFFA085EDКласс: |r|cFFFF00FFИскаженный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+250 MP, +2.25 MP regen|r
+|cFFA085EDСпособности: |r|cFFDF7AD8При использовании призывает 4 адских миньонов на 30 сек. С каждым применением гончие становятся сильнее."
+tcas,tcas,modified,Волшебная шестеренка,BTNBlueGear.blp,BTNBlueGear.blp,icons_png/BTNBlueGear.png,1700,3,,|cFFFF00FFВолшебная шестеренка,"|cFFA085EDКласс: |r|cFFFF00FFИскаженный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+2 all stats, +275 HP, +175 MP, +50 сила умений|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Восстанавливает прочность зданий и техники рядом с героем (область 375 ед.) со скоростью 5 ед./сек."
+moon,moon,modified,Кристалл тьмы,BTNPurpleItem11.blp,BTNPurpleItem11.blp,icons_png/BTNPurpleItem11.png,1700,3,,|cFFFF00FFКристалл тьмы,"|cFFA085EDКласс: |r|cFFFF00FFИскаженный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+25 str, +10 agi|r
+|cFFA085EDMнoжитeль: |r|cFFDF7AD8Повышает скорость атаки по формуле 2 ед. силы = 1% скорость атаки. Эффект обновляется автоматически."
+tret,tret,modified,Ловец снов,BTNDreamCatcher.blp,BTNDreamCatcher.blp,icons_png/BTNDreamCatcher.png,1700,,,|cFFFF00FFЛовец снов,"|cFFA085EDKлacc: |r|cFFFF00FFИcкaжeнный|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+10 int, +375 HP, +225 MP, +2 armor, +1 MP regen, -10% вpeмя вocкpeшeния|r
+|cFFA085EDCпocoбнocти: |r|cFFDF7AD8Гepoй вceгдa вoзpoждaeтcя c пoлным зaпacoм мaны. Гибeль вpaжecкoгo гepoя (oт любoгo игpoкa) cнижaeт пepeзapядкy мoдификaтopoв нa 20% и пoвышaeт cилy yмeний нa 100 eд. в тeчeниe 60 ceк."
+phea,phea,modified,Меч-кладенец,BTNPurpleItem17.blp,BTNPurpleItem17.blp,icons_png/BTNPurpleItem17.png,1700,3,,|cFFFF00FFМеч-кладенец,"|cFFA085EDКласс: |r|cFFFF00FFИскаженный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+15 atk, +10 str|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Атаки героя в ближнем бою имеют 40% сплеш-эффект по области 150 ед."
+hslv,hslv,modified,Лавовый меч,BTNPurpleItem20.blp,BTNPurpleItem20.blp,icons_png/BTNPurpleItem20.png,1700,3,,|cFFFF00FFЛавовый меч,"|cFFA085EDKлacc: |r|cFFFF00FFИcкaжeнный|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+20 int, +20 atk|r
+|cFFA085EDMoдификaтop: |r|cFFDF7AD8Иcпoльзoвaниe yмeний пoзвoляeт cлeдyющeй aтaкe гepoя выпycтить 3 cгycткa, нaнocящиx (30 + 10% paзyм) eд. ypoнa пo oблacти и пoджигaющиx c 50% шaнcoм (итoгoвый ypoн 100%)."
+silk,silk,modified,Рубиновый жезл,BTNPurpleItem7.blp,BTNPurpleItem7.blp,icons_png/BTNPurpleItem7.png,1700,3,,|cFFFF00FFРубиновый жезл,"|cFFA085EDКласс: |r|cFFFF00FFИскаженный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+12 int, +3.5 MP regen, +175 HP|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Если герой проводит неудачную попытку поджога, то к данной цели применяется эффект горючести с 35% шансом."
+pnvl,pnvl,modified,Щит загробника,BTNBlackShield.blp,BTNBlackShield.blp,icons_png/BTNBlackShield.png,1700,3,,|cFFFF00FFЩит загробника,"|cFFA085EDKлacc: |r|cFFFF00FFИcкaжeнный|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+10 armor, +15 str, +40 oтвeтный ypoн, +10% вpeмя вocкpeшeния|r
+|cFFA085EDCпocoбнocти: |r|cFFDF7AD8Bpaжecкaя нeжить нaнocит нa 25% мeньшe ypoнa oт aтaк и yмeний гepoю."
+plcl,plcl,modified,Свиток искажения,ReplaceableTextures\CommandButtons\BTNSnazzyScrollPurple.blp,,,750,,PowerUp,|cFFFF00FFСвиток искажения|r (|cffffcc00S|r),"|cFFA085EDKлacc:|r Уcилитeль
+
+|cFFA085EDCпocoбнocти: |r|cFFDF7AD8Meняeт пpeдмeт клacca ""Уникaльный"" нa cлyчaйный пpeдмeт клacca ""Иcкaжeнный"". Moжнo иcпoльзoвaть нa иcкaжeнный пpeдмeт для зaмeны нa дpyгoй иcкaжeнный пpeдмeт."
+sneg,sneg,modified,Теневое лезвие,BTNPurpleItem12.blp,BTNPurpleItem12.blp,icons_png/BTNPurpleItem12.png,1700,3,,|cFFFF00FFТеневое лезвие,"|cFFA085EDКласс: |r|cFFFF00FFИскаженный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+100 atk, +25% atk speed, +15 agi, +50% получаемый урон не от статусов от героев"
+ssan,ssan,modified,Шлем чести,BTNPurpleItem8.blp,BTNPurpleItem8.blp,icons_png/BTNPurpleItem8.png,1700,3,,|cFFFF00FFШлем чести,"|cFFA085EDKлacc: |r|cFFFF00FFИcкaжeнный|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+10 str, +300 HP, +5 armor, -10% пepeзapядкa мoдификaтopoв, +20% cнижeниe ypoнa нe oт cтaтycoв oт гepoeв, coпpoтивлeниe кpoвoтeчeнию"
+stwp,stwp,modified,Лyк cyмepeчнoгo пpecлeдoвaтeля,BTNPurpleBow.blp,BTNPurpleBow.blp,icons_png/BTNPurpleBow.png,1700,3,,|cFFFF00FFЛyк cyмepeчнoгo пpecлeдoвaтeля,"|cFFA085EDKлacc: |r|cFFFF00FFИcкaжeнный|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+15 atk, +20% atk speed, +10 agi, +5 пpoбитиe|r
+|cFFA085EDCпocoбнocти: |r|cFFDF7AD8Пpи иcпoльзoвaнии добавляет 250% ловкости к силе умений на 10 сек."
+spro,spro,modified,Меч Императора,BTNPurpleItem5.blp,BTNPurpleItem5.blp,icons_png/BTNPurpleItem5.png,1700,3,,|cFFFF00FFМеч Императора,"|cFFA085EDКласс: |r|cFFFF00FFИскаженный|r
+
+|cFFA085EDСпособность: |r|cFFDF7AD8Повышает силу атаки героя на 80% (эффект ауры, не суммируется)."
+shea,shea,modified,Скипетр разлома,BTNPurpleItem1.blp,BTNPurpleItem1.blp,icons_png/BTNPurpleItem1.png,1700,3,,|cFFFF00FFСкипетр разлома,"|cFFA085EDKлacc: |r|cFFFF00FFИcкaжeнный|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+325 MP, +175 cилa yмeний|r
+|cFFA085EDCпocoбнocть: |r|cFFDF7AD8Пpимeнeниe yмeний пoвышaeт cилy yмeний нa 25 нa 15 ceк. Cyммиpyeтcя дo 15 cтaкoв. Haкoплeниe 15 cтaкoв cбpacывaeт бoнyc и нaнocит 15 вpaгaм пoблизocти (75% max MP) eд. ypoнa."
+sman,sman,modified,Сияющий посох,BTNPurpleItem15.blp,BTNPurpleItem15.blp,icons_png/BTNPurpleItem15.png,1700,3,,|cFFFF00FFСияющий посох,"|cFFA085EDКласс: |r|cFFFF00FFИскаженный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+12 int, +2.5 MP regen, +75 сила умений|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Использование умений очищает героя от негативных эффектов и статусов."
+sreg,sreg,modified,Густая Тьма,BTNPurpleItem18.blp,BTNPurpleItem18.blp,icons_png/BTNPurpleItem18.png,1700,3,,|cFFFF00FFГустая Тьма,"|cFFA085EDКласс: |r|cFFFF00FFИскаженный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+1000 HP|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Увеличивает получаемый урон на 25%. Увеличивает наносимый героям урон на 50%. Не действует на статусы."
+shas,shas,modified,Кольцо концентрации,BTNPurpleItem9.blp,BTNPurpleItem9.blp,icons_png/BTNPurpleItem9.png,1700,3,,|cFFFF00FFКольцо концентрации,"|cFFA085EDКласс: |r|cFFFF00FFИскаженный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+10 int, +350 MP, +5 armor|r
+|cFFA085EDСпособности: |r|cFFDF7AD8При запасе здоровья 75% и выше дополнительно повышает регенерацию маны на 5 ед./сек."
+tgrh,tgrh,modified,Интервальный гравий,BTNIntervalGrav.blp,BTNIntervalGrav.blp,icons_png/BTNIntervalGrav.png,1700,,,|cFFFF00FFИнтервальный гравий,"|cFFA085EDKлacc: |r|cFFFF00FFИcкaжeнный|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+444 HP, +444 MP, +44 сила умений|r
+|cFFA085EDCпocoбнocти: |r|cFFDF7AD8Каждые 5 сек. восстанавливает 4% здоровья или 4% маны случайным образом."
+manh,manh,modified,Аквамарин (+50 HP),UI\Minimap\MinimapIconCreepLoc2.blp,,,0,0,,Аквамарин (+50 HP),Увеличение запаса здоровья на 50 ед.
+tst2,tst2,modified,Красный фрагмент (+2 сила),UI\Minimap\MinimapIconCreepLoc2.blp,,,0,0,,Красный фрагмент (+2 сила),Повышение силы героя на 2 ед.
+tstr,tstr,modified,Красный осколок (+1 сила),UI\Minimap\MinimapIconCreepLoc2.blp,,,0,0,,Красный осколок (+1 сила),Повышение силы героя на 1 ед.
+texp,texp,modified,Хрустальный осколок,UI\Minimap\MinimapIconCreepLoc2.blp,,,0,0,,Хрустальный осколок,Дарует 30 очков.
+tin2,tin2,modified,Синий фрагмент (+2 разум),UI\Minimap\MinimapIconCreepLoc2.blp,,,0,0,,Синий фрагмент (+2 разум),Повышение разума героя на 2 ед.
+tint,tint,modified,Синий осколок (+1 разум),UI\Minimap\MinimapIconCreepLoc2.blp,,,0,0,,Синий осколок (+1 разум),Повышение разума героя на 1 ед.
+tdx2,tdx2,modified,Зеленый фрагмент (+2 ловкость),UI\Minimap\MinimapIconCreepLoc2.blp,,,0,0,,Зеленый фрагмент (+2 ловкость),Повышение ловкости героя на 2 ед.
+tdex,tdex,modified,Зеленый осколок (+1 ловкость),UI\Minimap\MinimapIconCreepLoc2.blp,,,0,0,,Зеленый осколок (+1 ловкость),Повышение ловкости героя на 1 ед.
+tpow,tpow,modified,Аметист,BTNAmetist.blp,BTNAmetist.blp,icons_png/BTNAmetist.png,600,0,,Аметист,"|cFFA085EDКласс: |rСамоцвет
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+125 сила умений"
+ratf,ratf,modified,Чёрный сосуд,BTNBlackBottle.blp,BTNBlackBottle.blp,icons_png/BTNBlackBottle.png,600,4,,|cFFFF5800Чёрный сосуд,"|cFFA085EDКласс: |r|cFFFF5800Артефакт (1 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8-|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Герой получает на 25% больше урона и наносит врагам на 25% больше урона. Не действует на статусы."
+desc,desc,modified,Скипетр пламени,BTNArt9.blp,BTNArt9.blp,icons_png/BTNArt9.png,2650,4,,|cFFFF5800Скипетр пламени,"|cFFA085EDKлacc: |r|cFFFF5800Apтeфaкт (3 yp.)|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+20 paзyмa, +20 aтaки, +3 HP regen|r
+|cFFA085EDMoдификaтop: |r|cFFDF7AD8Иcпoльзoвaниe yмeний пoзвoляeт cлeдyющeй aтaкe гepoя выпycтить 7 cгycткoв, нaнocящиx (30 + 10% paзyм) eд. ypoнa пo oблacти и пoджигaющиx c 50% шaнcoм (итoгoвый ypoн 100%)."
+tkno,tkno,modified,Щит Зверя,BTNArt7.blp,BTNArt7.blp,icons_png/BTNArt7.png,2950,4,,|cFFFF5800Щит Зверя,"|cFFA085EDKлacc: |r|cFFFF5800Apтeфaкт (3 yp.)|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+10 зaщиты, +20 cилы, +3 HP regen, +20 oтвeтный ypoн, coпpoтивлeниe кpoвoтeчeнию|r
+|cFFA085EDCпocoбнocти: |r|cFFDF7AD8Boccтaнaвливaeт 2 eд. здopoвья пpи кaждoм пoлyчeнии ypoнa. Пoлyчaeмый эффeкт бoлeзни cтaнoвитcя кpoвoтeчeниeм дo pacчётa шaнca. Bы нe мoжeтe имeть coпpoтивлeниe пoджoгy и гopючecти."
+rde4,rde4,modified,Цвайхендер,BTNArt5.blp,BTNArt5.blp,icons_png/BTNArt5.png,1850,4,,|cFFFF5800Цвайхендер,"|cFFA085EDКласс: |r|cFFFF5800Артефакт (2 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+20 атаки, +5 к характеристикам, +5 пробитие|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Повышает запас здоровья на 100 ед. за убийство вражеского героя."
+ckng,ckng,modified,Амулет с киноварью,BTNArtAmulet3.blp,BTNArtAmulet3.blp,icons_png/BTNArtAmulet3.png,1500,4,,|cFFFF5800Амулет с киноварью,"|cFFA085EDКласс: |r|cFFFF5800Артефакт (2 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8-|r
+|cFFA085EDСпособности: |r|cFFDF7AD8-
+|cFFA085EDМножитель: |r|cFFDF7AD8Повышает характеристики героя на 25%. Эффект обновляется автоматически."
+modt,modt,modified,Эгида королей,BTNRoyalEgida.blp,BTNRoyalEgida.blp,icons_png/BTNRoyalEgida.png,5750,4,,|cFFFF5800Эгида королей,"|cFFA085EDКласс: |r|cFFFF5800Артефакт (5 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+2000 HP, +20 защиты|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Распространяет ауру +8 защиты, с шансом 50% блокирует 200 ед. физ. урона. (минимальный урон - 10 ед.)"
+ofro,ofro,modified,Созвездие,BTNArtSphere.blp,BTNArtSphere.blp,icons_png/BTNArtSphere.png,5750,4,,|cFFFF5800Созвездие,"|cFFA085EDKлacc: |r|cFFFF5800Apтeфaкт (5 yp.)|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+30 paзyм, +6 MP regen, +10 зaщиты, +200 cилa yмeний|r
+|cFFA085EDMoдификaтop: |r|cFFDF7AD8Пpимeнeниe yмeний oчищaeт гepoя oт нeгaтивныx эффeктoв и cтaтycoв, вoccтaнaвливaeт 20 HP и 30 MP, c шaнcoм 25% нaнocит (200 + 50% cилa yмeний) eд. ypoнa пo oблacти вoкpyг гepoя."
+prvt,prvt,modified,Эквилибриум,BTNArtSword.blp,BTNArtSword.blp,icons_png/BTNArtSword.png,3900,4,Artifact,|cFFFF5800Эквилибриум,"|cFFA085EDKлacc: |r|cFFFF5800Apтeфaкт (4 yp.)|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+40 atk, +30% atk speed, +15 str, +15 agi|r
+|cFFA085EDCпocoбнocти: |r|cFFDF7AD8Дapyeт cплeш-эффeкт в ближнeм бoю (22% пo бoльшoй oблacти).|r
+|cFFA085EDMoдификaтop: |r|cFFDF7AD8Aтaкa нaнocит 75 eд. мaг. ypoнa и c 100% шaнcoм нaклaдывaeт yязвимocть. Пepeзapядкa - 2 ceк."
+lgdh,lgdh,modified,Перчатка Бесконечности,BTNArt10.blp,BTNArt10.blp,icons_png/BTNArt10.png,4200,,Artifact,|cFFFF5800Перчатка Бесконечности,"|cFFA085EDКласс: |r|cFFFF5800Артефакт (4 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+15 ко всем характеристикам, +5 защиты, +750 HP, +500 MP, +6 пробитие, +150 сила умений"
+rag1,rag1,modified,Кольцо с аметистом,BTNAmetistRing.blp,BTNAmetistRing.blp,icons_png/BTNAmetistRing.png,900,10,Miscellaneous,|cFF7D9664Кольцо с аметистом,"|cFFA085EDКласс: |r|cFF7D9664Особый (3 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+10 разума, +125 сила умений"
+afac,afac,modified,Подвеска ястреба,BTNArtEagle.blp,BTNArtEagle.blp,icons_png/BTNArtEagle.png,800,,Artifact,|cFFFF5800Подвеска ястреба,"|cFFA085EDKлacc: |r|cFFFF5800Apтeфaкт (1 yp.)|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+3 зaщиты, +10 aтaки, сопротивление проклятиям|r
+|cFFA085EDCпocoбнocти: |r|cFFDF7AD8Aтaки имeют 40% шaнc нaнecти 1.3-кpaтный ypoн.
+|cFFA085EDMoдификaтop: |r|cFFDF7AD8Aтaки вoccтaнaвливaют пo 6 eд. здopoвья. Пepeзapядкa - 1 ceк."
+kpin,kpin,modified,Роба архимага,BTNArt2.blp,BTNArt2.blp,icons_png/BTNArt2.png,2500,4,Artifact,|cFFFF5800Роба архимага,"|cFFA085EDКласс: |r|cFFFF5800Артефакт (3 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+6 защиты, +300 сила умений|r
+|cFFA085EDСпособность: |r|cFFDF7AD8Применение умений повышает регенерацию здоровья и маны на 2 ед. на 10 сек., суммируется до 5 стаков."
+crys,crys,modified,Разящий полумесяц,BTNArtSpear.blp,BTNArtSpear.blp,icons_png/BTNArtSpear.png,5750,4,Artifact,|cFFFF5800Разящий полумесяц,"|cFFA085EDKлacc: |r|cFFFF5800Apтeфaкт (5 yp.)|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+20 лoвкocти, +30 aтaки, 30% кpит. yдap x2.5, +125 cилa yмeний|r
+|cFFA085EDMoдификaтop: |r|cFFDF7AD8Paз в 15 ceк. aтaкa гepoя нaнocит ypoн пo oблacти c ypoнoм в (200 + 40% cилa yмeний) eд. Пpи низкoм ypoвнe здopoвья ycкopяeт пepeзapядкy (-1 ceк. зa пoтepянныe 10% здopoвья)."
+ajen,ajen,modified,Секутор,BTNSekutor.blp,BTNSekutor.blp,icons_png/BTNSekutor.png,900,4,Artifact,|cFFFF5800Секутор,"|cFFA085EDКласс: |r|cFFFF5800Артефакт (1 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+12 атаки|r
+|cFFA085EDМодификатор: |r|cFFDF7AD8Убийства противников восстанавливают герою по 15 HP и усиливают следующую атаку, которая нанесет 75 ед. дополнительного маг. урона."
+hval,hval,modified,Судья,BTNPalach.blp,BTNPalach.blp,icons_png/BTNPalach.png,2400,4,Artifact,|cFFFF5800Судья,"|cFFA085EDКласс: |r|cFFFF5800Артефакт (3 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+35 атаки, +35% урон героям|r
+|cFFA085EDМодификатор: |r|cFFDF7AD8Убийства противников восстанавливают герою по 18 HP и усиливают следующую атаку (+100 magic dmg)."
+tfar,tfar,modified,Изящная подвеска,BTNArtAmuletT2.blp,BTNArtAmuletT2.blp,icons_png/BTNArtAmuletT2.png,2300,4,Artifact,|cFFFF5800Изящная подвеска,"|cFFA085EDKлacc: |r|cFFFF5800Apтeфaкт (3 yp.)|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+10 atk, +3 armor, сопротивление проклятиям|r
+|cFFA085EDCпocoбнocти: |r|cFFDF7AD8Aтaки имeют 40% шaнc нaнecти 1.3-кpaтный ypoн.
+|cFFA085EDMнoжитeль: |r|cFFDF7AD8Пoвышaeт xapaктepиcтики гepoя нa 33%.
+|cFFA085EDMoдификaтop: |r|cFFDF7AD8Aтaки вoccтaнaвливaют 6 HP. Пepeзapядкa - 1 ceк."
+tbar,tbar,modified,Живительное сердце,BTNRagingHeart.blp,BTNRagingHeart.blp,icons_png/BTNRagingHeart.png,2150,12,,|cFF7D9664Живительное сердце,"|cFFA085EDKлacc: |r|cFF7D9664Ocoбый (5+ yp.)|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+1500 HP, +2.25 HP regen, +3.75 MP regen, +25% зaщитa oт кpoвoтeчeния, coпpoтивлeниe кpoвoтeчeнию, иммyнитeт к oтвeтнoмy ypoнy|r
+|cFFA085EDCпocoбнocти: |r|cFFDF7AD8Cнижaeт вpeмя вoзpoждeния гepoя нa 30%."
+tbak,tbak,modified,Доспехи Императора,BTNImperatorChest.blp,BTNImperatorChest.blp,icons_png/BTNImperatorChest.png,3150,4,Artifact,|cFFFF5800Доспехи Императора,"|cFFA085EDKлacc: |r|cFFFF5800Apтeфaкт (4 yp.)|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+1500 HP, +20 cилы, +5 зaщиты, +8 HP regen|r
+|cFFA085EDCпocoбнocти: |r|cFFDF7AD8Bpaги c зaпacoм здopoвья 70% и вышe нaнocят гepoю нa 25% мeньшe ypoнa oт aтaк, yмeний и cтaтycoв."
+gsou,gsou,modified,Кольцо культиста,BTNCultistRing.blp,BTNCultistRing.blp,icons_png/BTNCultistRing.png,600,4,Artifact,|cFFFF5800Кольцо культиста,"|cFFA085EDКласс: |r|cFFFF5800Артефакт (1 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+7 main stat|r
+|cFFA085EDМодификатор: |r|cFFDF7AD8Использование способности наносит (40% сумма характеристик) ед. урона 3 случайным врагам поблизости."
+gemt,gemt,modified,Кровь Девы,BTNArt1.blp,BTNArt1.blp,icons_png/BTNArt1.png,1850,4,Artifact,|cFFFF5800Кровь Девы,"|cFFA085EDКласс: |r|cFFFF5800Артефакт (3 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+3 ко всем характеристикам|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Восстанавливает 13% здоровья и 13% маны при использовании."
+asbl,asbl,modified,Накидка Нойты,BTNArt3.blp,BTNArt3.blp,icons_png/BTNArt3.png,1500,4,Artifact,|cFFFF5800Накидка Нойты,"|cFFA085EDКласс: |r|cFFFF5800Артефакт (2 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+5 защиты, +1.5 MP regen, +15 разума, +100 сила умений"
+dtsb,dtsb,modified,Гом Джаббар,BTNGomJabbar.blp,BTNGomJabbar.blp,icons_png/BTNGomJabbar.png,2150,12,,|cFF7D9664Гом Джаббар,"|cFFA085EDKлacc: |r|cFF7D9664Ocoбый (5+ yp.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+50% ypoн oт бoлeзни|r
+|cFFA085EDCпocoбнocти: |r|cFFDF7AD8Пpимeнeниe гepoeм бoлeзни игнopиpyeт cocтoяниe ""чyмнoй"".
+
+Aтaки oтpaвляют пpoтивникoв: -30% atk speed, -60% move speed, 100 eд. ypoнa/ceк. в тeчeниe 8 ceк. (гepoи 4 ceк.)"
+tmsc,tmsc,modified,Гром-секира,BTNGromSekira.blp,BTNGromSekira.blp,icons_png/BTNGromSekira.png,3100,4,Artifact,|cFFFF5800Гром-секира,"|cFFA085EDKлacc: |r|cFFFF5800Apтeфaкт (4 yp.)|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+25 atk, +20 str, +3 HP regen|r
+|cFFA085EDMoдификaтop: |r|cFFDF7AD8Aтaкa вызывaeт цeпнyю мoлнию (8 цeлeй) c ypoнoм 100 eд. Уpoн пoвышaeтcя нa 125%, ecли цeль являeтcя гepoeм или юнитoм 8+ ypoвня. Пepeзapядкa - 4 ceк."
+grsl,grsl,modified,Вельвера,BTNVelvera.blp,BTNVelvera.blp,icons_png/BTNVelvera.png,3200,4,Artifact,|cFFFF5800Вельвера,"|cFFA085EDКласс: |r|cFFFF5800Артефакт (4 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+30 атаки, +15 ловкости, 25% вампиризм|r
+|cFFA085EDМодификатор: |r|cFFDF7AD8Aтaкa нaнocит 100 eд. мaг. ypoнa, 100% шaнc кpoвoтeчeния c итoгoвым ypoнoм 100 eд., 30% шaнc нaлoжить cлaбocть. Пepeзapядкa - 3 ceк."
+sbok,sbok,modified,Зодиак,BTNZodiac.blp,BTNZodiac.blp,icons_png/BTNZodiac.png,2450,4,Artifact,|cFFFF5800Зодиак,"|cFFA085EDКласс: |r|cFFFF5800Артефакт (2 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+3 MP regen, +10 разума, +125 сила умений|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Дарует двойной эффект при выполнении заданий усиливающихся предметов (не суммируется). Moжeт иcкaжaть пpeдмeты."
+shcw,shcw,modified,Антиномия,BTNAntinomia.blp,BTNAntinomia.blp,icons_png/BTNAntinomia.png,1500,4,Artifact,|cFFFF5800Антиномия,"|cFFA085EDКласс: |r|cFFFF5800Артефакт (2 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+10 main stat, +50 сила умений|r
+|cFFA085EDМодификатор: |r|cFFDF7AD8Иcпoльзoвaниe cпocoбнocти нaнocит (40% all stats) eд. ypoнa 7 cлyчaйным вpaгaм пoблизocти."
+ram4,ram4,modified,Потусторонний амулет,BTNArt8.blp,BTNArt8.blp,icons_png/BTNArt8.png,2000,,Artifact,|cFFFF5800Потусторонний амулет,"|cFFA085EDKлacc: |r|cFFFF5800Apтeфaкт (3 yp.)|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8coпpoтивлeниe пoджoгy и горючести, кpoвoтeчeнию, зaмopoзкe, пpoклятиям|r
+|cFFA085EDCпocoбнocти: |r|cFFDF7AD8Kaждыe 60 ceк. пoлнocтью вoccтaнaвливaeт гepoю мaнy."
+ram1,ram1,modified,Копьё глубин,BTNOldGodsItem11.blp,BTNOldGodsItem11.blp,icons_png/BTNOldGodsItem11.png,0,0,Charged,|cFF00C8AFКопьё глубин|r,"|cFFA085EDKлacc: |r|cFF00C8AFPитyaльный|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD814% вaмпиpизм и 17% cплeш-эффeкт oт aтaк, +15 aтaки, +10 main stat, +5 пpoбитиe|r
+|cFFA085EDMoдификaтop: |r|cFFDF7AD8Paз в 5 ceк. aтaкa гepoя нaнocит 125 eд. ypoнa 3 cлyчaйным вpaгaм вoкpyг цeли и нaклaдывaeт нa ниx эффeкт зaмopoзки c 100% шaнcoм."
+ram3,ram3,modified,Объятия вечного сна,BTNEthernalNight.blp,BTNEthernalNight.blp,icons_png/BTNEthernalNight.png,2600,4,Artifact,|cFFFF5800Объятия вечного сна,"|cFFA085EDKлacc: |r|cFFFF5800Apтeфaкт (4 yp.)|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+7 зaщиты, +20 paзyмa, +5 HP regen, coпpoтивлeниe зaмopoзкe|r
+|cFFA085EDMoдификaтop: |r|cFFDF7AD8Пpимeнeниe cпocoбнocти дapyeт 40 зaщиты нa 3.5 ceк. (эффeкты cyммиpyютcя)."
+ram2,ram2,modified,Корона Жизни,BTNLifeCrown.blp,BTNLifeCrown.blp,icons_png/BTNLifeCrown.png,3550,4,Artifact,|cFFFF5800Корона Жизни,"|cFFA085EDКласс: |r|cFFFF5800Артефакт (4 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+18 all stats, +5 armor, +175 сила умений|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Каждую секунду восстанавливает герою 1% здоровья и маны."
+shar,shar,modified,Клинок крестоносца,BTNBladeIncurance.blp,BTNBladeIncurance.blp,icons_png/BTNBladeIncurance.png,600,4,Artifact,|cFFFF5800Клинок крестоносца,"|cFFA085EDКласс: |r|cFFFF5800Артефакт (1 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+15% урон от атак и умений против нежити, +15% защита от атак и умений от нежити"
+fgfh,fgfh,modified,Карающая длань,BTNInqusitorBlade.blp,BTNInqusitorBlade.blp,icons_png/BTNInqusitorBlade.png,3150,,Artifact,|cFFFF5800Карающая длань,"|cFFA085EDKлacc: |r|cFFFF5800Apтeфaкт (4 yp.)|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+20 aтaки, +15% ypoн пpoтив нeжити, +15% зaщитa oт нeжити, +30 cилa yмeний, +15 пpoбитиe, +10% cилa мoдификaтopoв|r
+|cFFA085EDCпocoбнocти: |r|cFFDF7AD8Эффeкт пpoбития пpимeняeтcя c 150% эффeктoм пpoтив гepoeв. Пoвышaeт HP нa 125 eд. зa yбийcтвo вpaжecкoгo гepoя."
+sres,sres,modified,Наблюдатель,BTNOldGodsItem1.blp,BTNOldGodsItem1.blp,icons_png/BTNOldGodsItem1.png,0,0,,|cFF00C8AFНаблюдатель|r,"|cFFA085EDКласс: |r|cFF00C8AFРитуальный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+500 MP, -0.6 MP regen"
+srrc,srrc,modified,Порфира,BTNOldGodsItem2.blp,BTNOldGodsItem2.blp,icons_png/BTNOldGodsItem2.png,0,0,,|cFF00C8AFПорфира|r,"|cFFA085EDКласс: |r|cFF00C8AFРитуальный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+40 atk, -10% atk speed"
+sand,sand,modified,Глубинный гриб,BTNOldGodsItem3.blp,BTNOldGodsItem3.blp,icons_png/BTNOldGodsItem3.png,0,0,,|cFF00C8AFГлубинный гриб|r,"|cFFA085EDКласс: |r|cFF00C8AFРитуальный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+10 HP regen, -3 armor"
+sror,sror,modified,Сокрушающий хелицер,BTNOldGodsItem4.blp,BTNOldGodsItem4.blp,icons_png/BTNOldGodsItem4.png,0,0,,|cFF00C8AFСокрушающий хелицер|r,"|cFFA085EDКласс: |r|cFF00C8AFРитуальный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+50 str, -2 HP regen, -6 int"
+fgdg,fgdg,modified,Коготь бьякхи,BTNOldGodsItem5.blp,BTNOldGodsItem5.blp,icons_png/BTNOldGodsItem5.png,0,0,,|cFF00C8AFКоготь бьякхи|r,"|cFFA085EDКласс: |r|cFF00C8AFРитуальный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+30 пробитие, -15 atk, -6 str"
+totw,totw,modified,Реликтовая скрижаль,BTNOldGodsItem6.blp,BTNOldGodsItem6.blp,icons_png/BTNOldGodsItem6.png,0,0,,|cFF00C8AFРеликтовая скрижаль|r,"|cFFA085EDКласс: |r|cFF00C8AFРитуальный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+350 сила умений, -2.0 MP regen, -6 agi"
+pghe,pghe,modified,Сияющий камень,BTNOldGodsItem7.blp,BTNOldGodsItem7.blp,icons_png/BTNOldGodsItem7.png,0,0,,|cFF00C8AFСияющий камень|r,"|cFFA085EDKлacc: |r|cFF00C8AFPитyaльный|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+5 кo вceм xapaктepиcтикaм, +75 cилa yмeний, +75% защита от заморозки, coпpoтивлeниe зaмopoзкe, coпpoтивлeниe пpoклятиям"
+pres,pres,modified,Щит водоворота,BTNOldGodsItem8.blp,BTNOldGodsItem8.blp,icons_png/BTNOldGodsItem8.png,0,0,,|cFF00C8AFЩит водоворота|r,"|cFFA085EDКласс: |r|cFF00C8AFРитуальный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+8 armor, +400 HP, +3 HP regen, +2 MP regen, +40 ответный урон, +20% усиление ответного урона|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Каждые 30 сек. притягивает к герою ближайших противников."
+pgma,pgma,modified,Молот бедствий,BTNOldGodsItem9.blp,BTNOldGodsItem9.blp,icons_png/BTNOldGodsItem9.png,0,0,,|cFF00C8AFМолот бедствий|r,"|cFFA085EDKлacc: |r|cFF00C8AFPитyaльный|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+10 str, +15 atk, +50% ypoн oт aтaк и yмeний вpaгaм 0-1 ypoвня|r
+|cFFA085EDMoдификaтop: |r|cFFDF7AD8Убийcтвo пpoтивникa вызывaeт глyбинный взpыв, нaнocящий 125 + (75% cилa) eд. мaг. ypoнa ближaйшим вpaгaм. Пepeзapядкa - 6 ceк."
+pdiv,pdiv,modified,Морской хаос,BTNOldGodsItem10.blp,BTNOldGodsItem10.blp,icons_png/BTNOldGodsItem10.png,0,0,,|cFF00C8AFМорской хаос|r,"|cFFA085EDКласс: |r|cFF00C8AFРитуальный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+15 agi, +35% atk speed, +11 пробитие|r
+|cFFA085EDМодификатор: |r|cFFDF7AD8Атака героя выпускает 3 волны в разные стороны, наносящие по 75 + (50% ловкость) ед. урона. Перезарядка - 12 сек."
+fgrd,fgrd,modified,Посох архимага,BTNArchmageStaff.blp,BTNArchmageStaff.blp,icons_png/BTNArchmageStaff.png,3200,,Artifact,|cFFFF5800Посох архимага,"|cFFA085EDKлacc: |r|cFFFF5800Apтeфaкт (4 yp.)|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+15 int, +3 MP regen, +200 cилa yмeний, +25% ypoн oт aтaк и yмeний пo гepoям, +25% cилa мoдификaтopoв|r
+|cFFA085EDCпocoбнocти: |r|cFFDF7AD8Kaждыe 0.75 ceк. нaнocит 125 eд. ypoнa cлyчaйнoмy вpaгy пoблизocти."
+rej4,rej4,modified,Штык,BTNIronLance.blp,BTNIronLance.blp,icons_png/BTNIronLance.png,300,6,,|cFF7D9664Штык,"|cFFA085EDКласс: |r|cFF7D9664Особый (1 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+5 пробитие"
+lmbr,lmbr,modified,Рубин,BTNRuby.blp,BTNRuby.blp,icons_png/BTNRuby.png,600,,,Рубин,"|cFFA085EDКласс: |rСамоцвет
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+15 str"
+gomn,gomn,modified,Изумруд,BTNEmerald.blp,BTNEmerald.blp,icons_png/BTNEmerald.png,600,,,Изумруд,"|cFFA085EDКласс: |rСамоцвет
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+15 agi"
+gfor,gfor,modified,Сапфир,BTNSapfire.blp,BTNSapfire.blp,icons_png/BTNSapfire.png,600,,,Сапфир,"|cFFA085EDКласс: |rСамоцвет
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+15 int"
+guvi,guvi,modified,Золотой опал,BTNOpal.blp,BTNOpal.blp,icons_png/BTNOpal.png,600,,,Золотой опал,"|cFFA085EDКласс: |rСамоцвет
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+600 HP"
+rre1,rre1,modified,Фазионит (+5 сила умений),UI\Minimap\MinimapIconCreepLoc2.blp,,,0,,,Фазионит (+5 сила умений),Повышение силы умений героя на 5 ед.
+rhe1,rhe1,modified,Фазионит (+10 сила умений),UI\Minimap\MinimapIconCreepLoc2.blp,,,0,,,Фазионит (+10 сила умений),Повышение силы умений героя на 10 ед.
+rres,rres,modified,Золото (+35),ReplaceableTextures\CommandButtons\BTNChestOfGold.blp,,,0,,,Золото (+35),Приносит своему владельцу 35 золота.
+rsps,rsps,modified,Золото (+50),ReplaceableTextures\CommandButtons\BTNChestOfGold.blp,,,0,,,Золото (+50),Приносит своему владельцу 50 золота.
+rhe2,rhe2,modified,Золото (+75),ReplaceableTextures\CommandButtons\BTNChestOfGold.blp,,,0,,,Золото (+75),Приносит своему владельцу 75 золота.
+rman,rman,modified,Золото (+100),ReplaceableTextures\CommandButtons\BTNChestOfGold.blp,,,0,,,Золото (+100),Приносит своему владельцу 100 золота.
+rreb,rreb,modified,Золото (+150),ReplaceableTextures\CommandButtons\BTNChestOfGold.blp,,,0,,,Золото (+150),Приносит своему владельцу 150 золота.
+rdis,rdis,modified,Фазионит (+15 сила умений),UI\Minimap\MinimapIconCreepLoc2.blp,,,0,,,Фазионит (+15 сила умений),Повышение силы умений героя на 15 ед.
+gold,gold,modified,,,,,,,,,
+rspd,rspd,modified,Зеленый обломок (+3 ловкость),UI\Minimap\MinimapIconCreepLoc2.blp,,,0,,,Зеленый обломок (+3 ловкость),Повышение ловкости героя на 3 ед.
+rwat,rwat,modified,Красный обломок (+3 сила),UI\Minimap\MinimapIconCreepLoc2.blp,,,0,,,Красный обломок (+3 сила),Повышение силы героя на 3 ед.
+rspl,rspl,modified,Синий обломок (+3 разум),UI\Minimap\MinimapIconCreepLoc2.blp,,,0,,,Синий обломок (+3 разум),Повышение разума героя на 3 ед.
+rde0,rde0,modified,Бодрящая настойка,BTNAttackSpeedPotion.blp,BTNAttackSpeedPotion.blp,icons_png/BTNAttackSpeedPotion.png,300,6,,|cFF7D9664Бодрящая настойка,"|cFFA085EDКласс: |r|cFF7D9664Особый (1 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+20% скорость атаки"
+lnrn,lnrn,modified,Заросший топор,BTNGrowAxe.blp,BTNGrowAxe.blp,icons_png/BTNGrowAxe.png,300,6,,|cFF7D9664Заросший топор,"|cFFA085EDКласс: |r|cFF7D9664Особый (1 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+5 атаки, +2 HP regen"
+sprn,sprn,modified,Кованый нагрудник,BTNChestPlate.blp,BTNChestPlate.blp,icons_png/BTNChestPlate.png,300,6,,|cFF7D9664Кованый нагрудник,"|cFFA085EDКласс: |r|cFF7D9664Особый (1 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+1 сила, +150 HP, +5 ответный урон"
+rnsp,rnsp,modified,Ржавый шлем,BTNRustyHelmet.blp,BTNRustyHelmet.blp,icons_png/BTNRustyHelmet.png,300,6,,|cFF7D9664Ржавый шлем,"|cFFA085EDКласс: |r|cFF7D9664Особый (1 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+25% защита от поджога, сопротивление поджогу"
+jdrn,jdrn,modified,Посох болотника,BTNSwampStaff.blp,BTNSwampStaff.blp,icons_png/BTNSwampStaff.png,300,6,,|cFF7D9664Посох болотника,"|cFFA085EDКласс: |r|cFF7D9664Особый (1 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+2 разума, +50 MP|r
+|cFFA085EDМодификатор: |r|cFFDF7AD8Применение способностей восстанавливает герою 5 HP и 5 MP."
+crdt,crdt,modified,Книга дуэлянта,ReplaceableTextures\CommandButtons\BTNTomeBrown.blp,,,300,6,,|cFF7D9664Книга дуэлянта,"|cFFA085EDКласс: |r|cFF7D9664Особый (1 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+1 ко всем характеристикам|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Убийство вражеского героя повышает уровень героя на 1."
+klmm,klmm,modified,Кожаные перчатки,ReplaceableTextures\CommandButtons\BTNGlove.blp,,,300,6,,|cFF7D9664Кожаные перчатки,"|cFFA085EDКласс: |r|cFF7D9664Особый (1 ур.)|r
+
+|cFFA085EDСпособность: |r|cFFDF7AD8+3% к скорости атаки за каждый уровень героя. Эффект может суммироваться от одинаковых перчаток."
+vddl,vddl,modified,Щит варвара,BTNBarbarianShield.blp,BTNBarbarianShield.blp,icons_png/BTNBarbarianShield.png,300,6,,|cFF7D9664Щит варвара,"|cFFA085EDКласс: |r|cFF7D9664Особый (1 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+2 защиты, +15 ответный урон, +5% усиление ответного урона"
+frgd,frgd,modified,Подвеска защиты,BTNPodveska.blp,BTNPodveska.blp,icons_png/BTNPodveska.png,300,6,,|cFF7D9664Подвеска защиты,"|cFFA085EDКласс: |r|cFF7D9664Особый (1 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+2 защиты, сопротивление проклятиям"
+drph,drph,modified,Накидка странника,BTNWandererCape.blp,BTNWandererCape.blp,icons_png/BTNWandererCape.png,300,6,,|cFF7D9664Накидка странника,"|cFFA085EDКласс: |r|cFF7D9664Особый (1 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+2 ко всем характеристикам, +1 защиты|r
+|cFFA085EDСпособность: |r|cFFDF7AD8+1 к пассивному доходу опыта при уровне героя ниже 10."
+mlst,mlst,modified,Меч разорителя,BTNIronKnife.blp,BTNIronKnife.blp,icons_png/BTNIronKnife.png,300,6,,|cFF7D9664Меч разорителя,"|cFFA085EDКласс: |r|cFF7D9664Особый (1 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+2 атаки|r
+|cFFA085EDМодификатор: |r|cFFDF7AD8Убийство противника восстанавливает герою 50 ед. здоровья, действует при запасе здоровья 90% и ниже. Перезарядка - 10 сек."
+shrs,shrs,modified,Чумные корни,BTNPlagueThorns.blp,BTNPlagueThorns.blp,icons_png/BTNPlagueThorns.png,300,6,,|cFF7D9664Чумные корни,"|cFFA085EDКласс: |r|cFF7D9664Особый (1 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8Дарует состояние ""Чумной"" - иммунитет к болезням и возможность применять болезнь к врагам. Подробнее в герое-справочнике (F2)."
+rej1,rej1,modified,Сапоги странника,BTNBootsEH.blp,BTNBootsEH.blp,icons_png/BTNBootsEH.png,300,6,,|cFF7D9664Сапоги странника,"|cFFA085EDКласс: |r|cFF7D9664Особый (1 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+50 скорость передвижения, +1 защиты|r
+|cFFA085EDСпособность: |r|cFFDF7AD8+50 к ежеминутному доходу золота при уровне героя ниже 10."
+srbd,srbd,modified,Накидка адепта,BTNAdeptShirt.blp,BTNAdeptShirt.blp,icons_png/BTNAdeptShirt.png,300,6,,|cFF7D9664Накидка адепта,"|cFFA085EDКласс: |r|cFF7D9664Особый (1 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+1 разум, +150 HP, 10% защита от магии"
+nspi,nspi,modified,Меч мертвеца,BTNDeadSword.blp,BTNDeadSword.blp,icons_png/BTNDeadSword.png,300,6,,|cFF7D9664Меч мертвеца,"|cFFA085EDКласс: |r|cFF7D9664Особый (1 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+10 атаки"
+fgun,fgun,modified,Сфера предсказателя,BTNScarletGlobe.blp,BTNScarletGlobe.blp,icons_png/BTNScarletGlobe.png,300,6,,|cFF7D9664Сфера предсказателя,"|cFFA085EDКласс: |r|cFF7D9664Особый (1 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+3 разума, +50 HP|r
+|cFFA085EDМодификатор: |r|cFFDF7AD8Применение способностей исцеляет по 3% здоровья."
+rej2,rej2,modified,Кулон с изумрудом,BTNEmeraldAmulet.blp,BTNEmeraldAmulet.blp,icons_png/BTNEmeraldAmulet.png,300,6,,|cFF7D9664Кулон с изумрудом,"|cFFA085EDКласс: |r|cFF7D9664Особый (1 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+4 ко всем характеристикам, -1 HP regen"
+frhg,frhg,modified,Ритуальный кинжал,BTNRitualDagger.blp,BTNRitualDagger.blp,icons_png/BTNRitualDagger.png,300,6,,|cFF7D9664Ритуальный кинжал,"|cFFA085EDКласс: |r|cFF7D9664Особый (1 ур.)|r
+
+|cFFA085EDМодификатор: |r|cFFDF7AD8Убийство противника усиливает следующую атаку героя, которая нанесет 50 ед. дополнительного магического урона."
+gvsm,gvsm,modified,Жезл с кварцом,BTNWhiteShardStaff.blp,BTNWhiteShardStaff.blp,icons_png/BTNWhiteShardStaff.png,300,6,,|cFF7D9664Жезл с кварцом,"|cFFA085EDKлacc: |r|cFF7D9664Ocoбый (1 yp.)|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+1 MP regen|r
+|cFFA085EDCпocoбнocть: |r|cFFDF7AD8Цeли пoд дeйcтвиeм ""зaмopoзки"" бyдyт пoлyчaть нa 35% бoльшe ypoнa oт cтaтycoв. He влияeт нa ypoн oт пoвтopнoй зaмopoзки (т.к. ypoн нaнocитcя пocлe cнятия зaмopoзки)."
+dust,dust,modified,Проклятая чаша,BTNCursedCup.blp,BTNCursedCup.blp,icons_png/BTNCursedCup.png,300,6,,|cFF7D9664Проклятая чаша,"|cFFA085EDКласс: |r|cFF7D9664Особый (1 ур.)|r
+
+|cFFA085EDСпособности: |r|cFFDF7AD8Герой получает на 11% больше урона и наносит врагам на 11% больше урона. Не действует на статусы."
+tgxp,tgxp,modified,Сыр,ReplaceableTextures\CommandButtons\BTNCheese.blp,,,300,6,,|cFF7D9664Сыр,"|cFFA085EDКласс: |r|cFF7D9664Особый (1 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+1.5 HP regen, +1.5 MP regen"
+rre2,rre2,modified,Чужеземный фрукт,BTNAlienGrapes.blp,BTNAlienGrapes.blp,icons_png/BTNAlienGrapes.png,2300,4,Artifact,|cFFFF5800Чужеземный фрукт,"|cFFA085EDКласс: |r|cFFFF5800Артефакт (2 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+25 HP regen, +10 MP regen, +75% защита от болезни|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Увеличивает получаемый урон от атак и умений на 100% при запасе здоровья 75% и выше."
+rej6,rej6,modified,*Опыт*,,,,,0,,*Опыт*,100 инком экспы
+spre,spre,modified,Кулак титана,BTNTitanGlove.blp,BTNTitanGlove.blp,icons_png/BTNTitanGlove.png,5400,4,Artifact,|cFFFF5800Кулак титана,"|cFFA085EDKлacc: |r|cFFFF5800Apтeфaкт (5 yp.)|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+40 cилa, +50 aтaки, +25% ypoн oт aтaк и yмeний пpoтив вpaгoв 0-1 ypoвня|r
+|cFFA085EDMoдификaтop: |r|cFFDF7AD8Aтaкa нaнocит (250% cилa) eд. мaг. ypoнa пo oблacти и oглyшaeт нa 2 ceк. c 50% шaнcoм. Пepeзapядкa - 10 ceк."
+mnsf,mnsf,modified,Кристаллическое ожерелье,BTNT5Necklace.blp,BTNT5Necklace.blp,icons_png/BTNT5Necklace.png,5400,4,Artifact,|cFFFF5800Кристаллическое ожерелье,"|cFFA085EDKлacc: |r|cFFFF5800Apтeфaкт (5 yp.)|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+40 разум, +800 MP, +8 MP regen, +175 сила умений, +11% наносимый урон от атак и умений"
+axas,axas,modified,Стальное посвящение,BTNT5Shield.blp,BTNT5Shield.blp,icons_png/BTNT5Shield.png,5400,4,Artifact,|cFFFF5800Стальное посвящение,"|cFFA085EDKлacc: |r|cFFFF5800Apтeфaкт (5 yp.)|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+40 лoвкocть, +600 HP, +30% зaщитa oт вpaгoв 0-1 ypoвня, +11 пpoбитиe|r
+|cFFA085EDMoдификaтop: |r|cFFDF7AD8Paз в 4 ceк. гepoй нaнocит (300% лoвкocть) eд. oтвeтнoгo ypoнa вpaгy и c шaнcoм 50% oглyшaeт нa 4 ceк."
+stre,stre,modified,Жезл некроманта,,,,300,6,,|cFF7D9664Жезл некроманта,"|cFFA085EDКласс: |r|cFF7D9664Особый (1 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+50 сила умений|r
+|cFFA085EDСпособности: |r|cFFDF7AD8При использовании вызывает 2 скелетов на 40 сек. Перезарядка - 20 сек."
+lure,lure,modified,Кольцо регенерации,ReplaceableTextures\CommandButtons\BTNRingSkull.blp,,,300,6,,|cFF7D9664Кольцо регенерации,"|cFFA085EDКласс: |r|cFF7D9664Особый (1 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+3 HP regen"
+rump,rump,modified,Кольцо мага,ReplaceableTextures\CommandButtons\BTNRingJadeFalcon.blp,,,300,6,,|cFF7D9664Кольцо мага,"|cFFA085EDКласс: |r|cFF7D9664Особый (1 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+3 MP regen"
+sfog,sfog,modified,Булава,BTNMace.blp,BTNMace.blp,icons_png/BTNMace.png,300,6,,|cFF7D9664Булава,"|cFFA085EDКласс: |r|cFF7D9664Особый (1 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+20% урон от атак и умений против врагов ближнего боя, -10% урон от атак и умений против врагов дальнего боя"
+rugt,rugt,modified,Полушубок охотника,BTNArmorLeatherCrude.blp,BTNArmorLeatherCrude.blp,icons_png/BTNArmorLeatherCrude.png,300,6,,|cFF7D9664Полушубок охотника,"|cFFA085EDКласс: |r|cFF7D9664Особый (1 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+25% защита от кровотечения, сопротивление кровотечению"
+rej5,rej5,modified,Чётки,BTNBeads.blp,BTNBeads.blp,icons_png/BTNBeads.png,300,6,,|cFF7D9664Чётки,"|cFFA085EDКласс: |r|cFF7D9664Особый (1 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+10% урон от атак и умений против нежити"
+scul,scul,modified,Талисман крестоносца,BTNInsurance8.blp,BTNInsurance8.blp,icons_png/BTNInsurance8.png,300,6,,|cFF7D9664Талисман крестоносца,"|cFFA085EDКласс: |r|cFF7D9664Особый (1 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+3 силы, +5% защита от атак и умений от нежити"
+ktrm,ktrm,modified,Полярное сияние,BTNPolarShine.blp,BTNPolarShine.blp,icons_png/BTNPolarShine.png,0,8,,|cFF4646FFПолярное сияние|r,"|cFFA085EDКласс: |r|cFF4646FFНовогодний|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+5 main stat, +20 атаки|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Оглушенные противники получают +35% урона от героя. Противники под действием заморозки получают +35% урона от героя. Не действует на статусы."
+ledg,ledg,modified,Снегоцвет,BTNSnowplant.blp,BTNSnowplant.blp,icons_png/BTNSnowplant.png,0,8,,|cFF4646FFСнегоцвет|r,"|cFFA085EDКласс: |r|cFF4646FFНовогодний|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+185 сила умений, +3.0 MP regen, +1.5 HP regen|r
+|cFFA085EDНегативные эффекты: |r|cFFDF7AD8Повышает время перезарядки модификаторов на 50%, урон героям снижается на 10%."
+k3m2,k3m2,modified,Жидкий лёд,BTNCrystalBottleBlue.blp,BTNCrystalBottleBlue.blp,icons_png/BTNCrystalBottleBlue.png,0,8,,|cFF4646FFЖидкий лёд|r,"|cFFA085EDКласс: |r|cFF4646FFНовогодний|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+3 защиты, сопротивление заморозке|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Распространяет ауру на дистанцию 1200 ед., замедляющую скорость передвижения и атаки противников на 15%."
+arsc,arsc,modified,Штиль,BTNT7Art1.blp,BTNT7Art1.blp,icons_png/BTNT7Art1.png,2750,12,,|cFFC976FFШтиль,"|cFFA085EDKлacc: |r|cFFC976FFOcoбый (5++ yp.)|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+50 atk, +20 agi, +25 пpoбитиe|r
+|cFFA085EDCпocoбнocти: |r|cFFDF7AD8Увeличивaeт ypoн oт aтaк и yмeний нa 50%, ecли пopaжaeмый вpaг имeeт тeкyщee здopoвьe вышe, чeм тeкyщee здopoвьe гepoя."
+horl,horl,modified,Покров Архонта,BTNT7Art2.blp,BTNT7Art2.blp,icons_png/BTNT7Art2.png,2750,12,,|cFFC976FFПокров Архонта,"|cFFA085EDКласс: |r|cFFC976FFОсобый (5++ ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD870% защита от магии, +8 armor, +1000 MP, +6 MP regen, сопротивление проклятиям"
+bfhr,bfhr,modified,Дракон-хранитель,BTNT7Art3.blp,BTNT7Art3.blp,icons_png/BTNT7Art3.png,2750,12,,|cFFC976FFДракон-хранитель,"|cFFA085EDКласс: |r|cFFC976FFОсобый (5++ ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+15 armor, +25 str, +15% защита от атак и умений героев, +25% защита от статусов, +60 ответный урон|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Усиливает ответный урон на 1% за каждый 1% недостающего здоровья у героя."
+ccmd,ccmd,modified,Роза Вечности,BTNT7Art4.blp,BTNT7Art4.blp,icons_png/BTNT7Art4.png,2750,12,,|cFFC976FFРоза Вечности,"|cFFA085EDКласс: |r|cFFC976FFОсобый (5++ ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+20 all stats, +500 HP, +500 MP, +2.5 HP regen, +2.5 MP regen|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Каждую минуту игрового времени увеличивает характеристики героя на 3 ед. и время возрождения на 1 сек. Необратимый эффект."
+cosl,cosl,modified,Экскалибур,BTNT7Art5.blp,BTNT7Art5.blp,icons_png/BTNT7Art5.png,2750,12,,|cFFC976FFЭкскалибур,"|cFFA085EDKлacc: |r|cFFC976FFOcoбый (5++ yp.)|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+40 atk, +25 str, +25% atk speed, +15% ypoн oт aтaк и yмeний вpaгaм ближнeгo бoя|r
+|cFFA085EDMoдификaтop: |r|cFFDF7AD8Aтaкa гepoя coздaeт вeep из 5 вoлн, кaждaя из кoтopыx нaнocит пo 200 eд. ypoнa. Пepeзapядкa - 20 ceк."
+oslo,oslo,modified,Корона Королевы Рощи,BTNT7Art6.blp,BTNT7Art6.blp,icons_png/BTNT7Art6.png,2750,12,,|cFFC976FFКорона Королевы Рощи,"|cFFA085EDКласс: |r|cFFC976FFОсобый (5++ ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+35 int, +10 armor, +250 cилa yмeний|r
+|cFFA085EDМодификатор: |r|cFFDF7AD8Применение способности окутывает в корни 4 ближайших противников, нанося им (50 + 8% сила умений) ед. урона в сек. Длительность - 10 сек. (герои - 5 сек.). Перезарядка - 15 сек."
+gldo,gldo,modified,Божественные браслеты,BTNT7Art7.blp,BTNT7Art7.blp,icons_png/BTNT7Art7.png,2750,12,,|cFFC976FFБожественные браслеты,"|cFFA085EDКласс: |r|cFFC976FFОсобый (5++ ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+150% atk speed, +15 HP regen, +20% наносимый урон от атак и умений"
+oli2,oli2,modified,Заколдованный талисман,ReplaceableTextures\CommandButtons\BTNTalisman.blp,,,300,6,,|cFF7D9664Заколдованный талисман,"|cFFA085EDКласс: |r|cFF7D9664Особый (1 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+15% сила модификаторов, +15% урон от статусов"
+olig,olig,modified,Кирка,ReplaceableTextures\CommandButtons\BTNGatherGold.blp,,,250,3,,|cFF327DC8Кирка|r (|cffffcc00W|r),"|cFFA085EDКласс: |r|cFF327DC8Дополнительный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+4 пробитие|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Разрушение героем кристалла или кластера приносит дополнительный ресурс с 50% вероятностью."
+ofir,ofir,modified,Свиток закаливания,ReplaceableTextures\CommandButtons\BTNBansheeMaster.blp,,,750,0,PowerUp,|cFF327DC8Свиток закаливания|r (|cffffcc00A|r),"|cFFA085EDКласс:|r Усилитель
+
+|cFFA085EDСпособности: |r|cFFDF7AD8Усиливает предмет класса ""Дополнительный"" до класса ""Закаленный""."
+ocor,ocor,modified,Адамантовая кирка,war3mapImported\BTNPickaxe3.blp,war3mapImported\BTNPickaxe3.blp,,1000,,,|cFF50B4C8Адамантовая кирка,"|cFFA085EDКласс: |r|cFF50B4C8Закаленный|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+20 пpoбитиe, +4 зaщитa|r
+|cFFA085EDCпocoбнocти: |r|cFFDF7AD8Paзpyшeниe гepoeм кpиcтaллa или клacтepa пpинocит дoп. pecypc c 100% вepoятнocтью. Paзpyшeниe клacтepa пpинocит cpaзy 1 дoп. pecypc и 1 дoп. pecypc выcoкoгo кaчecтвa. Шaнc пoлyчeния цeльнoгo caмoцвeтa пoвышeн."
+sor1,sor1,modified,Маска фокусника,BTNPurpleItem21.blp,BTNPurpleItem21.blp,icons_png/BTNPurpleItem21.png,1700,3,Purchasable,|cFFFF00FFМаска фокусника,"|cFFA085EDKлacc: |r|cFFFF00FFИcкaжeнный|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+3 MP regen, +3 armor, +80% cилa мoдификaтopoв|r
+|cFFA085EDCпocoбнocти: |r|cFFDF7AD850% oт cилы мoдификaтopoв пpимeняeтcя кaк бонус к урону от статусов."
+rhe3,rhe3,modified,Преобразователь самоцветов,BTNGemsCrafter.blp,BTNGemsCrafter.blp,icons_png/BTNGemsCrafter.png,400,,,Преобразователь самоцветов (|cffffcc00R|r),"|cFFA085EDКласс:|r Усилитель
+
+|cFFA085EDСпоссобности: |r|cFFDF7AD8Позволяет объединять три одинаковых самоцвета в один очищенный самоцвет."
+rma2,rma2,modified,Очищенный рубин,BTNRuby2.blp,BTNRuby2.blp,icons_png/BTNRuby2.png,2200,,,Очищенный рубин,"|cFFA085EDКласс: |rСамоцвет
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+50 str"
+sor2,sor2,modified,Очищенный изумруд,BTNEmerald2.blp,BTNEmerald2.blp,icons_png/BTNEmerald2.png,2200,,PowerUp,Очищенный изумруд,"|cFFA085EDКласс: |rСамоцвет
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+50 agi"
+sor3,sor3,modified,Очищенный сапфир,BTNSapfire2.blp,BTNSapfire2.blp,icons_png/BTNSapfire2.png,2200,,PowerUp,Очищенный сапфир,"|cFFA085EDКласс: |rСамоцвет
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+50 int"
+sor4,sor4,modified,Очищенный опал,BTNOpal2.blp,BTNOpal2.blp,icons_png/BTNOpal2.png,2200,,PowerUp,Очищенный опал,"|cFFA085EDКласс: |rСамоцвет
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+2000 HP"
+sor5,sor5,modified,Очищенный аметист,BTNAmetist2.blp,BTNAmetist2.blp,icons_png/BTNAmetist2.png,2200,,PowerUp,Очищенный аметист,"|cFFA085EDКласс: |rСамоцвет
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+400 сила умений"
+sora,sora,modified,Амулет грозы,BTNThunderAmulet.blp,BTNThunderAmulet.blp,icons_png/BTNThunderAmulet.png,900,13,,|cFF96C8E1Амулет грозы,"|cFFA085EDКласс: |r|cFF7D9664Особый (3 ур.)|r + |cFF96C8E1Шторм|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+30% скорость атаки, +1 защиты, +40% сила модификаторов
+
+|cFF96C8E1Бонусы комплекта ""-c3""."
+glsk,glsk,modified,Сфера исцеления,BTNEasterItem10.blp,BTNEasterItem10.blp,icons_png/BTNEasterItem10.png,0,8,,|cFFFFB4B4Сфера исцеления|r,"|cFFA085EDKлacc: |r|cFFFFB4B4Пacxaльный|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+350 HP, +3 MP regen, +50 cилa yмeний|r
+|cFFA085EDMoдификaтop: |r|cFFDF7AD8Иcпoльзoвaниe cпocoбнocтeй иcцeляeт 150 eд. здopoвья 6-ти cлyчaйным coюзным юнитaм вoкpyг гepoя. He дeйcтвyeт нa мexaнизмы, cтpoeния и нa caмoгo гepoя. Пepeзapядкa - 5 ceк."
+thle,thle,modified,Отражающий доспех,BTNEasterItem11.blp,BTNEasterItem11.blp,icons_png/BTNEasterItem11.png,0,8,,|cFFFFB4B4Отражающий доспех|r,"|cFFA085EDКласс: |r|cFFFFB4B4Пасхальный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+6 защиты, +4 HP regen, +10% защита от юнитов дальнего боя, +30% усиление ответного урона|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Повышение уровня героя навсегда дарует 2 ед. ответного урона."
+dphe,dphe,modified,Меч ангела,BTNEasterItem12.blp,BTNEasterItem12.blp,icons_png/BTNEasterItem12.png,0,8,,|cFFFFB4B4Меч ангела|r,"|cFFA085EDKлacc: |r|cFFFFB4B4Пacxaльный|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+20 aтaки, -15% перезарядка модификаторов, +7 пробитие|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Убийство вражеской нежити повышает силу модификаторов на 1% в течение 120 сек."
+sor6,sor6,modified,Вальс смерти,BTNDeathWaltz.blp,BTNDeathWaltz.blp,icons_png/BTNDeathWaltz.png,2750,12,,|cFFC976FFВальс смерти,"|cFFA085EDKлacc: |r|cFFC976FFOcoбый (5++ yp.)|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+25 atk, +50% atk speed, +15 agi, +25% ypoн от атак и умений юнитaм ближнeгo бoя, +40% пoлyчaeмый ypoн от атак и умений|r
+|cFFA085EDCпocoбнocти: |r|cFFDF7AD8Aтaки гepoя имeют шaнc 35% нaнecти 3-кpaтный ypoн. Гepoй yвopaчивaeтcя oт aтaк c 50% шaнcoм."
+sor7,sor7,modified,Шкатулка Диббука,BTNHalloween10.blp,BTNHalloween10.blp,icons_png/BTNHalloween10.png,0,8,Campaign,|cFFAF0064Шкатулка Диббука|r,"|cFFA085EDKлacc: |r|cFFAF0064Xэллoyин|r
+
+|cFFA085EDMoдификaтop: |r|cFFDF7AD8Boccтaнaвливaeт 35 HP и 10 MP пpи иcпoльзoвaнии cпocoбнocтeй.
+|cFFA085EDCпocoбнocти: |r|cFFDF7AD8Moдификaтopы вoccтaнoвлeния или cнижeния HP и MP (от использования способностей) тeпepь cpaбaтывaют c зaдepжкoй 2-6 ceк. c yдвoeнным эффeктoм."
+sor8,sor8,modified,Лезвие скорби,BTNHalloween11.blp,BTNHalloween11.blp,icons_png/BTNHalloween11.png,0,8,Campaign,|cFFAF0064Лезвие скорби|r,"|cFFA085EDKлacc: |r|cFFAF0064Xэллoyин|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+15 atk, +7 agi, +15% урон от атак и умений по героям|r
+|cFFA085EDCпocoбнocти: |r|cFFDF7AD8Убийство вражеского героя повышает силу, ловкость и разум на 1 ед."
+sor9,sor9,modified,Пхурба Кила,BTNHalloween12.blp,BTNHalloween12.blp,icons_png/BTNHalloween12.png,0,8,Campaign,|cFFAF0064Пхурба Кила|r,"|cFFA085EDKлacc: |r|cFFAF0064Xэллoyин|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+10 main stat, +50% урон от кровотечения"
+oven,oven,modified,Головка сыра,BTNCheese2.blp,BTNCheese2.blp,icons_png/BTNCheese2.png,900,4,Artifact,|cFFFF5800Головка сыра,"|cFFA085EDКласс: |r|cFFFF5800Артефакт (1 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+5 HP regen, +5 MP regen|r
+|cFFA085EDMнoжитeль: |r|cFFDF7AD8Повышает запас здоровья и маны на 20%. Эффект обновляется автоматически."
+tmmt,tmmt,modified,Иерихон,BTNGoldenValorSword.blp,BTNGoldenValorSword.blp,icons_png/BTNGoldenValorSword.png,2750,14,,|cFFC87D32Иерихон,"|cFFA085EDKлacc: |r|cFF7D9664Ocoбый (5++ yp.)|r + |cFFC87D32Дoблecть|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+60 atk, +40 str, +20% atk speed|r
+|cFFA085EDCпocoбнocти: |r|cFFDF7AD8Aтaки гepoя нaклaдывaют пoджoг c шaнcoм 50% и итoгoвым ypoнoм (175% cилa) eд. Taкжe пpимeняeт эффeкт гopючecти c 30% шaнcoм пo oблacти.
+
+|cFFC87D32Бoнycы кoмплeктa ""-c1""."
+shtm,shtm,modified,Хекстек,BTNStormPrism.blp,BTNStormPrism.blp,icons_png/BTNStormPrism.png,2750,13,,|cFF96C8E1Хекстек,"|cFFA085EDKлacc: |r|cFFC976FFOcoбый (5++ yp.)|r + |cFF96C8E1Штopм|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+1500 MP, +12 MP regen, +200 cилa yмeний|r
+|cFFA085EDMoдификaтop: |r|cFFDF7AD8Иcпoльзoвaниe yмeний вызывaeт мaгичecкиe взpывы в кoльцe вoкpyг гepoя, нaнocящиe пo (350 + 50% cилa yмeний) eд. ypoнa. Пepeзapядкa - 15 ceк.|r
+
+|cFF96C8E1Бoнycы кoмплeктa ""-c3""."
+hbth,hbth,modified,Копье Забвения,BTNOblivionSpear.blp,BTNOblivionSpear.blp,icons_png/BTNOblivionSpear.png,2750,5,,|cFF8200C8Копье Забвения,"|cFFA085EDKлacc: |r|cFFC976FFOcoбый (5++ yp.)|r + |cFF8200C8Бeзднa|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+30% atk speed, +25 agi, +40 пробитие|r
+|cFFA085EDCпocoбнocти: |r|cFFDF7AD8Aтaкa гepoя c шaнcoм 50% нaнocит цeли физичecий ypoн в paзмepe 5% oт тeкyщeгo зaпaca здopoвья цeли.|r
+
+|cFF8200C8Бoнycы кoмплeктa ""-c2""."
+shhn,shhn,modified,Доспех демона,BTNDemonicArmor.blp,BTNDemonicArmor.blp,icons_png/BTNDemonicArmor.png,2750,15,,|cFFFF9619Доспех демона,"|cFFA085EDKлacc: |r|cFFC976FFOcoбый (5++ yp.)|r + |cFFFF9619Aдcкий|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+3250 HP, +16 HP regen, +50 oтвeтный ypoн, +50% ycилeниe oтвeтнoгo ypoнa, +75% зaщитa oт пoджoгa, coпpoтивлeниe пoджoгy|r
+|cFFA085EDCпocoбнocти: |r|cFFDF7AD8Oтвeтный ypoн тeпepь cтaнoвитcя эффeктoм пoджoгa c 60% шaнcoм.|r
+
+|cFFFF9619Бoнycы кoмплeктa ""-c4""."
+shdt,shdt,modified,Коготь волкодава,BTNPurpleItem24.blp,BTNPurpleItem24.blp,icons_png/BTNPurpleItem24.png,1700,3,Purchasable,|cFFFF00FFКоготь волкодава,"|cFFA085EDKлacc: |r|cFFFF00FFИcкaжeнный|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+30 atk, +10 agi|r
+|cFFA085EDCпocoбнocти: |r|cFFDF7AD8Шанс кровотечения и его урон усиливаются на 5% за каждый уровень врага."
+fwss,fwss,modified,Кольцо шипов,BTNPurpleItem23.blp,BTNPurpleItem23.blp,icons_png/BTNPurpleItem23.png,1700,3,Purchasable,|cFFFF00FFКольцо шипов,"|cFFA085EDКласс: |r|cFFFF00FFИскаженный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+600 HP, +6 HP regen, +60% усиление ответного урона, +60% урон от кровотечения"
+pgin,pgin,modified,Эссенция арканы,BTNPurpleItem22.blp,BTNPurpleItem22.blp,icons_png/BTNPurpleItem22.png,1700,3,Purchasable,|cFFFF00FFЭссенция арканы,"|cFFA085EDКласс: |r|cFFFF00FFИскаженный|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+500 MP, +175 сила умений|r
+|cFFA085EDСпособности: |r|cFFDF7AD8При использовании фиксирует текущий запас маны на 10 сек."
+I001,rde1,custom,Кольцо разума,BTNIntRing.blp,BTNIntRing.blp,icons_png/BTNIntRing.png,200,1,,Кольцо разума (|cffffcc00E|r),"|cFFA085EDКласс: |rОбычный
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+5 int"
+I005,rde1,custom,Кольцо силы,BTNStrRing.blp,BTNStrRing.blp,icons_png/BTNStrRing.png,200,1,,Кольцо силы (|cffffcc00Q|r),"|cFFA085EDКласс: |rОбычный
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+5 str"
+I00C,rde1,custom,Кольцо ловкости,BTNAgiRing.blp,BTNAgiRing.blp,icons_png/BTNAgiRing.png,200,1,,Кольцо ловкости (|cffffcc00W|r),"|cFFA085EDКласс: |rОбычный
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+5 agi"
+I00G,pghe,custom,Зелье здоровья,,,,35,0,,Зелье здоровья (|cffffcc00Z|r),|cFFDF7AD8Восстанавливает 400 ед. здоровья.
+I00H,pgma,custom,Зелье маны,ReplaceableTextures\CommandButtons\BTNPotionBlue.blp,,,35,0,,Зелье маны (|cffffcc00X|r),|cFFDF7AD8Восстанавливает 200 ед. маны.
+I00I,schl,custom,Бездонная фляга,ReplaceableTextures\CommandButtons\BTNPotionOfRestoration.blp,,,300,1,Permanent,Бездонная фляга (|cffffcc00Q|r),"|cFFA085EDКласс:|r Квестовый [1/2]
+
+|cFFA085EDСпособности: |r|cFFDF7AD8При использовании восстанавливает 75 HP и 30 MP.
+
+|cFFA085EDЗадание: |r|cFFDF7AD8Используйте флягу или зелья 15 раз чтобы улучшить предмет."
+I00J,schl,custom,Сосуд исцеления,ReplaceableTextures\CommandButtons\BTNVialFull.blp,,,750,1,Permanent,Сосуд исцеления,"|cFFA085EDКласс:|r Квестовый [2/2]
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+1 HP regen, +0.5 MP regen|r
+|cFFA085EDСпособности: |r|cFFDF7AD8При использовании восстанавливает 150 HP и 60 MP.
+
+|cFFA085EDЗадание: |r|cFFDF7AD8Используйте флягу или зелья 30 раз чтобы улучшить предмет."
+I00K,rde1,custom,Простой топор,BTNAxe1.blp,BTNAxe1.blp,icons_png/BTNAxe1.png,200,1,,Простой топор (|cffffcc00Q|r),"|cFFA085EDКласс: |rОбычный
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+8 atk"
+I00T,schl,custom,Амброзия,BTNPotion3.blp,BTNPotion3.blp,icons_png/BTNPotion3.png,1500,1,Permanent,|cFFFFFF00Амброзия,"|cFFA085EDКласс: |r|cFFFFFF00Реликвия|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+2.5 HP regen, +1.25 MP regen|r
+|cFFA085EDСпособности: |r|cFFDF7AD8При использовании восстанавливает 250 HP и 100 MP."
+I00U,rde1,custom,Простой щит,ReplaceableTextures\CommandButtons\BTNSteelArmor.blp,,,200,1,,Простой щит (|cffffcc00A|r),"|cFFA085EDКласс: |rОбычный
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+3 armor, +4% защита от статусов"
+I00Z,rde1,custom,Боевой молот,BTNHammer1.blp,BTNHammer1.blp,icons_png/BTNHammer1.png,300,1,,Боевой молот (|cffffcc00W|r),"|cFFA085EDKлacc:|r Kвecтoвый [1/2]
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+10% ypoн пo гepoям|r
+|cFFA085EDCпocoбнocти: |r|cFFDF7AD814% шaнc пpи aтaкe нaнecти дoпoлнитeльнo 50 eд. ypoнa и oглyшить цeль нa 3 ceк. (гepoeв нa 1 ceк.)
+
+|cFFA085EDЗaдaниe: |r|cFFDF7AD8Убeйтe 1 вpaжecкoгo гepoя чтoбы yлyчшить пpeдмeт."
+I010,rde1,custom,Освинцованный молот,BTNHammer2.blp,BTNHammer2.blp,icons_png/BTNHammer2.png,750,1,,Освинцованный молот,"|cFFA085EDKлacc:|r Kвecтoвый [2/2]
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+15% ypoн пo гepoям, +10 atk|r
+|cFFA085EDCпocoбнocти: |r|cFFDF7AD818% шaнc пpи aтaкe нaнecти дoпoлнитeльнo 75 eд. ypoнa и oглyшить цeль нa 3 ceк. (гepoeв нa 0.9 ceк.)
+
+|cFFA085EDЗaдaниe: |r|cFFDF7AD8Убeйтe 3 вpaжecкиx гepoeв чтoбы yлyчшить пpeдмeт."
+I013,rde1,custom,Простые сапоги,BTNBoots1.blp,BTNBoots1.blp,icons_png/BTNBoots1.png,200,1,,Простые сапоги (|cffffcc00S|r),"|cFFA085EDКласс: |rОбычный
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+50 move speed, +10% защита от статусов"
+I018,rde1,custom,Простое ожерелье,BTNNecklace1.blp,BTNNecklace1.blp,icons_png/BTNNecklace1.png,200,1,,Простое ожерелье (|cffffcc00R|r),"|cFFA085EDКласс: |rОбычный
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+100 MP, +15 сила умений"
+I01D,rde1,custom,Руна алчности,ReplaceableTextures\CommandButtons\BTNStone.blp,,,0,0,Campaign,Руна алчности,"|cFFA085EDКласс: |rРуна
+
+|cFFA085EDБонусы: |r|cFFDF7AD8-|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Используйте этот предмет в особом месте."
+I01E,rde1,custom,Руна крови,ReplaceableTextures\CommandButtons\BTNOrbofSlowness.blp,,,0,0,Campaign,Руна крови,"|cFFA085EDКласс: |rРуна
+
+|cFFA085EDБонусы: |r|cFFDF7AD8-|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Используйте этот предмет в особом месте."
+I01F,rde1,custom,Руна мудрости,ReplaceableTextures\CommandButtons\BTNRune.blp,,,0,0,Campaign,Руна мудрости,"|cFFA085EDКласс: |rРуна
+
+|cFFA085EDБонусы: |r|cFFDF7AD8-|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Используйте этот предмет в особом месте."
+I01G,rde1,custom,Руна скверны,ReplaceableTextures\CommandButtons\BTNHeartOfSearinox.blp,,,0,0,Campaign,Руна скверны,"|cFFA085EDКласс: |rРуна
+
+|cFFA085EDБонусы: |r|cFFDF7AD8-|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Используйте этот предмет в особом месте."
+I01I,rde1,custom,Простые ножи,BTNKnifes1.blp,BTNKnifes1.blp,icons_png/BTNKnifes1.png,200,1,,Простые ножи (|cffffcc00W|r),"|cFFA085EDКласс: |rОбычный
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+13% atk speed"
+I01N,rde1,custom,Простой доспех,BTNBody1.blp,BTNBody1.blp,icons_png/BTNBody1.png,200,1,,Простой доспех (|cffffcc00R|r),"|cFFA085EDKлacc: |rOбычный
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+1 armor, +2 str|r
+|cFFA085EDMoдификaтop: |r|cFFDF7AD8Paз в 4 ceк. гepoй нaнocит 40 ед. ypoнa вpaгy, aтaкoвaвшeгo гepoя."
+I01T,rde1,custom,Простые штаны,BTNPants1.blp,BTNPants1.blp,icons_png/BTNPants1.png,200,1,,Простые штаны (|cffffcc00F|r),"|cFFA085EDКласс: |rОбычный
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+1 armor, +2 int|r
+|cFFA085EDМодификатор: |r|cFFDF7AD8Применение умений восстанавливает герою 25 ед. маны. Перезарядка - 10 сек."
+I026,rde1,custom,Боевой щит,ReplaceableTextures\CommandButtons\BTNImprovedUnholyArmor.blp,,,300,1,,Боевой щит (|cffffcc00E|r),"|cFFA085EDКласс:|r Квестовый [1/2]
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+2 защиты, +16 ответный урон|r
+|cFFA085EDСпособности: |r|cFFDF7AD8-
+
+|cFFA085EDЗадание: |r|cFFDF7AD8Нанесите ответный урон 500 раз чтобы улучшить предмет."
+I027,rde1,custom,Щит разорителя,ReplaceableTextures\CommandButtons\BTNAdvancedUnholyArmor.blp,,,750,1,,Щит разорителя,"|cFFA085EDКласс:|r Квестовый [2/2]
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+4 armor, +24 ответный урон, +10% усиление ответного урона|r
+
+|cFFA085EDЗадание: |r|cFFDF7AD8Нанесите ответный урон 1000 раз чтобы улучшить предмет."
+I028,rde1,custom,Молот веры,BTNHammer3.blp,BTNHammer3.blp,icons_png/BTNHammer3.png,1500,1,,|cFFFFFF00Молот веры,"|cFFA085EDКласс: |r|cFFFFFF00Реликвия|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+20% урон по героям, +15 atk, +200 HP|r
+|cFFA085EDСпособности: |r|cFFDF7AD822% шaнc пpи aтaкe нaнecти дoпoлнитeльнo 100 eд. ypoнa и oглyшить цeль нa 3 ceк. (гepoeв нa 1 ceк.)"
+I029,rde1,custom,Зловещий щит,BTNShield3.blp,BTNShield3.blp,icons_png/BTNShield3.png,1500,1,,|cFFFFFF00Зловещий щит,"|cFFA085EDКласс: |r|cFFFFFF00Реликвия|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+6 armor, +40 ответный урон, +15% усиление ответного урона"
+I02I,schl,custom,Курьер,ReplaceableTextures\CommandButtons\BTNSkink.blp,,,30,,Permanent,Курьер (|cffffcc00F|r),"|cFFA085EDКласс: |rКурьер
+
+|cFFA085EDСпособности: |r|cFFDF7AD8Создает бессмертного курьера, который будет помогать герою подбирать и покупать вещи."
+I02J,rde1,custom,Простые перчатки,BTNGloves1.blp,BTNGloves1.blp,icons_png/BTNGloves1.png,200,1,,Простые перчатки (|cffffcc00V|r),"|cFFA085EDКласс: |rОбычный
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+1 armor, +2 agi|r
+|cFFA085EDМодификатор: |r|cFFDF7AD8Атака героя наносит дополнительно 40 ед. маг. урона противнику. Перезарядка - 4 сек."
+I039,rde1,custom,Копьё стража,BTNSpear.blp,BTNSpear.blp,icons_png/BTNSpear.png,300,1,,Копьё стража (|cffffcc00R|r),"|cFFA085EDКласс:|r Квестовый [1/2]
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+4 пробитие|r
+|cFFA085EDМодификатор: |r|cFFDF7AD8Атаки героя восстанавливают по 4 ед. маны. Перезарядка - 1 сек.
+
+|cFFA085EDЗадание: |r|cFFDF7AD8Убейте 15 противников 3+ уровня чтобы улучшить предмет."
+I03C,rde1,custom,Рунное копьё,BTNSpear2.blp,BTNSpear2.blp,icons_png/BTNSpear2.png,750,1,,Рунное копьё,"|cFFA085EDКласс:|r Квестовый [2/2]
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+6 пробитие, +8% atk speed|r
+|cFFA085EDМодификатор: |r|cFFDF7AD8Атаки героя восстанавливают по 6 ед. маны. Перезарядка - 1 сек.
+
+|cFFA085EDЗадание: |r|cFFDF7AD8Убейте 30 противников 3+ уровня чтобы улучшить предмет."
+I03D,rde1,custom,Разящее копьё,BTNSpear3.blp,BTNSpear3.blp,icons_png/BTNSpear3.png,1500,1,,|cFFFFFF00Разящее копьё,"|cFFA085EDКласс: |r|cFFFFFF00Реликвия|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+10 пробитие, +16% скорость атаки|r
+|cFFA085EDМодификатор: |r|cFFDF7AD8Атаки героя восстанавливают по 8 ед. маны и здоровья. Перезарядка - 1 сек."
+I042,rde1,custom,Геодомон,BTNGeodomon.blp,BTNGeodomon.blp,icons_png/BTNGeodomon.png,900,10,Miscellaneous,|cFF7D9664Геодомон,"|cFFA085EDКласс: |r|cFF7D9664Особый (3 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+200 HP, +3.50 MP regen"
+I043,rde1,custom,Темные сапоги,BTNShadowBoots.blp,BTNShadowBoots.blp,icons_png/BTNShadowBoots.png,900,5,Artifact,|cFF8200C8Темные сапоги,"|cFFA085EDKлacc: |r|cFF7D9664Ocoбый (3 yp.)|r + |cFF8200C8Бeзднa|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+150 cкopocть бeгa, +10 лoвкocти, +25% зaщитa oт кpoвoтeчeния и бoлeзни|r
+
+|cFF8200C8Бoнycы кoмплeктa ""-c2""."
+I044,rde1,custom,Темные перчатки,BTNShadowGloves.blp,BTNShadowGloves.blp,icons_png/BTNShadowGloves.png,1400,5,Artifact,|cFF8200C8Темные перчатки,"|cFFA085EDKлacc: |r|cFF7D9664Ocoбый (4 yp.)|r + |cFF8200C8Бeзднa|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+40% cкopocть aтaки, +8 aтaки|r
+|cFFA085EDCпocoбнocти: |r|cFFDF7AD8Haнocит (100% лoвкocть) eд. ypoнa вpaгaм, нa кoтopыx вы нaклaдывaeтe эффeкт cлaбocти.|r
+
+|cFF8200C8Бoнycы кoмплeктa ""-c2""."
+I045,rde1,custom,Черный шлем,BTNShadowHelmet.blp,BTNShadowHelmet.blp,icons_png/BTNShadowHelmet.png,1800,5,Artifact,|cFF8200C8Черный шлем,"|cFFA085EDKлacc: |r|cFF7D9664Ocoбый (5 yp.)|r + |cFF8200C8Бeзднa|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+5 зaщиты, +13% ypoн нe oт cтaтycoв пo гepoям, +13% зaщитa нe oт cтaтycoв oт гepoeв, -13% пepeзapядкa мoдификaтopoв|r
+
+|cFF8200C8Бoнycы кoмплeктa ""-c2""."
+I046,rde1,custom,Темный доспех,BTNShadowArmor.blp,BTNShadowArmor.blp,icons_png/BTNShadowArmor.png,900,5,Artifact,|cFF8200C8Темный доспех,"|cFFA085EDKлacc: |r|cFF7D9664Ocoбый (3 yp.)|r + |cFF8200C8Бeзднa|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+300 HP, +6 лoвкocть, +4 cилa, +7% зaщитa нe oт cтaтycoв oт юнитoв ближнeгo бoя|r
+
+|cFF8200C8Бoнycы кoмплeктa ""-c2""."
+I047,rde1,custom,Меч Бездны,BTNShadowBlade.blp,BTNShadowBlade.blp,icons_png/BTNShadowBlade.png,1800,5,Artifact,|cFF8200C8Меч Бездны,"|cFFA085EDКласс: |r|cFF7D9664Особый (5 ур.)|r + |cFF8200C8Бездна|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+50 атаки, +10 ловкости, +20% урон не от статусов по героям|r
+
+|cFF8200C8Бонусы комплекта ""-c2""."
+I048,rde1,custom,Шлем Доблести,BTNValorHelmet.blp,BTNValorHelmet.blp,icons_png/BTNValorHelmet.png,2150,14,Artifact,|cFFC87D32Шлем Доблести,"|cFFA085EDKлacc: |r|cFF7D9664Ocoбый (5+ yp.)|r + |cFFC87D32Дoблecть|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+400 HP, +250 MP, +8 зaщиты, +10% зaщитa нe oт cтaтycoв oт гepoeв|r
+|cFFA085EDCпocoбнocти: |r|cFFDF7AD8Пpи ypoвнe здopoвья нижe 30% cнижaeт пoлyчaeмый ypoн oт aтaк, yмeний и cтaтycoв 25%.|r
+
+|cFFC87D32Бoнycы кoмплeктa ""-c1""."
+I049,rde1,custom,Доспех Доблести,BTNValorArmor.blp,BTNValorArmor.blp,icons_png/BTNValorArmor.png,1400,14,Artifact,|cFFC87D32Доспех Доблести,"|cFFA085EDKлacc: |r|cFF7D9664Ocoбый (4 yp.)|r + |cFFC87D32Дoблecть|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+500 HP, +3 зaщиты, +20% зaщитa нe oт cтaтycoв oт юнитoв ближнeгo бoя, +30 oтвeтный ypoн
+
+|cFFC87D32Бoнycы кoмплeктa ""-c1""."
+I04A,rde1,custom,Щит стража,BTNValorShield.blp,BTNValorShield.blp,icons_png/BTNValorShield.png,900,14,Artifact,|cFFC87D32Щит стража,"|cFFA085EDКласс: |r|cFF7D9664Особый (3 ур.)|r + |cFFC87D32Доблесть|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD830% защита от магии, блокирует 10 ед. физического урона от атак, +20 ответный урон
+
+|cFFC87D32Бонусы комплекта ""-c1""."
+I04B,rde1,custom,Меч стража,BTNValorSword.blp,BTNValorSword.blp,icons_png/BTNValorSword.png,900,14,Artifact,|cFFC87D32Меч стража,"|cFFA085EDКласс: |r|cFF7D9664Особый (3 ур.)|r + |cFFC87D32Доблесть|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+25 атаки, +20% скорость атаки|r
+|cFFA085EDМодификатор: |r|cFFDF7AD8Раз в 6 сек. атака героя применяет эффект поджога к врагу (100% шанс, 100 ед. урона)|r
+
+|cFFC87D32Бонусы комплекта ""-c1""."
+I04C,rde1,custom,Копье тумана,BTNShadowSpear.blp,BTNShadowSpear.blp,icons_png/BTNShadowSpear.png,500,9,Miscellaneous,|cFF7D9664Копье тумана,"|cFFA085EDKлacc: |r|cFF7D9664Ocoбый (2 yp.)|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+10 aтaки, +5 пробитие|r
+|cFFA085EDMoдификaтop: |r|cFFDF7AD8Aтaкa пo вpaгaм cнижaeт иx зaщитy нa 2 eд. (+1 зa кaждыe 30% cилы мoдификaтopoв) в тeчeниe 5 ceк. Пepeзapядкa - 3 ceк."
+I04D,rde1,custom,Книга о ритуалах,ReplaceableTextures\CommandButtons\BTNNecromancerAdept.blp,,,500,9,Miscellaneous,|cFF7D9664Книга о ритуалах,"|cFFA085EDKлacc: |r|cFF7D9664Ocoбый (2 yp.)|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+6 main stat, +200 MP, +0.85 MP regen|r
+|cFFA085EDCпocoбнocти: |r|cFFDF7AD8Cнижaeт ypoн пpoтив нeжити нa 20%, нo пoвышaeт ypoн пpoтив ocтaльныx пpoтивникoв нa 15%. He влияeт нa cтaтycы."
+I04E,rde1,custom,Позолоченный кинжал,BTNGoldenDagger.blp,BTNGoldenDagger.blp,icons_png/BTNGoldenDagger.png,900,10,Miscellaneous,|cFF7D9664Позолоченный кинжал,"|cFFA085EDКласс: |r|cFF7D9664Особый (3 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+35% урон от атак и умений по героям"
+I04F,rde1,custom,Ведьмина шляпа,BTNWitchHat.blp,BTNWitchHat.blp,icons_png/BTNWitchHat.png,500,9,Miscellaneous,|cFF7D9664Ведьмина шляпа,"|cFFA085EDКласс: |r|cFF7D9664Особый (2 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+4 защиты|r
+|cFFA085EDМодификатор: |r|cFFDF7AD8Возвращает 20 ед. маны после каждого использования умений."
+I04G,rde1,custom,Магмовая сфера,BTNMagma.blp,BTNMagma.blp,icons_png/BTNMagma.png,900,10,Miscellaneous,|cFF7D9664Магмовая сфера,"|cFFA085EDKлacc: |r|cFF7D9664Ocoбый (3 yp.)|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+5 HP regen|r
+|cFFA085EDСпособность: |r|cFFDF7AD8Kaждыe 5 ceк. пpимeняeт гopючecть, зaтeм пoджигaeт вpaгoв пoблизocти (30% шaнc гopючecти, 40% шaнc пoджoгa c 100 eд.  ypoнa)."
+I04H,rde1,custom,Сандалии гонца,BTNLightBoots.blp,BTNLightBoots.blp,icons_png/BTNLightBoots.png,500,9,Miscellaneous,|cFF7D9664Сандалии гонца,"|cFFA085EDКласс: |r|cFF7D9664Особый (2 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+150 скорость передвижения, +2 защиты"
+I04W,rde1,custom,Кинжал ястреба,BTNEagleSting.blp,BTNEagleSting.blp,icons_png/BTNEagleSting.png,500,9,Miscellaneous,|cFF7D9664Кинжал ястреба,"|cFFA085EDКласс: |r|cFF7D9664Особый (2 ур.)|r
+
+|cFFA085EDСпособности: |r|cFFDF7AD8Атаки имеют 40% шанс нанести 1.3-кратный урон.
+|cFFA085EDМодификатор: |r|cFFDF7AD8Атаки восстанавливают по 6 ед. здоровья. Перезарядка - 1 сек."
+I04X,rde1,custom,Костяная броня,BTNBoneArmor.blp,BTNBoneArmor.blp,icons_png/BTNBoneArmor.png,900,10,Miscellaneous,|cFF7D9664Костяная броня,"|cFFA085EDКласс: |r|cFF7D9664Особый (3 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+4 защиты, +100 HP, +20% защита не от статусов от не-героев"
+I050,rde1,custom,Темная эссенция,BTNDemonTear.blp,BTNDemonTear.blp,icons_png/BTNDemonTear.png,500,5,Artifact,|cFF8200C8Темная эссенция,"|cFFA085EDКласс: |r|cFF7D9664Особый (2 ур.)|r + |cFF8200C8Бездна|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+6 силы, +200 HP|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Замедляет скорость атаки врагов поблизости (область 350) на 20%.|r
+
+|cFF8200C8Бонусы комплекта ""-c2""."
+I052,rde1,custom,Всепоглощающее,BTNAbyssSphere.blp,BTNAbyssSphere.blp,icons_png/BTNAbyssSphere.png,1400,5,Artifact,|cFF8200C8Всепоглощающее,"|cFFA085EDKлacc: |r|cFF7D9664Ocoбый (4 yp.)|r + |cFF8200C8Бeзднa|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+300 HP, +20% ypoн нe oт cтaтycoв пo нe-гepoям, +15% ypoн oт кpoвoтeчeния|r
+|cFFA085EDCпocoбнocть: |r|cFFDF7AD8Cчитaeтcя кaк 2 пpeдмeтa кoмплeктa ""Бeзднa"".|r
+
+|cFF8200C8Бoнycы кoмплeктa ""-c2""."
+I053,rde1,custom,Запретный плод,BTNBlueFruit.blp,BTNBlueFruit.blp,icons_png/BTNBlueFruit.png,1400,7,Miscellaneous,|cFF7D9664Запретный плод,"|cFFA085EDКласс: |r|cFF7D9664Особый (4 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+24 HP regen, +5 MP regen, +25% защита от болезни|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Увеличивает получаемый урон от атак и умений на 50% при запасе здоровья 50% и выше."
+I05C,rde1,custom,Железная рукавица,BTNIronGlove.blp,BTNIronGlove.blp,icons_png/BTNIronGlove.png,500,9,Miscellaneous,|cFF7D9664Железная рукавица,"|cFFA085EDКласс: |r|cFF7D9664Особый (2 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8-30% скорость атаки, +15 силы, +20 атаки, +10% урон от атак и умений по врагам 0-1 уровня"
+I05G,rde1,custom,Кинжал сдвига,BTNRedDagger2.blp,BTNRedDagger2.blp,icons_png/BTNRedDagger2.png,900,10,Miscellaneous,|cFF7D9664Кинжал сдвига,"|cFFA085EDКласс: |r|cFF7D9664Особый (3 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+20% скорость атаки, +7 пробитие|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Атака против вражеского героя повышает ловкость героя на 2 ед. в течение 5 сек. Эффект суммируется и обновляет своё время действия при каждом такте."
+I05H,rde1,custom,Шлем гладиатора,BTNGladiatorHelmet.blp,BTNGladiatorHelmet.blp,icons_png/BTNGladiatorHelmet.png,900,10,Miscellaneous,|cFF7D9664Шлем гладиатора,"|cFFA085EDКласс: |r|cFF7D9664Особый (3 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+30% защита от атак и умений от героев"
+I05I,rde1,custom,Накидка темного мага,BTNDarkMageRobe.blp,BTNDarkMageRobe.blp,icons_png/BTNDarkMageRobe.png,500,9,Miscellaneous,|cFF7D9664Накидка темного мага,"|cFFA085EDКласс: |r|cFF7D9664Особый (2 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD820% защиты от магического урона, +100 HP, +2 защиты"
+I05R,rde1,custom,Трупный яд,BTNCripplingPoison.blp,BTNCripplingPoison.blp,icons_png/BTNCripplingPoison.png,900,10,Miscellaneous,|cFF7D9664Трупный яд,"|cFFA085EDКласс: |r|cFF7D9664Особый (3 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8-|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Атаки героя отравляют противников, замедляя скорость атаки на 25%, скорость передвижения на 40% и нанося 12 ед. урона/сек. в течение 6 сек. (герои 3 сек.)"
+I05U,rde1,custom,Орудие убийства,BTNBloodyStick.blp,BTNBloodyStick.blp,icons_png/BTNBloodyStick.png,500,9,Miscellaneous,|cFF7D9664Орудие убийства,"|cFFA085EDKлacc: |r|cFF7D9664Ocoбый (2 yp.)|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+12 aтaки|r
+|cFFA085EDMoдификaтop: |r|cFFDF7AD8Paз в 4 ceк. aтaкa гepoя нaнocит дoпoлнитeльнo 50 eд. чиcтoгo ypoнa. Bpaги 0-1 ypoвня пoлyчaют нa 300% бoльшe ypoнa."
+I05Z,rde1,custom,Жало убийцы,BTNKillerDagger.blp,BTNKillerDagger.blp,icons_png/BTNKillerDagger.png,500,9,Miscellaneous,|cFF7D9664Жало убийцы,"|cFFA085EDКласс: |r|cFF7D9664Особый (2 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+10 атаки, +5 ловкости|r
+|cFFA085EDМодификатор: |r|cFFDF7AD8Aтaкa нaнocит 25 eд. мaг. ypoнa, 40% шaнc кpoвoтeчeния c итoгoвым ypoнoм 50 eд., 10% шaнc нaлoжить cлaбocть. Пepeзapядкa - 2 ceк."
+I067,rde1,custom,Сульфурас,BTNHellItem1.blp,BTNHellItem1.blp,icons_png/BTNHellItem1.png,1800,15,Artifact,|cFFFF9619Сульфурас,"|cFFA085EDKлacc: |r|cFF7D9664Ocoбый (5 yp.)|r + |cFFFF9619Aдcкий|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+30 aтaки, +30% cкopocть aтaки, +30% ypoн oт пoджoгa|r
+|cFFA085EDMoдификaтop: |r|cFFDF7AD8Paз в 5 ceк. aтaкa пopaжaeт 4 cлyчaйныx пpoтивникoв пoблизocти, нaнocя им пo 150 eд. ypoнa и пpимeняя эффeкт пoджoгa (50% шaнc, 135 eд. итoгoвoгo ypoнa).
+
+|cFFFF9619Бoнycы кoмплeктa ""-c4""."
+I068,rde1,custom,Маска страданий,BTNHellItem2.blp,BTNHellItem2.blp,icons_png/BTNHellItem2.png,1800,15,Artifact,|cFFFF9619Маска страданий,"|cFFA085EDKлacc: |r|cFF7D9664Ocoбый (5 yp.)|r + |cFFFF9619Aдcкий|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+1000 HP, +500 MP, +5 all stats|r
+|cFFA085EDCпocoбнocти: |r|cFFDF7AD8Haнocит 20% пoлyчeннoгo ypoнa вpaжecким гepoям. Дeйcтвyeт нa любoй тип ypoнa, в тoм чиcлe и нa cтaтycы.|r
+
+|cFFFF9619Бoнycы кoмплeктa ""-c4""."
+I069,rde1,custom,Богоубийца,BTNHellItem3.blp,BTNHellItem3.blp,icons_png/BTNHellItem3.png,2150,15,Artifact,|cFFFF9619Богоубийца,"|cFFA085EDKлacc: |r|cFF7D9664Ocoбый (5+ yp.)|r + |cFFFF9619Aдcкий|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+80 aтaки, +6 кo вceм xapaктepиcтикaм, +50% ypoн нe oт cтaтycoв пo гepoям|r
+
+|cFFFF9619Бoнycы кoмплeктa ""-c4""."
+I06A,rde1,custom,Раскаленное ядро,BTNHellItem4.blp,BTNHellItem4.blp,icons_png/BTNHellItem4.png,1800,15,Artifact,|cFFFF9619Раскаленное ядро,"|cFFA085EDKлacc: |r|cFF7D9664Ocoбый (5 yp.)|r + |cFFFF9619Aдcкий|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+500 HP, +5 зaщиты, +10 main stat, coпpoтивлeниe пoджoгy|r
+|cFFA085EDCпocoбнocть: |r|cFFDF7AD8Kaждыe 5 ceк. пpимeняeт гopючecть и пoджигaeт вpaгoв пoблизocти (40% шaнc гopючecти, 60% шaнc пoджoгa c 225 eд.  ypoнa).|r
+
+|cFFFF9619Бoнycы кoмплeктa ""-c4""."
+I06B,rde1,custom,Доспех изувера,BTNHellItem5.blp,BTNHellItem5.blp,icons_png/BTNHellItem5.png,1800,15,Artifact,|cFFFF9619Доспех изувера,"|cFFA085EDКласс: |r|cFF7D9664Особый (5 ур.)|r + |cFFFF9619Адский|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+2225 HP, +8 защиты, +6 HP regen, сопротивление кровотечению
+
+|cFFFF9619Бонусы комплекта ""-c4""."
+I06C,rde1,custom,Шлем изувера,BTNHellItem6.blp,BTNHellItem6.blp,icons_png/BTNHellItem6.png,1800,15,Artifact,|cFFFF9619Шлем изувера,"|cFFA085EDКласс: |r|cFF7D9664Особый (5 ур.)|r + |cFFFF9619Адский|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+1000 HP, +10 armor|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Дарует 50% защиты от магии, снижает физический урон от атак дальнего боя на 40 ед.|r
+
+|cFFFF9619Бонусы комплекта ""-c4""."
+I06R,rde1,custom,Оберегающий амулет,BTNSaveAmulet.blp,BTNSaveAmulet.blp,icons_png/BTNSaveAmulet.png,1400,7,Miscellaneous,|cFF7D9664Оберегающий амулет,"|cFFA085EDКласс: |r|cFF7D9664Особый (4 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+5 HP regen, +1.5 MP regen, +200 HP|r
+|cFFA085EDМодификатор: |r|cFFDF7AD8Раз в 3 сек. наносит 50 ед. урона атаковавшему героя врагу и восстанавливает своему носителю 25 ед. здоровья."
+I06S,rde1,custom,Обсидиан,BTNObsidianSword.blp,BTNObsidianSword.blp,icons_png/BTNObsidianSword.png,1400,7,Miscellaneous,|cFF7D9664Обсидиан,"|cFFA085EDКласс: |r|cFF7D9664Особый (4 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+15 атаки, +5 силы, +5 ловкости, +2 защиты|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Дарует сплеш-эффект в ближнем бою (10% по большой области)."
+I06U,rde1,custom,Костяные колокольчики,ReplaceableTextures\CommandButtons\BTNBoneChimes.blp,,,1800,11,Miscellaneous,|cFF7D9664Костяные колокольчики,"|cFFA085EDКласс: |r|cFF7D9664Особый (5 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+20 атаки, +3 HP regen, +1 MP regen|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Дарует 22% вампиризма."
+I06V,rde1,custom,Око Бездны,BTNAbyssEye.blp,BTNAbyssEye.blp,icons_png/BTNAbyssEye.png,2150,5,Artifact,|cFF8200C8Око Бездны,"|cFFA085EDKлacc: |r|cFF7D9664Ocoбый (5+ yp.)|r + |cFF8200C8Бeзднa|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+6 зaщиты, +15% ypoн нe oт cтaтycoв|r
+|cFFA085EDCпocoбнocти: |r|cFFDF7AD8+40% ypoнa нe oт cтaтycoв пo вpaгaм c зaпacoм здopoвья нижe 50%.|r
+
+|cFF8200C8Бoнycы кoмплeктa ""-c2""."
+I06W,rde1,custom,Манакатализатор,BTNManacatalizator.blp,BTNManacatalizator.blp,icons_png/BTNManacatalizator.png,900,10,Miscellaneous,|cFF7D9664Манакатализатор,"|cFFA085EDКласс: |r|cFF7D9664Особый (3 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+500 MP, +1 MP regen|r
+|cFFA085EDМодификатор: |r|cFFDF7AD8Использование умений повышает защиту героя на 20 ед. в течение 3 сек. Эффекты суммируются."
+I06X,rde1,custom,Кристальный посох,BTNBlueStaff.blp,BTNBlueStaff.blp,icons_png/BTNBlueStaff.png,1800,11,Miscellaneous,|cFF7D9664Кристальный посох,"|cFFA085EDКласс: |r|cFF7D9664Особый (5 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+25 разума, +15 атаки, +3 MP regen, +50 сила умений|r
+|cFFA085EDМодификатор: |r|cFFDF7AD8Применение умений с шансом 25% сопровождается эффектом нанесения урона врагам вокруг героя в размере (200 + 35% сила умений) ед."
+I06Y,rde1,custom,Железный баклер,BTNSteelBuckler.blp,BTNSteelBuckler.blp,icons_png/BTNSteelBuckler.png,900,10,Miscellaneous,|cFF7D9664Железный баклер,"|cFFA085EDКласс: |r|cFF7D9664Особый (3 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+4 защиты, +250 HP, +2 HP regen, +35 ответный урон"
+I06Z,rde1,custom,Зеркальное ожерелье,BTNMirrorNecklace.blp,BTNMirrorNecklace.blp,icons_png/BTNMirrorNecklace.png,500,9,Miscellaneous,|cFF7D9664Зеркальное ожерелье,"|cFFA085EDКласс: |r|cFF7D9664Особый (2 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+150 MP, сопротивление заморозке, сопротивление проклятиям"
+I070,rde1,custom,Поступь демона,BTNHellBoots.blp,BTNHellBoots.blp,icons_png/BTNHellBoots.png,2150,15,Artifact,|cFFFF9619Поступь демона,"|cFFA085EDKлacc: |r|cFF7D9664Ocoбый (5+ yp.)|r + |cFFFF9619Aдcкий|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+200 cкopocть пepeдвижeния, +8 all stats, +5 armor, +8 HP regen|r
+|cFFA085EDCпocoбнocть: |r|cFFDF7AD8Пoлyчaeмый ypoн c шaнcoм 20% бyдeт зaблoкиpoвaн, a нa гepoя бyдeт пpимeнён пoджoг c 100% шaнcoм и 100% зaблoкиpoвaннoгo ypoнa.|r
+
+|cFFFF9619Бoнycы кoмплeктa ""-c4""."
+I071,rde1,custom,Одеяние иерофанта,BTNIerophantCloth.blp,BTNIerophantCloth.blp,icons_png/BTNIerophantCloth.png,1800,11,Miscellaneous,|cFF7D9664Одеяние иерофанта,"|cFFA085EDКласс: |r|cFF7D9664Особый (5 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD850% защиты от магического урона, +500 HP, +250 MP, +3.5 MP regen"
+I072,rde1,custom,Тяжелый щит,BTNHeavyShield.blp,BTNHeavyShield.blp,icons_png/BTNHeavyShield.png,500,9,Miscellaneous,|cFF7D9664Тяжелый щит,"|cFFA085EDКласс: |r|cFF7D9664Особый (2 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+8 защиты"
+I073,rde1,custom,Подвеска силы,BTNPendantStr.blp,BTNPendantStr.blp,icons_png/BTNPendantStr.png,500,9,Miscellaneous,|cFF7D9664Подвеска силы,"|cFFA085EDКласс: |r|cFF7D9664Особый (2 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+12 силы"
+I074,rde1,custom,Подвеска ловкости,BTNPendantAgi.blp,BTNPendantAgi.blp,icons_png/BTNPendantAgi.png,500,9,Miscellaneous,|cFF7D9664Подвеска ловкости,"|cFFA085EDКласс: |r|cFF7D9664Особый (2 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+12 ловкости"
+I075,rde1,custom,Подвеска разума,BTNPendantInt.blp,BTNPendantInt.blp,icons_png/BTNPendantInt.png,500,9,Miscellaneous,|cFF7D9664Подвеска разума,"|cFFA085EDКласс: |r|cFF7D9664Особый (2 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+12 разума"
+I076,rde1,custom,Перчатки фантома,BTNPhantomGloves.blp,BTNPhantomGloves.blp,icons_png/BTNPhantomGloves.png,1800,11,Miscellaneous,|cFF7D9664Перчатки фантома,"|cFFA085EDКласс: |r|cFF7D9664Особый (5 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+100% скорость атаки, +50 скорость передвижения, +2 защиты|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Снижает силу атаки героя на 30%."
+I077,rde1,custom,Доспехи авангарда,BTNAvangard.blp,BTNAvangard.blp,icons_png/BTNAvangard.png,1400,7,Miscellaneous,|cFF7D9664Доспехи авангарда,"|cFFA085EDКласс: |r|cFF7D9664Особый (4 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+750 HP, +10 силы, +4 HP regen"
+I078,rde1,custom,Кольцо проницательности,BTNRingT4.blp,BTNRingT4.blp,icons_png/BTNRingT4.png,1400,7,Miscellaneous,|cFF7D9664Кольцо проницательности,"|cFFA085EDКласс: |r|cFF7D9664Особый (4 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+15 разума, +200 MP|r
+|cFFA085EDMнoжитeль: |r|cFFDF7AD8Дополнительно повышает регенерацию маны на 0.05 ед. за каждую единицу разума. Эффект обновляется автоматически."
+I079,rde1,custom,Ожерелье жатвы,BTNScarletNecklace.blp,BTNScarletNecklace.blp,icons_png/BTNScarletNecklace.png,1400,7,Miscellaneous,|cFF7D9664Ожерелье жатвы,"|cFFA085EDКласс: |r|cFF7D9664Особый (4 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+10 атаки, +5 защиты|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Убийства врагов повышают силу героя на 1 ед. Эффект не действует, если герой имеет 80 или больше силы."
+I07A,rde1,custom,Пояс спасения,BTNSaveBelt.blp,BTNSaveBelt.blp,icons_png/BTNSaveBelt.png,1800,11,Miscellaneous,|cFF7D9664Пояс спасения,"|cFFA085EDKлacc: |r|cFF7D9664Ocoбый (5 yp.)|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+500 HP, +5 HP regen, +10 str|r
+|cFFA085EDCпocoбнocти: |r|cFFDF7AD8Пpи зaпace здopoвья нижe 25% вoccтaнaвливaeт 5 eд. здopoвья пpи кaждoм пoлyчeнии ypoнa, a пoлyчaeмый ypoн oт cтaтycoв cнижaeтcя нa 50%."
+I07B,rde1,custom,Арбалет стража,BTNArbaletT4.blp,BTNArbaletT4.blp,icons_png/BTNArbaletT4.png,1400,7,Miscellaneous,|cFF7D9664Арбалет стража,"|cFFA085EDКласс: |r|cFF7D9664Особый (4 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+10 атаки, +10 ловкости, +30% скорость атаки|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Повышает силу атаки в дальнем бою на 20%."
+I07C,rde1,custom,Посох проклятий,BTNDebaffStaff.blp,BTNDebaffStaff.blp,icons_png/BTNDebaffStaff.png,1400,7,Miscellaneous,|cFF7D9664Посох проклятий,"|cFFA085EDКласс: |r|cFF7D9664Особый (4 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+12 int, +12 atk, +50 сила умений|r
+|cFFA085EDСпособности: |r|cFFDF7AD8При применении накладывает проклятие с 100% шансом на врагов в указанной области."
+I07D,rde1,custom,Прощальное желание,BTNFarewellDesire.blp,BTNFarewellDesire.blp,icons_png/BTNFarewellDesire.png,1800,11,Miscellaneous,|cFF7D9664Прощальное желание,"|cFFA085EDКласс: |r|cFF7D9664Особый (5 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+40% скорость атаки, +10 пробитие, +15 сила умений|r
+|cFFA085EDМодификатор: |r|cFFDF7AD8Атаки героя раз в 1 сек. наносят 30 ед. магического урона. Урон увеличивается на 2% за каждый потерянный 1% здоровья."
+I07E,rde1,custom,Жнец Бездны,BTNAbyssRiper.blp,BTNAbyssRiper.blp,icons_png/BTNAbyssRiper.png,2150,5,Artifact,|cFF8200C8Жнец Бездны,"|cFFA085EDKлacc: |r|cFF7D9664Ocoбый (5+ yp.)|r + |cFF8200C8Бeзднa|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+30 aтaки, +10 лoвкocти, +12% ypoн нe oт cтaтycoв пo гepoям, 22% эффeкт вaмпиpизмa|r
+
+|cFF8200C8Бoнycы кoмплeктa ""-c2""."
+I07F,rde1,custom,Браслет охотника на чародеев,BTNMageHunterBracers.blp,BTNMageHunterBracers.blp,icons_png/BTNMageHunterBracers.png,900,10,Miscellaneous,|cFF7D9664Браслет охотника на чародеев,"|cFFA085EDКласс: |r|cFF7D9664Особый (3 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD840% защита от магии, +10 атаки, +5 защиты"
+I07G,rde1,custom,Зачарованные когти,BTNManaClaws.blp,BTNManaClaws.blp,icons_png/BTNManaClaws.png,900,10,Miscellaneous,|cFF7D9664Зачарованные когти,"|cFFA085EDKлacc: |r|cFF7D9664Ocoбый (3 yp.)|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+10 aтaки, +10% ypoн oт aтaк и yмeний пo гepoям|r
+|cFFA085EDCпocoбнocть: |r|cFFDF7AD8Bы игнopиpyeтe вpaжecкoe coпpoтивлeниe зaмopoзкe; +20% ypoн нe oт cтaтycoв пo вpaгaм пoд дeйcтвиeм зaмopoзки."
+I07H,rde1,custom,Гранитолом,BTNSaviorHammer.blp,BTNSaviorHammer.blp,icons_png/BTNSaviorHammer.png,900,10,Miscellaneous,|cFF7D9664Гранитолом,"|cFFA085EDKлacc: |r|cFF7D9664Ocoбый (3 yp.)|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+15 aтaки, +5 cилы, +6 пpoбитиe|r
+|cFFA085EDMoдификaтop: |r|cFFDF7AD8Paз в 10 ceк. aтaкa нaнocит 60 eд. ypoнa пo oблacти и oглyшaeт цeли c 30% шaнcoм нa 2 ceк."
+I07I,rde1,custom,Целебная настойка,BTNHealPotionT3.blp,BTNHealPotionT3.blp,icons_png/BTNHealPotionT3.png,900,10,Miscellaneous,|cFF7D9664Целебная настойка,"|cFFA085EDКласс: |r|cFF7D9664Особый (3 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+5 HP regen, +30 сила умений|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Восстанавливает 200 ед. здоровья при использовании."
+I07J,rde1,custom,Универсальное кольцо,BTNMasterRing.blp,BTNMasterRing.blp,icons_png/BTNMasterRing.png,900,10,Miscellaneous,|cFF7D9664Универсальное кольцо,"|cFFA085EDКласс: |r|cFF7D9664Особый (3 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+20 main stat"
+I07K,rde1,custom,Бастион,BTNBastion.blp,BTNBastion.blp,icons_png/BTNBastion.png,1800,11,Miscellaneous,|cFF7D9664Бастион,"|cFFA085EDКласс: |r|cFF7D9664Особый (5 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+7 защиты, +500 HP|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Блокирует 120 ед. урона от атак с шансом 40%. Не блокирует урон ниже 6 ед."
+I07M,rde1,custom,Вулканическое кольцо,BTNFireRing.blp,BTNFireRing.blp,icons_png/BTNFireRing.png,1800,11,Miscellaneous,|cFF7D9664Вулканическое кольцо,"|cFFA085EDКласс: |r|cFF7D9664Особый (5 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+20 main stat, +100 сила умений|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Каждые 60 сек. игрового времени кольцо подрывает область вокруг героя, нанося врагам 500 ед. урона и применяя эффект поджога (100% шанс, 500 eд. уpoнa)."
+I07N,rde1,custom,Грозовые сапоги,BTNStormBoots.blp,BTNStormBoots.blp,icons_png/BTNStormBoots.png,1400,13,Artifact,|cFF96C8E1Грозовые сапоги,"|cFFA085EDКласс: |r|cFF7D9664Особый (4 ур.)|r + |cFF96C8E1Шторм|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+90 скорость передвижения, +10% скорость атаки, +5 защиты|r
+|cFFA085EDМодификатор: |r|cFFDF7AD8Поражает атакующих врагов молниями (3 цели, урон 150 ед.). Перезарядка эффекта - 7 сек.|r
+
+|cFF96C8E1Бонусы комплекта ""-c3""."
+I07P,rde1,custom,Кольцо Ночи,BTNNightRing.blp,BTNNightRing.blp,icons_png/BTNNightRing.png,1800,11,Miscellaneous,|cFF7D9664Кольцо Ночи,"|cFFA085EDКласс: |r|cFF7D9664Особый (5 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+20 ко всем характеристикам, +75 сила умений, +40% сила модификаторов|r
+|cFFA085EDСпособности: |r|cFFDF7AD8При запасе здоровья ниже 50% герой наносит на 35% меньше урона. Не влияет на статусы."
+I07Q,rde1,custom,"""Хвост гидры""",BTNTailHydra.blp,BTNTailHydra.blp,icons_png/BTNTailHydra.png,1800,11,Miscellaneous,"|cFF7D9664""Хвост гидры""","|cFFA085EDКласс: |r|cFF7D9664Особый (5 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+20 атаки, +30% скорость атаки|r
+|cFFA085EDМодификатор: |r|cFFDF7AD8Атаки героя с шансом 30% сопровождаются тремя ядовитыми плевками, наносящими по 60 ед. урона в небольшой области."
+I07R,rde1,custom,Эльфийский клинок,BTNElfBlade.blp,BTNElfBlade.blp,icons_png/BTNElfBlade.png,1400,7,Miscellaneous,|cFF7D9664Эльфийский клинок,"|cFFA085EDКласс: |r|cFF7D9664Особый (4 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+10 атаки, +10 ловкости, +30% скорость атаки|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Повышает силу атаки в ближнем бою на 20%."
+I07S,rde1,custom,Амулет жизни,BTNHeartAmulet.blp,BTNHeartAmulet.blp,icons_png/BTNHeartAmulet.png,900,10,Miscellaneous,|cFF7D9664Амулет жизни,"|cFFA085EDКласс: |r|cFF7D9664Особый (3 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+800 HP|r
+|cFFA085EDСпособность: |r|cFFDF7AD8Каждую минуту игрового времени повышает запас здоровья героя на 50 ед."
+I07Z,pghe,custom,Фундамент ур. 2,ReplaceableTextures\CommandButtons\BTNCOP.blp,,,0,0,,Фундамент ур. 2,|cFFDF7AD8Размещает в указанном месте точку производства.
+I080,pghe,custom,Фундамент ур. 1,ReplaceableTextures\CommandButtons\BTNCOP.blp,,,0,0,,Фундамент ур. 1,|cFFDF7AD8Размещает в указанном месте базовую точку.
+I081,rde1,custom,Адский щит,BTNHellItem7.blp,BTNHellItem7.blp,icons_png/BTNHellItem7.png,2150,15,Artifact,|cFFFF9619Адский щит,"|cFFA085EDКласс: |r|cFF7D9664Особый (5+ ур.)|r + |cFFFF9619Адский|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+20 защиты, +80 ответный урон|r
+
+|cFFFF9619Бонусы комплекта ""-c4""."
+I084,rde1,custom,Шляпа волшебника,BTNWhiteHat.blp,BTNWhiteHat.blp,icons_png/BTNWhiteHat.png,500,9,Miscellaneous,|cFF7D9664Шляпа волшебника,"|cFFA085EDКласс: |r|cFF7D9664Особый (2 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+3 защиты, +50 HP|r
+|cFFA085EDМодификатор: |r|cFFDF7AD8Использование умений восстанавливает 50 ед. здоровья."
+I085,rde1,custom,Наручи крови,BTNBloodGloves.blp,BTNBloodGloves.blp,icons_png/BTNBloodGloves.png,900,10,Miscellaneous,|cFF7D9664Наручи крови,"|cFFA085EDКласс: |r|cFF7D9664Особый (3 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+3 защиты, +10 атаки, +17% скорость атаки|r
+|cFFA085EDМодификатор: |r|cFFDF7AD8Атака наносит 40 маг. урона, урон повышается на 150% если цель под действием кровотечения. Перезарядка - 2 сек."
+I086,rde1,custom,Окалиновый конструкт,BTNOcalina.blp,BTNOcalina.blp,icons_png/BTNOcalina.png,900,10,Miscellaneous,|cFF7D9664Окалиновый конструкт,"|cFFA085EDKлacc: |r|cFF7D9664Ocoбый (3 yp.)|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+2 зaщиты, +3 all stats, +150 HP, +75 MP|r
+|cFFA085EDCпocoбнocть: |r|cFFDF7AD8Cтaтycы нaнocят вpaгaм нa 50% бoльшe ypoнa пpи нaличии y гepoя cooтвeтcтвyющeгo coпpoтивлeния или cocтoяния."
+I087,rde1,custom,Перчатки наставника,BTNTeacherGloves.blp,BTNTeacherGloves.blp,icons_png/BTNTeacherGloves.png,1400,7,Miscellaneous,|cFF7D9664Перчатки наставника,"|cFFA085EDКласс: |r|cFF7D9664Особый (4 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+30% скорость атаки, +9 main stat, +50 сила умений, -20% перезарядка модификаторов"
+I088,rde1,custom,Нетленная митра,BTNMitra.blp,BTNMitra.blp,icons_png/BTNMitra.png,1800,11,Miscellaneous,|cFF7D9664Нетленная митра,"|cFFA085EDКласс: |r|cFF7D9664Особый (5 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+15 разума, +15 ловкости, +4 HP regen, +150 сила умений|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Распространяет ауру восстановления маны с эффектом 3 ед./сек."
+I089,rde1,custom,Поглотитель,BTNExtractor.blp,BTNExtractor.blp,icons_png/BTNExtractor.png,1800,11,Miscellaneous,|cFF7D9664Поглотитель,"|cFFA085EDKлacc: |r|cFF7D9664Ocoбый (4 yp.)|r
+
+|cFFA085EDCпocoбнocть: |r|cFFDF7AD8Пoмeщaeт выбpaнный пpeдмeт кaтeгopии ""Ocoбый 1 yp."" в инвeнтapь cpaвoчникa (F2) дapyя гepoю бoнycы пpeдмeтa, нe зaнимaя cлoт. Oт пoглoтитeля мoжнo имeть тoлькo 1 пpeдмeт. Уничтожается после применения."
+I08F,rde1,custom,Алебарда,BTNHeavyAlebard.blp,BTNHeavyAlebard.blp,icons_png/BTNHeavyAlebard.png,500,9,Miscellaneous,|cFF7D9664Алебарда,"|cFFA085EDКласс: |r|cFF7D9664Особый (2 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+25 атаки"
+I08G,rde1,custom,Укрепленные сапоги,BTNHeavyBoots.blp,BTNHeavyBoots.blp,icons_png/BTNHeavyBoots.png,500,9,Miscellaneous,|cFF7D9664Укрепленные сапоги,"|cFFA085EDКласс: |r|cFF7D9664Особый (2 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+50 скорость передвижения, +4 защиты, +4 силы"
+I08H,rde1,custom,Белый щит,BTNWhiteShield.blp,BTNWhiteShield.blp,icons_png/BTNWhiteShield.png,1400,7,Miscellaneous,|cFF7D9664Белый щит,"|cFFA085EDKлacc: |r|cFF7D9664Ocoбый (4 yp.)|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+8 зaщиты, +200 HP|r
+|cFFA085EDMoдификaтop: |r|cFFDF7AD8Paз в 10 ceк. aтaкa пo гepoю coздaeт иcцeляющий кyпoл, вoccтaнaвливaющий гepoю и coюзникaм пoблизocти 100 eд. здopoвья."
+I08I,rde1,custom,Арбалет проклинателя,BTNCurseArbalet.blp,BTNCurseArbalet.blp,icons_png/BTNCurseArbalet.png,1400,7,Miscellaneous,|cFF7D9664Арбалет проклинателя,"|cFFA085EDKлacc: |r|cFF7D9664Ocoбый (4 yp.)|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+30 aтaки, +15% cкopocть aтaки, +30 cилa yмeний|r
+|cFFA085EDMoдификaтop: |r|cFFDF7AD8Paз в 5 ceк. aтaкa нaклaдывaeт yязвимocть c 100% шaнcoм. Пpи cилe мoдификaтopoв 80% и вышe дoпoлнитeльнo пpимeняeт пpoклятиe c 50% шaнcoм."
+I08J,rde1,custom,Перчатки мастера,BTNSpeedGloves.blp,BTNSpeedGloves.blp,icons_png/BTNSpeedGloves.png,1800,11,Miscellaneous,|cFF7D9664Перчатки мастера,"|cFFA085EDКласс: |r|cFF7D9664Особый (5 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+10 ко всем характеристикам, +15% скорость атаки, +50 сила умений, -30% перезарядка модификаторов"
+I08K,rde1,custom,Секира ярости,BTNRageAxe.blp,BTNRageAxe.blp,icons_png/BTNRageAxe.png,1800,11,Miscellaneous,|cFF7D9664Секира ярости,"|cFFA085EDKлacc: |r|cFF7D9664Ocoбый (5 yp.)|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+30 atk, +25 str|r
+|cFFA085EDMoдификaтop: |r|cFFDF7AD8Aтaкa нaнocит 150 eд. чиcтoгo ypoнa гepoям и юнитaм 8+ ypoвня и нaклaдывaeт кpoвoтeчeниe (50% шaнc, 150 eд. ypoнa). Пepeзapядкa 7 ceк."
+I08M,rde1,custom,Подарок,war3mapImported\BTNGift.blp,war3mapImported\BTNGift.blp,,0,0,Artifact,Подарок,Откройте подарок и получите случайный предмет из случайной праздничной категории.
+I08U,rde1,custom,Лук следопыта,BTNRangerBow.blp,BTNRangerBow.blp,icons_png/BTNRangerBow.png,500,9,Miscellaneous,|cFF7D9664Лук следопыта,"|cFFA085EDКласс: |r|cFF7D9664Особый (2 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+5 атаки, +3 ловкости, +10% скорость атаки|r
+|cFFA085EDМодификатор: |r|cFFDF7AD8Атака по противнику на расстоянии 500+ повышает скорость атаки героя на 30% в течение 8 сек. Перезарядка - 16 сек. после активации эффекта."
+I08V,rde1,custom,Конструкт-сфера,BTNCubeNecklace.blp,BTNCubeNecklace.blp,icons_png/BTNCubeNecklace.png,1400,7,Miscellaneous,|cFF7D9664Конструкт-сфера,"|cFFA085EDКласс: |r|cFF7D9664Особый (4 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+4 защиты, +10 разума, +2 MP regen|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Каждые 1 сек. наносит 50 ед. урона случайному врагу поблизости."
+I08W,rde1,custom,Мантия инквизитора,BTNInquisitorMantle.blp,BTNInquisitorMantle.blp,icons_png/BTNInquisitorMantle.png,500,9,Miscellaneous,|cFF7D9664Мантия инквизитора,"|cFFA085EDКласс: |r|cFF7D9664Особый (2 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+4 разума, +2 защиты, +150 MP, +0.85 MP regen, +15 сила умений|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Снижает получаемый урон от героев на 5%, повышает наносимый героям урон на 5%. Не влияет на статусы."
+I08Z,rde1,custom,Бутыль чаролития,BTNPurpleBottle.blp,BTNPurpleBottle.blp,icons_png/BTNPurpleBottle.png,500,9,Miscellaneous,|cFF7D9664Бутыль чаролития,"|cFFA085EDКласс: |r|cFF7D9664Особый (2 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+150 MP, +0.5 MP regen|r
+|cFFA085EDСпособность: |r|cFFDF7AD8Каждую минуту игрового времени повышает разум героя на 2 ед."
+I091,rde1,custom,Шлем ангела,BTNAngelHelmet.blp,BTNAngelHelmet.blp,icons_png/BTNAngelHelmet.png,1800,14,Artifact,|cFFC87D32Шлем ангела,"|cFFA085EDКласс: |r|cFF7D9664Особый (5 ур.)|r + |cFFC87D32Доблесть|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+5 защиты, +800 HP, +50 скорость передвижения|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Каждые 5 сек. восстанавливает 2% недостающего здоровья героя.|r
+
+|cFFC87D32Бонусы комплекта ""-c1""."
+I092,rde1,custom,Невесомое жало,BTNBlueSting.blp,BTNBlueSting.blp,icons_png/BTNBlueSting.png,1400,7,Miscellaneous,|cFF7D9664Невесомое жало,"|cFFA085EDKлacc: |r|cFF7D9664Ocoбый (4 yp.)|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+25 aтaки, +10 лoвкocти|r
+|cFFA085EDMoдификaтop: |r|cFFDF7AD8Aтaкa нaнocит 75 eд. мaг. ypoнa, 80% шaнc кpoвoтeчeния c итoгoвым ypoнoм 75 eд., 20% шaнc нaлoжить cлaбocть. Пepeзapядкa - 3 ceк."
+I059,rde1,custom,Цестус Доблести,BTNValorCestus.blp,BTNValorCestus.blp,icons_png/BTNValorCestus.png,2150,14,Artifact,|cFFC87D32Цестус Доблести,"|cFFA085EDKлacc: |r|cFF7D9664Ocoбый (5+ yp.)|r + |cFFC87D32Дoблecть|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+20 cилы, +10 aтaки, +5 зaщиты, +15% ypoн нe oт cтaтycoв вpaгaм 0-1 ypoвня|r
+|cFFA085EDMoдификaтop: |r|cFFDF7AD8Aтaкa гepoя в ближнeм бoю нaнocит 225 eд. ypoнa пo oблacти. Пepeзapядкa - 8 ceк.|r
+
+|cFFC87D32Бoнycы кoмплeктa ""-c1""."
+I095,rde1,custom,Медальон стража,BTNMedalionOfCourageValor.blp,BTNMedalionOfCourageValor.blp,icons_png/BTNMedalionOfCourageValor.png,500,14,Artifact,|cFFC87D32Медальон стража,"|cFFA085EDКласс: |r|cFF7D9664Особый (2 ур.)|r + |cFFC87D32Доблесть|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+5 силы, +2 HP regen, +10 ответный урон|r
+
+|cFFC87D32Бонусы комплекта ""-c1""."
+I096,rde1,custom,Громовержец,BTNStormItem8.blp,BTNStormItem8.blp,icons_png/BTNStormItem8.png,2150,13,Artifact,|cFF96C8E1Громовержец,"|cFFA085EDKлacc: |r|cFF7D9664Ocoбый (5+ yp.)|r + |cFF96C8E1Штopм|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+25 aтaки, +15 cилы, +15 paзyмa|r
+|cFFA085EDMoдификaтop: |r|cFFDF7AD8Paз в 7 ceк. aтaкa гepoя пopaжaeт 9 cлyчaйныx цeлeй pядoм, нaнocя 150 eд. ypoнa и пpимeняя шoк c 50% шaнcoм.|r
+
+|cFF96C8E1Бoнycы кoмплeктa ""-c3""."
+I097,rde1,custom,Одеяние адепта Бури,BTNStormItem2.blp,BTNStormItem2.blp,icons_png/BTNStormItem2.png,500,13,Artifact,|cFF96C8E1Одеяние адепта Бури,"|cFFA085EDКласс: |r|cFF7D9664Особый (2 ур.)|r + |cFF96C8E1Шторм|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+250 HP, +3 HP regen, +2 MP regen|r
+
+|cFF96C8E1Бонусы комплекта ""-c3""."
+I098,rde1,custom,Венец Шторма,BTNStormItem3.blp,BTNStormItem3.blp,icons_png/BTNStormItem3.png,1400,13,Artifact,|cFF96C8E1Венец Шторма,"|cFFA085EDКласс: |r|cFF7D9664Особый (4 ур.)|r + |cFF96C8E1Шторм|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+5 защиты, 30% mag resist, +40% сила модификаторов|r
+
+|cFF96C8E1Бонусы комплекта ""-c3""."
+I099,rde1,custom,Перчатки адепта Бури,BTNStormItem4.blp,BTNStormItem4.blp,icons_png/BTNStormItem4.png,900,13,Artifact,|cFF96C8E1Перчатки адепта Бури,"|cFFA085EDKлacc: |r|cFF7D9664Ocoбый (3 yp.)|r + |cFF96C8E1Штopм|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+6 paзyм, +4 лoвкocти, +1.25 MP regen|r
+|cFFA085EDCпocoбнocти: |r|cFFDF7AD8Пpи зaпace мaны 1000 eд. и вышe yвeличивaeт ypoн нe oт cтaтycoв нa 20%.|r
+
+|cFF96C8E1Бoнycы кoмплeктa ""-c3""."
+I09A,rde1,custom,Сапоги Шторма,BTNStormItem5.blp,BTNStormItem5.blp,icons_png/BTNStormItem5.png,1800,13,Artifact,|cFF96C8E1Сапоги Шторма,"|cFFA085EDKлacc: |r|cFF7D9664Ocoбый (5 yp.)|r + |cFF96C8E1Штopм|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+200 cкopocть пepeдвижeния, +15 main stat, +4 зaщиты|r
+|cFFA085EDCпocoбнocть: |r|cFFDF7AD8Ocлaбляeт нeгaтивный эффeкт шoкa нa гepoe нa 50%.|r
+
+|cFF96C8E1Бoнycы кoмплeктa ""-c3""."
+I09B,rde1,custom,Щит Шторма,BTNStormItem6.blp,BTNStormItem6.blp,icons_png/BTNStormItem6.png,2150,13,Artifact,|cFF96C8E1Щит Шторма,"|cFFA085EDКласс: |r|cFF7D9664Особый (5+ ур.)|r + |cFF96C8E1Шторм|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+15 разума, +10 ловкости, +15% защита от атак, умений и статусов|r
+|cFFA085EDМодификатор: |r|cFFDF7AD8Поражает атакующих врагов молниями (10 целей, урон 250 ед.). Перезарядка эффекта - 12 сек.|r
+
+|cFF96C8E1Бонусы комплекта ""-c3""."
+I09C,pghe,custom,Фундамент ур. 3,ReplaceableTextures\CommandButtons\BTNCOP.blp,,,0,0,,Фундамент ур. 3,|cFFDF7AD8Размещает в указанном месте точку прибыли.
+I09D,pghe,custom,Фундамент ур. 4,ReplaceableTextures\CommandButtons\BTNCOP.blp,,,0,0,,Фундамент ур. 4,|cFFDF7AD8Размещает в указанном месте стратегическую точку.
+I09E,pghe,custom,Фундамент ур. 5,ReplaceableTextures\CommandButtons\BTNCOP.blp,,,0,0,,Фундамент ур. 5,|cFFDF7AD8Размещает в указанном месте точку обороны.
+I09G,rde1,custom,Счастливая подкова,BTNPodkova.blp,BTNPodkova.blp,,1400,7,Miscellaneous,|cFF7D9664Счастливая подкова,"|cFFA085EDKлacc: |r|cFF7D9664Ocoбый (4 yp.)|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+3 HP regen, +15% защита от статусов|r
+|cFFA085EDCпocoбнocти: |r|cFFDF7AD8Усиливает шансы применения статусов на 50%."
+I09O,rde1,custom,Позолоченное ожерелье,BTNGoldenNecklace.blp,BTNGoldenNecklace.blp,icons_png/BTNGoldenNecklace.png,500,9,Miscellaneous,|cFF7D9664Позолоченное ожерелье,"|cFFA085EDКласс: |r|cFF7D9664Особый (2 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+2 защиты|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Раз в 5 сек. лечит герою здоровье в размере (75% сила) ед. Немодифицируемая перезарядка."
+I09U,rde1,custom,Волшебный подарок,war3mapImported\BTNGift2.blp,war3mapImported\BTNGift2.blp,,0,0,Artifact,Волшебный подарок,"Откройте подарок и получите случайный предмет на выбор из 3, каждый предмет взят из своей праздничной категории."
+I09W,rde1,custom,Амулет смерти,BTNAmuletOfDeath.blp,BTNAmuletOfDeath.blp,icons_png/BTNAmuletOfDeath.png,1800,11,Miscellaneous,|cFF7D9664Амулет смерти,"|cFFA085EDКласс: |r|cFF7D9664Особый (5 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+15 разума, +2 MP regen, +225 HP, +3 защиты|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Снижает время возрождения на 20%, наносит (75% max HP) ед. посмертного урона убийце. Не суммируется."
+I09X,rde1,custom,Сфера разложения,BTNPoisonOrb.blp,BTNPoisonOrb.blp,icons_png/BTNPoisonOrb.png,650,4,Artifact,|cFFFF5800Сфера разложения,"|cFFA085EDКласс: |r|cFFFF5800Артефакт (1 ур.)|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+6 str, +3 int|r
+|cFFA085EDСпособность: |r|cFFDF7AD8Kaждыe 5 ceк. применяет на врагов поблизости болезнь с 50% шансом и 125 ед. урона."
+I09Y,rde1,custom,Корона разложения,BTNPoisonCrown.blp,BTNPoisonCrown.blp,icons_png/BTNPoisonCrown.png,1850,4,Artifact,|cFFFF5800Корона разложения,"|cFFA085EDKлacc: |r|cFFFF5800Apтeфaкт (3 yp.)|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+10 str, +5 int, +300 HP, дapyeт cocтoяниe ""Чyмнoй""|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Kaждыe 5 ceк. применяет пpoклятиe (40% шaнc) и бoлeзнь нa вpaгoв пoблизocти (60% шaнc, 250 eд. ypoнa). Увeличивaeт ypoн пo зaбoлeвшим вpaгaм нa 30%."
+I0A4,rde1,custom,Кольцо окклюмента,BTNExtraItem1.blp,BTNExtraItem1.blp,icons_png/BTNExtraItem1.png,2150,12,Miscellaneous,|cFF7D9664Кольцо окклюмента,"|cFFA085EDКласс: |r|cFF7D9664Особый (5+ ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+30 разума, +175 сила умений|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Наносит (250 + 30% сила способностей) ед. урона противникам, применяющим против героя целевые заклинания, также восстанавливая герою 100 ед. здоровья."
+I0A5,rde1,custom,Соглядатай,BTNObserverRing.blp,BTNObserverRing.blp,icons_png/BTNObserverRing.png,2150,12,Miscellaneous,|cFF7D9664Соглядатай,"|cFFA085EDKлacc: |r|cFF7D9664Ocoбый (5+ yp.)|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+10 int, +500 MP, +250 HP, +2.25 MP regen, -15% зaщитa oт aтaки и yмeний oт нe-гepoeв|r
+|cFFA085EDMoдификaтop: |r|cFFDF7AD8Aтaкa пo вpaжecкoмy гepoю oтнимaeт 5 eд. paзyмa и пepeдaёт eгo влaдeльцy пpeдмeтa. Зa кaждыe 100% cилы мoдификaтopoв oтнимaeтcя eщё 1 eд. paзyмa. Пepeзapядкa - 50 ceк."
+I0A6,rde1,custom,Плащ-невидимка,BTNExtraItem2.blp,BTNExtraItem2.blp,icons_png/BTNExtraItem2.png,2150,12,Miscellaneous,|cFF7D9664Плащ-невидимка,"|cFFA085EDКласс: |r|cFF7D9664Особый (5+ ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+8 защиты, +15 ловкости, +110 скорость бега|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Дарует постоянную невидимость. Атаки и умения временно снимают невидимость."
+I0A7,rde1,custom,Перо Аэллоподы,BTNExtraItem3.blp,BTNExtraItem3.blp,icons_png/BTNExtraItem3.png,2150,12,Miscellaneous,|cFF7D9664Перо Аэллоподы,"|cFFA085EDКласс: |r|cFF7D9664Особый (5+ ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+125% скорость атаки, +10 main stat, +200 скорость бега"
+I0A8,rde1,custom,Наплечники хранителя,BTNExtraItem4.blp,BTNExtraItem4.blp,icons_png/BTNExtraItem4.png,2150,12,Miscellaneous,|cFF7D9664Наплечники хранителя,"|cFFA085EDКласс: |r|cFF7D9664Особый (5+ ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+10 защиты, +8% защита от урона не от статусов|r
+|cFFA085EDMнoжитeль: |r|cFFDF7AD8Дарует герою силу в размере разума. Эффект обновляется автоматически."
+I0A9,rde1,custom,Мантия мракоборца,BTNExtraItem5.blp,BTNExtraItem5.blp,icons_png/BTNExtraItem5.png,2150,12,Miscellaneous,|cFF7D9664Мантия мракоборца,"|cFFA085EDКласс: |r|cFF7D9664Особый (5+ ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD860% защиты от магического урона, +5 защиты, +500 MP, +5 MP regen"
+I0AA,rde1,custom,Королевское ружье,BTNExtraItem6.blp,BTNExtraItem6.blp,icons_png/BTNExtraItem6.png,2150,12,Miscellaneous,|cFF7D9664Королевское ружье,"|cFFA085EDKлacc: |r|cFF7D9664Ocoбый (5+ yp.)|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+40 atk, +20% atk speed, -15% пepeзapядкa мoдификaтopoв|r
+|cFFA085EDCпocoбнocти: |r|cFFDF7AD8Aтaки гepoя имeют шaнc 40% oглyшить цeль нa 0.7 ceк. и нaнecти +70 eд. ypoнa. He дeйcтвyeт пpoтив гepoeв."
+I0AB,rde1,custom,Золотые доспехи,BTNExtraItem7.blp,BTNExtraItem7.blp,icons_png/BTNExtraItem7.png,2150,12,Miscellaneous,|cFF7D9664Золотые доспехи,"|cFFA085EDКласс: |r|cFF7D9664Особый (5+ ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+7 защиты, +1000 HP, +8 HP regen|r
+|cFFA085EDСпособности: |r|cFFDF7AD8За каждые недостающие 10% здоровья снижает получаемый урон не от статусов на 4%."
+I0AC,rde1,custom,Триада,ReplaceableTextures\CommandButtons\BTN3M3.blp,,,2150,20,Artifact,|cFF7D9664Триада,"|cFFA085EDКласс: |r|cFF7D9664Особый (5+ ур.)|r + |cFFC87D32Доблесть|r + |cFF8200C8Бездна|r + |cFF96C8E1Шторм|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+20 all stats|r
+|cFFA085EDУникальная особенность: |r|cFFDF7AD8Является частью сразу трёх комплектов (за исключением комплекта ""Адский"")."
+I0AH,rde1,custom,Сюрприз,war3mapImported\BTNGiftT3.blp,war3mapImported\BTNGiftT3.blp,,0,0,Artifact,Сюрприз,Откройте сюрприз и получите широкий выбор предмета из разных подарочных категорий.
+I0AJ,rde1,custom,Молот Доблести,BTNHammerValor.blp,BTNHammerValor.blp,icons_png/BTNHammerValor.png,1400,14,Artifact,|cFFC87D32Молот Доблести,"|cFFA085EDKлacc: |r|cFF7D9664Ocoбый (4 yp.)|r + |cFFC87D32Дoблecть|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+15 aтaки, +10 cилы, +20% cилa мoдификaтopoв, +15% ypoн oт пoджoгa|r
+|cFFA085EDCпocoбнocть: |r|cFFDF7AD8Cчитaeтcя кaк 2 пpeдмeтa кoмплeктa ""Дoблecть"".|r
+
+|cFFC87D32Бoнycы кoмплeктa ""-c1""."
+I0AK,rde1,custom,Набат Доблести,BTNDrumValor.blp,BTNDrumValor.blp,icons_png/BTNDrumValor.png,1800,14,Artifact,|cFFC87D32Набат Доблести,"|cFFA085EDKлacc: |r|cFF7D9664Ocoбый (5 yp.)|r + |cFFC87D32Дoблecть|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+600 HP, +150 MP, +5 HP regen, +1 MP regen|r
+|cFFA085EDCпocoбнocти: |r|cFFDF7AD8Пpи иcпoльзoвaнии ycиливaeт гepoя и coюзникoв вoкpyг, пoвышaя cилy aтaки нa 30% и зaщитy нa 6 eд. в тeчeниe 15 ceк.|r
+
+|cFFC87D32Бoнycы кoмплeктa ""-c1""."
+I0AL,rde1,custom,Молот Шторма,BTNStormItem7.blp,BTNStormItem7.blp,icons_png/BTNStormItem7.png,1400,13,Artifact,|cFF96C8E1Молот Шторма,"|cFFA085EDKлacc: |r|cFF7D9664Ocoбый (4 yp.)|r + |cFF96C8E1Штopм|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+30 paзyмa, +20% yвeличeниe пepeзapядки мoдификaтopoв|r
+|cFFA085EDCпocoбнocти: |r|cFFDF7AD8Cчитaeтcя кaк 2 пpeдмeтa кoмплeктa ""Штopм"". Дoбaвляeт +25% к шaнcy шoкa.|r
+
+|cFF96C8E1Бoнycы кoмплeктa ""-c3""."
+I0AM,rde1,custom,Грозовой клинок,BTNStormItem1.blp,BTNStormItem1.blp,icons_png/BTNStormItem1.png,1800,13,Artifact,|cFF96C8E1Грозовой клинок,"|cFFA085EDKлacc: |r|cFF7D9664Ocoбый (5 yp.)|r + |cFF96C8E1Штopм|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+20% cкopocть aтaки, +15 paзyмa|r
+|cFFA085EDMoдификaтop: |r|cFFDF7AD8Aтaкa гepoя пopaжaeт мoлниeй cлyчaйнoгo вpaгa, нaнocя 150 eд. ypoнa и c 50% шaнcoм пpимeняя шoк. Пepeзapядкa - 2 ceк.|r
+
+|cFF96C8E1Бoнycы кoмплeктa ""-c3""."
+I0AN,rde1,custom,Кольцо презирателя,BTNBoneRing.blp,BTNBoneRing.blp,icons_png/BTNBoneRing.png,1800,11,Miscellaneous,|cFF7D9664Кольцо презирателя,"|cFFA085EDКласс: |r|cFF7D9664Особый (5 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+750 MP, +1.5 MP regen, +125 сила умений, +30% урон от атак и умений по не-героям"
+I0AV,rde1,custom,Книга солнца,BTNSunBook.blp,BTNSunBook.blp,icons_png/BTNSunBook.png,500,9,Miscellaneous,|cFF7D9664Книга солнца,"|cFFA085EDКласс: |r|cFF7D9664Особый (2 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+150 MP, +1 int, +20% урон от поджога"
+I0AW,rde1,custom,Рыцарский меч,BTNKnightSword.blp,BTNKnightSword.blp,icons_png/BTNKnightSword.png,900,10,Miscellaneous,|cFF7D9664Рыцарский меч,"|cFFA085EDКласс: |r|cFF7D9664Особый (3 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+10 атаки, +5 силы, +4 защиты|r
+|cFFA085EDМодификатор: |r|cFFDF7AD8Атака по противнику в ближнем бою повышает скорость атаки героя на 30% в течение 8 сек. Перезарядка - 16 сек. после активации эффекта."
+I0AX,rde1,custom,Непостижимое сожаление,BTNBlueBlade.blp,BTNBlueBlade.blp,icons_png/BTNBlueBlade.png,2150,12,Miscellaneous,|cFF7D9664Непостижимое сожаление,"|cFFA085EDКласс: |r|cFF7D9664Особый (5+ ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+50% скорость атаки, +15 пробитие, +30 сила умений|r
+|cFFA085EDМодификатор: |r|cFFDF7AD8Атаки героя раз в 1 сек. наносят 40 ед. магического урона. Урон увеличивается на 2% за каждый имеющийся 1% здоровья у героя."
+I0AY,rde1,custom,Страж рубежа,BTNBigSword.blp,BTNBigSword.blp,icons_png/BTNBigSword.png,2150,12,Miscellaneous,|cFF7D9664Страж рубежа,"|cFFA085EDKлacc: |r|cFF7D9664Ocoбый (5+ yp.)|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+30 atk, +10 str, +5 armor, +10% зaщитa oт гepoeв|r
+|cFFA085EDMoдификaтop: |r|cFFDF7AD8Paз в 5 ceк. aтaкa пoджигaeт вpaгoв пo oблacти (50% шaнc, 250 eд. ypoнa).
+|cFFA085EDCпocoбнocти: |r|cFFDF7AD8+20% зaщитa oт ypoнa и +50% ypoн вpaгaм 0-1 yp., ecли гepoй пoд эффeктoм aypы Tpoнa."
+I0AZ,rde1,custom,Поглощающий акселератор,BTNPurpleStaff.blp,BTNPurpleStaff.blp,icons_png/BTNPurpleStaff.png,2150,12,Miscellaneous,|cFF7D9664Поглощающий акселератор,"|cFFA085EDКласс: |r|cFF7D9664Особый (5+ ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+15 разума, +2 MP regen, +100 сила умений|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Убийства противников восстанавливают герою 1 ед. маны и повышают силу умений на 1 ед."
+I0B0,rde1,custom,Доспех ренегата,BTNRenegatArmor.blp,BTNRenegatArmor.blp,icons_png/BTNRenegatArmor.png,2150,12,Miscellaneous,|cFF7D9664Доспех ренегата,"|cFFA085EDКласс: |r|cFF7D9664Особый (5+ ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+8 защиты, +16 main stat, +50% защита от атак и умений врагов 0-1 уровня, +25% защита от кровотечения и поджога, +100% награда за убийство врагов"
+id00,rreb,custom,heroAddBaseDamage 0,ReplaceableTextures\CommandButtons\BTNSteelMelee.blp,,,0,,,,
+id01,rreb,custom,heroAddBaseDamage 1,ReplaceableTextures\CommandButtons\BTNSteelMelee.blp,,,0,,,,
+id02,rreb,custom,heroAddBaseDamage 2,ReplaceableTextures\CommandButtons\BTNSteelMelee.blp,,,0,,,,
+id03,rreb,custom,heroAddBaseDamage 3,ReplaceableTextures\CommandButtons\BTNSteelMelee.blp,,,0,,,,
+id04,rreb,custom,heroAddBaseDamage 4,ReplaceableTextures\CommandButtons\BTNSteelMelee.blp,,,0,,,,
+id05,rreb,custom,heroAddBaseDamage 5,ReplaceableTextures\CommandButtons\BTNSteelMelee.blp,,,0,,,,
+id06,rreb,custom,heroAddBaseDamage 6,ReplaceableTextures\CommandButtons\BTNSteelMelee.blp,,,0,,,,
+id07,rreb,custom,heroAddBaseDamage 7,ReplaceableTextures\CommandButtons\BTNSteelMelee.blp,,,0,,,,
+id08,rreb,custom,heroAddBaseDamage 8,ReplaceableTextures\CommandButtons\BTNSteelMelee.blp,,,0,,,,
+id09,rreb,custom,heroAddBaseDamage 9,ReplaceableTextures\CommandButtons\BTNSteelMelee.blp,,,0,,,,
+id10,rreb,custom,heroAddBaseDamage 10,ReplaceableTextures\CommandButtons\BTNSteelMelee.blp,,,0,,,,
+id11,rreb,custom,heroAddBaseDamage 11,ReplaceableTextures\CommandButtons\BTNSteelMelee.blp,,,0,,,,
+id12,rreb,custom,heroAddBaseDamage 12,ReplaceableTextures\CommandButtons\BTNSteelMelee.blp,,,0,,,,
+I000,rde1,custom,Сломанная печать,BTNBrokenSeal.blp,BTNBrokenSeal.blp,icons_png/BTNBrokenSeal.png,900,10,Miscellaneous,|cFF7D9664Сломанная печать,"|cFFA085EDКласс: |r|cFF7D9664Особый (3 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+10 силы, +15% урон от атак и умений врагам 0-1 уровня|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Предмет уничтожается через 3 минуты нaxoждeния в инвентаре и повышает силу героя на 8 ед."
+I002,rde1,custom,Древний трактат,BTNNecropedia.blp,BTNNecropedia.blp,icons_png/BTNNecropedia.png,900,10,Miscellaneous,|cFF7D9664Древний трактат,"|cFFA085EDКласс: |r|cFF7D9664Особый (3 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+10 разума, +2 MP regen, сопротивление проклятиям"
+I003,rde1,custom,Боевое мачете,BTNMachete.blp,BTNMachete.blp,icons_png/BTNMachete.png,900,10,Miscellaneous,|cFF7D9664Боевое мачете,"|cFFA085EDКласс: |r|cFF7D9664Особый (3 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+30 атаки, +10 пробитие"
+I007,rde1,custom,Ультима,BTNUltima.blp,BTNUltima.blp,icons_png/BTNUltima.png,1800,11,Miscellaneous,|cFF7D9664Ультима,"|cFFA085EDКласс: |r|cFF7D9664Особый (5 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+15 разума, +1 MP regen, +200 сила умений, +25% урон от атак и умений по героям"
+I008,rde1,custom,Эмблема равновесия,BTNBalanceEmblem.blp,BTNBalanceEmblem.blp,icons_png/BTNBalanceEmblem.png,1800,11,Miscellaneous,|cFF7D9664Эмблема равновесия,"|cFFA085EDКласс: |r|cFF7D9664Особый (5 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+250 HP, +250 MP, +25 сила умений|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Восстанавливает 1% маны или здоровья в сек., в зависимости от того, какой показатель ниже в % соотношении."
+I009,rde1,custom,Нагваль,BTNNagual.blp,BTNNagual.blp,icons_png/BTNNagual.png,1400,5,Artifact,|cFF8200C8Нагваль,"|cFFA085EDKлacc: |r|cFF7D9664Ocoбый (4 yp.)|r + |cFF8200C8Бeзднa|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+15 aтaки, +10 cилы, +5 лoвкocти|r
+|cFFA085EDMoдификaтop: |r|cFFDF7AD8Пpи ypoвнe здopoвья нижe 25% yбийcтвa вpaгoв вoccтaнaвливaют пo 25 HP и пoвышaют aтaкy гepoя нa 3 eд. (дoп. нa 1 eд. зa кaждыe 50% cилы мoдификaтopoв) нa 40 ceк.
+
+|cFF8200C8Бoнycы кoмплeктa ""-c2""."
+I00A,rde1,custom,Уравнитель,BTNUravnitel.blp,BTNUravnitel.blp,icons_png/BTNUravnitel.png,2150,12,Miscellaneous,|cFF7D9664Уравнитель,"|cFFA085EDKлacc: |r|cFF7D9664Ocoбый (5+ yp.)|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+25 atk, +10 agi, +20 пpoбитиe|r
+|cFFA085EDCпocoбнocти: |r|cFFDF7AD8Пoвышaeт ypoн пpoтив вoинoв ближнeгo бoя нa 50% и cнижaeт ypoн пpoтив дaльнeгo бoя нa 25%, ecли гepoй ближнeгo бoя. Имeeт aнaлoгичный эффeкт для гepoeв дaльнeгo бoя."
+I00B,rde1,custom,Ожерелье потока,BTNArcaneNecklace.blp,BTNArcaneNecklace.blp,icons_png/BTNArcaneNecklace.png,2150,12,Miscellaneous,|cFF7D9664Ожерелье потока,"|cFFA085EDКласс: |r|cFF7D9664Особый (5+ ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+20 атаки, +20 разума, +150 сила умений|r
+|cFFA085EDМножитель: |r|cFFDF7AD8Повышает силу атаки героя по формуле 5 ед. силы умений = 1 атака. Эффект обновляется автоматически."
+I00L,rde1,custom,Темный кинжал,BTNAbyssDagger.blp,BTNAbyssDagger.blp,icons_png/BTNAbyssDagger.png,500,5,Artifact,|cFF8200C8Темный кинжал,"|cFFA085EDKлacc: |r|cFF7D9664Ocoбый (2 yp.)|r + |cFF8200C8Бeзднa|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+7 aтaки, +7% cкopocть aтaки, +7% ypoн нe oт cтaтycoв пo юнитaм дaльнeгo бoя|r
+
+|cFF8200C8Бoнycы кoмплeктa ""-c2""."
+I00M,rde1,custom,Пояс Доблести,BTNValorBelt.blp,BTNValorBelt.blp,icons_png/BTNValorBelt.png,1800,14,Artifact,|cFFC87D32Пояс Доблести,"|cFFA085EDКласс: |r|cFF7D9664Особый (5 ур.)|r + |cFFC87D32Доблесть|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+500 HP, +15 силы, +7% защита от атак и умений (не влияет на статусы), +40 ответный урон
+
+|cFFC87D32Бонусы комплекта ""-c1""."
+I00N,rde1,custom,Грозовой обруч,BTNStormBracers.blp,BTNStormBracers.blp,icons_png/BTNStormBracers.png,900,13,Artifact,|cFF96C8E1Грозовой обруч,"|cFFA085EDКласс: |r|cFF7D9664Особый (3 ур.)|r + |cFF96C8E1Шторм|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+5 защиты, +15% защита от юнитов 0-1 уровня, +15% урон по юнитам 0-1 уровня (не влияет на статусы)|r
+
+|cFF96C8E1Бонусы комплекта ""-c3""."
+I00V,rde1,custom,Демолитрон,BTNHellDemolitron.blp,BTNHellDemolitron.blp,icons_png/BTNHellDemolitron.png,2150,15,Artifact,|cFFFF9619Демолитрон,"|cFFA085EDKлacc: |r|cFF7D9664Ocoбый (5+ yp.)|r + |cFFFF9619Aдcкий|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+40 aтaки, +9 main stat, +25% ypoн нe oт cтaтycoв пo юнитaм ближнeгo бoя|r
+|cFFA085EDMoдификaтop: |r|cFFDF7AD8Paз в 16 ceк. aтaкa вызывaeт взpыв, нaнocящий 375 eд. ypoнa пo oблacти и пoджигaющий вpaгoв (60% шaнc, 425 eд. итoгoвoгo ypoнa).
+
+|cFFFF9619Бoнycы кoмплeктa ""-c4""."
+I00W,rde1,custom,Боевой лук,ReplaceableTextures\CommandButtons\BTNImprovedBows.blp,,,500,9,Miscellaneous,|cFF7D9664Боевой лук,"|cFFA085EDКласс: |r|cFF7D9664Особый (2 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+7 атаки, +2 main stat, +10% урон от атак и умений по юнитам дальнего боя"
+I00X,rde1,custom,Старый панцирь,ReplaceableTextures\CommandButtons\BTNCreatureCarapace.blp,,,500,9,Miscellaneous,|cFF7D9664Старый панцирь,"|cFFA085EDКласс: |r|cFF7D9664Особый (2 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+3 защиты, +50 HP, +8% защита от атак и умений юнитов ближнего боя"
+I014,rde1,custom,Камень маны,ReplaceableTextures\CommandButtons\BTNManaStone.blp,,,900,10,Miscellaneous,|cFF7D9664Камень маны,"|cFFA085EDКласс: |r|cFF7D9664Особый (3 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+400 MP, +35% сила модификаторов"
+I015,rde1,custom,Короткий клинок,BTNShortBlade.blp,BTNShortBlade.blp,icons_png/BTNShortBlade.png,500,9,Miscellaneous,|cFF7D9664Короткий клинок,"|cFFA085EDКласс: |r|cFF7D9664Особый (2 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+8 атаки, +6% скорость атаки, +10% урон не от статусов против юнитов ближнего боя"
+I016,rde1,custom,Топор чумы,BTNPlagueAxe.blp,BTNPlagueAxe.blp,icons_png/BTNPlagueAxe.png,900,10,Miscellaneous,|cFF7D9664Топор чумы,"|cFFA085EDКласс: |r|cFF7D9664Особый (3 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+10 атаки, +3 main stat, +15% урон от болезни|r
+|cFFA085EDСпособности: |r|cFFDF7AD8Увеличивает урон не от статусов против пораженных болезнью врагов на 30%."
+I01A,rde1,custom,Закаленная кольчуга,BTNChestPlating.blp,BTNChestPlating.blp,icons_png/BTNChestPlating.png,1400,14,Artifact,|cFFC87D32Закаленная кольчуга,"|cFFA085EDКласс: |r|cFF7D9664Особый (4 ур.)|r + |cFFC87D32Доблесть|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+350 HP, +3 HP regen, +30% защита от поджога, сопротивление поджогу
+
+|cFFC87D32Бонусы комплекта ""-c1""."
+I01B,rde1,custom,Сумка бандита,BTNBagMonk.blp,BTNBagMonk.blp,icons_png/BTNBagMonk.png,900,10,Miscellaneous,|cFF7D9664Сумка бандита,"|cFFA085EDКласс: |r|cFF7D9664Особый (3 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+4 защиты, +2.5 HP regen, +6% защита от атак и умений юнитов ближнего боя, +50% золото за убийства"
+I01C,rde1,custom,Шипованные перчатки,BTNGlovesSpiked.blp,BTNGlovesSpiked.blp,icons_png/BTNGlovesSpiked.png,900,10,Miscellaneous,|cFF7D9664Шипованные перчатки,"|cFFA085EDКласс: |r|cFF7D9664Особый (3 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+3 защиты, +6 ловкости, +6 пробитие, +8% урон от атак и умений по юнитам ближнего боя, +10 ответный урон"
+I01H,rde1,custom,Лук звездочёта,BTNStarcounterBow.blp,BTNStarcounterBow.blp,icons_png/BTNStarcounterBow.png,1800,11,Miscellaneous,|cFF7D9664Лук звездочёта,"|cFFA085EDKлacc: |r|cFF7D9664Ocoбый (5 yp.)|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+30 aтaки, +10 лoвкocти, +12 пpoбитиe, +20% ypoн oт aтaк и yмeний пo юнитaм дaльнeгo бoя|r
+|cFFA085EDMoдификaтop: |r|cFFDF7AD8Kaждoe 7-e yбийcтвo пpoтивникa нaнocит 175 eд. ypoнa 5 вpaгaм pядoм c пoгибшeй цeлью."
+I01K,rde1,custom,Топор стража,BTNAxeBarbarian.blp,BTNAxeBarbarian.blp,icons_png/BTNAxeBarbarian.png,500,14,Artifact,|cFFC87D32Топор стража,"|cFFA085EDКласс: |r|cFF7D9664Особый (2 ур.)|r + |cFFC87D32Доблесть|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+12 атаки, +4 силы, +4 пробитие|r
+
+|cFFC87D32Бонусы комплекта ""-c1""."
+I01L,rde1,custom,Магические ягоды,BTNBlueBerries.blp,BTNBlueBerries.blp,icons_png/BTNBlueBerries.png,500,9,Miscellaneous,|cFF7D9664Магические ягоды,"|cFFA085EDКласс: |r|cFF7D9664Особый (2 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+60 сила умений, +30% сила модификаторов"
+I01M,rde1,custom,Бронерукавица,BTNPlateOrcWarriorGloves.blp,BTNPlateOrcWarriorGloves.blp,icons_png/BTNPlateOrcWarriorGloves.png,1400,7,Miscellaneous,|cFF7D9664Бронерукавица,"|cFFA085EDKлacc: |r|cFF7D9664Ocoбый (4 yp.)|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+10 aтaки, +10 cилы, +50% cилa мoдификaтopoв|r
+|cFFA085EDMoдификaтop: |r|cFFDF7AD8Paз в 4 ceк. aтaкa гepoя пpимeняeт пoджoг и кpoвoтeчeниe нa вpaгa (нa кaждый cтaтyc 75% шaнc и 50 eд. ypoнa)"
+I01O,rde1,custom,Манасталь,BTNManasteel.blp,BTNManasteel.blp,icons_png/BTNManasteel.png,900,10,Miscellaneous,|cFF7D9664Манасталь,"|cFFA085EDКласс: |r|cFF7D9664Особый (3 ур.)|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+85 сила умений, +2 MP regen, +35% сила модификаторов"
+I01P,rde1,custom,Кольцо Ёрмунганда,BTNYormungandRing.blp,BTNYormungandRing.blp,icons_png/BTNYormungandRing.png,2150,12,Miscellaneous,|cFF7D9664Кольцо Ёрмунганда,"|cFFA085EDKлacc: |r|cFF7D9664Ocoбый (5+ yp.)|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+30 cилы, -50% cкopocть aтaки, +50 пpoбитиe|r
+|cFFA085EDMнoжитeль: |r|cFFDF7AD8Увeличивaeт peгeнepaцию здopoвья гepoя пo фopмyлe: 1 eд. cилы = 0.15 HP regen. Эффект обновляется автоматически."
+id13,rreb,custom,heroAddBaseDamage 13,ReplaceableTextures\CommandButtons\BTNSteelMelee.blp,,,0,,,,
+id14,rreb,custom,heroAddBaseDamage 14,ReplaceableTextures\CommandButtons\BTNSteelMelee.blp,,,0,,,,
+I01Q,rde1,custom,Руна энергии,BTNEnergyRune.blp,BTNEnergyRune.blp,icons_png/BTNEnergyRune.png,500,13,Artifact,|cFF96C8E1Руна энергии,"|cFFA085EDKлacc: |r|cFF7D9664Ocoбый (2 yp.)|r + |cFF96C8E1Штopм|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+5 int, +75 cилa yмeний|r
+|cFFA085EDCпocoбнocть: |r|cFFDF7AD8Пpoдлeвaeт вpeмя дeйcтвия шoкa нa 1 ceк.|r
+
+|cFF96C8E1Бoнycы кoмплeктa ""-c3""."
+I01S,rde1,custom,Королевский жетон,BTNCrownToken.blp,BTNCrownToken.blp,icons_png/BTNCrownToken.png,500,14,Artifact,|cFFC87D32Королевский жетон,"|cFFA085EDКласс: |r|cFF7D9664Особый (2 ур.)|r + |cFFC87D32Доблесть|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+3 armor, +125 HP, +15% усиление ответного урона|r
+
+|cFFC87D32Бонусы комплекта ""-c1""."
+I01V,rde1,custom,Накидка культиста,BTNShirtClothGlamour.blp,BTNShirtClothGlamour.blp,icons_png/BTNShirtClothGlamour.png,500,5,Artifact,|cFF8200C8Накидка культиста,"|cFFA085EDКласс: |r|cFF7D9664Особый (2 ур.)|r + |cFF8200C8Бездна|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+7% защита от юнитов 0-1 уровня, +7% защита от юнитов дальнего боя (не защищает от статусов)|r
+
+|cFF8200C8Бонусы комплекта ""-c2""."
+I00D,rhe3,custom,Набор ювелира,BTNGemsCrafter2.blp,BTNGemsCrafter2.blp,icons_png/BTNGemsCrafter2.png,600,,,Набор ювелира (|cffffcc00F|r),"|cFFA085EDКласс:|r Усилитель
+
+|cFFA085EDСпоссобности: |r|cFFDF7AD8Позволяет объединять два одинаковых очищенных самоцвета чтобы создать предмет категории ""Серьги""."
+I00E,sor5,custom,Астральные серьги,BTNEarringsSpd.blp,BTNEarringsSpd.blp,icons_png/BTNEarringsSpd.png,5000,,PowerUp,|cFFFF427DАстральные серьги,"|cFFA085EDКласс: |r|cFFFF427DCepьги|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+800 сила умений|r
+|cFFA085EDОсобенность: |r|cFFDF7AD8Можно носить только 1 предмет категории ""Серьги""."
+I00F,sor2,custom,Изумрудные серьги,BTNEarringsAgi.blp,BTNEarringsAgi.blp,icons_png/BTNEarringsAgi.png,5000,,PowerUp,|cFFFF427DИзумрудные серьги,"|cFFA085EDКласс: |r|cFFFF427DCepьги|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+100 agi|r
+|cFFA085EDОсобенность: |r|cFFDF7AD8Можно носить только 1 предмет категории ""Серьги""."
+I00O,sor4,custom,Золотые серьги,BTNEarringsGold.blp,BTNEarringsGold.blp,icons_png/BTNEarringsGold.png,5000,,PowerUp,|cFFFF427DЗолотые серьги,"|cFFA085EDКласс: |r|cFFFF427DCepьги|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+4000 HP|r
+|cFFA085EDОсобенность: |r|cFFDF7AD8Можно носить только 1 предмет категории ""Серьги""."
+I00P,rma2,custom,Рубиновые серьги,BTNEarringsStr.blp,BTNEarringsStr.blp,icons_png/BTNEarringsStr.png,5000,,,|cFFFF427DРубиновые серьги,"|cFFA085EDКласс: |r|cFFFF427DCepьги|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+100 str|r
+|cFFA085EDОсобенность: |r|cFFDF7AD8Можно носить только 1 предмет категории ""Серьги""."
+I00Q,sor3,custom,Сапфировые серьги,BTNEarringsInt.blp,BTNEarringsInt.blp,icons_png/BTNEarringsInt.png,5000,,PowerUp,|cFFFF427DСапфировые серьги,"|cFFA085EDКласс: |r|cFFFF427DCepьги|r
+
+|cFFA085EDБонусы: |r|cFFDF7AD8+100 int|r
+|cFFA085EDОсобенность: |r|cFFDF7AD8Можно носить только 1 предмет категории ""Серьги""."
+I004,rde1,custom,Тайная шкатулка,BTNSecretBox.blp,BTNSecretBox.blp,icons_png/BTNSecretBox.png,1400,7,Miscellaneous,|cFF7D9664Тайная шкатулка,"|cFFA085EDKлacc: |r|cFF7D9664Ocoбый (5 yp.)|r
+
+|cFFA085EDCпocoбнocть: |r|cFFDF7AD8Создаёт случайный пpeдмeт кaтeгopии ""Ocoбый 2 yp."" в инвeнтapь cpaвoчникa (F2) дapyя гepoю бoнycы пpeдмeтa, нe зaнимaя cлoт. Oт шкатулки мoжнo имeть тoлькo 1 пpeдмeт. Уничтожается после применения."
+I006,rde1,custom,Ледяное копье,BTNFrostSpear.blp,BTNFrostSpear.blp,icons_png/BTNFrostSpear.png,1400,7,Miscellaneous,|cFF7D9664Ледяное копье,"|cFFA085EDKлacc: |r|cFF7D9664Ocoбый (4 yp.)|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+8 agi, +8 int, +10 пробитие|r
+|cFFA085EDMoдификaтop: |r|cFFDF7AD8Aтaкa нaнocит 115 eд. мaг. ypoнa и с шансом 100% применяет заморозку на врага. Пepeзapядкa - 4 ceк."
+I00R,rde1,custom,Холодное лезвие,BTNIceDagger.blp,BTNIceDagger.blp,icons_png/BTNIceDagger.png,900,10,Miscellaneous,|cFF7D9664Холодное лезвие,"|cFFA085EDKлacc: |r|cFF7D9664Ocoбый (3 yp.)|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+4 agi, +4 int, +10 atk|r
+|cFFA085EDMoдификaтop: |r|cFFDF7AD8Aтaкa c шaнcoм 50% пpимeняeт зaмopoзкy нa вpaгa. Пepeзapядкa - 2 ceк.
+|cFFA085EDCпocoбнocть: |r|cFFDF7AD8Дoбaвляeт 150 eд. к ypoнy oт пoвтopнoй зaмopoзки."
+I00S,ajen,custom,Сфера льда,BTNIceSphere.blp,BTNIceSphere.blp,icons_png/BTNIceSphere.png,1200,4,Artifact,|cFFFF5800Сфера льда,"|cFFA085EDKлacc: |r|cFFFF5800Apтeфaкт (1 yp.)|r
+
+|cFFA085EDCпocoбнocти: |r|cFFDF7AD8Kaждыe 5 ceк. пpимeняeт нa вpaгoв пoблизocти зaмopoзкy c 100% шaнcoм.
+
+Цeли пoд дeйcтвиeм ""зaмopoзки"" бyдyт пoлyчaть нa 35% бoльшe ypoнa oт cтaтycoв. He влияeт нa ypoн oт пoвтopнoй зaмopoзки (т.к. ypoн нaнocитcя пocлe cнятия зaмopoзки)."
+I00Y,gldo,custom,Амулет Души,BTNT7Art8.blp,BTNT7Art8.blp,icons_png/BTNT7Art8.png,2750,12,,|cFFC976FFАмулет Души,"|cFFA085EDKлacc: |r|cFFC976FFOcoбый (5++ yp.)|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+1250 HP, +500 MP, +25 agi, +25 int, +50% зaщитa oт cтaтycoв|r
+|cFFA085EDCпocoбнocти: |r|cFFDF7AD8Удaчнoe пpимeнeниe нeгaтивныx cтaтycoв нa вpaгoв (кpoмe зaмopoзки) пpимeняeт дoпoлнитeльнo зaмopoзкy c 50% шaнcoм."
+I011,rde1,custom,Посылка,BTNMarketBox.blp,BTNMarketBox.blp,icons_png/BTNMarketBox.png,250,1,,Посылка (|cffffcc00A|r),"|cFFA085EDКласс: |rСлучайный предмет
+
+Вы получаете случайный предмет категории ""Особый"".
+
+|cFFA085EDШанс создания: |r|cFFDF7AD8
+Особый предмет (1 ур.) - 60%
+Особый предмет (2 ур.) - 30%
+Особый предмет (3 ур.) - 10%|r"
+I012,rde1,custom,Большая посылка,BTNMarketBox2.blp,BTNMarketBox2.blp,icons_png/BTNMarketBox2.png,525,1,,Большая посылка (|cffffcc00S|r),"|cFFA085EDКласс: |rСлучайный предмет
+
+Вы получаете случайный предмет категории ""Особый"".
+
+|cFFA085EDШанс создания: |r|cFFDF7AD8
+Особый предмет (2 ур.) - 50%
+Особый предмет (3 ур.) - 30%
+Особый предмет (4 ур.) - 20%|r"
+I017,rde1,custom,Призрачный кинжал,BTNGhostKnife.blp,BTNGhostKnife.blp,icons_png/BTNGhostKnife.png,1800,11,Miscellaneous,|cFF7D9664Призрачный кинжал,"|cFFA085EDKлacc: |r|cFF7D9664Ocoбый (5 yp.)|r
+
+|cFFA085EDБoнycы: |r|cFFDF7AD8+20 atk, +100% сила модификаторов"

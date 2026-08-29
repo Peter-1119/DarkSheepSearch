@@ -1,0 +1,7 @@
+# 統一換行符，避免 Windows / Linux 之間產生整檔差異的雜訊
+* text=auto eol=lf
+
+# 二進位檔案不要做任何轉換
+*.png binary
+*.xlsx binary
+*.blp binary

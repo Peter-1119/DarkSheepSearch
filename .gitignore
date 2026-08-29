@@ -1,0 +1,36 @@
+# 注意：.gitignore 不支援行尾註解。
+# 「path/file.json  # 說明」整串會被當成 pattern，等於沒有作用。
+# 註解一定要自己獨佔一行。
+
+# ---------------------------------------------------------------- 大而無用
+# data/gg 全部是 DISBTN / DISPAS —— 遊戲中「不可用」狀態的灰暗版圖示。
+# 854 張、6.5 MB，裡面沒有任何一張正常的 BTN 圖，網站完全用不到。
+data/gg/
+
+# 從 Wiki 抓下來的 HTML 快取，需要時 tools/parse_wiki.py 會重抓
+tools/pages/
+
+# ---------------------------------------------------------------- 環境
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+
+# 編輯器
+.vscode/
+.idea/
+*.swp
+*~
+
+# 系統
+Thumbs.db
+ehthumbs.db
+desktop.ini
+.DS_Store
+
+# ---------------------------------------------------------------- 備註
+# tools/ 底下的 json 全部保留，總共約 1 MB：
+#   人工翻譯成果（names2 / names_en / ab_db / ab_en）遺失就要重做
+#   中間產物（db_items / wiki_items / abilities / ab）雖然可重新產生，
+#   但 wiki_items 需要重新爬 431 個網頁，留著比較保險

@@ -1,0 +1,6941 @@
+[
+ {
+  "id": "dkfw",
+  "name_ru": "Ветвь благоденствия",
+  "fields": {
+   "Класс": "Новогодний",
+   "Бонусы": "+333 HP, +333 MP",
+   "Способности": "При использовании восстанавливает 250 ед. здоровья и 100 ед. маны героям и союзным войскам поблизости. Перезарядка - 30 сек."
+  },
+  "extra": [],
+  "icon": "BTNNewYearItem3.blp",
+  "icon_file": "BTNNewYearItem3.blp",
+  "icon_png": "icons_png/BTNNewYearItem3.png",
+  "level": 8,
+  "gold": 0
+ },
+ {
+  "id": "mgtk",
+  "name_ru": "Волшебная хвоя",
+  "fields": {
+   "Класс": "Новогодний",
+   "Бонусы": "+1 доход золота, +25 ед. ежеминутный доход золота, +2 ед./сек. прирост опыта героя"
+  },
+  "extra": [],
+  "icon": "BTNNewYearItem4.blp",
+  "icon_file": "BTNNewYearItem4.blp",
+  "icon_png": "icons_png/BTNNewYearItem4.png",
+  "level": 8,
+  "gold": 0
+ },
+ {
+  "id": "wolg",
+  "name_ru": "Зимний покров",
+  "fields": {
+   "Класс": "Новогодний",
+   "Бонусы": "50% защиты от магического урона, сопротивление поджогу",
+   "Способности": "Блокирует получаемый физический урон в размере 20 ед., минимальный проходящий урон - 4 ед."
+  },
+  "extra": [],
+  "icon": "BTNNewYearItem6.blp",
+  "icon_file": "BTNNewYearItem6.blp",
+  "icon_png": "icons_png/BTNNewYearItem6.png",
+  "level": 8,
+  "gold": 0
+ },
+ {
+  "id": "mort",
+  "name_ru": "Криолит",
+  "fields": {
+   "Класс": "Новогодний",
+   "Бонусы": "+50 разума, -7 защиты"
+  },
+  "extra": [],
+  "icon": "BTNNewYearItem7.blp",
+  "icon_file": "BTNNewYearItem7.blp",
+  "icon_png": "icons_png/BTNNewYearItem7.png",
+  "level": 8,
+  "gold": 0
+ },
+ {
+  "id": "engs",
+  "name_ru": "Левиафан",
+  "fields": {
+   "Класс": "Новогодний",
+   "Бонусы": "+18 силы, +13 атаки",
+   "Способности": "При использовании повышает силу героя на 50% в течение 10 сек., а затем восстанавливает 10% здоровья."
+  },
+  "extra": [],
+  "icon": "BTNNewYearItem5.blp",
+  "icon_file": "BTNNewYearItem5.blp",
+  "icon_png": "icons_png/BTNNewYearItem5.png",
+  "level": 8,
+  "gold": 0
+ },
+ {
+  "id": "shwd",
+  "name_ru": "Ледяной доспех",
+  "fields": {
+   "Класс": "Новогодний",
+   "Бонусы": "+5 защиты, +575 HP",
+   "Модификатор": "Поражает атакующего героя противника ледяной новой, наносящей 150 ед. урона по области и накладывающей на врагов эффект заморозки с 50% шансом. Перезарядка - 8 сек."
+  },
+  "extra": [],
+  "icon": "BTNNewYearItem8.blp",
+  "icon_file": "BTNNewYearItem8.blp",
+  "icon_png": "icons_png/BTNNewYearItem8.png",
+  "level": 8,
+  "gold": 0
+ },
+ {
+  "id": "gopr",
+  "name_ru": "Ледяные когти",
+  "fields": {
+   "Класс": "Новогодний",
+   "Бонусы": "+38% скорость атаки, +4 защиты",
+   "Модификатор": "Раз в 8 сек. атака героя вызывает ледяную нову, наносящую 150 ед. урона по области и накладывающей на врагов эффект заморозки с 50% шансом. Перезарядка - 8 сек."
+  },
+  "extra": [],
+  "icon": "BTNNewYearItem2.blp",
+  "icon_file": "BTNNewYearItem2.blp",
+  "icon_png": "icons_png/BTNNewYearItem2.png",
+  "level": 8,
+  "gold": 0
+ },
+ {
+  "id": "k3m3",
+  "name_ru": "Посох стужи",
+  "fields": {
+   "Класс": "Новогодний",
+   "Бонусы": "+5 int, +125 MP, +100 сила умений",
+   "Способности": "Создает ледяную сферу, накладывающую заморозку с шансом 100% на врагов рядом и периодически наносящую врагам по (30 + 40% разум) ед. урона. Время действия - 8 сек."
+  },
+  "extra": [],
+  "icon": "BTNNewYearItem9.blp",
+  "icon_file": "BTNNewYearItem9.blp",
+  "icon_png": "icons_png/BTNNewYearItem9.png",
+  "level": 8,
+  "gold": 0
+ },
+ {
+  "id": "kygh",
+  "name_ru": "Хладный клинок",
+  "fields": {
+   "Класс": "Новогодний",
+   "Бонусы": "+25 атаки, +10% скорость атаки, +60 сила умений",
+   "Модификатор": "Наносит 60 ед. магического урона при атаке героя. Каждый такт модификатора увеличивает урон на 4 ед. После накопления 600 ед. урона накопительный эффект ослабляется на 50%. Перезарядка - 8 сек."
+  },
+  "extra": [],
+  "icon": "BTNNewYearItem1.blp",
+  "icon_file": "BTNNewYearItem1.blp",
+  "icon_png": "icons_png/BTNNewYearItem1.png",
+  "level": 8,
+  "gold": 0
+ },
+ {
+  "id": "dthb",
+  "name_ru": "Бронзовый кулак",
+  "fields": {
+   "Класс": "Пасхальный",
+   "Бонусы": "+12 атаки, +9 силы",
+   "Модификатор": "Атака в ближнем бою наносит противнику 400 ед. чистого урона. Перезарядка эффекта - 15 сек."
+  },
+  "extra": [],
+  "icon": "BTNEasterItem7.blp",
+  "icon_file": "BTNEasterItem7.blp",
+  "icon_png": "icons_png/BTNEasterItem7.png",
+  "level": 8,
+  "gold": 0
+ },
+ {
+  "id": "skrt",
+  "name_ru": "Молот храмовника",
+  "fields": {
+   "Класс": "Пасхальный",
+   "Бонусы": "+30 силы, +30 атаки",
+   "Способности": "Увеличивает время возрождения героя на 40% (не суммируется)."
+  },
+  "extra": [],
+  "icon": "BTNEasterItem4.blp",
+  "icon_file": "BTNEasterItem4.blp",
+  "icon_png": "icons_png/BTNEasterItem4.png",
+  "level": 8,
+  "gold": 0
+ },
+ {
+  "id": "kybl",
+  "name_ru": "Монетка лепрекона",
+  "fields": {
+   "Класс": "Пасхальный",
+   "Бонусы": "-15% скорость передвижения и атаки, +150 ед. ежеминутный доход золота"
+  },
+  "extra": [],
+  "icon": "BTNEasterItem5.blp",
+  "icon_file": "BTNEasterItem5.blp",
+  "icon_png": "icons_png/BTNEasterItem5.png",
+  "level": 8,
+  "gold": 0
+ },
+ {
+  "id": "kymn",
+  "name_ru": "Раскаленное лезвие",
+  "fields": {
+   "Класс": "Пасхальный",
+   "Бонусы": "+15 атаки, +30% скорость атаки, +30% урон от поджога"
+  },
+  "extra": [],
+  "icon": "BTNEasterItem9.blp",
+  "icon_file": "BTNEasterItem9.blp",
+  "icon_png": "icons_png/BTNEasterItem9.png",
+  "level": 8,
+  "gold": 0
+ },
+ {
+  "id": "k3m1",
+  "name_ru": "Подвеска храмовника",
+  "fields": {
+   "Класс": "Пасхальный",
+   "Бонусы": "+125 HP, +125 MP, +1.5 HP regen, +1.5 MP regen, +75 сила умений",
+   "Способности": "Вражеская нежить наносит герою на 20% меньше урона от атак и умений."
+  },
+  "extra": [],
+  "icon": "BTNEasterItem1.blp",
+  "icon_file": "BTNEasterItem1.blp",
+  "icon_png": "icons_png/BTNEasterItem1.png",
+  "level": 8,
+  "gold": 0
+ },
+ {
+  "id": "wtlg",
+  "name_ru": "Сапоги полёта",
+  "fields": {
+   "Класс": "Пасхальный",
+   "Бонусы": "+5 защиты",
+   "Способности": "Повышает скорость бега героя до максимального значения."
+  },
+  "extra": [],
+  "icon": "BTNEasterItem8.blp",
+  "icon_file": "BTNEasterItem8.blp",
+  "icon_png": "icons_png/BTNEasterItem8.png",
+  "level": 8,
+  "gold": 0
+ },
+ {
+  "id": "phlt",
+  "name_ru": "Световой обруч",
+  "fields": {
+   "Класс": "Пасхальный",
+   "Бонусы": "+10 разума, +5 защиты",
+   "Способности": "При использовании наносит врагам в области (100 + 50% сила умений) ед. урона и восстанавливает герою 20 HP и 10 MP за каждого пораженного юнита."
+  },
+  "extra": [],
+  "icon": "BTNEasterItem3.blp",
+  "icon_file": "BTNEasterItem3.blp",
+  "icon_png": "icons_png/BTNEasterItem3.png",
+  "level": 8,
+  "gold": 0
+ },
+ {
+  "id": "sorf",
+  "name_ru": "Солнечный камень",
+  "fields": {
+   "Класс": "Пасхальный",
+   "Бонусы": "+300 HP, +5 HP regen, +50% защита от поджога, сопротивление поджогу"
+  },
+  "extra": [],
+  "icon": "BTNEasterItem2.blp",
+  "icon_file": "BTNEasterItem2.blp",
+  "icon_png": "icons_png/BTNEasterItem2.png",
+  "level": 8,
+  "gold": 0
+ },
+ {
+  "id": "gmfr",
+  "name_ru": "Эмблема отваги",
+  "fields": {
+   "Класс": "Пасхальный",
+   "Бонусы": "+8 силы, +425 HP, сопротивление поджогу",
+   "Способности": "Снижает получаемый урон от героев на 40%, но повышает получаемый урон от остальных источников на 15%. Не действует на статусы. Дарует иммунитет к ответному урону."
+  },
+  "extra": [],
+  "icon": "BTNEasterItem6.blp",
+  "icon_file": "BTNEasterItem6.blp",
+  "icon_png": "icons_png/BTNEasterItem6.png",
+  "level": 8,
+  "gold": 0
+ },
+ {
+  "id": "jpnt",
+  "name_ru": "Камень душ",
+  "fields": {
+   "Класс": "Хэллоуин",
+   "Бонусы": "+5 HP regen, +10% получаемый урон и наносимый урон от атак и умений против героев",
+   "Множитель": "Увеличивает силу героя на 33%. Эффект обновляется автоматически."
+  },
+  "extra": [],
+  "icon": "BTNHalloween3.blp",
+  "icon_file": "BTNHalloween3.blp",
+  "icon_png": "icons_png/BTNHalloween3.png",
+  "level": 8,
+  "gold": 0
+ },
+ {
+  "id": "bzbf",
+  "name_ru": "Проклятия ведьмы",
+  "fields": {
+   "Класс": "Хэллоуин",
+   "Бонусы": "+300 MP, +75 сила умений, +20% урон от атак и умений по нежити",
+   "Способности": "Применяет эффект проклятия с 100% шансом на врага, применившего против героя целевое заклинание."
+  },
+  "extra": [],
+  "icon": "BTNHalloween8.blp",
+  "icon_file": "BTNHalloween8.blp",
+  "icon_png": "icons_png/BTNHalloween8.png",
+  "level": 8,
+  "gold": 0
+ },
+ {
+  "id": "bzbe",
+  "name_ru": "Пожирающий щит",
+  "fields": {
+   "Класс": "Хэллоуин",
+   "Бонусы": "+9 защиты, +50 сила умений, +5% защита от атак и умений",
+   "Модификатор": "Пожирает по 15 ед. маны у атакующих героя врагов. После накопления 225 ед. маны выпускает 4 темные волны, наносящие по 80 ед. урона."
+  },
+  "extra": [],
+  "icon": "BTNHalloween9.blp",
+  "icon_file": "BTNHalloween9.blp",
+  "icon_png": "icons_png/BTNHalloween9.png",
+  "level": 8,
+  "gold": 0
+ },
+ {
+  "id": "cnhn",
+  "name_ru": "Призрачный клинок",
+  "fields": {
+   "Класс": "Хэллоуин",
+   "Бонусы": "+15 атаки, +15 силы, +5 ловкости",
+   "Способности": "Дарует атакам ближнего боя сплеш-эффект 6% по огромной области."
+  },
+  "extra": [],
+  "icon": "BTNHalloween5.blp",
+  "icon_file": "BTNHalloween5.blp",
+  "icon_png": "icons_png/BTNHalloween5.png",
+  "level": 8,
+  "gold": 0
+ },
+ {
+  "id": "sclp",
+  "name_ru": "Кровавая дань",
+  "fields": {
+   "Класс": "Хэллоуин",
+   "Бонусы": "+10 разум, +150 сила умений, +30% урон от атак и умений против врагов 0-1 уровня",
+   "Модификатор": "При использовании умений наносит себе 30 ед. урона и восстанавливает 30 ед. маны."
+  },
+  "extra": [],
+  "icon": "BTNHalloween1.blp",
+  "icon_file": "BTNHalloween1.blp",
+  "icon_png": "icons_png/BTNHalloween1.png",
+  "level": 8,
+  "gold": 0
+ },
+ {
+  "id": "azhr",
+  "name_ru": "Дары ведьмы",
+  "fields": {
+   "Класс": "Хэллоуин",
+   "Бонусы": "+5 all stats, +20% защита (не от статусов) от нежити, сопротивление проклятиям",
+   "Способности": "Герой неуязвим к посмертным эффектам врагов. Иссушает 50 + (20% сила умений) ед. маны врагам, применившим против героя целевое заклинание."
+  },
+  "extra": [],
+  "icon": "BTNHalloween6.blp",
+  "icon_file": "BTNHalloween6.blp",
+  "icon_png": "icons_png/BTNHalloween6.png",
+  "level": 8,
+  "gold": 0
+ },
+ {
+  "id": "sehr",
+  "name_ru": "Сфера вампиризма",
+  "fields": {
+   "Класс": "Хэллоуин",
+   "Бонусы": "+13 main stat, -15% наносимый урон",
+   "Способности": "Атаки героя имеют эффект 33% вампиризм."
+  },
+  "extra": [],
+  "icon": "BTNHalloween4.blp",
+  "icon_file": "BTNHalloween4.blp",
+  "icon_png": "icons_png/BTNHalloween4.png",
+  "level": 8,
+  "gold": 0
+ },
+ {
+  "id": "kysn",
+  "name_ru": "Шепчущее щупальце",
+  "fields": {
+   "Класс": "Хэллоуин",
+   "Бонусы": "+3 MP regen",
+   "Множитель": "Увеличивает запас маны на 50%. Эффект обновляется автоматически."
+  },
+  "extra": [],
+  "icon": "BTNHalloween2.blp",
+  "icon_file": "BTNHalloween2.blp",
+  "icon_png": "icons_png/BTNHalloween2.png",
+  "level": 8,
+  "gold": 0
+ },
+ {
+  "id": "ches",
+  "name_ru": "Хватка ужаса",
+  "fields": {
+   "Класс": "Хэллоуин",
+   "Бонусы": "+20 атаки, +20% скорость атаки",
+   "Способности": "Замедляет скорость бега врагов в радиусе 500 на 20%. Враги под действием данной ауры получают на 10% больше урона от атак и умений."
+  },
+  "extra": [],
+  "icon": "BTNHalloween7.blp",
+  "icon_file": "BTNHalloween7.blp",
+  "icon_png": "icons_png/BTNHalloween7.png",
+  "level": 8,
+  "gold": 0
+ },
+ {
+  "id": "spsh",
+  "name_ru": "Зазубренный топор",
+  "fields": {
+   "Класс": "Редкий",
+   "Бонусы": "+16 atk",
+   "Способности": "Атаки в ближнем бою имеют сплеш-эффект 10% по области 150 ед."
+  },
+  "extra": [],
+  "icon": "BTNAxe2.blp",
+  "icon_file": "BTNAxe2.blp",
+  "icon_png": "icons_png/BTNAxe2.png",
+  "level": 2,
+  "gold": 450
+ },
+ {
+  "id": "pmna",
+  "name_ru": "Заточенные ножи",
+  "fields": {
+   "Класс": "Редкий",
+   "Бонусы": "+25% atk speed, +8 atk"
+  },
+  "extra": [],
+  "icon": "BTNKnifes2.blp",
+  "icon_file": "BTNKnifes2.blp",
+  "icon_png": "icons_png/BTNKnifes2.png",
+  "level": 2,
+  "gold": 450
+ },
+ {
+  "id": "penr",
+  "name_ru": "Латный доспех",
+  "fields": {
+   "Класс": "Редкий",
+   "Бонусы": "+2 armor, +6 str",
+   "Модификатор": "Раз в 4 сек. герой наносит 70 ед. урона врагу, атаковавшего героя."
+  },
+  "extra": [],
+  "icon": "BTNBody2.blp",
+  "icon_file": "BTNBody2.blp",
+  "icon_png": "icons_png/BTNBody2.png",
+  "level": 2,
+  "gold": 450
+ },
+ {
+  "id": "ward",
+  "name_ru": "Магическое ожерелье",
+  "fields": {
+   "Класс": "Редкий",
+   "Бонусы": "+200 MP, +1.25 MP regen, +30 сила умений"
+  },
+  "extra": [],
+  "icon": "BTNNecklace2.blp",
+  "icon_file": "BTNNecklace2.blp",
+  "icon_png": "icons_png/BTNNecklace2.png",
+  "level": 2,
+  "gold": 450
+ },
+ {
+  "id": "ratc",
+  "name_ru": "Мощное кольцо ловкости",
+  "fields": {
+   "Класс": "Редкий",
+   "Бонусы": "+10 agi, +5 atk"
+  },
+  "extra": [],
+  "icon": "BTNAgiRing2.blp",
+  "icon_file": "BTNAgiRing2.blp",
+  "icon_png": "icons_png/BTNAgiRing2.png",
+  "level": 2,
+  "gold": 450
+ },
+ {
+  "id": "rat6",
+  "name_ru": "Мощное кольцо разума",
+  "fields": {
+   "Класс": "Редкий",
+   "Бонусы": "+10 int, +1.5 MP regen"
+  },
+  "extra": [],
+  "icon": "BTNIntRing2.blp",
+  "icon_file": "BTNIntRing2.blp",
+  "icon_png": "icons_png/BTNIntRing2.png",
+  "level": null,
+  "gold": 450
+ },
+ {
+  "id": "rat9",
+  "name_ru": "Мощное кольцо силы",
+  "fields": {
+   "Класс": "Редкий",
+   "Бонусы": "+10 str, +2 HP regen"
+  },
+  "extra": [],
+  "icon": "BTNStrRing2.blp",
+  "icon_file": "BTNStrRing2.blp",
+  "icon_png": "icons_png/BTNStrRing2.png",
+  "level": 2,
+  "gold": 450
+ },
+ {
+  "id": "cnob",
+  "name_ru": "Прочный щит",
+  "fields": {
+   "Класс": "Редкий",
+   "Бонусы": "+5 armor, +125 HP, +5 ответный урон, +6% защита от статусов"
+  },
+  "extra": [],
+  "icon": "ReplaceableTextures\\CommandButtons\\BTNThoriumArmor.blp",
+  "icon_file": null,
+  "icon_png": null,
+  "level": null,
+  "gold": 450
+ },
+ {
+  "id": "rhth",
+  "name_ru": "Сапоги солдата",
+  "fields": {
+   "Класс": "Редкий",
+   "Бонусы": "+70 move speed, +2 all stats, +15% защита от статусов"
+  },
+  "extra": [],
+  "icon": "BTNBoots2.blp",
+  "icon_file": "BTNBoots2.blp",
+  "icon_png": "icons_png/BTNBoots2.png",
+  "level": 2,
+  "gold": 450
+ },
+ {
+  "id": "hcun",
+  "name_ru": "Штаны адепта",
+  "fields": {
+   "Класс": "Редкий",
+   "Бонусы": "+2 armor, +6 int",
+   "Модификатор": "Применение умений восстанавливает герою 40 ед. маны. Перезарядка - 10 сек."
+  },
+  "extra": [],
+  "icon": "BTNPants2.blp",
+  "icon_file": "BTNPants2.blp",
+  "icon_png": "icons_png/BTNPants2.png",
+  "level": 2,
+  "gold": 450
+ },
+ {
+  "id": "dsum",
+  "name_ru": "Укрепленные перчатки",
+  "fields": {
+   "Класс": "Редкий",
+   "Бонусы": "+2 armor, +6 agi",
+   "Модификатор": "Атака героя наносит дополнительно 75 ед. маг. урона противнику. Перезарядка - 4 сек."
+  },
+  "extra": [],
+  "icon": "BTNGloves2.blp",
+  "icon_file": "BTNGloves2.blp",
+  "icon_png": "icons_png/BTNGloves2.png",
+  "level": 2,
+  "gold": 450
+ },
+ {
+  "id": "belv",
+  "name_ru": "Безупречное кольцо ловкости",
+  "fields": {
+   "Класс": "Уникальный",
+   "Бонусы": "+20 agi, +10 atk"
+  },
+  "extra": [],
+  "icon": "BTNAgiRing3.blp",
+  "icon_file": "BTNAgiRing3.blp",
+  "icon_png": "icons_png/BTNAgiRing3.png",
+  "level": 2,
+  "gold": 950
+ },
+ {
+  "id": "rde1",
+  "name_ru": "Безупречное кольцо разума",
+  "fields": {
+   "Класс": "Уникальный",
+   "Бонусы": "+20 int, +3 MP regen"
+  },
+  "extra": [],
+  "icon": "BTNIntRing3.blp",
+  "icon_file": "BTNIntRing3.blp",
+  "icon_png": "icons_png/BTNIntRing3.png",
+  "level": null,
+  "gold": 950
+ },
+ {
+  "id": "rde2",
+  "name_ru": "Безупречное кольцо силы",
+  "fields": {
+   "Класс": "Уникальный",
+   "Бонусы": "+20 str, +4 HP regen"
+  },
+  "extra": [],
+  "icon": "BTNStrRing3.blp",
+  "icon_file": "BTNStrRing3.blp",
+  "icon_png": "icons_png/BTNStrRing3.png",
+  "level": 2,
+  "gold": 950
+ },
+ {
+  "id": "rde3",
+  "name_ru": "Боевой топор гвардейца",
+  "fields": {
+   "Класс": "Уникальный",
+   "Бонусы": "+5 str, +20 atk",
+   "Способности": "Атаки в ближнем бою имеют сплеш-эффект 17% по области 225 ед."
+  },
+  "extra": [],
+  "icon": "BTNAxe3.blp",
+  "icon_file": "BTNAxe3.blp",
+  "icon_png": "icons_png/BTNAxe3.png",
+  "level": 2,
+  "gold": 950
+ },
+ {
+  "id": "rlif",
+  "name_ru": "Доспех гвардейца",
+  "fields": {
+   "Класс": "Уникальный",
+   "Бонусы": "+6 armor, +10 str, +10% защита от атак и умений героев",
+   "Модификатор": "Раз в 4 сек. герой наносит 100 ед. урона врагу, атаковавшего героя."
+  },
+  "extra": [],
+  "icon": "BTNBody3.blp",
+  "icon_file": "BTNBody3.blp",
+  "icon_png": "icons_png/BTNBody3.png",
+  "level": 2,
+  "gold": 950
+ },
+ {
+  "id": "sbch",
+  "name_ru": "Перчатки гвардейца",
+  "fields": {
+   "Класс": "Уникальный",
+   "Бонусы": "+6 armor, +10 agi, +20% atk speed",
+   "Модификатор": "Атака героя наносит дополнительно 100 ед. маг. урона противнику. Перезарядка - 4 сек."
+  },
+  "extra": [],
+  "icon": "BTNGloves3.blp",
+  "icon_file": "BTNGloves3.blp",
+  "icon_png": "icons_png/BTNGloves3.png",
+  "level": 2,
+  "gold": 950
+ },
+ {
+  "id": "rin1",
+  "name_ru": "Мифриловые ножи",
+  "fields": {
+   "Класс": "Уникальный",
+   "Бонусы": "+40% atk speed, +15 atk"
+  },
+  "extra": [],
+  "icon": "BTNKnifes3.blp",
+  "icon_file": "BTNKnifes3.blp",
+  "icon_png": "icons_png/BTNKnifes3.png",
+  "level": 2,
+  "gold": 950
+ },
+ {
+  "id": "rwiz",
+  "name_ru": "Ожерелье заклинателя",
+  "fields": {
+   "Класс": "Уникальный",
+   "Бонусы": "+300 MP, +2.5 MP regen, +75 сила умений"
+  },
+  "extra": [],
+  "icon": "BTNNecklace3.blp",
+  "icon_file": "BTNNecklace3.blp",
+  "icon_png": "icons_png/BTNNecklace3.png",
+  "level": 2,
+  "gold": 950
+ },
+ {
+  "id": "mcou",
+  "name_ru": "Сапоги гвардейца",
+  "fields": {
+   "Класс": "Уникальный",
+   "Бонусы": "+90 move speed, +5 all stats, +20% защита от статусов"
+  },
+  "extra": [],
+  "icon": "BTNBoots3.blp",
+  "icon_file": "BTNBoots3.blp",
+  "icon_png": "icons_png/BTNBoots3.png",
+  "level": 2,
+  "gold": 950
+ },
+ {
+  "id": "clfm",
+  "name_ru": "Штаны чародея",
+  "fields": {
+   "Класс": "Уникальный",
+   "Бонусы": "+6 armor, +10 int, +50 сила умений",
+   "Модификатор": "Применение умений восстанавливает герою 60 ед. маны. Перезарядка - 10 сек."
+  },
+  "extra": [],
+  "icon": "BTNPants3.blp",
+  "icon_file": "BTNPants3.blp",
+  "icon_png": "icons_png/BTNPants3.png",
+  "level": 2,
+  "gold": 950
+ },
+ {
+  "id": "ciri",
+  "name_ru": "Щит ветерана",
+  "fields": {
+   "Класс": "Уникальный",
+   "Бонусы": "+7 armor, +200 HP, +10 ответный урон, +5% защита не от статусов, +8% защита от статусов"
+  },
+  "extra": [],
+  "icon": "ReplaceableTextures\\CommandButtons\\BTNArcaniteArmor.blp",
+  "icon_file": null,
+  "icon_png": null,
+  "level": 2,
+  "gold": 950
+ },
+ {
+  "id": "gcel",
+  "name_ru": "Демонические ножи",
+  "fields": {
+   "Класс": "Легендарный",
+   "Бонусы": "+40% atk speed, +30 atk",
+   "Способности": "15% шанс нанести x2.3 урон при атаке."
+  },
+  "extra": [],
+  "icon": "BTNKnifes4.blp",
+  "icon_file": "BTNKnifes4.blp",
+  "icon_png": "icons_png/BTNKnifes4.png",
+  "level": null,
+  "gold": 1950
+ },
+ {
+  "id": "clsd",
+  "name_ru": "Доспех чемпиона",
+  "fields": {
+   "Класс": "Легендарный",
+   "Бонусы": "+8 armor, +15 str, +15% защита от атак и умений героев",
+   "Модификатор": "Раз в 4 сек. герой наносит (250% сила) ед. урона врагу, атаковавшего героя."
+  },
+  "extra": [],
+  "icon": "BTNBody4.blp",
+  "icon_file": "BTNBody4.blp",
+  "icon_png": "icons_png/BTNBody4.png",
+  "level": 2,
+  "gold": 1950
+ },
+ {
+  "id": "ssil",
+  "name_ru": "Идеальные сапоги",
+  "fields": {
+   "Класс": "Легендарный",
+   "Бонусы": "+110 move speed, +7 all stats, +100 сила умений, +25% защита от статусов"
+  },
+  "extra": [],
+  "icon": "BTNBoots4.blp",
+  "icon_file": "BTNBoots4.blp",
+  "icon_png": "icons_png/BTNBoots4.png",
+  "level": 2,
+  "gold": 1950
+ },
+ {
+  "id": "stel",
+  "name_ru": "Кольцо Артемиды",
+  "fields": {
+   "Класс": "Легендарный",
+   "Бонусы": "+30 agi, +15 atk, +15 пробитие"
+  },
+  "extra": [],
+  "icon": "BTNAgiRing4.blp",
+  "icon_file": "BTNAgiRing4.blp",
+  "icon_png": "icons_png/BTNAgiRing4.png",
+  "level": null,
+  "gold": 1950
+ },
+ {
+  "id": "bgst",
+  "name_ru": "Кольцо Геракла",
+  "fields": {
+   "Класс": "Легендарный",
+   "Бонусы": "+30 str, +6 HP regen, +18% урон не от статусов по врагам не-героям"
+  },
+  "extra": [],
+  "icon": "BTNStrRing4.blp",
+  "icon_file": "BTNStrRing4.blp",
+  "icon_png": "icons_png/BTNStrRing4.png",
+  "level": 2,
+  "gold": 1950
+ },
+ {
+  "id": "lhst",
+  "name_ru": "Кольцо Фемиды",
+  "fields": {
+   "Класс": "Легендарный",
+   "Бонусы": "+30 int, +4.5 MP regen, +9% наносимый урон не от статусов"
+  },
+  "extra": [],
+  "icon": "BTNIntRing4.blp",
+  "icon_file": "BTNIntRing4.blp",
+  "icon_png": "icons_png/BTNIntRing4.png",
+  "level": 2,
+  "gold": 1950
+ },
+ {
+  "id": "rst1",
+  "name_ru": "Ожерелье магистра",
+  "fields": {
+   "Класс": "Легендарный",
+   "Бонусы": "+500 MP, +5 MP regen, +100 сила умений"
+  },
+  "extra": [],
+  "icon": "BTNNecklace4.blp",
+  "icon_file": "BTNNecklace4.blp",
+  "icon_png": "icons_png/BTNNecklace4.png",
+  "level": 2,
+  "gold": 1950
+ },
+ {
+  "id": "brac",
+  "name_ru": "Перчатки чемпиона",
+  "fields": {
+   "Класс": "Легендарный",
+   "Бонусы": "+8 armor, +15 agi, +30% atk speed",
+   "Модификатор": "Атака героя наносит дополнительно (250% ловкость) маг. урона противнику. Перезарядка - 4 сек."
+  },
+  "extra": [],
+  "icon": "BTNGloves4.blp",
+  "icon_file": "BTNGloves4.blp",
+  "icon_png": "icons_png/BTNGloves4.png",
+  "level": 2,
+  "gold": 1950
+ },
+ {
+  "id": "bspd",
+  "name_ru": "Топор чемпиона",
+  "fields": {
+   "Класс": "Легендарный",
+   "Бонусы": "+40 atk, +10 str",
+   "Способности": "Атаки в ближнем бою имеют сплеш-эффект 25% по области 300 ед."
+  },
+  "extra": [],
+  "icon": "BTNAxe4.blp",
+  "icon_file": "BTNAxe4.blp",
+  "icon_png": "icons_png/BTNAxe4.png",
+  "level": null,
+  "gold": 1950
+ },
+ {
+  "id": "odef",
+  "name_ru": "Штаны архимага",
+  "fields": {
+   "Класс": "Легендарный",
+   "Бонусы": "+8 armor, +15 int, +150 сила умений",
+   "Модификатор": "Применение умений восстанавливает герою (150% разум) ед. маны. Перезарядка - 10 сек."
+  },
+  "extra": [],
+  "icon": "BTNPants4.blp",
+  "icon_file": "BTNPants4.blp",
+  "icon_png": "icons_png/BTNPants4.png",
+  "level": 2,
+  "gold": 1950
+ },
+ {
+  "id": "evtl",
+  "name_ru": "Щит чемпиона",
+  "fields": {
+   "Класс": "Легендарный",
+   "Бонусы": "+10 armor, +400 HP, +15 ответный урон, +8% защита не от статусов, +10% защита от статусов"
+  },
+  "extra": [],
+  "icon": "BTNShield4.blp",
+  "icon_file": "BTNShield4.blp",
+  "icon_png": "icons_png/BTNShield4.png",
+  "level": 2,
+  "gold": 1950
+ },
+ {
+  "id": "amrc",
+  "name_ru": "Амулет надежды",
+  "fields": {
+   "Класс": "Дополнительный",
+   "Бонусы": "+1 защиты",
+   "Способности": "Делает героя неуязвимым на 5 сек. Перезарядка - 22 сек."
+  },
+  "extra": [],
+  "icon": "BTNSaveNecklace.blp",
+  "icon_file": "BTNSaveNecklace.blp",
+  "icon_png": "icons_png/BTNSaveNecklace.png",
+  "level": 3,
+  "gold": null
+ },
+ {
+  "id": "pams",
+  "name_ru": "Омолаживающая вытяжка",
+  "fields": {
+   "Класс": "Совершенный",
+   "Бонусы": "+5 HP regen, +2.5 MP regen",
+   "Способности": "При использовании восстанавливает 400 HP и 200 MP."
+  },
+  "extra": [],
+  "icon": "BTNPotion4.blp",
+  "icon_file": "BTNPotion4.blp",
+  "icon_png": "icons_png/BTNPotion4.png",
+  "level": 1,
+  "gold": 2000
+ },
+ {
+  "id": "arsh",
+  "name_ru": "Амулет ангела",
+  "fields": {
+   "Класс": "Закаленный",
+   "Бонусы": "+5 защиты, +250 HP, +50 сила умений",
+   "Способности": "Делает героя неуязвимым на 8 сек. Перезарядка - 20 сек."
+  },
+  "extra": [],
+  "icon": "BTNSaveAmulet3.blp",
+  "icon_file": "BTNSaveAmulet3.blp",
+  "icon_png": "icons_png/BTNSaveAmulet3.png",
+  "level": 3,
+  "gold": 1000
+ },
+ {
+  "id": "stwa",
+  "name_ru": "Рунные браслеты",
+  "fields": {
+   "Класс": "Дополнительный",
+   "Бонусы": "+50 HP",
+   "Способности": "30% защита от маг. урона"
+  },
+  "extra": [],
+  "icon": "ReplaceableTextures\\CommandButtons\\BTNRunedBracers.blp",
+  "icon_file": null,
+  "icon_png": null,
+  "level": 3,
+  "gold": 250
+ },
+ {
+  "id": "rat3",
+  "name_ru": "Калигнум Эонис",
+  "fields": {
+   "Класс": "Артефакт (5 ур.)",
+   "Бонусы": "+1750 HP, +10 HP regen, +7.5 MP regen, сопротивление кровотечению и заморозке, иммунитет к ответному урону",
+   "Способности": "Снижает время возрождения героя на 50%. Смерть героя наносит (50% mах HP) ед. урона врагам вокруг по огромной области."
+  },
+  "extra": [],
+  "icon": "BTNKalignumEonis.blp",
+  "icon_file": "BTNKalignumEonis.blp",
+  "icon_png": "icons_png/BTNKalignumEonis.png",
+  "level": 4,
+  "gold": 6550
+ },
+ {
+  "id": "kgal",
+  "name_ru": "Антимагические браслеты",
+  "fields": {
+   "Класс": "Закаленный",
+   "Бонусы": "+300 HP, +2 MP regen",
+   "Способности": "50% защита от маг. урона"
+  },
+  "extra": [],
+  "icon": "war3mapImported\\BTNPinkBracers.blp",
+  "icon_file": "war3mapImported\\BTNPinkBracers.blp",
+  "icon_png": null,
+  "level": 3,
+  "gold": 1000
+ },
+ {
+  "id": "brag",
+  "name_ru": "Блинк",
+  "fields": {
+   "Класс": "Дополнительный",
+   "Бонусы": "+25 сила умений",
+   "Способности": "Телепортирует героя на небольшое расстояние (перезарядка - 15 сек.)"
+  },
+  "extra": [],
+  "icon": "ReplaceableTextures\\CommandButtons\\BTNBlink.blp",
+  "icon_file": null,
+  "icon_png": null,
+  "level": 3,
+  "gold": 250
+ },
+ {
+  "id": "iwbr",
+  "name_ru": "Шлем закрытого разума",
+  "fields": {
+   "Класс": "Артефакт (2 ур.)",
+   "Бонусы": "+20% защита от юнитов ближнего боя, +20% защита от героев, сопротивление поджогу",
+   "Способности": "Бонус к регенерации маны от разума становится бонусом к регенерации здоровья. Эффект обновляется автоматически."
+  },
+  "extra": [],
+  "icon": "BTNClosedMindHelmet.blp",
+  "icon_file": "BTNClosedMindHelmet.blp",
+  "icon_png": "icons_png/BTNClosedMindHelmet.png",
+  "level": 4,
+  "gold": 1700
+ },
+ {
+  "id": "envl",
+  "name_ru": "Варп",
+  "fields": {
+   "Класс": "Закаленный",
+   "Бонусы": "+125 HP, +125 MP, +100 сила умений",
+   "Способности": "Телепортирует героя на большое расстояние и восстанавливает (150 + 5% mах HP) ед. здоровья (перезарядка - 15 сек.)"
+  },
+  "extra": [],
+  "icon": "war3mapImported\\BTNBlink3.blp",
+  "icon_file": "war3mapImported\\BTNBlink3.blp",
+  "icon_png": null,
+  "level": 3,
+  "gold": 1000
+ },
+ {
+  "id": "gobm",
+  "name_ru": "Боевое знамя",
+  "fields": {
+   "Класс": "Дополнительный",
+   "Бонусы": "+1 защиты, +50 MP",
+   "Способности": "Распространяет ауру для союзных войск и героев +10% скорость атаки и движения."
+  },
+  "extra": [],
+  "icon": "ReplaceableTextures\\CommandButtons\\BTNOrcBattleStandard.blp",
+  "icon_file": null,
+  "icon_png": null,
+  "level": 3,
+  "gold": 250
+ },
+ {
+  "id": "tels",
+  "name_ru": "Проклятое золото",
+  "fields": {
+   "Класс": "Особый (1 ур.)",
+   "Бонусы": "+150% золото за убийства",
+   "Способности": "Отключает пассивный доход золота (в том числе ежеминутный)."
+  },
+  "extra": [],
+  "icon": "BTNCursedGold.blp",
+  "icon_file": "BTNCursedGold.blp",
+  "icon_png": "icons_png/BTNCursedGold.png",
+  "level": 6,
+  "gold": 300
+ },
+ {
+  "id": "thdm",
+  "name_ru": "Боевой штандарт",
+  "fields": {
+   "Класс": "Закаленный",
+   "Бонусы": "+5 защиты, +150 MP",
+   "Способности": "Распространяет ауру для союзных войск и героев +20% скорость атаки и движения."
+  },
+  "extra": [],
+  "icon": "war3mapImported\\BTNFlag3.blp",
+  "icon_file": "war3mapImported\\BTNFlag3.blp",
+  "icon_png": null,
+  "level": 3,
+  "gold": 1000
+ },
+ {
+  "id": "srtl",
+  "name_ru": "Жезл молний",
+  "fields": {
+   "Класс": "Дополнительный",
+   "Способности": "Поражает противников молниями в небольшой области, нанося (80 + 40% сила умений) ед. урона и накладывая шок с шансом 60%. Перезарядка - 16 сек."
+  },
+  "extra": [],
+  "icon": "war3mapImported\\BTNStarWand2.blp",
+  "icon_file": "war3mapImported\\BTNStarWand2.blp",
+  "icon_png": null,
+  "level": 3,
+  "gold": 250
+ },
+ {
+  "id": "blba",
+  "name_ru": "Свиток улучшения",
+  "fields": {
+   "Класс": "Усилитель",
+   "Способности": "Усиливает предмет класса \"Обычный\" до класса \"Редкий\"."
+  },
+  "extra": [],
+  "icon": "ReplaceableTextures\\CommandButtons\\BTNSnazzyScrollGreen.blp",
+  "icon_file": null,
+  "icon_png": null,
+  "level": null,
+  "gold": 250
+ },
+ {
+  "id": "anfg",
+  "name_ru": "Скипетр бури",
+  "fields": {
+   "Класс": "Закаленный",
+   "Бонусы": "+200 MP, +100 сила умений",
+   "Способности": "Поражает противников молниями в увеличенной области, нанося (150 + 50% сила умений) ед. урона и накладывая шок с шансом 80%. Перезарядка - 16 сек."
+  },
+  "extra": [],
+  "icon": "war3mapImported\\BTNSkipetrMolniy.blp",
+  "icon_file": "war3mapImported\\BTNSkipetrMolniy.blp",
+  "icon_png": null,
+  "level": 3,
+  "gold": 1000
+ },
+ {
+  "id": "soul",
+  "name_ru": "Магическая сфера",
+  "fields": {
+   "Класс": "Дополнительный",
+   "Бонусы": "+1.5 MP regen, +35 сила умений"
+  },
+  "extra": [],
+  "icon": "ReplaceableTextures\\CommandButtons\\BTNOrb.blp",
+  "icon_file": null,
+  "icon_png": null,
+  "level": 3,
+  "gold": 250
+ },
+ {
+  "id": "esaz",
+  "name_ru": "Нестабильный свиток",
+  "fields": {
+   "Класс": "Усилитель",
+   "Способности": "С шансом 50% выполняет задачу предмета категории \"Квест\". В случае неудачи уничтожает предмет."
+  },
+  "extra": [],
+  "icon": "BTNScroll_03.blp",
+  "icon_file": "BTNScroll_03.blp",
+  "icon_png": "icons_png/BTNScroll_03.png",
+  "level": null,
+  "gold": 350
+ },
+ {
+  "id": "schl",
+  "name_ru": "Раскрытый потенциал",
+  "fields": {
+   "Класс": "Закаленный",
+   "Бонусы": "+2 MP regen, +5 разума, +100 сила умений",
+   "Способности": "Дарует двойной эффект при выполнении заданий усиливающихся предметов (не суммируется)."
+  },
+  "extra": [],
+  "icon": "war3mapImported\\BTNArt4.blp",
+  "icon_file": "war3mapImported\\BTNArt4.blp",
+  "icon_png": null,
+  "level": 3,
+  "gold": 1000
+ },
+ {
+  "id": "rots",
+  "name_ru": "Ритуальная маска",
+  "fields": {
+   "Класс": "Дополнительный",
+   "Бонусы": "+5 atk",
+   "Способности": "Дарует 14% вампиризма от атак."
+  },
+  "extra": [],
+  "icon": "ReplaceableTextures\\CommandButtons\\BTNMaskOfDeath.blp",
+  "icon_file": null,
+  "icon_png": null,
+  "level": 3,
+  "gold": 250
+ },
+ {
+  "id": "stpg",
+  "name_ru": "Метеоритное копьё",
+  "fields": {
+   "Класс": "Совершенный",
+   "Бонусы": "+20 пробитие, +25% скорость атаки",
+   "Модификатор": "Атаки героя восстанавливают по 10 ед. маны и здоровья, а также с 100% шансом накладывают слабость. Перезарядка - 1 сек."
+  },
+  "extra": [],
+  "icon": "BTNMeteorSpear.blp",
+  "icon_file": "BTNMeteorSpear.blp",
+  "icon_png": "icons_png/BTNMeteorSpear.png",
+  "level": 1,
+  "gold": 2000
+ },
+ {
+  "id": "shen",
+  "name_ru": "Маска палача",
+  "fields": {
+   "Класс": "Закаленный",
+   "Бонусы": "+15 atk, +10 main stat",
+   "Способности": "Дарует 22% вампиризма от атак."
+  },
+  "extra": [],
+  "icon": "war3mapImported\\BTNGoldMaskOfDeath.blp",
+  "icon_file": "war3mapImported\\BTNGoldMaskOfDeath.blp",
+  "icon_png": null,
+  "level": 3,
+  "gold": 1000
+ },
+ {
+  "id": "pspd",
+  "name_ru": "Техномолот",
+  "fields": {
+   "Класс": "Совершенный",
+   "Бонусы": "+30% урон по героям, +30 atk, +400 HP",
+   "Способности": "26% шанс при атаке нанести дополнительно 150 ед. урона и оглушить цель на 3 сек. (героев на 1 сек.)"
+  },
+  "extra": [],
+  "icon": "BTNEnergyHammer.blp",
+  "icon_file": "BTNEnergyHammer.blp",
+  "icon_png": "icons_png/BTNEnergyHammer.png",
+  "level": null,
+  "gold": 2000
+ },
+ {
+  "id": "sksh",
+  "name_ru": "Свиток преобразования",
+  "fields": {
+   "Класс": "Усилитель",
+   "Способности": "Превращает предмет класса \"Обычный\" в случайный предмет.",
+   "Шанс получения": "50% - \"Редкий\"\n25% - \"Особый (2 ур.)\"\n15% - \"Особый (3 ур.)\"\n10% - \"Уникальный\""
+  },
+  "extra": [],
+  "icon": "BTNScroll_02.blp",
+  "icon_file": "BTNScroll_02.blp",
+  "icon_png": "icons_png/BTNScroll_02.png",
+  "level": null,
+  "gold": 300
+ },
+ {
+  "id": "flag",
+  "name_ru": "Свиток усиления",
+  "fields": {
+   "Класс": "Усилитель",
+   "Способности": "Усиливает предмет класса \"Редкий\" до класса \"Уникальный\"."
+  },
+  "extra": [],
+  "icon": "ReplaceableTextures\\CommandButtons\\BTNSnazzyScroll.blp",
+  "icon_file": null,
+  "icon_png": null,
+  "level": null,
+  "gold": 500
+ },
+ {
+  "id": "uflg",
+  "name_ru": "Посох чар",
+  "fields": {
+   "Класс": "Дополнительный",
+   "Бонусы": "+25 сила умений",
+   "Способности": "Очищает союзников от негативных эффектов и статусов и обновляет действие негативных не наносящих урон статусов на противниках. Призванные противники получают (150 + 50% сила умений) ед. урона. Перезарядка - 12 сек."
+  },
+  "extra": [],
+  "icon": "ReplaceableTextures\\CommandButtons\\BTNStaffOfNegation.blp",
+  "icon_file": null,
+  "icon_png": null,
+  "level": 3,
+  "gold": 250
+ },
+ {
+  "id": "nflg",
+  "name_ru": "Щит возмездия",
+  "fields": {
+   "Класс": "Совершенный",
+   "Бонусы": "+10 armor, +50 ответный урон, +75% усиление ответного урона"
+  },
+  "extra": [],
+  "icon": "BTNRevengeShield.blp",
+  "icon_file": "BTNRevengeShield.blp",
+  "icon_png": "icons_png/BTNRevengeShield.png",
+  "level": 1,
+  "gold": 2000
+ },
+ {
+  "id": "oflg",
+  "name_ru": "Посох кудесника",
+  "fields": {
+   "Класс": "Закаленный",
+   "Бонусы": "+75 сила умений, +5 разума, +1 MP regen",
+   "Способности": "Очищает союзников в указанной области от негативных эффектов и статусов и обновляет действие негативных не наносящих урон статусов на противниках и накладывает на них уязвимость с 50% шансом. Призванные противники получают (300 + 100% сила умений) ед. урона. Перезарядка - 12 сек."
+  },
+  "extra": [],
+  "icon": "BTNStaffOfNegation3.blp",
+  "icon_file": "BTNStaffOfNegation3.blp",
+  "icon_png": "icons_png/BTNStaffOfNegation3.png",
+  "level": 3,
+  "gold": null
+ },
+ {
+  "id": "btst",
+  "name_ru": "Рог битвы",
+  "fields": {
+   "Класс": "Дополнительный",
+   "Бонусы": "+2 защиты",
+   "Способности": "При активации заставляет ближайших врагов атаковать героя. Повышает атаку героя на (100% сила) ед. в течение 5 сек."
+  },
+  "extra": [],
+  "icon": "ReplaceableTextures\\CommandButtons\\BTNHornOfCenarius.blp",
+  "icon_file": null,
+  "icon_png": null,
+  "level": 3,
+  "gold": 250
+ },
+ {
+  "id": "tbsm",
+  "name_ru": "Свиток преломления",
+  "fields": {
+   "Класс": "Усилитель",
+   "Способности": "Меняет предмет класса \"Реликвия\" на случайный предмет класса \"Преломленный\". Можно использовать на преломленный предмет для замены на другой преломленный предмет. На каждую реликвию существует свой набор преломленных предметов."
+  },
+  "extra": [],
+  "icon": "BTNScrollRefraction.blp",
+  "icon_file": "BTNScrollRefraction.blp",
+  "icon_png": "icons_png/BTNScrollRefraction.png",
+  "level": null,
+  "gold": 1000
+ },
+ {
+  "id": "tlum",
+  "name_ru": "Рог войны",
+  "fields": {
+   "Класс": "Закаленный",
+   "Бонусы": "+5 защиты, +300 HP, +4 сила",
+   "Способности": "При активации заставляет врагов в большой области вокруг атаковать героя. Повышает атаку героя на (200% сила) ед. и защиту на 10 ед. в течение 5 сек."
+  },
+  "extra": [],
+  "icon": "ReplaceableTextures\\CommandButtons\\BTNHornOfDoom.blp",
+  "icon_file": null,
+  "icon_png": null,
+  "level": 3,
+  "gold": 1000
+ },
+ {
+  "id": "wild",
+  "name_ru": "Искупление палача",
+  "fields": {
+   "Класс": "Преломленный",
+   "Бонусы": "+20 атаки, +7 ко всем характеристикам",
+   "Способности": "Убийство вражеского героя или воина 6+ уровня восстанавливает 6% здоровья, увеличивает силу атаки героя на 50 ед. и защиту на 7 ед. в течение 12 сек."
+  },
+  "extra": [],
+  "icon": "BTNExecutionerRedemption.blp",
+  "icon_file": "BTNExecutionerRedemption.blp",
+  "icon_png": "icons_png/BTNExecutionerRedemption.png",
+  "level": 2,
+  "gold": 2500
+ },
+ {
+  "id": "whwd",
+  "name_ru": "Панацея",
+  "fields": {
+   "Класс": "Преломленный",
+   "Бонусы": "+350 HP, +5 HP regen, +25% сила модификаторов",
+   "Способности": "При использовании полностью восстанавливает здоровье и ману, а также снимает все негативные эффекты с героя. Перезарядка - 90 сек."
+  },
+  "extra": [],
+  "icon": "BTNPanacea.blp",
+  "icon_file": "BTNPanacea.blp",
+  "icon_png": "icons_png/BTNPanacea.png",
+  "level": 2,
+  "gold": 2500
+ },
+ {
+  "id": "wcyc",
+  "name_ru": "Щит глубин",
+  "fields": {
+   "Класс": "Преломленный",
+   "Бонусы": "+5 защиты, +5 HP regen, +20 силы",
+   "Модификатор": "Раз в 6 сек. выпускает волну в атакующего героя врага, наносящую 100 + (35% сила) ед. урона."
+  },
+  "extra": [],
+  "icon": "BTNTealShield4.blp",
+  "icon_file": "BTNTealShield4.blp",
+  "icon_png": "icons_png/BTNTealShield4.png",
+  "level": 2,
+  "gold": 2500
+ },
+ {
+  "id": "will",
+  "name_ru": "Зеркало мучений",
+  "fields": {
+   "Класс": "Преломленный",
+   "Бонусы": "+8 защиты, +300 HP, +1.5 MP regen, сопротивление проклятиям",
+   "Способности": "Уменьшает получаемый урон не от статусов на 10% и конвертирует этот урон в ману для героя."
+  },
+  "extra": [],
+  "icon": "BTNMirrorOfTorment.blp",
+  "icon_file": "BTNMirrorOfTorment.blp",
+  "icon_png": "icons_png/BTNMirrorOfTorment.png",
+  "level": null,
+  "gold": 2500
+ },
+ {
+  "id": "wlsd",
+  "name_ru": "Заступник",
+  "fields": {
+   "Класс": "Преломленный",
+   "Бонусы": "+20 силы, +750 HP",
+   "Способности": "Распространяет ауру, повышающую защиту союзников на 8 ед."
+  },
+  "extra": [],
+  "icon": "BTNTealShield2.blp",
+  "icon_file": "BTNTealShield2.blp",
+  "icon_png": "icons_png/BTNTealShield2.png",
+  "level": null,
+  "gold": 2500
+ },
+ {
+  "id": "woms",
+  "name_ru": "Магический тоник",
+  "fields": {
+   "Класс": "Преломленный",
+   "Бонусы": "+300 MP, +5 защиты, +125 сила умений",
+   "Способности": "При использовании восстанавливает 325 ед. здоровья и 325 ед. маны за 10 сек."
+  },
+  "extra": [],
+  "icon": "BTNManaTonic.blp",
+  "icon_file": "BTNManaTonic.blp",
+  "icon_png": "icons_png/BTNManaTonic.png",
+  "level": 2,
+  "gold": 2500
+ },
+ {
+  "id": "wshs",
+  "name_ru": "Железный страж",
+  "fields": {
+   "Класс": "Преломленный",
+   "Бонусы": "+10 защиты, +1000 HP, +150 сила умений",
+   "Способности": "При активации удваивает свои свойства, но потребляет 1% маны в сек., можно отключить."
+  },
+  "extra": [],
+  "icon": "BTNTealShield3.blp",
+  "icon_file": "BTNTealShield3.blp",
+  "icon_png": "icons_png/BTNTealShield3.png",
+  "level": 2,
+  "gold": 2500
+ },
+ {
+  "id": "pomn",
+  "name_ru": "Возмездие титана",
+  "fields": {
+   "Класс": "Преломленный",
+   "Бонусы": "+5 разума, +30 атаки, +25% скорость атаки, +10 пробитие",
+   "Способности": "Убийство противника повышает все характеристики героя на 1 ед. в течение 6 сек."
+  },
+  "extra": [],
+  "icon": "BTNTealSpear3.blp",
+  "icon_file": "BTNTealSpear3.blp",
+  "icon_png": "icons_png/BTNTealSpear3.png",
+  "level": 2,
+  "gold": 2500
+ },
+ {
+  "id": "pnvu",
+  "name_ru": "Молот разрушения",
+  "fields": {
+   "Класс": "Преломленный",
+   "Бонусы": "+25 атаки, +15 силы, +25 пробитие",
+   "Уникальная способность": "Атака по вражескому герою разрушает 2 случайных предмета в инвентаре цели. Данный эффект применяется только 1 раз против каждого вражеского героя."
+  },
+  "extra": [],
+  "icon": "BTNTealHammer3.blp",
+  "icon_file": "BTNTealHammer3.blp",
+  "icon_png": "icons_png/BTNTealHammer3.png",
+  "level": 2,
+  "gold": 2500
+ },
+ {
+  "id": "rej3",
+  "name_ru": "Коллапс",
+  "fields": {
+   "Класс": "Преломленный",
+   "Бонусы": "+20 atk, +500 HP, +15% урон не от статусов врагам ближнего боя",
+   "Способности": "Эффект шока наносит (125% сила) ед. урона.",
+   "Модификатор": "Атака наносит 75 ед. урона по области и с шансом 50% накладывает эффект шока на врагов. Перезарядка - 10 сек."
+  },
+  "extra": [],
+  "icon": "BTNTealHammer4.blp",
+  "icon_file": "BTNTealHammer4.blp",
+  "icon_png": "icons_png/BTNTealHammer4.png",
+  "level": null,
+  "gold": 2500
+ },
+ {
+  "id": "fgrg",
+  "name_ru": "Раскалыватель",
+  "fields": {
+   "Класс": "Преломленный",
+   "Бонусы": "+20 атаки, +30% скорость атаки, +20 пробитие",
+   "Способности": "Атаки героя снижают защиту противников на значение, равное уровню врага. Применяется по 1 разу на каждого юнита. Против героев данный эффект действует с 50% эффективностью."
+  },
+  "extra": [],
+  "icon": "BTNTealHammer2.blp",
+  "icon_file": "BTNTealHammer2.blp",
+  "icon_png": "icons_png/BTNTealHammer2.png",
+  "level": 2,
+  "gold": 2500
+ },
+ {
+  "id": "hlst",
+  "name_ru": "Сильвер",
+  "fields": {
+   "Класс": "Преломленный",
+   "Бонусы": "+20 атаки, +20% скорость атаки, +12 пробитие",
+   "Способности": "Враги с запасом здоровья 75% и выше получают на 100% больше урона не от статусов. Заморозка на врагах снижает порог проверки здоровья до 50%."
+  },
+  "extra": [],
+  "icon": "BTNTealSpear4.blp",
+  "icon_file": "BTNTealSpear4.blp",
+  "icon_png": "icons_png/BTNTealSpear4.png",
+  "level": 2,
+  "gold": 2500
+ },
+ {
+  "id": "mnst",
+  "name_ru": "Пустой сосуд",
+  "fields": {
+   "Класс": "Преломленный",
+   "Бонусы": "+275 HP, +275 MP, +5 защиты, +150 сила умений",
+   "Модификатор": "Убийства противников восстанавливают герою по 20 ед. здоровья и 8 ед. маны."
+  },
+  "extra": [],
+  "icon": "BTNEmptyVial.blp",
+  "icon_file": "BTNEmptyVial.blp",
+  "icon_png": "icons_png/BTNEmptyVial.png",
+  "level": 2,
+  "gold": 2500
+ },
+ {
+  "id": "infs",
+  "name_ru": "Бич чародеев",
+  "fields": {
+   "Класс": "Преломленный",
+   "Бонусы": "+10 ловкости, +25 атаки, +15 пробитие, +50 сила умений",
+   "Модификатор": "Атака накладывает кровотечение на врага с итоговым уроном (150 + 35% сила умений) ед., шанс кровотечения равен % текущей маны цели. Перезарядка - 2 сек."
+  },
+  "extra": [],
+  "icon": "BTNHandBlade.blp",
+  "icon_file": "BTNHandBlade.blp",
+  "icon_png": "icons_png/BTNHandBlade.png",
+  "level": 2,
+  "gold": 2500
+ },
+ {
+  "id": "fgsk",
+  "name_ru": "Лазурный ихор",
+  "fields": {
+   "Класс": "Преломленный",
+   "Бонусы": "+450 HP, +3 MP regen, +5 ко всем характеристикам",
+   "Способности": "При использовании повышает силу умений на 400 и защиту от урона не от статусов на 15% в течение 15 сек."
+  },
+  "extra": [],
+  "icon": "BTNAmbrosia.blp",
+  "icon_file": "BTNAmbrosia.blp",
+  "icon_png": "icons_png/BTNAmbrosia.png",
+  "level": 2,
+  "gold": 2500
+ },
+ {
+  "id": "ankh",
+  "name_ru": "Копье серафима",
+  "fields": {
+   "Класс": "Преломленный",
+   "Бонусы": "+20 атаки, +20 пробитие, +100 сила умений",
+   "Модификатор": "Раз в 15 сек. атака героя наносит урон по области с уроном в (150 + 30% сила умений) ед."
+  },
+  "extra": [],
+  "icon": "BTNTealSpear2.blp",
+  "icon_file": "BTNTealSpear2.blp",
+  "icon_png": "icons_png/BTNTealSpear2.png",
+  "level": 2,
+  "gold": 2500
+ },
+ {
+  "id": "wswd",
+  "name_ru": "Железный страж (активен)",
+  "fields": {
+   "Класс": "Преломленный",
+   "Бонусы": "+20 защиты, +2000 HP, +300 сила умений",
+   "Способности": "Потребляет 1% маны в сек., при активации возвращает исходные свойства."
+  },
+  "extra": [],
+  "icon": "BTNTealShield3Alt.blp",
+  "icon_file": "BTNTealShield3Alt.blp",
+  "icon_png": "icons_png/BTNTealShield3Alt.png",
+  "level": null,
+  "gold": 2500
+ },
+ {
+  "id": "wneg",
+  "name_ru": "Арбалет-болтер",
+  "fields": {
+   "Класс": "Искаженный",
+   "Бонусы": "+15 atk, +9 пробитие, +50 сила умений",
+   "Способности": "При использовании поражает цель утяжеленным болтом, наносящим (200 + 75% сила умений) ед. магического урона и оглушающий цель на 5 сек. (героев на 2 сек.)."
+  },
+  "extra": [],
+  "icon": "BTNPurpleItem6.blp",
+  "icon_file": "BTNPurpleItem6.blp",
+  "icon_png": "icons_png/BTNPurpleItem6.png",
+  "level": 3,
+  "gold": 1700
+ },
+ {
+  "id": "rnec",
+  "name_ru": "Золотая диадема",
+  "fields": {
+   "Класс": "Искаженный",
+   "Способности": "Повышает силу, ловкость и разум на значение, равное уровню героя. Эффект обновляется автоматически. Не является множителем."
+  },
+  "extra": [],
+  "icon": "BTNPurpleItem4.blp",
+  "icon_file": "BTNPurpleItem4.blp",
+  "icon_png": "icons_png/BTNPurpleItem4.png",
+  "level": 3,
+  "gold": 1700
+ },
+ {
+  "id": "wneu",
+  "name_ru": "Шлем исполина",
+  "fields": {
+   "Класс": "Искаженный",
+   "Бонусы": "+500 HP, +15 str",
+   "Способности": "Блокирует получаемый физический урон на 20 ед., минимальный проходящий урон - 4 ед."
+  },
+  "extra": [],
+  "icon": "BTNPurpleItem19.blp",
+  "icon_file": "BTNPurpleItem19.blp",
+  "icon_png": "icons_png/BTNPurpleItem19.png",
+  "level": 3,
+  "gold": 1700
+ },
+ {
+  "id": "mcri",
+  "name_ru": "Изящный посох",
+  "fields": {
+   "Класс": "Искаженный",
+   "Бонусы": "+20 int, +135 сила умений",
+   "Способности": "Мгновенно телепортирует героя к указанной союзной единице. Перезарядка - 25 сек."
+  },
+  "extra": [],
+  "icon": "BTNTpStaff.blp",
+  "icon_file": "BTNTpStaff.blp",
+  "icon_png": "icons_png/BTNTpStaff.png",
+  "level": 3,
+  "gold": 1700
+ },
+ {
+  "id": "skul",
+  "name_ru": "Кацбальгер",
+  "fields": {
+   "Класс": "Искаженный",
+   "Бонусы": "+10 atk, +10 agi, +5 пробитие",
+   "Способности": "Даёт шанс 30% нанести 2-кратный урон при атаке."
+  },
+  "extra": [],
+  "icon": "BTNPurpleItem2.blp",
+  "icon_file": "BTNPurpleItem2.blp",
+  "icon_png": "icons_png/BTNPurpleItem2.png",
+  "level": 3,
+  "gold": 1700
+ },
+ {
+  "id": "vamp",
+  "name_ru": "Драконий оберег",
+  "fields": {
+   "Класс": "Искаженный",
+   "Бонусы": "+6 armor, +300 HP, +6 HP regen, +50 сила умений, сопротивление проклятиям"
+  },
+  "extra": [],
+  "icon": "BTNPurpleItem16.blp",
+  "icon_file": "BTNPurpleItem16.blp",
+  "icon_png": "icons_png/BTNPurpleItem16.png",
+  "level": 3,
+  "gold": 1700
+ },
+ {
+  "id": "pman",
+  "name_ru": "Львиный панцирь",
+  "fields": {
+   "Класс": "Искаженный",
+   "Бонусы": "+5 armor, +675 HP, +5 HP regen",
+   "Способности": "Враги с запасом здоровья 75% и выше наносят герою на 18% меньше урона от атак, умений и статусов."
+  },
+  "extra": [],
+  "icon": "BTNPurpleItem3.blp",
+  "icon_file": "BTNPurpleItem3.blp",
+  "icon_png": "icons_png/BTNPurpleItem3.png",
+  "level": 3,
+  "gold": 1700
+ },
+ {
+  "id": "pinv",
+  "name_ru": "Мистическое кольцо",
+  "fields": {
+   "Класс": "Искаженный",
+   "Бонусы": "+600 HP, +600 MP",
+   "Способности": "При использовании меняет местами показатели текущего здоровья и маны героя и восстанавливает их на 10%."
+  },
+  "extra": [],
+  "icon": "BTNPurpleItem10.blp",
+  "icon_file": "BTNPurpleItem10.blp",
+  "icon_png": "icons_png/BTNPurpleItem10.png",
+  "level": 3,
+  "gold": 1700
+ },
+ {
+  "id": "pclr",
+  "name_ru": "Свиток пробуждения",
+  "fields": {
+   "Класс": "Усилитель",
+   "Способности": "Усиливает предмет класса \"Уникальный\" до класса \"Легендарный\"."
+  },
+  "extra": [],
+  "icon": "ReplaceableTextures\\CommandButtons\\BTNScrollUber.blp",
+  "icon_file": null,
+  "icon_png": null,
+  "level": null,
+  "gold": 1000
+ },
+ {
+  "id": "tsct",
+  "name_ru": "Запретный трактат",
+  "fields": {
+   "Класс": "Искаженный",
+   "Бонусы": "+250 MP, +2.25 MP regen",
+   "Способности": "При использовании призывает 4 адских миньонов на 30 сек. С каждым применением гончие становятся сильнее."
+  },
+  "extra": [],
+  "icon": "BTNPurpleItem13.blp",
+  "icon_file": "BTNPurpleItem13.blp",
+  "icon_png": "icons_png/BTNPurpleItem13.png",
+  "level": 3,
+  "gold": 1700
+ },
+ {
+  "id": "tcas",
+  "name_ru": "Волшебная шестеренка",
+  "fields": {
+   "Класс": "Искаженный",
+   "Бонусы": "+2 all stats, +275 HP, +175 MP, +50 сила умений",
+   "Способности": "Восстанавливает прочность зданий и техники рядом с героем (область 375 ед.) со скоростью 5 ед./сек."
+  },
+  "extra": [],
+  "icon": "BTNBlueGear.blp",
+  "icon_file": "BTNBlueGear.blp",
+  "icon_png": "icons_png/BTNBlueGear.png",
+  "level": 3,
+  "gold": 1700
+ },
+ {
+  "id": "moon",
+  "name_ru": "Кристалл тьмы",
+  "fields": {
+   "Класс": "Искаженный",
+   "Бонусы": "+25 str, +10 agi",
+   "Множитель": "Повышает скорость атаки по формуле 2 ед. силы = 1% скорость атаки. Эффект обновляется автоматически."
+  },
+  "extra": [],
+  "icon": "BTNPurpleItem11.blp",
+  "icon_file": "BTNPurpleItem11.blp",
+  "icon_png": "icons_png/BTNPurpleItem11.png",
+  "level": 3,
+  "gold": 1700
+ },
+ {
+  "id": "tret",
+  "name_ru": "Ловец снов",
+  "fields": {
+   "Класс": "Искаженный",
+   "Бонусы": "+10 int, +375 HP, +225 MP, +2 armor, +1 MP regen, -10% время воскрешения",
+   "Способности": "Герой всегда возрождается с полным запасом маны. Гибель вражеского героя (от любого игрока) снижает перезарядку модификаторов на 20% и повышает силу умений на 100 ед. в течение 60 сек."
+  },
+  "extra": [],
+  "icon": "BTNDreamCatcher.blp",
+  "icon_file": "BTNDreamCatcher.blp",
+  "icon_png": "icons_png/BTNDreamCatcher.png",
+  "level": null,
+  "gold": 1700
+ },
+ {
+  "id": "phea",
+  "name_ru": "Меч-кладенец",
+  "fields": {
+   "Класс": "Искаженный",
+   "Бонусы": "+15 atk, +10 str",
+   "Способности": "Атаки героя в ближнем бою имеют 40% сплеш-эффект по области 150 ед."
+  },
+  "extra": [],
+  "icon": "BTNPurpleItem17.blp",
+  "icon_file": "BTNPurpleItem17.blp",
+  "icon_png": "icons_png/BTNPurpleItem17.png",
+  "level": 3,
+  "gold": 1700
+ },
+ {
+  "id": "hslv",
+  "name_ru": "Лавовый меч",
+  "fields": {
+   "Класс": "Искаженный",
+   "Бонусы": "+20 int, +20 atk",
+   "Модификатор": "Использование умений позволяет следующей атаке героя выпустить 3 сгустка, наносящих (30 + 10% разум) ед. урона по области и поджигающих с 50% шансом (итоговый урон 100%)."
+  },
+  "extra": [],
+  "icon": "BTNPurpleItem20.blp",
+  "icon_file": "BTNPurpleItem20.blp",
+  "icon_png": "icons_png/BTNPurpleItem20.png",
+  "level": 3,
+  "gold": 1700
+ },
+ {
+  "id": "silk",
+  "name_ru": "Рубиновый жезл",
+  "fields": {
+   "Класс": "Искаженный",
+   "Бонусы": "+12 int, +3.5 MP regen, +175 HP",
+   "Способности": "Если герой проводит неудачную попытку поджога, to к данной цели применяется эффект горючести с 35% шансом."
+  },
+  "extra": [],
+  "icon": "BTNPurpleItem7.blp",
+  "icon_file": "BTNPurpleItem7.blp",
+  "icon_png": "icons_png/BTNPurpleItem7.png",
+  "level": 3,
+  "gold": 1700
+ },
+ {
+  "id": "pnvl",
+  "name_ru": "Щит загробника",
+  "fields": {
+   "Класс": "Искаженный",
+   "Бонусы": "+10 armor, +15 str, +40 ответный урон, +10% время воскрешения",
+   "Способности": "Вражеская нежить наносит на 25% меньше урона от атак и умений герою."
+  },
+  "extra": [],
+  "icon": "BTNBlackShield.blp",
+  "icon_file": "BTNBlackShield.blp",
+  "icon_png": "icons_png/BTNBlackShield.png",
+  "level": 3,
+  "gold": 1700
+ },
+ {
+  "id": "plcl",
+  "name_ru": "Свиток искажения",
+  "fields": {
+   "Класс": "Усилитель",
+   "Способности": "Меняет предмет класса \"Уникальный\" на случайный предмет класса \"Искаженный\". Можно использовать на искаженный предмет для замены на другой искаженный предмет."
+  },
+  "extra": [],
+  "icon": "ReplaceableTextures\\CommandButtons\\BTNSnazzyScrollPurple.blp",
+  "icon_file": null,
+  "icon_png": null,
+  "level": null,
+  "gold": 750
+ },
+ {
+  "id": "sneg",
+  "name_ru": "Теневое лезвие",
+  "fields": {
+   "Класс": "Искаженный",
+   "Бонусы": "+100 atk, +25% atk speed, +15 agi, +50% получаемый урон не от статусов от героев"
+  },
+  "extra": [],
+  "icon": "BTNPurpleItem12.blp",
+  "icon_file": "BTNPurpleItem12.blp",
+  "icon_png": "icons_png/BTNPurpleItem12.png",
+  "level": 3,
+  "gold": 1700
+ },
+ {
+  "id": "ssan",
+  "name_ru": "Шлем чести",
+  "fields": {
+   "Класс": "Искаженный",
+   "Бонусы": "+10 str, +300 HP, +5 armor, -10% перезарядка модификаторов, +20% снижение урона не от статусов от героев, сопротивление кровотечению"
+  },
+  "extra": [],
+  "icon": "BTNPurpleItem8.blp",
+  "icon_file": "BTNPurpleItem8.blp",
+  "icon_png": "icons_png/BTNPurpleItem8.png",
+  "level": 3,
+  "gold": 1700
+ },
+ {
+  "id": "stwp",
+  "name_ru": "Лук сумеречного преследователя",
+  "fields": {
+   "Класс": "Искаженный",
+   "Бонусы": "+15 atk, +20% atk speed, +10 agi, +5 пробитие",
+   "Способности": "При использовании добавляет 250% ловкости к силе умений на 10 сек."
+  },
+  "extra": [],
+  "icon": "BTNPurpleBow.blp",
+  "icon_file": "BTNPurpleBow.blp",
+  "icon_png": "icons_png/BTNPurpleBow.png",
+  "level": 3,
+  "gold": 1700
+ },
+ {
+  "id": "spro",
+  "name_ru": "Меч Императора",
+  "fields": {
+   "Класс": "Искаженный",
+   "Способности": "Повышает силу атаки героя на 80% (эффект ауры, не суммируется)."
+  },
+  "extra": [],
+  "icon": "BTNPurpleItem5.blp",
+  "icon_file": "BTNPurpleItem5.blp",
+  "icon_png": "icons_png/BTNPurpleItem5.png",
+  "level": 3,
+  "gold": 1700
+ },
+ {
+  "id": "shea",
+  "name_ru": "Скипетр разлома",
+  "fields": {
+   "Класс": "Искаженный",
+   "Бонусы": "+325 MP, +175 сила умений",
+   "Способности": "Применение умений повышает силу умений на 25 на 15 сек. Суммируется до 15 стаков. Накопление 15 стаков сбрасывает бонус и наносит 15 врагам поблизости (75% mах MP) ед. урона."
+  },
+  "extra": [],
+  "icon": "BTNPurpleItem1.blp",
+  "icon_file": "BTNPurpleItem1.blp",
+  "icon_png": "icons_png/BTNPurpleItem1.png",
+  "level": 3,
+  "gold": 1700
+ },
+ {
+  "id": "sman",
+  "name_ru": "Сияющий посох",
+  "fields": {
+   "Класс": "Искаженный",
+   "Бонусы": "+12 int, +2.5 MP regen, +75 сила умений",
+   "Способности": "Использование умений очищает героя от негативных эффектов и статусов."
+  },
+  "extra": [],
+  "icon": "BTNPurpleItem15.blp",
+  "icon_file": "BTNPurpleItem15.blp",
+  "icon_png": "icons_png/BTNPurpleItem15.png",
+  "level": 3,
+  "gold": 1700
+ },
+ {
+  "id": "sreg",
+  "name_ru": "Густая Тьма",
+  "fields": {
+   "Класс": "Искаженный",
+   "Бонусы": "+1000 HP",
+   "Способности": "Увеличивает получаемый урон на 25%. Увеличивает наносимый героям урон на 50%. Не действует на статусы."
+  },
+  "extra": [],
+  "icon": "BTNPurpleItem18.blp",
+  "icon_file": "BTNPurpleItem18.blp",
+  "icon_png": "icons_png/BTNPurpleItem18.png",
+  "level": 3,
+  "gold": 1700
+ },
+ {
+  "id": "shas",
+  "name_ru": "Кольцо концентрации",
+  "fields": {
+   "Класс": "Искаженный",
+   "Бонусы": "+10 int, +350 MP, +5 armor",
+   "Способности": "При запасе здоровья 75% и выше дополнительно повышает регенерацию маны на 5 ед./сек."
+  },
+  "extra": [],
+  "icon": "BTNPurpleItem9.blp",
+  "icon_file": "BTNPurpleItem9.blp",
+  "icon_png": "icons_png/BTNPurpleItem9.png",
+  "level": 3,
+  "gold": 1700
+ },
+ {
+  "id": "tgrh",
+  "name_ru": "Интервальный гравий",
+  "fields": {
+   "Класс": "Искаженный",
+   "Бонусы": "+444 HP, +444 MP, +44 сила умений",
+   "Способности": "Каждые 5 сек. восстанавливает 4% здоровья или 4% маны случайным образом."
+  },
+  "extra": [],
+  "icon": "BTNIntervalGrav.blp",
+  "icon_file": "BTNIntervalGrav.blp",
+  "icon_png": "icons_png/BTNIntervalGrav.png",
+  "level": null,
+  "gold": 1700
+ },
+ {
+  "id": "manh",
+  "name_ru": "Аквамарин (+50 HP)",
+  "fields": {},
+  "extra": [
+   "Увеличение запаса здоровья на 50 ед."
+  ],
+  "icon": "UI\\Minimap\\MinimapIconCreepLoc2.blp",
+  "icon_file": null,
+  "icon_png": null,
+  "level": 0,
+  "gold": 0
+ },
+ {
+  "id": "tst2",
+  "name_ru": "Красный фрагмент (+2 сила)",
+  "fields": {},
+  "extra": [
+   "Повышение силы героя на 2 ед."
+  ],
+  "icon": "UI\\Minimap\\MinimapIconCreepLoc2.blp",
+  "icon_file": null,
+  "icon_png": null,
+  "level": 0,
+  "gold": 0
+ },
+ {
+  "id": "tstr",
+  "name_ru": "Красный осколок (+1 сила)",
+  "fields": {},
+  "extra": [
+   "Повышение силы героя на 1 ед."
+  ],
+  "icon": "UI\\Minimap\\MinimapIconCreepLoc2.blp",
+  "icon_file": null,
+  "icon_png": null,
+  "level": 0,
+  "gold": 0
+ },
+ {
+  "id": "texp",
+  "name_ru": "Хрустальный осколок",
+  "fields": {},
+  "extra": [
+   "Дарует 30 очков."
+  ],
+  "icon": "UI\\Minimap\\MinimapIconCreepLoc2.blp",
+  "icon_file": null,
+  "icon_png": null,
+  "level": 0,
+  "gold": 0
+ },
+ {
+  "id": "tin2",
+  "name_ru": "Синий фрагмент (+2 разум)",
+  "fields": {},
+  "extra": [
+   "Повышение разума героя на 2 ед."
+  ],
+  "icon": "UI\\Minimap\\MinimapIconCreepLoc2.blp",
+  "icon_file": null,
+  "icon_png": null,
+  "level": 0,
+  "gold": 0
+ },
+ {
+  "id": "tint",
+  "name_ru": "Синий осколок (+1 разум)",
+  "fields": {},
+  "extra": [
+   "Повышение разума героя на 1 ед."
+  ],
+  "icon": "UI\\Minimap\\MinimapIconCreepLoc2.blp",
+  "icon_file": null,
+  "icon_png": null,
+  "level": 0,
+  "gold": 0
+ },
+ {
+  "id": "tdx2",
+  "name_ru": "Зеленый фрагмент (+2 ловкость)",
+  "fields": {},
+  "extra": [
+   "Повышение ловкости героя на 2 ед."
+  ],
+  "icon": "UI\\Minimap\\MinimapIconCreepLoc2.blp",
+  "icon_file": null,
+  "icon_png": null,
+  "level": 0,
+  "gold": 0
+ },
+ {
+  "id": "tdex",
+  "name_ru": "Зеленый осколок (+1 ловкость)",
+  "fields": {},
+  "extra": [
+   "Повышение ловкости героя на 1 ед."
+  ],
+  "icon": "UI\\Minimap\\MinimapIconCreepLoc2.blp",
+  "icon_file": null,
+  "icon_png": null,
+  "level": 0,
+  "gold": 0
+ },
+ {
+  "id": "tpow",
+  "name_ru": "Аметист",
+  "fields": {
+   "Класс": "Самоцвет",
+   "Бонусы": "+125 сила умений"
+  },
+  "extra": [],
+  "icon": "BTNAmetist.blp",
+  "icon_file": "BTNAmetist.blp",
+  "icon_png": "icons_png/BTNAmetist.png",
+  "level": 0,
+  "gold": 600
+ },
+ {
+  "id": "ratf",
+  "name_ru": "Чёрный сосуд",
+  "fields": {
+   "Класс": "Артефакт (1 ур.)",
+   "Способности": "Герой получает на 25% больше урона и наносит врагам на 25% больше урона. Не действует на статусы."
+  },
+  "extra": [],
+  "icon": "BTNBlackBottle.blp",
+  "icon_file": "BTNBlackBottle.blp",
+  "icon_png": "icons_png/BTNBlackBottle.png",
+  "level": 4,
+  "gold": 600
+ },
+ {
+  "id": "desc",
+  "name_ru": "Скипетр пламени",
+  "fields": {
+   "Класс": "Артефакт (3 ур.)",
+   "Бонусы": "+20 разума, +20 атаки, +3 HP regen",
+   "Модификатор": "Использование умений позволяет следующей атаке героя выпустить 7 сгустков, наносящих (30 + 10% разум) ед. урона по области и поджигающих с 50% шансом (итоговый урон 100%)."
+  },
+  "extra": [],
+  "icon": "BTNArt9.blp",
+  "icon_file": "BTNArt9.blp",
+  "icon_png": "icons_png/BTNArt9.png",
+  "level": 4,
+  "gold": 2650
+ },
+ {
+  "id": "tkno",
+  "name_ru": "Щит Зверя",
+  "fields": {
+   "Класс": "Артефакт (3 ур.)",
+   "Бонусы": "+10 защиты, +20 силы, +3 HP regen, +20 ответный урон, сопротивление кровотечению",
+   "Способности": "Восстанавливает 2 ед. здоровья при каждом получении урона. Получаемый эффект болезни становится кровотечением до расчёта шанса. Вы не можете иметь сопротивление поджогу и горючести."
+  },
+  "extra": [],
+  "icon": "BTNArt7.blp",
+  "icon_file": "BTNArt7.blp",
+  "icon_png": "icons_png/BTNArt7.png",
+  "level": 4,
+  "gold": 2950
+ },
+ {
+  "id": "rde4",
+  "name_ru": "Цвайхендер",
+  "fields": {
+   "Класс": "Артефакт (2 ур.)",
+   "Бонусы": "+20 атаки, +5 к характеристикам, +5 пробитие",
+   "Способности": "Повышает запас здоровья на 100 ед. за убийство вражеского героя."
+  },
+  "extra": [],
+  "icon": "BTNArt5.blp",
+  "icon_file": "BTNArt5.blp",
+  "icon_png": "icons_png/BTNArt5.png",
+  "level": 4,
+  "gold": 1850
+ },
+ {
+  "id": "ckng",
+  "name_ru": "Амулет с киноварью",
+  "fields": {
+   "Класс": "Артефакт (2 ур.)",
+   "Множитель": "Повышает характеристики героя на 25%. Эффект обновляется автоматически."
+  },
+  "extra": [],
+  "icon": "BTNArtAmulet3.blp",
+  "icon_file": "BTNArtAmulet3.blp",
+  "icon_png": "icons_png/BTNArtAmulet3.png",
+  "level": 4,
+  "gold": 1500
+ },
+ {
+  "id": "modt",
+  "name_ru": "Эгида королей",
+  "fields": {
+   "Класс": "Артефакт (5 ур.)",
+   "Бонусы": "+2000 HP, +20 защиты",
+   "Способности": "Распространяет ауру +8 защиты, с шансом 50% блокирует 200 ед. физ. урона. (минимальный урон - 10 ед.)"
+  },
+  "extra": [],
+  "icon": "BTNRoyalEgida.blp",
+  "icon_file": "BTNRoyalEgida.blp",
+  "icon_png": "icons_png/BTNRoyalEgida.png",
+  "level": 4,
+  "gold": 5750
+ },
+ {
+  "id": "ofro",
+  "name_ru": "Созвездие",
+  "fields": {
+   "Класс": "Артефакт (5 ур.)",
+   "Бонусы": "+30 разум, +6 MP regen, +10 защиты, +200 сила умений",
+   "Модификатор": "Применение умений очищает героя от негативных эффектов и статусов, восстанавливает 20 HP и 30 MP, с шансом 25% наносит (200 + 50% сила умений) ед. урона по области вокруг героя."
+  },
+  "extra": [],
+  "icon": "BTNArtSphere.blp",
+  "icon_file": "BTNArtSphere.blp",
+  "icon_png": "icons_png/BTNArtSphere.png",
+  "level": 4,
+  "gold": 5750
+ },
+ {
+  "id": "prvt",
+  "name_ru": "Эквилибриум",
+  "fields": {
+   "Класс": "Артефакт (4 ур.)",
+   "Бонусы": "+40 atk, +30% atk speed, +15 str, +15 agi",
+   "Способности": "Дарует сплеш-эффект в ближнем бою (22% по большой области).",
+   "Модификатор": "Атака наносит 75 ед. маг. урона и с 100% шансом накладывает уязвимость. Перезарядка - 2 сек."
+  },
+  "extra": [],
+  "icon": "BTNArtSword.blp",
+  "icon_file": "BTNArtSword.blp",
+  "icon_png": "icons_png/BTNArtSword.png",
+  "level": 4,
+  "gold": 3900
+ },
+ {
+  "id": "lgdh",
+  "name_ru": "Перчатка Бесконечности",
+  "fields": {
+   "Класс": "Артефакт (4 ур.)",
+   "Бонусы": "+15 ко всем характеристикам, +5 защиты, +750 HP, +500 MP, +6 пробитие, +150 сила умений"
+  },
+  "extra": [],
+  "icon": "BTNArt10.blp",
+  "icon_file": "BTNArt10.blp",
+  "icon_png": "icons_png/BTNArt10.png",
+  "level": null,
+  "gold": 4200
+ },
+ {
+  "id": "rag1",
+  "name_ru": "Кольцо с аметистом",
+  "fields": {
+   "Класс": "Особый (3 ур.)",
+   "Бонусы": "+10 разума, +125 сила умений"
+  },
+  "extra": [],
+  "icon": "BTNAmetistRing.blp",
+  "icon_file": "BTNAmetistRing.blp",
+  "icon_png": "icons_png/BTNAmetistRing.png",
+  "level": 10,
+  "gold": 900
+ },
+ {
+  "id": "afac",
+  "name_ru": "Подвеска ястреба",
+  "fields": {
+   "Класс": "Артефакт (1 ур.)",
+   "Бонусы": "+3 защиты, +10 атаки, сопротивление проклятиям",
+   "Способности": "Атаки имеют 40% шанс нанести 1.3-кратный урон.",
+   "Модификатор": "Атаки восстанавливают по 6 ед. здоровья. Перезарядка - 1 сек."
+  },
+  "extra": [],
+  "icon": "BTNArtEagle.blp",
+  "icon_file": "BTNArtEagle.blp",
+  "icon_png": "icons_png/BTNArtEagle.png",
+  "level": null,
+  "gold": 800
+ },
+ {
+  "id": "kpin",
+  "name_ru": "Роба архимага",
+  "fields": {
+   "Класс": "Артефакт (3 ур.)",
+   "Бонусы": "+6 защиты, +300 сила умений",
+   "Способности": "Применение умений повышает регенерацию здоровья и маны на 2 ед. на 10 сек., суммируется до 5 стаков."
+  },
+  "extra": [],
+  "icon": "BTNArt2.blp",
+  "icon_file": "BTNArt2.blp",
+  "icon_png": "icons_png/BTNArt2.png",
+  "level": 4,
+  "gold": 2500
+ },
+ {
+  "id": "crys",
+  "name_ru": "Разящий полумесяц",
+  "fields": {
+   "Класс": "Артефакт (5 ур.)",
+   "Бонусы": "+20 ловкости, +30 атаки, 30% крит. удар x2.5, +125 сила умений",
+   "Модификатор": "Раз в 15 сек. атака героя наносит урон по области с уроном в (200 + 40% сила умений) ед. При низком уровне здоровья ускоряет перезарядку (-1 сек. за потерянные 10% здоровья)."
+  },
+  "extra": [],
+  "icon": "BTNArtSpear.blp",
+  "icon_file": "BTNArtSpear.blp",
+  "icon_png": "icons_png/BTNArtSpear.png",
+  "level": 4,
+  "gold": 5750
+ },
+ {
+  "id": "ajen",
+  "name_ru": "Секутор",
+  "fields": {
+   "Класс": "Артефакт (1 ур.)",
+   "Бонусы": "+12 атаки",
+   "Модификатор": "Убийства противников восстанавливают герою по 15 HP и усиливают следующую атаку, которая нанесет 75 ед. дополнительного маг. урона."
+  },
+  "extra": [],
+  "icon": "BTNSekutor.blp",
+  "icon_file": "BTNSekutor.blp",
+  "icon_png": "icons_png/BTNSekutor.png",
+  "level": 4,
+  "gold": 900
+ },
+ {
+  "id": "hval",
+  "name_ru": "Судья",
+  "fields": {
+   "Класс": "Артефакт (3 ур.)",
+   "Бонусы": "+35 атаки, +35% урон героям",
+   "Модификатор": "Убийства противников восстанавливают герою по 18 HP и усиливают следующую атаку (+100 magic dmg)."
+  },
+  "extra": [],
+  "icon": "BTNPalach.blp",
+  "icon_file": "BTNPalach.blp",
+  "icon_png": "icons_png/BTNPalach.png",
+  "level": 4,
+  "gold": 2400
+ },
+ {
+  "id": "tfar",
+  "name_ru": "Изящная подвеска",
+  "fields": {
+   "Класс": "Артефакт (3 ур.)",
+   "Бонусы": "+10 atk, +3 armor, сопротивление проклятиям",
+   "Способности": "Атаки имеют 40% шанс нанести 1.3-кратный урон.",
+   "Множитель": "Повышает характеристики героя на 33%.",
+   "Модификатор": "Атаки восстанавливают 6 HP. Перезарядка - 1 сек."
+  },
+  "extra": [],
+  "icon": "BTNArtAmuletT2.blp",
+  "icon_file": "BTNArtAmuletT2.blp",
+  "icon_png": "icons_png/BTNArtAmuletT2.png",
+  "level": 4,
+  "gold": 2300
+ },
+ {
+  "id": "tbar",
+  "name_ru": "Живительное сердце",
+  "fields": {
+   "Класс": "Особый (5+ ур.)",
+   "Бонусы": "+1500 HP, +2.25 HP regen, +3.75 MP regen, +25% защита от кровотечения, сопротивление кровотечению, иммунитет к ответному урону",
+   "Способности": "Снижает время возрождения героя на 30%."
+  },
+  "extra": [],
+  "icon": "BTNRagingHeart.blp",
+  "icon_file": "BTNRagingHeart.blp",
+  "icon_png": "icons_png/BTNRagingHeart.png",
+  "level": 12,
+  "gold": 2150
+ },
+ {
+  "id": "tbak",
+  "name_ru": "Доспехи Императора",
+  "fields": {
+   "Класс": "Артефакт (4 ур.)",
+   "Бонусы": "+1500 HP, +20 силы, +5 защиты, +8 HP regen",
+   "Способности": "Враги с запасом здоровья 70% и выше наносят герою на 25% меньше урона от атак, умений и статусов."
+  },
+  "extra": [],
+  "icon": "BTNImperatorChest.blp",
+  "icon_file": "BTNImperatorChest.blp",
+  "icon_png": "icons_png/BTNImperatorChest.png",
+  "level": 4,
+  "gold": 3150
+ },
+ {
+  "id": "gsou",
+  "name_ru": "Кольцо культиста",
+  "fields": {
+   "Класс": "Артефакт (1 ур.)",
+   "Бонусы": "+7 main stat",
+   "Модификатор": "Использование способности наносит (40% сумма характеристик) ед. урона 3 случайным врагам поблизости."
+  },
+  "extra": [],
+  "icon": "BTNCultistRing.blp",
+  "icon_file": "BTNCultistRing.blp",
+  "icon_png": "icons_png/BTNCultistRing.png",
+  "level": 4,
+  "gold": 600
+ },
+ {
+  "id": "gemt",
+  "name_ru": "Кровь Девы",
+  "fields": {
+   "Класс": "Артефакт (3 ур.)",
+   "Бонусы": "+3 ко всем характеристикам",
+   "Способности": "Восстанавливает 13% здоровья и 13% маны при использовании."
+  },
+  "extra": [],
+  "icon": "BTNArt1.blp",
+  "icon_file": "BTNArt1.blp",
+  "icon_png": "icons_png/BTNArt1.png",
+  "level": 4,
+  "gold": 1850
+ },
+ {
+  "id": "asbl",
+  "name_ru": "Накидка Нойты",
+  "fields": {
+   "Класс": "Артефакт (2 ур.)",
+   "Бонусы": "+5 защиты, +1.5 MP regen, +15 разума, +100 сила умений"
+  },
+  "extra": [],
+  "icon": "BTNArt3.blp",
+  "icon_file": "BTNArt3.blp",
+  "icon_png": "icons_png/BTNArt3.png",
+  "level": 4,
+  "gold": 1500
+ },
+ {
+  "id": "dtsb",
+  "name_ru": "Гом Джаббар",
+  "fields": {
+   "Класс": "Особый (5+ ур.)",
+   "Бонусы": "+50% урон от болезни",
+   "Способности": "Применение героем болезни игнорирует состояние \"чумной\".\n\nАтаки отравляют противников: -30% atk speed, -60% move speed, 100 ед. урона/сек. в течение 8 сек. (герои 4 сек.)"
+  },
+  "extra": [],
+  "icon": "BTNGomJabbar.blp",
+  "icon_file": "BTNGomJabbar.blp",
+  "icon_png": "icons_png/BTNGomJabbar.png",
+  "level": 12,
+  "gold": 2150
+ },
+ {
+  "id": "tmsc",
+  "name_ru": "Гром-секира",
+  "fields": {
+   "Класс": "Артефакт (4 ур.)",
+   "Бонусы": "+25 atk, +20 str, +3 HP regen",
+   "Модификатор": "Атака вызывает цепную молнию (8 целей) с уроном 100 ед. Урон повышается на 125%, если цель является героем или юнитом 8+ уровня. Перезарядка - 4 сек."
+  },
+  "extra": [],
+  "icon": "BTNGromSekira.blp",
+  "icon_file": "BTNGromSekira.blp",
+  "icon_png": "icons_png/BTNGromSekira.png",
+  "level": 4,
+  "gold": 3100
+ },
+ {
+  "id": "grsl",
+  "name_ru": "Вельвера",
+  "fields": {
+   "Класс": "Артефакт (4 ур.)",
+   "Бонусы": "+30 атаки, +15 ловкости, 25% вампиризм",
+   "Модификатор": "Атака наносит 100 ед. маг. урона, 100% шанс кровотечения с итоговым уроном 100 ед., 30% шанс наложить слабость. Перезарядка - 3 сек."
+  },
+  "extra": [],
+  "icon": "BTNVelvera.blp",
+  "icon_file": "BTNVelvera.blp",
+  "icon_png": "icons_png/BTNVelvera.png",
+  "level": 4,
+  "gold": 3200
+ },
+ {
+  "id": "sbok",
+  "name_ru": "Зодиак",
+  "fields": {
+   "Класс": "Артефакт (2 ур.)",
+   "Бонусы": "+3 MP regen, +10 разума, +125 сила умений",
+   "Способности": "Дарует двойной эффект при выполнении заданий усиливающихся предметов (не суммируется). Может искажать предметы."
+  },
+  "extra": [],
+  "icon": "BTNZodiac.blp",
+  "icon_file": "BTNZodiac.blp",
+  "icon_png": "icons_png/BTNZodiac.png",
+  "level": 4,
+  "gold": 2450
+ },
+ {
+  "id": "shcw",
+  "name_ru": "Антиномия",
+  "fields": {
+   "Класс": "Артефакт (2 ур.)",
+   "Бонусы": "+10 main stat, +50 сила умений",
+   "Модификатор": "Использование способности наносит (40% all stats) ед. урона 7 случайным врагам поблизости."
+  },
+  "extra": [],
+  "icon": "BTNAntinomia.blp",
+  "icon_file": "BTNAntinomia.blp",
+  "icon_png": "icons_png/BTNAntinomia.png",
+  "level": 4,
+  "gold": 1500
+ },
+ {
+  "id": "ram4",
+  "name_ru": "Потусторонний амулет",
+  "fields": {
+   "Класс": "Артефакт (3 ур.)",
+   "Бонусы": "сопротивление поджогу и горючести, кровотечению, заморозке, проклятиям",
+   "Способности": "Каждые 60 сек. полностью восстанавливает герою ману."
+  },
+  "extra": [],
+  "icon": "BTNArt8.blp",
+  "icon_file": "BTNArt8.blp",
+  "icon_png": "icons_png/BTNArt8.png",
+  "level": null,
+  "gold": 2000
+ },
+ {
+  "id": "ram1",
+  "name_ru": "Копьё глубин",
+  "fields": {
+   "Класс": "Ритуальный",
+   "Бонусы": "14% вампиризм и 17% сплеш-эффект от атак, +15 атаки, +10 main stat, +5 пробитие",
+   "Модификатор": "Раз в 5 сек. атака героя наносит 125 ед. урона 3 случайным врагам вокруг цели и накладывает на них эффект заморозки с 100% шансом."
+  },
+  "extra": [],
+  "icon": "BTNOldGodsItem11.blp",
+  "icon_file": "BTNOldGodsItem11.blp",
+  "icon_png": "icons_png/BTNOldGodsItem11.png",
+  "level": 0,
+  "gold": 0
+ },
+ {
+  "id": "ram3",
+  "name_ru": "Объятия вечного сна",
+  "fields": {
+   "Класс": "Артефакт (4 ур.)",
+   "Бонусы": "+7 защиты, +20 разума, +5 HP regen, сопротивление заморозке",
+   "Модификатор": "Применение способности дарует 40 защиты на 3.5 сек. (эффекты суммируются)."
+  },
+  "extra": [],
+  "icon": "BTNEthernalNight.blp",
+  "icon_file": "BTNEthernalNight.blp",
+  "icon_png": "icons_png/BTNEthernalNight.png",
+  "level": 4,
+  "gold": 2600
+ },
+ {
+  "id": "ram2",
+  "name_ru": "Корона Жизни",
+  "fields": {
+   "Класс": "Артефакт (4 ур.)",
+   "Бонусы": "+18 all stats, +5 armor, +175 сила умений",
+   "Способности": "Каждую секунду восстанавливает герою 1% здоровья и маны."
+  },
+  "extra": [],
+  "icon": "BTNLifeCrown.blp",
+  "icon_file": "BTNLifeCrown.blp",
+  "icon_png": "icons_png/BTNLifeCrown.png",
+  "level": 4,
+  "gold": 3550
+ },
+ {
+  "id": "shar",
+  "name_ru": "Клинок крестоносца",
+  "fields": {
+   "Класс": "Артефакт (1 ур.)",
+   "Бонусы": "+15% урон от атак и умений против нежити, +15% защита от атак и умений от нежити"
+  },
+  "extra": [],
+  "icon": "BTNBladeIncurance.blp",
+  "icon_file": "BTNBladeIncurance.blp",
+  "icon_png": "icons_png/BTNBladeIncurance.png",
+  "level": 4,
+  "gold": 600
+ },
+ {
+  "id": "fgfh",
+  "name_ru": "Карающая длань",
+  "fields": {
+   "Класс": "Артефакт (4 ур.)",
+   "Бонусы": "+20 атаки, +15% урон против нежити, +15% защита от нежити, +30 сила умений, +15 пробитие, +10% сила модификаторов",
+   "Способности": "Эффект пробития применяется с 150% эффектом против героев. Повышает HP на 125 ед. за убийство вражеского героя."
+  },
+  "extra": [],
+  "icon": "BTNInqusitorBlade.blp",
+  "icon_file": "BTNInqusitorBlade.blp",
+  "icon_png": "icons_png/BTNInqusitorBlade.png",
+  "level": null,
+  "gold": 3150
+ },
+ {
+  "id": "sres",
+  "name_ru": "Наблюдатель",
+  "fields": {
+   "Класс": "Ритуальный",
+   "Бонусы": "+500 MP, -0.6 MP regen"
+  },
+  "extra": [],
+  "icon": "BTNOldGodsItem1.blp",
+  "icon_file": "BTNOldGodsItem1.blp",
+  "icon_png": "icons_png/BTNOldGodsItem1.png",
+  "level": 0,
+  "gold": 0
+ },
+ {
+  "id": "srrc",
+  "name_ru": "Порфира",
+  "fields": {
+   "Класс": "Ритуальный",
+   "Бонусы": "+40 atk, -10% atk speed"
+  },
+  "extra": [],
+  "icon": "BTNOldGodsItem2.blp",
+  "icon_file": "BTNOldGodsItem2.blp",
+  "icon_png": "icons_png/BTNOldGodsItem2.png",
+  "level": 0,
+  "gold": 0
+ },
+ {
+  "id": "sand",
+  "name_ru": "Глубинный гриб",
+  "fields": {
+   "Класс": "Ритуальный",
+   "Бонусы": "+10 HP regen, -3 armor"
+  },
+  "extra": [],
+  "icon": "BTNOldGodsItem3.blp",
+  "icon_file": "BTNOldGodsItem3.blp",
+  "icon_png": "icons_png/BTNOldGodsItem3.png",
+  "level": 0,
+  "gold": 0
+ },
+ {
+  "id": "sror",
+  "name_ru": "Сокрушающий хелицер",
+  "fields": {
+   "Класс": "Ритуальный",
+   "Бонусы": "+50 str, -2 HP regen, -6 int"
+  },
+  "extra": [],
+  "icon": "BTNOldGodsItem4.blp",
+  "icon_file": "BTNOldGodsItem4.blp",
+  "icon_png": "icons_png/BTNOldGodsItem4.png",
+  "level": 0,
+  "gold": 0
+ },
+ {
+  "id": "fgdg",
+  "name_ru": "Коготь бьякхи",
+  "fields": {
+   "Класс": "Ритуальный",
+   "Бонусы": "+30 пробитие, -15 atk, -6 str"
+  },
+  "extra": [],
+  "icon": "BTNOldGodsItem5.blp",
+  "icon_file": "BTNOldGodsItem5.blp",
+  "icon_png": "icons_png/BTNOldGodsItem5.png",
+  "level": 0,
+  "gold": 0
+ },
+ {
+  "id": "totw",
+  "name_ru": "Реликтовая скрижаль",
+  "fields": {
+   "Класс": "Ритуальный",
+   "Бонусы": "+350 сила умений, -2.0 MP regen, -6 agi"
+  },
+  "extra": [],
+  "icon": "BTNOldGodsItem6.blp",
+  "icon_file": "BTNOldGodsItem6.blp",
+  "icon_png": "icons_png/BTNOldGodsItem6.png",
+  "level": 0,
+  "gold": 0
+ },
+ {
+  "id": "pghe",
+  "name_ru": "Сияющий камень",
+  "fields": {
+   "Класс": "Ритуальный",
+   "Бонусы": "+5 ко всем характеристикам, +75 сила умений, +75% защита от заморозки, сопротивление заморозке, сопротивление проклятиям"
+  },
+  "extra": [],
+  "icon": "BTNOldGodsItem7.blp",
+  "icon_file": "BTNOldGodsItem7.blp",
+  "icon_png": "icons_png/BTNOldGodsItem7.png",
+  "level": 0,
+  "gold": 0
+ },
+ {
+  "id": "pres",
+  "name_ru": "Щит водоворота",
+  "fields": {
+   "Класс": "Ритуальный",
+   "Бонусы": "+8 armor, +400 HP, +3 HP regen, +2 MP regen, +40 ответный урон, +20% усиление ответного урона",
+   "Способности": "Каждые 30 сек. притягивает к герою ближайших противников."
+  },
+  "extra": [],
+  "icon": "BTNOldGodsItem8.blp",
+  "icon_file": "BTNOldGodsItem8.blp",
+  "icon_png": "icons_png/BTNOldGodsItem8.png",
+  "level": 0,
+  "gold": 0
+ },
+ {
+  "id": "pgma",
+  "name_ru": "Молот бедствий",
+  "fields": {
+   "Класс": "Ритуальный",
+   "Бонусы": "+10 str, +15 atk, +50% урон от атак и умений врагам 0-1 уровня",
+   "Модификатор": "Убийство противника вызывает глубинный взрыв, наносящий 125 + (75% сила) ед. маг. урона ближайшим врагам. Перезарядка - 6 сек."
+  },
+  "extra": [],
+  "icon": "BTNOldGodsItem9.blp",
+  "icon_file": "BTNOldGodsItem9.blp",
+  "icon_png": "icons_png/BTNOldGodsItem9.png",
+  "level": 0,
+  "gold": 0
+ },
+ {
+  "id": "pdiv",
+  "name_ru": "Морской хаос",
+  "fields": {
+   "Класс": "Ритуальный",
+   "Бонусы": "+15 agi, +35% atk speed, +11 пробитие",
+   "Модификатор": "Атака героя выпускает 3 волны в разные стороны, наносящие по 75 + (50% ловкость) ед. урона. Перезарядка - 12 сек."
+  },
+  "extra": [],
+  "icon": "BTNOldGodsItem10.blp",
+  "icon_file": "BTNOldGodsItem10.blp",
+  "icon_png": "icons_png/BTNOldGodsItem10.png",
+  "level": 0,
+  "gold": 0
+ },
+ {
+  "id": "fgrd",
+  "name_ru": "Посох архимага",
+  "fields": {
+   "Класс": "Артефакт (4 ур.)",
+   "Бонусы": "+15 int, +3 MP regen, +200 сила умений, +25% урон от атак и умений по героям, +25% сила модификаторов",
+   "Способности": "Каждые 0.75 сек. наносит 125 ед. урона случайному врагу поблизости."
+  },
+  "extra": [],
+  "icon": "BTNArchmageStaff.blp",
+  "icon_file": "BTNArchmageStaff.blp",
+  "icon_png": "icons_png/BTNArchmageStaff.png",
+  "level": null,
+  "gold": 3200
+ },
+ {
+  "id": "rej4",
+  "name_ru": "Штык",
+  "fields": {
+   "Класс": "Особый (1 ур.)",
+   "Бонусы": "+5 пробитие"
+  },
+  "extra": [],
+  "icon": "BTNIronLance.blp",
+  "icon_file": "BTNIronLance.blp",
+  "icon_png": "icons_png/BTNIronLance.png",
+  "level": 6,
+  "gold": 300
+ },
+ {
+  "id": "lmbr",
+  "name_ru": "Рубин",
+  "fields": {
+   "Класс": "Самоцвет",
+   "Бонусы": "+15 str"
+  },
+  "extra": [],
+  "icon": "BTNRuby.blp",
+  "icon_file": "BTNRuby.blp",
+  "icon_png": "icons_png/BTNRuby.png",
+  "level": null,
+  "gold": 600
+ },
+ {
+  "id": "gomn",
+  "name_ru": "Изумруд",
+  "fields": {
+   "Класс": "Самоцвет",
+   "Бонусы": "+15 agi"
+  },
+  "extra": [],
+  "icon": "BTNEmerald.blp",
+  "icon_file": "BTNEmerald.blp",
+  "icon_png": "icons_png/BTNEmerald.png",
+  "level": null,
+  "gold": 600
+ },
+ {
+  "id": "gfor",
+  "name_ru": "Сапфир",
+  "fields": {
+   "Класс": "Самоцвет",
+   "Бонусы": "+15 int"
+  },
+  "extra": [],
+  "icon": "BTNSapfire.blp",
+  "icon_file": "BTNSapfire.blp",
+  "icon_png": "icons_png/BTNSapfire.png",
+  "level": null,
+  "gold": 600
+ },
+ {
+  "id": "guvi",
+  "name_ru": "Золотой опал",
+  "fields": {
+   "Класс": "Самоцвет",
+   "Бонусы": "+600 HP"
+  },
+  "extra": [],
+  "icon": "BTNOpal.blp",
+  "icon_file": "BTNOpal.blp",
+  "icon_png": "icons_png/BTNOpal.png",
+  "level": null,
+  "gold": 600
+ },
+ {
+  "id": "rre1",
+  "name_ru": "Фазионит (+5 сила умений)",
+  "fields": {},
+  "extra": [
+   "Повышение силы умений героя на 5 ед."
+  ],
+  "icon": "UI\\Minimap\\MinimapIconCreepLoc2.blp",
+  "icon_file": null,
+  "icon_png": null,
+  "level": null,
+  "gold": 0
+ },
+ {
+  "id": "rhe1",
+  "name_ru": "Фазионит (+10 сила умений)",
+  "fields": {},
+  "extra": [
+   "Повышение силы умений героя на 10 ед."
+  ],
+  "icon": "UI\\Minimap\\MinimapIconCreepLoc2.blp",
+  "icon_file": null,
+  "icon_png": null,
+  "level": null,
+  "gold": 0
+ },
+ {
+  "id": "rres",
+  "name_ru": "Золото (+35)",
+  "fields": {},
+  "extra": [
+   "Приносит своему владельцу 35 золота."
+  ],
+  "icon": "ReplaceableTextures\\CommandButtons\\BTNChestOfGold.blp",
+  "icon_file": null,
+  "icon_png": null,
+  "level": null,
+  "gold": 0
+ },
+ {
+  "id": "rsps",
+  "name_ru": "Золото (+50)",
+  "fields": {},
+  "extra": [
+   "Приносит своему владельцу 50 золота."
+  ],
+  "icon": "ReplaceableTextures\\CommandButtons\\BTNChestOfGold.blp",
+  "icon_file": null,
+  "icon_png": null,
+  "level": null,
+  "gold": 0
+ },
+ {
+  "id": "rhe2",
+  "name_ru": "Золото (+75)",
+  "fields": {},
+  "extra": [
+   "Приносит своему владельцу 75 золота."
+  ],
+  "icon": "ReplaceableTextures\\CommandButtons\\BTNChestOfGold.blp",
+  "icon_file": null,
+  "icon_png": null,
+  "level": null,
+  "gold": 0
+ },
+ {
+  "id": "rman",
+  "name_ru": "Золото (+100)",
+  "fields": {},
+  "extra": [
+   "Приносит своему владельцу 100 золота."
+  ],
+  "icon": "ReplaceableTextures\\CommandButtons\\BTNChestOfGold.blp",
+  "icon_file": null,
+  "icon_png": null,
+  "level": null,
+  "gold": 0
+ },
+ {
+  "id": "rreb",
+  "name_ru": "Золото (+150)",
+  "fields": {},
+  "extra": [
+   "Приносит своему владельцу 150 золота."
+  ],
+  "icon": "ReplaceableTextures\\CommandButtons\\BTNChestOfGold.blp",
+  "icon_file": null,
+  "icon_png": null,
+  "level": null,
+  "gold": 0
+ },
+ {
+  "id": "rdis",
+  "name_ru": "Фазионит (+15 сила умений)",
+  "fields": {},
+  "extra": [
+   "Повышение силы умений героя на 15 ед."
+  ],
+  "icon": "UI\\Minimap\\MinimapIconCreepLoc2.blp",
+  "icon_file": null,
+  "icon_png": null,
+  "level": null,
+  "gold": 0
+ },
+ {
+  "id": "rspd",
+  "name_ru": "Зеленый обломок (+3 ловкость)",
+  "fields": {},
+  "extra": [
+   "Повышение ловкости героя на 3 ед."
+  ],
+  "icon": "UI\\Minimap\\MinimapIconCreepLoc2.blp",
+  "icon_file": null,
+  "icon_png": null,
+  "level": null,
+  "gold": 0
+ },
+ {
+  "id": "rwat",
+  "name_ru": "Красный обломок (+3 сила)",
+  "fields": {},
+  "extra": [
+   "Повышение силы героя на 3 ед."
+  ],
+  "icon": "UI\\Minimap\\MinimapIconCreepLoc2.blp",
+  "icon_file": null,
+  "icon_png": null,
+  "level": null,
+  "gold": 0
+ },
+ {
+  "id": "rspl",
+  "name_ru": "Синий обломок (+3 разум)",
+  "fields": {},
+  "extra": [
+   "Повышение разума героя на 3 ед."
+  ],
+  "icon": "UI\\Minimap\\MinimapIconCreepLoc2.blp",
+  "icon_file": null,
+  "icon_png": null,
+  "level": null,
+  "gold": 0
+ },
+ {
+  "id": "rde0",
+  "name_ru": "Бодрящая настойка",
+  "fields": {
+   "Класс": "Особый (1 ур.)",
+   "Бонусы": "+20% скорость атаки"
+  },
+  "extra": [],
+  "icon": "BTNAttackSpeedPotion.blp",
+  "icon_file": "BTNAttackSpeedPotion.blp",
+  "icon_png": "icons_png/BTNAttackSpeedPotion.png",
+  "level": 6,
+  "gold": 300
+ },
+ {
+  "id": "lnrn",
+  "name_ru": "Заросший топор",
+  "fields": {
+   "Класс": "Особый (1 ур.)",
+   "Бонусы": "+5 атаки, +2 HP regen"
+  },
+  "extra": [],
+  "icon": "BTNGrowAxe.blp",
+  "icon_file": "BTNGrowAxe.blp",
+  "icon_png": "icons_png/BTNGrowAxe.png",
+  "level": 6,
+  "gold": 300
+ },
+ {
+  "id": "sprn",
+  "name_ru": "Кованый нагрудник",
+  "fields": {
+   "Класс": "Особый (1 ур.)",
+   "Бонусы": "+1 сила, +150 HP, +5 ответный урон"
+  },
+  "extra": [],
+  "icon": "BTNChestPlate.blp",
+  "icon_file": "BTNChestPlate.blp",
+  "icon_png": "icons_png/BTNChestPlate.png",
+  "level": 6,
+  "gold": 300
+ },
+ {
+  "id": "rnsp",
+  "name_ru": "Ржавый шлем",
+  "fields": {
+   "Класс": "Особый (1 ур.)",
+   "Бонусы": "+25% защита от поджога, сопротивление поджогу"
+  },
+  "extra": [],
+  "icon": "BTNRustyHelmet.blp",
+  "icon_file": "BTNRustyHelmet.blp",
+  "icon_png": "icons_png/BTNRustyHelmet.png",
+  "level": 6,
+  "gold": 300
+ },
+ {
+  "id": "jdrn",
+  "name_ru": "Посох болотника",
+  "fields": {
+   "Класс": "Особый (1 ур.)",
+   "Бонусы": "+2 разума, +50 MP",
+   "Модификатор": "Применение способностей восстанавливает герою 5 HP и 5 MP."
+  },
+  "extra": [],
+  "icon": "BTNSwampStaff.blp",
+  "icon_file": "BTNSwampStaff.blp",
+  "icon_png": "icons_png/BTNSwampStaff.png",
+  "level": 6,
+  "gold": 300
+ },
+ {
+  "id": "crdt",
+  "name_ru": "Книга дуэлянта",
+  "fields": {
+   "Класс": "Особый (1 ур.)",
+   "Бонусы": "+1 ко всем характеристикам",
+   "Способности": "Убийство вражеского героя повышает уровень героя на 1."
+  },
+  "extra": [],
+  "icon": "ReplaceableTextures\\CommandButtons\\BTNTomeBrown.blp",
+  "icon_file": null,
+  "icon_png": null,
+  "level": 6,
+  "gold": 300
+ },
+ {
+  "id": "klmm",
+  "name_ru": "Кожаные перчатки",
+  "fields": {
+   "Класс": "Особый (1 ур.)",
+   "Способности": "+3% к скорости атаки за каждый уровень героя. Эффект может суммироваться от одинаковых перчаток."
+  },
+  "extra": [],
+  "icon": "ReplaceableTextures\\CommandButtons\\BTNGlove.blp",
+  "icon_file": null,
+  "icon_png": null,
+  "level": 6,
+  "gold": 300
+ },
+ {
+  "id": "vddl",
+  "name_ru": "Щит варвара",
+  "fields": {
+   "Класс": "Особый (1 ур.)",
+   "Бонусы": "+2 защиты, +15 ответный урон, +5% усиление ответного урона"
+  },
+  "extra": [],
+  "icon": "BTNBarbarianShield.blp",
+  "icon_file": "BTNBarbarianShield.blp",
+  "icon_png": "icons_png/BTNBarbarianShield.png",
+  "level": 6,
+  "gold": 300
+ },
+ {
+  "id": "frgd",
+  "name_ru": "Подвеска защиты",
+  "fields": {
+   "Класс": "Особый (1 ур.)",
+   "Бонусы": "+2 защиты, сопротивление проклятиям"
+  },
+  "extra": [],
+  "icon": "BTNPodveska.blp",
+  "icon_file": "BTNPodveska.blp",
+  "icon_png": "icons_png/BTNPodveska.png",
+  "level": 6,
+  "gold": 300
+ },
+ {
+  "id": "drph",
+  "name_ru": "Накидка странника",
+  "fields": {
+   "Класс": "Особый (1 ур.)",
+   "Бонусы": "+2 ко всем характеристикам, +1 защиты",
+   "Способности": "+1 к пассивному доходу опыта при уровне героя ниже 10."
+  },
+  "extra": [],
+  "icon": "BTNWandererCape.blp",
+  "icon_file": "BTNWandererCape.blp",
+  "icon_png": "icons_png/BTNWandererCape.png",
+  "level": 6,
+  "gold": 300
+ },
+ {
+  "id": "mlst",
+  "name_ru": "Меч разорителя",
+  "fields": {
+   "Класс": "Особый (1 ур.)",
+   "Бонусы": "+2 атаки",
+   "Модификатор": "Убийство противника восстанавливает герою 50 ед. здоровья, действует при запасе здоровья 90% и ниже. Перезарядка - 10 сек."
+  },
+  "extra": [],
+  "icon": "BTNIronKnife.blp",
+  "icon_file": "BTNIronKnife.blp",
+  "icon_png": "icons_png/BTNIronKnife.png",
+  "level": 6,
+  "gold": 300
+ },
+ {
+  "id": "shrs",
+  "name_ru": "Чумные корни",
+  "fields": {
+   "Класс": "Особый (1 ур.)",
+   "Бонусы": "Дарует состояние \"Чумной\" - иммунитет к болезням и возможность применять болезнь к врагам. Подробнее в герое-справочнике (F2)."
+  },
+  "extra": [],
+  "icon": "BTNPlagueThorns.blp",
+  "icon_file": "BTNPlagueThorns.blp",
+  "icon_png": "icons_png/BTNPlagueThorns.png",
+  "level": 6,
+  "gold": 300
+ },
+ {
+  "id": "rej1",
+  "name_ru": "Сапоги странника",
+  "fields": {
+   "Класс": "Особый (1 ур.)",
+   "Бонусы": "+50 скорость передвижения, +1 защиты",
+   "Способности": "+50 к ежеминутному доходу золота при уровне героя ниже 10."
+  },
+  "extra": [],
+  "icon": "BTNBootsEH.blp",
+  "icon_file": "BTNBootsEH.blp",
+  "icon_png": "icons_png/BTNBootsEH.png",
+  "level": 6,
+  "gold": 300
+ },
+ {
+  "id": "srbd",
+  "name_ru": "Накидка адепта",
+  "fields": {
+   "Класс": "Особый (1 ур.)",
+   "Бонусы": "+1 разум, +150 HP, 10% защита от магии"
+  },
+  "extra": [],
+  "icon": "BTNAdeptShirt.blp",
+  "icon_file": "BTNAdeptShirt.blp",
+  "icon_png": "icons_png/BTNAdeptShirt.png",
+  "level": 6,
+  "gold": 300
+ },
+ {
+  "id": "nspi",
+  "name_ru": "Меч мертвеца",
+  "fields": {
+   "Класс": "Особый (1 ур.)",
+   "Бонусы": "+10 атаки"
+  },
+  "extra": [],
+  "icon": "BTNDeadSword.blp",
+  "icon_file": "BTNDeadSword.blp",
+  "icon_png": "icons_png/BTNDeadSword.png",
+  "level": 6,
+  "gold": 300
+ },
+ {
+  "id": "fgun",
+  "name_ru": "Сфера предсказателя",
+  "fields": {
+   "Класс": "Особый (1 ур.)",
+   "Бонусы": "+3 разума, +50 HP",
+   "Модификатор": "Применение способностей исцеляет по 3% здоровья."
+  },
+  "extra": [],
+  "icon": "BTNScarletGlobe.blp",
+  "icon_file": "BTNScarletGlobe.blp",
+  "icon_png": "icons_png/BTNScarletGlobe.png",
+  "level": 6,
+  "gold": 300
+ },
+ {
+  "id": "rej2",
+  "name_ru": "Кулон с изумрудом",
+  "fields": {
+   "Класс": "Особый (1 ур.)",
+   "Бонусы": "+4 ко всем характеристикам, -1 HP regen"
+  },
+  "extra": [],
+  "icon": "BTNEmeraldAmulet.blp",
+  "icon_file": "BTNEmeraldAmulet.blp",
+  "icon_png": "icons_png/BTNEmeraldAmulet.png",
+  "level": 6,
+  "gold": 300
+ },
+ {
+  "id": "frhg",
+  "name_ru": "Ритуальный кинжал",
+  "fields": {
+   "Класс": "Особый (1 ур.)",
+   "Модификатор": "Убийство противника усиливает следующую атаку героя, которая нанесет 50 ед. дополнительного магического урона."
+  },
+  "extra": [],
+  "icon": "BTNRitualDagger.blp",
+  "icon_file": "BTNRitualDagger.blp",
+  "icon_png": "icons_png/BTNRitualDagger.png",
+  "level": 6,
+  "gold": 300
+ },
+ {
+  "id": "gvsm",
+  "name_ru": "Жезл с кварцом",
+  "fields": {
+   "Класс": "Особый (1 ур.)",
+   "Бонусы": "+1 MP regen",
+   "Способности": "Цели под действием \"заморозки\" будут получать на 35% больше урона от статусов. Не влияет на урон от повторной заморозки (т.к. урон наносится после снятия заморозки)."
+  },
+  "extra": [],
+  "icon": "BTNWhiteShardStaff.blp",
+  "icon_file": "BTNWhiteShardStaff.blp",
+  "icon_png": "icons_png/BTNWhiteShardStaff.png",
+  "level": 6,
+  "gold": 300
+ },
+ {
+  "id": "dust",
+  "name_ru": "Проклятая чаша",
+  "fields": {
+   "Класс": "Особый (1 ур.)",
+   "Способности": "Герой получает на 11% больше урона и наносит врагам на 11% больше урона. Не действует на статусы."
+  },
+  "extra": [],
+  "icon": "BTNCursedCup.blp",
+  "icon_file": "BTNCursedCup.blp",
+  "icon_png": "icons_png/BTNCursedCup.png",
+  "level": 6,
+  "gold": 300
+ },
+ {
+  "id": "tgxp",
+  "name_ru": "Сыр",
+  "fields": {
+   "Класс": "Особый (1 ур.)",
+   "Бонусы": "+1.5 HP regen, +1.5 MP regen"
+  },
+  "extra": [],
+  "icon": "ReplaceableTextures\\CommandButtons\\BTNCheese.blp",
+  "icon_file": null,
+  "icon_png": null,
+  "level": 6,
+  "gold": 300
+ },
+ {
+  "id": "rre2",
+  "name_ru": "Чужеземный фрукт",
+  "fields": {
+   "Класс": "Артефакт (2 ур.)",
+   "Бонусы": "+25 HP regen, +10 MP regen, +75% защита от болезни",
+   "Способности": "Увеличивает получаемый урон от атак и умений на 100% при запасе здоровья 75% и выше."
+  },
+  "extra": [],
+  "icon": "BTNAlienGrapes.blp",
+  "icon_file": "BTNAlienGrapes.blp",
+  "icon_png": "icons_png/BTNAlienGrapes.png",
+  "level": 4,
+  "gold": 2300
+ },
+ {
+  "id": "rej6",
+  "name_ru": "*Опыт*",
+  "fields": {},
+  "extra": [
+   "100 инком экспы"
+  ],
+  "icon": null,
+  "icon_file": null,
+  "icon_png": null,
+  "level": 0,
+  "gold": null
+ },
+ {
+  "id": "spre",
+  "name_ru": "Кулак титана",
+  "fields": {
+   "Класс": "Артефакт (5 ур.)",
+   "Бонусы": "+40 сила, +50 атаки, +25% урон от атак и умений против врагов 0-1 уровня",
+   "Модификатор": "Атака наносит (250% сила) ед. маг. урона по области и оглушает на 2 сек. с 50% шансом. Перезарядка - 10 сек."
+  },
+  "extra": [],
+  "icon": "BTNTitanGlove.blp",
+  "icon_file": "BTNTitanGlove.blp",
+  "icon_png": "icons_png/BTNTitanGlove.png",
+  "level": 4,
+  "gold": 5400
+ },
+ {
+  "id": "mnsf",
+  "name_ru": "Кристаллическое ожерелье",
+  "fields": {
+   "Класс": "Артефакт (5 ур.)",
+   "Бонусы": "+40 разум, +800 MP, +8 MP regen, +175 сила умений, +11% наносимый урон от атак и умений"
+  },
+  "extra": [],
+  "icon": "BTNT5Necklace.blp",
+  "icon_file": "BTNT5Necklace.blp",
+  "icon_png": "icons_png/BTNT5Necklace.png",
+  "level": 4,
+  "gold": 5400
+ },
+ {
+  "id": "axas",
+  "name_ru": "Стальное посвящение",
+  "fields": {
+   "Класс": "Артефакт (5 ур.)",
+   "Бонусы": "+40 ловкость, +600 HP, +30% защита от врагов 0-1 уровня, +11 пробитие",
+   "Модификатор": "Раз в 4 сек. герой наносит (300% ловкость) ед. ответного урона врагу и с шансом 50% оглушает на 4 сек."
+  },
+  "extra": [],
+  "icon": "BTNT5Shield.blp",
+  "icon_file": "BTNT5Shield.blp",
+  "icon_png": "icons_png/BTNT5Shield.png",
+  "level": 4,
+  "gold": 5400
+ },
+ {
+  "id": "stre",
+  "name_ru": "Жезл некроманта",
+  "fields": {
+   "Класс": "Особый (1 ур.)",
+   "Бонусы": "+50 сила умений",
+   "Способности": "При использовании вызывает 2 скелетов на 40 сек. Перезарядка - 20 сек."
+  },
+  "extra": [],
+  "icon": null,
+  "icon_file": null,
+  "icon_png": null,
+  "level": 6,
+  "gold": 300
+ },
+ {
+  "id": "lure",
+  "name_ru": "Кольцо регенерации",
+  "fields": {
+   "Класс": "Особый (1 ур.)",
+   "Бонусы": "+3 HP regen"
+  },
+  "extra": [],
+  "icon": "ReplaceableTextures\\CommandButtons\\BTNRingSkull.blp",
+  "icon_file": null,
+  "icon_png": null,
+  "level": 6,
+  "gold": 300
+ },
+ {
+  "id": "rump",
+  "name_ru": "Кольцо мага",
+  "fields": {
+   "Класс": "Особый (1 ур.)",
+   "Бонусы": "+3 MP regen"
+  },
+  "extra": [],
+  "icon": "ReplaceableTextures\\CommandButtons\\BTNRingJadeFalcon.blp",
+  "icon_file": null,
+  "icon_png": null,
+  "level": 6,
+  "gold": 300
+ },
+ {
+  "id": "sfog",
+  "name_ru": "Булава",
+  "fields": {
+   "Класс": "Особый (1 ур.)",
+   "Бонусы": "+20% урон от атак и умений против врагов ближнего боя, -10% урон от атак и умений против врагов дальнего боя"
+  },
+  "extra": [],
+  "icon": "BTNMace.blp",
+  "icon_file": "BTNMace.blp",
+  "icon_png": "icons_png/BTNMace.png",
+  "level": 6,
+  "gold": 300
+ },
+ {
+  "id": "rugt",
+  "name_ru": "Полушубок охотника",
+  "fields": {
+   "Класс": "Особый (1 ур.)",
+   "Бонусы": "+25% защита от кровотечения, сопротивление кровотечению"
+  },
+  "extra": [],
+  "icon": "BTNArmorLeatherCrude.blp",
+  "icon_file": "BTNArmorLeatherCrude.blp",
+  "icon_png": "icons_png/BTNArmorLeatherCrude.png",
+  "level": 6,
+  "gold": 300
+ },
+ {
+  "id": "rej5",
+  "name_ru": "Чётки",
+  "fields": {
+   "Класс": "Особый (1 ур.)",
+   "Бонусы": "+10% урон от атак и умений против нежити"
+  },
+  "extra": [],
+  "icon": "BTNBeads.blp",
+  "icon_file": "BTNBeads.blp",
+  "icon_png": "icons_png/BTNBeads.png",
+  "level": 6,
+  "gold": 300
+ },
+ {
+  "id": "scul",
+  "name_ru": "Талисман крестоносца",
+  "fields": {
+   "Класс": "Особый (1 ур.)",
+   "Бонусы": "+3 силы, +5% защита от атак и умений от нежити"
+  },
+  "extra": [],
+  "icon": "BTNInsurance8.blp",
+  "icon_file": "BTNInsurance8.blp",
+  "icon_png": "icons_png/BTNInsurance8.png",
+  "level": 6,
+  "gold": 300
+ },
+ {
+  "id": "ktrm",
+  "name_ru": "Полярное сияние",
+  "fields": {
+   "Класс": "Новогодний",
+   "Бонусы": "+5 main stat, +20 атаки",
+   "Способности": "Оглушенные противники получают +35% урона от героя. Противники под действием заморозки получают +35% урона от героя. Не действует на статусы."
+  },
+  "extra": [],
+  "icon": "BTNPolarShine.blp",
+  "icon_file": "BTNPolarShine.blp",
+  "icon_png": "icons_png/BTNPolarShine.png",
+  "level": 8,
+  "gold": 0
+ },
+ {
+  "id": "ledg",
+  "name_ru": "Снегоцвет",
+  "fields": {
+   "Класс": "Новогодний",
+   "Бонусы": "+185 сила умений, +3.0 MP regen, +1.5 HP regen",
+   "Негативные эффекты": "Повышает время перезарядки модификаторов на 50%, урон героям снижается на 10%."
+  },
+  "extra": [],
+  "icon": "BTNSnowplant.blp",
+  "icon_file": "BTNSnowplant.blp",
+  "icon_png": "icons_png/BTNSnowplant.png",
+  "level": 8,
+  "gold": 0
+ },
+ {
+  "id": "k3m2",
+  "name_ru": "Жидкий лёд",
+  "fields": {
+   "Класс": "Новогодний",
+   "Бонусы": "+3 защиты, сопротивление заморозке",
+   "Способности": "Распространяет ауру на дистанцию 1200 ед., замедляющую скорость передвижения и атаки противников на 15%."
+  },
+  "extra": [],
+  "icon": "BTNCrystalBottleBlue.blp",
+  "icon_file": "BTNCrystalBottleBlue.blp",
+  "icon_png": "icons_png/BTNCrystalBottleBlue.png",
+  "level": 8,
+  "gold": 0
+ },
+ {
+  "id": "arsc",
+  "name_ru": "Штиль",
+  "fields": {
+   "Класс": "Особый (5++ ур.)",
+   "Бонусы": "+50 atk, +20 agi, +25 пробитие",
+   "Способности": "Увеличивает урон от атак и умений на 50%, если поражаемый враг имеет текущее здоровье выше, чем текущее здоровье героя."
+  },
+  "extra": [],
+  "icon": "BTNT7Art1.blp",
+  "icon_file": "BTNT7Art1.blp",
+  "icon_png": "icons_png/BTNT7Art1.png",
+  "level": 12,
+  "gold": 2750
+ },
+ {
+  "id": "horl",
+  "name_ru": "Покров Архонта",
+  "fields": {
+   "Класс": "Особый (5++ ур.)",
+   "Бонусы": "70% защита от магии, +8 armor, +1000 MP, +6 MP regen, сопротивление проклятиям"
+  },
+  "extra": [],
+  "icon": "BTNT7Art2.blp",
+  "icon_file": "BTNT7Art2.blp",
+  "icon_png": "icons_png/BTNT7Art2.png",
+  "level": 12,
+  "gold": 2750
+ },
+ {
+  "id": "bfhr",
+  "name_ru": "Дракон-хранитель",
+  "fields": {
+   "Класс": "Особый (5++ ур.)",
+   "Бонусы": "+15 armor, +25 str, +15% защита от атак и умений героев, +25% защита от статусов, +60 ответный урон",
+   "Способности": "Усиливает ответный урон на 1% за каждый 1% недостающего здоровья у героя."
+  },
+  "extra": [],
+  "icon": "BTNT7Art3.blp",
+  "icon_file": "BTNT7Art3.blp",
+  "icon_png": "icons_png/BTNT7Art3.png",
+  "level": 12,
+  "gold": 2750
+ },
+ {
+  "id": "ccmd",
+  "name_ru": "Роза Вечности",
+  "fields": {
+   "Класс": "Особый (5++ ур.)",
+   "Бонусы": "+20 all stats, +500 HP, +500 MP, +2.5 HP regen, +2.5 MP regen",
+   "Способности": "Каждую минуту игрового времени увеличивает характеристики героя на 3 ед. и время возрождения на 1 сек. Необратимый эффект."
+  },
+  "extra": [],
+  "icon": "BTNT7Art4.blp",
+  "icon_file": "BTNT7Art4.blp",
+  "icon_png": "icons_png/BTNT7Art4.png",
+  "level": 12,
+  "gold": 2750
+ },
+ {
+  "id": "cosl",
+  "name_ru": "Экскалибур",
+  "fields": {
+   "Класс": "Особый (5++ ур.)",
+   "Бонусы": "+40 atk, +25 str, +25% atk speed, +15% урон от атак и умений врагам ближнего боя",
+   "Модификатор": "Атака героя создает веер из 5 волн, каждая из которых наносит по 200 ед. урона. Перезарядка - 20 сек."
+  },
+  "extra": [],
+  "icon": "BTNT7Art5.blp",
+  "icon_file": "BTNT7Art5.blp",
+  "icon_png": "icons_png/BTNT7Art5.png",
+  "level": 12,
+  "gold": 2750
+ },
+ {
+  "id": "oslo",
+  "name_ru": "Корона Королевы Рощи",
+  "fields": {
+   "Класс": "Особый (5++ ур.)",
+   "Бонусы": "+35 int, +10 armor, +250 сила умений",
+   "Модификатор": "Применение способности окутывает в корни 4 ближайших противников, нанося им (50 + 8% сила умений) ед. урона в сек. Длительность - 10 сек. (герои - 5 сек.). Перезарядка - 15 сек."
+  },
+  "extra": [],
+  "icon": "BTNT7Art6.blp",
+  "icon_file": "BTNT7Art6.blp",
+  "icon_png": "icons_png/BTNT7Art6.png",
+  "level": 12,
+  "gold": 2750
+ },
+ {
+  "id": "gldo",
+  "name_ru": "Божественные браслеты",
+  "fields": {
+   "Класс": "Особый (5++ ур.)",
+   "Бонусы": "+150% atk speed, +15 HP regen, +20% наносимый урон от атак и умений"
+  },
+  "extra": [],
+  "icon": "BTNT7Art7.blp",
+  "icon_file": "BTNT7Art7.blp",
+  "icon_png": "icons_png/BTNT7Art7.png",
+  "level": 12,
+  "gold": 2750
+ },
+ {
+  "id": "oli2",
+  "name_ru": "Заколдованный талисман",
+  "fields": {
+   "Класс": "Особый (1 ур.)",
+   "Бонусы": "+15% сила модификаторов, +15% урон от статусов"
+  },
+  "extra": [],
+  "icon": "ReplaceableTextures\\CommandButtons\\BTNTalisman.blp",
+  "icon_file": null,
+  "icon_png": null,
+  "level": 6,
+  "gold": 300
+ },
+ {
+  "id": "olig",
+  "name_ru": "Кирка",
+  "fields": {
+   "Класс": "Дополнительный",
+   "Бонусы": "+4 пробитие",
+   "Способности": "Разрушение героем кристалла или кластера приносит дополнительный ресурс с 50% вероятностью."
+  },
+  "extra": [],
+  "icon": "ReplaceableTextures\\CommandButtons\\BTNGatherGold.blp",
+  "icon_file": null,
+  "icon_png": null,
+  "level": 3,
+  "gold": 250
+ },
+ {
+  "id": "ofir",
+  "name_ru": "Свиток закаливания",
+  "fields": {
+   "Класс": "Усилитель",
+   "Способности": "Усиливает предмет класса \"Дополнительный\" до класса \"Закаленный\"."
+  },
+  "extra": [],
+  "icon": "ReplaceableTextures\\CommandButtons\\BTNBansheeMaster.blp",
+  "icon_file": null,
+  "icon_png": null,
+  "level": 0,
+  "gold": 750
+ },
+ {
+  "id": "ocor",
+  "name_ru": "Адамантовая кирка",
+  "fields": {
+   "Класс": "Закаленный",
+   "Бонусы": "+20 пробитие, +4 защита",
+   "Способности": "Разрушение героем кристалла или кластера приносит доп. ресурс с 100% вероятностью. Разрушение кластера приносит сразу 1 доп. ресурс и 1 доп. ресурс высокого качества. Шанс получения цельного самоцвета повышен."
+  },
+  "extra": [],
+  "icon": "war3mapImported\\BTNPickaxe3.blp",
+  "icon_file": "war3mapImported\\BTNPickaxe3.blp",
+  "icon_png": null,
+  "level": null,
+  "gold": 1000
+ },
+ {
+  "id": "sor1",
+  "name_ru": "Маска фокусника",
+  "fields": {
+   "Класс": "Искаженный",
+   "Бонусы": "+3 MP regen, +3 armor, +80% сила модификаторов",
+   "Способности": "50% от силы модификаторов применяется как бонус к урону от статусов."
+  },
+  "extra": [],
+  "icon": "BTNPurpleItem21.blp",
+  "icon_file": "BTNPurpleItem21.blp",
+  "icon_png": "icons_png/BTNPurpleItem21.png",
+  "level": 3,
+  "gold": 1700
+ },
+ {
+  "id": "rhe3",
+  "name_ru": "Преобразователь самоцветов",
+  "fields": {
+   "Класс": "Усилитель",
+   "Способности": "Позволяет объединять три одинаковых самоцвета в один очищенный самоцвет."
+  },
+  "extra": [],
+  "icon": "BTNGemsCrafter.blp",
+  "icon_file": "BTNGemsCrafter.blp",
+  "icon_png": "icons_png/BTNGemsCrafter.png",
+  "level": null,
+  "gold": 400
+ },
+ {
+  "id": "rma2",
+  "name_ru": "Очищенный рубин",
+  "fields": {
+   "Класс": "Самоцвет",
+   "Бонусы": "+50 str"
+  },
+  "extra": [],
+  "icon": "BTNRuby2.blp",
+  "icon_file": "BTNRuby2.blp",
+  "icon_png": "icons_png/BTNRuby2.png",
+  "level": null,
+  "gold": 2200
+ },
+ {
+  "id": "sor2",
+  "name_ru": "Очищенный изумруд",
+  "fields": {
+   "Класс": "Самоцвет",
+   "Бонусы": "+50 agi"
+  },
+  "extra": [],
+  "icon": "BTNEmerald2.blp",
+  "icon_file": "BTNEmerald2.blp",
+  "icon_png": "icons_png/BTNEmerald2.png",
+  "level": null,
+  "gold": 2200
+ },
+ {
+  "id": "sor3",
+  "name_ru": "Очищенный сапфир",
+  "fields": {
+   "Класс": "Самоцвет",
+   "Бонусы": "+50 int"
+  },
+  "extra": [],
+  "icon": "BTNSapfire2.blp",
+  "icon_file": "BTNSapfire2.blp",
+  "icon_png": "icons_png/BTNSapfire2.png",
+  "level": null,
+  "gold": 2200
+ },
+ {
+  "id": "sor4",
+  "name_ru": "Очищенный опал",
+  "fields": {
+   "Класс": "Самоцвет",
+   "Бонусы": "+2000 HP"
+  },
+  "extra": [],
+  "icon": "BTNOpal2.blp",
+  "icon_file": "BTNOpal2.blp",
+  "icon_png": "icons_png/BTNOpal2.png",
+  "level": null,
+  "gold": 2200
+ },
+ {
+  "id": "sor5",
+  "name_ru": "Очищенный аметист",
+  "fields": {
+   "Класс": "Самоцвет",
+   "Бонусы": "+400 сила умений"
+  },
+  "extra": [],
+  "icon": "BTNAmetist2.blp",
+  "icon_file": "BTNAmetist2.blp",
+  "icon_png": "icons_png/BTNAmetist2.png",
+  "level": null,
+  "gold": 2200
+ },
+ {
+  "id": "sora",
+  "name_ru": "Амулет грозы",
+  "fields": {
+   "Класс": "Особый (3 ур.) + Шторм",
+   "Бонусы": "+30% скорость атаки, +1 защиты, +40% сила модификаторов",
+   "Комплект": "c3"
+  },
+  "extra": [],
+  "icon": "BTNThunderAmulet.blp",
+  "icon_file": "BTNThunderAmulet.blp",
+  "icon_png": "icons_png/BTNThunderAmulet.png",
+  "level": 13,
+  "gold": 900
+ },
+ {
+  "id": "glsk",
+  "name_ru": "Сфера исцеления",
+  "fields": {
+   "Класс": "Пасхальный",
+   "Бонусы": "+350 HP, +3 MP regen, +50 сила умений",
+   "Модификатор": "Использование способностей исцеляет 150 ед. здоровья 6-ти случайным союзным юнитам вокруг героя. Не действует на механизмы, строения и на самого героя. Перезарядка - 5 сек."
+  },
+  "extra": [],
+  "icon": "BTNEasterItem10.blp",
+  "icon_file": "BTNEasterItem10.blp",
+  "icon_png": "icons_png/BTNEasterItem10.png",
+  "level": 8,
+  "gold": 0
+ },
+ {
+  "id": "thle",
+  "name_ru": "Отражающий доспех",
+  "fields": {
+   "Класс": "Пасхальный",
+   "Бонусы": "+6 защиты, +4 HP regen, +10% защита от юнитов дальнего боя, +30% усиление ответного урона",
+   "Способности": "Повышение уровня героя навсегда дарует 2 ед. ответного урона."
+  },
+  "extra": [],
+  "icon": "BTNEasterItem11.blp",
+  "icon_file": "BTNEasterItem11.blp",
+  "icon_png": "icons_png/BTNEasterItem11.png",
+  "level": 8,
+  "gold": 0
+ },
+ {
+  "id": "dphe",
+  "name_ru": "Меч ангела",
+  "fields": {
+   "Класс": "Пасхальный",
+   "Бонусы": "+20 атаки, -15% перезарядка модификаторов, +7 пробитие",
+   "Способности": "Убийство вражеской нежити повышает силу модификаторов на 1% в течение 120 сек."
+  },
+  "extra": [],
+  "icon": "BTNEasterItem12.blp",
+  "icon_file": "BTNEasterItem12.blp",
+  "icon_png": "icons_png/BTNEasterItem12.png",
+  "level": 8,
+  "gold": 0
+ },
+ {
+  "id": "sor6",
+  "name_ru": "Вальс смерти",
+  "fields": {
+   "Класс": "Особый (5++ ур.)",
+   "Бонусы": "+25 atk, +50% atk speed, +15 agi, +25% урон от атак и умений юнитам ближнего боя, +40% получаемый урон от атак и умений",
+   "Способности": "Атаки героя имеют шанс 35% нанести 3-кратный урон. Герой уворачивается от атак с 50% шансом."
+  },
+  "extra": [],
+  "icon": "BTNDeathWaltz.blp",
+  "icon_file": "BTNDeathWaltz.blp",
+  "icon_png": "icons_png/BTNDeathWaltz.png",
+  "level": 12,
+  "gold": 2750
+ },
+ {
+  "id": "sor7",
+  "name_ru": "Шкатулка Диббука",
+  "fields": {
+   "Класс": "Хэллоуин",
+   "Модификатор": "Восстанавливает 35 HP и 10 MP при использовании способностей.",
+   "Способности": "Модификаторы восстановления или снижения HP и MP (от использования способностей) теперь срабатывают с задержкой 2-6 сек. с удвоенным эффектом."
+  },
+  "extra": [],
+  "icon": "BTNHalloween10.blp",
+  "icon_file": "BTNHalloween10.blp",
+  "icon_png": "icons_png/BTNHalloween10.png",
+  "level": 8,
+  "gold": 0
+ },
+ {
+  "id": "sor8",
+  "name_ru": "Лезвие скорби",
+  "fields": {
+   "Класс": "Хэллоуин",
+   "Бонусы": "+15 atk, +7 agi, +15% урон от атак и умений по героям",
+   "Способности": "Убийство вражеского героя повышает силу, ловкость и разум на 1 ед."
+  },
+  "extra": [],
+  "icon": "BTNHalloween11.blp",
+  "icon_file": "BTNHalloween11.blp",
+  "icon_png": "icons_png/BTNHalloween11.png",
+  "level": 8,
+  "gold": 0
+ },
+ {
+  "id": "sor9",
+  "name_ru": "Пхурба Кила",
+  "fields": {
+   "Класс": "Хэллоуин",
+   "Бонусы": "+10 main stat, +50% урон от кровотечения"
+  },
+  "extra": [],
+  "icon": "BTNHalloween12.blp",
+  "icon_file": "BTNHalloween12.blp",
+  "icon_png": "icons_png/BTNHalloween12.png",
+  "level": 8,
+  "gold": 0
+ },
+ {
+  "id": "oven",
+  "name_ru": "Головка сыра",
+  "fields": {
+   "Класс": "Артефакт (1 ур.)",
+   "Бонусы": "+5 HP regen, +5 MP regen",
+   "Множитель": "Повышает запас здоровья и маны на 20%. Эффект обновляется автоматически."
+  },
+  "extra": [],
+  "icon": "BTNCheese2.blp",
+  "icon_file": "BTNCheese2.blp",
+  "icon_png": "icons_png/BTNCheese2.png",
+  "level": 4,
+  "gold": 900
+ },
+ {
+  "id": "tmmt",
+  "name_ru": "Иерихон",
+  "fields": {
+   "Класс": "Особый (5++ ур.) + Доблесть",
+   "Бонусы": "+60 atk, +40 str, +20% atk speed",
+   "Способности": "Атаки героя накладывают поджог с шансом 50% и итоговым уроном (175% сила) ед. Также применяет эффект горючести с 30% шансом по области.",
+   "Комплект": "c1"
+  },
+  "extra": [],
+  "icon": "BTNGoldenValorSword.blp",
+  "icon_file": "BTNGoldenValorSword.blp",
+  "icon_png": "icons_png/BTNGoldenValorSword.png",
+  "level": 14,
+  "gold": 2750
+ },
+ {
+  "id": "shtm",
+  "name_ru": "Хекстек",
+  "fields": {
+   "Класс": "Особый (5++ ур.) + Шторм",
+   "Бонусы": "+1500 MP, +12 MP regen, +200 сила умений",
+   "Модификатор": "Использование умений вызывает магические взрывы в кольце вокруг героя, наносящие по (350 + 50% сила умений) ед. урона. Перезарядка - 15 сек.",
+   "Комплект": "c3"
+  },
+  "extra": [],
+  "icon": "BTNStormPrism.blp",
+  "icon_file": "BTNStormPrism.blp",
+  "icon_png": "icons_png/BTNStormPrism.png",
+  "level": 13,
+  "gold": 2750
+ },
+ {
+  "id": "hbth",
+  "name_ru": "Копье Забвения",
+  "fields": {
+   "Класс": "Особый (5++ ур.) + Бездна",
+   "Бонусы": "+30% atk speed, +25 agi, +40 пробитие",
+   "Способности": "Атака героя с шансом 50% наносит цели физичесий урон в размере 5% от текущего запаса здоровья цели.",
+   "Комплект": "c2"
+  },
+  "extra": [],
+  "icon": "BTNOblivionSpear.blp",
+  "icon_file": "BTNOblivionSpear.blp",
+  "icon_png": "icons_png/BTNOblivionSpear.png",
+  "level": 5,
+  "gold": 2750
+ },
+ {
+  "id": "shhn",
+  "name_ru": "Доспех демона",
+  "fields": {
+   "Класс": "Особый (5++ ур.) + Адский",
+   "Бонусы": "+3250 HP, +16 HP regen, +50 ответный урон, +50% усиление ответного урона, +75% защита от поджога, сопротивление поджогу",
+   "Способности": "Ответный урон теперь становится эффектом поджога с 60% шансом.",
+   "Комплект": "c4"
+  },
+  "extra": [],
+  "icon": "BTNDemonicArmor.blp",
+  "icon_file": "BTNDemonicArmor.blp",
+  "icon_png": "icons_png/BTNDemonicArmor.png",
+  "level": 15,
+  "gold": 2750
+ },
+ {
+  "id": "shdt",
+  "name_ru": "Коготь волкодава",
+  "fields": {
+   "Класс": "Искаженный",
+   "Бонусы": "+30 atk, +10 agi",
+   "Способности": "Шанс кровотечения и его урон усиливаются на 5% за каждый уровень врага."
+  },
+  "extra": [],
+  "icon": "BTNPurpleItem24.blp",
+  "icon_file": "BTNPurpleItem24.blp",
+  "icon_png": "icons_png/BTNPurpleItem24.png",
+  "level": 3,
+  "gold": 1700
+ },
+ {
+  "id": "fwss",
+  "name_ru": "Кольцо шипов",
+  "fields": {
+   "Класс": "Искаженный",
+   "Бонусы": "+600 HP, +6 HP regen, +60% усиление ответного урона, +60% урон от кровотечения"
+  },
+  "extra": [],
+  "icon": "BTNPurpleItem23.blp",
+  "icon_file": "BTNPurpleItem23.blp",
+  "icon_png": "icons_png/BTNPurpleItem23.png",
+  "level": 3,
+  "gold": 1700
+ },
+ {
+  "id": "pgin",
+  "name_ru": "Эссенция арканы",
+  "fields": {
+   "Класс": "Искаженный",
+   "Бонусы": "+500 MP, +175 сила умений",
+   "Способности": "При использовании фиксирует текущий запас маны на 10 сек."
+  },
+  "extra": [],
+  "icon": "BTNPurpleItem22.blp",
+  "icon_file": "BTNPurpleItem22.blp",
+  "icon_png": "icons_png/BTNPurpleItem22.png",
+  "level": 3,
+  "gold": 1700
+ },
+ {
+  "id": "I001",
+  "name_ru": "Кольцо разума",
+  "fields": {
+   "Класс": "Обычный",
+   "Бонусы": "+5 int"
+  },
+  "extra": [],
+  "icon": "BTNIntRing.blp",
+  "icon_file": "BTNIntRing.blp",
+  "icon_png": "icons_png/BTNIntRing.png",
+  "level": 1,
+  "gold": 200
+ },
+ {
+  "id": "I005",
+  "name_ru": "Кольцо силы",
+  "fields": {
+   "Класс": "Обычный",
+   "Бонусы": "+5 str"
+  },
+  "extra": [],
+  "icon": "BTNStrRing.blp",
+  "icon_file": "BTNStrRing.blp",
+  "icon_png": "icons_png/BTNStrRing.png",
+  "level": 1,
+  "gold": 200
+ },
+ {
+  "id": "I00C",
+  "name_ru": "Кольцо ловкости",
+  "fields": {
+   "Класс": "Обычный",
+   "Бонусы": "+5 agi"
+  },
+  "extra": [],
+  "icon": "BTNAgiRing.blp",
+  "icon_file": "BTNAgiRing.blp",
+  "icon_png": "icons_png/BTNAgiRing.png",
+  "level": 1,
+  "gold": 200
+ },
+ {
+  "id": "I00G",
+  "name_ru": "Зелье здоровья",
+  "fields": {},
+  "extra": [
+   "Восстанавливает 400 ед. здоровья."
+  ],
+  "icon": null,
+  "icon_file": null,
+  "icon_png": null,
+  "level": 0,
+  "gold": 35
+ },
+ {
+  "id": "I00H",
+  "name_ru": "Зелье маны",
+  "fields": {},
+  "extra": [
+   "Восстанавливает 200 ед. маны."
+  ],
+  "icon": "ReplaceableTextures\\CommandButtons\\BTNPotionBlue.blp",
+  "icon_file": null,
+  "icon_png": null,
+  "level": 0,
+  "gold": 35
+ },
+ {
+  "id": "I00I",
+  "name_ru": "Бездонная фляга",
+  "fields": {
+   "Класс": "Квестовый [1/2]",
+   "Способности": "При использовании восстанавливает 75 HP и 30 MP.",
+   "Задание": "Используйте флягу или зелья 15 раз чтобы улучшить предмет."
+  },
+  "extra": [],
+  "icon": "ReplaceableTextures\\CommandButtons\\BTNPotionOfRestoration.blp",
+  "icon_file": null,
+  "icon_png": null,
+  "level": 1,
+  "gold": 300
+ },
+ {
+  "id": "I00J",
+  "name_ru": "Сосуд исцеления",
+  "fields": {
+   "Класс": "Квестовый [2/2]",
+   "Бонусы": "+1 HP regen, +0.5 MP regen",
+   "Способности": "При использовании восстанавливает 150 HP и 60 MP.",
+   "Задание": "Используйте флягу или зелья 30 раз чтобы улучшить предмет."
+  },
+  "extra": [],
+  "icon": "ReplaceableTextures\\CommandButtons\\BTNVialFull.blp",
+  "icon_file": null,
+  "icon_png": null,
+  "level": 1,
+  "gold": 750
+ },
+ {
+  "id": "I00K",
+  "name_ru": "Простой топор",
+  "fields": {
+   "Класс": "Обычный",
+   "Бонусы": "+8 atk"
+  },
+  "extra": [],
+  "icon": "BTNAxe1.blp",
+  "icon_file": "BTNAxe1.blp",
+  "icon_png": "icons_png/BTNAxe1.png",
+  "level": 1,
+  "gold": 200
+ },
+ {
+  "id": "I00T",
+  "name_ru": "Амброзия",
+  "fields": {
+   "Класс": "Реликвия",
+   "Бонусы": "+2.5 HP regen, +1.25 MP regen",
+   "Способности": "При использовании восстанавливает 250 HP и 100 MP."
+  },
+  "extra": [],
+  "icon": "BTNPotion3.blp",
+  "icon_file": "BTNPotion3.blp",
+  "icon_png": "icons_png/BTNPotion3.png",
+  "level": 1,
+  "gold": 1500
+ },
+ {
+  "id": "I00U",
+  "name_ru": "Простой щит",
+  "fields": {
+   "Класс": "Обычный",
+   "Бонусы": "+3 armor, +4% защита от статусов"
+  },
+  "extra": [],
+  "icon": "ReplaceableTextures\\CommandButtons\\BTNSteelArmor.blp",
+  "icon_file": null,
+  "icon_png": null,
+  "level": 1,
+  "gold": 200
+ },
+ {
+  "id": "I00Z",
+  "name_ru": "Боевой молот",
+  "fields": {
+   "Класс": "Квестовый [1/2]",
+   "Бонусы": "+10% урон по героям",
+   "Способности": "14% шанс при атаке нанести дополнительно 50 ед. урона и оглушить цель на 3 сек. (героев на 1 сек.)",
+   "Задание": "Убейте 1 вражеского героя чтобы улучшить предмет."
+  },
+  "extra": [],
+  "icon": "BTNHammer1.blp",
+  "icon_file": "BTNHammer1.blp",
+  "icon_png": "icons_png/BTNHammer1.png",
+  "level": 1,
+  "gold": 300
+ },
+ {
+  "id": "I010",
+  "name_ru": "Освинцованный молот",
+  "fields": {
+   "Класс": "Квестовый [2/2]",
+   "Бонусы": "+15% урон по героям, +10 atk",
+   "Способности": "18% шанс при атаке нанести дополнительно 75 ед. урона и оглушить цель на 3 сек. (героев на 0.9 сек.)",
+   "Задание": "Убейте 3 вражеских героев чтобы улучшить предмет."
+  },
+  "extra": [],
+  "icon": "BTNHammer2.blp",
+  "icon_file": "BTNHammer2.blp",
+  "icon_png": "icons_png/BTNHammer2.png",
+  "level": 1,
+  "gold": 750
+ },
+ {
+  "id": "I013",
+  "name_ru": "Простые сапоги",
+  "fields": {
+   "Класс": "Обычный",
+   "Бонусы": "+50 move speed, +10% защита от статусов"
+  },
+  "extra": [],
+  "icon": "BTNBoots1.blp",
+  "icon_file": "BTNBoots1.blp",
+  "icon_png": "icons_png/BTNBoots1.png",
+  "level": 1,
+  "gold": 200
+ },
+ {
+  "id": "I018",
+  "name_ru": "Простое ожерелье",
+  "fields": {
+   "Класс": "Обычный",
+   "Бонусы": "+100 MP, +15 сила умений"
+  },
+  "extra": [],
+  "icon": "BTNNecklace1.blp",
+  "icon_file": "BTNNecklace1.blp",
+  "icon_png": "icons_png/BTNNecklace1.png",
+  "level": 1,
+  "gold": 200
+ },
+ {
+  "id": "I01D",
+  "name_ru": "Руна алчности",
+  "fields": {
+   "Класс": "Руна",
+   "Способности": "Используйте этот предмет в особом месте."
+  },
+  "extra": [],
+  "icon": "ReplaceableTextures\\CommandButtons\\BTNStone.blp",
+  "icon_file": null,
+  "icon_png": null,
+  "level": 0,
+  "gold": 0
+ },
+ {
+  "id": "I01E",
+  "name_ru": "Руна крови",
+  "fields": {
+   "Класс": "Руна",
+   "Способности": "Используйте этот предмет в особом месте."
+  },
+  "extra": [],
+  "icon": "ReplaceableTextures\\CommandButtons\\BTNOrbofSlowness.blp",
+  "icon_file": null,
+  "icon_png": null,
+  "level": 0,
+  "gold": 0
+ },
+ {
+  "id": "I01F",
+  "name_ru": "Руна мудрости",
+  "fields": {
+   "Класс": "Руна",
+   "Способности": "Используйте этот предмет в особом месте."
+  },
+  "extra": [],
+  "icon": "ReplaceableTextures\\CommandButtons\\BTNRune.blp",
+  "icon_file": null,
+  "icon_png": null,
+  "level": 0,
+  "gold": 0
+ },
+ {
+  "id": "I01G",
+  "name_ru": "Руна скверны",
+  "fields": {
+   "Класс": "Руна",
+   "Способности": "Используйте этот предмет в особом месте."
+  },
+  "extra": [],
+  "icon": "ReplaceableTextures\\CommandButtons\\BTNHeartOfSearinox.blp",
+  "icon_file": null,
+  "icon_png": null,
+  "level": 0,
+  "gold": 0
+ },
+ {
+  "id": "I01I",
+  "name_ru": "Простые ножи",
+  "fields": {
+   "Класс": "Обычный",
+   "Бонусы": "+13% atk speed"
+  },
+  "extra": [],
+  "icon": "BTNKnifes1.blp",
+  "icon_file": "BTNKnifes1.blp",
+  "icon_png": "icons_png/BTNKnifes1.png",
+  "level": 1,
+  "gold": 200
+ },
+ {
+  "id": "I01N",
+  "name_ru": "Простой доспех",
+  "fields": {
+   "Класс": "Обычный",
+   "Бонусы": "+1 armor, +2 str",
+   "Модификатор": "Раз в 4 сек. герой наносит 40 ед. урона врагу, атаковавшего героя."
+  },
+  "extra": [],
+  "icon": "BTNBody1.blp",
+  "icon_file": "BTNBody1.blp",
+  "icon_png": "icons_png/BTNBody1.png",
+  "level": 1,
+  "gold": 200
+ },
+ {
+  "id": "I01T",
+  "name_ru": "Простые штаны",
+  "fields": {
+   "Класс": "Обычный",
+   "Бонусы": "+1 armor, +2 int",
+   "Модификатор": "Применение умений восстанавливает герою 25 ед. маны. Перезарядка - 10 сек."
+  },
+  "extra": [],
+  "icon": "BTNPants1.blp",
+  "icon_file": "BTNPants1.blp",
+  "icon_png": "icons_png/BTNPants1.png",
+  "level": 1,
+  "gold": 200
+ },
+ {
+  "id": "I026",
+  "name_ru": "Боевой щит",
+  "fields": {
+   "Класс": "Квестовый [1/2]",
+   "Бонусы": "+2 защиты, +16 ответный урон",
+   "Задание": "Нанесите ответный урон 500 раз чтобы улучшить предмет."
+  },
+  "extra": [],
+  "icon": "ReplaceableTextures\\CommandButtons\\BTNImprovedUnholyArmor.blp",
+  "icon_file": null,
+  "icon_png": null,
+  "level": 1,
+  "gold": 300
+ },
+ {
+  "id": "I027",
+  "name_ru": "Щит разорителя",
+  "fields": {
+   "Класс": "Квестовый [2/2]",
+   "Бонусы": "+4 armor, +24 ответный урон, +10% усиление ответного урона",
+   "Задание": "Нанесите ответный урон 1000 раз чтобы улучшить предмет."
+  },
+  "extra": [],
+  "icon": "ReplaceableTextures\\CommandButtons\\BTNAdvancedUnholyArmor.blp",
+  "icon_file": null,
+  "icon_png": null,
+  "level": 1,
+  "gold": 750
+ },
+ {
+  "id": "I028",
+  "name_ru": "Молот веры",
+  "fields": {
+   "Класс": "Реликвия",
+   "Бонусы": "+20% урон по героям, +15 atk, +200 HP",
+   "Способности": "22% шанс при атаке нанести дополнительно 100 ед. урона и оглушить цель на 3 сек. (героев на 1 сек.)"
+  },
+  "extra": [],
+  "icon": "BTNHammer3.blp",
+  "icon_file": "BTNHammer3.blp",
+  "icon_png": "icons_png/BTNHammer3.png",
+  "level": 1,
+  "gold": 1500
+ },
+ {
+  "id": "I029",
+  "name_ru": "Зловещий щит",
+  "fields": {
+   "Класс": "Реликвия",
+   "Бонусы": "+6 armor, +40 ответный урон, +15% усиление ответного урона"
+  },
+  "extra": [],
+  "icon": "BTNShield3.blp",
+  "icon_file": "BTNShield3.blp",
+  "icon_png": "icons_png/BTNShield3.png",
+  "level": 1,
+  "gold": 1500
+ },
+ {
+  "id": "I02I",
+  "name_ru": "Курьер",
+  "fields": {
+   "Класс": "Курьер",
+   "Способности": "Создает бессмертного курьера, который будет помогать герою подбирать и покупать вещи."
+  },
+  "extra": [],
+  "icon": "ReplaceableTextures\\CommandButtons\\BTNSkink.blp",
+  "icon_file": null,
+  "icon_png": null,
+  "level": null,
+  "gold": 30
+ },
+ {
+  "id": "I02J",
+  "name_ru": "Простые перчатки",
+  "fields": {
+   "Класс": "Обычный",
+   "Бонусы": "+1 armor, +2 agi",
+   "Модификатор": "Атака героя наносит дополнительно 40 ед. маг. урона противнику. Перезарядка - 4 сек."
+  },
+  "extra": [],
+  "icon": "BTNGloves1.blp",
+  "icon_file": "BTNGloves1.blp",
+  "icon_png": "icons_png/BTNGloves1.png",
+  "level": 1,
+  "gold": 200
+ },
+ {
+  "id": "I039",
+  "name_ru": "Копьё стража",
+  "fields": {
+   "Класс": "Квестовый [1/2]",
+   "Бонусы": "+4 пробитие",
+   "Модификатор": "Атаки героя восстанавливают по 4 ед. маны. Перезарядка - 1 сек.",
+   "Задание": "Убейте 15 противников 3+ уровня чтобы улучшить предмет."
+  },
+  "extra": [],
+  "icon": "BTNSpear.blp",
+  "icon_file": "BTNSpear.blp",
+  "icon_png": "icons_png/BTNSpear.png",
+  "level": 1,
+  "gold": 300
+ },
+ {
+  "id": "I03C",
+  "name_ru": "Рунное копьё",
+  "fields": {
+   "Класс": "Квестовый [2/2]",
+   "Бонусы": "+6 пробитие, +8% atk speed",
+   "Модификатор": "Атаки героя восстанавливают по 6 ед. маны. Перезарядка - 1 сек.",
+   "Задание": "Убейте 30 противников 3+ уровня чтобы улучшить предмет."
+  },
+  "extra": [],
+  "icon": "BTNSpear2.blp",
+  "icon_file": "BTNSpear2.blp",
+  "icon_png": "icons_png/BTNSpear2.png",
+  "level": 1,
+  "gold": 750
+ },
+ {
+  "id": "I03D",
+  "name_ru": "Разящее копьё",
+  "fields": {
+   "Класс": "Реликвия",
+   "Бонусы": "+10 пробитие, +16% скорость атаки",
+   "Модификатор": "Атаки героя восстанавливают по 8 ед. маны и здоровья. Перезарядка - 1 сек."
+  },
+  "extra": [],
+  "icon": "BTNSpear3.blp",
+  "icon_file": "BTNSpear3.blp",
+  "icon_png": "icons_png/BTNSpear3.png",
+  "level": 1,
+  "gold": 1500
+ },
+ {
+  "id": "I042",
+  "name_ru": "Геодомон",
+  "fields": {
+   "Класс": "Особый (3 ур.)",
+   "Бонусы": "+200 HP, +3.50 MP regen"
+  },
+  "extra": [],
+  "icon": "BTNGeodomon.blp",
+  "icon_file": "BTNGeodomon.blp",
+  "icon_png": "icons_png/BTNGeodomon.png",
+  "level": 10,
+  "gold": 900
+ },
+ {
+  "id": "I043",
+  "name_ru": "Темные сапоги",
+  "fields": {
+   "Класс": "Особый (3 ур.) + Бездна",
+   "Бонусы": "+150 скорость бега, +10 ловкости, +25% защита от кровотечения и болезни",
+   "Комплект": "c2"
+  },
+  "extra": [],
+  "icon": "BTNShadowBoots.blp",
+  "icon_file": "BTNShadowBoots.blp",
+  "icon_png": "icons_png/BTNShadowBoots.png",
+  "level": 5,
+  "gold": 900
+ },
+ {
+  "id": "I044",
+  "name_ru": "Темные перчатки",
+  "fields": {
+   "Класс": "Особый (4 ур.) + Бездна",
+   "Бонусы": "+40% скорость атаки, +8 атаки",
+   "Способности": "Наносит (100% ловкость) ед. урона врагам, на которых вы накладываете эффект слабости.",
+   "Комплект": "c2"
+  },
+  "extra": [],
+  "icon": "BTNShadowGloves.blp",
+  "icon_file": "BTNShadowGloves.blp",
+  "icon_png": "icons_png/BTNShadowGloves.png",
+  "level": 5,
+  "gold": 1400
+ },
+ {
+  "id": "I045",
+  "name_ru": "Черный шлем",
+  "fields": {
+   "Класс": "Особый (5 ур.) + Бездна",
+   "Бонусы": "+5 защиты, +13% урон не от статусов по героям, +13% защита не от статусов от героев, -13% перезарядка модификаторов",
+   "Комплект": "c2"
+  },
+  "extra": [],
+  "icon": "BTNShadowHelmet.blp",
+  "icon_file": "BTNShadowHelmet.blp",
+  "icon_png": "icons_png/BTNShadowHelmet.png",
+  "level": 5,
+  "gold": 1800
+ },
+ {
+  "id": "I046",
+  "name_ru": "Темный доспех",
+  "fields": {
+   "Класс": "Особый (3 ур.) + Бездна",
+   "Бонусы": "+300 HP, +6 ловкость, +4 сила, +7% защита не от статусов от юнитов ближнего боя",
+   "Комплект": "c2"
+  },
+  "extra": [],
+  "icon": "BTNShadowArmor.blp",
+  "icon_file": "BTNShadowArmor.blp",
+  "icon_png": "icons_png/BTNShadowArmor.png",
+  "level": 5,
+  "gold": 900
+ },
+ {
+  "id": "I047",
+  "name_ru": "Меч Бездны",
+  "fields": {
+   "Класс": "Особый (5 ур.) + Бездна",
+   "Бонусы": "+50 атаки, +10 ловкости, +20% урон не от статусов по героям",
+   "Комплект": "c2"
+  },
+  "extra": [],
+  "icon": "BTNShadowBlade.blp",
+  "icon_file": "BTNShadowBlade.blp",
+  "icon_png": "icons_png/BTNShadowBlade.png",
+  "level": 5,
+  "gold": 1800
+ },
+ {
+  "id": "I048",
+  "name_ru": "Шлем Доблести",
+  "fields": {
+   "Класс": "Особый (5+ ур.) + Доблесть",
+   "Бонусы": "+400 HP, +250 MP, +8 защиты, +10% защита не от статусов от героев",
+   "Способности": "При уровне здоровья ниже 30% снижает получаемый урон от атак, умений и статусов 25%.",
+   "Комплект": "c1"
+  },
+  "extra": [],
+  "icon": "BTNValorHelmet.blp",
+  "icon_file": "BTNValorHelmet.blp",
+  "icon_png": "icons_png/BTNValorHelmet.png",
+  "level": 14,
+  "gold": 2150
+ },
+ {
+  "id": "I049",
+  "name_ru": "Доспех Доблести",
+  "fields": {
+   "Класс": "Особый (4 ур.) + Доблесть",
+   "Бонусы": "+500 HP, +3 защиты, +20% защита не от статусов от юнитов ближнего боя, +30 ответный урон",
+   "Комплект": "c1"
+  },
+  "extra": [],
+  "icon": "BTNValorArmor.blp",
+  "icon_file": "BTNValorArmor.blp",
+  "icon_png": "icons_png/BTNValorArmor.png",
+  "level": 14,
+  "gold": 1400
+ },
+ {
+  "id": "I04A",
+  "name_ru": "Щит стража",
+  "fields": {
+   "Класс": "Особый (3 ур.) + Доблесть",
+   "Бонусы": "30% защита от магии, блокирует 10 ед. физического урона от атак, +20 ответный урон",
+   "Комплект": "c1"
+  },
+  "extra": [],
+  "icon": "BTNValorShield.blp",
+  "icon_file": "BTNValorShield.blp",
+  "icon_png": "icons_png/BTNValorShield.png",
+  "level": 14,
+  "gold": 900
+ },
+ {
+  "id": "I04B",
+  "name_ru": "Меч стража",
+  "fields": {
+   "Класс": "Особый (3 ур.) + Доблесть",
+   "Бонусы": "+25 атаки, +20% скорость атаки",
+   "Модификатор": "Раз в 6 сек. атака героя применяет эффект поджога к врагу (100% шанс, 100 ед. урона)",
+   "Комплект": "c1"
+  },
+  "extra": [],
+  "icon": "BTNValorSword.blp",
+  "icon_file": "BTNValorSword.blp",
+  "icon_png": "icons_png/BTNValorSword.png",
+  "level": 14,
+  "gold": 900
+ },
+ {
+  "id": "I04C",
+  "name_ru": "Копье тумана",
+  "fields": {
+   "Класс": "Особый (2 ур.)",
+   "Бонусы": "+10 атаки, +5 пробитие",
+   "Модификатор": "Атака по врагам снижает их защиту на 2 ед. (+1 за каждые 30% силы модификаторов) в течение 5 сек. Перезарядка - 3 сек."
+  },
+  "extra": [],
+  "icon": "BTNShadowSpear.blp",
+  "icon_file": "BTNShadowSpear.blp",
+  "icon_png": "icons_png/BTNShadowSpear.png",
+  "level": 9,
+  "gold": 500
+ },
+ {
+  "id": "I04D",
+  "name_ru": "Книга о ритуалах",
+  "fields": {
+   "Класс": "Особый (2 ур.)",
+   "Бонусы": "+6 main stat, +200 MP, +0.85 MP regen",
+   "Способности": "Снижает урон против нежити на 20%, но повышает урон против остальных противников на 15%. Не влияет на статусы."
+  },
+  "extra": [],
+  "icon": "ReplaceableTextures\\CommandButtons\\BTNNecromancerAdept.blp",
+  "icon_file": null,
+  "icon_png": null,
+  "level": 9,
+  "gold": 500
+ },
+ {
+  "id": "I04E",
+  "name_ru": "Позолоченный кинжал",
+  "fields": {
+   "Класс": "Особый (3 ур.)",
+   "Бонусы": "+35% урон от атак и умений по героям"
+  },
+  "extra": [],
+  "icon": "BTNGoldenDagger.blp",
+  "icon_file": "BTNGoldenDagger.blp",
+  "icon_png": "icons_png/BTNGoldenDagger.png",
+  "level": 10,
+  "gold": 900
+ },
+ {
+  "id": "I04F",
+  "name_ru": "Ведьмина шляпа",
+  "fields": {
+   "Класс": "Особый (2 ур.)",
+   "Бонусы": "+4 защиты",
+   "Модификатор": "Возвращает 20 ед. маны после каждого использования умений."
+  },
+  "extra": [],
+  "icon": "BTNWitchHat.blp",
+  "icon_file": "BTNWitchHat.blp",
+  "icon_png": "icons_png/BTNWitchHat.png",
+  "level": 9,
+  "gold": 500
+ },
+ {
+  "id": "I04G",
+  "name_ru": "Магмовая сфера",
+  "fields": {
+   "Класс": "Особый (3 ур.)",
+   "Бонусы": "+5 HP regen",
+   "Способности": "Каждые 5 сек. применяет горючесть, затем поджигает врагов поблизости (30% шанс горючести, 40% шанс поджога с 100 ед.  урона)."
+  },
+  "extra": [],
+  "icon": "BTNMagma.blp",
+  "icon_file": "BTNMagma.blp",
+  "icon_png": "icons_png/BTNMagma.png",
+  "level": 10,
+  "gold": 900
+ },
+ {
+  "id": "I04H",
+  "name_ru": "Сандалии гонца",
+  "fields": {
+   "Класс": "Особый (2 ур.)",
+   "Бонусы": "+150 скорость передвижения, +2 защиты"
+  },
+  "extra": [],
+  "icon": "BTNLightBoots.blp",
+  "icon_file": "BTNLightBoots.blp",
+  "icon_png": "icons_png/BTNLightBoots.png",
+  "level": 9,
+  "gold": 500
+ },
+ {
+  "id": "I04W",
+  "name_ru": "Кинжал ястреба",
+  "fields": {
+   "Класс": "Особый (2 ур.)",
+   "Способности": "Атаки имеют 40% шанс нанести 1.3-кратный урон.",
+   "Модификатор": "Атаки восстанавливают по 6 ед. здоровья. Перезарядка - 1 сек."
+  },
+  "extra": [],
+  "icon": "BTNEagleSting.blp",
+  "icon_file": "BTNEagleSting.blp",
+  "icon_png": "icons_png/BTNEagleSting.png",
+  "level": 9,
+  "gold": 500
+ },
+ {
+  "id": "I04X",
+  "name_ru": "Костяная броня",
+  "fields": {
+   "Класс": "Особый (3 ур.)",
+   "Бонусы": "+4 защиты, +100 HP, +20% защита не от статусов от не-героев"
+  },
+  "extra": [],
+  "icon": "BTNBoneArmor.blp",
+  "icon_file": "BTNBoneArmor.blp",
+  "icon_png": "icons_png/BTNBoneArmor.png",
+  "level": 10,
+  "gold": 900
+ },
+ {
+  "id": "I050",
+  "name_ru": "Темная эссенция",
+  "fields": {
+   "Класс": "Особый (2 ур.) + Бездна",
+   "Бонусы": "+6 силы, +200 HP",
+   "Способности": "Замедляет скорость атаки врагов поблизости (область 350) на 20%.",
+   "Комплект": "c2"
+  },
+  "extra": [],
+  "icon": "BTNDemonTear.blp",
+  "icon_file": "BTNDemonTear.blp",
+  "icon_png": "icons_png/BTNDemonTear.png",
+  "level": 5,
+  "gold": 500
+ },
+ {
+  "id": "I052",
+  "name_ru": "Всепоглощающее",
+  "fields": {
+   "Класс": "Особый (4 ур.) + Бездна",
+   "Бонусы": "+300 HP, +20% урон не от статусов по не-героям, +15% урон от кровотечения",
+   "Способности": "Считается как 2 предмета комплекта \"Бездна\".",
+   "Комплект": "c2"
+  },
+  "extra": [],
+  "icon": "BTNAbyssSphere.blp",
+  "icon_file": "BTNAbyssSphere.blp",
+  "icon_png": "icons_png/BTNAbyssSphere.png",
+  "level": 5,
+  "gold": 1400
+ },
+ {
+  "id": "I053",
+  "name_ru": "Запретный плод",
+  "fields": {
+   "Класс": "Особый (4 ур.)",
+   "Бонусы": "+24 HP regen, +5 MP regen, +25% защита от болезни",
+   "Способности": "Увеличивает получаемый урон от атак и умений на 50% при запасе здоровья 50% и выше."
+  },
+  "extra": [],
+  "icon": "BTNBlueFruit.blp",
+  "icon_file": "BTNBlueFruit.blp",
+  "icon_png": "icons_png/BTNBlueFruit.png",
+  "level": 7,
+  "gold": 1400
+ },
+ {
+  "id": "I05C",
+  "name_ru": "Железная рукавица",
+  "fields": {
+   "Класс": "Особый (2 ур.)",
+   "Бонусы": "-30% скорость атаки, +15 силы, +20 атаки, +10% урон от атак и умений по врагам 0-1 уровня"
+  },
+  "extra": [],
+  "icon": "BTNIronGlove.blp",
+  "icon_file": "BTNIronGlove.blp",
+  "icon_png": "icons_png/BTNIronGlove.png",
+  "level": 9,
+  "gold": 500
+ },
+ {
+  "id": "I05G",
+  "name_ru": "Кинжал сдвига",
+  "fields": {
+   "Класс": "Особый (3 ур.)",
+   "Бонусы": "+20% скорость атаки, +7 пробитие",
+   "Способности": "Атака против вражеского героя повышает ловкость героя на 2 ед. в течение 5 сек. Эффект суммируется и обновляет своё время действия при каждом такте."
+  },
+  "extra": [],
+  "icon": "BTNRedDagger2.blp",
+  "icon_file": "BTNRedDagger2.blp",
+  "icon_png": "icons_png/BTNRedDagger2.png",
+  "level": 10,
+  "gold": 900
+ },
+ {
+  "id": "I05H",
+  "name_ru": "Шлем гладиатора",
+  "fields": {
+   "Класс": "Особый (3 ур.)",
+   "Бонусы": "+30% защита от атак и умений от героев"
+  },
+  "extra": [],
+  "icon": "BTNGladiatorHelmet.blp",
+  "icon_file": "BTNGladiatorHelmet.blp",
+  "icon_png": "icons_png/BTNGladiatorHelmet.png",
+  "level": 10,
+  "gold": 900
+ },
+ {
+  "id": "I05I",
+  "name_ru": "Накидка темного мага",
+  "fields": {
+   "Класс": "Особый (2 ур.)",
+   "Бонусы": "20% защиты от магического урона, +100 HP, +2 защиты"
+  },
+  "extra": [],
+  "icon": "BTNDarkMageRobe.blp",
+  "icon_file": "BTNDarkMageRobe.blp",
+  "icon_png": "icons_png/BTNDarkMageRobe.png",
+  "level": 9,
+  "gold": 500
+ },
+ {
+  "id": "I05R",
+  "name_ru": "Трупный яд",
+  "fields": {
+   "Класс": "Особый (3 ур.)",
+   "Способности": "Атаки героя отравляют противников, замедляя скорость атаки на 25%, скорость передвижения на 40% и нанося 12 ед. урона/сек. в течение 6 сек. (герои 3 сек.)"
+  },
+  "extra": [],
+  "icon": "BTNCripplingPoison.blp",
+  "icon_file": "BTNCripplingPoison.blp",
+  "icon_png": "icons_png/BTNCripplingPoison.png",
+  "level": 10,
+  "gold": 900
+ },
+ {
+  "id": "I05U",
+  "name_ru": "Орудие убийства",
+  "fields": {
+   "Класс": "Особый (2 ур.)",
+   "Бонусы": "+12 атаки",
+   "Модификатор": "Раз в 4 сек. атака героя наносит дополнительно 50 ед. чистого урона. Враги 0-1 уровня получают на 300% больше урона."
+  },
+  "extra": [],
+  "icon": "BTNBloodyStick.blp",
+  "icon_file": "BTNBloodyStick.blp",
+  "icon_png": "icons_png/BTNBloodyStick.png",
+  "level": 9,
+  "gold": 500
+ },
+ {
+  "id": "I05Z",
+  "name_ru": "Жало убийцы",
+  "fields": {
+   "Класс": "Особый (2 ур.)",
+   "Бонусы": "+10 атаки, +5 ловкости",
+   "Модификатор": "Атака наносит 25 ед. маг. урона, 40% шанс кровотечения с итоговым уроном 50 ед., 10% шанс наложить слабость. Перезарядка - 2 сек."
+  },
+  "extra": [],
+  "icon": "BTNKillerDagger.blp",
+  "icon_file": "BTNKillerDagger.blp",
+  "icon_png": "icons_png/BTNKillerDagger.png",
+  "level": 9,
+  "gold": 500
+ },
+ {
+  "id": "I067",
+  "name_ru": "Сульфурас",
+  "fields": {
+   "Класс": "Особый (5 ур.) + Адский",
+   "Бонусы": "+30 атаки, +30% скорость атаки, +30% урон от поджога",
+   "Модификатор": "Раз в 5 сек. атака поражает 4 случайных противников поблизости, нанося им по 150 ед. урона и применяя эффект поджога (50% шанс, 135 ед. итогового урона).",
+   "Комплект": "c4"
+  },
+  "extra": [],
+  "icon": "BTNHellItem1.blp",
+  "icon_file": "BTNHellItem1.blp",
+  "icon_png": "icons_png/BTNHellItem1.png",
+  "level": 15,
+  "gold": 1800
+ },
+ {
+  "id": "I068",
+  "name_ru": "Маска страданий",
+  "fields": {
+   "Класс": "Особый (5 ур.) + Адский",
+   "Бонусы": "+1000 HP, +500 MP, +5 all stats",
+   "Способности": "Наносит 20% полученного урона вражеским героям. Действует на любой тип урона, в том числе и на статусы.",
+   "Комплект": "c4"
+  },
+  "extra": [],
+  "icon": "BTNHellItem2.blp",
+  "icon_file": "BTNHellItem2.blp",
+  "icon_png": "icons_png/BTNHellItem2.png",
+  "level": 15,
+  "gold": 1800
+ },
+ {
+  "id": "I069",
+  "name_ru": "Богоубийца",
+  "fields": {
+   "Класс": "Особый (5+ ур.) + Адский",
+   "Бонусы": "+80 атаки, +6 ко всем характеристикам, +50% урон не от статусов по героям",
+   "Комплект": "c4"
+  },
+  "extra": [],
+  "icon": "BTNHellItem3.blp",
+  "icon_file": "BTNHellItem3.blp",
+  "icon_png": "icons_png/BTNHellItem3.png",
+  "level": 15,
+  "gold": 2150
+ },
+ {
+  "id": "I06A",
+  "name_ru": "Раскаленное ядро",
+  "fields": {
+   "Класс": "Особый (5 ур.) + Адский",
+   "Бонусы": "+500 HP, +5 защиты, +10 main stat, сопротивление поджогу",
+   "Способности": "Каждые 5 сек. применяет горючесть и поджигает врагов поблизости (40% шанс горючести, 60% шанс поджога с 225 ед.  урона).",
+   "Комплект": "c4"
+  },
+  "extra": [],
+  "icon": "BTNHellItem4.blp",
+  "icon_file": "BTNHellItem4.blp",
+  "icon_png": "icons_png/BTNHellItem4.png",
+  "level": 15,
+  "gold": 1800
+ },
+ {
+  "id": "I06B",
+  "name_ru": "Доспех изувера",
+  "fields": {
+   "Класс": "Особый (5 ур.) + Адский",
+   "Бонусы": "+2225 HP, +8 защиты, +6 HP regen, сопротивление кровотечению",
+   "Комплект": "c4"
+  },
+  "extra": [],
+  "icon": "BTNHellItem5.blp",
+  "icon_file": "BTNHellItem5.blp",
+  "icon_png": "icons_png/BTNHellItem5.png",
+  "level": 15,
+  "gold": 1800
+ },
+ {
+  "id": "I06C",
+  "name_ru": "Шлем изувера",
+  "fields": {
+   "Класс": "Особый (5 ур.) + Адский",
+   "Бонусы": "+1000 HP, +10 armor",
+   "Способности": "Дарует 50% защиты от магии, снижает физический урон от атак дальнего боя на 40 ед.",
+   "Комплект": "c4"
+  },
+  "extra": [],
+  "icon": "BTNHellItem6.blp",
+  "icon_file": "BTNHellItem6.blp",
+  "icon_png": "icons_png/BTNHellItem6.png",
+  "level": 15,
+  "gold": 1800
+ },
+ {
+  "id": "I06R",
+  "name_ru": "Оберегающий амулет",
+  "fields": {
+   "Класс": "Особый (4 ур.)",
+   "Бонусы": "+5 HP regen, +1.5 MP regen, +200 HP",
+   "Модификатор": "Раз в 3 сек. наносит 50 ед. урона атаковавшему героя врагу и восстанавливает своему носителю 25 ед. здоровья."
+  },
+  "extra": [],
+  "icon": "BTNSaveAmulet.blp",
+  "icon_file": "BTNSaveAmulet.blp",
+  "icon_png": "icons_png/BTNSaveAmulet.png",
+  "level": 7,
+  "gold": 1400
+ },
+ {
+  "id": "I06S",
+  "name_ru": "Обсидиан",
+  "fields": {
+   "Класс": "Особый (4 ур.)",
+   "Бонусы": "+15 атаки, +5 силы, +5 ловкости, +2 защиты",
+   "Способности": "Дарует сплеш-эффект в ближнем бою (10% по большой области)."
+  },
+  "extra": [],
+  "icon": "BTNObsidianSword.blp",
+  "icon_file": "BTNObsidianSword.blp",
+  "icon_png": "icons_png/BTNObsidianSword.png",
+  "level": 7,
+  "gold": 1400
+ },
+ {
+  "id": "I06U",
+  "name_ru": "Костяные колокольчики",
+  "fields": {
+   "Класс": "Особый (5 ур.)",
+   "Бонусы": "+20 атаки, +3 HP regen, +1 MP regen",
+   "Способности": "Дарует 22% вампиризма."
+  },
+  "extra": [],
+  "icon": "ReplaceableTextures\\CommandButtons\\BTNBoneChimes.blp",
+  "icon_file": null,
+  "icon_png": null,
+  "level": 11,
+  "gold": 1800
+ },
+ {
+  "id": "I06V",
+  "name_ru": "Око Бездны",
+  "fields": {
+   "Класс": "Особый (5+ ур.) + Бездна",
+   "Бонусы": "+6 защиты, +15% урон не от статусов",
+   "Способности": "+40% урона не от статусов по врагам с запасом здоровья ниже 50%.",
+   "Комплект": "c2"
+  },
+  "extra": [],
+  "icon": "BTNAbyssEye.blp",
+  "icon_file": "BTNAbyssEye.blp",
+  "icon_png": "icons_png/BTNAbyssEye.png",
+  "level": 5,
+  "gold": 2150
+ },
+ {
+  "id": "I06W",
+  "name_ru": "Манакатализатор",
+  "fields": {
+   "Класс": "Особый (3 ур.)",
+   "Бонусы": "+500 MP, +1 MP regen",
+   "Модификатор": "Использование умений повышает защиту героя на 20 ед. в течение 3 сек. Эффекты суммируются."
+  },
+  "extra": [],
+  "icon": "BTNManacatalizator.blp",
+  "icon_file": "BTNManacatalizator.blp",
+  "icon_png": "icons_png/BTNManacatalizator.png",
+  "level": 10,
+  "gold": 900
+ },
+ {
+  "id": "I06X",
+  "name_ru": "Кристальный посох",
+  "fields": {
+   "Класс": "Особый (5 ур.)",
+   "Бонусы": "+25 разума, +15 атаки, +3 MP regen, +50 сила умений",
+   "Модификатор": "Применение умений с шансом 25% сопровождается эффектом нанесения урона врагам вокруг героя в размере (200 + 35% сила умений) ед."
+  },
+  "extra": [],
+  "icon": "BTNBlueStaff.blp",
+  "icon_file": "BTNBlueStaff.blp",
+  "icon_png": "icons_png/BTNBlueStaff.png",
+  "level": 11,
+  "gold": 1800
+ },
+ {
+  "id": "I06Y",
+  "name_ru": "Железный баклер",
+  "fields": {
+   "Класс": "Особый (3 ур.)",
+   "Бонусы": "+4 защиты, +250 HP, +2 HP regen, +35 ответный урон"
+  },
+  "extra": [],
+  "icon": "BTNSteelBuckler.blp",
+  "icon_file": "BTNSteelBuckler.blp",
+  "icon_png": "icons_png/BTNSteelBuckler.png",
+  "level": 10,
+  "gold": 900
+ },
+ {
+  "id": "I06Z",
+  "name_ru": "Зеркальное ожерелье",
+  "fields": {
+   "Класс": "Особый (2 ур.)",
+   "Бонусы": "+150 MP, сопротивление заморозке, сопротивление проклятиям"
+  },
+  "extra": [],
+  "icon": "BTNMirrorNecklace.blp",
+  "icon_file": "BTNMirrorNecklace.blp",
+  "icon_png": "icons_png/BTNMirrorNecklace.png",
+  "level": 9,
+  "gold": 500
+ },
+ {
+  "id": "I070",
+  "name_ru": "Поступь демона",
+  "fields": {
+   "Класс": "Особый (5+ ур.) + Адский",
+   "Бонусы": "+200 скорость передвижения, +8 all stats, +5 armor, +8 HP regen",
+   "Способности": "Получаемый урон с шансом 20% будет заблокирован, а на героя будет применён поджог с 100% шансом и 100% заблокированного урона.",
+   "Комплект": "c4"
+  },
+  "extra": [],
+  "icon": "BTNHellBoots.blp",
+  "icon_file": "BTNHellBoots.blp",
+  "icon_png": "icons_png/BTNHellBoots.png",
+  "level": 15,
+  "gold": 2150
+ },
+ {
+  "id": "I071",
+  "name_ru": "Одеяние иерофанта",
+  "fields": {
+   "Класс": "Особый (5 ур.)",
+   "Бонусы": "50% защиты от магического урона, +500 HP, +250 MP, +3.5 MP regen"
+  },
+  "extra": [],
+  "icon": "BTNIerophantCloth.blp",
+  "icon_file": "BTNIerophantCloth.blp",
+  "icon_png": "icons_png/BTNIerophantCloth.png",
+  "level": 11,
+  "gold": 1800
+ },
+ {
+  "id": "I072",
+  "name_ru": "Тяжелый щит",
+  "fields": {
+   "Класс": "Особый (2 ур.)",
+   "Бонусы": "+8 защиты"
+  },
+  "extra": [],
+  "icon": "BTNHeavyShield.blp",
+  "icon_file": "BTNHeavyShield.blp",
+  "icon_png": "icons_png/BTNHeavyShield.png",
+  "level": 9,
+  "gold": 500
+ },
+ {
+  "id": "I073",
+  "name_ru": "Подвеска силы",
+  "fields": {
+   "Класс": "Особый (2 ур.)",
+   "Бонусы": "+12 силы"
+  },
+  "extra": [],
+  "icon": "BTNPendantStr.blp",
+  "icon_file": "BTNPendantStr.blp",
+  "icon_png": "icons_png/BTNPendantStr.png",
+  "level": 9,
+  "gold": 500
+ },
+ {
+  "id": "I074",
+  "name_ru": "Подвеска ловкости",
+  "fields": {
+   "Класс": "Особый (2 ур.)",
+   "Бонусы": "+12 ловкости"
+  },
+  "extra": [],
+  "icon": "BTNPendantAgi.blp",
+  "icon_file": "BTNPendantAgi.blp",
+  "icon_png": "icons_png/BTNPendantAgi.png",
+  "level": 9,
+  "gold": 500
+ },
+ {
+  "id": "I075",
+  "name_ru": "Подвеска разума",
+  "fields": {
+   "Класс": "Особый (2 ур.)",
+   "Бонусы": "+12 разума"
+  },
+  "extra": [],
+  "icon": "BTNPendantInt.blp",
+  "icon_file": "BTNPendantInt.blp",
+  "icon_png": "icons_png/BTNPendantInt.png",
+  "level": 9,
+  "gold": 500
+ },
+ {
+  "id": "I076",
+  "name_ru": "Перчатки фантома",
+  "fields": {
+   "Класс": "Особый (5 ур.)",
+   "Бонусы": "+100% скорость атаки, +50 скорость передвижения, +2 защиты",
+   "Способности": "Снижает силу атаки героя на 30%."
+  },
+  "extra": [],
+  "icon": "BTNPhantomGloves.blp",
+  "icon_file": "BTNPhantomGloves.blp",
+  "icon_png": "icons_png/BTNPhantomGloves.png",
+  "level": 11,
+  "gold": 1800
+ },
+ {
+  "id": "I077",
+  "name_ru": "Доспехи авангарда",
+  "fields": {
+   "Класс": "Особый (4 ур.)",
+   "Бонусы": "+750 HP, +10 силы, +4 HP regen"
+  },
+  "extra": [],
+  "icon": "BTNAvangard.blp",
+  "icon_file": "BTNAvangard.blp",
+  "icon_png": "icons_png/BTNAvangard.png",
+  "level": 7,
+  "gold": 1400
+ },
+ {
+  "id": "I078",
+  "name_ru": "Кольцо проницательности",
+  "fields": {
+   "Класс": "Особый (4 ур.)",
+   "Бонусы": "+15 разума, +200 MP",
+   "Множитель": "Дополнительно повышает регенерацию маны на 0.05 ед. за каждую единицу разума. Эффект обновляется автоматически."
+  },
+  "extra": [],
+  "icon": "BTNRingT4.blp",
+  "icon_file": "BTNRingT4.blp",
+  "icon_png": "icons_png/BTNRingT4.png",
+  "level": 7,
+  "gold": 1400
+ },
+ {
+  "id": "I079",
+  "name_ru": "Ожерелье жатвы",
+  "fields": {
+   "Класс": "Особый (4 ур.)",
+   "Бонусы": "+10 атаки, +5 защиты",
+   "Способности": "Убийства врагов повышают силу героя на 1 ед. Эффект не действует, если герой имеет 80 или больше силы."
+  },
+  "extra": [],
+  "icon": "BTNScarletNecklace.blp",
+  "icon_file": "BTNScarletNecklace.blp",
+  "icon_png": "icons_png/BTNScarletNecklace.png",
+  "level": 7,
+  "gold": 1400
+ },
+ {
+  "id": "I07A",
+  "name_ru": "Пояс спасения",
+  "fields": {
+   "Класс": "Особый (5 ур.)",
+   "Бонусы": "+500 HP, +5 HP regen, +10 str",
+   "Способности": "При запасе здоровья ниже 25% восстанавливает 5 ед. здоровья при каждом получении урона, а получаемый урон от статусов снижается на 50%."
+  },
+  "extra": [],
+  "icon": "BTNSaveBelt.blp",
+  "icon_file": "BTNSaveBelt.blp",
+  "icon_png": "icons_png/BTNSaveBelt.png",
+  "level": 11,
+  "gold": 1800
+ },
+ {
+  "id": "I07B",
+  "name_ru": "Арбалет стража",
+  "fields": {
+   "Класс": "Особый (4 ур.)",
+   "Бонусы": "+10 атаки, +10 ловкости, +30% скорость атаки",
+   "Способности": "Повышает силу атаки в дальнем бою на 20%."
+  },
+  "extra": [],
+  "icon": "BTNArbaletT4.blp",
+  "icon_file": "BTNArbaletT4.blp",
+  "icon_png": "icons_png/BTNArbaletT4.png",
+  "level": 7,
+  "gold": 1400
+ },
+ {
+  "id": "I07C",
+  "name_ru": "Посох проклятий",
+  "fields": {
+   "Класс": "Особый (4 ур.)",
+   "Бонусы": "+12 int, +12 atk, +50 сила умений",
+   "Способности": "При применении накладывает проклятие с 100% шансом на врагов в указанной области."
+  },
+  "extra": [],
+  "icon": "BTNDebaffStaff.blp",
+  "icon_file": "BTNDebaffStaff.blp",
+  "icon_png": "icons_png/BTNDebaffStaff.png",
+  "level": 7,
+  "gold": 1400
+ },
+ {
+  "id": "I07D",
+  "name_ru": "Прощальное желание",
+  "fields": {
+   "Класс": "Особый (5 ур.)",
+   "Бонусы": "+40% скорость атаки, +10 пробитие, +15 сила умений",
+   "Модификатор": "Атаки героя раз в 1 сек. наносят 30 ед. магического урона. Урон увеличивается на 2% за каждый потерянный 1% здоровья."
+  },
+  "extra": [],
+  "icon": "BTNFarewellDesire.blp",
+  "icon_file": "BTNFarewellDesire.blp",
+  "icon_png": "icons_png/BTNFarewellDesire.png",
+  "level": 11,
+  "gold": 1800
+ },
+ {
+  "id": "I07E",
+  "name_ru": "Жнец Бездны",
+  "fields": {
+   "Класс": "Особый (5+ ур.) + Бездна",
+   "Бонусы": "+30 атаки, +10 ловкости, +12% урон не от статусов по героям, 22% эффект вампиризма",
+   "Комплект": "c2"
+  },
+  "extra": [],
+  "icon": "BTNAbyssRiper.blp",
+  "icon_file": "BTNAbyssRiper.blp",
+  "icon_png": "icons_png/BTNAbyssRiper.png",
+  "level": 5,
+  "gold": 2150
+ },
+ {
+  "id": "I07F",
+  "name_ru": "Браслет охотника на чародеев",
+  "fields": {
+   "Класс": "Особый (3 ур.)",
+   "Бонусы": "40% защита от магии, +10 атаки, +5 защиты"
+  },
+  "extra": [],
+  "icon": "BTNMageHunterBracers.blp",
+  "icon_file": "BTNMageHunterBracers.blp",
+  "icon_png": "icons_png/BTNMageHunterBracers.png",
+  "level": 10,
+  "gold": 900
+ },
+ {
+  "id": "I07G",
+  "name_ru": "Зачарованные когти",
+  "fields": {
+   "Класс": "Особый (3 ур.)",
+   "Бонусы": "+10 атаки, +10% урон от атак и умений по героям",
+   "Способности": "Вы игнорируете вражеское сопротивление заморозке; +20% урон не от статусов по врагам под действием заморозки."
+  },
+  "extra": [],
+  "icon": "BTNManaClaws.blp",
+  "icon_file": "BTNManaClaws.blp",
+  "icon_png": "icons_png/BTNManaClaws.png",
+  "level": 10,
+  "gold": 900
+ },
+ {
+  "id": "I07H",
+  "name_ru": "Гранитолом",
+  "fields": {
+   "Класс": "Особый (3 ур.)",
+   "Бонусы": "+15 атаки, +5 силы, +6 пробитие",
+   "Модификатор": "Раз в 10 сек. атака наносит 60 ед. урона по области и оглушает цели с 30% шансом на 2 сек."
+  },
+  "extra": [],
+  "icon": "BTNSaviorHammer.blp",
+  "icon_file": "BTNSaviorHammer.blp",
+  "icon_png": "icons_png/BTNSaviorHammer.png",
+  "level": 10,
+  "gold": 900
+ },
+ {
+  "id": "I07I",
+  "name_ru": "Целебная настойка",
+  "fields": {
+   "Класс": "Особый (3 ур.)",
+   "Бонусы": "+5 HP regen, +30 сила умений",
+   "Способности": "Восстанавливает 200 ед. здоровья при использовании."
+  },
+  "extra": [],
+  "icon": "BTNHealPotionT3.blp",
+  "icon_file": "BTNHealPotionT3.blp",
+  "icon_png": "icons_png/BTNHealPotionT3.png",
+  "level": 10,
+  "gold": 900
+ },
+ {
+  "id": "I07J",
+  "name_ru": "Универсальное кольцо",
+  "fields": {
+   "Класс": "Особый (3 ур.)",
+   "Бонусы": "+20 main stat"
+  },
+  "extra": [],
+  "icon": "BTNMasterRing.blp",
+  "icon_file": "BTNMasterRing.blp",
+  "icon_png": "icons_png/BTNMasterRing.png",
+  "level": 10,
+  "gold": 900
+ },
+ {
+  "id": "I07K",
+  "name_ru": "Бастион",
+  "fields": {
+   "Класс": "Особый (5 ур.)",
+   "Бонусы": "+7 защиты, +500 HP",
+   "Способности": "Блокирует 120 ед. урона от атак с шансом 40%. Не блокирует урон ниже 6 ед."
+  },
+  "extra": [],
+  "icon": "BTNBastion.blp",
+  "icon_file": "BTNBastion.blp",
+  "icon_png": "icons_png/BTNBastion.png",
+  "level": 11,
+  "gold": 1800
+ },
+ {
+  "id": "I07M",
+  "name_ru": "Вулканическое кольцо",
+  "fields": {
+   "Класс": "Особый (5 ур.)",
+   "Бонусы": "+20 main stat, +100 сила умений",
+   "Способности": "Каждые 60 сек. игрового времени кольцо подрывает область вокруг героя, нанося врагам 500 ед. урона и применяя эффект поджога (100% шанс, 500 ед. урона)."
+  },
+  "extra": [],
+  "icon": "BTNFireRing.blp",
+  "icon_file": "BTNFireRing.blp",
+  "icon_png": "icons_png/BTNFireRing.png",
+  "level": 11,
+  "gold": 1800
+ },
+ {
+  "id": "I07N",
+  "name_ru": "Грозовые сапоги",
+  "fields": {
+   "Класс": "Особый (4 ур.) + Шторм",
+   "Бонусы": "+90 скорость передвижения, +10% скорость атаки, +5 защиты",
+   "Модификатор": "Поражает атакующих врагов молниями (3 цели, урон 150 ед.). Перезарядка эффекта - 7 сек.",
+   "Комплект": "c3"
+  },
+  "extra": [],
+  "icon": "BTNStormBoots.blp",
+  "icon_file": "BTNStormBoots.blp",
+  "icon_png": "icons_png/BTNStormBoots.png",
+  "level": 13,
+  "gold": 1400
+ },
+ {
+  "id": "I07P",
+  "name_ru": "Кольцо Ночи",
+  "fields": {
+   "Класс": "Особый (5 ур.)",
+   "Бонусы": "+20 ко всем характеристикам, +75 сила умений, +40% сила модификаторов",
+   "Способности": "При запасе здоровья ниже 50% герой наносит на 35% меньше урона. Не влияет на статусы."
+  },
+  "extra": [],
+  "icon": "BTNNightRing.blp",
+  "icon_file": "BTNNightRing.blp",
+  "icon_png": "icons_png/BTNNightRing.png",
+  "level": 11,
+  "gold": 1800
+ },
+ {
+  "id": "I07Q",
+  "name_ru": "\"Хвост гидры\"",
+  "fields": {
+   "Класс": "Особый (5 ур.)",
+   "Бонусы": "+20 атаки, +30% скорость атаки",
+   "Модификатор": "Атаки героя с шансом 30% сопровождаются тремя ядовитыми плевками, наносящими по 60 ед. урона в небольшой области."
+  },
+  "extra": [],
+  "icon": "BTNTailHydra.blp",
+  "icon_file": "BTNTailHydra.blp",
+  "icon_png": "icons_png/BTNTailHydra.png",
+  "level": 11,
+  "gold": 1800
+ },
+ {
+  "id": "I07R",
+  "name_ru": "Эльфийский клинок",
+  "fields": {
+   "Класс": "Особый (4 ур.)",
+   "Бонусы": "+10 атаки, +10 ловкости, +30% скорость атаки",
+   "Способности": "Повышает силу атаки в ближнем бою на 20%."
+  },
+  "extra": [],
+  "icon": "BTNElfBlade.blp",
+  "icon_file": "BTNElfBlade.blp",
+  "icon_png": "icons_png/BTNElfBlade.png",
+  "level": 7,
+  "gold": 1400
+ },
+ {
+  "id": "I07S",
+  "name_ru": "Амулет жизни",
+  "fields": {
+   "Класс": "Особый (3 ур.)",
+   "Бонусы": "+800 HP",
+   "Способности": "Каждую минуту игрового времени повышает запас здоровья героя на 50 ед."
+  },
+  "extra": [],
+  "icon": "BTNHeartAmulet.blp",
+  "icon_file": "BTNHeartAmulet.blp",
+  "icon_png": "icons_png/BTNHeartAmulet.png",
+  "level": 10,
+  "gold": 900
+ },
+ {
+  "id": "I07Z",
+  "name_ru": "Фундамент ур. 2",
+  "fields": {},
+  "extra": [
+   "Размещает в указанном месте точку производства."
+  ],
+  "icon": "ReplaceableTextures\\CommandButtons\\BTNCOP.blp",
+  "icon_file": null,
+  "icon_png": null,
+  "level": 0,
+  "gold": 0
+ },
+ {
+  "id": "I080",
+  "name_ru": "Фундамент ур. 1",
+  "fields": {},
+  "extra": [
+   "Размещает в указанном месте базовую точку."
+  ],
+  "icon": "ReplaceableTextures\\CommandButtons\\BTNCOP.blp",
+  "icon_file": null,
+  "icon_png": null,
+  "level": 0,
+  "gold": 0
+ },
+ {
+  "id": "I081",
+  "name_ru": "Адский щит",
+  "fields": {
+   "Класс": "Особый (5+ ур.) + Адский",
+   "Бонусы": "+20 защиты, +80 ответный урон",
+   "Комплект": "c4"
+  },
+  "extra": [],
+  "icon": "BTNHellItem7.blp",
+  "icon_file": "BTNHellItem7.blp",
+  "icon_png": "icons_png/BTNHellItem7.png",
+  "level": 15,
+  "gold": 2150
+ },
+ {
+  "id": "I084",
+  "name_ru": "Шляпа волшебника",
+  "fields": {
+   "Класс": "Особый (2 ур.)",
+   "Бонусы": "+3 защиты, +50 HP",
+   "Модификатор": "Использование умений восстанавливает 50 ед. здоровья."
+  },
+  "extra": [],
+  "icon": "BTNWhiteHat.blp",
+  "icon_file": "BTNWhiteHat.blp",
+  "icon_png": "icons_png/BTNWhiteHat.png",
+  "level": 9,
+  "gold": 500
+ },
+ {
+  "id": "I085",
+  "name_ru": "Наручи крови",
+  "fields": {
+   "Класс": "Особый (3 ур.)",
+   "Бонусы": "+3 защиты, +10 атаки, +17% скорость атаки",
+   "Модификатор": "Атака наносит 40 маг. урона, урон повышается на 150% если цель под действием кровотечения. Перезарядка - 2 сек."
+  },
+  "extra": [],
+  "icon": "BTNBloodGloves.blp",
+  "icon_file": "BTNBloodGloves.blp",
+  "icon_png": "icons_png/BTNBloodGloves.png",
+  "level": 10,
+  "gold": 900
+ },
+ {
+  "id": "I086",
+  "name_ru": "Окалиновый конструкт",
+  "fields": {
+   "Класс": "Особый (3 ур.)",
+   "Бонусы": "+2 защиты, +3 all stats, +150 HP, +75 MP",
+   "Способности": "Статусы наносят врагам на 50% больше урона при наличии у героя соответствующего сопротивления или состояния."
+  },
+  "extra": [],
+  "icon": "BTNOcalina.blp",
+  "icon_file": "BTNOcalina.blp",
+  "icon_png": "icons_png/BTNOcalina.png",
+  "level": 10,
+  "gold": 900
+ },
+ {
+  "id": "I087",
+  "name_ru": "Перчатки наставника",
+  "fields": {
+   "Класс": "Особый (4 ур.)",
+   "Бонусы": "+30% скорость атаки, +9 main stat, +50 сила умений, -20% перезарядка модификаторов"
+  },
+  "extra": [],
+  "icon": "BTNTeacherGloves.blp",
+  "icon_file": "BTNTeacherGloves.blp",
+  "icon_png": "icons_png/BTNTeacherGloves.png",
+  "level": 7,
+  "gold": 1400
+ },
+ {
+  "id": "I088",
+  "name_ru": "Нетленная митра",
+  "fields": {
+   "Класс": "Особый (5 ур.)",
+   "Бонусы": "+15 разума, +15 ловкости, +4 HP regen, +150 сила умений",
+   "Способности": "Распространяет ауру восстановления маны с эффектом 3 ед./сек."
+  },
+  "extra": [],
+  "icon": "BTNMitra.blp",
+  "icon_file": "BTNMitra.blp",
+  "icon_png": "icons_png/BTNMitra.png",
+  "level": 11,
+  "gold": 1800
+ },
+ {
+  "id": "I089",
+  "name_ru": "Поглотитель",
+  "fields": {
+   "Класс": "Особый (4 ур.)",
+   "Способности": "Помещает выбранный предмет категории \"Особый 1 ур.\" в инвентарь сравочника (F2) даруя герою бонусы предмета, не занимая слот. От поглотителя можно иметь только 1 предмет. Уничтожается после применения."
+  },
+  "extra": [],
+  "icon": "BTNExtractor.blp",
+  "icon_file": "BTNExtractor.blp",
+  "icon_png": "icons_png/BTNExtractor.png",
+  "level": 11,
+  "gold": 1800
+ },
+ {
+  "id": "I08F",
+  "name_ru": "Алебарда",
+  "fields": {
+   "Класс": "Особый (2 ур.)",
+   "Бонусы": "+25 атаки"
+  },
+  "extra": [],
+  "icon": "BTNHeavyAlebard.blp",
+  "icon_file": "BTNHeavyAlebard.blp",
+  "icon_png": "icons_png/BTNHeavyAlebard.png",
+  "level": 9,
+  "gold": 500
+ },
+ {
+  "id": "I08G",
+  "name_ru": "Укрепленные сапоги",
+  "fields": {
+   "Класс": "Особый (2 ур.)",
+   "Бонусы": "+50 скорость передвижения, +4 защиты, +4 силы"
+  },
+  "extra": [],
+  "icon": "BTNHeavyBoots.blp",
+  "icon_file": "BTNHeavyBoots.blp",
+  "icon_png": "icons_png/BTNHeavyBoots.png",
+  "level": 9,
+  "gold": 500
+ },
+ {
+  "id": "I08H",
+  "name_ru": "Белый щит",
+  "fields": {
+   "Класс": "Особый (4 ур.)",
+   "Бонусы": "+8 защиты, +200 HP",
+   "Модификатор": "Раз в 10 сек. атака по герою создает исцеляющий купол, восстанавливающий герою и союзникам поблизости 100 ед. здоровья."
+  },
+  "extra": [],
+  "icon": "BTNWhiteShield.blp",
+  "icon_file": "BTNWhiteShield.blp",
+  "icon_png": "icons_png/BTNWhiteShield.png",
+  "level": 7,
+  "gold": 1400
+ },
+ {
+  "id": "I08I",
+  "name_ru": "Арбалет проклинателя",
+  "fields": {
+   "Класс": "Особый (4 ур.)",
+   "Бонусы": "+30 атаки, +15% скорость атаки, +30 сила умений",
+   "Модификатор": "Раз в 5 сек. атака накладывает уязвимость с 100% шансом. При силе модификаторов 80% и выше дополнительно применяет проклятие с 50% шансом."
+  },
+  "extra": [],
+  "icon": "BTNCurseArbalet.blp",
+  "icon_file": "BTNCurseArbalet.blp",
+  "icon_png": "icons_png/BTNCurseArbalet.png",
+  "level": 7,
+  "gold": 1400
+ },
+ {
+  "id": "I08J",
+  "name_ru": "Перчатки мастера",
+  "fields": {
+   "Класс": "Особый (5 ур.)",
+   "Бонусы": "+10 ко всем характеристикам, +15% скорость атаки, +50 сила умений, -30% перезарядка модификаторов"
+  },
+  "extra": [],
+  "icon": "BTNSpeedGloves.blp",
+  "icon_file": "BTNSpeedGloves.blp",
+  "icon_png": "icons_png/BTNSpeedGloves.png",
+  "level": 11,
+  "gold": 1800
+ },
+ {
+  "id": "I08K",
+  "name_ru": "Секира ярости",
+  "fields": {
+   "Класс": "Особый (5 ур.)",
+   "Бонусы": "+30 atk, +25 str",
+   "Модификатор": "Атака наносит 150 ед. чистого урона героям и юнитам 8+ уровня и накладывает кровотечение (50% шанс, 150 ед. урона). Перезарядка 7 сек."
+  },
+  "extra": [],
+  "icon": "BTNRageAxe.blp",
+  "icon_file": "BTNRageAxe.blp",
+  "icon_png": "icons_png/BTNRageAxe.png",
+  "level": 11,
+  "gold": 1800
+ },
+ {
+  "id": "I08M",
+  "name_ru": "Подарок",
+  "fields": {},
+  "extra": [
+   "Откройте подарок и получите случайный предмет из случайной праздничной категории."
+  ],
+  "icon": "war3mapImported\\BTNGift.blp",
+  "icon_file": "war3mapImported\\BTNGift.blp",
+  "icon_png": null,
+  "level": 0,
+  "gold": 0
+ },
+ {
+  "id": "I08U",
+  "name_ru": "Лук следопыта",
+  "fields": {
+   "Класс": "Особый (2 ур.)",
+   "Бонусы": "+5 атаки, +3 ловкости, +10% скорость атаки",
+   "Модификатор": "Атака по противнику на расстоянии 500+ повышает скорость атаки героя на 30% в течение 8 сек. Перезарядка - 16 сек. после активации эффекта."
+  },
+  "extra": [],
+  "icon": "BTNRangerBow.blp",
+  "icon_file": "BTNRangerBow.blp",
+  "icon_png": "icons_png/BTNRangerBow.png",
+  "level": 9,
+  "gold": 500
+ },
+ {
+  "id": "I08V",
+  "name_ru": "Конструкт-сфера",
+  "fields": {
+   "Класс": "Особый (4 ур.)",
+   "Бонусы": "+4 защиты, +10 разума, +2 MP regen",
+   "Способности": "Каждые 1 сек. наносит 50 ед. урона случайному врагу поблизости."
+  },
+  "extra": [],
+  "icon": "BTNCubeNecklace.blp",
+  "icon_file": "BTNCubeNecklace.blp",
+  "icon_png": "icons_png/BTNCubeNecklace.png",
+  "level": 7,
+  "gold": 1400
+ },
+ {
+  "id": "I08W",
+  "name_ru": "Мантия инквизитора",
+  "fields": {
+   "Класс": "Особый (2 ур.)",
+   "Бонусы": "+4 разума, +2 защиты, +150 MP, +0.85 MP regen, +15 сила умений",
+   "Способности": "Снижает получаемый урон от героев на 5%, повышает наносимый героям урон на 5%. Не влияет на статусы."
+  },
+  "extra": [],
+  "icon": "BTNInquisitorMantle.blp",
+  "icon_file": "BTNInquisitorMantle.blp",
+  "icon_png": "icons_png/BTNInquisitorMantle.png",
+  "level": 9,
+  "gold": 500
+ },
+ {
+  "id": "I08Z",
+  "name_ru": "Бутыль чаролития",
+  "fields": {
+   "Класс": "Особый (2 ур.)",
+   "Бонусы": "+150 MP, +0.5 MP regen",
+   "Способности": "Каждую минуту игрового времени повышает разум героя на 2 ед."
+  },
+  "extra": [],
+  "icon": "BTNPurpleBottle.blp",
+  "icon_file": "BTNPurpleBottle.blp",
+  "icon_png": "icons_png/BTNPurpleBottle.png",
+  "level": 9,
+  "gold": 500
+ },
+ {
+  "id": "I091",
+  "name_ru": "Шлем ангела",
+  "fields": {
+   "Класс": "Особый (5 ур.) + Доблесть",
+   "Бонусы": "+5 защиты, +800 HP, +50 скорость передвижения",
+   "Способности": "Каждые 5 сек. восстанавливает 2% недостающего здоровья героя.",
+   "Комплект": "c1"
+  },
+  "extra": [],
+  "icon": "BTNAngelHelmet.blp",
+  "icon_file": "BTNAngelHelmet.blp",
+  "icon_png": "icons_png/BTNAngelHelmet.png",
+  "level": 14,
+  "gold": 1800
+ },
+ {
+  "id": "I092",
+  "name_ru": "Невесомое жало",
+  "fields": {
+   "Класс": "Особый (4 ур.)",
+   "Бонусы": "+25 атаки, +10 ловкости",
+   "Модификатор": "Атака наносит 75 ед. маг. урона, 80% шанс кровотечения с итоговым уроном 75 ед., 20% шанс наложить слабость. Перезарядка - 3 сек."
+  },
+  "extra": [],
+  "icon": "BTNBlueSting.blp",
+  "icon_file": "BTNBlueSting.blp",
+  "icon_png": "icons_png/BTNBlueSting.png",
+  "level": 7,
+  "gold": 1400
+ },
+ {
+  "id": "I059",
+  "name_ru": "Цестус Доблести",
+  "fields": {
+   "Класс": "Особый (5+ ур.) + Доблесть",
+   "Бонусы": "+20 силы, +10 атаки, +5 защиты, +15% урон не от статусов врагам 0-1 уровня",
+   "Модификатор": "Атака героя в ближнем бою наносит 225 ед. урона по области. Перезарядка - 8 сек.",
+   "Комплект": "c1"
+  },
+  "extra": [],
+  "icon": "BTNValorCestus.blp",
+  "icon_file": "BTNValorCestus.blp",
+  "icon_png": "icons_png/BTNValorCestus.png",
+  "level": 14,
+  "gold": 2150
+ },
+ {
+  "id": "I095",
+  "name_ru": "Медальон стража",
+  "fields": {
+   "Класс": "Особый (2 ур.) + Доблесть",
+   "Бонусы": "+5 силы, +2 HP regen, +10 ответный урон",
+   "Комплект": "c1"
+  },
+  "extra": [],
+  "icon": "BTNMedalionOfCourageValor.blp",
+  "icon_file": "BTNMedalionOfCourageValor.blp",
+  "icon_png": "icons_png/BTNMedalionOfCourageValor.png",
+  "level": 14,
+  "gold": 500
+ },
+ {
+  "id": "I096",
+  "name_ru": "Громовержец",
+  "fields": {
+   "Класс": "Особый (5+ ур.) + Шторм",
+   "Бонусы": "+25 атаки, +15 силы, +15 разума",
+   "Модификатор": "Раз в 7 сек. атака героя поражает 9 случайных целей рядом, нанося 150 ед. урона и применяя шок с 50% шансом.",
+   "Комплект": "c3"
+  },
+  "extra": [],
+  "icon": "BTNStormItem8.blp",
+  "icon_file": "BTNStormItem8.blp",
+  "icon_png": "icons_png/BTNStormItem8.png",
+  "level": 13,
+  "gold": 2150
+ },
+ {
+  "id": "I097",
+  "name_ru": "Одеяние адепта Бури",
+  "fields": {
+   "Класс": "Особый (2 ур.) + Шторм",
+   "Бонусы": "+250 HP, +3 HP regen, +2 MP regen",
+   "Комплект": "c3"
+  },
+  "extra": [],
+  "icon": "BTNStormItem2.blp",
+  "icon_file": "BTNStormItem2.blp",
+  "icon_png": "icons_png/BTNStormItem2.png",
+  "level": 13,
+  "gold": 500
+ },
+ {
+  "id": "I098",
+  "name_ru": "Венец Шторма",
+  "fields": {
+   "Класс": "Особый (4 ур.) + Шторм",
+   "Бонусы": "+5 защиты, 30% mag resist, +40% сила модификаторов",
+   "Комплект": "c3"
+  },
+  "extra": [],
+  "icon": "BTNStormItem3.blp",
+  "icon_file": "BTNStormItem3.blp",
+  "icon_png": "icons_png/BTNStormItem3.png",
+  "level": 13,
+  "gold": 1400
+ },
+ {
+  "id": "I099",
+  "name_ru": "Перчатки адепта Бури",
+  "fields": {
+   "Класс": "Особый (3 ур.) + Шторм",
+   "Бонусы": "+6 разум, +4 ловкости, +1.25 MP regen",
+   "Способности": "При запасе маны 1000 ед. и выше увеличивает урон не от статусов на 20%.",
+   "Комплект": "c3"
+  },
+  "extra": [],
+  "icon": "BTNStormItem4.blp",
+  "icon_file": "BTNStormItem4.blp",
+  "icon_png": "icons_png/BTNStormItem4.png",
+  "level": 13,
+  "gold": 900
+ },
+ {
+  "id": "I09A",
+  "name_ru": "Сапоги Шторма",
+  "fields": {
+   "Класс": "Особый (5 ур.) + Шторм",
+   "Бонусы": "+200 скорость передвижения, +15 main stat, +4 защиты",
+   "Способности": "Ослабляет негативный эффект шока на герое на 50%.",
+   "Комплект": "c3"
+  },
+  "extra": [],
+  "icon": "BTNStormItem5.blp",
+  "icon_file": "BTNStormItem5.blp",
+  "icon_png": "icons_png/BTNStormItem5.png",
+  "level": 13,
+  "gold": 1800
+ },
+ {
+  "id": "I09B",
+  "name_ru": "Щит Шторма",
+  "fields": {
+   "Класс": "Особый (5+ ур.) + Шторм",
+   "Бонусы": "+15 разума, +10 ловкости, +15% защита от атак, умений и статусов",
+   "Модификатор": "Поражает атакующих врагов молниями (10 целей, урон 250 ед.). Перезарядка эффекта - 12 сек.",
+   "Комплект": "c3"
+  },
+  "extra": [],
+  "icon": "BTNStormItem6.blp",
+  "icon_file": "BTNStormItem6.blp",
+  "icon_png": "icons_png/BTNStormItem6.png",
+  "level": 13,
+  "gold": 2150
+ },
+ {
+  "id": "I09C",
+  "name_ru": "Фундамент ур. 3",
+  "fields": {},
+  "extra": [
+   "Размещает в указанном месте точку прибыли."
+  ],
+  "icon": "ReplaceableTextures\\CommandButtons\\BTNCOP.blp",
+  "icon_file": null,
+  "icon_png": null,
+  "level": 0,
+  "gold": 0
+ },
+ {
+  "id": "I09D",
+  "name_ru": "Фундамент ур. 4",
+  "fields": {},
+  "extra": [
+   "Размещает в указанном месте стратегическую точку."
+  ],
+  "icon": "ReplaceableTextures\\CommandButtons\\BTNCOP.blp",
+  "icon_file": null,
+  "icon_png": null,
+  "level": 0,
+  "gold": 0
+ },
+ {
+  "id": "I09E",
+  "name_ru": "Фундамент ур. 5",
+  "fields": {},
+  "extra": [
+   "Размещает в указанном месте точку обороны."
+  ],
+  "icon": "ReplaceableTextures\\CommandButtons\\BTNCOP.blp",
+  "icon_file": null,
+  "icon_png": null,
+  "level": 0,
+  "gold": 0
+ },
+ {
+  "id": "I09G",
+  "name_ru": "Счастливая подкова",
+  "fields": {
+   "Класс": "Особый (4 ур.)",
+   "Бонусы": "+3 HP regen, +15% защита от статусов",
+   "Способности": "Усиливает шансы применения статусов на 50%."
+  },
+  "extra": [],
+  "icon": "BTNPodkova.blp",
+  "icon_file": "BTNPodkova.blp",
+  "icon_png": null,
+  "level": 7,
+  "gold": 1400
+ },
+ {
+  "id": "I09O",
+  "name_ru": "Позолоченное ожерелье",
+  "fields": {
+   "Класс": "Особый (2 ур.)",
+   "Бонусы": "+2 защиты",
+   "Способности": "Раз в 5 сек. лечит герою здоровье в размере (75% сила) ед. Немодифицируемая перезарядка."
+  },
+  "extra": [],
+  "icon": "BTNGoldenNecklace.blp",
+  "icon_file": "BTNGoldenNecklace.blp",
+  "icon_png": "icons_png/BTNGoldenNecklace.png",
+  "level": 9,
+  "gold": 500
+ },
+ {
+  "id": "I09U",
+  "name_ru": "Волшебный подарок",
+  "fields": {},
+  "extra": [
+   "Откройте подарок и получите случайный предмет на выбор из 3, каждый предмет взят из своей праздничной категории."
+  ],
+  "icon": "war3mapImported\\BTNGift2.blp",
+  "icon_file": "war3mapImported\\BTNGift2.blp",
+  "icon_png": null,
+  "level": 0,
+  "gold": 0
+ },
+ {
+  "id": "I09W",
+  "name_ru": "Амулет смерти",
+  "fields": {
+   "Класс": "Особый (5 ур.)",
+   "Бонусы": "+15 разума, +2 MP regen, +225 HP, +3 защиты",
+   "Способности": "Снижает время возрождения на 20%, наносит (75% mах HP) ед. посмертного урона убийце. Не суммируется."
+  },
+  "extra": [],
+  "icon": "BTNAmuletOfDeath.blp",
+  "icon_file": "BTNAmuletOfDeath.blp",
+  "icon_png": "icons_png/BTNAmuletOfDeath.png",
+  "level": 11,
+  "gold": 1800
+ },
+ {
+  "id": "I09X",
+  "name_ru": "Сфера разложения",
+  "fields": {
+   "Класс": "Артефакт (1 ур.)",
+   "Бонусы": "+6 str, +3 int",
+   "Способности": "Каждые 5 сек. применяет на врагов поблизости болезнь с 50% шансом и 125 ед. урона."
+  },
+  "extra": [],
+  "icon": "BTNPoisonOrb.blp",
+  "icon_file": "BTNPoisonOrb.blp",
+  "icon_png": "icons_png/BTNPoisonOrb.png",
+  "level": 4,
+  "gold": 650
+ },
+ {
+  "id": "I09Y",
+  "name_ru": "Корона разложения",
+  "fields": {
+   "Класс": "Артефакт (3 ур.)",
+   "Бонусы": "+10 str, +5 int, +300 HP, дарует состояние \"Чумной\"",
+   "Способности": "Каждые 5 сек. применяет проклятие (40% шанс) и болезнь на врагов поблизости (60% шанс, 250 ед. урона). Увеличивает урон по заболевшим врагам на 30%."
+  },
+  "extra": [],
+  "icon": "BTNPoisonCrown.blp",
+  "icon_file": "BTNPoisonCrown.blp",
+  "icon_png": "icons_png/BTNPoisonCrown.png",
+  "level": 4,
+  "gold": 1850
+ },
+ {
+  "id": "I0A4",
+  "name_ru": "Кольцо окклюмента",
+  "fields": {
+   "Класс": "Особый (5+ ур.)",
+   "Бонусы": "+30 разума, +175 сила умений",
+   "Способности": "Наносит (250 + 30% сила способностей) ед. урона противникам, применяющим против героя целевые заклинания, также восстанавливая герою 100 ед. здоровья."
+  },
+  "extra": [],
+  "icon": "BTNExtraItem1.blp",
+  "icon_file": "BTNExtraItem1.blp",
+  "icon_png": "icons_png/BTNExtraItem1.png",
+  "level": 12,
+  "gold": 2150
+ },
+ {
+  "id": "I0A5",
+  "name_ru": "Соглядатай",
+  "fields": {
+   "Класс": "Особый (5+ ур.)",
+   "Бонусы": "+10 int, +500 MP, +250 HP, +2.25 MP regen, -15% защита от атаки и умений от не-героев",
+   "Модификатор": "Атака по вражескому герою отнимает 5 ед. разума и передаёт его владельцу предмета. За каждые 100% силы модификаторов отнимается ещё 1 ед. разума. Перезарядка - 50 сек."
+  },
+  "extra": [],
+  "icon": "BTNObserverRing.blp",
+  "icon_file": "BTNObserverRing.blp",
+  "icon_png": "icons_png/BTNObserverRing.png",
+  "level": 12,
+  "gold": 2150
+ },
+ {
+  "id": "I0A6",
+  "name_ru": "Плащ-невидимка",
+  "fields": {
+   "Класс": "Особый (5+ ур.)",
+   "Бонусы": "+8 защиты, +15 ловкости, +110 скорость бега",
+   "Способности": "Дарует постоянную невидимость. Атаки и умения временно снимают невидимость."
+  },
+  "extra": [],
+  "icon": "BTNExtraItem2.blp",
+  "icon_file": "BTNExtraItem2.blp",
+  "icon_png": "icons_png/BTNExtraItem2.png",
+  "level": 12,
+  "gold": 2150
+ },
+ {
+  "id": "I0A7",
+  "name_ru": "Перо Аэллоподы",
+  "fields": {
+   "Класс": "Особый (5+ ур.)",
+   "Бонусы": "+125% скорость атаки, +10 main stat, +200 скорость бега"
+  },
+  "extra": [],
+  "icon": "BTNExtraItem3.blp",
+  "icon_file": "BTNExtraItem3.blp",
+  "icon_png": "icons_png/BTNExtraItem3.png",
+  "level": 12,
+  "gold": 2150
+ },
+ {
+  "id": "I0A8",
+  "name_ru": "Наплечники хранителя",
+  "fields": {
+   "Класс": "Особый (5+ ур.)",
+   "Бонусы": "+10 защиты, +8% защита от урона не от статусов",
+   "Множитель": "Дарует герою силу в размере разума. Эффект обновляется автоматически."
+  },
+  "extra": [],
+  "icon": "BTNExtraItem4.blp",
+  "icon_file": "BTNExtraItem4.blp",
+  "icon_png": "icons_png/BTNExtraItem4.png",
+  "level": 12,
+  "gold": 2150
+ },
+ {
+  "id": "I0A9",
+  "name_ru": "Мантия мракоборца",
+  "fields": {
+   "Класс": "Особый (5+ ур.)",
+   "Бонусы": "60% защиты от магического урона, +5 защиты, +500 MP, +5 MP regen"
+  },
+  "extra": [],
+  "icon": "BTNExtraItem5.blp",
+  "icon_file": "BTNExtraItem5.blp",
+  "icon_png": "icons_png/BTNExtraItem5.png",
+  "level": 12,
+  "gold": 2150
+ },
+ {
+  "id": "I0AA",
+  "name_ru": "Королевское ружье",
+  "fields": {
+   "Класс": "Особый (5+ ур.)",
+   "Бонусы": "+40 atk, +20% atk speed, -15% перезарядка модификаторов",
+   "Способности": "Атаки героя имеют шанс 40% оглушить цель на 0.7 сек. и нанести +70 ед. урона. Не действует против героев."
+  },
+  "extra": [],
+  "icon": "BTNExtraItem6.blp",
+  "icon_file": "BTNExtraItem6.blp",
+  "icon_png": "icons_png/BTNExtraItem6.png",
+  "level": 12,
+  "gold": 2150
+ },
+ {
+  "id": "I0AB",
+  "name_ru": "Золотые доспехи",
+  "fields": {
+   "Класс": "Особый (5+ ур.)",
+   "Бонусы": "+7 защиты, +1000 HP, +8 HP regen",
+   "Способности": "За каждые недостающие 10% здоровья снижает получаемый урон не от статусов на 4%."
+  },
+  "extra": [],
+  "icon": "BTNExtraItem7.blp",
+  "icon_file": "BTNExtraItem7.blp",
+  "icon_png": "icons_png/BTNExtraItem7.png",
+  "level": 12,
+  "gold": 2150
+ },
+ {
+  "id": "I0AC",
+  "name_ru": "Триада",
+  "fields": {
+   "Класс": "Особый (5+ ур.) + Доблесть + Бездна + Шторм",
+   "Бонусы": "+20 all stats",
+   "Уникальная особенность": "Является частью сразу трёх комплектов (за исключением комплекта \"Адский\")."
+  },
+  "extra": [],
+  "icon": "ReplaceableTextures\\CommandButtons\\BTN3M3.blp",
+  "icon_file": null,
+  "icon_png": null,
+  "level": 20,
+  "gold": 2150
+ },
+ {
+  "id": "I0AH",
+  "name_ru": "Сюрприз",
+  "fields": {},
+  "extra": [
+   "Откройте сюрприз и получите широкий выбор предмета из разных подарочных категорий."
+  ],
+  "icon": "war3mapImported\\BTNGiftT3.blp",
+  "icon_file": "war3mapImported\\BTNGiftT3.blp",
+  "icon_png": null,
+  "level": 0,
+  "gold": 0
+ },
+ {
+  "id": "I0AJ",
+  "name_ru": "Молот Доблести",
+  "fields": {
+   "Класс": "Особый (4 ур.) + Доблесть",
+   "Бонусы": "+15 атаки, +10 силы, +20% сила модификаторов, +15% урон от поджога",
+   "Способности": "Считается как 2 предмета комплекта \"Доблесть\".",
+   "Комплект": "c1"
+  },
+  "extra": [],
+  "icon": "BTNHammerValor.blp",
+  "icon_file": "BTNHammerValor.blp",
+  "icon_png": "icons_png/BTNHammerValor.png",
+  "level": 14,
+  "gold": 1400
+ },
+ {
+  "id": "I0AK",
+  "name_ru": "Набат Доблести",
+  "fields": {
+   "Класс": "Особый (5 ур.) + Доблесть",
+   "Бонусы": "+600 HP, +150 MP, +5 HP regen, +1 MP regen",
+   "Способности": "При использовании усиливает героя и союзников вокруг, повышая силу атаки на 30% и защиту на 6 ед. в течение 15 сек.",
+   "Комплект": "c1"
+  },
+  "extra": [],
+  "icon": "BTNDrumValor.blp",
+  "icon_file": "BTNDrumValor.blp",
+  "icon_png": "icons_png/BTNDrumValor.png",
+  "level": 14,
+  "gold": 1800
+ },
+ {
+  "id": "I0AL",
+  "name_ru": "Молот Шторма",
+  "fields": {
+   "Класс": "Особый (4 ур.) + Шторм",
+   "Бонусы": "+30 разума, +20% увеличение перезарядки модификаторов",
+   "Способности": "Считается как 2 предмета комплекта \"Шторм\". Добавляет +25% к шансу шока.",
+   "Комплект": "c3"
+  },
+  "extra": [],
+  "icon": "BTNStormItem7.blp",
+  "icon_file": "BTNStormItem7.blp",
+  "icon_png": "icons_png/BTNStormItem7.png",
+  "level": 13,
+  "gold": 1400
+ },
+ {
+  "id": "I0AM",
+  "name_ru": "Грозовой клинок",
+  "fields": {
+   "Класс": "Особый (5 ур.) + Шторм",
+   "Бонусы": "+20% скорость атаки, +15 разума",
+   "Модификатор": "Атака героя поражает молнией случайного врага, нанося 150 ед. урона и с 50% шансом применяя шок. Перезарядка - 2 сек.",
+   "Комплект": "c3"
+  },
+  "extra": [],
+  "icon": "BTNStormItem1.blp",
+  "icon_file": "BTNStormItem1.blp",
+  "icon_png": "icons_png/BTNStormItem1.png",
+  "level": 13,
+  "gold": 1800
+ },
+ {
+  "id": "I0AN",
+  "name_ru": "Кольцо презирателя",
+  "fields": {
+   "Класс": "Особый (5 ур.)",
+   "Бонусы": "+750 MP, +1.5 MP regen, +125 сила умений, +30% урон от атак и умений по не-героям"
+  },
+  "extra": [],
+  "icon": "BTNBoneRing.blp",
+  "icon_file": "BTNBoneRing.blp",
+  "icon_png": "icons_png/BTNBoneRing.png",
+  "level": 11,
+  "gold": 1800
+ },
+ {
+  "id": "I0AV",
+  "name_ru": "Книга солнца",
+  "fields": {
+   "Класс": "Особый (2 ур.)",
+   "Бонусы": "+150 MP, +1 int, +20% урон от поджога"
+  },
+  "extra": [],
+  "icon": "BTNSunBook.blp",
+  "icon_file": "BTNSunBook.blp",
+  "icon_png": "icons_png/BTNSunBook.png",
+  "level": 9,
+  "gold": 500
+ },
+ {
+  "id": "I0AW",
+  "name_ru": "Рыцарский меч",
+  "fields": {
+   "Класс": "Особый (3 ур.)",
+   "Бонусы": "+10 атаки, +5 силы, +4 защиты",
+   "Модификатор": "Атака по противнику в ближнем бою повышает скорость атаки героя на 30% в течение 8 сек. Перезарядка - 16 сек. после активации эффекта."
+  },
+  "extra": [],
+  "icon": "BTNKnightSword.blp",
+  "icon_file": "BTNKnightSword.blp",
+  "icon_png": "icons_png/BTNKnightSword.png",
+  "level": 10,
+  "gold": 900
+ },
+ {
+  "id": "I0AX",
+  "name_ru": "Непостижимое сожаление",
+  "fields": {
+   "Класс": "Особый (5+ ур.)",
+   "Бонусы": "+50% скорость атаки, +15 пробитие, +30 сила умений",
+   "Модификатор": "Атаки героя раз в 1 сек. наносят 40 ед. магического урона. Урон увеличивается на 2% за каждый имеющийся 1% здоровья у героя."
+  },
+  "extra": [],
+  "icon": "BTNBlueBlade.blp",
+  "icon_file": "BTNBlueBlade.blp",
+  "icon_png": "icons_png/BTNBlueBlade.png",
+  "level": 12,
+  "gold": 2150
+ },
+ {
+  "id": "I0AY",
+  "name_ru": "Страж рубежа",
+  "fields": {
+   "Класс": "Особый (5+ ур.)",
+   "Бонусы": "+30 atk, +10 str, +5 armor, +10% защита от героев",
+   "Модификатор": "Раз в 5 сек. атака поджигает врагов по области (50% шанс, 250 ед. урона).",
+   "Способности": "+20% защита от урона и +50% урон врагам 0-1 ур., если герой под эффектом ауры Трона."
+  },
+  "extra": [],
+  "icon": "BTNBigSword.blp",
+  "icon_file": "BTNBigSword.blp",
+  "icon_png": "icons_png/BTNBigSword.png",
+  "level": 12,
+  "gold": 2150
+ },
+ {
+  "id": "I0AZ",
+  "name_ru": "Поглощающий акселератор",
+  "fields": {
+   "Класс": "Особый (5+ ур.)",
+   "Бонусы": "+15 разума, +2 MP regen, +100 сила умений",
+   "Способности": "Убийства противников восстанавливают герою 1 ед. маны и повышают силу умений на 1 ед."
+  },
+  "extra": [],
+  "icon": "BTNPurpleStaff.blp",
+  "icon_file": "BTNPurpleStaff.blp",
+  "icon_png": "icons_png/BTNPurpleStaff.png",
+  "level": 12,
+  "gold": 2150
+ },
+ {
+  "id": "I0B0",
+  "name_ru": "Доспех ренегата",
+  "fields": {
+   "Класс": "Особый (5+ ур.)",
+   "Бонусы": "+8 защиты, +16 main stat, +50% защита от атак и умений врагов 0-1 уровня, +25% защита от кровотечения и поджога, +100% награда за убийство врагов"
+  },
+  "extra": [],
+  "icon": "BTNRenegatArmor.blp",
+  "icon_file": "BTNRenegatArmor.blp",
+  "icon_png": "icons_png/BTNRenegatArmor.png",
+  "level": 12,
+  "gold": 2150
+ },
+ {
+  "id": "I000",
+  "name_ru": "Сломанная печать",
+  "fields": {
+   "Класс": "Особый (3 ур.)",
+   "Бонусы": "+10 силы, +15% урон от атак и умений врагам 0-1 уровня",
+   "Способности": "Предмет уничтожается через 3 минуты нахождения в инвентаре и повышает силу героя на 8 ед."
+  },
+  "extra": [],
+  "icon": "BTNBrokenSeal.blp",
+  "icon_file": "BTNBrokenSeal.blp",
+  "icon_png": "icons_png/BTNBrokenSeal.png",
+  "level": 10,
+  "gold": 900
+ },
+ {
+  "id": "I002",
+  "name_ru": "Древний трактат",
+  "fields": {
+   "Класс": "Особый (3 ур.)",
+   "Бонусы": "+10 разума, +2 MP regen, сопротивление проклятиям"
+  },
+  "extra": [],
+  "icon": "BTNNecropedia.blp",
+  "icon_file": "BTNNecropedia.blp",
+  "icon_png": "icons_png/BTNNecropedia.png",
+  "level": 10,
+  "gold": 900
+ },
+ {
+  "id": "I003",
+  "name_ru": "Боевое мачете",
+  "fields": {
+   "Класс": "Особый (3 ур.)",
+   "Бонусы": "+30 атаки, +10 пробитие"
+  },
+  "extra": [],
+  "icon": "BTNMachete.blp",
+  "icon_file": "BTNMachete.blp",
+  "icon_png": "icons_png/BTNMachete.png",
+  "level": 10,
+  "gold": 900
+ },
+ {
+  "id": "I007",
+  "name_ru": "Ультима",
+  "fields": {
+   "Класс": "Особый (5 ур.)",
+   "Бонусы": "+15 разума, +1 MP regen, +200 сила умений, +25% урон от атак и умений по героям"
+  },
+  "extra": [],
+  "icon": "BTNUltima.blp",
+  "icon_file": "BTNUltima.blp",
+  "icon_png": "icons_png/BTNUltima.png",
+  "level": 11,
+  "gold": 1800
+ },
+ {
+  "id": "I008",
+  "name_ru": "Эмблема равновесия",
+  "fields": {
+   "Класс": "Особый (5 ур.)",
+   "Бонусы": "+250 HP, +250 MP, +25 сила умений",
+   "Способности": "Восстанавливает 1% маны или здоровья в сек., в зависимости от того, какой показатель ниже в % соотношении."
+  },
+  "extra": [],
+  "icon": "BTNBalanceEmblem.blp",
+  "icon_file": "BTNBalanceEmblem.blp",
+  "icon_png": "icons_png/BTNBalanceEmblem.png",
+  "level": 11,
+  "gold": 1800
+ },
+ {
+  "id": "I009",
+  "name_ru": "Нагваль",
+  "fields": {
+   "Класс": "Особый (4 ур.) + Бездна",
+   "Бонусы": "+15 атаки, +10 силы, +5 ловкости",
+   "Модификатор": "При уровне здоровья ниже 25% убийства врагов восстанавливают по 25 HP и повышают атаку героя на 3 ед. (доп. на 1 ед. за каждые 50% силы модификаторов) на 40 сек.",
+   "Комплект": "c2"
+  },
+  "extra": [],
+  "icon": "BTNNagual.blp",
+  "icon_file": "BTNNagual.blp",
+  "icon_png": "icons_png/BTNNagual.png",
+  "level": 5,
+  "gold": 1400
+ },
+ {
+  "id": "I00A",
+  "name_ru": "Уравнитель",
+  "fields": {
+   "Класс": "Особый (5+ ур.)",
+   "Бонусы": "+25 atk, +10 agi, +20 пробитие",
+   "Способности": "Повышает урон против воинов ближнего боя на 50% и снижает урон против дальнего боя на 25%, если герой ближнего боя. Имеет аналогичный эффект для героев дальнего боя."
+  },
+  "extra": [],
+  "icon": "BTNUravnitel.blp",
+  "icon_file": "BTNUravnitel.blp",
+  "icon_png": "icons_png/BTNUravnitel.png",
+  "level": 12,
+  "gold": 2150
+ },
+ {
+  "id": "I00B",
+  "name_ru": "Ожерелье потока",
+  "fields": {
+   "Класс": "Особый (5+ ур.)",
+   "Бонусы": "+20 атаки, +20 разума, +150 сила умений",
+   "Множитель": "Повышает силу атаки героя по формуле 5 ед. силы умений = 1 атака. Эффект обновляется автоматически."
+  },
+  "extra": [],
+  "icon": "BTNArcaneNecklace.blp",
+  "icon_file": "BTNArcaneNecklace.blp",
+  "icon_png": "icons_png/BTNArcaneNecklace.png",
+  "level": 12,
+  "gold": 2150
+ },
+ {
+  "id": "I00L",
+  "name_ru": "Темный кинжал",
+  "fields": {
+   "Класс": "Особый (2 ур.) + Бездна",
+   "Бонусы": "+7 атаки, +7% скорость атаки, +7% урон не от статусов по юнитам дальнего боя",
+   "Комплект": "c2"
+  },
+  "extra": [],
+  "icon": "BTNAbyssDagger.blp",
+  "icon_file": "BTNAbyssDagger.blp",
+  "icon_png": "icons_png/BTNAbyssDagger.png",
+  "level": 5,
+  "gold": 500
+ },
+ {
+  "id": "I00M",
+  "name_ru": "Пояс Доблести",
+  "fields": {
+   "Класс": "Особый (5 ур.) + Доблесть",
+   "Бонусы": "+500 HP, +15 силы, +7% защита от атак и умений (не влияет на статусы), +40 ответный урон",
+   "Комплект": "c1"
+  },
+  "extra": [],
+  "icon": "BTNValorBelt.blp",
+  "icon_file": "BTNValorBelt.blp",
+  "icon_png": "icons_png/BTNValorBelt.png",
+  "level": 14,
+  "gold": 1800
+ },
+ {
+  "id": "I00N",
+  "name_ru": "Грозовой обруч",
+  "fields": {
+   "Класс": "Особый (3 ур.) + Шторм",
+   "Бонусы": "+5 защиты, +15% защита от юнитов 0-1 уровня, +15% урон по юнитам 0-1 уровня (не влияет на статусы)",
+   "Комплект": "c3"
+  },
+  "extra": [],
+  "icon": "BTNStormBracers.blp",
+  "icon_file": "BTNStormBracers.blp",
+  "icon_png": "icons_png/BTNStormBracers.png",
+  "level": 13,
+  "gold": 900
+ },
+ {
+  "id": "I00V",
+  "name_ru": "Демолитрон",
+  "fields": {
+   "Класс": "Особый (5+ ур.) + Адский",
+   "Бонусы": "+40 атаки, +9 main stat, +25% урон не от статусов по юнитам ближнего боя",
+   "Модификатор": "Раз в 16 сек. атака вызывает взрыв, наносящий 375 ед. урона по области и поджигающий врагов (60% шанс, 425 ед. итогового урона).",
+   "Комплект": "c4"
+  },
+  "extra": [],
+  "icon": "BTNHellDemolitron.blp",
+  "icon_file": "BTNHellDemolitron.blp",
+  "icon_png": "icons_png/BTNHellDemolitron.png",
+  "level": 15,
+  "gold": 2150
+ },
+ {
+  "id": "I00W",
+  "name_ru": "Боевой лук",
+  "fields": {
+   "Класс": "Особый (2 ур.)",
+   "Бонусы": "+7 атаки, +2 main stat, +10% урон от атак и умений по юнитам дальнего боя"
+  },
+  "extra": [],
+  "icon": "ReplaceableTextures\\CommandButtons\\BTNImprovedBows.blp",
+  "icon_file": null,
+  "icon_png": null,
+  "level": 9,
+  "gold": 500
+ },
+ {
+  "id": "I00X",
+  "name_ru": "Старый панцирь",
+  "fields": {
+   "Класс": "Особый (2 ур.)",
+   "Бонусы": "+3 защиты, +50 HP, +8% защита от атак и умений юнитов ближнего боя"
+  },
+  "extra": [],
+  "icon": "ReplaceableTextures\\CommandButtons\\BTNCreatureCarapace.blp",
+  "icon_file": null,
+  "icon_png": null,
+  "level": 9,
+  "gold": 500
+ },
+ {
+  "id": "I014",
+  "name_ru": "Камень маны",
+  "fields": {
+   "Класс": "Особый (3 ур.)",
+   "Бонусы": "+400 MP, +35% сила модификаторов"
+  },
+  "extra": [],
+  "icon": "ReplaceableTextures\\CommandButtons\\BTNManaStone.blp",
+  "icon_file": null,
+  "icon_png": null,
+  "level": 10,
+  "gold": 900
+ },
+ {
+  "id": "I015",
+  "name_ru": "Короткий клинок",
+  "fields": {
+   "Класс": "Особый (2 ур.)",
+   "Бонусы": "+8 атаки, +6% скорость атаки, +10% урон не от статусов против юнитов ближнего боя"
+  },
+  "extra": [],
+  "icon": "BTNShortBlade.blp",
+  "icon_file": "BTNShortBlade.blp",
+  "icon_png": "icons_png/BTNShortBlade.png",
+  "level": 9,
+  "gold": 500
+ },
+ {
+  "id": "I016",
+  "name_ru": "Топор чумы",
+  "fields": {
+   "Класс": "Особый (3 ур.)",
+   "Бонусы": "+10 атаки, +3 main stat, +15% урон от болезни",
+   "Способности": "Увеличивает урон не от статусов против пораженных болезнью врагов на 30%."
+  },
+  "extra": [],
+  "icon": "BTNPlagueAxe.blp",
+  "icon_file": "BTNPlagueAxe.blp",
+  "icon_png": "icons_png/BTNPlagueAxe.png",
+  "level": 10,
+  "gold": 900
+ },
+ {
+  "id": "I01A",
+  "name_ru": "Закаленная кольчуга",
+  "fields": {
+   "Класс": "Особый (4 ур.) + Доблесть",
+   "Бонусы": "+350 HP, +3 HP regen, +30% защита от поджога, сопротивление поджогу",
+   "Комплект": "c1"
+  },
+  "extra": [],
+  "icon": "BTNChestPlating.blp",
+  "icon_file": "BTNChestPlating.blp",
+  "icon_png": "icons_png/BTNChestPlating.png",
+  "level": 14,
+  "gold": 1400
+ },
+ {
+  "id": "I01B",
+  "name_ru": "Сумка бандита",
+  "fields": {
+   "Класс": "Особый (3 ур.)",
+   "Бонусы": "+4 защиты, +2.5 HP regen, +6% защита от атак и умений юнитов ближнего боя, +50% золото за убийства"
+  },
+  "extra": [],
+  "icon": "BTNBagMonk.blp",
+  "icon_file": "BTNBagMonk.blp",
+  "icon_png": "icons_png/BTNBagMonk.png",
+  "level": 10,
+  "gold": 900
+ },
+ {
+  "id": "I01C",
+  "name_ru": "Шипованные перчатки",
+  "fields": {
+   "Класс": "Особый (3 ур.)",
+   "Бонусы": "+3 защиты, +6 ловкости, +6 пробитие, +8% урон от атак и умений по юнитам ближнего боя, +10 ответный урон"
+  },
+  "extra": [],
+  "icon": "BTNGlovesSpiked.blp",
+  "icon_file": "BTNGlovesSpiked.blp",
+  "icon_png": "icons_png/BTNGlovesSpiked.png",
+  "level": 10,
+  "gold": 900
+ },
+ {
+  "id": "I01H",
+  "name_ru": "Лук звездочёта",
+  "fields": {
+   "Класс": "Особый (5 ур.)",
+   "Бонусы": "+30 атаки, +10 ловкости, +12 пробитие, +20% урон от атак и умений по юнитам дальнего боя",
+   "Модификатор": "Каждое 7-е убийство противника наносит 175 ед. урона 5 врагам рядом с погибшей целью."
+  },
+  "extra": [],
+  "icon": "BTNStarcounterBow.blp",
+  "icon_file": "BTNStarcounterBow.blp",
+  "icon_png": "icons_png/BTNStarcounterBow.png",
+  "level": 11,
+  "gold": 1800
+ },
+ {
+  "id": "I01K",
+  "name_ru": "Топор стража",
+  "fields": {
+   "Класс": "Особый (2 ур.) + Доблесть",
+   "Бонусы": "+12 атаки, +4 силы, +4 пробитие",
+   "Комплект": "c1"
+  },
+  "extra": [],
+  "icon": "BTNAxeBarbarian.blp",
+  "icon_file": "BTNAxeBarbarian.blp",
+  "icon_png": "icons_png/BTNAxeBarbarian.png",
+  "level": 14,
+  "gold": 500
+ },
+ {
+  "id": "I01L",
+  "name_ru": "Магические ягоды",
+  "fields": {
+   "Класс": "Особый (2 ур.)",
+   "Бонусы": "+60 сила умений, +30% сила модификаторов"
+  },
+  "extra": [],
+  "icon": "BTNBlueBerries.blp",
+  "icon_file": "BTNBlueBerries.blp",
+  "icon_png": "icons_png/BTNBlueBerries.png",
+  "level": 9,
+  "gold": 500
+ },
+ {
+  "id": "I01M",
+  "name_ru": "Бронерукавица",
+  "fields": {
+   "Класс": "Особый (4 ур.)",
+   "Бонусы": "+10 атаки, +10 силы, +50% сила модификаторов",
+   "Модификатор": "Раз в 4 сек. атака героя применяет поджог и кровотечение на врага (на каждый статус 75% шанс и 50 ед. урона)"
+  },
+  "extra": [],
+  "icon": "BTNPlateOrcWarriorGloves.blp",
+  "icon_file": "BTNPlateOrcWarriorGloves.blp",
+  "icon_png": "icons_png/BTNPlateOrcWarriorGloves.png",
+  "level": 7,
+  "gold": 1400
+ },
+ {
+  "id": "I01O",
+  "name_ru": "Манасталь",
+  "fields": {
+   "Класс": "Особый (3 ур.)",
+   "Бонусы": "+85 сила умений, +2 MP regen, +35% сила модификаторов"
+  },
+  "extra": [],
+  "icon": "BTNManasteel.blp",
+  "icon_file": "BTNManasteel.blp",
+  "icon_png": "icons_png/BTNManasteel.png",
+  "level": 10,
+  "gold": 900
+ },
+ {
+  "id": "I01P",
+  "name_ru": "Кольцо Ёрмунганда",
+  "fields": {
+   "Класс": "Особый (5+ ур.)",
+   "Бонусы": "+30 силы, -50% скорость атаки, +50 пробитие",
+   "Множитель": "Увеличивает регенерацию здоровья героя по формуле: 1 ед. силы = 0.15 HP regen. Эффект обновляется автоматически."
+  },
+  "extra": [],
+  "icon": "BTNYormungandRing.blp",
+  "icon_file": "BTNYormungandRing.blp",
+  "icon_png": "icons_png/BTNYormungandRing.png",
+  "level": 12,
+  "gold": 2150
+ },
+ {
+  "id": "I01Q",
+  "name_ru": "Руна энергии",
+  "fields": {
+   "Класс": "Особый (2 ур.) + Шторм",
+   "Бонусы": "+5 int, +75 сила умений",
+   "Способности": "Продлевает время действия шока на 1 сек.",
+   "Комплект": "c3"
+  },
+  "extra": [],
+  "icon": "BTNEnergyRune.blp",
+  "icon_file": "BTNEnergyRune.blp",
+  "icon_png": "icons_png/BTNEnergyRune.png",
+  "level": 13,
+  "gold": 500
+ },
+ {
+  "id": "I01S",
+  "name_ru": "Королевский жетон",
+  "fields": {
+   "Класс": "Особый (2 ур.) + Доблесть",
+   "Бонусы": "+3 armor, +125 HP, +15% усиление ответного урона",
+   "Комплект": "c1"
+  },
+  "extra": [],
+  "icon": "BTNCrownToken.blp",
+  "icon_file": "BTNCrownToken.blp",
+  "icon_png": "icons_png/BTNCrownToken.png",
+  "level": 14,
+  "gold": 500
+ },
+ {
+  "id": "I01V",
+  "name_ru": "Накидка культиста",
+  "fields": {
+   "Класс": "Особый (2 ур.) + Бездна",
+   "Бонусы": "+7% защита от юнитов 0-1 уровня, +7% защита от юнитов дальнего боя (не защищает от статусов)",
+   "Комплект": "c2"
+  },
+  "extra": [],
+  "icon": "BTNShirtClothGlamour.blp",
+  "icon_file": "BTNShirtClothGlamour.blp",
+  "icon_png": "icons_png/BTNShirtClothGlamour.png",
+  "level": 5,
+  "gold": 500
+ },
+ {
+  "id": "I00D",
+  "name_ru": "Набор ювелира",
+  "fields": {
+   "Класс": "Усилитель",
+   "Способности": "Позволяет объединять два одинаковых очищенных самоцвета чтобы создать предмет категории \"Серьги\"."
+  },
+  "extra": [],
+  "icon": "BTNGemsCrafter2.blp",
+  "icon_file": "BTNGemsCrafter2.blp",
+  "icon_png": "icons_png/BTNGemsCrafter2.png",
+  "level": null,
+  "gold": 600
+ },
+ {
+  "id": "I00E",
+  "name_ru": "Астральные серьги",
+  "fields": {
+   "Класс": "Серьги",
+   "Бонусы": "+800 сила умений",
+   "Особенность": "Можно носить только 1 предмет категории \"Серьги\"."
+  },
+  "extra": [],
+  "icon": "BTNEarringsSpd.blp",
+  "icon_file": "BTNEarringsSpd.blp",
+  "icon_png": "icons_png/BTNEarringsSpd.png",
+  "level": null,
+  "gold": 5000
+ },
+ {
+  "id": "I00F",
+  "name_ru": "Изумрудные серьги",
+  "fields": {
+   "Класс": "Серьги",
+   "Бонусы": "+100 agi",
+   "Особенность": "Можно носить только 1 предмет категории \"Серьги\"."
+  },
+  "extra": [],
+  "icon": "BTNEarringsAgi.blp",
+  "icon_file": "BTNEarringsAgi.blp",
+  "icon_png": "icons_png/BTNEarringsAgi.png",
+  "level": null,
+  "gold": 5000
+ },
+ {
+  "id": "I00O",
+  "name_ru": "Золотые серьги",
+  "fields": {
+   "Класс": "Серьги",
+   "Бонусы": "+4000 HP",
+   "Особенность": "Можно носить только 1 предмет категории \"Серьги\"."
+  },
+  "extra": [],
+  "icon": "BTNEarringsGold.blp",
+  "icon_file": "BTNEarringsGold.blp",
+  "icon_png": "icons_png/BTNEarringsGold.png",
+  "level": null,
+  "gold": 5000
+ },
+ {
+  "id": "I00P",
+  "name_ru": "Рубиновые серьги",
+  "fields": {
+   "Класс": "Серьги",
+   "Бонусы": "+100 str",
+   "Особенность": "Можно носить только 1 предмет категории \"Серьги\"."
+  },
+  "extra": [],
+  "icon": "BTNEarringsStr.blp",
+  "icon_file": "BTNEarringsStr.blp",
+  "icon_png": "icons_png/BTNEarringsStr.png",
+  "level": null,
+  "gold": 5000
+ },
+ {
+  "id": "I00Q",
+  "name_ru": "Сапфировые серьги",
+  "fields": {
+   "Класс": "Серьги",
+   "Бонусы": "+100 int",
+   "Особенность": "Можно носить только 1 предмет категории \"Серьги\"."
+  },
+  "extra": [],
+  "icon": "BTNEarringsInt.blp",
+  "icon_file": "BTNEarringsInt.blp",
+  "icon_png": "icons_png/BTNEarringsInt.png",
+  "level": null,
+  "gold": 5000
+ },
+ {
+  "id": "I004",
+  "name_ru": "Тайная шкатулка",
+  "fields": {
+   "Класс": "Особый (5 ур.)",
+   "Способности": "Создаёт случайный предмет категории \"Особый 2 ур.\" в инвентарь сравочника (F2) даруя герою бонусы предмета, не занимая слот. От шкатулки можно иметь только 1 предмет. Уничтожается после применения."
+  },
+  "extra": [],
+  "icon": "BTNSecretBox.blp",
+  "icon_file": "BTNSecretBox.blp",
+  "icon_png": "icons_png/BTNSecretBox.png",
+  "level": 7,
+  "gold": 1400
+ },
+ {
+  "id": "I006",
+  "name_ru": "Ледяное копье",
+  "fields": {
+   "Класс": "Особый (4 ур.)",
+   "Бонусы": "+8 agi, +8 int, +10 пробитие",
+   "Модификатор": "Атака наносит 115 ед. маг. урона и с шансом 100% применяет заморозку на врага. Перезарядка - 4 сек."
+  },
+  "extra": [],
+  "icon": "BTNFrostSpear.blp",
+  "icon_file": "BTNFrostSpear.blp",
+  "icon_png": "icons_png/BTNFrostSpear.png",
+  "level": 7,
+  "gold": 1400
+ },
+ {
+  "id": "I00R",
+  "name_ru": "Холодное лезвие",
+  "fields": {
+   "Класс": "Особый (3 ур.)",
+   "Бонусы": "+4 agi, +4 int, +10 atk",
+   "Модификатор": "Атака с шансом 50% применяет заморозку на врага. Перезарядка - 2 сек.",
+   "Способности": "Добавляет 150 ед. к урону от повторной заморозки."
+  },
+  "extra": [],
+  "icon": "BTNIceDagger.blp",
+  "icon_file": "BTNIceDagger.blp",
+  "icon_png": "icons_png/BTNIceDagger.png",
+  "level": 10,
+  "gold": 900
+ },
+ {
+  "id": "I00S",
+  "name_ru": "Сфера льда",
+  "fields": {
+   "Класс": "Артефакт (1 ур.)",
+   "Способности": "Каждые 5 сек. применяет на врагов поблизости заморозку с 100% шансом.\n\nЦели под действием \"заморозки\" будут получать на 35% больше урона от статусов. Не влияет на урон от повторной заморозки (т.к. урон наносится после снятия заморозки)."
+  },
+  "extra": [],
+  "icon": "BTNIceSphere.blp",
+  "icon_file": "BTNIceSphere.blp",
+  "icon_png": "icons_png/BTNIceSphere.png",
+  "level": 4,
+  "gold": 1200
+ },
+ {
+  "id": "I00Y",
+  "name_ru": "Амулет Души",
+  "fields": {
+   "Класс": "Особый (5++ ур.)",
+   "Бонусы": "+1250 HP, +500 MP, +25 agi, +25 int, +50% защита от статусов",
+   "Способности": "Удачное применение негативных статусов на врагов (кроме заморозки) применяет дополнительно заморозку с 50% шансом."
+  },
+  "extra": [],
+  "icon": "BTNT7Art8.blp",
+  "icon_file": "BTNT7Art8.blp",
+  "icon_png": "icons_png/BTNT7Art8.png",
+  "level": 12,
+  "gold": 2750
+ },
+ {
+  "id": "I011",
+  "name_ru": "Посылка",
+  "fields": {
+   "Класс": "Случайный предмет\n\nВы получаете случайный предмет категории \"Особый\".\n\nШанс создания: \nОсобый предмет (1 ур.) - 60%\nОсобый предмет (2 ур.) - 30%\nОсобый предмет (3 ур.) - 10%"
+  },
+  "extra": [],
+  "icon": "BTNMarketBox.blp",
+  "icon_file": "BTNMarketBox.blp",
+  "icon_png": "icons_png/BTNMarketBox.png",
+  "level": 1,
+  "gold": 250
+ },
+ {
+  "id": "I012",
+  "name_ru": "Большая посылка",
+  "fields": {
+   "Класс": "Случайный предмет\n\nВы получаете случайный предмет категории \"Особый\".\n\nШанс создания: \nОсобый предмет (2 ур.) - 50%\nОсобый предмет (3 ур.) - 30%\nОсобый предмет (4 ур.) - 20%"
+  },
+  "extra": [],
+  "icon": "BTNMarketBox2.blp",
+  "icon_file": "BTNMarketBox2.blp",
+  "icon_png": "icons_png/BTNMarketBox2.png",
+  "level": 1,
+  "gold": 525
+ },
+ {
+  "id": "I017",
+  "name_ru": "Призрачный кинжал",
+  "fields": {
+   "Класс": "Особый (5 ур.)",
+   "Бонусы": "+20 atk, +100% сила модификаторов"
+  },
+  "extra": [],
+  "icon": "BTNGhostKnife.blp",
+  "icon_file": "BTNGhostKnife.blp",
+  "icon_png": "icons_png/BTNGhostKnife.png",
+  "level": 11,
+  "gold": 1800
+ }
+]
