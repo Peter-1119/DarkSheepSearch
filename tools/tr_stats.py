@@ -55,7 +55,7 @@ _SIMPLE.sort(key=lambda x: -len(x[0]))
 FLAT = {
     'сопротивление проклятиям': ('抵抗詛咒', 'curse resistance'),
     'сопротивление поджогу': ('抵抗點燃', 'burn resistance'),
-    'сопротивление поджогу и горючести': ('抵抗點燃與燃燒', 'burn & ignite resistance'),
+    'сопротивление поджогу и горючести': ('抵抗點燃與易燃', 'burn & flammable resistance'),
     'сопротивление кровотечению': ('抵抗流血', 'bleed resistance'),
     'сопротивление заморозке': ('抵抗冰凍', 'freeze resistance'),
     'сопротивление болезни': ('抵抗疾病', 'disease resistance'),
