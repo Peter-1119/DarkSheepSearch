@@ -69,6 +69,33 @@ GROUPS = [
     ('消耗品／掉落物', 'Расходники', 'Consumables'),
 ]
 GRANK = {g[0]: n for n, g in enumerate(GROUPS)}
+
+# ---------------------------------------------------------------- 取得管道分類
+# 依「怎麼拿到」而不是「品質高低」分組，因為玩家真正想知道的是能不能拿到。
+# 節日類一般玩家拿不到，預設收合。
+CATS = [
+    ('合成產物', 'Crafted', 'Крафт', 0,
+     ['神器（lv.5）', '神器（lv.4）', '神器（lv.3）', '神器（lv.2）', '神器（lv.1）']),
+    ('掉落・特殊', 'Drops · Special', 'Дроп · Особые', 0,
+     ['特殊（lv.5++）', '特殊（lv.5+）', '特殊（lv.5）', '特殊（lv.4）',
+      '特殊（lv.3）', '特殊（lv.2）', '特殊（lv.1）']),
+    ('商店・卷軸線', 'Shop · Scroll line', 'Магазин · Свитки', 0,
+     ['傳說', '獨特', '稀有', '普通', '扭曲', '淬鍊', '附加']),
+    ('任務線', 'Quest line', 'Квестовая линия', 0,
+     ['完美', '折射', '聖物', '任務物品（2/2）', '任務物品（1/2）']),
+    ('祭壇・儀式', 'Altar · Ritual', 'Алтарь · Ритуал', 0, ['儀式']),
+    ('寶石・耳環', 'Gems · Earrings', 'Самоцветы · Серьги', 0, ['耳環', '寶石']),
+    ('強化道具', 'Enhancers', 'Усилители', 0, ['強化']),
+    ('節日限定', 'Seasonal', 'Праздничные', 1,
+     ['新年', '復活節', '萬聖節']),
+    ('其他', 'Other', 'Прочее', 1, ['符文', '信使', '消耗品／掉落物']),
+]
+cats = [{'zh': z, 'en': e, 'ru': r, 'fold': f,
+         'g': [GRANK[x] for x in gs if x in GRANK]}
+        for z, e, r, f, gs in CATS]
+_seen = [x for c in cats for x in c['g']]
+assert len(_seen) == len(set(_seen)) == len(GROUPS), (
+    '分類沒有涵蓋全部：漏 %s' % [GROUPS[n][0] for n in range(len(GROUPS)) if n not in _seen])
 SET = {'c1': ('英勇', 'Valor', 'Доблесть'), 'c2': ('深淵', 'Abyss', 'Бездна'),
        'c3': ('風暴', 'Storm', 'Шторм'), 'c4': ('地獄', 'Infernal', 'Адский')}
 LABEL = {'能力': ('能力', 'Ability', 'Способности'),
@@ -161,10 +188,19 @@ for m in statmeta:
 #       → 視為 4 件一組的池子，順序不保證
 CYC = {i: n for n, i in enumerate(SITE['cycle'])}
 RIT = {i: n for n, i in enumerate(SITE.get('ritual', []))}
-REF = {}
+
+# 任務線的正確結構（玩家確認）：
+#   任務物品1階 -> 任務物品2階 -> 聖物 ─┬─ 折射卷軸 ─> 折射（4 件循環）
+#                                      └─ 鐵匠技能 ─> 完美
+# 完美是從「聖物」分支出來的，不是接在折射後面。
+REF, CHAIN = {}, {}
 for gi, (q1, q2, relic, group, perfect) in enumerate(SITE['refract']):
+    line = {'g': gi, 'q1': q1, 'q2': q2, 'relic': relic,
+            'group': group, 'perfect': perfect}
     for n, i in enumerate(group):
-        REF[i] = {'g': gi, 'n': n, 'relic': relic, 'group': group, 'perfect': perfect}
+        REF[i] = dict(line, n=n)
+    for i in (q1, q2, relic, perfect):
+        CHAIN[i] = line
 for i, v in items.items():
     if i in CYC:
         v['cyc'] = CYC[i]
@@ -172,6 +208,8 @@ for i, v in items.items():
         v['rit'] = RIT[i]
     if i in REF:
         v['ref'] = REF[i]
+    if i in CHAIN:
+        v['chain'] = CHAIN[i]
 
 out = {
     'meta': meta,
@@ -180,6 +218,7 @@ out = {
     'ritual': SITE.get('ritual', []),
     'items': items,
     'groups': [{'zh': g[0], 'ru': g[1], 'en': g[2]} for g in GROUPS],
+    'cats': cats,
     'ladder': SITE['ladder'], 'refract': SITE['refract'],
     'cycle': SITE['cycle'],
     'ritual': SITE.get('ritual', []), 'gem': SITE['gem'],

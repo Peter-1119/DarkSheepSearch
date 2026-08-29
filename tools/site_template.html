@@ -122,6 +122,29 @@ input{font:inherit}
 .tier .ct{font:11px/1 ui-monospace,monospace;color:var(--ink-3)}
 .tier[aria-pressed="true"] .ct{color:var(--ink-2)}
 
+/* 取得管道分類：可收合，讓「拿不到的東西」不佔視覺份量 */
+.cat{margin-top:10px}
+.cat:first-of-type{margin-top:2px}
+.cat-h{display:flex;align-items:center;gap:2px;width:100%}
+.cat-t{
+  flex:0 0 auto;width:20px;height:24px;display:grid;place-items:center;border-radius:6px;
+  color:var(--ink-3);font-size:9px;transition:color var(--dur),background var(--dur),transform var(--dur);
+}
+.cat-t:hover{background:var(--surface);color:var(--ink)}
+.cat[data-open="0"] .cat-t{transform:rotate(-90deg)}
+.cat-n{
+  flex:1;display:flex;align-items:center;gap:6px;padding:4px 6px;border-radius:7px;
+  font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);
+  font-weight:600;text-align:left;transition:color var(--dur),background var(--dur);
+}
+.cat-n:hover{background:var(--surface);color:var(--ink-2)}
+.cat-n[aria-pressed="true"]{color:var(--accent)}
+.cat-n .c{margin-left:auto;font:10px/1 ui-monospace,monospace;letter-spacing:0;
+  text-transform:none;opacity:.8}
+.cat-b{padding-left:12px}
+.cat[data-open="0"] .cat-b{display:none}
+.cat[data-dim="1"] .cat-n{opacity:.6}
+
 .legend{margin:14px 8px 0;padding-top:12px;border-top:1px solid var(--line);
   font-size:11.5px;color:var(--ink-3);line-height:1.9}
 .meta{margin:14px 8px 0;padding-top:12px;border-top:1px solid var(--line);
@@ -273,12 +296,31 @@ input{font:inherit}
 
 /* -------- panel */
 .panel{
-  position:relative;flex:0 0 auto;width:var(--pw,420px);min-width:0;
-  border-left:1px solid var(--line);background:var(--bg-2);
-  display:flex;flex-direction:column;
-  box-shadow:var(--shadow);
+  position:relative;flex:0 0 auto;min-width:0;overflow:hidden;
+  background:var(--bg-2);box-shadow:var(--shadow);
+  width:0;border-left:0 solid var(--line);
+  transition:width .22s var(--ease),border-left-width .22s var(--ease);
 }
-.panel[hidden]{display:none}
+.panel[data-open="1"]{width:var(--pw,420px);border-left-width:1px}
+/* 拖曳時要即時跟手，不能有過渡 */
+.panel[data-drag="1"]{transition:none}
+.panel[data-open="0"] .handle{opacity:0;pointer-events:none}
+
+/* 內層固定寬度：外層收合時內容不會被擠壓變形，
+   只是被裁切掉，看起來就像整片滑出去 */
+.p-inner{
+  width:var(--pw,420px);flex:0 0 auto;height:100%;
+  display:flex;flex-direction:column;min-height:0;
+  opacity:0;transform:translateX(18px);
+  transition:opacity .2s var(--ease) .04s,transform .26s var(--ease) .04s;
+}
+.panel[data-open="1"] .p-inner{opacity:1;transform:none}
+.panel[data-drag="1"] .p-inner{transition:none}
+
+/* 換一件裝備時內容輕輕淡入，避免瞬間抽換 */
+@keyframes swapIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.panel[data-swap="1"] .p-head,
+.panel[data-swap="1"] .p-body{animation:swapIn .22s var(--ease) both}
 .handle{
   position:absolute;left:-4px;top:0;bottom:0;width:9px;cursor:col-resize;z-index:6;
   display:flex;align-items:center;justify-content:center;
@@ -323,7 +365,7 @@ body[data-resizing="1"]{cursor:col-resize;user-select:none}
 .chip.set{border-color:#4b3a6b;color:#c4a6ff}
 .chip.shop{border-color:#3c5340;color:#8fd6a3}
 
-.p-body{flex:1;overflow-y:auto;padding:16px 18px 40px}
+.p-body{flex:1;overflow-y:auto;padding:16px 18px 40px;min-height:0}
 .sect{margin-bottom:20px}
 .sect:last-child{margin-bottom:0}
 .sect > h4{
@@ -354,6 +396,7 @@ body[data-resizing="1"]{cursor:col-resize;user-select:none}
   transition:background var(--dur),border-color var(--dur),transform var(--dur);
 }
 .rel button:hover{background:var(--surface-2);border-color:var(--line-2);transform:translateX(2px)}
+.rel button.cur{border-color:var(--c2,var(--accent));box-shadow:0 0 0 1px var(--c2,var(--accent))}
 .rel img,.rel .ph{width:34px;height:34px;border-radius:7px;flex:0 0 auto;object-fit:cover;
   background:#0c0f15;box-shadow:0 0 0 1.5px var(--c2,#39415a)}
 .rel .ph{display:grid;place-items:center;font-size:10px;color:var(--ink-3)}
@@ -438,7 +481,9 @@ body[data-resizing="1"]{cursor:col-resize;user-select:none}
 @media (max-width:1100px){ .rail{width:172px} }
 @media (max-width:860px){
   .rail{display:none}
-  .panel{position:fixed;right:0;top:56px;bottom:0;width:min(92vw,var(--pw,420px));z-index:15}
+  .panel{position:fixed;right:0;top:56px;bottom:0;z-index:15;width:0}
+  .panel[data-open="1"]{width:min(92vw,var(--pw,420px))}
+  .p-inner{width:min(92vw,var(--pw,420px))}
   .handle{display:none}
 }
 @media (prefers-reduced-motion:reduce){
@@ -485,11 +530,13 @@ body[data-resizing="1"]{cursor:col-resize;user-select:none}
     <nav class="rail" id="rail" aria-label="tiers"></nav>
     <main class="main" id="main"></main>
 
-    <aside class="panel" id="panel" hidden aria-live="polite">
+    <aside class="panel" id="panel" data-open="0" aria-live="polite">
       <div class="handle" id="handle" role="separator" aria-orientation="vertical"
            tabindex="0" title="拖曳調整寬度 · 雙擊重設"></div>
-      <div class="p-head" id="phead"></div>
-      <div class="p-body" id="pbody"></div>
+      <div class="p-inner" id="pinner">
+        <div class="p-head" id="phead"></div>
+        <div class="p-body" id="pbody"></div>
+      </div>
     </aside>
   </div>
 </div>
@@ -525,7 +572,10 @@ const UI = {
       cycL:'扭曲循環', cycNote:'再用一次扭曲卷軸就會變成右邊那件，走完 29 件回到起點',
       ritL:'儀式循環', ritNote:'再轉一次就會變成右邊那件，走完 11 件回到起點',
       refL:'折射循環', refNote:'第一次由聖物隨機轉出，之後每用一次折射卷軸就往右走一件，4 件循環',
-      fromRelic:'來源聖物', toPerfect:'完美階'},
+      fromRelic:'來源聖物', toPerfect:'完美階',
+      chainL:'任務升級鏈', chainSplit:'聖物之後分兩條路：',
+      qs1:'任務物品 1 階', qs2:'任務物品 2 階', qs3:'聖物',
+      qs4:'折射卷軸 → 折射（4 件循環）', qs5:'鐵匠技能 → 完美'},
   en:{title:'Item Codex', sub:"Fat Sheep's Christmas Gift · Underground Defence",
       ph:'Search items…', density:'Density', d1:'Roomy', d2:'Compact', d3:'Icons',
       all:'All items', tiers:'Tiers', legend:'Legend', sel:'Selected',
@@ -541,7 +591,11 @@ const UI = {
       cycL:'Distortion cycle', cycNote:'Another Scroll of Distortion turns it into the next one; 29 steps loop back',
       ritL:'Ritual cycle', ritNote:'Rerolling steps to the next one; 11 items loop back to the start',
       refL:'Refraction cycle', refNote:'The relic rolls a random one first; each further scroll steps to the next, looping through 4',
-      fromRelic:'From relic', toPerfect:'Perfected'},
+      fromRelic:'From relic', toPerfect:'Perfected',
+      chainL:'Quest upgrade chain', chainSplit:'The relic branches two ways:',
+      qs1:'Quest item, stage 1', qs2:'Quest item, stage 2', qs3:'Relic',
+      qs4:'Scroll of Refraction → Refracted (4-item cycle)',
+      qs5:'Blacksmith skill → Perfected'},
   ru:{title:'Кодекс предметов', sub:'Underground Defence', ph:'Поиск предметов…',
       density:'Плотность', d1:'Свободно', d2:'Плотно', d3:'Иконки',
       all:'Все предметы', tiers:'Классы', legend:'Легенда', sel:'Выбрано',
@@ -558,7 +612,11 @@ const UI = {
       cycL:'Цикл искажения', cycNote:'Ещё один свиток искажения даёт следующий предмет; 29 шагов по кругу',
       ritL:'Ритуальный цикл', ritNote:'Следующий бросок даёт следующий предмет; цикл из 11',
       refL:'Цикл преломления', refNote:'Реликвия даёт случайный первый; далее каждый свиток — следующий по кругу из 4',
-      fromRelic:'Реликвия', toPerfect:'Совершенный'}
+      fromRelic:'Реликвия', toPerfect:'Совершенный',
+      chainL:'Цепочка квеста', chainSplit:'От реликвии два пути:',
+      qs1:'Квестовый, 1 этап', qs2:'Квестовый, 2 этап', qs3:'Реликвия',
+      qs4:'Свиток преломления → Преломленный (цикл из 4)',
+      qs5:'Навык кузнеца → Совершенный'}
 };
 
 /* ---------------------------------------------------------------- state */
@@ -567,6 +625,8 @@ const S = {
   density: localStorage.getItem('ud.density') || 'comfortable',
   width: +(localStorage.getItem('ud.pw') || 420),
   tier: null,        // null = all
+  cat: null,         // 取得管道分類
+  fold: JSON.parse(localStorage.getItem('ud.fold') || '{}'),
   q: '',
   sel: null,
   rank: localStorage.getItem('ud.rank') || '',   // '' = 不排行
@@ -613,17 +673,30 @@ function renderRail(){
     counts[ITEMS[id].g] = (counts[ITEMS[id].g]||0)+1; total++;
   }
   let h = `<h3>${esc(t('tiers'))}</h3>`;
-  h += `<button class="tier" data-g="" aria-pressed="${S.tier===null}">
+  h += `<button class="tier" data-g="" aria-pressed="${S.tier===null && S.cat===null}">
           <i class="dot" style="background:#7a8398"></i>
           <span class="nm">${esc(t('all'))}</span>
           <span class="ct">${total}</span></button>`;
-  GROUPS.forEach((g,i) => {
-    if (!counts[i]) return;
-    const c = tierColour(i);
-    h += `<button class="tier" data-g="${i}" aria-pressed="${S.tier===i}">
-            <i class="dot" style="background:${c}"></i>
-            <span class="nm">${esc(g[S.lang])}</span>
-            <span class="ct">${counts[i]}</span></button>`;
+  (DATA.cats || []).forEach((cat, ci) => {
+    const inCat = cat.g.filter(g => counts[g]);
+    if (!inCat.length) return;
+    const n = inCat.reduce((a, g) => a + counts[g], 0);
+    const open = S.fold[ci] !== undefined ? S.fold[ci] : !cat.fold;
+    h += `<div class="cat" data-open="${open ? 1 : 0}" data-dim="${cat.fold ? 1 : 0}" data-c="${ci}">
+        <div class="cat-h">
+          <button class="cat-t" data-tog="${ci}" aria-label="toggle">▼</button>
+          <button class="cat-n" data-cat="${ci}" aria-pressed="${S.cat===ci}">
+            ${esc(cat[S.lang] || cat.zh)}<span class="c">${n}</span>
+          </button>
+        </div>
+        <div class="cat-b">`;
+    inCat.forEach(g => {
+      h += `<button class="tier" data-g="${g}" aria-pressed="${S.tier===g}">
+              <i class="dot" style="background:${tierColour(g)}"></i>
+              <span class="nm">${esc(GROUPS[g][S.lang])}</span>
+              <span class="ct">${counts[g]}</span></button>`;
+    });
+    h += `</div></div>`;
   });
   h += `<h3>${esc(t('legend'))}</h3>
     <div class="legend">
@@ -661,6 +734,7 @@ function visible(){
   const q = S.q.trim().toLowerCase();
   return IDS.filter(id => {
     if (S.tier !== null && ITEMS[id].g !== S.tier) return false;
+    if (S.cat !== null && !DATA.cats[S.cat].g.includes(ITEMS[id].g)) return false;
     if (q && !HAY[id].includes(q)) return false;
     return true;
   });
@@ -844,17 +918,24 @@ function openItem(id, scroll){
   if (it.cyc != null) b += cycleBlock(it, DATA.cycle, 'cycL', 'cycNote');
   if (it.rit != null) b += cycleBlock(it, DATA.ritual, 'ritL', 'ritNote', 'rit');
   if (it.ref) b += refractBlock(it);
+  if (it.chain) b += chainBlock(it);
   if (it.r.length) b += relBlock(t('recipe'), it.r, '＋');
   if (it.u.length) b += relBlock(t('usedin'), it.u, '↑');
   pbody.innerHTML = b || `<div class="note">—</div>`;
   pbody.scrollTop = 0;
 
-  const wasHidden = panel.hidden;
-  panel.hidden = false;
+  const wasClosed = panel.dataset.open !== '1';
+  panel.dataset.open = '1';
+  /* 已經開著時換裝備 -> 內容淡入；第一次開啟 -> 整片滑入就夠了 */
+  if (!wasClosed){
+    panel.dataset.swap = '0';
+    void panel.offsetWidth;          // 強制重繪，讓動畫可以重播
+    panel.dataset.swap = '1';
+  }
   $('#pclose').onclick = closeItem;
   paintRelations();
   const el = main.querySelector(`.tile[data-id="${id}"]`);
-  if (el && (scroll || wasHidden)){
+  if (el && (scroll || wasClosed)){
     const r = el.getBoundingClientRect(), m = main.getBoundingClientRect();
     if (scroll || r.top < m.top + 8 || r.bottom > m.bottom - 8)
       el.scrollIntoView({block:'center', behavior:'smooth'});
@@ -917,7 +998,6 @@ function refractBlock(it){
       <div class="note" style="margin-top:8px">${esc(t('refNote'))}</div>`;
   const extra = [];
   if (ITEMS[R.relic]) extra.push([t('fromRelic'), R.relic, '↑']);
-  if (ITEMS[R.perfect]) extra.push([t('toPerfect'), R.perfect, '★']);
   if (extra.length){
     h += `<div class="rel" style="margin-top:8px">` + extra.map(([lab, id, ar]) =>
       `<button data-goto="${id}" style="--c2:${ITEMS[id].k || '#39415a'}">
@@ -927,6 +1007,33 @@ function refractBlock(it){
        </button>`).join('') + `</div>`;
   }
   return h + `</div>`;
+}
+
+/* 任務線。分岔點在「聖物」：
+     任務物品1階 → 任務物品2階 → 聖物 ─┬─ 折射卷軸 → 折射（4 件循環）
+                                       └─ 鐵匠技能 → 完美                     */
+function chainBlock(it){
+  const C = it.chain;
+  const row = (id, lab, arrow) => ITEMS[id] ? `
+    <button data-goto="${id}" style="--c2:${ITEMS[id].k || '#39415a'}"
+            class="${id === it.id ? 'cur' : ''}">
+      ${thumb(id)}
+      <span class="t"><b>${esc(nm(id))}</b><span>${esc(lab)}</span></span>
+      <span class="arrow">${arrow}</span>
+    </button>` : '';
+  return `<div class="sect">
+      <h4>${esc(t('chainL'))}</h4>
+      <div class="rel">
+        ${row(C.q1, t('qs1'), '1')}
+        ${row(C.q2, t('qs2'), '2')}
+        ${row(C.relic, t('qs3'), '3')}
+      </div>
+      <div class="note" style="margin:8px 0 6px">${esc(t('chainSplit'))}</div>
+      <div class="rel">
+        ${row(C.group[0], t('qs4'), '↳')}
+        ${row(C.perfect, t('qs5'), '↳')}
+      </div>
+    </div>`;
 }
 
 function relBlock(title, ids, arrow){
@@ -940,8 +1047,11 @@ function relBlock(title, ids, arrow){
 }
 
 function closeItem(){
-  S.sel = null; panel.hidden = true; paintRelations();
-  history.replaceState(null,'',location.pathname+location.search);
+  S.sel = null;
+  panel.dataset.open = '0';
+  panel.removeAttribute('data-swap');
+  paintRelations();
+  history.replaceState(null, '', location.pathname + location.search);
 }
 
 /* ---------------------------------------------------------------- events */
@@ -957,10 +1067,29 @@ pbody.addEventListener('click', e => {
   if (b) openItem(b.dataset.goto, true);
 });
 rail.addEventListener('click', e => {
+  const tog = e.target.closest('[data-tog]');
+  if (tog){                                   // 收合／展開，不影響篩選
+    const ci = +tog.dataset.tog;
+    const cat = DATA.cats[ci];
+    const cur = S.fold[ci] !== undefined ? S.fold[ci] : !cat.fold;
+    S.fold[ci] = !cur;
+    localStorage.setItem('ud.fold', JSON.stringify(S.fold));
+    rail.querySelector(`.cat[data-c="${ci}"]`).dataset.open = !cur ? 1 : 0;
+    return;
+  }
+  const cb = e.target.closest('[data-cat]');
+  if (cb){                                    // 篩選整個取得管道
+    const ci = +cb.dataset.cat;
+    S.cat = (S.cat === ci) ? null : ci;
+    S.tier = null;
+    renderRail(); renderGrid(); main.scrollTop = 0;
+    return;
+  }
   const b = e.target.closest('.tier');
   if (!b) return;
   const g = b.dataset.g === '' ? null : +b.dataset.g;
-  S.tier = (S.tier === g) ? null : g;
+  if (g === null){ S.tier = null; S.cat = null; }
+  else { S.tier = (S.tier === g) ? null : g; S.cat = null; }
   renderRail(); renderGrid();
   main.scrollTop = 0;
 });
@@ -1029,9 +1158,11 @@ function setW(w){
 handle.addEventListener('pointerdown', e => {
   e.preventDefault(); handle.setPointerCapture(e.pointerId);
   handle.dataset.drag = '1'; document.body.dataset.resizing = '1';
+  panel.dataset.drag = '1';
   const move = ev => setW(window.innerWidth - ev.clientX);
   const up = () => {
     handle.removeAttribute('data-drag'); document.body.removeAttribute('data-resizing');
+    panel.removeAttribute('data-drag');
     window.removeEventListener('pointermove', move);
     window.removeEventListener('pointerup', up);
   };
