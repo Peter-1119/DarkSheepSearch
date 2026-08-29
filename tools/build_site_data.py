@@ -8,6 +8,7 @@ sys.stdout.reconfigure(encoding='utf-8')
 
 ROOT = r'D:/Notebook Program Scripts/Python_Scripts/DarkSheep'
 DB = json.load(open('db_items.json', encoding='utf-8'))
+SETB = json.load(open('set_bonus.json', encoding='utf-8'))
 NZH = json.load(open('names2.json', encoding='utf-8'))
 NEN = json.load(open('names_en.json', encoding='utf-8'))
 AB = json.load(open('ab_db.json', encoding='utf-8'))
@@ -224,8 +225,15 @@ for k in SET:
     ks = [v['k'] for v in items.values() if k in (v.get('sk') or []) and v.get('k')]
     setcol[k] = collections.Counter(ks).most_common(1)[0][0] if ks else '#8b93a7'
 sets = {k: {'n': list(SET[k]), 'c': setcol[k],
-            'items': [i for i, v in items.items() if k in (v.get('sk') or [])]}
+            'items': [i for i, v in items.items() if k in (v.get('sk') or [])],
+            # 加成是手抄的（觸發腳本裡的東西匯不出來），見 set_bonus.json
+            'b': SETB.get(k, {}).get('tiers', []),
+            'only': SETB.get(k, {}).get('only')}
         for k in SET}
+
+if SITE.get('legion'):
+    SITE['legion']['b'] = SETB.get('c5', {}).get('tiers', [])
+    SITE['legion']['only'] = SETB.get('c5', {}).get('only')
 
 out = {
     'meta': meta,

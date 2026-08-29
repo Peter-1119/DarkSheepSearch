@@ -6,6 +6,7 @@
 # data/gg 全部是 DISBTN / DISPAS —— 遊戲中「不可用」狀態的灰暗版圖示。
 # 854 張、6.5 MB，裡面沒有任何一張正常的 BTN 圖，網站完全用不到。
 data/gg/
+data/photos/
 
 # 從 Wiki 抓下來的 HTML 快取，需要時 tools/parse_wiki.py 會重抓
 tools/pages/

@@ -399,6 +399,22 @@ body[data-resizing="1"]{cursor:col-resize;user-select:none}
 }
 .chip code{font:11px/1 ui-monospace,monospace;opacity:.75}
 .chip.tier{color:var(--c,var(--ink));border-color:color-mix(in srgb,var(--c,#39415a) 45%,transparent)}
+/* 套裝加成：一組一段，左邊一條該套裝的色帶，件數做成圓標好掃 */
+.sb{border-left:2px solid var(--sc);padding-left:10px;margin-top:12px}
+.sb:first-of-type{margin-top:2px}
+.sb-h{display:flex;align-items:center;gap:6px;margin-bottom:5px;flex-wrap:wrap}
+.sb-h b{color:var(--sc);font-size:12.5px}
+.sb-h code{font:10.5px/1 ui-monospace,monospace;color:var(--ink-3);
+  background:var(--surface);border:1px solid var(--line);border-radius:5px;padding:2px 5px}
+.sb-h .only{font-size:10.5px;color:var(--ink-3)}
+.sb-r{display:flex;gap:8px;align-items:flex-start;padding:3px 0;font-size:12px;line-height:1.55}
+.sb-r .n{flex:0 0 auto;width:18px;height:18px;border-radius:50%;margin-top:2px;
+  display:grid;place-items:center;font:10.5px/1 ui-monospace,monospace;color:var(--sc);
+  background:color-mix(in srgb,var(--sc) 16%,transparent);
+  box-shadow:0 0 0 1px color-mix(in srgb,var(--sc) 34%,transparent) inset}
+.sb-r .x{color:var(--ink-2)}
+.sb-r .q{font-size:10px;color:#e0a340;margin-left:5px;white-space:nowrap;
+  border:1px solid rgba(224,163,64,.4);border-radius:4px;padding:0 4px}
 .chip.set{
   border-color:color-mix(in srgb,var(--sc,#4b3a6b) 55%,transparent);
   color:var(--sc,#c4a6ff);
@@ -616,7 +632,9 @@ const UI = {
       ritL:'儀式循環', ritNote:'再轉一次就會變成右邊那件，走完 11 件回到起點',
       refL:'折射循環', refNote:'第一次由聖物隨機轉出，之後每用一次折射卷軸就往右走一件，4 件循環',
       fromRelic:'來源聖物', toPerfect:'完美階',
-      legionNote:'集滿以上全部才會生效；加成內容在遊戲內輸入 -c5 查詢',
+      legionNote:'從名單中帶幾件，就生效到第幾階',
+      setB:'套裝加成', pcs:'%s 件', unsure:'待確認',
+      setSrc:'加成數值取自遊戲內 -c1 ~ -c5，非地圖資料',
       chainL:'任務升級鏈', chainSplit:'聖物之後分兩條路：',
       qs1:'任務物品 1 階', qs2:'任務物品 2 階', qs3:'聖物',
       qs4:'折射卷軸 → 折射（4 件循環）', qs5:'鐵匠技能 → 完美'},
@@ -636,7 +654,9 @@ const UI = {
       ritL:'Ritual cycle', ritNote:'Rerolling steps to the next one; 11 items loop back to the start',
       refL:'Refraction cycle', refNote:'The relic rolls a random one first; each further scroll steps to the next, looping through 4',
       fromRelic:'From relic', toPerfect:'Perfected',
-      legionNote:'All of the above are required; type -c5 in game for the bonus details',
+      legionNote:'Bonuses unlock by how many listed items you carry',
+      setB:'Set bonuses', pcs:'%s pcs', unsure:'unverified',
+      setSrc:'Bonus values transcribed from -c1 ~ -c5 in game, not from map data',
       chainL:'Quest upgrade chain', chainSplit:'The relic branches two ways:',
       qs1:'Quest item, stage 1', qs2:'Quest item, stage 2', qs3:'Relic',
       qs4:'Scroll of Refraction → Refracted (4-item cycle)',
@@ -658,7 +678,9 @@ const UI = {
       ritL:'Ритуальный цикл', ritNote:'Следующий бросок даёт следующий предмет; цикл из 11',
       refL:'Цикл преломления', refNote:'Реликвия даёт случайный первый; далее каждый свиток — следующий по кругу из 4',
       fromRelic:'Реликвия', toPerfect:'Совершенный',
-      legionNote:'Нужны все перечисленные; бонус смотрите командой -c5 в игре',
+      legionNote:'Бонусы открываются по числу предметов из списка',
+      setB:'Бонусы комплекта', pcs:'%s пр.', unsure:'не уточнено',
+      setSrc:'Значения переписаны из -c1 ~ -c5 в игре, не из данных карты',
       chainL:'Цепочка квеста', chainSplit:'От реликвии два пути:',
       qs1:'Квестовый, 1 этап', qs2:'Квестовый, 2 этап', qs3:'Реликвия',
       qs4:'Свиток преломления → Преломленный (цикл из 4)',
@@ -814,7 +836,8 @@ for (const id in SEQORD) if (ITEMS[id]) SEQ_GROUPS.add(ITEMS[id].g);
 const LEGION = DATA.legion || {items: [], colour: '#D9455C'};
 const SETS = Object.assign({}, DATA.sets || {});
 if (DATA.legion) SETS.c5 = {n: [LEGION.zh, LEGION.en, LEGION.ru],
-                            c: LEGION.colour, items: LEGION.items};
+                            c: LEGION.colour, items: LEGION.items,
+                            b: LEGION.b || [], only: LEGION.only};
 /* 一件裝備可能同時屬於好幾個套裝 —— 三位一體就同時算英勇＋深淵＋風暴。
    c1~c4 寫在道具說明裡（builder 解析成 sk），c5 是另外給的名單。 */
 const setKeysOf = it => (it.sk || []).concat(it.legion != null ? ['c5'] : []);
@@ -946,6 +969,30 @@ function paintRelations(){
   });
 }
 
+/* 從面板點別的裝備時，那件很可能被目前的篩選擋在畫面外 ——
+   面板開了、格子卻找不到，看起來就像壞掉。
+   這時把擋住它的條件放掉，並把側欄鎖到它自己的分類。
+   已經看得到的就完全不動篩選：使用者辛苦選的條件不該被無聲改掉。 */
+function reveal(id){
+  if (S.rank) return false;                                   // 排行是另一種檢視，不介入
+  if (main.querySelector(`.tile[data-id="${id}"]`)) return false;
+  const it = ITEMS[id];
+  if (S.q && !HAY[id].includes(S.q.trim().toLowerCase())){
+    S.q = '';
+    const box = $('#q'); if (box) box.value = '';
+  }
+  if (S.set && !setKeysOf(it).includes(S.set)) S.set = null;
+  S.tier = it.g; S.cat = null;
+  /* 節日類與其他預設收合，落在裡面的話要先展開才看得到 */
+  const ci = (DATA.cats || []).findIndex(c => c.g.includes(it.g));
+  if (ci >= 0){
+    S.fold[ci] = true;
+    localStorage.setItem('ud.fold', JSON.stringify(S.fold));
+  }
+  renderRail(); renderGrid();
+  return true;
+}
+
 /* ---------------------------------------------------------------- render: panel */
 function openItem(id, scroll){
   S.sel = id;
@@ -989,6 +1036,7 @@ function openItem(id, scroll){
   if (it.e.length) b += `<div class="sect"><h4>${esc(t('effects'))}</h4>${
     it.e.map(e => `<div class="eff"><span class="tag">${esc(e.l[L])}</span>
       <span class="txt">${num(e.t[L])}</span></div>`).join('')}</div>`;
+  b += setBonusBlock(it);
   if (it.legion != null) b += legionBlock(it);
   if (it.cyc != null) b += cycleBlock(it, DATA.cycle, 'cycL', 'cycNote');
   if (it.rit != null) b += cycleBlock(it, DATA.ritual, 'ritL', 'ritNote', 'rit');
@@ -1008,11 +1056,12 @@ function openItem(id, scroll){
     panel.dataset.swap = '1';
   }
   $('#pclose').onclick = closeItem;
+  const moved = reveal(id);
   paintRelations();
   const el = main.querySelector(`.tile[data-id="${id}"]`);
-  if (el && (scroll || wasClosed)){
+  if (el && (scroll || wasClosed || moved)){
     const r = el.getBoundingClientRect(), m = main.getBoundingClientRect();
-    if (scroll || r.top < m.top + 8 || r.bottom > m.bottom - 8)
+    if (scroll || moved || r.top < m.top + 8 || r.bottom > m.bottom - 8)
       el.scrollIntoView({block:'center', behavior:'smooth'});
   }
   history.replaceState(null,'','#'+id);
@@ -1084,6 +1133,25 @@ function refractBlock(it){
 /* 任務線。分岔點在「聖物」：
      任務物品1階 → 任務物品2階 → 聖物 ─┬─ 折射卷軸 → 折射（4 件循環）
                                        └─ 鐵匠技能 → 完美                     */
+/* 套裝加成。這些數值地圖的物件資料裡完全沒有（效果寫在觸發腳本，匯不出來），
+   是玩家在遊戲內輸入 -c1 ~ -c5 抄回來的，來源見 tools/set_bonus.json。
+   一件裝備可能同時屬於好幾組（三位一體就屬於三組），所以一組列一段。 */
+function setBonusBlock(it){
+  const ks = setKeysOf(it).filter(k => ((SETS[k] || {}).b || []).length);
+  if (!ks.length) return '';
+  const L = li();
+  return `<div class="sect"><h4>${esc(t('setB'))}</h4>` + ks.map(k => {
+    const G = SETS[k], only = G.only ? (G.only[S.lang] || G.only.zh) : '';
+    return `<div class="sb" style="--sc:${G.c}">
+      <div class="sb-h"><b>${esc(G.n[L])}</b><code>-${k}</code>${
+        only ? `<span class="only">${esc(only)}</span>` : ''}</div>
+      ${G.b.map(r => `<div class="sb-r"><span class="n">${r.n}</span><span class="x">${
+        num(r[S.lang] || r.zh)}${
+        r.q ? `<span class="q">${esc(t('unsure'))}</span>` : ''}</span></div>`).join('')}
+    </div>`;
+  }).join('') + `<div class="note" style="margin-top:8px">${esc(t('setSrc'))}</div></div>`;
+}
+
 /* -c5「軍團遺產」。成員橫跨扭曲／折射／神器，湊齊條件是一份指定清單，
    所以直接把整份清單列出來 —— 使用者要的是「還差哪幾件」。 */
 function legionBlock(it){

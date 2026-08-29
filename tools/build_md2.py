@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 import json, os, sys
 sys.stdout.reconfigure(encoding='utf-8')
+SETB = json.load(open(os.path.join(os.path.dirname(__file__),
+                                   'set_bonus.json'), encoding='utf-8'))
 
 ROOT = r'D:/Notebook Program Scripts/Python_Scripts/DarkSheep'
 D = json.load(open(os.path.join(ROOT, 'data', 'items.json'), encoding='utf-8'))
@@ -136,15 +138,39 @@ w('### 套裝（комплект）')
 w()
 w('部分「特殊」裝備屬於套裝，遊戲中輸入指令可查看套裝加成：')
 w()
+SETROW = [('c1', '英勇', 'Доблесть'), ('c2', '深淵', 'Бездна'),
+          ('c3', '風暴', 'Шторм'), ('c4', '地獄', 'Адский'),
+          ('c5', '軍團遺產', 'Наследие легиона')]
+LEGION_IDS = set((D.get('legion') or {}).get('items') or [])
 w('| 指令 | 套裝 | 俄文 | 件數 |')
 w('|---|---|---|---:|')
-for k, zh, ru in [('c1', '英勇', 'Доблесть'), ('c2', '深淵', 'Бездна'),
-                  ('c3', '風暴', 'Шторм'), ('c4', '地獄', 'Адский')]:
-    w('| `-%s` | %s | %s | %d |' % (k, zh, ru, sum(1 for v in I.values() if k in (v['set'] or []))))
+for k, zh, ru in SETROW:
+    n = (len(LEGION_IDS) if k == 'c5'
+         else sum(1 for v in I.values() if k in (v['set'] or [])))
+    w('| `-%s` | %s | %s | %d |' % (k, zh, ru, n))
 w()
 w('※ 三位一體（Триада）同時屬於英勇／深淵／風暴三個套裝。')
 w('※ 英勇之錘、風暴之錘、吞噬萬物 各自算作「2 件」該套裝道具。')
+w('※ `-c5` 軍團遺產另需「任一件『聖物』類道具」，且僅限「軍團特使」使用。')
 w()
+w('#### 套裝加成')
+w()
+w('地圖的物件資料裡查不到這些數值 —— 套裝效果寫在觸發腳本，匯出時抓不到。')
+w('以下是玩家在遊戲內輸入 `-c1` ~ `-c5` 抄回來的，原始出處為俄文版。')
+w()
+for k, zh, ru in SETROW:
+    b = SETB.get(k) or {}
+    if not b.get('tiers'):
+        continue
+    only = (b.get('only') or {}).get('zh')
+    w('**`-%s` %s**%s' % (k, zh, ('　（%s）' % only) if only else ''))
+    w()
+    w('| 件數 | 加成 |')
+    w('|---:|---|')
+    for r in b['tiers']:
+        w('| %d | %s%s |' % (r['n'], r['zh'],
+                             '　⚠ 原文辨識不確定' if r.get('q') else ''))
+    w()
 
 # ---------------------------------------------------------------- scrolls
 w('## 三、強化道具與品質階梯')
