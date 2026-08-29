@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """Build the trilingual dataset the website consumes."""
-import json, os, re, sys
+import collections, json, os, re, sys
 sys.path.insert(0, '.')
 from tr_stats import tr_bonus
 import stat_values
@@ -46,6 +46,8 @@ GROUPS = [
     ('特殊（lv.2）', 'Особый (2 ур.)', 'Special lv.2'),
     ('特殊（lv.1）', 'Особый (1 ур.)', 'Special lv.1'),
     ('傳說', 'Легендарный', 'Legendary'),
+    # 扭曲由獨特用卷軸轉化而來，所以排在獨特上面，不是接在任務線後面
+    ('扭曲', 'Искаженный', 'Distorted'),
     ('獨特', 'Уникальный', 'Unique'),
     ('稀有', 'Редкий', 'Rare'),
     ('普通', 'Обычный', 'Common'),
@@ -54,7 +56,6 @@ GROUPS = [
     ('聖物', 'Реликвия', 'Relic'),
     ('任務物品（2/2）', 'Квестовый [2/2]', 'Quest item [2/2]'),
     ('任務物品（1/2）', 'Квестовый [1/2]', 'Quest item [1/2]'),
-    ('扭曲', 'Искаженный', 'Distorted'),
     ('淬鍊', 'Закаленный', 'Tempered'),
     ('附加', 'Дополнительный', 'Extra'),
     ('儀式', 'Ритуальный', 'Ritual'),
@@ -80,7 +81,7 @@ CATS = [
      ['特殊（lv.5++）', '特殊（lv.5+）', '特殊（lv.5）', '特殊（lv.4）',
       '特殊（lv.3）', '特殊（lv.2）', '特殊（lv.1）']),
     ('商店・卷軸線', 'Shop · Scroll line', 'Магазин · Свитки', 0,
-     ['傳說', '獨特', '稀有', '普通', '扭曲', '淬鍊', '附加']),
+     ['傳說', '扭曲', '獨特', '稀有', '普通', '淬鍊', '附加']),
     ('任務線', 'Quest line', 'Квестовая линия', 0,
      ['完美', '折射', '聖物', '任務物品（2/2）', '任務物品（1/2）']),
     ('祭壇・儀式', 'Altar · Ritual', 'Алтарь · Ритуал', 0, ['儀式']),
@@ -129,7 +130,9 @@ for r in DB:
                 continue
             eff.append({'l': list(LABEL.get(lab, (lab, lab, lab))),
                         't': [zh, en, ru]})
-    sets = r['fields'].get('Комплект')
+    # 一件裝備可能同時屬於多個套裝（三位一體同時算英勇＋深淵＋風暴），
+    # 所以 sk 是代號清單、set 是對應的三語名稱清單。
+    sks = prev.get('set') or []
     items[i] = {
         'id': i,
         'n': [NZH[i], NEN[i], r['name_ru']],
@@ -144,7 +147,8 @@ for r in DB:
             r['fields'].get('Бонусы', '')] or None,
         'e': eff,
         'img': prev['image'],
-        'set': list(SET[sets]) if sets else None,
+        'sk': sks or None,
+        'set': [list(SET[k]) for k in sks] or None,
         'shop': list(SHOPS[[k for k in SHOPS if MAP and
                             ('【%s】' % k) in (next((v['zh'] for v in MAP.values()
                                                     if v['url'][:-5] == i), ''))][0]])
@@ -212,6 +216,17 @@ for i, v in items.items():
     if i in CHAIN:
         v['chain'] = CHAIN[i]
 
+# 每個套裝給一個固定顏色，取成員裡最常見的名稱顏色（遊戲內就是照套裝上色的）。
+# 之前底色直接用道具自己的稀有度色，碰到「三位一體」這種跨三個套裝、
+# 稀有度又跟同伴不同的道具就對不上，所以改由套裝自己決定顏色。
+setcol = {}
+for k in SET:
+    ks = [v['k'] for v in items.values() if k in (v.get('sk') or []) and v.get('k')]
+    setcol[k] = collections.Counter(ks).most_common(1)[0][0] if ks else '#8b93a7'
+sets = {k: {'n': list(SET[k]), 'c': setcol[k],
+            'items': [i for i, v in items.items() if k in (v.get('sk') or [])]}
+        for k in SET}
+
 out = {
     'meta': meta,
     'stats': statmeta,
@@ -219,6 +234,7 @@ out = {
     'legion': SITE.get('legion'),
     'ritual': SITE.get('ritual', []),
     'items': items,
+    'sets': sets,
     'groups': [{'zh': g[0], 'ru': g[1], 'en': g[2]} for g in GROUPS],
     'cats': cats,
     'ladder': SITE['ladder'], 'refract': SITE['refract'],

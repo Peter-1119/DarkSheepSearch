@@ -97,6 +97,26 @@ def tr_class(c):
     return '＋'.join([base] + [SET.get(p, p) for p in parts[1:]])
 
 
+# 套裝歸屬有兩個來源，要取聯集：
+#   1. 說明裡的「Бонусы комплекта "-c2"」 -> parse_db 解析成 fields['Комплект']
+#   2. Класс 那行後面接的套裝名，例如「Особый (5 ур.) + Бездна」
+# 絕大多數兩者一致，但「三位一體 Триада」只有第 2 種來源，
+# 而且一次屬於三個套裝（英勇＋深淵＋風暴，地獄除外），只看 Комплект 會漏掉。
+SET_RU = {'Доблесть': 'c1', 'Бездна': 'c2', 'Шторм': 'c3', 'Адский': 'c4'}
+
+def set_keys(r):
+    """回傳該道具所屬的套裝代號清單（依 c1..c4 排序），沒有就 None。"""
+    ks = set()
+    f = r['fields'].get('Комплект')
+    if f:
+        ks.add(f)
+    cls = r['fields'].get('Класс', '') or ''
+    for ru, k in SET_RU.items():
+        if ru in cls:
+            ks.add(k)
+    return sorted(ks) or None
+
+
 items, copied, noimg, fixed = {}, 0, [], 0
 for r in DB:
     i = r['id']
@@ -130,7 +150,7 @@ for r in DB:
         'id': i, 'name': NAMES[i], 'name_ru': r['name_ru'],
         'name_old': old, 'shop': shop,
         'cls': cls, 'cls_ru': cls_ru or None, 'group': cls.split('＋')[0],
-        'set': r['fields'].get('Комплект'),
+        'set': set_keys(r),
         'stats': tr_bonus(r['fields'].get('Бонусы', ''))[0],
         'stats_ru': r['fields'].get('Бонусы', ''),
         'effects': eff,

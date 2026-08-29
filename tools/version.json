@@ -1,5 +1,5 @@
 {
-  "site_version": "v1.0",
+  "site_version": "v1.1",
   "_site_version_說明": "網站版本。每次改完內容要發布時，自己把這裡 +1（v1.1、v1.2…），重跑 build.ps1 後推上去。網站左上角標題旁邊會顯示，用來確認 GitHub Pages 有沒有更新成功。",
 
   "map_version": "UD_v3.80",

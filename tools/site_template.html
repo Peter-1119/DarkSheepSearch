@@ -207,28 +207,41 @@ input{font:inherit}
 [data-density="compact"] .tile{padding:8px 5px 7px;gap:6px}
 [data-density="compact"] .tile .lbl{font-size:11px}
 
-/* 套裝件加一層底色。用的是遊戲裡該套裝的名稱顏色，
-   所以四組各自有固定色相，掃過去就認得出是哪一組。
-   濃度壓在 13% 左右 —— 再高會蓋過稀有度邊框，變成兩個訊號在打架。 */
+/* 套裝件加一層底色。每組用遊戲裡該套裝自己的名稱顏色（由 builder 算出），
+   所以五組各有固定色相，掃過去就認得出是哪一組。
+   稀有度走的是圖示外框那圈光，底色走套裝 —— 兩個訊號分屬不同位置，不會打架，
+   所以底色可以拉到看得清楚的濃度，再補一圈同色邊框讓輪廓自己跳出來。 */
 .tile[data-set]{
   background:
     linear-gradient(155deg,
-      color-mix(in srgb,var(--sc,var(--c)) 22%,transparent),
-      color-mix(in srgb,var(--sc,var(--c)) 4%,transparent) 62%),
+      color-mix(in srgb,var(--sc,var(--c)) 40%,transparent),
+      color-mix(in srgb,var(--sc,var(--c)) 12%,transparent) 80%),
     var(--surface);
+  border-color:color-mix(in srgb,var(--sc,var(--c)) 55%,var(--line));
 }
+.tile[data-set] .lbl{color:var(--ink)}
 .tile[data-set]:hover{
   background:
     linear-gradient(155deg,
-      color-mix(in srgb,var(--sc,var(--c)) 30%,transparent),
-      color-mix(in srgb,var(--sc,var(--c)) 7%,transparent) 62%),
+      color-mix(in srgb,var(--sc,var(--c)) 52%,transparent),
+      color-mix(in srgb,var(--sc,var(--c)) 18%,transparent) 80%),
     var(--surface-2);
+  border-color:color-mix(in srgb,var(--sc,var(--c)) 72%,var(--line));
+}
+/* 三位一體同時屬於三個套裝，底色就給三段，一眼看出它跟別人不一樣 */
+.tile[data-multi],.tile[data-multi]:hover{
+  background:
+    linear-gradient(155deg,
+      color-mix(in srgb,var(--sc) 46%,transparent),
+      color-mix(in srgb,var(--sc2,var(--sc)) 36%,transparent) 48%,
+      color-mix(in srgb,var(--sc3,var(--sc)) 26%,transparent)),
+    var(--surface);
 }
 /* 左上角一道小三角，純圖模式下沒有名稱時也認得出來 */
 .tile[data-set]::before{
   content:"";position:absolute;left:0;top:0;width:0;height:0;
-  border-top:9px solid var(--sc,var(--c));border-right:9px solid transparent;
-  border-top-left-radius:var(--r);opacity:.9;
+  border-top:13px solid var(--sc,var(--c));border-right:13px solid transparent;
+  border-top-left-radius:var(--r);
 }
 
 /* selection + relationship states */
@@ -712,8 +725,7 @@ function renderRail(){
           <span class="nm">${esc(t('all'))}</span>
           <span class="ct">${total}</span></button>`;
   if (S.set){
-    const n = S.set === 'c5' ? LEGION.items.length
-                             : IDS.filter(i => setKeyOf(ITEMS[i]) === S.set).length;
+    const n = IDS.filter(i => setKeysOf(ITEMS[i]).includes(S.set)).length;
     h += `<button class="tier" data-g="" aria-pressed="true" style="margin-top:4px">
             <i class="dot" style="background:var(--accent)"></i>
             <span class="nm">${esc(t('setL'))} -${S.set}</span>
@@ -777,11 +789,7 @@ function visible(){
   return IDS.filter(id => {
     if (S.tier !== null && ITEMS[id].g !== S.tier) return false;
     if (S.cat !== null && !DATA.cats[S.cat].g.includes(ITEMS[id].g)) return false;
-    if (S.set){
-      const it = ITEMS[id];
-      const k = S.set === 'c5' ? (it.legion != null ? 'c5' : '') : setKeyOf(it);
-      if (k !== S.set) return false;
-    }
+    if (S.set && !setKeysOf(ITEMS[id]).includes(S.set)) return false;
     if (q && !HAY[id].includes(q)) return false;
     return true;
   });
@@ -803,19 +811,26 @@ const SEQORD = (() => {
 const SEQ_GROUPS = new Set();
 for (const id in SEQORD) if (ITEMS[id]) SEQ_GROUPS.add(ITEMS[id].g);
 
-const SETKEY = {'英勇':'c1','深淵':'c2','風暴':'c3','地獄':'c4',
-  'Valor':'c1','Abyss':'c2','Storm':'c3','Infernal':'c4',
-  'Доблесть':'c1','Бездна':'c2','Шторм':'c3','Адский':'c4'};
-const setKeyOf = it => it.set ? (SETKEY[it.set[0]] || '') : '';
 const LEGION = DATA.legion || {items: [], colour: '#D9455C'};
+const SETS = Object.assign({}, DATA.sets || {});
+if (DATA.legion) SETS.c5 = {n: [LEGION.zh, LEGION.en, LEGION.ru],
+                            c: LEGION.colour, items: LEGION.items};
+/* 一件裝備可能同時屬於好幾個套裝 —— 三位一體就同時算英勇＋深淵＋風暴。
+   c1~c4 寫在道具說明裡（builder 解析成 sk），c5 是另外給的名單。 */
+const setKeysOf = it => (it.sk || []).concat(it.legion != null ? ['c5'] : []);
+const setColour = k => (SETS[k] || {}).c || '#8b93a7';
+const setName = k => ((SETS[k] || {}).n || [])[li()] || k;
 
 const tileHTML = id => {
   const it = ITEMS[id];
-  const sk = setKeyOf(it);
-  const sc = sk ? (it.k || '') : (it.legion != null ? LEGION.colour : '');
+  const ks = setKeysOf(it);
+  const tint = ks.length
+    ? `;--sc:${setColour(ks[0])}` + (ks.length > 1
+        ? `;--sc2:${setColour(ks[1])};--sc3:${setColour(ks[2] || ks[1])}` : '')
+    : '';
   return `<button class="tile" data-id="${id}"${
-      sk ? ` data-set="${sk}"` : (it.legion != null ? ' data-set="c5"' : '')}
-      style="--c:${it.k||'#39415a'}${sc ? `;--sc:${sc}` : ''}">
+      ks.length ? ` data-set="${ks[0]}"${ks.length > 1 ? ' data-multi="1"' : ''}` : ''}
+      style="--c:${it.k||'#39415a'}${tint}">
             <span class="thumb">${thumb(id)}</span>
             <span class="lbl">${esc(nm(id))}</span>
             <span class="flag"></span>
@@ -951,9 +966,9 @@ function openItem(id, scroll){
     </div>
     <div class="chips">
       <span class="chip tier" style="--c:${it.k||'#8b93a7'}">${esc(it.c[L])}</span>
-      ${it.set ? `<button class="chip set" data-setf="${setKeyOf(it)}"
-            style="--sc:${it.k || '#c4a6ff'}" title="${esc(t('setFilter'))}">${
-            esc(t('setL'))} · ${esc(it.set[L])} <code>-${setKeyOf(it)}</code></button>`:''}
+      ${setKeysOf(it).map(k => `<button class="chip set" data-setf="${k}"
+            style="--sc:${setColour(k)}" title="${esc(t('setFilter'))}">${
+            esc(t('setL'))} · ${esc(setName(k))} <code>-${k}</code></button>`).join('')}
       ${it.shop ? `<span class="chip shop">${esc(it.shop[L])}</span>`:''}
       ${it.a && S.lang==='zh' ? `<span class="chip">${esc(t('alias'))}：${esc(it.a)}</span>`:''}
     </div>`;

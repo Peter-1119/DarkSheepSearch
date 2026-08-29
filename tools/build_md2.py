@@ -140,7 +140,7 @@ w('| 指令 | 套裝 | 俄文 | 件數 |')
 w('|---|---|---|---:|')
 for k, zh, ru in [('c1', '英勇', 'Доблесть'), ('c2', '深淵', 'Бездна'),
                   ('c3', '風暴', 'Шторм'), ('c4', '地獄', 'Адский')]:
-    w('| `-%s` | %s | %s | %d |' % (k, zh, ru, sum(1 for v in I.values() if v['set'] == k)))
+    w('| `-%s` | %s | %s | %d |' % (k, zh, ru, sum(1 for v in I.values() if k in (v['set'] or []))))
 w()
 w('※ 三位一體（Триада）同時屬於英勇／深淵／風暴三個套裝。')
 w('※ 英勇之錘、風暴之錘、吞噬萬物 各自算作「2 件」該套裝道具。')
@@ -293,7 +293,9 @@ for n, g in enumerate(groups):
             rec.append('**配方：**' + ' + '.join(link(x) for x in it['recipe']))
         if it['used_in']:
             rec.append('**用於：**' + '、'.join(link(x) for x in it['used_in']))
-        cls = it['cls'] + (('<br><sub>套裝 `-%s`</sub>' % it['set']) if it['set'] else '')
+        cls = it['cls'] + (('<br><sub>套裝 %s</sub>'
+                           % '、'.join('`-%s`' % k for k in it['set']))
+                          if it['set'] else '')
         w('| %s | %s | %s | %s | %s | %s |'
           % (icon(i), name, cls, it['stats'] or '—', effs(i) or '—',
              '<br>'.join(rec) or '—'))
