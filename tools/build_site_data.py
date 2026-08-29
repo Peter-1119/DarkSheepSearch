@@ -151,6 +151,7 @@ for r in DB:
                 if any(('【%s】' % k) in (next((v['zh'] for v in MAP.values()
                                                if v['url'][:-5] == i), ''))
                        for k in SHOPS) else None,
+        'legion': prev.get('legion'),
         'r': prev['recipe'],
         'u': prev['used_in'],
         'v': stat_values.parse(r['fields'].get('Бонусы', '')) or None,
@@ -215,12 +216,14 @@ out = {
     'meta': meta,
     'stats': statmeta,
     'cycle': SITE['cycle'],
+    'legion': SITE.get('legion'),
     'ritual': SITE.get('ritual', []),
     'items': items,
     'groups': [{'zh': g[0], 'ru': g[1], 'en': g[2]} for g in GROUPS],
     'cats': cats,
     'ladder': SITE['ladder'], 'refract': SITE['refract'],
     'cycle': SITE['cycle'],
+    'legion': SITE.get('legion'),
     'ritual': SITE.get('ritual', []), 'gem': SITE['gem'],
     'recipes': SITE['recipes'],
 }

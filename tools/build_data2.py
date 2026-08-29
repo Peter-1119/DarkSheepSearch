@@ -176,13 +176,33 @@ RITUAL = ['sand', 'srrc', 'sres', 'sror', 'fgdg', 'totw', 'pghe', 'pres',
 GEM = [('lmbr', 'rma2', 'I00P'), ('gfor', 'sor3', 'I00Q'), ('gomn', 'sor2', 'I00F'),
        ('tpow', 'sor5', 'I00E'), ('guvi', 'sor4', 'I00O')]
 
+# -c5「軍團遺產」（軍團軍械庫）。跟 c1~c4 不同：成員不是寫在道具的 Класс 欄位，
+# 而是一份跨類別的指定清單，所以只能手動維護。除了這 9 件，還要背包裡有
+# 任一件「聖物」類道具。玩家自遊戲內取得，物件資料查不到。
+LEGION = {
+    'key': 'c5',
+    'zh': '軍團遺產', 'en': 'Legion Legacy', 'ru': 'Наследие легиона',
+    'colour': '#D9455C',
+    'items': ['spro', 'pman', 'phea', 'ssan',    # 扭曲
+              'rej3', 'wlsd',                     # 折射
+              'tbak', 'spre', 'modt'],            # 神器
+    'anyOf': {'zh': '任一件「聖物」類道具', 'en': 'any Relic-class item',
+              'ru': 'любой предмет класса «Реликвия»'},
+    'anyGroup': '聖物',
+}
+
 recipes = [{'row': r['row'],
             'seq': [{'kind': 'item', 'id': s['url'][:-5]} if s['kind'] == 'item'
                     else {'kind': 'op', 'op': s['op']} for s in r['seq']]}
            for r in RECIPES]
 
+for n, i in enumerate(LEGION['items']):
+    if i in items:
+        items[i]['legion'] = n
+
 data = {'items': items, 'order': ORDER, 'ladder': LADDER, 'refract': REFRACT,
-        'cycle': CYCLE, 'ritual': RITUAL, 'gem': GEM, 'recipes': recipes}
+        'cycle': CYCLE, 'ritual': RITUAL, 'gem': GEM, 'recipes': recipes,
+        'legion': LEGION}
 json.dump(data, open(os.path.join(ROOT, 'data', 'items.json'), 'w', encoding='utf-8'),
           ensure_ascii=False, indent=1)
 

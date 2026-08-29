@@ -207,6 +207,30 @@ input{font:inherit}
 [data-density="compact"] .tile{padding:8px 5px 7px;gap:6px}
 [data-density="compact"] .tile .lbl{font-size:11px}
 
+/* 套裝件加一層底色。用的是遊戲裡該套裝的名稱顏色，
+   所以四組各自有固定色相，掃過去就認得出是哪一組。
+   濃度壓在 13% 左右 —— 再高會蓋過稀有度邊框，變成兩個訊號在打架。 */
+.tile[data-set]{
+  background:
+    linear-gradient(155deg,
+      color-mix(in srgb,var(--sc,var(--c)) 22%,transparent),
+      color-mix(in srgb,var(--sc,var(--c)) 4%,transparent) 62%),
+    var(--surface);
+}
+.tile[data-set]:hover{
+  background:
+    linear-gradient(155deg,
+      color-mix(in srgb,var(--sc,var(--c)) 30%,transparent),
+      color-mix(in srgb,var(--sc,var(--c)) 7%,transparent) 62%),
+    var(--surface-2);
+}
+/* 左上角一道小三角，純圖模式下沒有名稱時也認得出來 */
+.tile[data-set]::before{
+  content:"";position:absolute;left:0;top:0;width:0;height:0;
+  border-top:9px solid var(--sc,var(--c));border-right:9px solid transparent;
+  border-top-left-radius:var(--r);opacity:.9;
+}
+
 /* selection + relationship states */
 .tile[data-sel="1"]{
   background:var(--surface-2);border-color:var(--c,var(--accent));
@@ -362,7 +386,13 @@ body[data-resizing="1"]{cursor:col-resize;user-select:none}
 }
 .chip code{font:11px/1 ui-monospace,monospace;opacity:.75}
 .chip.tier{color:var(--c,var(--ink));border-color:color-mix(in srgb,var(--c,#39415a) 45%,transparent)}
-.chip.set{border-color:#4b3a6b;color:#c4a6ff}
+.chip.set{
+  border-color:color-mix(in srgb,var(--sc,#4b3a6b) 55%,transparent);
+  color:var(--sc,#c4a6ff);
+  background:color-mix(in srgb,var(--sc,#4b3a6b) 14%,var(--surface));
+  cursor:pointer;
+}
+.chip.set:hover{background:color-mix(in srgb,var(--sc,#4b3a6b) 26%,var(--surface))}
 .chip.shop{border-color:#3c5340;color:#8fd6a3}
 
 .p-body{flex:1;overflow-y:auto;padding:16px 18px 40px;min-height:0}
@@ -564,7 +594,7 @@ const UI = {
       stats:'屬性', effects:'效果', recipe:'合成配方', usedin:'用於合成',
       alias:'舊表名稱', none:'沒有符合的裝備', tryOther:'換個關鍵字或清除篩選',
       hint:'點擊看詳細，再點一次收合 · 相關素材會在格子中高亮', hint2:'搜尋',
-      shopL:'商店', setL:'套裝', close:'關閉', results:'搜尋結果',
+      shopL:'商店', setL:'套裝', setFilter:'只看這組套裝', close:'關閉', results:'搜尋結果',
       dataL:'資料', dateL:'擷取日', cntL:'道具', icoL:'圖示', verUnknown:'版本未知',
       siteL:'網站', builtL:'建置日', bySeq:'依循環順序',
       rankL:'排行', rankOff:'不排行（瀏覽）', rankBy:'依 %s 排行',
@@ -573,6 +603,7 @@ const UI = {
       ritL:'儀式循環', ritNote:'再轉一次就會變成右邊那件，走完 11 件回到起點',
       refL:'折射循環', refNote:'第一次由聖物隨機轉出，之後每用一次折射卷軸就往右走一件，4 件循環',
       fromRelic:'來源聖物', toPerfect:'完美階',
+      legionNote:'集滿以上全部才會生效；加成內容在遊戲內輸入 -c5 查詢',
       chainL:'任務升級鏈', chainSplit:'聖物之後分兩條路：',
       qs1:'任務物品 1 階', qs2:'任務物品 2 階', qs3:'聖物',
       qs4:'折射卷軸 → 折射（4 件循環）', qs5:'鐵匠技能 → 完美'},
@@ -583,7 +614,7 @@ const UI = {
       recipe:'Recipe', usedin:'Used in', alias:'Old sheet name',
       none:'No items match', tryOther:'Try another keyword or clear the filter',
       hint:'Click for details, click again to close · related pieces light up',
-      hint2:'search', shopL:'Shop', setL:'Set', close:'Close', results:'Results',
+      hint2:'search', shopL:'Shop', setL:'Set', setFilter:'Show only this set', close:'Close', results:'Results',
       dataL:'Data', dateL:'Extracted', cntL:'Items', icoL:'Icons', verUnknown:'version unknown',
       siteL:'Site', builtL:'Built', bySeq:'in cycle order',
       rankL:'Rank', rankOff:'Off (browse)', rankBy:'Ranked by %s',
@@ -592,6 +623,7 @@ const UI = {
       ritL:'Ritual cycle', ritNote:'Rerolling steps to the next one; 11 items loop back to the start',
       refL:'Refraction cycle', refNote:'The relic rolls a random one first; each further scroll steps to the next, looping through 4',
       fromRelic:'From relic', toPerfect:'Perfected',
+      legionNote:'All of the above are required; type -c5 in game for the bonus details',
       chainL:'Quest upgrade chain', chainSplit:'The relic branches two ways:',
       qs1:'Quest item, stage 1', qs2:'Quest item, stage 2', qs3:'Relic',
       qs4:'Scroll of Refraction → Refracted (4-item cycle)',
@@ -604,7 +636,7 @@ const UI = {
       none:'Ничего не найдено', tryOther:'Измените запрос или сбросьте фильтр',
       hint:'Нажмите для деталей, ещё раз — закрыть · связанное подсветится',
       hint2:'поиск', shopL:'Магазин', setL:'Комплект', close:'Закрыть',
-      results:'Результаты', dataL:'Данные', dateL:'Выгрузка', cntL:'Предметов',
+      setFilter:'Только этот комплект', results:'Результаты', dataL:'Данные', dateL:'Выгрузка', cntL:'Предметов',
       icoL:'Иконок', verUnknown:'версия неизвестна',
       siteL:'Сайт', builtL:'Сборка', bySeq:'по циклу',
       rankL:'Рейтинг', rankOff:'Выкл. (обзор)', rankBy:'Рейтинг по: %s',
@@ -613,6 +645,7 @@ const UI = {
       ritL:'Ритуальный цикл', ritNote:'Следующий бросок даёт следующий предмет; цикл из 11',
       refL:'Цикл преломления', refNote:'Реликвия даёт случайный первый; далее каждый свиток — следующий по кругу из 4',
       fromRelic:'Реликвия', toPerfect:'Совершенный',
+      legionNote:'Нужны все перечисленные; бонус смотрите командой -c5 в игре',
       chainL:'Цепочка квеста', chainSplit:'От реликвии два пути:',
       qs1:'Квестовый, 1 этап', qs2:'Квестовый, 2 этап', qs3:'Реликвия',
       qs4:'Свиток преломления → Преломленный (цикл из 4)',
@@ -626,6 +659,7 @@ const S = {
   width: +(localStorage.getItem('ud.pw') || 420),
   tier: null,        // null = all
   cat: null,         // 取得管道分類
+  set: null,         // 套裝（c1~c4）
   fold: JSON.parse(localStorage.getItem('ud.fold') || '{}'),
   q: '',
   sel: null,
@@ -677,6 +711,14 @@ function renderRail(){
           <i class="dot" style="background:#7a8398"></i>
           <span class="nm">${esc(t('all'))}</span>
           <span class="ct">${total}</span></button>`;
+  if (S.set){
+    const n = S.set === 'c5' ? LEGION.items.length
+                             : IDS.filter(i => setKeyOf(ITEMS[i]) === S.set).length;
+    h += `<button class="tier" data-g="" aria-pressed="true" style="margin-top:4px">
+            <i class="dot" style="background:var(--accent)"></i>
+            <span class="nm">${esc(t('setL'))} -${S.set}</span>
+            <span class="ct">${n}</span></button>`;
+  }
   (DATA.cats || []).forEach((cat, ci) => {
     const inCat = cat.g.filter(g => counts[g]);
     if (!inCat.length) return;
@@ -735,6 +777,11 @@ function visible(){
   return IDS.filter(id => {
     if (S.tier !== null && ITEMS[id].g !== S.tier) return false;
     if (S.cat !== null && !DATA.cats[S.cat].g.includes(ITEMS[id].g)) return false;
+    if (S.set){
+      const it = ITEMS[id];
+      const k = S.set === 'c5' ? (it.legion != null ? 'c5' : '') : setKeyOf(it);
+      if (k !== S.set) return false;
+    }
     if (q && !HAY[id].includes(q)) return false;
     return true;
   });
@@ -756,9 +803,19 @@ const SEQORD = (() => {
 const SEQ_GROUPS = new Set();
 for (const id in SEQORD) if (ITEMS[id]) SEQ_GROUPS.add(ITEMS[id].g);
 
+const SETKEY = {'英勇':'c1','深淵':'c2','風暴':'c3','地獄':'c4',
+  'Valor':'c1','Abyss':'c2','Storm':'c3','Infernal':'c4',
+  'Доблесть':'c1','Бездна':'c2','Шторм':'c3','Адский':'c4'};
+const setKeyOf = it => it.set ? (SETKEY[it.set[0]] || '') : '';
+const LEGION = DATA.legion || {items: [], colour: '#D9455C'};
+
 const tileHTML = id => {
   const it = ITEMS[id];
-  return `<button class="tile" data-id="${id}" style="--c:${it.k||'#39415a'}">
+  const sk = setKeyOf(it);
+  const sc = sk ? (it.k || '') : (it.legion != null ? LEGION.colour : '');
+  return `<button class="tile" data-id="${id}"${
+      sk ? ` data-set="${sk}"` : (it.legion != null ? ' data-set="c5"' : '')}
+      style="--c:${it.k||'#39415a'}${sc ? `;--sc:${sc}` : ''}">
             <span class="thumb">${thumb(id)}</span>
             <span class="lbl">${esc(nm(id))}</span>
             <span class="flag"></span>
@@ -894,7 +951,9 @@ function openItem(id, scroll){
     </div>
     <div class="chips">
       <span class="chip tier" style="--c:${it.k||'#8b93a7'}">${esc(it.c[L])}</span>
-      ${it.set ? `<span class="chip set">${esc(t('setL'))} · ${esc(it.set[L])} <code>-${setKey(it)}</code></span>`:''}
+      ${it.set ? `<button class="chip set" data-setf="${setKeyOf(it)}"
+            style="--sc:${it.k || '#c4a6ff'}" title="${esc(t('setFilter'))}">${
+            esc(t('setL'))} · ${esc(it.set[L])} <code>-${setKeyOf(it)}</code></button>`:''}
       ${it.shop ? `<span class="chip shop">${esc(it.shop[L])}</span>`:''}
       ${it.a && S.lang==='zh' ? `<span class="chip">${esc(t('alias'))}：${esc(it.a)}</span>`:''}
     </div>`;
@@ -915,6 +974,7 @@ function openItem(id, scroll){
   if (it.e.length) b += `<div class="sect"><h4>${esc(t('effects'))}</h4>${
     it.e.map(e => `<div class="eff"><span class="tag">${esc(e.l[L])}</span>
       <span class="txt">${num(e.t[L])}</span></div>`).join('')}</div>`;
+  if (it.legion != null) b += legionBlock(it);
   if (it.cyc != null) b += cycleBlock(it, DATA.cycle, 'cycL', 'cycNote');
   if (it.rit != null) b += cycleBlock(it, DATA.ritual, 'ritL', 'ritNote', 'rit');
   if (it.ref) b += refractBlock(it);
@@ -942,9 +1002,6 @@ function openItem(id, scroll){
   }
   history.replaceState(null,'','#'+id);
 }
-const setKey = it => ({'英勇':'c1','深淵':'c2','風暴':'c3','地獄':'c4',
-  'Valor':'c1','Abyss':'c2','Storm':'c3','Infernal':'c4',
-  'Доблесть':'c1','Бездна':'c2','Шторм':'c3','Адский':'c4'})[it.set[li()]] || '';
 
 function rankedIds(){
   return IDS.filter(i => ITEMS[i].v && ITEMS[i].v[S.rank] != null)
@@ -1012,6 +1069,29 @@ function refractBlock(it){
 /* 任務線。分岔點在「聖物」：
      任務物品1階 → 任務物品2階 → 聖物 ─┬─ 折射卷軸 → 折射（4 件循環）
                                        └─ 鐵匠技能 → 完美                     */
+/* -c5「軍團遺產」。成員橫跨扭曲／折射／神器，湊齊條件是一份指定清單，
+   所以直接把整份清單列出來 —— 使用者要的是「還差哪幾件」。 */
+function legionBlock(it){
+  const L = LEGION, LN = S.lang;
+  const rows = L.items.map(id => ITEMS[id] ? `
+    <button data-goto="${id}" class="${id === it.id ? 'cur' : ''}"
+            style="--c2:${id === it.id ? L.colour : (ITEMS[id].k || '#39415a')}">
+      ${thumb(id)}
+      <span class="t"><b>${esc(nm(id))}</b><span>${esc(ITEMS[id].c[li()])}</span></span>
+      <span class="arrow">${id === it.id ? '●' : ''}</span>
+    </button>` : '').join('');
+  return `<div class="sect">
+      <div class="seq-head">
+        <h4 style="margin:0;color:${L.colour}">${esc(L[LN] || L.zh)}</h4>
+        <span class="pos"><b>${it.legion + 1}</b> / ${L.items.length}　<code>-${L.key}</code></span>
+      </div>
+      <div class="rel">${rows}</div>
+      <div class="note" style="margin-top:8px">
+        ＋ ${esc((L.anyOf && (L.anyOf[LN] || L.anyOf.zh)) || '')}<br>${esc(t('legionNote'))}
+      </div>
+    </div>`;
+}
+
 function chainBlock(it){
   const C = it.chain;
   const row = (id, lab, arrow) => ITEMS[id] ? `
@@ -1066,6 +1146,16 @@ pbody.addEventListener('click', e => {
   const b = e.target.closest('[data-goto]');
   if (b) openItem(b.dataset.goto, true);
 });
+phead.addEventListener('click', e => {
+  const g = e.target.closest('[data-goto]');
+  if (g){ openItem(g.dataset.goto, true); return; }
+  const sf = e.target.closest('[data-setf]');
+  if (sf){                                   // 只看這組套裝
+    S.set = (S.set === sf.dataset.setf) ? null : sf.dataset.setf;
+    S.tier = null; S.cat = null;
+    renderRail(); renderGrid(); main.scrollTop = 0;
+  }
+});
 rail.addEventListener('click', e => {
   const tog = e.target.closest('[data-tog]');
   if (tog){                                   // 收合／展開，不影響篩選
@@ -1081,15 +1171,15 @@ rail.addEventListener('click', e => {
   if (cb){                                    // 篩選整個取得管道
     const ci = +cb.dataset.cat;
     S.cat = (S.cat === ci) ? null : ci;
-    S.tier = null;
+    S.tier = null; S.set = null;
     renderRail(); renderGrid(); main.scrollTop = 0;
     return;
   }
   const b = e.target.closest('.tier');
   if (!b) return;
   const g = b.dataset.g === '' ? null : +b.dataset.g;
-  if (g === null){ S.tier = null; S.cat = null; }
-  else { S.tier = (S.tier === g) ? null : g; S.cat = null; }
+  if (g === null){ S.tier = null; S.cat = null; S.set = null; }
+  else { S.tier = (S.tier === g) ? null : g; S.cat = null; S.set = null; }
   renderRail(); renderGrid();
   main.scrollTop = 0;
 });

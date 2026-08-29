@@ -2447,7 +2447,8 @@
    "used_in": [
     "modt"
    ],
-   "in_wiki": true
+   "in_wiki": true,
+   "legion": 5
   },
   "woms": {
    "id": "woms",
@@ -2589,7 +2590,8 @@
    "gold": 2500,
    "recipe": [],
    "used_in": [],
-   "in_wiki": true
+   "in_wiki": true,
+   "legion": 4
   },
   "fgrg": {
    "id": "fgrg",
@@ -2973,7 +2975,8 @@
    "used_in": [
     "tbak"
    ],
-   "in_wiki": true
+   "in_wiki": true,
+   "legion": 1
   },
   "pinv": {
    "id": "pinv",
@@ -3166,7 +3169,8 @@
    "used_in": [
     "prvt"
    ],
-   "in_wiki": true
+   "in_wiki": true,
+   "legion": 2
   },
   "hslv": {
    "id": "hslv",
@@ -3320,7 +3324,8 @@
    "gold": 1700,
    "recipe": [],
    "used_in": [],
-   "in_wiki": true
+   "in_wiki": true,
+   "legion": 3
   },
   "stwp": {
    "id": "stwp",
@@ -3374,7 +3379,8 @@
    "gold": 1700,
    "recipe": [],
    "used_in": [],
-   "in_wiki": true
+   "in_wiki": true,
+   "legion": 0
   },
   "shea": {
    "id": "shea",
@@ -3940,7 +3946,8 @@
     "I072"
    ],
    "used_in": [],
-   "in_wiki": true
+   "in_wiki": true,
+   "legion": 8
   },
   "ofro": {
    "id": "ofro",
@@ -4320,7 +4327,8 @@
     "pman"
    ],
    "used_in": [],
-   "in_wiki": true
+   "in_wiki": true,
+   "legion": 6
   },
   "gsou": {
    "id": "gsou",
@@ -6018,7 +6026,8 @@
     "I05C"
    ],
    "used_in": [],
-   "in_wiki": true
+   "in_wiki": true,
+   "legion": 7
   },
   "mnsf": {
    "id": "mnsf",
@@ -13992,5 +14001,29 @@
     }
    ]
   }
- ]
+ ],
+ "legion": {
+  "key": "c5",
+  "zh": "軍團遺產",
+  "en": "Legion Legacy",
+  "ru": "Наследие легиона",
+  "colour": "#D9455C",
+  "items": [
+   "spro",
+   "pman",
+   "phea",
+   "ssan",
+   "rej3",
+   "wlsd",
+   "tbak",
+   "spre",
+   "modt"
+  ],
+  "anyOf": {
+   "zh": "任一件「聖物」類道具",
+   "en": "any Relic-class item",
+   "ru": "любой предмет класса «Реликвия»"
+  },
+  "anyGroup": "聖物"
+ }
 }
