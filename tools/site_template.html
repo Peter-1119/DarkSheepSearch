@@ -150,6 +150,10 @@ input{font:inherit}
 .sec-head h2{margin:0;font-size:13.5px;font-weight:600;letter-spacing:.02em}
 .sec-head .bar{flex:1;height:1px;background:linear-gradient(90deg,var(--line),transparent)}
 .sec-head .n{font:11px/1 ui-monospace,monospace;color:var(--ink-3)}
+.sec-head .seq-tag{
+  font-size:10.5px;color:var(--ink-3);padding:2px 7px;border-radius:99px;
+  background:var(--surface);border:1px solid var(--line);white-space:nowrap;
+}
 
 .grid{display:grid;gap:8px;padding:2px 20px 16px;
   grid-template-columns:repeat(auto-fill,minmax(var(--tile),1fr))}
@@ -515,7 +519,7 @@ const UI = {
       hint:'點擊看詳細，再點一次收合 · 相關素材會在格子中高亮', hint2:'搜尋',
       shopL:'商店', setL:'套裝', close:'關閉', results:'搜尋結果',
       dataL:'資料', dateL:'擷取日', cntL:'道具', icoL:'圖示', verUnknown:'版本未知',
-      siteL:'網站', builtL:'建置日',
+      siteL:'網站', builtL:'建置日', bySeq:'依循環順序',
       rankL:'排行', rankOff:'不排行（瀏覽）', rankBy:'依 %s 排行',
       rankNote:'只計算固定加成；「對英雄傷害」這類條件加成不列入比較',
       cycL:'扭曲循環', cycNote:'再用一次扭曲卷軸就會變成右邊那件，走完 29 件回到起點',
@@ -531,7 +535,7 @@ const UI = {
       hint:'Click for details, click again to close · related pieces light up',
       hint2:'search', shopL:'Shop', setL:'Set', close:'Close', results:'Results',
       dataL:'Data', dateL:'Extracted', cntL:'Items', icoL:'Icons', verUnknown:'version unknown',
-      siteL:'Site', builtL:'Built',
+      siteL:'Site', builtL:'Built', bySeq:'in cycle order',
       rankL:'Rank', rankOff:'Off (browse)', rankBy:'Ranked by %s',
       rankNote:'Flat bonuses only; conditional ones like "damage vs heroes" are excluded',
       cycL:'Distortion cycle', cycNote:'Another Scroll of Distortion turns it into the next one; 29 steps loop back',
@@ -548,7 +552,7 @@ const UI = {
       hint2:'поиск', shopL:'Магазин', setL:'Комплект', close:'Закрыть',
       results:'Результаты', dataL:'Данные', dateL:'Выгрузка', cntL:'Предметов',
       icoL:'Иконок', verUnknown:'версия неизвестна',
-      siteL:'Сайт', builtL:'Сборка',
+      siteL:'Сайт', builtL:'Сборка', bySeq:'по циклу',
       rankL:'Рейтинг', rankOff:'Выкл. (обзор)', rankBy:'Рейтинг по: %s',
       rankNote:'Только фиксированные бонусы; условные не участвуют',
       cycL:'Цикл искажения', cycNote:'Ещё один свиток искажения даёт следующий предмет; 29 шагов по кругу',
@@ -662,6 +666,22 @@ function visible(){
   });
 }
 
+/* 扭曲・儀式・折射本身就是有序的序列，
+   照名字排會讓相鄰的裝備跳來跳去，反而看不出順序。
+   這裡建一份「循環順序」索引，這三類就照序列排。 */
+const SEQORD = (() => {
+  const o = {};
+  (DATA.cycle || []).forEach((id, n) => { o[id] = n; });
+  (DATA.ritual || []).forEach((id, n) => { o[id] = n; });
+  (DATA.refract || []).forEach((chain, gi) => {
+    (chain[3] || []).forEach((id, n) => { o[id] = gi * 100 + n; });
+  });
+  return o;
+})();
+/* 這些分類整組都有順序，標題要標示出來，否則會被誤認成沒排序 */
+const SEQ_GROUPS = new Set();
+for (const id in SEQORD) if (ITEMS[id]) SEQ_GROUPS.add(ITEMS[id].g);
+
 const tileHTML = id => {
   const it = ITEMS[id];
   return `<button class="tile" data-id="${id}" style="--c:${it.k||'#39415a'}">
@@ -733,10 +753,19 @@ function renderGrid(){
   let h = '';
   for (const g of order){
     const list = by.get(g);
-    list.sort((a,b)=> nm(a).localeCompare(nm(b), S.lang==='ru'?'ru':undefined));
+    list.sort((a, b) => {
+      const oa = SEQORD[a], ob = SEQORD[b];
+      if (oa != null && ob != null) return oa - ob;   // 兩個都有順序 -> 照順序
+      if (oa != null) return -1;                      // 有順序的排前面
+      if (ob != null) return 1;
+      return nm(a).localeCompare(nm(b), S.lang === 'ru' ? 'ru' : undefined);
+    });
+    const seqTag = SEQ_GROUPS.has(g)
+      ? `<span class="seq-tag">${esc(t('bySeq'))}</span>` : '';
     h += `<section class="sec" data-g="${g}">
             <div class="sec-head">
               <h2 style="color:${tierColour(g)}">${esc(grpName(g))}</h2>
+              ${seqTag}
               <span class="bar"></span><span class="n">${list.length}</span>
             </div>
             <div class="grid">`;
