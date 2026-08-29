@@ -34,3 +34,7 @@ desktop.ini
 #   人工翻譯成果（names2 / names_en / ab_db / ab_en）遺失就要重做
 #   中間產物（db_items / wiki_items / abilities / ab）雖然可重新產生，
 #   但 wiki_items 需要重新爬 431 個網頁，留著比較保險
+
+# 語法檢查的暫存檔
+tools/chk.js
+tools/check.js

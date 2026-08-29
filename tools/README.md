@@ -69,6 +69,7 @@ python parse_recipes.py   # 合成表 40 條       -> recipes.json
 |---|---|
 | `parse_db.py` | 解析地圖匯出的道具敘述。處理西里爾／拉丁同形字混寫（`Kлacc`→`Класс`），並把 `Бонусы комплекта "-c1"` 拆成獨立欄位 |
 | `build.ps1` / `build.bat` | 一鍵重建全部輸出（PowerShell 沒有 `&&`，所以包成腳本） |
+| `stat_values.py` | 把俄文屬性拆成可排序的數值（排行功能用）。單獨執行會列出各屬性的件數與前 3 名 |
 | `version.json` | 地圖版本與資料日期（手動填，見上） |
 | `name_audit.py` | 輸出中文名稱來源稽核表 `data/name_audit.csv` |
 | `check_colour.py` | 拿 xlsx 遊戲截圖當基準，逐張檢查圖示是否 R/B 顛倒 |

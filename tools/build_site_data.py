@@ -3,6 +3,7 @@
 import json, os, re, sys
 sys.path.insert(0, '.')
 from tr_stats import tr_bonus
+import stat_values
 sys.stdout.reconfigure(encoding='utf-8')
 
 ROOT = r'D:/Notebook Program Scripts/Python_Scripts/DarkSheep'
@@ -125,6 +126,7 @@ for r in DB:
                        for k in SHOPS) else None,
         'r': prev['recipe'],
         'u': prev['used_in'],
+        'v': stat_values.parse(r['fields'].get('Бонусы', '')) or None,
     }
 
 # ---------------------------------------------------------------- 版本資訊
@@ -142,8 +144,16 @@ meta = {
     'icons': sum(1 for v in items.values() if v['img']),
 }
 
+# 只保留有足夠樣本的屬性，免得下拉選單塞滿只有 1-2 件的項目
+import collections as _c
+_have = _c.Counter(k for v in items.values() for k in (v['v'] or {}))
+statmeta = [m for m in stat_values.META if _have[m['k']] >= 8]
+for m in statmeta:
+    m['n'] = _have[m['k']]
+
 out = {
     'meta': meta,
+    'stats': statmeta,
     'items': items,
     'groups': [{'zh': g[0], 'ru': g[1], 'en': g[2]} for g in GROUPS],
     'ladder': SITE['ladder'], 'refract': SITE['refract'],
@@ -153,6 +163,7 @@ out = {
 json.dump(out, open(os.path.join(ROOT, 'data', 'site.json'), 'w', encoding='utf-8'),
           ensure_ascii=False, separators=(',', ':'))
 print('meta:', meta)
+print('rankable stats:', ', '.join('%s(%d)' % (m['zh'], m['n']) for m in statmeta))
 print('items:', len(items))
 print('with colour:', sum(1 for v in items.values() if v['k']))
 print('with image:', sum(1 for v in items.values() if v['img']))
