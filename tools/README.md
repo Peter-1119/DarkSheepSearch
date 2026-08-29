@@ -14,15 +14,35 @@ udwiki（僅配方關聯）      ─┤     └─→ data/site.json  ─→ ind
 Wiki 只用來補「配方／用於」的關聯（地圖物件資料不含配方，配方寫在觸發裡），
 其數值已過時，不要拿來覆蓋。
 
-## 重跑順序
+## 重跑
 
-```bash
-python parse_db.py        # data/items_database.json -> db_items.json
-python mk_ab.py           # 比對舊譯文，產生 ab_db.json（未譯的列在 ab_need.json）
-python build_data2.py     # 合併全部        -> ../data/items.json ＋ ../images/*.png
-python build_md2.py       # 產生文件        -> ../裝備合成攻略.md
-python build_site_data.py # 三語資料        -> ../data/site.json
-python build_site.py      # 產生網站        -> ../index.html
+平常改完翻譯只要跑這個（PowerShell）：
+
+```powershell
+cd tools
+.uild.ps1
+```
+
+或雙擊 `build.bat`。兩者都會依序執行下面四步，任何一步失敗就停下來：
+
+| 步驟 | 產出 |
+|---|---|
+| `build_data2.py` | `../data/items.json`、`../images/*.png`（含圖示色彩修正） |
+| `build_site_data.py` | `../data/site.json`（三語） |
+| `build_site.py` | `../index.html` |
+| `build_md2.py` | `../裝備合成攻略.md` |
+
+> **PowerShell 5.1 沒有 `&&`。** 要手動一行一行跑就分開下，
+> 或用 `;` 串接（不會在失敗時停止）：
+> ```powershell
+> python build_data2.py; python build_site_data.py; python build_site.py; python build_md2.py
+> ```
+
+前置步驟（只有換了原始資料才需要）：
+
+```powershell
+python parse_db.py    # data/items_database.json -> db_items.json
+python mk_ab.py       # 比對舊譯文，未譯的列在 ab_need.json
 ```
 
 網站是單一 HTML（資料已內嵌），直接雙擊 `index.html` 就能開，不需要伺服器。
@@ -30,13 +50,13 @@ python build_site.py      # 產生網站        -> ../index.html
 
 Wiki 端（只有想更新配方關聯時才需要）：
 
-```bash
+```powershell
 python parse_wiki.py      # pages/*.html -> wiki_items.json
 ```
 
 xlsx 端（只有換合成表時才需要）：
 
-```bash
+```powershell
 python parse_xlsx.py      # 圖片錨點＋中文舊名 -> xlsx_entries.json
 python match.py           # 俄→中自動配對      -> match_raw.json
 python build_map.py       # 加人工修正         -> name_map.json
@@ -48,6 +68,8 @@ python parse_recipes.py   # 合成表 40 條       -> recipes.json
 | 檔案 | 說明 |
 |---|---|
 | `parse_db.py` | 解析地圖匯出的道具敘述。處理西里爾／拉丁同形字混寫（`Kлacc`→`Класс`），並把 `Бонусы комплекта "-c1"` 拆成獨立欄位 |
+| `build.ps1` / `build.bat` | 一鍵重建全部輸出（PowerShell 沒有 `&&`，所以包成腳本） |
+| `name_audit.py` | 輸出中文名稱來源稽核表 `data/name_audit.csv` |
 | `check_colour.py` | 拿 xlsx 遊戲截圖當基準，逐張檢查圖示是否 R/B 顛倒 |
 | `validate_rule.py` | 驗證「顏色數 > 256 即為顛倒」這條判別規則的準確率 |
 | `sheet.py` | 產生對照圖（截圖 / 目前 / 交換後），用眼睛確認 |
@@ -67,6 +89,55 @@ python parse_recipes.py   # 合成表 40 條       -> recipes.json
 | `recipes.json` | 舊合成表的 40 條合成路線 |
 
 
+
+## 中文名稱的來源與可靠度
+
+**地圖檔匯出的 `items_database.json` 是俄文版，裡面 0 個中文名稱。**
+所以中文名有三種來源，可靠度差很多：
+
+| 來源 | 數量 | 可靠度 |
+|---|---:|---|
+| A. 沿用舊 xlsx 合成表（簡轉繁） | 149 | 高 — 中文玩家實際在用的名字 |
+| B. 我刻意改掉舊表的名字 | 10 | 中 — 都有理由，見下 |
+| C. 我從俄文自己翻譯 | 315 | **低 — 沒有官方依據** |
+
+跑 `python name_audit.py` 會輸出 `../data/name_audit.csv`，
+每一列都有：道具 ID、中文名、舊合成表原名、俄文名、英文名、來源、可靠度、備註。
+用 Excel 開啟即可逐條校對。
+
+### B 類：刻意改名的 10 個
+
+其中 8 個是因為**舊合成表把兩件不同裝備取了同一個中文名**，必須拆開才分得清：
+
+| ID | 現在 | 舊表 | 原因 |
+|---|---|---|---|
+| `I04W` | 鷹之匕首 | 仪式圣杯 | 與 `dust` 同名 |
+| `I085` | 血之護腕 | 迷雾之矛 | 與 `I04C` 同名 |
+| `I06S` | 黑曜石 | 刺客之刺 | 與 `I05Z` 同名 |
+| `clsd` | 冠軍鎧甲 | 骑士手套 | 與 `brac` 同名，且這件是鎧甲 |
+| `brac` | 冠軍手套 | 骑士手套 | 同上；俄文名也已改為 Перчатки чемпиона |
+| `bgst` | 大力神之戒 | 狩猎女神之戒 | 與 `stel` 同名；Геракл 是大力神 |
+| `wild` | 劊子手的救贖 | 魔法金汤 | 與 `woms` 同名 |
+| `tret` | 捕夢網 | 辉煌法杖 | 與 `sman` 同名 |
+| `shea` | 裂隙權杖 | 扭曲权杖 | 俄文名改為 Скипетр разлома |
+| `gvsm` | 石英法杖 | 魔石法杖 | 俄文名改為 Жезл с кварцом |
+
+### 怎麼修正名字
+
+編輯 `names2.json`（中文）或 `names_en.json`（英文），然後重跑：
+
+```powershell
+cd tools
+.uild.ps1
+```
+
+（PowerShell 5.1 不支援 `&&`，所以包成腳本。也可以雙擊 `build.bat`。）
+
+### 最徹底的解法
+
+如果找得到**中文版地圖檔**，用同一套流程匯出物件資料，就能拿到 474 個官方中文名，
+完全不用猜。對照方式是道具 ID（`hval`、`I08F` 這種），中俄版本的 ID 一致。
+
 ## 圖示色彩修正（重要）
 
 匯出的 BLP 圖示有兩種來源，解碼路徑不同：
@@ -82,7 +153,7 @@ python parse_recipes.py   # 合成表 40 條       -> recipes.json
 這條規則是拿 `synthesis.xlsx` 的遊戲截圖當基準驗證出來的，
 129 個可判定樣本 **全部命中、零誤判**。要重新驗證：
 
-```bash
+```powershell
 python check_colour.py    # 逐張比對截圖與圖示的色差
 python validate_rule.py   # 驗證「顏色數 > 256」這條規則的準確率
 python sheet.py hval,spre,ratf sheet.png   # 產生對照圖：截圖 | 目前 | 交換後
