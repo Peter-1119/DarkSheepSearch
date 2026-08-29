@@ -34,9 +34,16 @@ NIMG = sum(1 for v in I.values() if v['image'])
 NEQ = sum(1 for v in I.values() if v['group'] != '消耗品／掉落物')
 
 # ---------------------------------------------------------------- header
+import json as _json, datetime as _dt
+_ver = _json.load(open('version.json', encoding='utf-8'))
+_mv = (_ver.get('map_version') or '').strip()
+_dd = _ver.get('data_date') or _dt.datetime.fromtimestamp(
+    os.path.getmtime(os.path.join(ROOT, 'data', 'items_database.json'))).strftime('%Y-%m-%d')
+
 w('# 肥羊的聖誕禮物 — 裝備合成攻略 & 裝備一覽')
 w()
 w('> 魔獸爭霸 III 地圖《肥羊的聖誕禮物》（原版：**Underground Defence**）裝備資料整理。')
+w('> 地圖版本 **%s**　·　資料擷取日 %s' % (_mv or '未知', _dd))
 w('> 共 **%d** 件裝備 ＋ **%d** 件消耗品／掉落物，其中 **%d** 件附有遊戲內圖示。'
   % (NEQ, len(I) - NEQ, NIMG))
 w()

@@ -127,7 +127,23 @@ for r in DB:
         'u': prev['used_in'],
     }
 
+# ---------------------------------------------------------------- 版本資訊
+# 地圖物件資料裡沒有版本號（WC3 的版本寫在 war3map.w3i 或檔名，沒有被匯出），
+# 所以顯示「資料擷取日期」而不是編一個版本出來。查到地圖版本就填進 version.json。
+import datetime
+VER = json.load(open('version.json', encoding='utf-8'))
+dbfile = os.path.join(ROOT, 'data', 'items_database.json')
+data_date = VER.get('data_date') or datetime.datetime.fromtimestamp(
+    os.path.getmtime(dbfile)).strftime('%Y-%m-%d')
+meta = {
+    'mapVersion': (VER.get('map_version') or '').strip(),
+    'dataDate': data_date,
+    'items': len(items),
+    'icons': sum(1 for v in items.values() if v['img']),
+}
+
 out = {
+    'meta': meta,
     'items': items,
     'groups': [{'zh': g[0], 'ru': g[1], 'en': g[2]} for g in GROUPS],
     'ladder': SITE['ladder'], 'refract': SITE['refract'],
@@ -136,6 +152,7 @@ out = {
 }
 json.dump(out, open(os.path.join(ROOT, 'data', 'site.json'), 'w', encoding='utf-8'),
           ensure_ascii=False, separators=(',', ':'))
+print('meta:', meta)
 print('items:', len(items))
 print('with colour:', sum(1 for v in items.values() if v['k']))
 print('with image:', sum(1 for v in items.values() if v['img']))

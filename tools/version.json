@@ -1,0 +1,11 @@
+{
+  "map_version": "UD_v3.80",
+  "_map_version_說明": "地圖版本號。改版後更新這裡再重跑 build.ps1 即可。留空則網站只顯示資料擷取日期。",
+  "_怎麼查": [
+    "1. 地圖檔名通常就有，例如「UD_v3.80.w3x」",
+    "2. 遊戲載入畫面 / 按 F9 的任務說明常會寫版本",
+    "3. 問當初匯出 items_database.json 的人"
+  ],
+  "data_date": "",
+  "_data_date_說明": "資料擷取日期。留空則自動用 data/items_database.json 的檔案時間。"
+}

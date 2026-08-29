@@ -110,6 +110,17 @@ input{font:inherit}
 
 .legend{margin:14px 8px 0;padding-top:12px;border-top:1px solid var(--line);
   font-size:11.5px;color:var(--ink-3);line-height:1.9}
+.meta{margin:14px 8px 0;padding-top:12px;border-top:1px solid var(--line);
+  font-size:11px;color:var(--ink-3);line-height:1.8}
+.meta .ver{
+  display:inline-flex;align-items:center;gap:5px;margin-bottom:5px;padding:2px 8px;
+  border-radius:99px;background:var(--surface);border:1px solid var(--line-2);
+  color:var(--ink-2);font:11px/1.6 ui-monospace,monospace;
+}
+.meta .ver::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--mat)}
+.meta dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:1px 8px}
+.meta dt{color:var(--ink-3)}
+.meta dd{margin:0;color:var(--ink-2);font-variant-numeric:tabular-nums}
 .legend i{display:inline-block;width:9px;height:9px;border-radius:3px;margin-right:7px;
   vertical-align:-1px}
 
@@ -376,7 +387,8 @@ const UI = {
       stats:'屬性', effects:'效果', recipe:'合成配方', usedin:'用於合成',
       alias:'舊表名稱', none:'沒有符合的裝備', tryOther:'換個關鍵字或清除篩選',
       hint:'點擊看詳細，再點一次收合 · 相關素材會在格子中高亮', hint2:'搜尋',
-      shopL:'商店', setL:'套裝', close:'關閉', results:'搜尋結果'},
+      shopL:'商店', setL:'套裝', close:'關閉', results:'搜尋結果',
+      dataL:'資料', dateL:'擷取日', cntL:'道具', icoL:'圖示', verUnknown:'版本未知'},
   en:{title:'Item Codex', sub:"Fat Sheep's Christmas Gift · Underground Defence",
       ph:'Search items…', density:'Density', d1:'Roomy', d2:'Compact', d3:'Icons',
       all:'All items', tiers:'Tiers', legend:'Legend', sel:'Selected',
@@ -384,7 +396,8 @@ const UI = {
       recipe:'Recipe', usedin:'Used in', alias:'Old sheet name',
       none:'No items match', tryOther:'Try another keyword or clear the filter',
       hint:'Click for details, click again to close · related pieces light up',
-      hint2:'search', shopL:'Shop', setL:'Set', close:'Close', results:'Results'},
+      hint2:'search', shopL:'Shop', setL:'Set', close:'Close', results:'Results',
+      dataL:'Data', dateL:'Extracted', cntL:'Items', icoL:'Icons', verUnknown:'version unknown'},
   ru:{title:'Кодекс предметов', sub:'Underground Defence', ph:'Поиск предметов…',
       density:'Плотность', d1:'Свободно', d2:'Плотно', d3:'Иконки',
       all:'Все предметы', tiers:'Классы', legend:'Легенда', sel:'Выбрано',
@@ -393,7 +406,8 @@ const UI = {
       none:'Ничего не найдено', tryOther:'Измените запрос или сбросьте фильтр',
       hint:'Нажмите для деталей, ещё раз — закрыть · связанное подсветится',
       hint2:'поиск', shopL:'Магазин', setL:'Комплект', close:'Закрыть',
-      results:'Результаты'}
+      results:'Результаты', dataL:'Данные', dateL:'Выгрузка', cntL:'Предметов',
+      icoL:'Иконок', verUnknown:'версия неизвестна'}
 };
 
 /* ---------------------------------------------------------------- state */
@@ -462,6 +476,16 @@ function renderRail(){
       <div><i style="background:var(--accent)"></i>${esc(t('sel'))}</div>
       <div><i style="background:var(--mat)"></i>${esc(t('mat'))}</div>
       <div><i style="background:var(--into)"></i>${esc(t('into'))}</div>
+    </div>`;
+  const M = DATA.meta || {};
+  h += `<h3>${esc(t('dataL'))}</h3>
+    <div class="meta">
+      <span class="ver">${esc(M.mapVersion || t('verUnknown'))}</span>
+      <dl>
+        <dt>${esc(t('dateL'))}</dt><dd>${esc(M.dataDate || '—')}</dd>
+        <dt>${esc(t('cntL'))}</dt><dd>${M.items ?? IDS.length}</dd>
+        <dt>${esc(t('icoL'))}</dt><dd>${M.icons ?? ''}</dd>
+      </dl>
     </div>`;
   rail.innerHTML = h;
 }
@@ -667,7 +691,8 @@ function applyLang(){
   document.documentElement.lang = S.lang === 'zh' ? 'zh-Hant' : S.lang;
   document.querySelectorAll('[data-i]').forEach(el => el.textContent = t(el.dataset.i));
   q.placeholder = t('ph');
-  document.title = t('title') + ' · ' + t('sub');
+  const mv = (DATA.meta || {}).mapVersion;
+  document.title = t('title') + (mv ? ' ' + mv : '') + ' · ' + t('sub');
   $('#lang').querySelectorAll('button').forEach(b =>
     b.setAttribute('aria-pressed', String(b.dataset.v === S.lang)));
 }

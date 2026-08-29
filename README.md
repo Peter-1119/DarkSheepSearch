@@ -2,6 +2,8 @@
 
 魔獸爭霸 III 地圖《肥羊的聖誕禮物》（原版 **Underground Defence**）的裝備資料整理。
 
+對應地圖版本 **UD_v3.80**　·　資料擷取日 2026-08-27
+
 **🔎 [線上圖鑑](https://peter-1119.github.io/DarkSheepSearch/)** — 474 件裝備、420 張圖示、中／英／俄三語
 
 | | |

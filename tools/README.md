@@ -69,6 +69,7 @@ python parse_recipes.py   # 合成表 40 條       -> recipes.json
 |---|---|
 | `parse_db.py` | 解析地圖匯出的道具敘述。處理西里爾／拉丁同形字混寫（`Kлacc`→`Класс`），並把 `Бонусы комплекта "-c1"` 拆成獨立欄位 |
 | `build.ps1` / `build.bat` | 一鍵重建全部輸出（PowerShell 沒有 `&&`，所以包成腳本） |
+| `version.json` | 地圖版本與資料日期（手動填，見上） |
 | `name_audit.py` | 輸出中文名稱來源稽核表 `data/name_audit.csv` |
 | `check_colour.py` | 拿 xlsx 遊戲截圖當基準，逐張檢查圖示是否 R/B 顛倒 |
 | `validate_rule.py` | 驗證「顏色數 > 256 即為顛倒」這條判別規則的準確率 |
@@ -89,6 +90,20 @@ python parse_recipes.py   # 合成表 40 條       -> recipes.json
 | `recipes.json` | 舊合成表的 40 條合成路線 |
 
 
+
+## 版本號
+
+地圖物件資料**沒有版本號** —— WC3 的版本寫在 `war3map.w3i` 或地圖檔名，匯出時不會帶出來。
+所以版本是手動填的，改版後編輯 `version.json` 再重跑 `build.ps1`：
+
+```json
+{ "map_version": "UD_v3.80", "data_date": "" }
+```
+
+- `map_version` 留空 → 網站顯示「版本未知」
+- `data_date` 留空 → 自動取 `data/items_database.json` 的檔案時間
+
+版本會出現在：網站左欄底部的「資料」區塊、瀏覽器分頁標題、攻略 md 的開頭。
 
 ## 中文名稱的來源與可靠度
 
