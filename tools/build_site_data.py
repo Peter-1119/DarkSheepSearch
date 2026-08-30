@@ -157,6 +157,7 @@ for r in DB:
                                                if v['url'][:-5] == i), ''))
                        for k in SHOPS) else None,
         'legion': prev.get('legion'),
+        'act': 1 if prev.get('active') else None,
         'r': prev['recipe'],
         'u': prev['used_in'],
         'v': stat_values.parse(r['fields'].get('Бонусы', '')) or None,
@@ -235,8 +236,14 @@ if SITE.get('legion'):
     SITE['legion']['b'] = SETB.get('c5', {}).get('tiers', [])
     SITE['legion']['only'] = SETB.get('c5', {}).get('only')
 
+# 配裝計算：多數加成直接相加，但減傷類同時帶好幾件並不會疊加，
+# 遊戲內是同類取最高。哪些屬於這類無法從地圖資料判斷（規則寫在觸發裡），
+# 這份清單是依玩家說明列的，介面上會標示出來讓人知道是這樣算的。
+NOSTACK = ['mres', 'sres']
+
 out = {
     'meta': meta,
+    'nostack': NOSTACK,
     'stats': statmeta,
     'cycle': SITE['cycle'],
     'legion': SITE.get('legion'),

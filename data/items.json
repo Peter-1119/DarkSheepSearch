@@ -10,6 +10,7 @@
    "cls_ru": "Новогодний",
    "group": "新年",
    "set": null,
+   "active": true,
    "stats": "+333生命值，+333法力值",
    "stats_ru": "+333 HP, +333 MP",
    "effects": [
@@ -37,6 +38,7 @@
    "cls_ru": "Новогодний",
    "group": "新年",
    "set": null,
+   "active": false,
    "stats": "+1金幣收入，+25每分鐘金幣收入，+2/秒英雄經驗成長",
    "stats_ru": "+1 доход золота, +25 ед. ежеминутный доход золота, +2 ед./сек. прирост опыта героя",
    "effects": [],
@@ -58,6 +60,7 @@
    "cls_ru": "Новогодний",
    "group": "新年",
    "set": null,
+   "active": false,
    "stats": "50%魔法傷害減免，抵抗點燃",
    "stats_ru": "50% защиты от магического урона, сопротивление поджогу",
    "effects": [
@@ -85,6 +88,7 @@
    "cls_ru": "Новогодний",
    "group": "新年",
    "set": null,
+   "active": false,
    "stats": "+50智力，-7護甲",
    "stats_ru": "+50 разума, -7 защиты",
    "effects": [],
@@ -106,6 +110,7 @@
    "cls_ru": "Новогодний",
    "group": "新年",
    "set": null,
+   "active": true,
    "stats": "+18力量，+13攻擊力",
    "stats_ru": "+18 силы, +13 атаки",
    "effects": [
@@ -133,6 +138,7 @@
    "cls_ru": "Новогодний",
    "group": "新年",
    "set": null,
+   "active": false,
    "stats": "+5護甲，+575生命值",
    "stats_ru": "+5 защиты, +575 HP",
    "effects": [
@@ -160,6 +166,7 @@
    "cls_ru": "Новогодний",
    "group": "新年",
    "set": null,
+   "active": false,
    "stats": "+38%攻擊速度，+4護甲",
    "stats_ru": "+38% скорость атаки, +4 защиты",
    "effects": [
@@ -187,6 +194,7 @@
    "cls_ru": "Новогодний",
    "group": "新年",
    "set": null,
+   "active": true,
    "stats": "+5智力，+125法力值，+100技能強度",
    "stats_ru": "+5 int, +125 MP, +100 сила умений",
    "effects": [
@@ -214,6 +222,7 @@
    "cls_ru": "Новогодний",
    "group": "新年",
    "set": null,
+   "active": false,
    "stats": "+25攻擊力，+10%攻擊速度，+60技能強度",
    "stats_ru": "+25 атаки, +10% скорость атаки, +60 сила умений",
    "effects": [
@@ -241,6 +250,7 @@
    "cls_ru": "Пасхальный",
    "group": "復活節",
    "set": null,
+   "active": false,
    "stats": "+12攻擊力，+9力量",
    "stats_ru": "+12 атаки, +9 силы",
    "effects": [
@@ -268,6 +278,7 @@
    "cls_ru": "Пасхальный",
    "group": "復活節",
    "set": null,
+   "active": false,
    "stats": "+30力量，+30攻擊力",
    "stats_ru": "+30 силы, +30 атаки",
    "effects": [
@@ -295,6 +306,7 @@
    "cls_ru": "Пасхальный",
    "group": "復活節",
    "set": null,
+   "active": false,
    "stats": "-15%移動與攻擊速度，+150每分鐘金幣收入",
    "stats_ru": "-15% скорость передвижения и атаки, +150 ед. ежеминутный доход золота",
    "effects": [],
@@ -316,6 +328,7 @@
    "cls_ru": "Пасхальный",
    "group": "復活節",
    "set": null,
+   "active": false,
    "stats": "+15攻擊力，+30%攻擊速度，+30%點燃傷害",
    "stats_ru": "+15 атаки, +30% скорость атаки, +30% урон от поджога",
    "effects": [],
@@ -337,6 +350,7 @@
    "cls_ru": "Пасхальный",
    "group": "復活節",
    "set": null,
+   "active": false,
    "stats": "+125生命值，+125法力值，+1.5生命回復，+1.5法力回復，+75技能強度",
    "stats_ru": "+125 HP, +125 MP, +1.5 HP regen, +1.5 MP regen, +75 сила умений",
    "effects": [
@@ -364,6 +378,7 @@
    "cls_ru": "Пасхальный",
    "group": "復活節",
    "set": null,
+   "active": false,
    "stats": "+5護甲",
    "stats_ru": "+5 защиты",
    "effects": [
@@ -391,6 +406,7 @@
    "cls_ru": "Пасхальный",
    "group": "復活節",
    "set": null,
+   "active": true,
    "stats": "+10智力，+5護甲",
    "stats_ru": "+10 разума, +5 защиты",
    "effects": [
@@ -418,6 +434,7 @@
    "cls_ru": "Пасхальный",
    "group": "復活節",
    "set": null,
+   "active": false,
    "stats": "+300生命值，+5生命回復，+50%點燃抗性，抵抗點燃",
    "stats_ru": "+300 HP, +5 HP regen, +50% защита от поджога, сопротивление поджогу",
    "effects": [],
@@ -439,6 +456,7 @@
    "cls_ru": "Пасхальный",
    "group": "復活節",
    "set": null,
+   "active": false,
    "stats": "+8力量，+425生命值，抵抗點燃",
    "stats_ru": "+8 силы, +425 HP, сопротивление поджогу",
    "effects": [
@@ -466,6 +484,7 @@
    "cls_ru": "Хэллоуин",
    "group": "萬聖節",
    "set": null,
+   "active": false,
    "stats": "+5生命回復，+10%對英雄的攻擊與技能受到及造成傷害",
    "stats_ru": "+5 HP regen, +10% получаемый урон и наносимый урон от атак и умений против героев",
    "effects": [
@@ -493,6 +512,7 @@
    "cls_ru": "Хэллоуин",
    "group": "萬聖節",
    "set": null,
+   "active": false,
    "stats": "+300法力值，+75技能強度，+20%對亡靈攻擊與技能傷害",
    "stats_ru": "+300 MP, +75 сила умений, +20% урон от атак и умений по нежити",
    "effects": [
@@ -520,6 +540,7 @@
    "cls_ru": "Хэллоуин",
    "group": "萬聖節",
    "set": null,
+   "active": false,
    "stats": "+9護甲，+50技能強度，+5%攻擊與技能防禦",
    "stats_ru": "+9 защиты, +50 сила умений, +5% защита от атак и умений",
    "effects": [
@@ -547,6 +568,7 @@
    "cls_ru": "Хэллоуин",
    "group": "萬聖節",
    "set": null,
+   "active": false,
    "stats": "+15攻擊力，+15力量，+5敏捷",
    "stats_ru": "+15 атаки, +15 силы, +5 ловкости",
    "effects": [
@@ -574,6 +596,7 @@
    "cls_ru": "Хэллоуин",
    "group": "萬聖節",
    "set": null,
+   "active": false,
    "stats": "+10智力，+150技能強度，+30%對0-1級敵人攻擊與技能傷害",
    "stats_ru": "+10 разум, +150 сила умений, +30% урон от атак и умений против врагов 0-1 уровня",
    "effects": [
@@ -601,6 +624,7 @@
    "cls_ru": "Хэллоуин",
    "group": "萬聖節",
    "set": null,
+   "active": false,
    "stats": "+5全屬性，+20%對亡靈非狀態防禦，抵抗詛咒",
    "stats_ru": "+5 all stats, +20% защита (не от статусов) от нежити, сопротивление проклятиям",
    "effects": [
@@ -628,6 +652,7 @@
    "cls_ru": "Хэллоуин",
    "group": "萬聖節",
    "set": null,
+   "active": false,
    "stats": "+13主屬性，-15%造成傷害",
    "stats_ru": "+13 main stat, -15% наносимый урон",
    "effects": [
@@ -655,6 +680,7 @@
    "cls_ru": "Хэллоуин",
    "group": "萬聖節",
    "set": null,
+   "active": false,
    "stats": "+3法力回復",
    "stats_ru": "+3 MP regen",
    "effects": [
@@ -682,6 +708,7 @@
    "cls_ru": "Хэллоуин",
    "group": "萬聖節",
    "set": null,
+   "active": false,
    "stats": "+20攻擊力，+20%攻擊速度",
    "stats_ru": "+20 атаки, +20% скорость атаки",
    "effects": [
@@ -709,6 +736,7 @@
    "cls_ru": "Редкий",
    "group": "稀有",
    "set": null,
+   "active": false,
    "stats": "+16攻擊力",
    "stats_ru": "+16 atk",
    "effects": [
@@ -736,6 +764,7 @@
    "cls_ru": "Редкий",
    "group": "稀有",
    "set": null,
+   "active": false,
    "stats": "+25%攻擊速度，+8攻擊力",
    "stats_ru": "+25% atk speed, +8 atk",
    "effects": [],
@@ -757,6 +786,7 @@
    "cls_ru": "Редкий",
    "group": "稀有",
    "set": null,
+   "active": false,
    "stats": "+2護甲，+6力量",
    "stats_ru": "+2 armor, +6 str",
    "effects": [
@@ -784,6 +814,7 @@
    "cls_ru": "Редкий",
    "group": "稀有",
    "set": null,
+   "active": false,
    "stats": "+200法力值，+1.25法力回復，+30技能強度",
    "stats_ru": "+200 MP, +1.25 MP regen, +30 сила умений",
    "effects": [],
@@ -805,6 +836,7 @@
    "cls_ru": "Редкий",
    "group": "稀有",
    "set": null,
+   "active": false,
    "stats": "+10敏捷，+5攻擊力",
    "stats_ru": "+10 agi, +5 atk",
    "effects": [],
@@ -826,6 +858,7 @@
    "cls_ru": "Редкий",
    "group": "稀有",
    "set": null,
+   "active": false,
    "stats": "+10智力，+1.5法力回復",
    "stats_ru": "+10 int, +1.5 MP regen",
    "effects": [],
@@ -847,6 +880,7 @@
    "cls_ru": "Редкий",
    "group": "稀有",
    "set": null,
+   "active": false,
    "stats": "+10力量，+2生命回復",
    "stats_ru": "+10 str, +2 HP regen",
    "effects": [],
@@ -868,6 +902,7 @@
    "cls_ru": "Редкий",
    "group": "稀有",
    "set": null,
+   "active": false,
    "stats": "+5護甲，+125生命值，+5反傷，+6%狀態抗性",
    "stats_ru": "+5 armor, +125 HP, +5 ответный урон, +6% защита от статусов",
    "effects": [],
@@ -889,6 +924,7 @@
    "cls_ru": "Редкий",
    "group": "稀有",
    "set": null,
+   "active": false,
    "stats": "+70移動速度，+2全屬性，+15%狀態抗性",
    "stats_ru": "+70 move speed, +2 all stats, +15% защита от статусов",
    "effects": [],
@@ -910,6 +946,7 @@
    "cls_ru": "Редкий",
    "group": "稀有",
    "set": null,
+   "active": false,
    "stats": "+2護甲，+6智力",
    "stats_ru": "+2 armor, +6 int",
    "effects": [
@@ -937,6 +974,7 @@
    "cls_ru": "Редкий",
    "group": "稀有",
    "set": null,
+   "active": false,
    "stats": "+2護甲，+6敏捷",
    "stats_ru": "+2 armor, +6 agi",
    "effects": [
@@ -964,6 +1002,7 @@
    "cls_ru": "Уникальный",
    "group": "獨特",
    "set": null,
+   "active": false,
    "stats": "+20敏捷，+10攻擊力",
    "stats_ru": "+20 agi, +10 atk",
    "effects": [],
@@ -985,6 +1024,7 @@
    "cls_ru": "Уникальный",
    "group": "獨特",
    "set": null,
+   "active": false,
    "stats": "+20智力，+3法力回復",
    "stats_ru": "+20 int, +3 MP regen",
    "effects": [],
@@ -1006,6 +1046,7 @@
    "cls_ru": "Уникальный",
    "group": "獨特",
    "set": null,
+   "active": false,
    "stats": "+20力量，+4生命回復",
    "stats_ru": "+20 str, +4 HP regen",
    "effects": [],
@@ -1027,6 +1068,7 @@
    "cls_ru": "Уникальный",
    "group": "獨特",
    "set": null,
+   "active": false,
    "stats": "+5力量，+20攻擊力",
    "stats_ru": "+5 str, +20 atk",
    "effects": [
@@ -1054,6 +1096,7 @@
    "cls_ru": "Уникальный",
    "group": "獨特",
    "set": null,
+   "active": false,
    "stats": "+6護甲，+10力量，+10%對英雄攻擊與技能防禦",
    "stats_ru": "+6 armor, +10 str, +10% защита от атак и умений героев",
    "effects": [
@@ -1081,6 +1124,7 @@
    "cls_ru": "Уникальный",
    "group": "獨特",
    "set": null,
+   "active": false,
    "stats": "+6護甲，+10敏捷，+20%攻擊速度",
    "stats_ru": "+6 armor, +10 agi, +20% atk speed",
    "effects": [
@@ -1108,6 +1152,7 @@
    "cls_ru": "Уникальный",
    "group": "獨特",
    "set": null,
+   "active": false,
    "stats": "+40%攻擊速度，+15攻擊力",
    "stats_ru": "+40% atk speed, +15 atk",
    "effects": [],
@@ -1129,6 +1174,7 @@
    "cls_ru": "Уникальный",
    "group": "獨特",
    "set": null,
+   "active": false,
    "stats": "+300法力值，+2.5法力回復，+75技能強度",
    "stats_ru": "+300 MP, +2.5 MP regen, +75 сила умений",
    "effects": [],
@@ -1150,6 +1196,7 @@
    "cls_ru": "Уникальный",
    "group": "獨特",
    "set": null,
+   "active": false,
    "stats": "+90移動速度，+5全屬性，+20%狀態抗性",
    "stats_ru": "+90 move speed, +5 all stats, +20% защита от статусов",
    "effects": [],
@@ -1171,6 +1218,7 @@
    "cls_ru": "Уникальный",
    "group": "獨特",
    "set": null,
+   "active": false,
    "stats": "+6護甲，+10智力，+50技能強度",
    "stats_ru": "+6 armor, +10 int, +50 сила умений",
    "effects": [
@@ -1198,6 +1246,7 @@
    "cls_ru": "Уникальный",
    "group": "獨特",
    "set": null,
+   "active": false,
    "stats": "+7護甲，+200生命值，+10反傷，+5%非狀態防禦，+8%狀態抗性",
    "stats_ru": "+7 armor, +200 HP, +10 ответный урон, +5% защита не от статусов, +8% защита от статусов",
    "effects": [],
@@ -1219,6 +1268,7 @@
    "cls_ru": "Легендарный",
    "group": "傳說",
    "set": null,
+   "active": false,
    "stats": "+40%攻擊速度，+30攻擊力",
    "stats_ru": "+40% atk speed, +30 atk",
    "effects": [
@@ -1246,6 +1296,7 @@
    "cls_ru": "Легендарный",
    "group": "傳說",
    "set": null,
+   "active": false,
    "stats": "+8護甲，+15力量，+15%對英雄攻擊與技能防禦",
    "stats_ru": "+8 armor, +15 str, +15% защита от атак и умений героев",
    "effects": [
@@ -1275,6 +1326,7 @@
    "cls_ru": "Легендарный",
    "group": "傳說",
    "set": null,
+   "active": false,
    "stats": "+110移動速度，+7全屬性，+100技能強度，+25%狀態抗性",
    "stats_ru": "+110 move speed, +7 all stats, +100 сила умений, +25% защита от статусов",
    "effects": [],
@@ -1296,6 +1348,7 @@
    "cls_ru": "Легендарный",
    "group": "傳說",
    "set": null,
+   "active": false,
    "stats": "+30敏捷，+15攻擊力，+15穿透",
    "stats_ru": "+30 agi, +15 atk, +15 пробитие",
    "effects": [],
@@ -1319,6 +1372,7 @@
    "cls_ru": "Легендарный",
    "group": "傳說",
    "set": null,
+   "active": false,
    "stats": "+30力量，+6生命回復，+18%對非英雄單位非狀態傷害",
    "stats_ru": "+30 str, +6 HP regen, +18% урон не от статусов по врагам не-героям",
    "effects": [],
@@ -1342,6 +1396,7 @@
    "cls_ru": "Легендарный",
    "group": "傳說",
    "set": null,
+   "active": false,
    "stats": "+30智力，+4.5法力回復，+9%非狀態造成傷害",
    "stats_ru": "+30 int, +4.5 MP regen, +9% наносимый урон не от статусов",
    "effects": [],
@@ -1365,6 +1420,7 @@
    "cls_ru": "Легендарный",
    "group": "傳說",
    "set": null,
+   "active": false,
    "stats": "+500法力值，+5法力回復，+100技能強度",
    "stats_ru": "+500 MP, +5 MP regen, +100 сила умений",
    "effects": [],
@@ -1388,6 +1444,7 @@
    "cls_ru": "Легендарный",
    "group": "傳說",
    "set": null,
+   "active": false,
    "stats": "+8護甲，+15敏捷，+30%攻擊速度",
    "stats_ru": "+8 armor, +15 agi, +30% atk speed",
    "effects": [
@@ -1417,6 +1474,7 @@
    "cls_ru": "Легендарный",
    "group": "傳說",
    "set": null,
+   "active": false,
    "stats": "+40攻擊力，+10力量",
    "stats_ru": "+40 atk, +10 str",
    "effects": [
@@ -1444,6 +1502,7 @@
    "cls_ru": "Легендарный",
    "group": "傳說",
    "set": null,
+   "active": false,
    "stats": "+8護甲，+15智力，+150技能強度",
    "stats_ru": "+8 armor, +15 int, +150 сила умений",
    "effects": [
@@ -1473,6 +1532,7 @@
    "cls_ru": "Легендарный",
    "group": "傳說",
    "set": null,
+   "active": false,
    "stats": "+10護甲，+400生命值，+15反傷，+8%非狀態防禦，+10%狀態抗性",
    "stats_ru": "+10 armor, +400 HP, +15 ответный урон, +8% защита не от статусов, +10% защита от статусов",
    "effects": [],
@@ -1496,6 +1556,7 @@
    "cls_ru": "Дополнительный",
    "group": "附加",
    "set": null,
+   "active": true,
    "stats": "+1護甲",
    "stats_ru": "+1 защиты",
    "effects": [
@@ -1523,6 +1584,7 @@
    "cls_ru": "Совершенный",
    "group": "完美",
    "set": null,
+   "active": true,
    "stats": "+5生命回復，+2.5法力回復",
    "stats_ru": "+5 HP regen, +2.5 MP regen",
    "effects": [
@@ -1550,6 +1612,7 @@
    "cls_ru": "Закаленный",
    "group": "淬鍊",
    "set": null,
+   "active": true,
    "stats": "+5護甲，+250生命值，+50技能強度",
    "stats_ru": "+5 защиты, +250 HP, +50 сила умений",
    "effects": [
@@ -1577,6 +1640,7 @@
    "cls_ru": "Дополнительный",
    "group": "附加",
    "set": null,
+   "active": false,
    "stats": "+50生命值",
    "stats_ru": "+50 HP",
    "effects": [
@@ -1604,6 +1668,7 @@
    "cls_ru": "Артефакт (5 ур.)",
    "group": "神器（lv.5）",
    "set": null,
+   "active": false,
    "stats": "+1750生命值，+10生命回復，+7.5法力回復，抵抗流血與冰凍，免疫反傷",
    "stats_ru": "+1750 HP, +10 HP regen, +7.5 MP regen, сопротивление кровотечению и заморозке, иммунитет к ответному урону",
    "effects": [
@@ -1635,6 +1700,7 @@
    "cls_ru": "Закаленный",
    "group": "淬鍊",
    "set": null,
+   "active": false,
    "stats": "+300生命值，+2法力回復",
    "stats_ru": "+300 HP, +2 MP regen",
    "effects": [
@@ -1662,6 +1728,7 @@
    "cls_ru": "Дополнительный",
    "group": "附加",
    "set": null,
+   "active": true,
    "stats": "+25技能強度",
    "stats_ru": "+25 сила умений",
    "effects": [
@@ -1689,6 +1756,7 @@
    "cls_ru": "Артефакт (2 ур.)",
    "group": "神器（lv.2）",
    "set": null,
+   "active": false,
    "stats": "+20%對近戰單位防禦，+20%對英雄防禦，抵抗點燃",
    "stats_ru": "+20% защита от юнитов ближнего боя, +20% защита от героев, сопротивление поджогу",
    "effects": [
@@ -1720,6 +1788,7 @@
    "cls_ru": "Закаленный",
    "group": "淬鍊",
    "set": null,
+   "active": true,
    "stats": "+125生命值，+125法力值，+100技能強度",
    "stats_ru": "+125 HP, +125 MP, +100 сила умений",
    "effects": [
@@ -1747,6 +1816,7 @@
    "cls_ru": "Дополнительный",
    "group": "附加",
    "set": null,
+   "active": false,
    "stats": "+1護甲，+50法力值",
    "stats_ru": "+1 защиты, +50 MP",
    "effects": [
@@ -1774,6 +1844,7 @@
    "cls_ru": "Особый (1 ур.)",
    "group": "特殊（lv.1）",
    "set": null,
+   "active": false,
    "stats": "+150%擊殺金幣",
    "stats_ru": "+150% золото за убийства",
    "effects": [
@@ -1801,6 +1872,7 @@
    "cls_ru": "Закаленный",
    "group": "淬鍊",
    "set": null,
+   "active": false,
    "stats": "+5護甲，+150法力值",
    "stats_ru": "+5 защиты, +150 MP",
    "effects": [
@@ -1828,6 +1900,7 @@
    "cls_ru": "Дополнительный",
    "group": "附加",
    "set": null,
+   "active": true,
    "stats": "",
    "stats_ru": "",
    "effects": [
@@ -1855,6 +1928,7 @@
    "cls_ru": "Усилитель",
    "group": "強化",
    "set": null,
+   "active": true,
    "stats": "",
    "stats_ru": "",
    "effects": [
@@ -1882,6 +1956,7 @@
    "cls_ru": "Закаленный",
    "group": "淬鍊",
    "set": null,
+   "active": true,
    "stats": "+200法力值，+100技能強度",
    "stats_ru": "+200 MP, +100 сила умений",
    "effects": [
@@ -1909,6 +1984,7 @@
    "cls_ru": "Дополнительный",
    "group": "附加",
    "set": null,
+   "active": false,
    "stats": "+1.5法力回復，+35技能強度",
    "stats_ru": "+1.5 MP regen, +35 сила умений",
    "effects": [],
@@ -1930,6 +2006,7 @@
    "cls_ru": "Усилитель",
    "group": "強化",
    "set": null,
+   "active": true,
    "stats": "",
    "stats_ru": "",
    "effects": [
@@ -1961,6 +2038,7 @@
    "cls_ru": "Закаленный",
    "group": "淬鍊",
    "set": null,
+   "active": false,
    "stats": "+2法力回復，+5智力，+100技能強度",
    "stats_ru": "+2 MP regen, +5 разума, +100 сила умений",
    "effects": [
@@ -1990,6 +2068,7 @@
    "cls_ru": "Дополнительный",
    "group": "附加",
    "set": null,
+   "active": false,
    "stats": "+5攻擊力",
    "stats_ru": "+5 atk",
    "effects": [
@@ -2017,6 +2096,7 @@
    "cls_ru": "Совершенный",
    "group": "完美",
    "set": null,
+   "active": false,
    "stats": "+20穿透，+25%攻擊速度",
    "stats_ru": "+20 пробитие, +25% скорость атаки",
    "effects": [
@@ -2044,6 +2124,7 @@
    "cls_ru": "Закаленный",
    "group": "淬鍊",
    "set": null,
+   "active": false,
    "stats": "+15攻擊力，+10主屬性",
    "stats_ru": "+15 atk, +10 main stat",
    "effects": [
@@ -2071,6 +2152,7 @@
    "cls_ru": "Совершенный",
    "group": "完美",
    "set": null,
+   "active": false,
    "stats": "+30%對英雄傷害，+30攻擊力，+400生命值",
    "stats_ru": "+30% урон по героям, +30 atk, +400 HP",
    "effects": [
@@ -2098,6 +2180,7 @@
    "cls_ru": "Усилитель",
    "group": "強化",
    "set": null,
+   "active": true,
    "stats": "",
    "stats_ru": "",
    "effects": [
@@ -2134,6 +2217,7 @@
    "cls_ru": "Усилитель",
    "group": "強化",
    "set": null,
+   "active": true,
    "stats": "",
    "stats_ru": "",
    "effects": [
@@ -2163,6 +2247,7 @@
    "cls_ru": "Дополнительный",
    "group": "附加",
    "set": null,
+   "active": true,
    "stats": "+25技能強度",
    "stats_ru": "+25 сила умений",
    "effects": [
@@ -2190,6 +2275,7 @@
    "cls_ru": "Совершенный",
    "group": "完美",
    "set": null,
+   "active": false,
    "stats": "+10護甲，+50反傷，+75%反傷加成",
    "stats_ru": "+10 armor, +50 ответный урон, +75% усиление ответного урона",
    "effects": [],
@@ -2211,6 +2297,7 @@
    "cls_ru": "Закаленный",
    "group": "淬鍊",
    "set": null,
+   "active": true,
    "stats": "+75技能強度，+5智力，+1法力回復",
    "stats_ru": "+75 сила умений, +5 разума, +1 MP regen",
    "effects": [
@@ -2238,6 +2325,7 @@
    "cls_ru": "Дополнительный",
    "group": "附加",
    "set": null,
+   "active": true,
    "stats": "+2護甲",
    "stats_ru": "+2 защиты",
    "effects": [
@@ -2265,6 +2353,7 @@
    "cls_ru": "Усилитель",
    "group": "強化",
    "set": null,
+   "active": true,
    "stats": "",
    "stats_ru": "",
    "effects": [
@@ -2295,6 +2384,7 @@
    "cls_ru": "Закаленный",
    "group": "淬鍊",
    "set": null,
+   "active": true,
    "stats": "+5護甲，+300生命值，+4力量",
    "stats_ru": "+5 защиты, +300 HP, +4 сила",
    "effects": [
@@ -2322,6 +2412,7 @@
    "cls_ru": "Преломленный",
    "group": "折射",
    "set": null,
+   "active": false,
    "stats": "+20攻擊力，+7全屬性",
    "stats_ru": "+20 атаки, +7 ко всем характеристикам",
    "effects": [
@@ -2349,6 +2440,7 @@
    "cls_ru": "Преломленный",
    "group": "折射",
    "set": null,
+   "active": true,
    "stats": "+350生命值，+5生命回復，+25%裝備技能威力",
    "stats_ru": "+350 HP, +5 HP regen, +25% сила модификаторов",
    "effects": [
@@ -2376,6 +2468,7 @@
    "cls_ru": "Преломленный",
    "group": "折射",
    "set": null,
+   "active": false,
    "stats": "+5護甲，+5生命回復，+20力量",
    "stats_ru": "+5 защиты, +5 HP regen, +20 силы",
    "effects": [
@@ -2403,6 +2496,7 @@
    "cls_ru": "Преломленный",
    "group": "折射",
    "set": null,
+   "active": false,
    "stats": "+8護甲，+300生命值，+1.5法力回復，抵抗詛咒",
    "stats_ru": "+8 защиты, +300 HP, +1.5 MP regen, сопротивление проклятиям",
    "effects": [
@@ -2430,6 +2524,7 @@
    "cls_ru": "Преломленный",
    "group": "折射",
    "set": null,
+   "active": false,
    "stats": "+20力量，+750生命值",
    "stats_ru": "+20 силы, +750 HP",
    "effects": [
@@ -2460,6 +2555,7 @@
    "cls_ru": "Преломленный",
    "group": "折射",
    "set": null,
+   "active": true,
    "stats": "+300法力值，+5護甲，+125技能強度",
    "stats_ru": "+300 MP, +5 защиты, +125 сила умений",
    "effects": [
@@ -2489,6 +2585,7 @@
    "cls_ru": "Преломленный",
    "group": "折射",
    "set": null,
+   "active": true,
    "stats": "+10護甲，+1000生命值，+150技能強度",
    "stats_ru": "+10 защиты, +1000 HP, +150 сила умений",
    "effects": [
@@ -2516,6 +2613,7 @@
    "cls_ru": "Преломленный",
    "group": "折射",
    "set": null,
+   "active": false,
    "stats": "+5智力，+30攻擊力，+25%攻擊速度，+10穿透",
    "stats_ru": "+5 разума, +30 атаки, +25% скорость атаки, +10 пробитие",
    "effects": [
@@ -2543,6 +2641,7 @@
    "cls_ru": "Преломленный",
    "group": "折射",
    "set": null,
+   "active": false,
    "stats": "+25攻擊力，+15力量，+25穿透",
    "stats_ru": "+25 атаки, +15 силы, +25 пробитие",
    "effects": [
@@ -2570,6 +2669,7 @@
    "cls_ru": "Преломленный",
    "group": "折射",
    "set": null,
+   "active": false,
    "stats": "+20攻擊力，+500生命值，+15%對近戰單位非狀態傷害",
    "stats_ru": "+20 atk, +500 HP, +15% урон не от статусов врагам ближнего боя",
    "effects": [
@@ -2603,6 +2703,7 @@
    "cls_ru": "Преломленный",
    "group": "折射",
    "set": null,
+   "active": false,
    "stats": "+20攻擊力，+30%攻擊速度，+20穿透",
    "stats_ru": "+20 атаки, +30% скорость атаки, +20 пробитие",
    "effects": [
@@ -2630,6 +2731,7 @@
    "cls_ru": "Преломленный",
    "group": "折射",
    "set": null,
+   "active": false,
    "stats": "+20攻擊力，+20%攻擊速度，+12穿透",
    "stats_ru": "+20 атаки, +20% скорость атаки, +12 пробитие",
    "effects": [
@@ -2657,6 +2759,7 @@
    "cls_ru": "Преломленный",
    "group": "折射",
    "set": null,
+   "active": false,
    "stats": "+275生命值，+275法力值，+5護甲，+150技能強度",
    "stats_ru": "+275 HP, +275 MP, +5 защиты, +150 сила умений",
    "effects": [
@@ -2684,6 +2787,7 @@
    "cls_ru": "Преломленный",
    "group": "折射",
    "set": null,
+   "active": false,
    "stats": "+10敏捷，+25攻擊力，+15穿透，+50技能強度",
    "stats_ru": "+10 ловкости, +25 атаки, +15 пробитие, +50 сила умений",
    "effects": [
@@ -2711,6 +2815,7 @@
    "cls_ru": "Преломленный",
    "group": "折射",
    "set": null,
+   "active": true,
    "stats": "+450生命值，+3法力回復，+5全屬性",
    "stats_ru": "+450 HP, +3 MP regen, +5 ко всем характеристикам",
    "effects": [
@@ -2738,6 +2843,7 @@
    "cls_ru": "Преломленный",
    "group": "折射",
    "set": null,
+   "active": false,
    "stats": "+20攻擊力，+20穿透，+100技能強度",
    "stats_ru": "+20 атаки, +20 пробитие, +100 сила умений",
    "effects": [
@@ -2767,6 +2873,7 @@
    "cls_ru": "Преломленный",
    "group": "折射",
    "set": null,
+   "active": true,
    "stats": "+20護甲，+2000生命值，+300技能強度",
    "stats_ru": "+20 защиты, +2000 HP, +300 сила умений",
    "effects": [
@@ -2794,6 +2901,7 @@
    "cls_ru": "Искаженный",
    "group": "扭曲",
    "set": null,
+   "active": true,
    "stats": "+15攻擊力，+9穿透，+50技能強度",
    "stats_ru": "+15 atk, +9 пробитие, +50 сила умений",
    "effects": [
@@ -2821,6 +2929,7 @@
    "cls_ru": "Искаженный",
    "group": "扭曲",
    "set": null,
+   "active": false,
    "stats": "",
    "stats_ru": "",
    "effects": [
@@ -2850,6 +2959,7 @@
    "cls_ru": "Искаженный",
    "group": "扭曲",
    "set": null,
+   "active": false,
    "stats": "+500生命值，+15力量",
    "stats_ru": "+500 HP, +15 str",
    "effects": [
@@ -2879,6 +2989,7 @@
    "cls_ru": "Искаженный",
    "group": "扭曲",
    "set": null,
+   "active": true,
    "stats": "+20智力，+135技能強度",
    "stats_ru": "+20 int, +135 сила умений",
    "effects": [
@@ -2906,6 +3017,7 @@
    "cls_ru": "Искаженный",
    "group": "扭曲",
    "set": null,
+   "active": false,
    "stats": "+10攻擊力，+10敏捷，+5穿透",
    "stats_ru": "+10 atk, +10 agi, +5 пробитие",
    "effects": [
@@ -2935,6 +3047,7 @@
    "cls_ru": "Искаженный",
    "group": "扭曲",
    "set": null,
+   "active": false,
    "stats": "+6護甲，+300生命值，+6生命回復，+50技能強度，抵抗詛咒",
    "stats_ru": "+6 armor, +300 HP, +6 HP regen, +50 сила умений, сопротивление проклятиям",
    "effects": [],
@@ -2958,6 +3071,7 @@
    "cls_ru": "Искаженный",
    "group": "扭曲",
    "set": null,
+   "active": false,
    "stats": "+5護甲，+675生命值，+5生命回復",
    "stats_ru": "+5 armor, +675 HP, +5 HP regen",
    "effects": [
@@ -2988,6 +3102,7 @@
    "cls_ru": "Искаженный",
    "group": "扭曲",
    "set": null,
+   "active": true,
    "stats": "+600生命值，+600法力值",
    "stats_ru": "+600 HP, +600 MP",
    "effects": [
@@ -3015,6 +3130,7 @@
    "cls_ru": "Усилитель",
    "group": "強化",
    "set": null,
+   "active": true,
    "stats": "",
    "stats_ru": "",
    "effects": [
@@ -3044,6 +3160,7 @@
    "cls_ru": "Искаженный",
    "group": "扭曲",
    "set": null,
+   "active": true,
    "stats": "+250法力值，+2.25法力回復",
    "stats_ru": "+250 MP, +2.25 MP regen",
    "effects": [
@@ -3071,6 +3188,7 @@
    "cls_ru": "Искаженный",
    "group": "扭曲",
    "set": null,
+   "active": false,
    "stats": "+2全屬性，+275生命值，+175法力值，+50技能強度",
    "stats_ru": "+2 all stats, +275 HP, +175 MP, +50 сила умений",
    "effects": [
@@ -3098,6 +3216,7 @@
    "cls_ru": "Искаженный",
    "group": "扭曲",
    "set": null,
+   "active": false,
    "stats": "+25力量，+10敏捷",
    "stats_ru": "+25 str, +10 agi",
    "effects": [
@@ -3125,6 +3244,7 @@
    "cls_ru": "Искаженный",
    "group": "扭曲",
    "set": null,
+   "active": false,
    "stats": "+10智力，+375生命值，+225法力值，+2護甲，+1法力回復，-10%復活時間",
    "stats_ru": "+10 int, +375 HP, +225 MP, +2 armor, +1 MP regen, -10% время воскрешения",
    "effects": [
@@ -3152,6 +3272,7 @@
    "cls_ru": "Искаженный",
    "group": "扭曲",
    "set": null,
+   "active": false,
    "stats": "+15攻擊力，+10力量",
    "stats_ru": "+15 atk, +10 str",
    "effects": [
@@ -3182,6 +3303,7 @@
    "cls_ru": "Искаженный",
    "group": "扭曲",
    "set": null,
+   "active": false,
    "stats": "+20智力，+20攻擊力",
    "stats_ru": "+20 int, +20 atk",
    "effects": [
@@ -3211,6 +3333,7 @@
    "cls_ru": "Искаженный",
    "group": "扭曲",
    "set": null,
+   "active": false,
    "stats": "+12智力，+3.5法力回復，+175生命值",
    "stats_ru": "+12 int, +3.5 MP regen, +175 HP",
    "effects": [
@@ -3238,6 +3361,7 @@
    "cls_ru": "Искаженный",
    "group": "扭曲",
    "set": null,
+   "active": false,
    "stats": "+10護甲，+15力量，+40反傷，+10%復活時間",
    "stats_ru": "+10 armor, +15 str, +40 ответный урон, +10% время воскрешения",
    "effects": [
@@ -3265,6 +3389,7 @@
    "cls_ru": "Усилитель",
    "group": "強化",
    "set": null,
+   "active": true,
    "stats": "",
    "stats_ru": "",
    "effects": [
@@ -3294,6 +3419,7 @@
    "cls_ru": "Искаженный",
    "group": "扭曲",
    "set": null,
+   "active": false,
    "stats": "+100攻擊力，+25%攻擊速度，+15敏捷，+50%受到英雄非狀態受到傷害",
    "stats_ru": "+100 atk, +25% atk speed, +15 agi, +50% получаемый урон не от статусов от героев",
    "effects": [],
@@ -3315,6 +3441,7 @@
    "cls_ru": "Искаженный",
    "group": "扭曲",
    "set": null,
+   "active": false,
    "stats": "+10力量，+300生命值，+5護甲，-10%裝備技能冷卻，+20%對英雄非狀態傷害減免，抵抗流血",
    "stats_ru": "+10 str, +300 HP, +5 armor, -10% перезарядка модификаторов, +20% снижение урона не от статусов от героев, сопротивление кровотечению",
    "effects": [],
@@ -3337,6 +3464,7 @@
    "cls_ru": "Искаженный",
    "group": "扭曲",
    "set": null,
+   "active": true,
    "stats": "+15攻擊力，+20%攻擊速度，+10敏捷，+5穿透",
    "stats_ru": "+15 atk, +20% atk speed, +10 agi, +5 пробитие",
    "effects": [
@@ -3364,6 +3492,7 @@
    "cls_ru": "Искаженный",
    "group": "扭曲",
    "set": null,
+   "active": false,
    "stats": "",
    "stats_ru": "",
    "effects": [
@@ -3392,6 +3521,7 @@
    "cls_ru": "Искаженный",
    "group": "扭曲",
    "set": null,
+   "active": false,
    "stats": "+325法力值，+175技能強度",
    "stats_ru": "+325 MP, +175 сила умений",
    "effects": [
@@ -3419,6 +3549,7 @@
    "cls_ru": "Искаженный",
    "group": "扭曲",
    "set": null,
+   "active": false,
    "stats": "+12智力，+2.5法力回復，+75技能強度",
    "stats_ru": "+12 int, +2.5 MP regen, +75 сила умений",
    "effects": [
@@ -3448,6 +3579,7 @@
    "cls_ru": "Искаженный",
    "group": "扭曲",
    "set": null,
+   "active": false,
    "stats": "+1000生命值",
    "stats_ru": "+1000 HP",
    "effects": [
@@ -3475,6 +3607,7 @@
    "cls_ru": "Искаженный",
    "group": "扭曲",
    "set": null,
+   "active": false,
    "stats": "+10智力，+350法力值，+5護甲",
    "stats_ru": "+10 int, +350 MP, +5 armor",
    "effects": [
@@ -3502,6 +3635,7 @@
    "cls_ru": "Искаженный",
    "group": "扭曲",
    "set": null,
+   "active": false,
    "stats": "+444生命值，+444法力值，+44技能強度",
    "stats_ru": "+444 HP, +444 MP, +44 сила умений",
    "effects": [
@@ -3529,6 +3663,7 @@
    "cls_ru": null,
    "group": "消耗品／掉落物",
    "set": null,
+   "active": false,
    "stats": "",
    "stats_ru": "",
    "effects": [
@@ -3556,6 +3691,7 @@
    "cls_ru": null,
    "group": "消耗品／掉落物",
    "set": null,
+   "active": false,
    "stats": "",
    "stats_ru": "",
    "effects": [
@@ -3583,6 +3719,7 @@
    "cls_ru": null,
    "group": "消耗品／掉落物",
    "set": null,
+   "active": false,
    "stats": "",
    "stats_ru": "",
    "effects": [
@@ -3610,6 +3747,7 @@
    "cls_ru": null,
    "group": "消耗品／掉落物",
    "set": null,
+   "active": false,
    "stats": "",
    "stats_ru": "",
    "effects": [
@@ -3637,6 +3775,7 @@
    "cls_ru": null,
    "group": "消耗品／掉落物",
    "set": null,
+   "active": false,
    "stats": "",
    "stats_ru": "",
    "effects": [
@@ -3664,6 +3803,7 @@
    "cls_ru": null,
    "group": "消耗品／掉落物",
    "set": null,
+   "active": false,
    "stats": "",
    "stats_ru": "",
    "effects": [
@@ -3691,6 +3831,7 @@
    "cls_ru": null,
    "group": "消耗品／掉落物",
    "set": null,
+   "active": false,
    "stats": "",
    "stats_ru": "",
    "effects": [
@@ -3718,6 +3859,7 @@
    "cls_ru": null,
    "group": "消耗品／掉落物",
    "set": null,
+   "active": false,
    "stats": "",
    "stats_ru": "",
    "effects": [
@@ -3745,6 +3887,7 @@
    "cls_ru": "Самоцвет",
    "group": "寶石",
    "set": null,
+   "active": false,
    "stats": "+125技能強度",
    "stats_ru": "+125 сила умений",
    "effects": [],
@@ -3769,6 +3912,7 @@
    "cls_ru": "Артефакт (1 ур.)",
    "group": "神器（lv.1）",
    "set": null,
+   "active": false,
    "stats": "",
    "stats_ru": "",
    "effects": [
@@ -3801,6 +3945,7 @@
    "cls_ru": "Артефакт (3 ур.)",
    "group": "神器（lv.3）",
    "set": null,
+   "active": false,
    "stats": "+20智力，+20攻擊力，+3生命回復",
    "stats_ru": "+20 разума, +20 атаки, +3 HP regen",
    "effects": [
@@ -3831,6 +3976,7 @@
    "cls_ru": "Артефакт (3 ур.)",
    "group": "神器（lv.3）",
    "set": null,
+   "active": false,
    "stats": "+10護甲，+20力量，+3生命回復，+20反傷，抵抗流血",
    "stats_ru": "+10 защиты, +20 силы, +3 HP regen, +20 ответный урон, сопротивление кровотечению",
    "effects": [
@@ -3861,6 +4007,7 @@
    "cls_ru": "Артефакт (2 ур.)",
    "group": "神器（lv.2）",
    "set": null,
+   "active": false,
    "stats": "+20攻擊力，+5全屬性，+5穿透",
    "stats_ru": "+20 атаки, +5 к характеристикам, +5 пробитие",
    "effects": [
@@ -3893,6 +4040,7 @@
    "cls_ru": "Артефакт (2 ур.)",
    "group": "神器（lv.2）",
    "set": null,
+   "active": false,
    "stats": "",
    "stats_ru": "",
    "effects": [
@@ -3926,6 +4074,7 @@
    "cls_ru": "Артефакт (5 ур.)",
    "group": "神器（lv.5）",
    "set": null,
+   "active": false,
    "stats": "+2000生命值，+20護甲",
    "stats_ru": "+2000 HP, +20 защиты",
    "effects": [
@@ -3959,6 +4108,7 @@
    "cls_ru": "Артефакт (5 ур.)",
    "group": "神器（lv.5）",
    "set": null,
+   "active": false,
    "stats": "+30智力，+6法力回復，+10護甲，+200技能強度",
    "stats_ru": "+30 разум, +6 MP regen, +10 защиты, +200 сила умений",
    "effects": [
@@ -3991,6 +4141,7 @@
    "cls_ru": "Артефакт (4 ур.)",
    "group": "神器（lv.4）",
    "set": null,
+   "active": false,
    "stats": "+40攻擊力，+30%攻擊速度，+15力量，+15敏捷",
    "stats_ru": "+40 atk, +30% atk speed, +15 str, +15 agi",
    "effects": [
@@ -4028,6 +4179,7 @@
    "cls_ru": "Артефакт (4 ур.)",
    "group": "神器（lv.4）",
    "set": null,
+   "active": false,
    "stats": "+15全屬性，+5護甲，+750生命值，+500法力值，+6穿透，+150技能強度",
    "stats_ru": "+15 ко всем характеристикам, +5 защиты, +750 HP, +500 MP, +6 пробитие, +150 сила умений",
    "effects": [],
@@ -4056,6 +4208,7 @@
    "cls_ru": "Особый (3 ур.)",
    "group": "特殊（lv.3）",
    "set": null,
+   "active": false,
    "stats": "+10智力，+125技能強度",
    "stats_ru": "+10 разума, +125 сила умений",
    "effects": [],
@@ -4077,6 +4230,7 @@
    "cls_ru": "Артефакт (1 ур.)",
    "group": "神器（lv.1）",
    "set": null,
+   "active": false,
    "stats": "+3護甲，+10攻擊力，抵抗詛咒",
    "stats_ru": "+3 защиты, +10 атаки, сопротивление проклятиям",
    "effects": [
@@ -4114,6 +4268,7 @@
    "cls_ru": "Артефакт (3 ур.)",
    "group": "神器（lv.3）",
    "set": null,
+   "active": false,
    "stats": "+6護甲，+300技能強度",
    "stats_ru": "+6 защиты, +300 сила умений",
    "effects": [
@@ -4144,6 +4299,7 @@
    "cls_ru": "Артефакт (5 ур.)",
    "group": "神器（lv.5）",
    "set": null,
+   "active": false,
    "stats": "+20敏捷，+30攻擊力，30%機率造成2.5倍暴擊，+125技能強度",
    "stats_ru": "+20 ловкости, +30 атаки, 30% крит. удар x2.5, +125 сила умений",
    "effects": [
@@ -4176,6 +4332,7 @@
    "cls_ru": "Артефакт (1 ур.)",
    "group": "神器（lv.1）",
    "set": null,
+   "active": false,
    "stats": "+12攻擊力",
    "stats_ru": "+12 атаки",
    "effects": [
@@ -4209,6 +4366,7 @@
    "cls_ru": "Артефакт (3 ур.)",
    "group": "神器（lv.3）",
    "set": null,
+   "active": false,
    "stats": "+35攻擊力，+35%對英雄傷害",
    "stats_ru": "+35 атаки, +35% урон героям",
    "effects": [
@@ -4240,6 +4398,7 @@
    "cls_ru": "Артефакт (3 ур.)",
    "group": "神器（lv.3）",
    "set": null,
+   "active": false,
    "stats": "+10攻擊力，+3護甲，抵抗詛咒",
    "stats_ru": "+10 atk, +3 armor, сопротивление проклятиям",
    "effects": [
@@ -4280,6 +4439,7 @@
    "cls_ru": "Особый (5+ ур.)",
    "group": "特殊（lv.5+）",
    "set": null,
+   "active": false,
    "stats": "+1500生命值，+2.25生命回復，+3.75法力回復，+25%流血抗性，抵抗流血，免疫反傷",
    "stats_ru": "+1500 HP, +2.25 HP regen, +3.75 MP regen, +25% защита от кровотечения, сопротивление кровотечению, иммунитет к ответному урону",
    "effects": [
@@ -4309,6 +4469,7 @@
    "cls_ru": "Артефакт (4 ур.)",
    "group": "神器（lv.4）",
    "set": null,
+   "active": false,
    "stats": "+1500生命值，+20力量，+5護甲，+8生命回復",
    "stats_ru": "+1500 HP, +20 силы, +5 защиты, +8 HP regen",
    "effects": [
@@ -4340,6 +4501,7 @@
    "cls_ru": "Артефакт (1 ур.)",
    "group": "神器（lv.1）",
    "set": null,
+   "active": false,
    "stats": "+7主屬性",
    "stats_ru": "+7 main stat",
    "effects": [
@@ -4372,6 +4534,7 @@
    "cls_ru": "Артефакт (3 ур.)",
    "group": "神器（lv.3）",
    "set": null,
+   "active": true,
    "stats": "+3全屬性",
    "stats_ru": "+3 ко всем характеристикам",
    "effects": [
@@ -4402,6 +4565,7 @@
    "cls_ru": "Артефакт (2 ур.)",
    "group": "神器（lv.2）",
    "set": null,
+   "active": false,
    "stats": "+5護甲，+1.5法力回復，+15智力，+100技能強度",
    "stats_ru": "+5 защиты, +1.5 MP regen, +15 разума, +100 сила умений",
    "effects": [],
@@ -4426,6 +4590,7 @@
    "cls_ru": "Особый (5+ ур.)",
    "group": "特殊（lv.5+）",
    "set": null,
+   "active": false,
    "stats": "+50%疾病傷害",
    "stats_ru": "+50% урон от болезни",
    "effects": [
@@ -4453,6 +4618,7 @@
    "cls_ru": "Артефакт (4 ур.)",
    "group": "神器（lv.4）",
    "set": null,
+   "active": false,
    "stats": "+25攻擊力，+20力量，+3生命回復",
    "stats_ru": "+25 atk, +20 str, +3 HP regen",
    "effects": [
@@ -4484,6 +4650,7 @@
    "cls_ru": "Артефакт (4 ур.)",
    "group": "神器（lv.4）",
    "set": null,
+   "active": false,
    "stats": "+30攻擊力，+15敏捷，25%吸血",
    "stats_ru": "+30 атаки, +15 ловкости, 25% вампиризм",
    "effects": [
@@ -4514,6 +4681,7 @@
    "cls_ru": "Артефакт (2 ур.)",
    "group": "神器（lv.2）",
    "set": null,
+   "active": true,
    "stats": "+3法力回復，+10智力，+125技能強度",
    "stats_ru": "+3 MP regen, +10 разума, +125 сила умений",
    "effects": [
@@ -4544,6 +4712,7 @@
    "cls_ru": "Артефакт (2 ур.)",
    "group": "神器（lv.2）",
    "set": null,
+   "active": false,
    "stats": "+10主屬性，+50技能強度",
    "stats_ru": "+10 main stat, +50 сила умений",
    "effects": [
@@ -4575,6 +4744,7 @@
    "cls_ru": "Артефакт (3 ур.)",
    "group": "神器（lv.3）",
    "set": null,
+   "active": false,
    "stats": "抵抗點燃與易燃，抵抗流血，抵抗冰凍，抵抗詛咒",
    "stats_ru": "сопротивление поджогу и горючести, кровотечению, заморозке, проклятиям",
    "effects": [
@@ -4605,6 +4775,7 @@
    "cls_ru": "Ритуальный",
    "group": "儀式",
    "set": null,
+   "active": false,
    "stats": "14%吸血、攻擊17%濺射，+15攻擊力，+10主屬性，+5穿透",
    "stats_ru": "14% вампиризм и 17% сплеш-эффект от атак, +15 атаки, +10 main stat, +5 пробитие",
    "effects": [
@@ -4632,6 +4803,7 @@
    "cls_ru": "Артефакт (4 ур.)",
    "group": "神器（lv.4）",
    "set": null,
+   "active": false,
    "stats": "+7護甲，+20智力，+5生命回復，抵抗冰凍",
    "stats_ru": "+7 защиты, +20 разума, +5 HP regen, сопротивление заморозке",
    "effects": [
@@ -4664,6 +4836,7 @@
    "cls_ru": "Артефакт (4 ур.)",
    "group": "神器（lv.4）",
    "set": null,
+   "active": false,
    "stats": "+18全屬性，+5護甲，+175技能強度",
    "stats_ru": "+18 all stats, +5 armor, +175 сила умений",
    "effects": [
@@ -4694,6 +4867,7 @@
    "cls_ru": "Артефакт (1 ур.)",
    "group": "神器（lv.1）",
    "set": null,
+   "active": false,
    "stats": "+15%對亡靈攻擊與技能傷害，+15%對亡靈攻擊與技能防禦",
    "stats_ru": "+15% урон от атак и умений против нежити, +15% защита от атак и умений от нежити",
    "effects": [],
@@ -4720,6 +4894,7 @@
    "cls_ru": "Артефакт (4 ур.)",
    "group": "神器（lv.4）",
    "set": null,
+   "active": false,
    "stats": "+20攻擊力，+15%對亡靈傷害，+15%對亡靈防禦，+30技能強度，+15穿透，+10%裝備技能威力",
    "stats_ru": "+20 атаки, +15% урон против нежити, +15% защита от нежити, +30 сила умений, +15 пробитие, +10% сила модификаторов",
    "effects": [
@@ -4752,6 +4927,7 @@
    "cls_ru": "Ритуальный",
    "group": "儀式",
    "set": null,
+   "active": false,
    "stats": "+500法力值，-0.6法力回復",
    "stats_ru": "+500 MP, -0.6 MP regen",
    "effects": [],
@@ -4773,6 +4949,7 @@
    "cls_ru": "Ритуальный",
    "group": "儀式",
    "set": null,
+   "active": false,
    "stats": "+40攻擊力，-10%攻擊速度",
    "stats_ru": "+40 atk, -10% atk speed",
    "effects": [],
@@ -4794,6 +4971,7 @@
    "cls_ru": "Ритуальный",
    "group": "儀式",
    "set": null,
+   "active": false,
    "stats": "+10生命回復，-3護甲",
    "stats_ru": "+10 HP regen, -3 armor",
    "effects": [],
@@ -4815,6 +4993,7 @@
    "cls_ru": "Ритуальный",
    "group": "儀式",
    "set": null,
+   "active": false,
    "stats": "+50力量，-2生命回復，-6智力",
    "stats_ru": "+50 str, -2 HP regen, -6 int",
    "effects": [],
@@ -4836,6 +5015,7 @@
    "cls_ru": "Ритуальный",
    "group": "儀式",
    "set": null,
+   "active": false,
    "stats": "+30穿透，-15攻擊力，-6力量",
    "stats_ru": "+30 пробитие, -15 atk, -6 str",
    "effects": [],
@@ -4857,6 +5037,7 @@
    "cls_ru": "Ритуальный",
    "group": "儀式",
    "set": null,
+   "active": false,
    "stats": "+350技能強度，-2.0法力回復，-6敏捷",
    "stats_ru": "+350 сила умений, -2.0 MP regen, -6 agi",
    "effects": [],
@@ -4878,6 +5059,7 @@
    "cls_ru": "Ритуальный",
    "group": "儀式",
    "set": null,
+   "active": false,
    "stats": "+5全屬性，+75技能強度，+75%冰凍抗性，抵抗冰凍，抵抗詛咒",
    "stats_ru": "+5 ко всем характеристикам, +75 сила умений, +75% защита от заморозки, сопротивление заморозке, сопротивление проклятиям",
    "effects": [],
@@ -4899,6 +5081,7 @@
    "cls_ru": "Ритуальный",
    "group": "儀式",
    "set": null,
+   "active": false,
    "stats": "+8護甲，+400生命值，+3生命回復，+2法力回復，+40反傷，+20%反傷加成",
    "stats_ru": "+8 armor, +400 HP, +3 HP regen, +2 MP regen, +40 ответный урон, +20% усиление ответного урона",
    "effects": [
@@ -4926,6 +5109,7 @@
    "cls_ru": "Ритуальный",
    "group": "儀式",
    "set": null,
+   "active": false,
    "stats": "+10力量，+15攻擊力，+50%對0-1級敵人攻擊與技能傷害",
    "stats_ru": "+10 str, +15 atk, +50% урон от атак и умений врагам 0-1 уровня",
    "effects": [
@@ -4953,6 +5137,7 @@
    "cls_ru": "Ритуальный",
    "group": "儀式",
    "set": null,
+   "active": false,
    "stats": "+15敏捷，+35%攻擊速度，+11穿透",
    "stats_ru": "+15 agi, +35% atk speed, +11 пробитие",
    "effects": [
@@ -4980,6 +5165,7 @@
    "cls_ru": "Артефакт (4 ур.)",
    "group": "神器（lv.4）",
    "set": null,
+   "active": true,
    "stats": "+15智力，+3法力回復，+200技能強度，+25%對英雄攻擊與技能傷害，+25%裝備技能威力",
    "stats_ru": "+15 int, +3 MP regen, +200 сила умений, +25% урон от атак и умений по героям, +25% сила модификаторов",
    "effects": [
@@ -5010,6 +5196,7 @@
    "cls_ru": "Особый (1 ур.)",
    "group": "特殊（lv.1）",
    "set": null,
+   "active": false,
    "stats": "+5穿透",
    "stats_ru": "+5 пробитие",
    "effects": [],
@@ -5033,6 +5220,7 @@
    "cls_ru": "Самоцвет",
    "group": "寶石",
    "set": null,
+   "active": false,
    "stats": "+15力量",
    "stats_ru": "+15 str",
    "effects": [],
@@ -5057,6 +5245,7 @@
    "cls_ru": "Самоцвет",
    "group": "寶石",
    "set": null,
+   "active": false,
    "stats": "+15敏捷",
    "stats_ru": "+15 agi",
    "effects": [],
@@ -5081,6 +5270,7 @@
    "cls_ru": "Самоцвет",
    "group": "寶石",
    "set": null,
+   "active": false,
    "stats": "+15智力",
    "stats_ru": "+15 int",
    "effects": [],
@@ -5105,6 +5295,7 @@
    "cls_ru": "Самоцвет",
    "group": "寶石",
    "set": null,
+   "active": false,
    "stats": "+600生命值",
    "stats_ru": "+600 HP",
    "effects": [],
@@ -5129,6 +5320,7 @@
    "cls_ru": null,
    "group": "消耗品／掉落物",
    "set": null,
+   "active": true,
    "stats": "",
    "stats_ru": "",
    "effects": [
@@ -5156,6 +5348,7 @@
    "cls_ru": null,
    "group": "消耗品／掉落物",
    "set": null,
+   "active": true,
    "stats": "",
    "stats_ru": "",
    "effects": [
@@ -5183,6 +5376,7 @@
    "cls_ru": null,
    "group": "消耗品／掉落物",
    "set": null,
+   "active": true,
    "stats": "",
    "stats_ru": "",
    "effects": [
@@ -5210,6 +5404,7 @@
    "cls_ru": null,
    "group": "消耗品／掉落物",
    "set": null,
+   "active": true,
    "stats": "",
    "stats_ru": "",
    "effects": [
@@ -5237,6 +5432,7 @@
    "cls_ru": null,
    "group": "消耗品／掉落物",
    "set": null,
+   "active": true,
    "stats": "",
    "stats_ru": "",
    "effects": [
@@ -5264,6 +5460,7 @@
    "cls_ru": null,
    "group": "消耗品／掉落物",
    "set": null,
+   "active": true,
    "stats": "",
    "stats_ru": "",
    "effects": [
@@ -5291,6 +5488,7 @@
    "cls_ru": null,
    "group": "消耗品／掉落物",
    "set": null,
+   "active": true,
    "stats": "",
    "stats_ru": "",
    "effects": [
@@ -5318,6 +5516,7 @@
    "cls_ru": null,
    "group": "消耗品／掉落物",
    "set": null,
+   "active": true,
    "stats": "",
    "stats_ru": "",
    "effects": [
@@ -5345,6 +5544,7 @@
    "cls_ru": null,
    "group": "消耗品／掉落物",
    "set": null,
+   "active": true,
    "stats": "",
    "stats_ru": "",
    "effects": [
@@ -5372,6 +5572,7 @@
    "cls_ru": null,
    "group": "消耗品／掉落物",
    "set": null,
+   "active": true,
    "stats": "",
    "stats_ru": "",
    "effects": [
@@ -5399,6 +5600,7 @@
    "cls_ru": null,
    "group": "消耗品／掉落物",
    "set": null,
+   "active": true,
    "stats": "",
    "stats_ru": "",
    "effects": [
@@ -5426,6 +5628,7 @@
    "cls_ru": "Особый (1 ур.)",
    "group": "特殊（lv.1）",
    "set": null,
+   "active": false,
    "stats": "+20%攻擊速度",
    "stats_ru": "+20% скорость атаки",
    "effects": [],
@@ -5447,6 +5650,7 @@
    "cls_ru": "Особый (1 ур.)",
    "group": "特殊（lv.1）",
    "set": null,
+   "active": false,
    "stats": "+5攻擊力，+2生命回復",
    "stats_ru": "+5 атаки, +2 HP regen",
    "effects": [],
@@ -5470,6 +5674,7 @@
    "cls_ru": "Особый (1 ур.)",
    "group": "特殊（lv.1）",
    "set": null,
+   "active": false,
    "stats": "+1力量，+150生命值，+5反傷",
    "stats_ru": "+1 сила, +150 HP, +5 ответный урон",
    "effects": [],
@@ -5491,6 +5696,7 @@
    "cls_ru": "Особый (1 ур.)",
    "group": "特殊（lv.1）",
    "set": null,
+   "active": false,
    "stats": "+25%點燃抗性，抵抗點燃",
    "stats_ru": "+25% защита от поджога, сопротивление поджогу",
    "effects": [],
@@ -5514,6 +5720,7 @@
    "cls_ru": "Особый (1 ур.)",
    "group": "特殊（lv.1）",
    "set": null,
+   "active": false,
    "stats": "+2智力，+50法力值",
    "stats_ru": "+2 разума, +50 MP",
    "effects": [
@@ -5541,6 +5748,7 @@
    "cls_ru": "Особый (1 ур.)",
    "group": "特殊（lv.1）",
    "set": null,
+   "active": false,
    "stats": "+1全屬性",
    "stats_ru": "+1 ко всем характеристикам",
    "effects": [
@@ -5568,6 +5776,7 @@
    "cls_ru": "Особый (1 ур.)",
    "group": "特殊（lv.1）",
    "set": null,
+   "active": false,
    "stats": "",
    "stats_ru": "",
    "effects": [
@@ -5595,6 +5804,7 @@
    "cls_ru": "Особый (1 ур.)",
    "group": "特殊（lv.1）",
    "set": null,
+   "active": false,
    "stats": "+2護甲，+15反傷，+5%反傷加成",
    "stats_ru": "+2 защиты, +15 ответный урон, +5% усиление ответного урона",
    "effects": [],
@@ -5616,6 +5826,7 @@
    "cls_ru": "Особый (1 ур.)",
    "group": "特殊（lv.1）",
    "set": null,
+   "active": false,
    "stats": "+2護甲，抵抗詛咒",
    "stats_ru": "+2 защиты, сопротивление проклятиям",
    "effects": [],
@@ -5639,6 +5850,7 @@
    "cls_ru": "Особый (1 ур.)",
    "group": "特殊（lv.1）",
    "set": null,
+   "active": false,
    "stats": "+2全屬性，+1護甲",
    "stats_ru": "+2 ко всем характеристикам, +1 защиты",
    "effects": [
@@ -5666,6 +5878,7 @@
    "cls_ru": "Особый (1 ур.)",
    "group": "特殊（lv.1）",
    "set": null,
+   "active": false,
    "stats": "+2攻擊力",
    "stats_ru": "+2 атаки",
    "effects": [
@@ -5695,6 +5908,7 @@
    "cls_ru": "Особый (1 ур.)",
    "group": "特殊（lv.1）",
    "set": null,
+   "active": false,
    "stats": "賦予「瘟疫」狀態：免疫疾病，並可對敵人施加疾病（詳見 F2 圖鑑）",
    "stats_ru": "Дарует состояние \"Чумной\" - иммунитет к болезням и возможность применять болезнь к врагам. Подробнее в герое-справочнике (F2).",
    "effects": [],
@@ -5718,6 +5932,7 @@
    "cls_ru": "Особый (1 ур.)",
    "group": "特殊（lv.1）",
    "set": null,
+   "active": false,
    "stats": "+50移動速度，+1護甲",
    "stats_ru": "+50 скорость передвижения, +1 защиты",
    "effects": [
@@ -5745,6 +5960,7 @@
    "cls_ru": "Особый (1 ур.)",
    "group": "特殊（lv.1）",
    "set": null,
+   "active": false,
    "stats": "+1智力，+150生命值，10%魔法傷害減免",
    "stats_ru": "+1 разум, +150 HP, 10% защита от магии",
    "effects": [],
@@ -5766,6 +5982,7 @@
    "cls_ru": "Особый (1 ур.)",
    "group": "特殊（lv.1）",
    "set": null,
+   "active": false,
    "stats": "+10攻擊力",
    "stats_ru": "+10 атаки",
    "effects": [],
@@ -5789,6 +6006,7 @@
    "cls_ru": "Особый (1 ур.)",
    "group": "特殊（lv.1）",
    "set": null,
+   "active": false,
    "stats": "+3智力，+50生命值",
    "stats_ru": "+3 разума, +50 HP",
    "effects": [
@@ -5818,6 +6036,7 @@
    "cls_ru": "Особый (1 ур.)",
    "group": "特殊（lv.1）",
    "set": null,
+   "active": false,
    "stats": "+4全屬性，-1生命回復",
    "stats_ru": "+4 ко всем характеристикам, -1 HP regen",
    "effects": [],
@@ -5839,6 +6058,7 @@
    "cls_ru": "Особый (1 ур.)",
    "group": "特殊（lv.1）",
    "set": null,
+   "active": false,
    "stats": "",
    "stats_ru": "",
    "effects": [
@@ -5868,6 +6088,7 @@
    "cls_ru": "Особый (1 ур.)",
    "group": "特殊（lv.1）",
    "set": null,
+   "active": false,
    "stats": "+1法力回復",
    "stats_ru": "+1 MP regen",
    "effects": [
@@ -5897,6 +6118,7 @@
    "cls_ru": "Особый (1 ур.)",
    "group": "特殊（lv.1）",
    "set": null,
+   "active": false,
    "stats": "",
    "stats_ru": "",
    "effects": [
@@ -5926,6 +6148,7 @@
    "cls_ru": "Особый (1 ур.)",
    "group": "特殊（lv.1）",
    "set": null,
+   "active": true,
    "stats": "+1.5生命回復，+1.5法力回復",
    "stats_ru": "+1.5 HP regen, +1.5 MP regen",
    "effects": [],
@@ -5949,6 +6172,7 @@
    "cls_ru": "Артефакт (2 ур.)",
    "group": "神器（lv.2）",
    "set": null,
+   "active": false,
    "stats": "+25生命回復，+10法力回復，+75%疾病抗性",
    "stats_ru": "+25 HP regen, +10 MP regen, +75% защита от болезни",
    "effects": [
@@ -5979,6 +6203,7 @@
    "cls_ru": null,
    "group": "消耗品／掉落物",
    "set": null,
+   "active": false,
    "stats": "",
    "stats_ru": "",
    "effects": [
@@ -6006,6 +6231,7 @@
    "cls_ru": "Артефакт (5 ур.)",
    "group": "神器（lv.5）",
    "set": null,
+   "active": false,
    "stats": "+40力量，+50攻擊力，+25%對0-1級敵人攻擊與技能傷害",
    "stats_ru": "+40 сила, +50 атаки, +25% урон от атак и умений против врагов 0-1 уровня",
    "effects": [
@@ -6039,6 +6265,7 @@
    "cls_ru": "Артефакт (5 ур.)",
    "group": "神器（lv.5）",
    "set": null,
+   "active": false,
    "stats": "+40智力，+800法力值，+8法力回復，+175技能強度，+11%攻擊與技能造成傷害",
    "stats_ru": "+40 разум, +800 MP, +8 MP regen, +175 сила умений, +11% наносимый урон от атак и умений",
    "effects": [],
@@ -6065,6 +6292,7 @@
    "cls_ru": "Артефакт (5 ур.)",
    "group": "神器（lv.5）",
    "set": null,
+   "active": false,
    "stats": "+40敏捷，+600生命值，+30%對0-1級敵人防禦，+11穿透",
    "stats_ru": "+40 ловкость, +600 HP, +30% защита от врагов 0-1 уровня, +11 пробитие",
    "effects": [
@@ -6097,6 +6325,7 @@
    "cls_ru": "Особый (1 ур.)",
    "group": "特殊（lv.1）",
    "set": null,
+   "active": true,
    "stats": "+50技能強度",
    "stats_ru": "+50 сила умений",
    "effects": [
@@ -6124,6 +6353,7 @@
    "cls_ru": "Особый (1 ур.)",
    "group": "特殊（lv.1）",
    "set": null,
+   "active": false,
    "stats": "+3生命回復",
    "stats_ru": "+3 HP regen",
    "effects": [],
@@ -6145,6 +6375,7 @@
    "cls_ru": "Особый (1 ур.)",
    "group": "特殊（lv.1）",
    "set": null,
+   "active": false,
    "stats": "+3法力回復",
    "stats_ru": "+3 MP regen",
    "effects": [],
@@ -6168,6 +6399,7 @@
    "cls_ru": "Особый (1 ур.)",
    "group": "特殊（lv.1）",
    "set": null,
+   "active": false,
    "stats": "+20%對近戰單位攻擊與技能傷害，-10%對遠程單位攻擊與技能傷害",
    "stats_ru": "+20% урон от атак и умений против врагов ближнего боя, -10% урон от атак и умений против врагов дальнего боя",
    "effects": [],
@@ -6189,6 +6421,7 @@
    "cls_ru": "Особый (1 ур.)",
    "group": "特殊（lv.1）",
    "set": null,
+   "active": false,
    "stats": "+25%流血抗性，抵抗流血",
    "stats_ru": "+25% защита от кровотечения, сопротивление кровотечению",
    "effects": [],
@@ -6210,6 +6443,7 @@
    "cls_ru": "Особый (1 ур.)",
    "group": "特殊（lv.1）",
    "set": null,
+   "active": false,
    "stats": "+10%對亡靈攻擊與技能傷害",
    "stats_ru": "+10% урон от атак и умений против нежити",
    "effects": [],
@@ -6233,6 +6467,7 @@
    "cls_ru": "Особый (1 ур.)",
    "group": "特殊（lv.1）",
    "set": null,
+   "active": false,
    "stats": "+3力量，+5%對亡靈攻擊與技能防禦",
    "stats_ru": "+3 силы, +5% защита от атак и умений от нежити",
    "effects": [],
@@ -6256,6 +6491,7 @@
    "cls_ru": "Новогодний",
    "group": "新年",
    "set": null,
+   "active": false,
    "stats": "+5主屬性，+20攻擊力",
    "stats_ru": "+5 main stat, +20 атаки",
    "effects": [
@@ -6283,6 +6519,7 @@
    "cls_ru": "Новогодний",
    "group": "新年",
    "set": null,
+   "active": false,
    "stats": "+185技能強度，+3.0法力回復，+1.5生命回復",
    "stats_ru": "+185 сила умений, +3.0 MP regen, +1.5 HP regen",
    "effects": [
@@ -6310,6 +6547,7 @@
    "cls_ru": "Новогодний",
    "group": "新年",
    "set": null,
+   "active": false,
    "stats": "+3護甲，抵抗冰凍",
    "stats_ru": "+3 защиты, сопротивление заморозке",
    "effects": [
@@ -6337,6 +6575,7 @@
    "cls_ru": "Особый (5++ ур.)",
    "group": "特殊（lv.5++）",
    "set": null,
+   "active": false,
    "stats": "+50攻擊力，+20敏捷，+25穿透",
    "stats_ru": "+50 atk, +20 agi, +25 пробитие",
    "effects": [
@@ -6364,6 +6603,7 @@
    "cls_ru": "Особый (5++ ур.)",
    "group": "特殊（lv.5++）",
    "set": null,
+   "active": false,
    "stats": "70%魔法傷害減免，+8護甲，+1000法力值，+6法力回復，抵抗詛咒",
    "stats_ru": "70% защита от магии, +8 armor, +1000 MP, +6 MP regen, сопротивление проклятиям",
    "effects": [],
@@ -6385,6 +6625,7 @@
    "cls_ru": "Особый (5++ ур.)",
    "group": "特殊（lv.5++）",
    "set": null,
+   "active": false,
    "stats": "+15護甲，+25力量，+15%對英雄攻擊與技能防禦，+25%狀態抗性，+60反傷",
    "stats_ru": "+15 armor, +25 str, +15% защита от атак и умений героев, +25% защита от статусов, +60 ответный урон",
    "effects": [
@@ -6412,6 +6653,7 @@
    "cls_ru": "Особый (5++ ур.)",
    "group": "特殊（lv.5++）",
    "set": null,
+   "active": false,
    "stats": "+20全屬性，+500生命值，+500法力值，+2.5生命回復，+2.5法力回復",
    "stats_ru": "+20 all stats, +500 HP, +500 MP, +2.5 HP regen, +2.5 MP regen",
    "effects": [
@@ -6439,6 +6681,7 @@
    "cls_ru": "Особый (5++ ур.)",
    "group": "特殊（lv.5++）",
    "set": null,
+   "active": false,
    "stats": "+40攻擊力，+25力量，+25%攻擊速度，+15%對近戰單位攻擊與技能傷害",
    "stats_ru": "+40 atk, +25 str, +25% atk speed, +15% урон от атак и умений врагам ближнего боя",
    "effects": [
@@ -6466,6 +6709,7 @@
    "cls_ru": "Особый (5++ ур.)",
    "group": "特殊（lv.5++）",
    "set": null,
+   "active": false,
    "stats": "+35智力，+10護甲，+250技能強度",
    "stats_ru": "+35 int, +10 armor, +250 сила умений",
    "effects": [
@@ -6493,6 +6737,7 @@
    "cls_ru": "Особый (5++ ур.)",
    "group": "特殊（lv.5++）",
    "set": null,
+   "active": false,
    "stats": "+150%攻擊速度，+15生命回復，+20%攻擊與技能造成傷害",
    "stats_ru": "+150% atk speed, +15 HP regen, +20% наносимый урон от атак и умений",
    "effects": [],
@@ -6514,6 +6759,7 @@
    "cls_ru": "Особый (1 ур.)",
    "group": "特殊（lv.1）",
    "set": null,
+   "active": false,
    "stats": "+15%裝備技能威力，+15%狀態傷害",
    "stats_ru": "+15% сила модификаторов, +15% урон от статусов",
    "effects": [],
@@ -6535,6 +6781,7 @@
    "cls_ru": "Дополнительный",
    "group": "附加",
    "set": null,
+   "active": false,
    "stats": "+4穿透",
    "stats_ru": "+4 пробитие",
    "effects": [
@@ -6562,6 +6809,7 @@
    "cls_ru": "Усилитель",
    "group": "強化",
    "set": null,
+   "active": true,
    "stats": "",
    "stats_ru": "",
    "effects": [
@@ -6589,6 +6837,7 @@
    "cls_ru": "Закаленный",
    "group": "淬鍊",
    "set": null,
+   "active": false,
    "stats": "+20穿透，+4護甲",
    "stats_ru": "+20 пробитие, +4 защита",
    "effects": [
@@ -6616,6 +6865,7 @@
    "cls_ru": "Искаженный",
    "group": "扭曲",
    "set": null,
+   "active": false,
    "stats": "+3法力回復，+3護甲，+80%裝備技能威力",
    "stats_ru": "+3 MP regen, +3 armor, +80% сила модификаторов",
    "effects": [
@@ -6643,6 +6893,7 @@
    "cls_ru": "Усилитель",
    "group": "強化",
    "set": null,
+   "active": false,
    "stats": "",
    "stats_ru": "",
    "effects": [
@@ -6676,6 +6927,7 @@
    "cls_ru": "Самоцвет",
    "group": "寶石",
    "set": null,
+   "active": false,
    "stats": "+50力量",
    "stats_ru": "+50 str",
    "effects": [],
@@ -6702,6 +6954,7 @@
    "cls_ru": "Самоцвет",
    "group": "寶石",
    "set": null,
+   "active": false,
    "stats": "+50敏捷",
    "stats_ru": "+50 agi",
    "effects": [],
@@ -6728,6 +6981,7 @@
    "cls_ru": "Самоцвет",
    "group": "寶石",
    "set": null,
+   "active": false,
    "stats": "+50智力",
    "stats_ru": "+50 int",
    "effects": [],
@@ -6754,6 +7008,7 @@
    "cls_ru": "Самоцвет",
    "group": "寶石",
    "set": null,
+   "active": false,
    "stats": "+2000生命值",
    "stats_ru": "+2000 HP",
    "effects": [],
@@ -6780,6 +7035,7 @@
    "cls_ru": "Самоцвет",
    "group": "寶石",
    "set": null,
+   "active": false,
    "stats": "+400技能強度",
    "stats_ru": "+400 сила умений",
    "effects": [],
@@ -6808,6 +7064,7 @@
    "set": [
     "c3"
    ],
+   "active": false,
    "stats": "+30%攻擊速度，+1護甲，+40%裝備技能威力",
    "stats_ru": "+30% скорость атаки, +1 защиты, +40% сила модификаторов",
    "effects": [],
@@ -6831,6 +7088,7 @@
    "cls_ru": "Пасхальный",
    "group": "復活節",
    "set": null,
+   "active": false,
    "stats": "+350生命值，+3法力回復，+50技能強度",
    "stats_ru": "+350 HP, +3 MP regen, +50 сила умений",
    "effects": [
@@ -6858,6 +7116,7 @@
    "cls_ru": "Пасхальный",
    "group": "復活節",
    "set": null,
+   "active": false,
    "stats": "+6護甲，+4生命回復，+10%對遠程單位防禦，+30%反傷加成",
    "stats_ru": "+6 защиты, +4 HP regen, +10% защита от юнитов дальнего боя, +30% усиление ответного урона",
    "effects": [
@@ -6885,6 +7144,7 @@
    "cls_ru": "Пасхальный",
    "group": "復活節",
    "set": null,
+   "active": false,
    "stats": "+20攻擊力，-15%裝備技能冷卻，+7穿透",
    "stats_ru": "+20 атаки, -15% перезарядка модификаторов, +7 пробитие",
    "effects": [
@@ -6912,6 +7172,7 @@
    "cls_ru": "Особый (5++ ур.)",
    "group": "特殊（lv.5++）",
    "set": null,
+   "active": false,
    "stats": "+25攻擊力，+50%攻擊速度，+15敏捷，+25%對近戰單位攻擊與技能傷害，+40%攻擊與技能受到傷害",
    "stats_ru": "+25 atk, +50% atk speed, +15 agi, +25% урон от атак и умений юнитам ближнего боя, +40% получаемый урон от атак и умений",
    "effects": [
@@ -6939,6 +7200,7 @@
    "cls_ru": "Хэллоуин",
    "group": "萬聖節",
    "set": null,
+   "active": false,
    "stats": "",
    "stats_ru": "",
    "effects": [
@@ -6971,6 +7233,7 @@
    "cls_ru": "Хэллоуин",
    "group": "萬聖節",
    "set": null,
+   "active": false,
    "stats": "+15攻擊力，+7敏捷，+15%對英雄攻擊與技能傷害",
    "stats_ru": "+15 atk, +7 agi, +15% урон от атак и умений по героям",
    "effects": [
@@ -6998,6 +7261,7 @@
    "cls_ru": "Хэллоуин",
    "group": "萬聖節",
    "set": null,
+   "active": false,
    "stats": "+10主屬性，+50%流血傷害",
    "stats_ru": "+10 main stat, +50% урон от кровотечения",
    "effects": [],
@@ -7019,6 +7283,7 @@
    "cls_ru": "Артефакт (1 ур.)",
    "group": "神器（lv.1）",
    "set": null,
+   "active": false,
    "stats": "+5生命回復，+5法力回復",
    "stats_ru": "+5 HP regen, +5 MP regen",
    "effects": [
@@ -7052,6 +7317,7 @@
    "set": [
     "c1"
    ],
+   "active": false,
    "stats": "+60攻擊力，+40力量，+20%攻擊速度",
    "stats_ru": "+60 atk, +40 str, +20% atk speed",
    "effects": [
@@ -7081,6 +7347,7 @@
    "set": [
     "c3"
    ],
+   "active": false,
    "stats": "+1500法力值，+12法力回復，+200技能強度",
    "stats_ru": "+1500 MP, +12 MP regen, +200 сила умений",
    "effects": [
@@ -7110,6 +7377,7 @@
    "set": [
     "c2"
    ],
+   "active": false,
    "stats": "+30%攻擊速度，+25敏捷，+40穿透",
    "stats_ru": "+30% atk speed, +25 agi, +40 пробитие",
    "effects": [
@@ -7139,6 +7407,7 @@
    "set": [
     "c4"
    ],
+   "active": false,
    "stats": "+3250生命值，+16生命回復，+50反傷，+50%反傷加成，+75%點燃抗性，抵抗點燃",
    "stats_ru": "+3250 HP, +16 HP regen, +50 ответный урон, +50% усиление ответного урона, +75% защита от поджога, сопротивление поджогу",
    "effects": [
@@ -7166,6 +7435,7 @@
    "cls_ru": "Искаженный",
    "group": "扭曲",
    "set": null,
+   "active": false,
    "stats": "+30攻擊力，+10敏捷",
    "stats_ru": "+30 atk, +10 agi",
    "effects": [
@@ -7193,6 +7463,7 @@
    "cls_ru": "Искаженный",
    "group": "扭曲",
    "set": null,
+   "active": false,
    "stats": "+600生命值，+6生命回復，+60%反傷加成，+60%流血傷害",
    "stats_ru": "+600 HP, +6 HP regen, +60% усиление ответного урона, +60% урон от кровотечения",
    "effects": [],
@@ -7214,6 +7485,7 @@
    "cls_ru": "Искаженный",
    "group": "扭曲",
    "set": null,
+   "active": true,
    "stats": "+500法力值，+175技能強度",
    "stats_ru": "+500 MP, +175 сила умений",
    "effects": [
@@ -7241,6 +7513,7 @@
    "cls_ru": "Обычный",
    "group": "普通",
    "set": null,
+   "active": false,
    "stats": "+5智力",
    "stats_ru": "+5 int",
    "effects": [],
@@ -7262,6 +7535,7 @@
    "cls_ru": "Обычный",
    "group": "普通",
    "set": null,
+   "active": false,
    "stats": "+5力量",
    "stats_ru": "+5 str",
    "effects": [],
@@ -7283,6 +7557,7 @@
    "cls_ru": "Обычный",
    "group": "普通",
    "set": null,
+   "active": false,
    "stats": "+5敏捷",
    "stats_ru": "+5 agi",
    "effects": [],
@@ -7304,6 +7579,7 @@
    "cls_ru": null,
    "group": "消耗品／掉落物",
    "set": null,
+   "active": false,
    "stats": "",
    "stats_ru": "",
    "effects": [
@@ -7331,6 +7607,7 @@
    "cls_ru": null,
    "group": "消耗品／掉落物",
    "set": null,
+   "active": false,
    "stats": "",
    "stats_ru": "",
    "effects": [
@@ -7358,6 +7635,7 @@
    "cls_ru": "Квестовый [1/2]",
    "group": "任務物品（1/2）",
    "set": null,
+   "active": true,
    "stats": "",
    "stats_ru": "",
    "effects": [
@@ -7390,6 +7668,7 @@
    "cls_ru": "Квестовый [2/2]",
    "group": "任務物品（2/2）",
    "set": null,
+   "active": true,
    "stats": "+1生命回復，+0.5法力回復",
    "stats_ru": "+1 HP regen, +0.5 MP regen",
    "effects": [
@@ -7422,6 +7701,7 @@
    "cls_ru": "Обычный",
    "group": "普通",
    "set": null,
+   "active": false,
    "stats": "+8攻擊力",
    "stats_ru": "+8 atk",
    "effects": [],
@@ -7443,6 +7723,7 @@
    "cls_ru": "Реликвия",
    "group": "聖物",
    "set": null,
+   "active": true,
    "stats": "+2.5生命回復，+1.25法力回復",
    "stats_ru": "+2.5 HP regen, +1.25 MP regen",
    "effects": [
@@ -7472,6 +7753,7 @@
    "cls_ru": "Обычный",
    "group": "普通",
    "set": null,
+   "active": false,
    "stats": "+3護甲，+4%狀態抗性",
    "stats_ru": "+3 armor, +4% защита от статусов",
    "effects": [],
@@ -7493,6 +7775,7 @@
    "cls_ru": "Квестовый [1/2]",
    "group": "任務物品（1/2）",
    "set": null,
+   "active": false,
    "stats": "+10%對英雄傷害",
    "stats_ru": "+10% урон по героям",
    "effects": [
@@ -7525,6 +7808,7 @@
    "cls_ru": "Квестовый [2/2]",
    "group": "任務物品（2/2）",
    "set": null,
+   "active": false,
    "stats": "+15%對英雄傷害，+10攻擊力",
    "stats_ru": "+15% урон по героям, +10 atk",
    "effects": [
@@ -7557,6 +7841,7 @@
    "cls_ru": "Обычный",
    "group": "普通",
    "set": null,
+   "active": false,
    "stats": "+50移動速度，+10%狀態抗性",
    "stats_ru": "+50 move speed, +10% защита от статусов",
    "effects": [],
@@ -7578,6 +7863,7 @@
    "cls_ru": "Обычный",
    "group": "普通",
    "set": null,
+   "active": false,
    "stats": "+100法力值，+15技能強度",
    "stats_ru": "+100 MP, +15 сила умений",
    "effects": [],
@@ -7599,6 +7885,7 @@
    "cls_ru": "Руна",
    "group": "符文",
    "set": null,
+   "active": true,
    "stats": "",
    "stats_ru": "",
    "effects": [
@@ -7626,6 +7913,7 @@
    "cls_ru": "Руна",
    "group": "符文",
    "set": null,
+   "active": true,
    "stats": "",
    "stats_ru": "",
    "effects": [
@@ -7653,6 +7941,7 @@
    "cls_ru": "Руна",
    "group": "符文",
    "set": null,
+   "active": true,
    "stats": "",
    "stats_ru": "",
    "effects": [
@@ -7680,6 +7969,7 @@
    "cls_ru": "Руна",
    "group": "符文",
    "set": null,
+   "active": true,
    "stats": "",
    "stats_ru": "",
    "effects": [
@@ -7707,6 +7997,7 @@
    "cls_ru": "Обычный",
    "group": "普通",
    "set": null,
+   "active": false,
    "stats": "+13%攻擊速度",
    "stats_ru": "+13% atk speed",
    "effects": [],
@@ -7728,6 +8019,7 @@
    "cls_ru": "Обычный",
    "group": "普通",
    "set": null,
+   "active": false,
    "stats": "+1護甲，+2力量",
    "stats_ru": "+1 armor, +2 str",
    "effects": [
@@ -7755,6 +8047,7 @@
    "cls_ru": "Обычный",
    "group": "普通",
    "set": null,
+   "active": false,
    "stats": "+1護甲，+2智力",
    "stats_ru": "+1 armor, +2 int",
    "effects": [
@@ -7782,6 +8075,7 @@
    "cls_ru": "Квестовый [1/2]",
    "group": "任務物品（1/2）",
    "set": null,
+   "active": false,
    "stats": "+2護甲，+16反傷",
    "stats_ru": "+2 защиты, +16 ответный урон",
    "effects": [
@@ -7809,6 +8103,7 @@
    "cls_ru": "Квестовый [2/2]",
    "group": "任務物品（2/2）",
    "set": null,
+   "active": false,
    "stats": "+4護甲，+24反傷，+10%反傷加成",
    "stats_ru": "+4 armor, +24 ответный урон, +10% усиление ответного урона",
    "effects": [
@@ -7836,6 +8131,7 @@
    "cls_ru": "Реликвия",
    "group": "聖物",
    "set": null,
+   "active": false,
    "stats": "+20%對英雄傷害，+15攻擊力，+200生命值",
    "stats_ru": "+20% урон по героям, +15 atk, +200 HP",
    "effects": [
@@ -7863,6 +8159,7 @@
    "cls_ru": "Реликвия",
    "group": "聖物",
    "set": null,
+   "active": false,
    "stats": "+6護甲，+40反傷，+15%反傷加成",
    "stats_ru": "+6 armor, +40 ответный урон, +15% усиление ответного урона",
    "effects": [],
@@ -7884,6 +8181,7 @@
    "cls_ru": "Курьер",
    "group": "信使",
    "set": null,
+   "active": false,
    "stats": "",
    "stats_ru": "",
    "effects": [
@@ -7911,6 +8209,7 @@
    "cls_ru": "Обычный",
    "group": "普通",
    "set": null,
+   "active": false,
    "stats": "+1護甲，+2敏捷",
    "stats_ru": "+1 armor, +2 agi",
    "effects": [
@@ -7940,6 +8239,7 @@
    "cls_ru": "Квестовый [1/2]",
    "group": "任務物品（1/2）",
    "set": null,
+   "active": false,
    "stats": "+4穿透",
    "stats_ru": "+4 пробитие",
    "effects": [
@@ -7972,6 +8272,7 @@
    "cls_ru": "Квестовый [2/2]",
    "group": "任務物品（2/2）",
    "set": null,
+   "active": false,
    "stats": "+6穿透，+8%攻擊速度",
    "stats_ru": "+6 пробитие, +8% atk speed",
    "effects": [
@@ -8004,6 +8305,7 @@
    "cls_ru": "Реликвия",
    "group": "聖物",
    "set": null,
+   "active": false,
    "stats": "+10穿透，+16%攻擊速度",
    "stats_ru": "+10 пробитие, +16% скорость атаки",
    "effects": [
@@ -8033,6 +8335,7 @@
    "cls_ru": "Особый (3 ур.)",
    "group": "特殊（lv.3）",
    "set": null,
+   "active": false,
    "stats": "+200生命值，+3.50法力回復",
    "stats_ru": "+200 HP, +3.50 MP regen",
    "effects": [],
@@ -8058,6 +8361,7 @@
    "set": [
     "c2"
    ],
+   "active": false,
    "stats": "+150移動速度，+10敏捷，+25%流血與疾病抗性",
    "stats_ru": "+150 скорость бега, +10 ловкости, +25% защита от кровотечения и болезни",
    "effects": [],
@@ -8081,6 +8385,7 @@
    "set": [
     "c2"
    ],
+   "active": false,
    "stats": "+40%攻擊速度，+8攻擊力",
    "stats_ru": "+40% скорость атаки, +8 атаки",
    "effects": [
@@ -8110,6 +8415,7 @@
    "set": [
     "c2"
    ],
+   "active": false,
    "stats": "+5護甲，+13%對英雄非狀態傷害，+13%對英雄非狀態防禦，-13%裝備技能冷卻",
    "stats_ru": "+5 защиты, +13% урон не от статусов по героям, +13% защита не от статусов от героев, -13% перезарядка модификаторов",
    "effects": [],
@@ -8133,6 +8439,7 @@
    "set": [
     "c2"
    ],
+   "active": false,
    "stats": "+300生命值，+6敏捷，+4力量，+7%對近戰單位非狀態防禦",
    "stats_ru": "+300 HP, +6 ловкость, +4 сила, +7% защита не от статусов от юнитов ближнего боя",
    "effects": [],
@@ -8156,6 +8463,7 @@
    "set": [
     "c2"
    ],
+   "active": false,
    "stats": "+50攻擊力，+10敏捷，+20%對英雄非狀態傷害",
    "stats_ru": "+50 атаки, +10 ловкости, +20% урон не от статусов по героям",
    "effects": [],
@@ -8179,6 +8487,7 @@
    "set": [
     "c1"
    ],
+   "active": false,
    "stats": "+400生命值，+250法力值，+8護甲，+10%對英雄非狀態防禦",
    "stats_ru": "+400 HP, +250 MP, +8 защиты, +10% защита не от статусов от героев",
    "effects": [
@@ -8208,6 +8517,7 @@
    "set": [
     "c1"
    ],
+   "active": false,
    "stats": "+500生命值，+3護甲，+20%對近戰單位非狀態防禦，+30反傷",
    "stats_ru": "+500 HP, +3 защиты, +20% защита не от статусов от юнитов ближнего боя, +30 ответный урон",
    "effects": [],
@@ -8231,6 +8541,7 @@
    "set": [
     "c1"
    ],
+   "active": false,
    "stats": "30%魔法傷害減免，格擋攻擊 10 點物理傷害，+20反傷",
    "stats_ru": "30% защита от магии, блокирует 10 ед. физического урона от атак, +20 ответный урон",
    "effects": [],
@@ -8254,6 +8565,7 @@
    "set": [
     "c1"
    ],
+   "active": false,
    "stats": "+25攻擊力，+20%攻擊速度",
    "stats_ru": "+25 атаки, +20% скорость атаки",
    "effects": [
@@ -8281,6 +8593,7 @@
    "cls_ru": "Особый (2 ур.)",
    "group": "特殊（lv.2）",
    "set": null,
+   "active": false,
    "stats": "+10攻擊力，+5穿透",
    "stats_ru": "+10 атаки, +5 пробитие",
    "effects": [
@@ -8310,6 +8623,7 @@
    "cls_ru": "Особый (2 ур.)",
    "group": "特殊（lv.2）",
    "set": null,
+   "active": false,
    "stats": "+6主屬性，+200法力值，+0.85法力回復",
    "stats_ru": "+6 main stat, +200 MP, +0.85 MP regen",
    "effects": [
@@ -8337,6 +8651,7 @@
    "cls_ru": "Особый (3 ур.)",
    "group": "特殊（lv.3）",
    "set": null,
+   "active": false,
    "stats": "+35%對英雄攻擊與技能傷害",
    "stats_ru": "+35% урон от атак и умений по героям",
    "effects": [],
@@ -8360,6 +8675,7 @@
    "cls_ru": "Особый (2 ур.)",
    "group": "特殊（lv.2）",
    "set": null,
+   "active": false,
    "stats": "+4護甲",
    "stats_ru": "+4 защиты",
    "effects": [
@@ -8389,6 +8705,7 @@
    "cls_ru": "Особый (3 ур.)",
    "group": "特殊（lv.3）",
    "set": null,
+   "active": false,
    "stats": "+5生命回復",
    "stats_ru": "+5 HP regen",
    "effects": [
@@ -8418,6 +8735,7 @@
    "cls_ru": "Особый (2 ур.)",
    "group": "特殊（lv.2）",
    "set": null,
+   "active": false,
    "stats": "+150移動速度，+2護甲",
    "stats_ru": "+150 скорость передвижения, +2 защиты",
    "effects": [],
@@ -8439,6 +8757,7 @@
    "cls_ru": "Особый (2 ур.)",
    "group": "特殊（lv.2）",
    "set": null,
+   "active": false,
    "stats": "",
    "stats_ru": "",
    "effects": [
@@ -8473,6 +8792,7 @@
    "cls_ru": "Особый (3 ур.)",
    "group": "特殊（lv.3）",
    "set": null,
+   "active": false,
    "stats": "+4護甲，+100生命值，+20%對非英雄單位非狀態防禦",
    "stats_ru": "+4 защиты, +100 HP, +20% защита не от статусов от не-героев",
    "effects": [],
@@ -8498,6 +8818,7 @@
    "set": [
     "c2"
    ],
+   "active": false,
    "stats": "+6力量，+200生命值",
    "stats_ru": "+6 силы, +200 HP",
    "effects": [
@@ -8527,6 +8848,7 @@
    "set": [
     "c2"
    ],
+   "active": false,
    "stats": "+300生命值，+20%對非英雄單位非狀態傷害，+15%流血傷害",
    "stats_ru": "+300 HP, +20% урон не от статусов по не-героям, +15% урон от кровотечения",
    "effects": [
@@ -8554,6 +8876,7 @@
    "cls_ru": "Особый (4 ур.)",
    "group": "特殊（lv.4）",
    "set": null,
+   "active": false,
    "stats": "+24生命回復，+5法力回復，+25%疾病抗性",
    "stats_ru": "+24 HP regen, +5 MP regen, +25% защита от болезни",
    "effects": [
@@ -8583,6 +8906,7 @@
    "cls_ru": "Особый (2 ур.)",
    "group": "特殊（lv.2）",
    "set": null,
+   "active": false,
    "stats": "-30%攻擊速度，+15力量，+20攻擊力，+10%對0-1級敵人攻擊與技能傷害",
    "stats_ru": "-30% скорость атаки, +15 силы, +20 атаки, +10% урон от атак и умений по врагам 0-1 уровня",
    "effects": [],
@@ -8606,6 +8930,7 @@
    "cls_ru": "Особый (3 ур.)",
    "group": "特殊（lv.3）",
    "set": null,
+   "active": false,
    "stats": "+20%攻擊速度，+7穿透",
    "stats_ru": "+20% скорость атаки, +7 пробитие",
    "effects": [
@@ -8633,6 +8958,7 @@
    "cls_ru": "Особый (3 ур.)",
    "group": "特殊（lv.3）",
    "set": null,
+   "active": false,
    "stats": "+30%對英雄攻擊與技能防禦",
    "stats_ru": "+30% защита от атак и умений от героев",
    "effects": [],
@@ -8656,6 +8982,7 @@
    "cls_ru": "Особый (2 ур.)",
    "group": "特殊（lv.2）",
    "set": null,
+   "active": false,
    "stats": "20%魔法傷害減免，+100生命值，+2護甲",
    "stats_ru": "20% защиты от магического урона, +100 HP, +2 защиты",
    "effects": [],
@@ -8677,6 +9004,7 @@
    "cls_ru": "Особый (3 ур.)",
    "group": "特殊（lv.3）",
    "set": null,
+   "active": false,
    "stats": "",
    "stats_ru": "",
    "effects": [
@@ -8704,6 +9032,7 @@
    "cls_ru": "Особый (2 ур.)",
    "group": "特殊（lv.2）",
    "set": null,
+   "active": false,
    "stats": "+12攻擊力",
    "stats_ru": "+12 атаки",
    "effects": [
@@ -8733,6 +9062,7 @@
    "cls_ru": "Особый (2 ур.)",
    "group": "特殊（lv.2）",
    "set": null,
+   "active": false,
    "stats": "+10攻擊力，+5敏捷",
    "stats_ru": "+10 атаки, +5 ловкости",
    "effects": [
@@ -8764,6 +9094,7 @@
    "set": [
     "c4"
    ],
+   "active": false,
    "stats": "+30攻擊力，+30%攻擊速度，+30%點燃傷害",
    "stats_ru": "+30 атаки, +30% скорость атаки, +30% урон от поджога",
    "effects": [
@@ -8793,6 +9124,7 @@
    "set": [
     "c4"
    ],
+   "active": false,
    "stats": "+1000生命值，+500法力值，+5全屬性",
    "stats_ru": "+1000 HP, +500 MP, +5 all stats",
    "effects": [
@@ -8822,6 +9154,7 @@
    "set": [
     "c4"
    ],
+   "active": false,
    "stats": "+80攻擊力，+6全屬性，+50%對英雄非狀態傷害",
    "stats_ru": "+80 атаки, +6 ко всем характеристикам, +50% урон не от статусов по героям",
    "effects": [],
@@ -8845,6 +9178,7 @@
    "set": [
     "c4"
    ],
+   "active": false,
    "stats": "+500生命值，+5護甲，+10主屬性，抵抗點燃",
    "stats_ru": "+500 HP, +5 защиты, +10 main stat, сопротивление поджогу",
    "effects": [
@@ -8874,6 +9208,7 @@
    "set": [
     "c4"
    ],
+   "active": false,
    "stats": "+2225生命值，+8護甲，+6生命回復，抵抗流血",
    "stats_ru": "+2225 HP, +8 защиты, +6 HP regen, сопротивление кровотечению",
    "effects": [],
@@ -8897,6 +9232,7 @@
    "set": [
     "c4"
    ],
+   "active": false,
    "stats": "+1000生命值，+10護甲",
    "stats_ru": "+1000 HP, +10 armor",
    "effects": [
@@ -8924,6 +9260,7 @@
    "cls_ru": "Особый (4 ур.)",
    "group": "特殊（lv.4）",
    "set": null,
+   "active": false,
    "stats": "+5生命回復，+1.5法力回復，+200生命值",
    "stats_ru": "+5 HP regen, +1.5 MP regen, +200 HP",
    "effects": [
@@ -8951,6 +9288,7 @@
    "cls_ru": "Особый (4 ур.)",
    "group": "特殊（lv.4）",
    "set": null,
+   "active": false,
    "stats": "+15攻擊力，+5力量，+5敏捷，+2護甲",
    "stats_ru": "+15 атаки, +5 силы, +5 ловкости, +2 защиты",
    "effects": [
@@ -8980,6 +9318,7 @@
    "cls_ru": "Особый (5 ур.)",
    "group": "特殊（lv.5）",
    "set": null,
+   "active": false,
    "stats": "+20攻擊力，+3生命回復，+1法力回復",
    "stats_ru": "+20 атаки, +3 HP regen, +1 MP regen",
    "effects": [
@@ -9011,6 +9350,7 @@
    "set": [
     "c2"
    ],
+   "active": false,
    "stats": "+6護甲，+15%非狀態傷害",
    "stats_ru": "+6 защиты, +15% урон не от статусов",
    "effects": [
@@ -9038,6 +9378,7 @@
    "cls_ru": "Особый (3 ур.)",
    "group": "特殊（lv.3）",
    "set": null,
+   "active": false,
    "stats": "+500法力值，+1法力回復",
    "stats_ru": "+500 MP, +1 MP regen",
    "effects": [
@@ -9067,6 +9408,7 @@
    "cls_ru": "Особый (5 ур.)",
    "group": "特殊（lv.5）",
    "set": null,
+   "active": false,
    "stats": "+25智力，+15攻擊力，+3法力回復，+50技能強度",
    "stats_ru": "+25 разума, +15 атаки, +3 MP regen, +50 сила умений",
    "effects": [
@@ -9096,6 +9438,7 @@
    "cls_ru": "Особый (3 ур.)",
    "group": "特殊（lv.3）",
    "set": null,
+   "active": false,
    "stats": "+4護甲，+250生命值，+2生命回復，+35反傷",
    "stats_ru": "+4 защиты, +250 HP, +2 HP regen, +35 ответный урон",
    "effects": [],
@@ -9117,6 +9460,7 @@
    "cls_ru": "Особый (2 ур.)",
    "group": "特殊（lv.2）",
    "set": null,
+   "active": false,
    "stats": "+150法力值，抵抗冰凍，抵抗詛咒",
    "stats_ru": "+150 MP, сопротивление заморозке, сопротивление проклятиям",
    "effects": [],
@@ -9140,6 +9484,7 @@
    "set": [
     "c4"
    ],
+   "active": false,
    "stats": "+200移動速度，+8全屬性，+5護甲，+8生命回復",
    "stats_ru": "+200 скорость передвижения, +8 all stats, +5 armor, +8 HP regen",
    "effects": [
@@ -9167,6 +9512,7 @@
    "cls_ru": "Особый (5 ур.)",
    "group": "特殊（lv.5）",
    "set": null,
+   "active": false,
    "stats": "50%魔法傷害減免，+500生命值，+250法力值，+3.5法力回復",
    "stats_ru": "50% защиты от магического урона, +500 HP, +250 MP, +3.5 MP regen",
    "effects": [],
@@ -9188,6 +9534,7 @@
    "cls_ru": "Особый (2 ур.)",
    "group": "特殊（lv.2）",
    "set": null,
+   "active": false,
    "stats": "+8護甲",
    "stats_ru": "+8 защиты",
    "effects": [],
@@ -9211,6 +9558,7 @@
    "cls_ru": "Особый (2 ур.)",
    "group": "特殊（lv.2）",
    "set": null,
+   "active": false,
    "stats": "+12力量",
    "stats_ru": "+12 силы",
    "effects": [],
@@ -9234,6 +9582,7 @@
    "cls_ru": "Особый (2 ур.)",
    "group": "特殊（lv.2）",
    "set": null,
+   "active": false,
    "stats": "+12敏捷",
    "stats_ru": "+12 ловкости",
    "effects": [],
@@ -9257,6 +9606,7 @@
    "cls_ru": "Особый (2 ур.)",
    "group": "特殊（lv.2）",
    "set": null,
+   "active": false,
    "stats": "+12智力",
    "stats_ru": "+12 разума",
    "effects": [],
@@ -9280,6 +9630,7 @@
    "cls_ru": "Особый (5 ур.)",
    "group": "特殊（lv.5）",
    "set": null,
+   "active": false,
    "stats": "+100%攻擊速度，+50移動速度，+2護甲",
    "stats_ru": "+100% скорость атаки, +50 скорость передвижения, +2 защиты",
    "effects": [
@@ -9307,6 +9658,7 @@
    "cls_ru": "Особый (4 ур.)",
    "group": "特殊（lv.4）",
    "set": null,
+   "active": false,
    "stats": "+750生命值，+10力量，+4生命回復",
    "stats_ru": "+750 HP, +10 силы, +4 HP regen",
    "effects": [],
@@ -9330,6 +9682,7 @@
    "cls_ru": "Особый (4 ур.)",
    "group": "特殊（lv.4）",
    "set": null,
+   "active": false,
    "stats": "+15智力，+200法力值",
    "stats_ru": "+15 разума, +200 MP",
    "effects": [
@@ -9357,6 +9710,7 @@
    "cls_ru": "Особый (4 ур.)",
    "group": "特殊（lv.4）",
    "set": null,
+   "active": false,
    "stats": "+10攻擊力，+5護甲",
    "stats_ru": "+10 атаки, +5 защиты",
    "effects": [
@@ -9384,6 +9738,7 @@
    "cls_ru": "Особый (5 ур.)",
    "group": "特殊（lv.5）",
    "set": null,
+   "active": false,
    "stats": "+500生命值，+5生命回復，+10力量",
    "stats_ru": "+500 HP, +5 HP regen, +10 str",
    "effects": [
@@ -9411,6 +9766,7 @@
    "cls_ru": "Особый (4 ур.)",
    "group": "特殊（lv.4）",
    "set": null,
+   "active": false,
    "stats": "+10攻擊力，+10敏捷，+30%攻擊速度",
    "stats_ru": "+10 атаки, +10 ловкости, +30% скорость атаки",
    "effects": [
@@ -9438,6 +9794,7 @@
    "cls_ru": "Особый (4 ур.)",
    "group": "特殊（lv.4）",
    "set": null,
+   "active": true,
    "stats": "+12智力，+12攻擊力，+50技能強度",
    "stats_ru": "+12 int, +12 atk, +50 сила умений",
    "effects": [
@@ -9465,6 +9822,7 @@
    "cls_ru": "Особый (5 ур.)",
    "group": "特殊（lv.5）",
    "set": null,
+   "active": false,
    "stats": "+40%攻擊速度，+10穿透，+15技能強度",
    "stats_ru": "+40% скорость атаки, +10 пробитие, +15 сила умений",
    "effects": [
@@ -9496,6 +9854,7 @@
    "set": [
     "c2"
    ],
+   "active": false,
    "stats": "+30攻擊力，+10敏捷，+12%對英雄非狀態傷害，22%吸血",
    "stats_ru": "+30 атаки, +10 ловкости, +12% урон не от статусов по героям, 22% эффект вампиризма",
    "effects": [],
@@ -9517,6 +9876,7 @@
    "cls_ru": "Особый (3 ур.)",
    "group": "特殊（lv.3）",
    "set": null,
+   "active": false,
    "stats": "40%魔法傷害減免，+10攻擊力，+5護甲",
    "stats_ru": "40% защита от магии, +10 атаки, +5 защиты",
    "effects": [],
@@ -9538,6 +9898,7 @@
    "cls_ru": "Особый (3 ур.)",
    "group": "特殊（lv.3）",
    "set": null,
+   "active": false,
    "stats": "+10攻擊力，+10%對英雄攻擊與技能傷害",
    "stats_ru": "+10 атаки, +10% урон от атак и умений по героям",
    "effects": [
@@ -9565,6 +9926,7 @@
    "cls_ru": "Особый (3 ур.)",
    "group": "特殊（lv.3）",
    "set": null,
+   "active": false,
    "stats": "+15攻擊力，+5力量，+6穿透",
    "stats_ru": "+15 атаки, +5 силы, +6 пробитие",
    "effects": [
@@ -9592,6 +9954,7 @@
    "cls_ru": "Особый (3 ур.)",
    "group": "特殊（lv.3）",
    "set": null,
+   "active": true,
    "stats": "+5生命回復，+30技能強度",
    "stats_ru": "+5 HP regen, +30 сила умений",
    "effects": [
@@ -9619,6 +9982,7 @@
    "cls_ru": "Особый (3 ур.)",
    "group": "特殊（lv.3）",
    "set": null,
+   "active": false,
    "stats": "+20主屬性",
    "stats_ru": "+20 main stat",
    "effects": [],
@@ -9640,6 +10004,7 @@
    "cls_ru": "Особый (5 ур.)",
    "group": "特殊（lv.5）",
    "set": null,
+   "active": false,
    "stats": "+7護甲，+500生命值",
    "stats_ru": "+7 защиты, +500 HP",
    "effects": [
@@ -9669,6 +10034,7 @@
    "cls_ru": "Особый (5 ур.)",
    "group": "特殊（lv.5）",
    "set": null,
+   "active": false,
    "stats": "+20主屬性，+100技能強度",
    "stats_ru": "+20 main stat, +100 сила умений",
    "effects": [
@@ -9698,6 +10064,7 @@
    "set": [
     "c3"
    ],
+   "active": false,
    "stats": "+90移動速度，+10%攻擊速度，+5護甲",
    "stats_ru": "+90 скорость передвижения, +10% скорость атаки, +5 защиты",
    "effects": [
@@ -9725,6 +10092,7 @@
    "cls_ru": "Особый (5 ур.)",
    "group": "特殊（lv.5）",
    "set": null,
+   "active": false,
    "stats": "+20全屬性，+75技能強度，+40%裝備技能威力",
    "stats_ru": "+20 ко всем характеристикам, +75 сила умений, +40% сила модификаторов",
    "effects": [
@@ -9752,6 +10120,7 @@
    "cls_ru": "Особый (5 ур.)",
    "group": "特殊（lv.5）",
    "set": null,
+   "active": false,
    "stats": "+20攻擊力，+30%攻擊速度",
    "stats_ru": "+20 атаки, +30% скорость атаки",
    "effects": [
@@ -9779,6 +10148,7 @@
    "cls_ru": "Особый (4 ур.)",
    "group": "特殊（lv.4）",
    "set": null,
+   "active": false,
    "stats": "+10攻擊力，+10敏捷，+30%攻擊速度",
    "stats_ru": "+10 атаки, +10 ловкости, +30% скорость атаки",
    "effects": [
@@ -9806,6 +10176,7 @@
    "cls_ru": "Особый (3 ур.)",
    "group": "特殊（lv.3）",
    "set": null,
+   "active": false,
    "stats": "+800生命值",
    "stats_ru": "+800 HP",
    "effects": [
@@ -9833,6 +10204,7 @@
    "cls_ru": null,
    "group": "消耗品／掉落物",
    "set": null,
+   "active": true,
    "stats": "",
    "stats_ru": "",
    "effects": [
@@ -9860,6 +10232,7 @@
    "cls_ru": null,
    "group": "消耗品／掉落物",
    "set": null,
+   "active": true,
    "stats": "",
    "stats_ru": "",
    "effects": [
@@ -9889,6 +10262,7 @@
    "set": [
     "c4"
    ],
+   "active": false,
    "stats": "+20護甲，+80反傷",
    "stats_ru": "+20 защиты, +80 ответный урон",
    "effects": [],
@@ -9910,6 +10284,7 @@
    "cls_ru": "Особый (2 ур.)",
    "group": "特殊（lv.2）",
    "set": null,
+   "active": false,
    "stats": "+3護甲，+50生命值",
    "stats_ru": "+3 защиты, +50 HP",
    "effects": [
@@ -9937,6 +10312,7 @@
    "cls_ru": "Особый (3 ур.)",
    "group": "特殊（lv.3）",
    "set": null,
+   "active": false,
    "stats": "+3護甲，+10攻擊力，+17%攻擊速度",
    "stats_ru": "+3 защиты, +10 атаки, +17% скорость атаки",
    "effects": [
@@ -9966,6 +10342,7 @@
    "cls_ru": "Особый (3 ур.)",
    "group": "特殊（lv.3）",
    "set": null,
+   "active": false,
    "stats": "+2護甲，+3全屬性，+150生命值，+75法力值",
    "stats_ru": "+2 защиты, +3 all stats, +150 HP, +75 MP",
    "effects": [
@@ -9995,6 +10372,7 @@
    "cls_ru": "Особый (4 ур.)",
    "group": "特殊（lv.4）",
    "set": null,
+   "active": false,
    "stats": "+30%攻擊速度，+9主屬性，+50技能強度，-20%裝備技能冷卻",
    "stats_ru": "+30% скорость атаки, +9 main stat, +50 сила умений, -20% перезарядка модификаторов",
    "effects": [],
@@ -10016,6 +10394,7 @@
    "cls_ru": "Особый (5 ур.)",
    "group": "特殊（lv.5）",
    "set": null,
+   "active": false,
    "stats": "+15智力，+15敏捷，+4生命回復，+150技能強度",
    "stats_ru": "+15 разума, +15 ловкости, +4 HP regen, +150 сила умений",
    "effects": [
@@ -10043,6 +10422,7 @@
    "cls_ru": "Особый (4 ур.)",
    "group": "特殊（lv.4）",
    "set": null,
+   "active": true,
    "stats": "",
    "stats_ru": "",
    "effects": [
@@ -10070,6 +10450,7 @@
    "cls_ru": "Особый (2 ур.)",
    "group": "特殊（lv.2）",
    "set": null,
+   "active": false,
    "stats": "+25攻擊力",
    "stats_ru": "+25 атаки",
    "effects": [],
@@ -10093,6 +10474,7 @@
    "cls_ru": "Особый (2 ур.)",
    "group": "特殊（lv.2）",
    "set": null,
+   "active": false,
    "stats": "+50移動速度，+4護甲，+4力量",
    "stats_ru": "+50 скорость передвижения, +4 защиты, +4 силы",
    "effects": [],
@@ -10114,6 +10496,7 @@
    "cls_ru": "Особый (4 ур.)",
    "group": "特殊（lv.4）",
    "set": null,
+   "active": false,
    "stats": "+8護甲，+200生命值",
    "stats_ru": "+8 защиты, +200 HP",
    "effects": [
@@ -10141,6 +10524,7 @@
    "cls_ru": "Особый (4 ур.)",
    "group": "特殊（lv.4）",
    "set": null,
+   "active": false,
    "stats": "+30攻擊力，+15%攻擊速度，+30技能強度",
    "stats_ru": "+30 атаки, +15% скорость атаки, +30 сила умений",
    "effects": [
@@ -10168,6 +10552,7 @@
    "cls_ru": "Особый (5 ур.)",
    "group": "特殊（lv.5）",
    "set": null,
+   "active": false,
    "stats": "+10全屬性，+15%攻擊速度，+50技能強度，-30%裝備技能冷卻",
    "stats_ru": "+10 ко всем характеристикам, +15% скорость атаки, +50 сила умений, -30% перезарядка модификаторов",
    "effects": [],
@@ -10189,6 +10574,7 @@
    "cls_ru": "Особый (5 ур.)",
    "group": "特殊（lv.5）",
    "set": null,
+   "active": false,
    "stats": "+30攻擊力，+25力量",
    "stats_ru": "+30 atk, +25 str",
    "effects": [
@@ -10218,6 +10604,7 @@
    "cls_ru": null,
    "group": "消耗品／掉落物",
    "set": null,
+   "active": true,
    "stats": "",
    "stats_ru": "",
    "effects": [
@@ -10245,6 +10632,7 @@
    "cls_ru": "Особый (2 ур.)",
    "group": "特殊（lv.2）",
    "set": null,
+   "active": false,
    "stats": "+5攻擊力，+3敏捷，+10%攻擊速度",
    "stats_ru": "+5 атаки, +3 ловкости, +10% скорость атаки",
    "effects": [
@@ -10272,6 +10660,7 @@
    "cls_ru": "Особый (4 ур.)",
    "group": "特殊（lv.4）",
    "set": null,
+   "active": false,
    "stats": "+4護甲，+10智力，+2法力回復",
    "stats_ru": "+4 защиты, +10 разума, +2 MP regen",
    "effects": [
@@ -10301,6 +10690,7 @@
    "cls_ru": "Особый (2 ур.)",
    "group": "特殊（lv.2）",
    "set": null,
+   "active": false,
    "stats": "+4智力，+2護甲，+150法力值，+0.85法力回復，+15技能強度",
    "stats_ru": "+4 разума, +2 защиты, +150 MP, +0.85 MP regen, +15 сила умений",
    "effects": [
@@ -10330,6 +10720,7 @@
    "cls_ru": "Особый (2 ур.)",
    "group": "特殊（lv.2）",
    "set": null,
+   "active": false,
    "stats": "+150法力值，+0.5法力回復",
    "stats_ru": "+150 MP, +0.5 MP regen",
    "effects": [
@@ -10359,6 +10750,7 @@
    "set": [
     "c1"
    ],
+   "active": false,
    "stats": "+5護甲，+800生命值，+50移動速度",
    "stats_ru": "+5 защиты, +800 HP, +50 скорость передвижения",
    "effects": [
@@ -10386,6 +10778,7 @@
    "cls_ru": "Особый (4 ур.)",
    "group": "特殊（lv.4）",
    "set": null,
+   "active": false,
    "stats": "+25攻擊力，+10敏捷",
    "stats_ru": "+25 атаки, +10 ловкости",
    "effects": [
@@ -10417,6 +10810,7 @@
    "set": [
     "c1"
    ],
+   "active": false,
    "stats": "+20力量，+10攻擊力，+5護甲，+15%對0-1級敵人非狀態傷害",
    "stats_ru": "+20 силы, +10 атаки, +5 защиты, +15% урон не от статусов врагам 0-1 уровня",
    "effects": [
@@ -10446,6 +10840,7 @@
    "set": [
     "c1"
    ],
+   "active": false,
    "stats": "+5力量，+2生命回復，+10反傷",
    "stats_ru": "+5 силы, +2 HP regen, +10 ответный урон",
    "effects": [],
@@ -10469,6 +10864,7 @@
    "set": [
     "c3"
    ],
+   "active": false,
    "stats": "+25攻擊力，+15力量，+15智力",
    "stats_ru": "+25 атаки, +15 силы, +15 разума",
    "effects": [
@@ -10498,6 +10894,7 @@
    "set": [
     "c3"
    ],
+   "active": false,
    "stats": "+250生命值，+3生命回復，+2法力回復",
    "stats_ru": "+250 HP, +3 HP regen, +2 MP regen",
    "effects": [],
@@ -10521,6 +10918,7 @@
    "set": [
     "c3"
    ],
+   "active": false,
    "stats": "+5護甲，30%魔法傷害減免，+40%裝備技能威力",
    "stats_ru": "+5 защиты, 30% mag resist, +40% сила модификаторов",
    "effects": [],
@@ -10544,6 +10942,7 @@
    "set": [
     "c3"
    ],
+   "active": false,
    "stats": "+6智力，+4敏捷，+1.25法力回復",
    "stats_ru": "+6 разум, +4 ловкости, +1.25 MP regen",
    "effects": [
@@ -10573,6 +10972,7 @@
    "set": [
     "c3"
    ],
+   "active": false,
    "stats": "+200移動速度，+15主屬性，+4護甲",
    "stats_ru": "+200 скорость передвижения, +15 main stat, +4 защиты",
    "effects": [
@@ -10602,6 +11002,7 @@
    "set": [
     "c3"
    ],
+   "active": false,
    "stats": "+15智力，+10敏捷，+15%攻擊、技能與狀態防禦",
    "stats_ru": "+15 разума, +10 ловкости, +15% защита от атак, умений и статусов",
    "effects": [
@@ -10629,6 +11030,7 @@
    "cls_ru": null,
    "group": "消耗品／掉落物",
    "set": null,
+   "active": true,
    "stats": "",
    "stats_ru": "",
    "effects": [
@@ -10656,6 +11058,7 @@
    "cls_ru": null,
    "group": "消耗品／掉落物",
    "set": null,
+   "active": true,
    "stats": "",
    "stats_ru": "",
    "effects": [
@@ -10683,6 +11086,7 @@
    "cls_ru": null,
    "group": "消耗品／掉落物",
    "set": null,
+   "active": true,
    "stats": "",
    "stats_ru": "",
    "effects": [
@@ -10710,6 +11114,7 @@
    "cls_ru": "Особый (4 ур.)",
    "group": "特殊（lv.4）",
    "set": null,
+   "active": false,
    "stats": "+3生命回復，+15%狀態抗性",
    "stats_ru": "+3 HP regen, +15% защита от статусов",
    "effects": [
@@ -10737,6 +11142,7 @@
    "cls_ru": "Особый (2 ур.)",
    "group": "特殊（lv.2）",
    "set": null,
+   "active": false,
    "stats": "+2護甲",
    "stats_ru": "+2 защиты",
    "effects": [
@@ -10764,6 +11170,7 @@
    "cls_ru": null,
    "group": "消耗品／掉落物",
    "set": null,
+   "active": true,
    "stats": "",
    "stats_ru": "",
    "effects": [
@@ -10791,6 +11198,7 @@
    "cls_ru": "Особый (5 ур.)",
    "group": "特殊（lv.5）",
    "set": null,
+   "active": false,
    "stats": "+15智力，+2法力回復，+225生命值，+3護甲",
    "stats_ru": "+15 разума, +2 MP regen, +225 HP, +3 защиты",
    "effects": [
@@ -10820,6 +11228,7 @@
    "cls_ru": "Артефакт (1 ур.)",
    "group": "神器（lv.1）",
    "set": null,
+   "active": false,
    "stats": "+6力量，+3智力",
    "stats_ru": "+6 str, +3 int",
    "effects": [
@@ -10852,6 +11261,7 @@
    "cls_ru": "Артефакт (3 ур.)",
    "group": "神器（lv.3）",
    "set": null,
+   "active": false,
    "stats": "+10力量，+5智力，+300生命值，賦予「瘟疫」狀態：免疫疾病，並可對敵人施加疾病（詳見 F2 圖鑑）",
    "stats_ru": "+10 str, +5 int, +300 HP, дарует состояние \"Чумной\"",
    "effects": [
@@ -10883,6 +11293,7 @@
    "cls_ru": "Особый (5+ ур.)",
    "group": "特殊（lv.5+）",
    "set": null,
+   "active": false,
    "stats": "+30智力，+175技能強度",
    "stats_ru": "+30 разума, +175 сила умений",
    "effects": [
@@ -10910,6 +11321,7 @@
    "cls_ru": "Особый (5+ ур.)",
    "group": "特殊（lv.5+）",
    "set": null,
+   "active": false,
    "stats": "+10智力，+500法力值，+250生命值，+2.25法力回復，-15%對非英雄單位攻擊與技能防禦",
    "stats_ru": "+10 int, +500 MP, +250 HP, +2.25 MP regen, -15% защита от атаки и умений от не-героев",
    "effects": [
@@ -10937,6 +11349,7 @@
    "cls_ru": "Особый (5+ ур.)",
    "group": "特殊（lv.5+）",
    "set": null,
+   "active": false,
    "stats": "+8護甲，+15敏捷，+110移動速度",
    "stats_ru": "+8 защиты, +15 ловкости, +110 скорость бега",
    "effects": [
@@ -10964,6 +11377,7 @@
    "cls_ru": "Особый (5+ ур.)",
    "group": "特殊（lv.5+）",
    "set": null,
+   "active": false,
    "stats": "+125%攻擊速度，+10主屬性，+200移動速度",
    "stats_ru": "+125% скорость атаки, +10 main stat, +200 скорость бега",
    "effects": [],
@@ -10985,6 +11399,7 @@
    "cls_ru": "Особый (5+ ур.)",
    "group": "特殊（lv.5+）",
    "set": null,
+   "active": false,
    "stats": "+10護甲，+8%非狀態傷害減免",
    "stats_ru": "+10 защиты, +8% защита от урона не от статусов",
    "effects": [
@@ -11012,6 +11427,7 @@
    "cls_ru": "Особый (5+ ур.)",
    "group": "特殊（lv.5+）",
    "set": null,
+   "active": false,
    "stats": "60%魔法傷害減免，+5護甲，+500法力值，+5法力回復",
    "stats_ru": "60% защиты от магического урона, +5 защиты, +500 MP, +5 MP regen",
    "effects": [],
@@ -11033,6 +11449,7 @@
    "cls_ru": "Особый (5+ ур.)",
    "group": "特殊（lv.5+）",
    "set": null,
+   "active": false,
    "stats": "+40攻擊力，+20%攻擊速度，-15%裝備技能冷卻",
    "stats_ru": "+40 atk, +20% atk speed, -15% перезарядка модификаторов",
    "effects": [
@@ -11060,6 +11477,7 @@
    "cls_ru": "Особый (5+ ур.)",
    "group": "特殊（lv.5+）",
    "set": null,
+   "active": false,
    "stats": "+7護甲，+1000生命值，+8生命回復",
    "stats_ru": "+7 защиты, +1000 HP, +8 HP regen",
    "effects": [
@@ -11091,6 +11509,7 @@
     "c2",
     "c3"
    ],
+   "active": false,
    "stats": "+20全屬性",
    "stats_ru": "+20 all stats",
    "effects": [
@@ -11118,6 +11537,7 @@
    "cls_ru": null,
    "group": "消耗品／掉落物",
    "set": null,
+   "active": true,
    "stats": "",
    "stats_ru": "",
    "effects": [
@@ -11147,6 +11567,7 @@
    "set": [
     "c1"
    ],
+   "active": false,
    "stats": "+15攻擊力，+10力量，+20%裝備技能威力，+15%點燃傷害",
    "stats_ru": "+15 атаки, +10 силы, +20% сила модификаторов, +15% урон от поджога",
    "effects": [
@@ -11176,6 +11597,7 @@
    "set": [
     "c1"
    ],
+   "active": true,
    "stats": "+600生命值，+150法力值，+5生命回復，+1法力回復",
    "stats_ru": "+600 HP, +150 MP, +5 HP regen, +1 MP regen",
    "effects": [
@@ -11205,6 +11627,7 @@
    "set": [
     "c3"
    ],
+   "active": false,
    "stats": "+30智力，+20%裝備技能冷卻時間（負面）",
    "stats_ru": "+30 разума, +20% увеличение перезарядки модификаторов",
    "effects": [
@@ -11234,6 +11657,7 @@
    "set": [
     "c3"
    ],
+   "active": false,
    "stats": "+20%攻擊速度，+15智力",
    "stats_ru": "+20% скорость атаки, +15 разума",
    "effects": [
@@ -11261,6 +11685,7 @@
    "cls_ru": "Особый (5 ур.)",
    "group": "特殊（lv.5）",
    "set": null,
+   "active": false,
    "stats": "+750法力值，+1.5法力回復，+125技能強度，+30%對非英雄單位攻擊與技能傷害",
    "stats_ru": "+750 MP, +1.5 MP regen, +125 сила умений, +30% урон от атак и умений по не-героям",
    "effects": [],
@@ -11282,6 +11707,7 @@
    "cls_ru": "Особый (2 ур.)",
    "group": "特殊（lv.2）",
    "set": null,
+   "active": false,
    "stats": "+150法力值，+1智力，+20%點燃傷害",
    "stats_ru": "+150 MP, +1 int, +20% урон от поджога",
    "effects": [],
@@ -11305,6 +11731,7 @@
    "cls_ru": "Особый (3 ур.)",
    "group": "特殊（lv.3）",
    "set": null,
+   "active": false,
    "stats": "+10攻擊力，+5力量，+4護甲",
    "stats_ru": "+10 атаки, +5 силы, +4 защиты",
    "effects": [
@@ -11332,6 +11759,7 @@
    "cls_ru": "Особый (5+ ур.)",
    "group": "特殊（lv.5+）",
    "set": null,
+   "active": false,
    "stats": "+50%攻擊速度，+15穿透，+30技能強度",
    "stats_ru": "+50% скорость атаки, +15 пробитие, +30 сила умений",
    "effects": [
@@ -11359,6 +11787,7 @@
    "cls_ru": "Особый (5+ ур.)",
    "group": "特殊（lv.5+）",
    "set": null,
+   "active": false,
    "stats": "+30攻擊力，+10力量，+5護甲，+10%對英雄防禦",
    "stats_ru": "+30 atk, +10 str, +5 armor, +10% защита от героев",
    "effects": [
@@ -11391,6 +11820,7 @@
    "cls_ru": "Особый (5+ ур.)",
    "group": "特殊（lv.5+）",
    "set": null,
+   "active": false,
    "stats": "+15智力，+2法力回復，+100技能強度",
    "stats_ru": "+15 разума, +2 MP regen, +100 сила умений",
    "effects": [
@@ -11418,6 +11848,7 @@
    "cls_ru": "Особый (5+ ур.)",
    "group": "特殊（lv.5+）",
    "set": null,
+   "active": false,
    "stats": "+8護甲，+16主屬性，+50%對0-1級敵人攻擊與技能防禦，+25%流血與點燃抗性，+100%擊殺敵人獎勵",
    "stats_ru": "+8 защиты, +16 main stat, +50% защита от атак и умений врагов 0-1 уровня, +25% защита от кровотечения и поджога, +100% награда за убийство врагов",
    "effects": [],
@@ -11439,6 +11870,7 @@
    "cls_ru": "Особый (3 ур.)",
    "group": "特殊（lv.3）",
    "set": null,
+   "active": false,
    "stats": "+10力量，+15%對0-1級敵人攻擊與技能傷害",
    "stats_ru": "+10 силы, +15% урон от атак и умений врагам 0-1 уровня",
    "effects": [
@@ -11466,6 +11898,7 @@
    "cls_ru": "Особый (3 ур.)",
    "group": "特殊（lv.3）",
    "set": null,
+   "active": false,
    "stats": "+10智力，+2法力回復，抵抗詛咒",
    "stats_ru": "+10 разума, +2 MP regen, сопротивление проклятиям",
    "effects": [],
@@ -11487,6 +11920,7 @@
    "cls_ru": "Особый (3 ур.)",
    "group": "特殊（lv.3）",
    "set": null,
+   "active": false,
    "stats": "+30攻擊力，+10穿透",
    "stats_ru": "+30 атаки, +10 пробитие",
    "effects": [],
@@ -11508,6 +11942,7 @@
    "cls_ru": "Особый (5 ур.)",
    "group": "特殊（lv.5）",
    "set": null,
+   "active": false,
    "stats": "+15智力，+1法力回復，+200技能強度，+25%對英雄攻擊與技能傷害",
    "stats_ru": "+15 разума, +1 MP regen, +200 сила умений, +25% урон от атак и умений по героям",
    "effects": [],
@@ -11531,6 +11966,7 @@
    "cls_ru": "Особый (5 ур.)",
    "group": "特殊（lv.5）",
    "set": null,
+   "active": false,
    "stats": "+250生命值，+250法力值，+25技能強度",
    "stats_ru": "+250 HP, +250 MP, +25 сила умений",
    "effects": [
@@ -11562,6 +11998,7 @@
    "set": [
     "c2"
    ],
+   "active": false,
    "stats": "+15攻擊力，+10力量，+5敏捷",
    "stats_ru": "+15 атаки, +10 силы, +5 ловкости",
    "effects": [
@@ -11589,6 +12026,7 @@
    "cls_ru": "Особый (5+ ур.)",
    "group": "特殊（lv.5+）",
    "set": null,
+   "active": false,
    "stats": "+25攻擊力，+10敏捷，+20穿透",
    "stats_ru": "+25 atk, +10 agi, +20 пробитие",
    "effects": [
@@ -11616,6 +12054,7 @@
    "cls_ru": "Особый (5+ ур.)",
    "group": "特殊（lv.5+）",
    "set": null,
+   "active": false,
    "stats": "+20攻擊力，+20智力，+150技能強度",
    "stats_ru": "+20 атаки, +20 разума, +150 сила умений",
    "effects": [
@@ -11645,6 +12084,7 @@
    "set": [
     "c2"
    ],
+   "active": false,
    "stats": "+7攻擊力，+7%攻擊速度，+7%對遠程單位非狀態傷害",
    "stats_ru": "+7 атаки, +7% скорость атаки, +7% урон не от статусов по юнитам дальнего боя",
    "effects": [],
@@ -11668,6 +12108,7 @@
    "set": [
     "c1"
    ],
+   "active": false,
    "stats": "+500生命值，+15力量，+7%攻擊與技能防禦（不影響狀態），+40反傷",
    "stats_ru": "+500 HP, +15 силы, +7% защита от атак и умений (не влияет на статусы), +40 ответный урон",
    "effects": [],
@@ -11691,6 +12132,7 @@
    "set": [
     "c3"
    ],
+   "active": false,
    "stats": "+5護甲，+15%對0-1級敵人防禦，+15%對0-1級敵人傷害（不影響狀態）",
    "stats_ru": "+5 защиты, +15% защита от юнитов 0-1 уровня, +15% урон по юнитам 0-1 уровня (не влияет на статусы)",
    "effects": [],
@@ -11714,6 +12156,7 @@
    "set": [
     "c4"
    ],
+   "active": false,
    "stats": "+40攻擊力，+9主屬性，+25%對近戰單位非狀態傷害",
    "stats_ru": "+40 атаки, +9 main stat, +25% урон не от статусов по юнитам ближнего боя",
    "effects": [
@@ -11741,6 +12184,7 @@
    "cls_ru": "Особый (2 ур.)",
    "group": "特殊（lv.2）",
    "set": null,
+   "active": false,
    "stats": "+7攻擊力，+2主屬性，+10%對遠程單位攻擊與技能傷害",
    "stats_ru": "+7 атаки, +2 main stat, +10% урон от атак и умений по юнитам дальнего боя",
    "effects": [],
@@ -11762,6 +12206,7 @@
    "cls_ru": "Особый (2 ур.)",
    "group": "特殊（lv.2）",
    "set": null,
+   "active": false,
    "stats": "+3護甲，+50生命值，+8%對近戰單位攻擊與技能防禦",
    "stats_ru": "+3 защиты, +50 HP, +8% защита от атак и умений юнитов ближнего боя",
    "effects": [],
@@ -11785,6 +12230,7 @@
    "cls_ru": "Особый (3 ур.)",
    "group": "特殊（lv.3）",
    "set": null,
+   "active": false,
    "stats": "+400法力值，+35%裝備技能威力",
    "stats_ru": "+400 MP, +35% сила модификаторов",
    "effects": [],
@@ -11806,6 +12252,7 @@
    "cls_ru": "Особый (2 ур.)",
    "group": "特殊（lv.2）",
    "set": null,
+   "active": false,
    "stats": "+8攻擊力，+6%攻擊速度，+10%對近戰單位非狀態傷害",
    "stats_ru": "+8 атаки, +6% скорость атаки, +10% урон не от статусов против юнитов ближнего боя",
    "effects": [],
@@ -11827,6 +12274,7 @@
    "cls_ru": "Особый (3 ур.)",
    "group": "特殊（lv.3）",
    "set": null,
+   "active": false,
    "stats": "+10攻擊力，+3主屬性，+15%疾病傷害",
    "stats_ru": "+10 атаки, +3 main stat, +15% урон от болезни",
    "effects": [
@@ -11858,6 +12306,7 @@
    "set": [
     "c1"
    ],
+   "active": false,
    "stats": "+350生命值，+3生命回復，+30%點燃抗性，抵抗點燃",
    "stats_ru": "+350 HP, +3 HP regen, +30% защита от поджога, сопротивление поджогу",
    "effects": [],
@@ -11879,6 +12328,7 @@
    "cls_ru": "Особый (3 ур.)",
    "group": "特殊（lv.3）",
    "set": null,
+   "active": false,
    "stats": "+4護甲，+2.5生命回復，+6%對近戰單位攻擊與技能防禦，+50%擊殺金幣",
    "stats_ru": "+4 защиты, +2.5 HP regen, +6% защита от атак и умений юнитов ближнего боя, +50% золото за убийства",
    "effects": [],
@@ -11900,6 +12350,7 @@
    "cls_ru": "Особый (3 ур.)",
    "group": "特殊（lv.3）",
    "set": null,
+   "active": false,
    "stats": "+3護甲，+6敏捷，+6穿透，+8%對近戰單位攻擊與技能傷害，+10反傷",
    "stats_ru": "+3 защиты, +6 ловкости, +6 пробитие, +8% урон от атак и умений по юнитам ближнего боя, +10 ответный урон",
    "effects": [],
@@ -11921,6 +12372,7 @@
    "cls_ru": "Особый (5 ур.)",
    "group": "特殊（lv.5）",
    "set": null,
+   "active": false,
    "stats": "+30攻擊力，+10敏捷，+12穿透，+20%對遠程單位攻擊與技能傷害",
    "stats_ru": "+30 атаки, +10 ловкости, +12 пробитие, +20% урон от атак и умений по юнитам дальнего боя",
    "effects": [
@@ -11950,6 +12402,7 @@
    "set": [
     "c1"
    ],
+   "active": false,
    "stats": "+12攻擊力，+4力量，+4穿透",
    "stats_ru": "+12 атаки, +4 силы, +4 пробитие",
    "effects": [],
@@ -11971,6 +12424,7 @@
    "cls_ru": "Особый (2 ур.)",
    "group": "特殊（lv.2）",
    "set": null,
+   "active": false,
    "stats": "+60技能強度，+30%裝備技能威力",
    "stats_ru": "+60 сила умений, +30% сила модификаторов",
    "effects": [],
@@ -11992,6 +12446,7 @@
    "cls_ru": "Особый (4 ур.)",
    "group": "特殊（lv.4）",
    "set": null,
+   "active": false,
    "stats": "+10攻擊力，+10力量，+50%裝備技能威力",
    "stats_ru": "+10 атаки, +10 силы, +50% сила модификаторов",
    "effects": [
@@ -12019,6 +12474,7 @@
    "cls_ru": "Особый (3 ур.)",
    "group": "特殊（lv.3）",
    "set": null,
+   "active": false,
    "stats": "+85技能強度，+2法力回復，+35%裝備技能威力",
    "stats_ru": "+85 сила умений, +2 MP regen, +35% сила модификаторов",
    "effects": [],
@@ -12040,6 +12496,7 @@
    "cls_ru": "Особый (5+ ур.)",
    "group": "特殊（lv.5+）",
    "set": null,
+   "active": false,
    "stats": "+30力量，-50%攻擊速度，+50穿透",
    "stats_ru": "+30 силы, -50% скорость атаки, +50 пробитие",
    "effects": [
@@ -12069,6 +12526,7 @@
    "set": [
     "c3"
    ],
+   "active": false,
    "stats": "+5智力，+75技能強度",
    "stats_ru": "+5 int, +75 сила умений",
    "effects": [
@@ -12098,6 +12556,7 @@
    "set": [
     "c1"
    ],
+   "active": false,
    "stats": "+3護甲，+125生命值，+15%反傷加成",
    "stats_ru": "+3 armor, +125 HP, +15% усиление ответного урона",
    "effects": [],
@@ -12121,6 +12580,7 @@
    "set": [
     "c2"
    ],
+   "active": false,
    "stats": "+7%對0-1級敵人防禦，+7%對遠程單位防禦（不影響狀態）",
    "stats_ru": "+7% защита от юнитов 0-1 уровня, +7% защита от юнитов дальнего боя (не защищает от статусов)",
    "effects": [],
@@ -12142,6 +12602,7 @@
    "cls_ru": "Усилитель",
    "group": "強化",
    "set": null,
+   "active": false,
    "stats": "",
    "stats_ru": "",
    "effects": [
@@ -12175,6 +12636,7 @@
    "cls_ru": "Серьги",
    "group": "耳環",
    "set": null,
+   "active": false,
    "stats": "+800技能強度",
    "stats_ru": "+800 сила умений",
    "effects": [
@@ -12205,6 +12667,7 @@
    "cls_ru": "Серьги",
    "group": "耳環",
    "set": null,
+   "active": false,
    "stats": "+100敏捷",
    "stats_ru": "+100 agi",
    "effects": [
@@ -12235,6 +12698,7 @@
    "cls_ru": "Серьги",
    "group": "耳環",
    "set": null,
+   "active": false,
    "stats": "+4000生命值",
    "stats_ru": "+4000 HP",
    "effects": [
@@ -12265,6 +12729,7 @@
    "cls_ru": "Серьги",
    "group": "耳環",
    "set": null,
+   "active": false,
    "stats": "+100力量",
    "stats_ru": "+100 str",
    "effects": [
@@ -12295,6 +12760,7 @@
    "cls_ru": "Серьги",
    "group": "耳環",
    "set": null,
+   "active": false,
    "stats": "+100智力",
    "stats_ru": "+100 int",
    "effects": [
@@ -12325,6 +12791,7 @@
    "cls_ru": "Особый (5 ур.)",
    "group": "特殊（lv.5）",
    "set": null,
+   "active": true,
    "stats": "",
    "stats_ru": "",
    "effects": [
@@ -12352,6 +12819,7 @@
    "cls_ru": "Особый (4 ур.)",
    "group": "特殊（lv.4）",
    "set": null,
+   "active": false,
    "stats": "+8敏捷，+8智力，+10穿透",
    "stats_ru": "+8 agi, +8 int, +10 пробитие",
    "effects": [
@@ -12379,6 +12847,7 @@
    "cls_ru": "Особый (3 ур.)",
    "group": "特殊（lv.3）",
    "set": null,
+   "active": false,
    "stats": "+4敏捷，+4智力，+10攻擊力",
    "stats_ru": "+4 agi, +4 int, +10 atk",
    "effects": [
@@ -12411,6 +12880,7 @@
    "cls_ru": "Артефакт (1 ур.)",
    "group": "神器（lv.1）",
    "set": null,
+   "active": false,
    "stats": "",
    "stats_ru": "",
    "effects": [
@@ -12438,6 +12908,7 @@
    "cls_ru": "Особый (5++ ур.)",
    "group": "特殊（lv.5++）",
    "set": null,
+   "active": false,
    "stats": "+1250生命值，+500法力值，+25敏捷，+25智力，+50%狀態抗性",
    "stats_ru": "+1250 HP, +500 MP, +25 agi, +25 int, +50% защита от статусов",
    "effects": [
@@ -12465,6 +12936,7 @@
    "cls_ru": "Случайный предмет\n\nВы получаете случайный предмет категории \"Особый\".\n\nШанс создания: \nОсобый предмет (1 ур.) - 60%\nОсобый предмет (2 ур.) - 30%\nОсобый предмет (3 ур.) - 10%",
    "group": "消耗品／掉落物",
    "set": null,
+   "active": false,
    "stats": "",
    "stats_ru": "",
    "effects": [],
@@ -12486,6 +12958,7 @@
    "cls_ru": "Случайный предмет\n\nВы получаете случайный предмет категории \"Особый\".\n\nШанс создания: \nОсобый предмет (2 ур.) - 50%\nОсобый предмет (3 ур.) - 30%\nОсобый предмет (4 ур.) - 20%",
    "group": "消耗品／掉落物",
    "set": null,
+   "active": false,
    "stats": "",
    "stats_ru": "",
    "effects": [],
@@ -12507,6 +12980,7 @@
    "cls_ru": "Особый (5 ур.)",
    "group": "特殊（lv.5）",
    "set": null,
+   "active": false,
    "stats": "+20攻擊力，+100%裝備技能威力",
    "stats_ru": "+20 atk, +100% сила модификаторов",
    "effects": [],

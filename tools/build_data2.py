@@ -8,6 +8,9 @@ sys.stdout.reconfigure(encoding='utf-8')
 
 ROOT = r'D:/Notebook Program Scripts/Python_Scripts/DarkSheep'
 DB = json.load(open('db_items.json', encoding='utf-8'))
+# cooldown_group 只有原始匯出檔才有，db_items.json 沒帶過來
+_RAWDB = {x['id']: x for x in json.load(
+    open(os.path.join(ROOT, 'data', 'items_database.json'), encoding='utf-8'))}
 NAMES = json.load(open('names2.json', encoding='utf-8'))
 AB = json.load(open('ab_db.json', encoding='utf-8'))
 WIKI = {w['url'][:-5]: w for w in json.load(open('wiki_items.json', encoding='utf-8'))}
@@ -117,6 +120,21 @@ def set_keys(r):
     return sorted(ks) or None
 
 
+# 主動技能 vs 被動技能。
+# 判斷依據有兩個，取聯集：
+#   1. cooldown_group 有值 —— 有冷卻群組就代表要「使用」才會觸發（69 件）
+#   2. 說明裡的「При использовании…」（使用這件道具時…）
+# 特別注意要排除「Использование умений / способностей」——
+# 那是「英雄施放技能時」觸發的被動，不是主動道具（女巫帽、法力催化劑那類）。
+ACT_TXT = re.compile(r'при использовании(?!\s+(?:умени|способност))', re.I)
+
+def is_active(i, r):
+    if (_RAWDB.get(i, {}).get('cooldown_group') or '').strip():
+        return True
+    blob = ' '.join(str(v) for v in r['fields'].values())
+    return bool(ACT_TXT.search(blob))
+
+
 items, copied, noimg, fixed = {}, 0, [], 0
 for r in DB:
     i = r['id']
@@ -151,6 +169,7 @@ for r in DB:
         'name_old': old, 'shop': shop,
         'cls': cls, 'cls_ru': cls_ru or None, 'group': cls.split('＋')[0],
         'set': set_keys(r),
+        'active': is_active(i, r),
         'stats': tr_bonus(r['fields'].get('Бонусы', ''))[0],
         'stats_ru': r['fields'].get('Бонусы', ''),
         'effects': eff,

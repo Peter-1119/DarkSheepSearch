@@ -112,11 +112,26 @@ input{font:inherit}
 /* ============================================================ body */
 .body{flex:1;display:flex;min-height:0}
 
-/* -------- rail */
-.rail{
-  width:206px;flex:0 0 auto;border-right:1px solid var(--line);
-  overflow-y:auto;padding:12px 8px 40px;background:var(--bg-2);
+/* -------- rail
+   .drawer 在桌機只是包住側欄的一層容器；手機版它會變成從左邊滑出的抽屜。
+   工具列（模式／排行／密度／語言）要放在 .rail 外面 —— renderRail 每次都會
+   整個換掉 .rail 的內容，放裡面會被清掉。 */
+.drawer{
+  display:flex;flex-direction:column;min-height:0;
+  width:206px;flex:0 0 auto;border-right:1px solid var(--line);background:var(--bg-2);
 }
+.rail{flex:1;min-height:0;overflow-y:auto;padding:12px 8px 40px}
+.dr-head,.dr-tools{display:none}
+.tools{display:flex;align-items:center;gap:16px}
+#tbtools{display:contents}
+.tb-menu{display:none}
+.scrim{
+  position:fixed;inset:0;z-index:15;background:rgba(6,8,12,.62);
+  opacity:0;pointer-events:none;transition:opacity .22s var(--ease);
+}
+body[data-scrim="1"] .scrim{opacity:1;pointer-events:auto}
+.lo-slot .ph{width:100%;height:100%;display:grid;place-items:center;overflow:hidden;
+  font:9px/1.1 ui-monospace,monospace;color:var(--ink-3);text-align:center;padding:2px}
 .rail h3{
   margin:14px 8px 6px;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
   color:var(--ink-3);font-weight:600;
@@ -550,14 +565,179 @@ body[data-resizing="1"]{cursor:col-resize;user-select:none}
 .tip b{display:block;font-weight:600;color:var(--ink)}
 .tip span{color:var(--ink-3);font-size:11px}
 
+/* -------- 配裝模式
+   欄位列釘在格子上方而不是塞進右面板：配裝時「放一件 -> 馬上看到它做什麼」
+   要同時發生，右面板留給單件詳細，兩塊地不互搶。 */
+.col{flex:1;min-width:0;display:flex;flex-direction:column}
+.load{
+  flex:0 0 auto;border-bottom:1px solid var(--line);
+  background:linear-gradient(180deg,var(--surface),var(--bg-2));
+  padding:10px 20px 12px;
+}
+.lo-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.lo-slots{display:flex;gap:8px;flex-wrap:wrap}
+.lo-slot{
+  position:relative;width:52px;height:52px;border-radius:10px;flex:0 0 auto;
+  background:var(--surface);border:1px dashed var(--line-2);
+  display:grid;place-items:center;color:var(--ink-3);
+  font:11px/1 ui-monospace,monospace;
+  transition:border-color var(--dur),background var(--dur),transform var(--dur);
+}
+.lo-slot[data-on="1"]{border-style:solid;border-color:var(--c,var(--line-2));cursor:pointer;
+  background:#0c0f15;box-shadow:0 0 0 1px var(--c,transparent) inset}
+.lo-slot[data-on="1"]:hover{transform:translateY(-2px)}
+.lo-slot img{width:100%;height:100%;object-fit:cover;border-radius:9px;display:block}
+.lo-slot .x{
+  position:absolute;top:-7px;right:-7px;width:20px;height:20px;border-radius:50%;
+  display:grid;place-items:center;font-size:11px;line-height:1;cursor:pointer;
+  background:var(--surface-2);border:1px solid var(--line-2);color:var(--ink-2);
+  opacity:0;transition:opacity var(--dur),background var(--dur),color var(--dur);
+}
+.lo-slot:hover .x,.lo-slot .x:focus-visible{opacity:1}
+.lo-slot .x:hover{background:#5b1f28;border-color:#8d3040;color:#fff}
+.lo-count{font:12px/1 ui-monospace,monospace;color:var(--ink-3)}
+.lo-hint{font-size:12px;color:var(--ink-3)}
+.lo-clear{
+  height:28px;padding:0 11px;border-radius:8px;font-size:12px;cursor:pointer;
+  background:var(--surface);border:1px solid var(--line);color:var(--ink-2);
+  transition:border-color var(--dur),color var(--dur);
+}
+.lo-clear:hover{border-color:var(--line-2);color:var(--ink)}
+.lo-clear .cv{font-size:8px;color:var(--ink-3)}
+
+.lo-body{display:flex;gap:22px;flex-wrap:wrap;margin-top:11px}
+.lo-sec{min-width:0}
+.lo-sec h5{
+  margin:0 0 6px;font-size:10.5px;font-weight:600;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--ink-3);
+}
+.lo-stats{display:flex;gap:6px;flex-wrap:wrap;max-width:640px}
+.lo-st{
+  font-size:12px;padding:3px 9px;border-radius:7px;white-space:nowrap;
+  background:var(--surface);border:1px solid var(--line);color:var(--ink);
+}
+.lo-st b{color:var(--accent);font-weight:600}
+.lo-st.max{border-color:color-mix(in srgb,#e0a340 40%,var(--line))}
+.lo-st.max b{color:#e0a340}
+.lo-list{display:flex;flex-direction:column;gap:5px;max-width:520px}
+.lo-row{display:flex;gap:8px;align-items:flex-start;font-size:12px;line-height:1.5}
+.lo-row .ic{width:22px;height:22px;border-radius:5px;overflow:hidden;flex:0 0 auto;
+  background:#0c0f15;box-shadow:0 0 0 1px var(--c,#39415a)}
+.lo-row .ic img{width:100%;height:100%;object-fit:cover;display:block}
+.lo-row .tx{min-width:0;color:var(--ink-2)}
+.lo-row .tx b{color:var(--ink);font-weight:600}
+.lo-note{font-size:11px;color:var(--ink-3);margin-top:9px;line-height:1.6}
+.lo-setline{font-size:12px;color:var(--ink-2);line-height:1.6}
+.lo-setline b{color:var(--sc,var(--accent))}
+
 /* -------- responsive */
-@media (max-width:1100px){ .rail{width:172px} }
+@media (max-width:1100px){ .drawer{width:176px} }
+
+/* ============================================================ 手機版
+   桌機版建立在「同時看得見」上：側欄、格子、面板三欄並存，可以邊比對邊讀。
+   手機一次只放得下一個焦點，所以這裡改的不只是寬度，是互動模型本身：
+     側欄 -> 抽屜（要時才叫出來）
+     面板 -> 底部 sheet（上滑展開、下滑關閉，跟系統手勢一致）
+     工具列 -> 只留搜尋與篩選，其餘整組搬進抽屜
+   同一份程式碼、同一份資料，只是換一種組合方式。 */
 @media (max-width:860px){
-  .rail{display:none}
-  .panel{position:fixed;right:0;top:56px;bottom:0;z-index:15;width:0}
-  .panel[data-open="1"]{width:min(92vw,var(--pw,420px))}
-  .p-inner{width:min(92vw,var(--pw,420px))}
-  .handle{display:none}
+  .topbar{gap:9px;padding:0 11px;height:52px}
+  .brand span[data-i="sub"]{display:none}
+  .brand b{font-size:14px}
+  .brand .sv{padding:2px 6px}
+  .search{max-width:none;flex:1}
+  .spacer{display:none}
+
+  /* 篩選鈕。有篩選在作用時右上角亮一點 ——
+     不然使用者只會看到「怎麼只剩 7 件」，卻找不到原因。 */
+  .tb-menu{
+    position:relative;display:grid;place-items:center;flex:0 0 auto;
+    width:38px;height:38px;border-radius:9px;cursor:pointer;
+    background:var(--surface);border:1px solid var(--line);color:var(--ink-2);
+  }
+  .tb-menu svg{width:18px;height:18px;stroke:currentColor;fill:none;
+    stroke-width:2;stroke-linecap:round}
+  .tb-menu .dot{
+    position:absolute;top:-3px;right:-3px;width:9px;height:9px;border-radius:50%;
+    background:var(--accent);border:2px solid var(--bg-2);
+  }
+
+  /* -------- 側欄變抽屜 */
+  .drawer{
+    position:fixed;left:0;top:0;bottom:0;z-index:16;width:min(84vw,300px);
+    border-right:1px solid var(--line);box-shadow:var(--shadow);
+    transform:translateX(-100%);transition:transform .24s var(--ease);
+  }
+  body[data-drawer="1"] .drawer{transform:none}
+  .dr-head{
+    display:flex;align-items:center;justify-content:space-between;flex:0 0 auto;
+    padding:10px 11px;border-bottom:1px solid var(--line);
+  }
+  .dr-head b{font-size:13px;letter-spacing:.04em}
+  .dr-x{
+    width:34px;height:34px;border-radius:9px;display:grid;place-items:center;
+    font-size:17px;color:var(--ink-2);cursor:pointer;
+    background:var(--surface);border:1px solid var(--line);
+  }
+  .dr-tools{display:block;flex:0 0 auto;padding:11px;border-bottom:1px solid var(--line)}
+  .tools{flex-direction:column;align-items:stretch;gap:9px}
+  .tb-label{margin:0}
+  .seg button{flex:1;padding:9px 8px;font-size:13px}
+  .pick{width:100%;height:38px}
+
+  /* -------- 觸控目標：一律拉到 40px 以上 */
+  .tier{padding:10px 8px;font-size:13.5px}
+  .cat-t{width:32px;height:36px;font-size:11px}
+  .cat-n{padding:8px 6px;font-size:13px}
+  .rail{padding:10px 8px 60px}
+
+  /* -------- 格子 */
+  :root{--tile:98px;--icon:54px}
+  [data-density="compact"]{--tile:84px;--icon:46px}
+  [data-density="dense"]{--tile:60px;--icon:48px}
+  .grid{gap:7px;padding:2px 11px 16px}
+  .sec-head{padding:0 11px}
+  .main{padding-bottom:40vh}
+  .hint{display:none}
+
+  /* -------- 配裝列
+     摘要在手機上很容易吃掉整個畫面，所以限高自己捲，
+     另外給一個收合鈕：挑裝備時一鍵把格子的空間還回來。 */
+  .load{padding:9px 11px 11px;max-height:52vh;overflow-y:auto}
+  .lo-body{gap:14px;flex-direction:column}
+  .lo-slot{width:46px;height:46px}
+  .lo-slot .x{opacity:1}          /* 觸控沒有 hover，移除鈕要一直看得見 */
+
+  /* -------- 詳細面板變底部 sheet
+     兩段停靠：預設 62vh 看得到屬性，往上拖到 94vh 看配方。
+     往下拖過門檻就關閉 —— 下滑＝返回，不用教。 */
+  .panel{
+    position:fixed;left:0;right:0;bottom:0;top:auto;z-index:17;
+    width:auto;height:0;max-height:94vh;
+    border-left:0;border-top:1px solid var(--line);
+    border-radius:16px 16px 0 0;
+    transition:height .26s var(--ease);
+  }
+  .panel[data-open="1"]{width:auto;height:var(--sh,62vh);border-left-width:0}
+  .panel[data-drag="1"]{transition:none}
+  .p-inner{
+    width:100%;opacity:0;transform:translateY(14px);
+    transition:opacity .2s var(--ease) .04s,transform .26s var(--ease) .04s;
+  }
+  .panel[data-open="1"] .p-inner{opacity:1;transform:none}
+
+  /* 橫向的抓握條，取代桌機的垂直拖曳邊 */
+  .handle{
+    left:0;right:0;top:0;bottom:auto;width:auto;height:26px;
+    cursor:grab;touch-action:none;
+  }
+  .handle::before{width:38px;height:4px;margin-top:10px}
+  .handle:hover::before,.handle[data-drag="1"]::before{height:4px;width:52px}
+  .p-head{padding:24px 16px 14px}
+  .p-body{padding-bottom:40px}
+  .p-close{top:20px;right:10px}
+  .p-id{top:30px;right:52px}
+  body[data-resizing="1"]{cursor:grabbing}
 }
 @media (prefers-reduced-motion:reduce){
   *{transition-duration:.01ms!important;animation-duration:.01ms!important}
@@ -583,6 +763,16 @@ body[data-resizing="1"]{cursor:col-resize;user-select:none}
 
     <div class="spacer"></div>
 
+    <button class="tb-menu" id="menu" type="button" aria-label="filters">
+      <svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h10"/></svg>
+      <span class="dot" id="menudot" hidden></span>
+    </button>
+
+    <div class="tools" id="tools"><div class="seg" id="mode">
+      <button data-v="browse" aria-pressed="true" data-i="mBrowse">瀏覽</button>
+      <button data-v="build" aria-pressed="false" data-i="mBuild">配裝</button>
+    </div>
+
     <span class="tb-label" data-i="rankL">排行</span>
     <select class="pick" id="rank"></select>
 
@@ -597,12 +787,23 @@ body[data-resizing="1"]{cursor:col-resize;user-select:none}
       <button data-v="zh" aria-pressed="true">中文</button>
       <button data-v="en" aria-pressed="false">EN</button>
       <button data-v="ru" aria-pressed="false">РУ</button>
-    </div>
+    </div></div>
+    <div id="tbtools"></div>
   </header>
 
   <div class="body">
-    <nav class="rail" id="rail" aria-label="tiers"></nav>
-    <main class="main" id="main"></main>
+    <div class="drawer" id="drawer">
+      <div class="dr-head">
+        <b data-i="tiers">品質分類</b>
+        <button class="dr-x" id="drclose" type="button" aria-label="close">✕</button>
+      </div>
+      <div class="dr-tools" id="railtools"></div>
+      <nav class="rail" id="rail" aria-label="tiers"></nav>
+    </div>
+    <div class="col">
+      <div class="load" id="load" hidden></div>
+      <main class="main" id="main"></main>
+    </div>
 
     <aside class="panel" id="panel" data-open="0" aria-live="polite">
       <div class="handle" id="handle" role="separator" aria-orientation="vertical"
@@ -615,6 +816,7 @@ body[data-resizing="1"]{cursor:col-resize;user-select:none}
   </div>
 </div>
 
+<div class="scrim" id="scrim"></div>
 <div class="tip" id="tip"></div>
 <div class="hint" id="hint">
   <span data-i="hint">點擊裝備看詳細 · 相關素材會在下方高亮</span>
@@ -650,6 +852,12 @@ const UI = {
       legionNote:'從名單中帶幾件，就生效到第幾階',
       setB:'套裝加成', pcs:'%s 件', unsure:'待確認',
       setSrc:'加成數值取自遊戲內 -c1 ~ -c5，非地圖資料',
+      mBrowse:'瀏覽', mBuild:'配裝',
+      loHint:'點下方裝備加入欄位，最多 6 件', loClear:'清空', loFull:'欄位已滿',
+      loSum:'屬性總計', loMax:'減傷（同類取最高）', loAct:'主動技能',
+      loPas:'被動效果', loSet:'觸發的套裝加成', loNone:'還沒放入任何裝備',
+      loNote:'減傷類同時帶多件不會疊加，這裡取最高值；其餘屬性直接相加',
+      loRelic:'另需任一件「聖物」類道具', loRemove:'移除',
       chainL:'任務升級鏈', chainSplit:'聖物之後分兩條路：',
       qs1:'任務物品 1 階', qs2:'任務物品 2 階', qs3:'聖物',
       qs4:'折射卷軸 → 折射（4 件循環）', qs5:'鐵匠技能 → 完美'},
@@ -672,6 +880,12 @@ const UI = {
       legionNote:'Bonuses unlock by how many listed items you carry',
       setB:'Set bonuses', pcs:'%s pcs', unsure:'unverified',
       setSrc:'Bonus values transcribed from -c1 ~ -c5 in game, not from map data',
+      mBrowse:'Browse', mBuild:'Loadout',
+      loHint:'Tap items below to fill the slots, up to 6', loClear:'Clear', loFull:'Slots full',
+      loSum:'Total stats', loMax:'Damage reduction (highest only)', loAct:'Active abilities',
+      loPas:'Passive effects', loSet:'Set bonuses in effect', loNone:'No items yet',
+      loNote:'Damage reductions of the same kind do not stack - the highest applies; everything else adds up',
+      loRelic:'Also needs any "Relic" item', loRemove:'Remove',
       chainL:'Quest upgrade chain', chainSplit:'The relic branches two ways:',
       qs1:'Quest item, stage 1', qs2:'Quest item, stage 2', qs3:'Relic',
       qs4:'Scroll of Refraction → Refracted (4-item cycle)',
@@ -696,6 +910,13 @@ const UI = {
       legionNote:'Бонусы открываются по числу предметов из списка',
       setB:'Бонусы комплекта', pcs:'%s пр.', unsure:'не уточнено',
       setSrc:'Значения переписаны из -c1 ~ -c5 в игре, не из данных карты',
+      mBrowse:'Обзор', mBuild:'Сборка',
+      loHint:'Нажимайте предметы ниже, до 6 штук', loClear:'Очистить', loFull:'Слоты заполнены',
+      loSum:'Сумма характеристик', loMax:'Снижение урона (только наибольшее)',
+      loAct:'Активные умения', loPas:'Пассивные эффекты',
+      loSet:'Действующие бонусы комплекта', loNone:'Пока ничего не выбрано',
+      loNote:'Снижения урона одного вида не суммируются - берётся наибольшее; остальное складывается',
+      loRelic:'Нужен ещё любой предмет категории «Реликвия»', loRemove:'Убрать',
       chainL:'Цепочка квеста', chainSplit:'От реликвии два пути:',
       qs1:'Квестовый, 1 этап', qs2:'Квестовый, 2 этап', qs3:'Реликвия',
       qs4:'Свиток преломления → Преломленный (цикл из 4)',
@@ -714,6 +935,9 @@ const S = {
   q: '',
   sel: null,
   rank: localStorage.getItem('ud.rank') || '',   // '' = 不排行
+  mode: localStorage.getItem('ud.mode') || 'browse',        // browse | build
+  load: JSON.parse(localStorage.getItem('ud.load') || '[]'),// 配裝欄位（可重複）
+  loOpen: localStorage.getItem('ud.loopen') !== '0',        // 摘要是否展開
 };
 const STATS = DATA.stats || [];
 const STAT = k => STATS.find(s => s.k === k);
@@ -808,6 +1032,7 @@ function renderRail(){
       </dl>
     </div>`;
   rail.innerHTML = h;
+  syncMenuDot();
 }
 /* a tier's colour = the colour the map itself gives its items */
 const TC = {};
@@ -963,7 +1188,8 @@ function renderGrid(){
 /* relationship highlighting is what turns the grid into a crafting graph */
 function paintRelations(){
   const sel = S.sel;
-  const onScreen = !!(sel && main.querySelector(`.tile[data-id="${sel}"]`));
+  const onScreen = !isMobile() &&
+                   !!(sel && main.querySelector(`.tile[data-id="${sel}"]`));
   const mats = sel ? new Set(ITEMS[sel].r) : null;
   const into = sel ? new Set(ITEMS[sel].u) : null;
   /* dimming is only meaningful when the anchor of the spotlight is visible */
@@ -1006,6 +1232,125 @@ function reveal(id){
   }
   renderRail(); renderGrid();
   return true;
+}
+
+/* ---------------------------------------------------------------- 配裝模式
+   六格背包的模擬。加成的處理分兩種：
+     · 一般屬性（力量、生命、護甲…）直接相加
+     · 減傷類（魔法傷害減免、狀態防護）同類不疊加，取最高 —— 見 DATA.nostack
+   後者的規則寫在地圖觸發裡、匯出資料看不到，是玩家告知的，所以介面上標示出來。 */
+const NOSTACK = new Set(DATA.nostack || []);
+const MAXSLOT = 6;
+const RELIC_G = GROUPS.findIndex(g => g.zh === '聖物');
+const statMeta = k => STAT(k);
+const statName = k => { const m = STAT(k); return m ? (m[S.lang] || m.zh) : k; };
+const statVal  = k => { const m = STAT(k); return v =>
+  (v > 0 ? '+' : '') + (+v.toFixed(2)) + (m && m.pct ? '%' : ''); };
+
+function loadSave(){ localStorage.setItem('ud.load', JSON.stringify(S.load)); }
+function loadAdd(id){
+  if (S.load.length >= MAXSLOT) return false;
+  S.load.push(id); loadSave(); renderLoad(); return true;
+}
+function loadDel(n){ S.load.splice(n, 1); loadSave(); renderLoad(); }
+
+function loadCalc(){
+  const sum = {}, max = {}, setc = {}, act = [], pas = [];
+  S.load.forEach(id => {
+    const it = ITEMS[id]; if (!it) return;
+    for (const [k, v] of Object.entries(it.v || {})){
+      if (NOSTACK.has(k)) max[k] = Math.max(k in max ? max[k] : -Infinity, v);
+      else sum[k] = (sum[k] || 0) + v;
+    }
+    if ((it.e || []).length) (it.act ? act : pas).push(id);
+    setKeysOf(it).forEach(k => setc[k] = (setc[k] || 0) + 1);
+  });
+  return {sum, max, setc, act, pas};
+}
+
+/* 屬性照 DATA.stats 的順序排，跟排行下拉一致，掃起來位置固定 */
+function statChips(map, cls){
+  return (DATA.stats || []).filter(m => map[m.k] != null && map[m.k] !== 0)
+    .map(m => `<span class="lo-st ${cls}">${esc(statName(m.k))} <b>${
+      esc(statVal(m.k)(map[m.k]))}</b></span>`).join('');
+}
+
+function effRows(ids){
+  return ids.map(id => {
+    const it = ITEMS[id];
+    return `<div class="lo-row" style="--c:${it.k || '#39415a'}">
+      <span class="ic">${thumb(id)}</span>
+      <span class="tx"><b>${esc(nm(id))}</b> ${
+        it.e.map(e => esc(e.t[li()])).join(' ')}</span></div>`;
+  }).join('');
+}
+
+function setRows(setc){
+  const hasRelic = S.load.some(id => ITEMS[id] && ITEMS[id].g === RELIC_G);
+  return Object.keys(setc).map(k => {
+    const G = SETS[k], n = setc[k];
+    if (!G || !(G.b || []).length) return '';
+    const on = G.b.filter(r => r.n <= n);
+    if (!on.length) return '';
+    const warn = k === 'c5' && !hasRelic
+      ? ` <span style="color:#e0a340">· ${esc(t('loRelic'))}</span>` : '';
+    return `<div class="lo-setline" style="--sc:${G.c}">
+      <b>${esc(G.n[li()])}</b> <code>-${k}</code> ${
+        esc(t('pcs').replace('%s', n))}${warn}${
+      on.map(r => `<div>　${r.n}　${esc(r[S.lang] || r.zh)}</div>`).join('')}</div>`;
+  }).join('');
+}
+
+function renderLoad(){
+  const box = $('#load');
+  box.hidden = S.mode !== 'build';
+  if (box.hidden) return;
+  let slots = '';
+  for (let n = 0; n < MAXSLOT; n++){
+    const id = S.load[n];
+    slots += (id && ITEMS[id])
+      ? `<div class="lo-slot" data-on="1" data-slot="${n}" style="--c:${ITEMS[id].k || '#39415a'}"
+              title="${esc(nm(id))}">${thumb(id)}
+           <button class="x" data-del="${n}" type="button"
+                   title="${esc(t('loRemove'))}" aria-label="${esc(t('loRemove'))}">✕</button>
+         </div>`
+      : `<div class="lo-slot">${n + 1}</div>`;
+  }
+  const full = S.load.length >= MAXSLOT;
+  let h = `<div class="lo-top">
+      <div class="lo-slots">${slots}</div>
+      <span class="lo-count">${S.load.length} / ${MAXSLOT}</span>
+      <span class="lo-hint">${esc(full ? t('loFull') : t('loHint'))}</span>
+      ${S.load.length ? `<button class="lo-clear" id="lotog" type="button"
+            aria-expanded="${S.loOpen}">${esc(t('loSum'))} <span class="cv">${
+            S.loOpen ? '▲' : '▼'}</span></button>
+        <button class="lo-clear" id="loclear" type="button">${
+          esc(t('loClear'))}</button>` : ''}
+    </div>`;
+
+  if (!S.load.length){
+    box.innerHTML = h + `<div class="lo-note">${esc(t('loNone'))}</div>`;
+    return;
+  }
+  const c = loadCalc();
+  const secs = [];
+  const sumC = statChips(c.sum, '');
+  const maxC = statChips(c.max, 'max');
+  if (sumC) secs.push(`<div class="lo-sec"><h5>${esc(t('loSum'))}</h5>
+      <div class="lo-stats">${sumC}</div></div>`);
+  if (maxC) secs.push(`<div class="lo-sec"><h5>${esc(t('loMax'))}</h5>
+      <div class="lo-stats">${maxC}</div></div>`);
+  if (c.act.length) secs.push(`<div class="lo-sec"><h5>${esc(t('loAct'))} ${
+      c.act.length}</h5><div class="lo-list">${effRows(c.act)}</div></div>`);
+  const sr = setRows(c.setc);
+  if (sr) secs.push(`<div class="lo-sec"><h5>${esc(t('loSet'))}</h5>${sr}</div>`);
+  if (c.pas.length) secs.push(`<div class="lo-sec"><h5>${esc(t('loPas'))} ${
+      c.pas.length}</h5><div class="lo-list">${effRows(c.pas)}</div></div>`);
+
+  box.innerHTML = h + (S.loOpen
+    ? `<div class="lo-body">${secs.join('')}</div>` +
+      (maxC ? `<div class="lo-note">${esc(t('loNote'))}</div>` : '')
+    : '');
 }
 
 /* ---------------------------------------------------------------- render: panel */
@@ -1080,6 +1425,7 @@ function openItem(id, scroll){
       el.scrollIntoView({block:'center', behavior:'smooth'});
   }
   history.replaceState(null,'','#'+id);
+  if (isMobile()){ setDrawer(false); setScrim(); }
 }
 
 function rankedIds(){
@@ -1229,6 +1575,8 @@ function closeItem(){
   panel.dataset.open = '0';
   panel.removeAttribute('data-swap');
   paintRelations();
+  panel.style.height = '';
+  setScrim();
   history.replaceState(null, '', location.pathname + location.search);
 }
 
@@ -1236,10 +1584,40 @@ function closeItem(){
 main.addEventListener('click', e => {
   const tile = e.target.closest('.tile,.rrow');
   if (!tile) return;
+  const id = tile.dataset.id;
+  if (S.mode === 'build'){
+    loadAdd(id);            // 滿了就不加，欄位列會顯示「已滿」
+    openItem(id);           // 放進去的同時就看得到它做什麼
+    return;
+  }
   /* toggle: clicking the already-selected tile closes the panel */
-  if (tile.dataset.id === S.sel) closeItem();
-  else openItem(tile.dataset.id);
+  if (id === S.sel) closeItem();
+  else openItem(id);
 });
+$('#load').addEventListener('click', e => {
+  const del = e.target.closest('[data-del]');
+  if (del){ loadDel(+del.dataset.del); return; }
+  if (e.target.closest('#loclear')){ S.load = []; loadSave(); renderLoad(); return; }
+  if (e.target.closest('#lotog')){
+    S.loOpen = !S.loOpen;
+    localStorage.setItem('ud.loopen', S.loOpen ? '1' : '0');
+    renderLoad(); return;
+  }
+  const slot = e.target.closest('[data-slot]');
+  if (slot) openItem(S.load[+slot.dataset.slot], true);
+});
+
+$('#mode').addEventListener('click', e => {
+  const b = e.target.closest('button'); if (!b) return;
+  S.mode = b.dataset.v; localStorage.setItem('ud.mode', S.mode);
+  applyMode(); renderLoad();
+});
+function applyMode(){
+  document.body.dataset.mode = S.mode;
+  $('#mode').querySelectorAll('button').forEach(b =>
+    b.setAttribute('aria-pressed', String(b.dataset.v === S.mode)));
+}
+
 pbody.addEventListener('click', e => {
   const b = e.target.closest('[data-goto]');
   if (b) openItem(b.dataset.goto, true);
@@ -1271,6 +1649,7 @@ rail.addEventListener('click', e => {
     S.cat = (S.cat === ci) ? null : ci;
     S.tier = null; S.set = null;
     renderRail(); renderGrid(); main.scrollTop = 0;
+    setDrawer(false);                      // 選完就收起來，別擋住結果
     return;
   }
   const b = e.target.closest('.tier');
@@ -1280,13 +1659,14 @@ rail.addEventListener('click', e => {
   else { S.tier = (S.tier === g) ? null : g; S.cat = null; S.set = null; }
   renderRail(); renderGrid();
   main.scrollTop = 0;
+  setDrawer(false);
 });
 
 const q = $('#q');
 let qT = null;
 q.addEventListener('input', () => {
   S.q = q.value;
-  renderGrid();
+  renderGrid(); syncMenuDot();
   clearTimeout(qT); qT = setTimeout(renderRail, 90);   /* rail is cheap but not free */
 });
 /* 清空後把焦點還給輸入框 —— 使用者按 ✕ 通常是要重打，不是要離開搜尋 */
@@ -1302,7 +1682,7 @@ $('#qclr').addEventListener('click', () => clearQ(true));
 $('#lang').addEventListener('click', e => {
   const b = e.target.closest('button'); if (!b) return;
   S.lang = b.dataset.v; localStorage.setItem('ud.lang', S.lang);
-  applyLang(); fillRank(); renderRail(); renderGrid();
+  applyLang(); fillRank(); renderRail(); renderGrid(); renderLoad();
   if (S.sel) openItem(S.sel);
 });
 const rankSel = $('#rank');
@@ -1346,6 +1726,44 @@ function applyDensity(){
     b.setAttribute('aria-pressed', String(b.dataset.v === S.density)));
 }
 
+/* ---------------------------------------------------------------- 手機版
+   同一份 DOM，換一種組合：工具列整組搬進抽屜（不是複製一份，
+   複製會有重複 id 和兩套事件），側欄變抽屜，面板變底部 sheet。 */
+const MQ = matchMedia('(max-width:860px)');
+const isMobile = () => MQ.matches;
+const tools = $('#tools'), scrim = $('#scrim');
+let drawerOn = false, sheetVH = 62;
+
+function placeTools(){ (isMobile() ? $('#railtools') : $('#tbtools')).appendChild(tools); }
+function setScrim(){
+  document.body.dataset.scrim =
+    (isMobile() && (drawerOn || panel.dataset.open === '1')) ? '1' : '0';
+}
+function setDrawer(on){
+  drawerOn = on;
+  document.body.dataset.drawer = on ? '1' : '0';
+  setScrim();
+}
+function setSheet(vh){
+  sheetVH = vh;
+  panel.style.setProperty('--sh', vh + 'vh');
+}
+/* 篩選鈕上的小圓點：有任何篩選在作用時亮起。
+   少了它，使用者只會看到「怎麼只剩 7 件」卻找不到原因。 */
+function syncMenuDot(){
+  $('#menudot').hidden = !(S.tier !== null || S.cat !== null || S.set || S.q.trim());
+}
+$('#menu').addEventListener('click', () => setDrawer(!drawerOn));
+$('#drclose').addEventListener('click', () => setDrawer(false));
+scrim.addEventListener('click', () => {
+  if (drawerOn) setDrawer(false);
+  else if (S.sel) closeItem();
+});
+MQ.addEventListener('change', () => {
+  placeTools(); setDrawer(false); setSheet(62);
+  panel.style.height = ''; setScrim();
+});
+
 /* -------- resizable panel */
 const handle = $('#handle');
 const clampW = w => Math.max(320, Math.min(760, w));
@@ -1358,17 +1776,33 @@ handle.addEventListener('pointerdown', e => {
   e.preventDefault(); handle.setPointerCapture(e.pointerId);
   handle.dataset.drag = '1'; document.body.dataset.resizing = '1';
   panel.dataset.drag = '1';
-  const move = ev => setW(window.innerWidth - ev.clientX);
+
+  const mob = isMobile();
+  const y0 = e.clientY, h0 = panel.getBoundingClientRect().height;
+  let h = h0;
+  /* 手機：拖高度，兩段停靠（62vh 看屬性／94vh 看配方），
+     往下拖過 28vh 就關閉 —— 下滑＝返回，不用教。
+     桌機：維持原本的拖寬度。 */
+  const move = ev => {
+    if (!mob){ setW(window.innerWidth - ev.clientX); return; }
+    h = Math.min(innerHeight * .94, h0 + (y0 - ev.clientY));
+    panel.style.height = Math.max(0, h) + 'px';
+  };
   const up = () => {
     handle.removeAttribute('data-drag'); document.body.removeAttribute('data-resizing');
     panel.removeAttribute('data-drag');
     window.removeEventListener('pointermove', move);
     window.removeEventListener('pointerup', up);
+    if (!mob) return;
+    panel.style.height = '';
+    if (h < innerHeight * .28) closeItem();
+    else setSheet(h > innerHeight * .75 ? 94 : 62);
   };
   window.addEventListener('pointermove', move);
   window.addEventListener('pointerup', up);
 });
-handle.addEventListener('dblclick', () => setW(420));
+handle.addEventListener('dblclick', () => isMobile()
+  ? setSheet(sheetVH >= 94 ? 62 : 94) : setW(420));
 handle.addEventListener('keydown', e => {
   if (e.key === 'ArrowLeft') { setW(S.width + 24); e.preventDefault(); }
   if (e.key === 'ArrowRight'){ setW(S.width - 24); e.preventDefault(); }
@@ -1377,6 +1811,7 @@ handle.addEventListener('keydown', e => {
 /* -------- hover tooltip (only useful when labels are hidden) */
 let tipT = null;
 main.addEventListener('pointerover', e => {
+  if (e.pointerType !== 'mouse' || isMobile()) return;
   const tile = e.target.closest('.tile'); if (!tile) return;
   clearTimeout(tipT);
   tipT = setTimeout(() => {
@@ -1405,7 +1840,7 @@ addEventListener('keydown', e => {
   if (document.activeElement === q) return;
   if (['1','2','3'].includes(e.key)){
     S.lang = ['zh','en','ru'][+e.key-1]; localStorage.setItem('ud.lang',S.lang);
-    applyLang(); fillRank(); renderRail(); renderGrid();
+    applyLang(); fillRank(); renderRail(); renderGrid(); renderLoad();
     if (S.sel) openItem(S.sel); return;
   }
   if (!S.sel) return;
@@ -1435,8 +1870,9 @@ else setTimeout(() => {
 }, 7000);
 
 /* ---------------------------------------------------------------- boot */
-applyLang(); applyDensity(); setW(S.width); fillRank();
-renderRail(); renderGrid();
+applyLang(); applyDensity(); applyMode(); setW(S.width); fillRank();
+placeTools(); setSheet(62); setDrawer(false);
+renderRail(); renderGrid(); renderLoad();
 const start = location.hash.slice(1);
 if (start && ITEMS[start]) openItem(start, true);
 })();
