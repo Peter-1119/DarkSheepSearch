@@ -553,6 +553,32 @@ body[data-resizing="1"]{cursor:col-resize;user-select:none}
 .rel .t span{font-size:11px;color:var(--ink-3)}
 .rel .arrow{color:var(--ink-3);font-size:12px;flex:0 0 auto}
 
+/* 狀態說明。用 <details> 讓它預設收起 —— 大部分時候使用者只想確認
+   「這件會上點燃」，需要細節時才展開，不必一直佔著面板。 */
+.sts{display:flex;flex-direction:column;gap:5px}
+.st{border:1px solid var(--line);border-radius:9px;background:var(--surface);overflow:hidden}
+.st > summary{
+  list-style:none;cursor:pointer;padding:7px 10px;display:flex;
+  align-items:baseline;gap:7px;flex-wrap:wrap;
+  transition:background var(--dur);
+}
+.st > summary::-webkit-details-marker{display:none}
+.st > summary::after{content:"▾";margin-left:auto;font-size:9px;color:var(--ink-3);
+  transition:transform var(--dur)}
+.st[open] > summary::after{transform:rotate(180deg)}
+.st > summary:hover{background:var(--surface-2)}
+.st > summary b{font-size:12.5px;color:var(--ink)}
+.st > summary .s{font-size:11px;color:var(--ink-3);flex:1 1 100%;line-height:1.5}
+.st > summary .tag{
+  font-size:9.5px;padding:1px 6px;border-radius:99px;white-space:nowrap;
+  color:#e0a340;border:1px solid rgba(224,163,64,.4);
+}
+.st-g{padding:0 10px 9px}
+.st-g h6{margin:8px 0 4px;font-size:10px;font-weight:600;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--ink-3)}
+.st-g ul{margin:0;padding-left:16px}
+.st-g li{font-size:11.5px;line-height:1.65;color:var(--ink-2);margin:2px 0}
+
 /* 用於合成：一個目標一張卡，卡的下半直接列出該配方的全部素材，
    手上這件打勾。這樣「還缺什麼」不必再點一層。 */
 .uses{display:flex;flex-direction:column;gap:8px}
@@ -999,6 +1025,7 @@ const UI = {
       tiers:'品質分類', legend:'圖例', sel:'已選取', matAny:'可作為素材', mat:'此裝備的素材', into:'可合成為',
       stats:'屬性', effects:'效果', recipe:'合成配方', usedin:'用於合成',
       usedNote:'綠色打勾的是你正在看的這件；其餘為該配方還需要的素材',
+      stL:'相關狀態', stDmg:'會造成傷害', stTrait:'特性', stInter:'與其他狀態的交互',
       alias:'舊表名稱', none:'沒有符合的裝備', tryOther:'換個關鍵字或清除篩選',
       hint:'點擊看詳細，再點一次收合 · 相關素材會在格子中高亮', hint2:'搜尋',
       shopL:'商店', setL:'套裝', setFilter:'只看這組套裝', close:'關閉', clear:'清除搜尋', results:'搜尋結果',
@@ -1025,6 +1052,8 @@ const UI = {
       loToggle:'展開／收合屬性總計', loFrom:'來自 %s', loRoll:'隨機抽一件', loArmed:'從下方挑一件放進這格',
       loArtMax:'同一件神器最多 2 件', loSmith:'鐵匠複製',
       loDouble:'這件算作套裝的 2 件',
+      loPerfectMax:'完美裝備只能帶 1 件',
+      loPerfectNote:'完美裝備 4 選 1：鐵匠只能挑其中一件任務裝備做成完美，且整場限用一次。',
       loSmithUsed:'鐵匠複製整場只能用一次，已經用在「%s」了',
       loArtNote:'神器每件只能合成一次，所以預設每件只能帶 1 個。鐵匠可以複製神器，'
                +'但整場只能用一次、而且只能挑其中一件 —— 所以一套配裝裡最多有「一件」'
@@ -1041,6 +1070,8 @@ const UI = {
       into:'Builds into', stats:'Bonuses', effects:'Effects',
       recipe:'Recipe', usedin:'Used in', alias:'Old sheet name',
       usedNote:'The green ticked one is the item you are viewing; the rest are what that recipe still needs',
+      stL:'Statuses involved', stDmg:'Deals damage', stTrait:'Traits',
+      stInter:'Interaction with other statuses',
       none:'No items match', tryOther:'Try another keyword or clear the filter',
       hint:'Click for details, click again to close · related pieces light up',
       hint2:'search', shopL:'Shop', setL:'Set', setFilter:'Show only this set', close:'Close', clear:'Clear search', results:'Results',
@@ -1067,6 +1098,8 @@ const UI = {
       loToggle:'Expand / collapse totals', loFrom:'From %s', loRoll:'Roll a random one', loArmed:'Pick an item below for this slot',
       loArtMax:'An artifact can appear at most twice', loSmith:'Blacksmith copy',
       loDouble:'Counts as 2 set pieces',
+      loPerfectMax:'Only one Perfected item can be carried',
+      loPerfectNote:'Perfected is 1 of 4: the blacksmith can perfect only one quest item, once per game.',
       loSmithUsed:'The blacksmith copy is once per game - already used on "%s"',
       loArtNote:'Each artifact can only be crafted once, so normally you carry one of each. '
                +'The blacksmith can duplicate an artifact, but only once per game and only on one '
@@ -1085,6 +1118,8 @@ const UI = {
       into:'Входит в', stats:'Бонусы', effects:'Эффекты',
       recipe:'Рецепт', usedin:'Используется в', alias:'Старое название',
       usedNote:'Зелёная галочка - предмет, который вы смотрите; остальное нужно для этого рецепта',
+      stL:'Связанные статусы', stDmg:'Наносит урон', stTrait:'Особенности',
+      stInter:'Взаимодействие с другими статусами',
       none:'Ничего не найдено', tryOther:'Измените запрос или сбросьте фильтр',
       hint:'Нажмите для деталей, ещё раз — закрыть · связанное подсветится',
       hint2:'поиск', shopL:'Магазин', setL:'Комплект', close:'Закрыть', clear:'Очистить поиск',
@@ -1113,6 +1148,8 @@ const UI = {
       loToggle:'Развернуть / свернуть сводку', loFrom:'Из %s', loRoll:'Случайный предмет', loArmed:'Выберите предмет ниже для этого слота',
       loArtMax:'Артефакт может встречаться не более двух раз', loSmith:'Копия кузнеца',
       loDouble:'Считается за 2 предмета комплекта',
+      loPerfectMax:'Можно взять только один Совершенный предмет',
+      loPerfectNote:'Совершенный - 1 из 4: кузнец доводит до совершенства лишь один квестовый предмет, раз за игру.',
       loSmithUsed:'Копия кузнеца доступна один раз за игру - уже использована на «%s»',
       loArtNote:'Каждый артефакт создаётся только один раз, поэтому обычно он у вас один. '
                +'Кузнец может продублировать артефакт, но лишь раз за игру и только один из них - '
@@ -1403,6 +1440,44 @@ function renderGrid(){
   paintRelations();
 }
 
+/* ---------------------------------------------------------------- 狀態說明
+   地圖裡的狀態（點燃／流血／冰凍…）彼此會互相加成，但道具說明只寫「施加點燃」，
+   沒人知道那到底是什麼。這裡把玩家提供的圖鑑內容掛到有提到該狀態的裝備上。
+   偵測用三語詞幹一起比對，所以介面切到哪個語言結果都一樣；
+   而且只比對「屬性＋效果」的文字，不比對名稱，避免名字剛好有字就誤判。 */
+const STATUS = DATA.status || {};
+const SKEYS = Object.keys(STATUS);
+const STAT_OF = {};
+for (const id of IDS){
+  const it = ITEMS[id];
+  const txt = ((it.s ? it.s.join(' ') : '') + ' ' +
+               it.e.map(e => e.t.join(' ')).join(' ')).toLowerCase();
+  STAT_OF[id] = SKEYS.filter(k =>
+    (STATUS[k].q || []).some(w => w && txt.includes(w.toLowerCase())));
+}
+
+function statusRows(keys){
+  const L = li();
+  return keys.map(k => {
+    const st = STATUS[k]; if (!st) return '';
+    const grp = (lab, arr) => (arr && arr.length)
+      ? `<div class="st-g"><h6>${esc(t(lab))}</h6><ul>${
+          arr.map(x => `<li>${esc(x[L])}</li>`).join('')}</ul></div>` : '';
+    return `<details class="st">
+      <summary><b>${esc(st.n[L])}</b>${
+        st.kind === 'dmg' ? `<span class="tag">${esc(t('stDmg'))}</span>` : ''}
+        <span class="s">${esc(st.sum[L])}</span></summary>
+      ${grp('stTrait', st.traits)}${grp('stInter', st.inter)}
+    </details>`;
+  }).join('');
+}
+function statusBlock(id){
+  const keys = STAT_OF[id] || [];
+  if (!keys.length) return '';
+  return `<div class="sect"><h4>${esc(t('stL'))}</h4>
+    <div class="sts">${statusRows(keys)}</div></div>`;
+}
+
 /* 合成素材的角標。用鑄造槌的剪影而不是文字符號：
    在 474 個格子裡找素材時，辨識形狀比辨識符號快。
    刻意畫得很單純（槌頭一條、握柄一條），因為實際只有 11px。 */
@@ -1478,6 +1553,9 @@ const NOSTACK = new Set(DATA.nostack || []);
 const MAXSLOT = 6;
 const GIDX = zh => GROUPS.findIndex(g => g.zh === zh);
 const RELIC_G = GIDX('聖物');
+/* 完美只能 4 選 1：鐵匠只能挑其中一件任務裝備做成完美，而且整場只能用一次。
+   跟神器的「複製」限制是分開的兩條規則，各自獨立計次。 */
+const PERFECT_G = GIDX('完美');
 
 /* 兩個「不佔格」的額外欄位。來源是兩件主動道具：
      吸收器 I089（特殊 lv.4）  -> 放入一件「選定」的 特殊 lv.1
@@ -1528,6 +1606,10 @@ function flash(msg){
 function loadSave(){ localStorage.setItem('ud.load', JSON.stringify(S.load)); }
 function loadAdd(id){
   if (S.load.length >= MAXSLOT) return false;
+  if (ITEMS[id].g === PERFECT_G &&
+      loadAll().some(x => ITEMS[x] && ITEMS[x].g === PERFECT_G)){
+    flash(t('loPerfectMax')); return false;
+  }
   if (isArtifact(id)){
     const have = artCounts()[id] || 0;
     if (have >= 2){ flash(t('loArtMax')); return false; }
@@ -1695,6 +1777,21 @@ function renderLoad(){
       <div class="lo-stats">${maxC}</div></div>`);
   if (c.act.length) secs.push(`<div class="lo-sec"><h5>${esc(t('loAct'))} ${
       c.act.length}</h5><div class="lo-list">${effRows(c.act)}</div></div>`);
+  /* 這套配裝總共牽涉到哪些狀態。配裝時才是真正要算傷害的時候，
+     所以系統規則（狀態傷害怎麼疊、抗性怎麼算）也放在這裡，不放個別裝備。 */
+  const stk = [...new Set(loadAll().flatMap(x => STAT_OF[x] || []))]
+    .sort((a, b) => SKEYS.indexOf(a) - SKEYS.indexOf(b));
+  if (stk.length){
+    const L2 = li();
+    const rules = (DATA.statusRules || []).map(r => `<details class="st">
+        <summary><b>${esc(r.n[L2])}</b></summary>
+        <div class="st-g"><ul>${
+          r.lines.map(x => `<li>${esc(x[L2])}</li>`).join('')}</ul></div>
+      </details>`).join('');
+    secs.push(`<div class="lo-sec"><h5>${esc(t('stL'))} ${stk.length}</h5>
+      <div class="sts">${statusRows(stk)}${rules}</div></div>`);
+  }
+
   const sr = setRows(c.setc);
   if (sr) secs.push(`<div class="lo-sec"><h5>${esc(t('loSet'))}</h5>${sr}</div>`);
   if (c.pas.length) secs.push(`<div class="lo-sec"><h5>${esc(t('loPas'))} ${
@@ -1703,6 +1800,8 @@ function renderLoad(){
   const notes = [];
   if (maxC) notes.push(esc(t('loNote')));
   if (loadAll().some(isArtifact)) notes.push(esc(t('loArtNote')));
+  if (loadAll().some(x => ITEMS[x] && ITEMS[x].g === PERFECT_G))
+    notes.push(esc(t('loPerfectNote')));
   if (BONUS.some(b => S.bonus[b.k])) notes.push(esc(t('loBonusNote')));
   box.innerHTML = h + (S.loOpen
     ? `<div class="lo-body">${secs.join('')}</div>` +
@@ -1753,6 +1852,7 @@ function openItem(id, scroll){
   if (it.e.length) b += `<div class="sect"><h4>${esc(t('effects'))}</h4>${
     it.e.map(e => `<div class="eff"><span class="tag">${esc(e.l[L])}</span>
       <span class="txt">${num(e.t[L])}</span></div>`).join('')}</div>`;
+  b += statusBlock(id);
   b += setBonusBlock(it);
   if (it.legion != null) b += legionBlock(it);
   if (it.cyc != null) b += cycleBlock(it, DATA.cycle, 'cycL', 'cycNote');

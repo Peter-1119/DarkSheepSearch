@@ -1,0 +1,193 @@
+{
+  "_說明": [
+    "狀態（status）的完整說明。地圖物件資料裡沒有這些，是玩家在遊戲內的圖鑑截圖，",
+    "原圖存於 data/status/*.jpg（俄文版）。俄文欄位盡量照原文，中英為翻譯。",
+    "n = 三語名稱；q = 偵測用的查詢字串（俄文用詞幹，因為是屈折語）；",
+    "kind = dmg 表示「會造成傷害的狀態」；sum = 一句話摘要；",
+    "traits = 特性；inter = 與其他狀態的交互。"
+  ],
+  "burn": {
+    "n": ["點燃", "Burn", "Поджог"],
+    "q": ["點燃", "burn", "поджог"],
+    "kind": "dmg",
+    "sum": [
+      "在 4 秒內快速造成傷害（每 0.25 秒一跳）。有施加機率。",
+      "Deals damage rapidly over 4 s (ticks every 0.25 s). Has an application chance.",
+      "Быстро наносит урон за 4 сек. (такт 0.25 сек.). Имеет шанс применения."
+    ],
+    "traits": [
+      ["對建築與機械的點燃機率降低 50%", "50% lower chance against buildings and machines", "шанс поджога строений и техники ослабляется на 50%"],
+      ["火焰抗性（fire resist）使點燃機率降低 75%", "Fire resist lowers burn chance by 75%", "сопротивление огню (fire resist) ослабляет шанс поджога на 75%"]
+    ],
+    "inter": [
+      ["「易燃」使點燃機率 +50%，並延長 2 秒點燃時間（總點燃傷害 +50%）", "Flammable raises burn chance by 50% and adds 2 s of burn (total burn damage +50%)", "статус «Горючесть» усиливает шанс поджога на 50% и прибавляет 2 сек. ко времени поджога (усиливает итоговый урон от поджога на 50%)"],
+      ["「電擊」使受到的點燃傷害 +100%", "Shock raises burn damage taken by 100%", "статус «Шок» увеличивает получаемый урон от поджога на 100%"],
+      ["「易傷」使點燃機率 +50%", "Vulnerability raises burn chance by 50%", "статус «Уязвимость» усиливает шанс поджога на 50%"]
+    ]
+  },
+  "flammable": {
+    "n": ["易燃", "Flammable", "Горючесть"],
+    "q": ["易燃", "flammable", "горюч"],
+    "sum": [
+      "降低攻擊速度 20%，並強化點燃效果。持續 6 秒。有施加機率。",
+      "Lowers attack speed by 20% and amplifies burn. Lasts 6 s. Has an application chance.",
+      "Снижает скорость атаки на 20% и усиливает эффект поджога. Длится 6 сек. Имеет шанс применения."
+    ],
+    "traits": [
+      ["對建築與機械的易燃機率降低 50%", "50% lower chance against buildings and machines", "шанс применения горючести строений и техники ослабляется на 50%"],
+      ["火焰抗性（fire resist）使易燃機率降低 75%", "Fire resist lowers flammable chance by 75%", "сопротивление огню (fire resist) ослабляет шанс горючести на 75%"]
+    ],
+    "inter": [
+      ["「易燃」使點燃機率 +50%，並延長 2 秒點燃時間（總點燃傷害 +50%）", "Flammable raises burn chance by 50% and adds 2 s of burn (total burn damage +50%)", "статус «Горючесть» усиливает шанс поджога на 50% и прибавляет 2 сек. ко времени поджога (усиливает итоговый урон от поджога на 50%)"],
+      ["「易傷」使易燃機率 +50%", "Vulnerability raises flammable chance by 50%", "статус «Уязвимость» усиливает шанс горючести на 50%"]
+    ]
+  },
+  "bleed": {
+    "n": ["流血", "Bleed", "Кровотечение"],
+    "q": ["流血", "bleed", "кровотеч"],
+    "kind": "dmg",
+    "sum": [
+      "在 8 秒內造成傷害（每 0.5 秒一跳）。有施加機率。",
+      "Deals damage over 8 s (ticks every 0.5 s). Has an application chance.",
+      "Наносит урон за 8 сек. (такт 0.50 сек.). Имеет шанс применения."
+    ],
+    "traits": [
+      ["無法對建築與機械施加", "Cannot be applied to buildings or machines", "нельзя применить против строений и техники"],
+      ["使目標移動速度降低 15%", "Slows the target's movement speed by 15%", "замедляет скорость бега на 15%"],
+      ["目標每缺少 1% 生命，流血傷害降低 0.75%", "For each 1% of health the target is missing, bleed damage drops by 0.75%", "за каждый недостающий 1% здоровья цели наносимый кровотечением урон снижается на 0.75%"],
+      ["流血抗性（bleed resist）使流血機率降低 75%", "Bleed resist lowers bleed chance by 75%", "сопротивление кровотечению (bleed resist) ослабляет шанс кровотечения на 75%"]
+    ],
+    "inter": [
+      ["「虛弱」使受到的流血傷害 +50%", "Weakness raises bleed damage taken by 50%", "статус «Слабость» увеличивает получаемый урон от кровотечения на 50%"],
+      ["「電擊」使受到的流血傷害 +100%", "Shock raises bleed damage taken by 100%", "статус «Шок» увеличивает получаемый урон от кровотечения на 100%"],
+      ["「易傷」使流血機率 +50%", "Vulnerability raises bleed chance by 50%", "статус «Уязвимость» усиливает шанс кровотечения на 50%"]
+    ]
+  },
+  "disease": {
+    "n": ["疾病", "Disease", "Болезнь"],
+    "q": ["疾病", "disease", "болезн"],
+    "kind": "dmg",
+    "sum": [
+      "在 12 秒內緩慢造成傷害（每 0.75 秒一跳）。有施加機率。",
+      "Deals damage slowly over 12 s (ticks every 0.75 s). Has an application chance.",
+      "Медленно наносит урон за 12 сек. (такт 0.75 сек.). Имеет шанс применения."
+    ],
+    "traits": [
+      ["無法對建築與機械施加", "Cannot be applied to buildings or machines", "нельзя применить против строений и техники"],
+      ["使目標攻擊力降低 15%", "Lowers the target's attack power by 15%", "снижает силу атаки на 15%"],
+      ["目標每缺少 1% 生命，疾病傷害提高 0.75%", "For each 1% of health the target is missing, disease damage rises by 0.75%", "за каждый недостающий 1% здоровья цели наносимый болезнью урон повышается на 0.75%"],
+      ["「瘟疫（plagued）」狀態賦予疾病免疫", "The Plagued state grants immunity to disease", "состояние «Чумной» (plagued) дарует иммунитет к болезни"]
+    ],
+    "inter": [
+      ["「詛咒」使受到的疾病傷害 +50%", "Curse raises disease damage taken by 50%", "статус «Проклятие» увеличивает получаемый урон от болезни на 50%"],
+      ["「電擊」使受到的疾病傷害 +100%", "Shock raises disease damage taken by 100%", "статус «Шок» увеличивает получаемый урон от болезни на 100%"],
+      ["「易傷」使疾病機率 +50%", "Vulnerability raises disease chance by 50%", "статус «Уязвимость» усиливает шанс болезни на 50%"]
+    ]
+  },
+  "freeze": {
+    "n": ["冰凍", "Freeze", "Заморозка"],
+    "q": ["冰凍", "freeze", "заморозк"],
+    "sum": [
+      "降低攻擊速度與移動速度 30%，持續 6 秒。有施加機率。",
+      "Lowers attack and movement speed by 30% for 6 s. Has an application chance.",
+      "Снижает скорость атаки и бега на 30%. Действует 6 сек. Имеет шанс применения."
+    ],
+    "traits": [
+      ["無法對建築與機械施加", "Cannot be applied to buildings or machines", "нельзя применить против строений и техники"],
+      ["被冰凍的目標受到「穿透」效果的傷害 +75%", "Frozen targets take 75% more damage from Penetration", "замороженные цели получают на 75% больше урона от эффекта «Пробитие»"],
+      ["對已冰凍的目標再次施加會解除冰凍，並造成目標最大生命 5% 的傷害（對英雄為 2.5%）", "Re-applying to an already frozen target removes the freeze and deals 5% of max health as damage (2.5% against heroes)", "повторный эффект против уже замороженной цели снимает заморозку и наносит цели урон в размере 5% от макс. здоровья (2.5% против героев)"],
+      ["冰凍抗性（cold resist）使冰凍機率降低 75%", "Cold resist lowers freeze chance by 75%", "сопротивление заморозке (cold resist) ослабляет шанс заморозки на 75%"]
+    ],
+    "inter": [
+      ["「易傷」使冰凍機率 +50%", "Vulnerability raises freeze chance by 50%", "статус «Уязвимость» усиливает шанс заморозки на 50%"]
+    ]
+  },
+  "shock": {
+    "n": ["電擊", "Shock", "Шок"],
+    "q": ["電擊", "shock", "шок"],
+    "sum": [
+      "在短時間內大幅削弱目標。持續 4 秒。有施加機率。",
+      "Significantly weakens the target for a short time. Lasts 4 s. Has an application chance.",
+      "Значительно ослабляет цели на короткое время. Длится 4 сек. Имеет шанс применения."
+    ],
+    "traits": [
+      ["無法對建築與機械施加", "Cannot be applied to buildings or machines", "нельзя применить против строений и техники"],
+      ["對英雄的施加機率降低 50%", "50% lower application chance against heroes", "шанс применения против героев ослабляется на 50%"],
+      ["降低攻擊速度與移動速度 30%、降低造成的傷害 30%、提高受到的非狀態傷害 20%", "Lowers attack and movement speed by 30%, lowers damage dealt by 30%, raises non-status damage taken by 20%", "снижает скорость атаки и бега на 30%, снижает наносимый урон на 30%, увеличивает получаемый урон не от статусов на 20%"],
+      ["除極少數例外，不存在電擊抗性", "Shock resistance does not exist, apart from rare exceptions", "не существует сопротивлений шоку, кроме редких исключений"]
+    ],
+    "inter": [
+      ["使受到的狀態傷害 +100%", "Raises status damage taken by 100%", "увеличивает получаемый урон от статусов на 100%"]
+    ]
+  },
+  "curse": {
+    "n": ["詛咒", "Curse", "Проклятие"],
+    "q": ["詛咒", "curse", "проклят"],
+    "sum": [
+      "降低攻擊力 33%，並使受到的非狀態傷害提高 20%。強化疾病。持續 8 秒。有施加機率。",
+      "Lowers attack power by 33% and raises non-status damage taken by 20%. Amplifies disease. Lasts 8 s. Has an application chance.",
+      "Снижает силу атаки на 33% и повышает получаемый не от статусов урон на 20%. Усиливает болезнь. Длится 8 сек. Имеет шанс применения."
+    ],
+    "traits": [
+      ["無法對建築與機械施加", "Cannot be applied to buildings or machines", "нельзя применить против строений и техники"],
+      ["詛咒抗性（curse resist）使詛咒機率降低 75%", "Curse resist lowers curse chance by 75%", "сопротивление проклятиям (curse resist) ослабляет шанс проклятия на 75%"]
+    ],
+    "inter": [
+      ["「詛咒」使受到的疾病傷害 +50%", "Curse raises disease damage taken by 50%", "статус «Проклятие» увеличивает получаемый урон от болезни на 50%"],
+      ["「易傷」使詛咒機率 +50%", "Vulnerability raises curse chance by 50%", "статус «Уязвимость» усиливает шанс проклятия на 50%"]
+    ]
+  },
+  "weakness": {
+    "n": ["虛弱", "Weakness", "Слабость"],
+    "q": ["虛弱", "weakness", "слабост"],
+    "sum": [
+      "降低攻擊速度 10%、移動速度 30%。強化流血。持續 8 秒。有施加機率。",
+      "Lowers attack speed by 10% and movement speed by 30%. Amplifies bleed. Lasts 8 s. Has an application chance.",
+      "Снижает скорость атаки на 10% и скорость бега на 30%. Усиливает кровотечение. Длится 8 сек. Имеет шанс применения."
+    ],
+    "traits": [
+      ["無法對建築與機械施加", "Cannot be applied to buildings or machines", "нельзя применить против строений и техники"],
+      ["詛咒抗性（curse resist）使虛弱機率降低 75%", "Curse resist lowers weakness chance by 75%", "сопротивление проклятиям (curse resist) ослабляет шанс слабости на 75%"]
+    ],
+    "inter": [
+      ["「虛弱」使受到的流血傷害 +50%", "Weakness raises bleed damage taken by 50%", "статус «Слабость» увеличивает получаемый урон от кровотечения на 50%"],
+      ["「易傷」使虛弱機率 +50%", "Vulnerability raises weakness chance by 50%", "статус «Уязвимость» усиливает шанс слабости на 50%"]
+    ]
+  },
+  "vulnerable": {
+    "n": ["易傷", "Vulnerability", "Уязвимость"],
+    "q": ["易傷", "vulnerab", "уязвим"],
+    "sum": [
+      "提高受到其他狀態的機率，並增加受到的反傷。持續 8 秒。有施加機率。",
+      "Raises the chance of receiving other statuses and increases thorns damage taken. Lasts 8 s. Has an application chance.",
+      "Повышает шанс получения других статусов и увеличивает получаемый ответный урон. Длится 8 сек. Имеет шанс применения."
+    ],
+    "traits": [
+      ["無法對建築與機械施加", "Cannot be applied to buildings or machines", "нельзя применить против строений и техники"],
+      ["受到的反傷 +50%", "Thorns damage taken +50%", "получаемый ответный урон увеличивается на 50%"],
+      ["詛咒抗性（curse resist）使易傷機率降低 75%", "Curse resist lowers vulnerability chance by 75%", "сопротивление проклятиям (curse resist) ослабляет шанс уязвимости на 75%"]
+    ],
+    "inter": [
+      ["使受到其他狀態的機率 +50%", "Raises the chance of receiving other statuses by 50%", "усиливает шанс получения других статусов на 50%"]
+    ]
+  },
+  "_rules": [
+    {
+      "n": ["狀態傷害的增減", "Status damage scaling", "Изменение урона от статусов"],
+      "lines": [
+        ["狀態傷害的增減機制與「攻擊與技能」分開計算。", "Status damage scaling works separately from attacks and abilities.", "Механизм изменения урона от статусов работает раздельно от атак и умений."],
+        ["所有「狀態傷害加成」與「狀態防護」會加總成單一乘數：減傷不能超過 80%，但超出的部分可以抵銷攻擊方的傷害加成。", "All status damage bonuses and status protections combine into a single multiplier: damage reduction cannot exceed 80%, but any excess can offset the attacker's damage bonuses.", "Все бонусы к урону и защите от статусов суммируются в единый множитель: снижение урона не может превышать 80%, но избыток может перекрыть бонусы к урону у атакующей цели."]
+      ]
+    },
+    {
+      "n": ["抗性", "Resistances", "Сопротивления"],
+      "lines": [
+        ["fire resist（火焰抗性）—— 點燃與易燃的機率降低 75%", "fire resist - burn and flammable chance lowered by 75%", "fire resist - сопротивление поджогу и горючести, шанс ослаблен на 75%"],
+        ["cold resist（冰凍抗性）—— 冰凍機率降低 75%", "cold resist - freeze chance lowered by 75%", "cold resist - сопротивление заморозке, шанс ослаблен на 75%"],
+        ["bleed resist（流血抗性）—— 流血機率降低 75%", "bleed resist - bleed chance lowered by 75%", "bleed resist - сопротивление кровотечению, шанс ослаблен на 75%"],
+        ["curse resist（詛咒抗性）—— 易傷、虛弱、詛咒的機率降低 75%", "curse resist - vulnerability, weakness and curse chance lowered by 75%", "curse resist - сопротивление проклятиям, шанс получить уязвимость, слабость и проклятие ослаблены на 75%"],
+        ["plague（瘟疫狀態）—— 賦予疾病免疫；任何造成的傷害有 20% 機率施加疾病，該疾病造成所受傷害的 175%", "plague - grants immunity to disease; any damage dealt has a 20% chance to apply disease dealing 175% of that damage", "plague - состояние «Чумной», дарует иммунитет к болезни; любой наносимый урон с шансом 20% накладывает болезнь, наносящую 175% от нанесённого урона"]
+      ]
+    }
+  ]
+}

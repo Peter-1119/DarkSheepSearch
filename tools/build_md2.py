@@ -3,6 +3,10 @@ import json, os, sys
 sys.stdout.reconfigure(encoding='utf-8')
 SETB = json.load(open(os.path.join(os.path.dirname(__file__),
                                    'set_bonus.json'), encoding='utf-8'))
+_ST = json.load(open(os.path.join(os.path.dirname(__file__),
+                                 'status.json'), encoding='utf-8'))
+STATUS = {k: v for k, v in _ST.items() if not k.startswith('_')}
+RULES = _ST.get('_rules', [])
 
 ROOT = r'D:/Notebook Program Scripts/Python_Scripts/DarkSheep'
 D = json.load(open(os.path.join(ROOT, 'data', 'items.json'), encoding='utf-8'))
@@ -80,19 +84,38 @@ w('| **狀態傷害** | 由下列負面狀態造成的持續／延遲傷害 | �
 w()
 w('主要狀態：')
 w()
-w('| 中文 | 俄文 | 說明 |')
+w('| 中文 | 俄文 | 一句話 |')
 w('|---|---|---|')
-for a, b, c in [('點燃', 'поджог', '持續火焰傷害，多數火系裝備的主力；先有易燃更容易命中'),
-                ('易燃', 'горючесть', '標記狀態，先施加後讓點燃更容易命中／加重'),
-                ('流血', 'кровотечение', '持續傷害，常見於匕首與爪類'),
-                ('疾病', 'болезнь', '持續傷害；「瘟疫」狀態可免疫並反過來施加'),
-                ('冰凍', 'заморозка', '定身；解除後結算「二次冰凍」傷害'),
-                ('電擊', 'шок', '雷系裝備附加的負面狀態'),
-                ('詛咒', 'проклятие', '普攻有機率落空'),
-                ('虛弱', 'слабость', '降低目標輸出'),
-                ('易傷', 'уязвимость', '提高目標受到的傷害')]:
-    w('| %s | %s | %s |' % (a, b, c))
+for _k, _v in STATUS.items():
+    w('| %s | %s | %s |' % (_v['n'][0], _v['n'][2].lower(), _v['sum'][0]))
 w()
+w('※ 以下細節來自玩家提供的遊戲內圖鑑截圖（`data/status/*.jpg`，俄文版），')
+w('※ 地圖物件資料沒有這些內容。')
+w()
+w('### 各狀態細節')
+w()
+for _k, _v in STATUS.items():
+    w('#### %s（%s）%s' % (_v['n'][0], _v['n'][2],
+                          '　— 會造成傷害' if _v.get('kind') == 'dmg' else ''))
+    w()
+    w(_v['sum'][0])
+    if _v.get('traits'):
+        w()
+        w('**特性**')
+        for _x in _v['traits']:
+            w('- %s' % _x[0])
+    if _v.get('inter'):
+        w()
+        w('**與其他狀態的交互**')
+        for _x in _v['inter']:
+            w('- %s' % _x[0])
+    w()
+for _r in RULES:
+    w('#### %s（%s）' % (_r['n'][0], _r['n'][2]))
+    w()
+    for _x in _r['lines']:
+        w('- %s' % _x[0])
+    w()
 w('所以像「+18%對非英雄單位非狀態傷害」這種寫法，指的是**只加成普攻與技能**，')
 w('點燃／流血那類持續傷害不吃這條加成。反過來「+15%點燃傷害」只加成點燃。')
 w()

@@ -9,6 +9,7 @@ sys.stdout.reconfigure(encoding='utf-8')
 ROOT = r'D:/Notebook Program Scripts/Python_Scripts/DarkSheep'
 DB = json.load(open('db_items.json', encoding='utf-8'))
 SETB = json.load(open('set_bonus.json', encoding='utf-8'))
+STAT_INFO = json.load(open('status.json', encoding='utf-8'))
 NZH = json.load(open('names2.json', encoding='utf-8'))
 NEN = json.load(open('names_en.json', encoding='utf-8'))
 AB = json.load(open('ab_db.json', encoding='utf-8'))
@@ -250,6 +251,9 @@ out = {
     'ritual': SITE.get('ritual', []),
     'items': items,
     # 英勇之錘／風暴之錘／吞噬萬物 各自算作該套裝的 2 件
+    # 狀態說明（玩家的遊戲內圖鑑截圖，data/status/*.jpg）
+    'status': {k: v for k, v in STAT_INFO.items() if not k.startswith('_')},
+    'statusRules': STAT_INFO.get('_rules', []),
     'setDouble': {k: v for k, v in (SETB.get('_double') or {}).items()
                   if not k.startswith('_')},
     'sets': sets,
