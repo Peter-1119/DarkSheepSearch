@@ -46,7 +46,11 @@ input{font:inherit}
 /* ============================================================ shell */
 .app{position:relative;z-index:1;height:100%;display:flex;flex-direction:column}
 
+/* backdrop-filter 會讓 .topbar 自成一個堆疊環境 —— 裡面的搜尋建議
+   不管 z-index 多高，都只在這塊內部有效，整塊仍會被後面的 .body 蓋掉。
+   所以 .topbar 本身要拿到一個高於面板／抽屜的層級。 */
 .topbar{
+  position:relative;z-index:25;
   display:flex;align-items:center;gap:16px;padding:0 16px;height:56px;flex:0 0 auto;
   border-bottom:1px solid var(--line);
   background:linear-gradient(180deg,rgba(20,24,34,.92),rgba(14,17,24,.92));
@@ -76,6 +80,38 @@ input{font:inherit}
   border-radius:5px;padding:0 6px;pointer-events:none;
 }
 .search input:not(:placeholder-shown)~kbd{display:none}
+
+/* 搜尋建議：聚焦且空白時才浮出來 —— 那正好是「我可以打什麼」的時刻，
+   平常完全不佔版面。分成關鍵字（填進搜尋框）與篩選（直接套條件）兩種，
+   後者用不同底色區隔，因為它們的行為不一樣。 */
+.sugg{
+  position:absolute;left:0;right:0;top:calc(100% + 6px);z-index:30;
+  max-height:min(62vh,420px);overflow-y:auto;
+  padding:12px 13px 13px;border-radius:11px;
+  background:var(--surface);border:1px solid var(--line-2);
+  box-shadow:0 24px 60px -18px rgba(0,0,0,.85);
+}
+.sugg h6{
+  margin:12px 0 7px;font-size:10px;font-weight:600;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--ink-3);
+}
+.sugg h6:first-child{margin-top:0}
+.sugg .row{display:flex;flex-wrap:wrap;gap:6px}
+.sg{
+  display:inline-flex;align-items:center;gap:5px;cursor:pointer;
+  padding:5px 10px;border-radius:99px;font-size:12px;white-space:nowrap;
+  background:var(--surface-2);border:1px solid var(--line);color:var(--ink-2);
+  transition:border-color var(--dur),color var(--dur),background var(--dur);
+}
+.sg:hover{border-color:var(--line-2);color:var(--ink);background:var(--bg-2)}
+.sg .n{font:10px/1 ui-monospace,monospace;color:var(--ink-3)}
+/* 篩選型的（套裝／主動／排行）給一條左側色帶，跟純關鍵字區分開 */
+.sg.f{border-color:color-mix(in srgb,var(--sc,var(--accent)) 40%,var(--line))}
+.sg.f::before{content:"";width:6px;height:6px;border-radius:50%;
+  background:var(--sc,var(--accent))}
+.sg[aria-pressed="true"]{border-color:var(--accent);color:var(--ink)}
+.sugg .sg-note{margin-top:12px;padding-top:10px;border-top:1px solid var(--line);
+  font-size:11px;color:var(--ink-3);line-height:1.6}
 /* 清除鈕跟「/」提示共用同一格：沒字時提示快捷鍵，有字時換成 ✕ */
 .search .clr{
   position:absolute;right:5px;top:5px;width:24px;height:24px;z-index:2;
@@ -717,7 +753,7 @@ body[data-resizing="1"]{cursor:col-resize;user-select:none}
   /* 抽屜浮在被壓暗的畫面上，底色要比桌機那個 --bg-2 亮一階，
      否則跟遮罩後的背景一樣黑，邊界看不出來、會像內容被截掉。 */
   .drawer{
-    position:fixed;left:0;top:0;bottom:0;z-index:19;width:min(84vw,300px);
+    position:fixed;left:0;top:52px;bottom:0;z-index:19;width:min(84vw,300px);
     background:var(--surface);
     border-right:1px solid var(--line-2);box-shadow:0 0 60px rgba(0,0,0,.8);
     transform:translateX(-100%);transition:transform .24s var(--ease);
@@ -815,6 +851,7 @@ body[data-resizing="1"]{cursor:col-resize;user-select:none}
       <input id="q" type="search" placeholder="搜尋裝備…" autocomplete="off" spellcheck="false">
       <button class="clr" id="qclr" type="button">✕</button>
       <kbd>/</kbd>
+      <div class="sugg" id="sugg" hidden></div>
     </div>
 
     <div class="spacer"></div>
@@ -915,6 +952,9 @@ const UI = {
       loPas:'被動效果', loSet:'觸發的套裝加成', loNone:'還沒放入任何裝備',
       loNote:'減傷類同時帶多件不會疊加，這裡取最高值；其餘屬性直接相加',
       loRelic:'另需任一件「聖物」類道具', loRemove:'移除',
+      sgStatus:'狀態效果', sgKw:'常見關鍵字', sgFilter:'快速篩選',
+      sgRank:'依數值排行', sgActive:'主動技能',
+      sgHint:'點關鍵字直接搜尋；有色點的是篩選條件，再點一次取消',
       loToggle:'展開／收合屬性總計', loFrom:'來自 %s', loRoll:'隨機抽一件', loArmed:'從下方挑一件放進這格',
       loArtMax:'同一件神器最多 2 件', loSmith:'鐵匠複製',
       loSmithUsed:'鐵匠複製整場只能用一次，已經用在「%s」了',
@@ -951,6 +991,9 @@ const UI = {
       loPas:'Passive effects', loSet:'Set bonuses in effect', loNone:'No items yet',
       loNote:'Damage reductions of the same kind do not stack - the highest applies; everything else adds up',
       loRelic:'Also needs any "Relic" item', loRemove:'Remove',
+      sgStatus:'Status effects', sgKw:'Common keywords', sgFilter:'Quick filters',
+      sgRank:'Rank by stat', sgActive:'Active ability',
+      sgHint:'Tap a keyword to search it; dotted ones are filters - tap again to clear',
       loToggle:'Expand / collapse totals', loFrom:'From %s', loRoll:'Roll a random one', loArmed:'Pick an item below for this slot',
       loArtMax:'An artifact can appear at most twice', loSmith:'Blacksmith copy',
       loSmithUsed:'The blacksmith copy is once per game - already used on "%s"',
@@ -991,6 +1034,9 @@ const UI = {
       loSet:'Действующие бонусы комплекта', loNone:'Пока ничего не выбрано',
       loNote:'Снижения урона одного вида не суммируются - берётся наибольшее; остальное складывается',
       loRelic:'Нужен ещё любой предмет категории «Реликвия»', loRemove:'Убрать',
+      sgStatus:'Статусы', sgKw:'Частые слова', sgFilter:'Быстрые фильтры',
+      sgRank:'Рейтинг по хар-ке', sgActive:'Активное умение',
+      sgHint:'Нажмите слово, чтобы найти его; с точкой - это фильтры, нажмите ещё раз для сброса',
       loToggle:'Развернуть / свернуть сводку', loFrom:'Из %s', loRoll:'Случайный предмет', loArmed:'Выберите предмет ниже для этого слота',
       loArtMax:'Артефакт может встречаться не более двух раз', loSmith:'Копия кузнеца',
       loSmithUsed:'Копия кузнеца доступна один раз за игру - уже использована на «%s»',
@@ -1014,6 +1060,7 @@ const S = {
   tier: null,        // null = all
   cat: null,         // 取得管道分類
   set: null,         // 套裝（c1~c4）
+  act: null,         // 只看主動技能道具
   fold: JSON.parse(localStorage.getItem('ud.fold') || '{}'),
   q: '',
   sel: null,
@@ -1069,6 +1116,14 @@ function renderRail(){
           <i class="dot" style="background:#7a8398"></i>
           <span class="nm">${esc(t('all'))}</span>
           <span class="ct">${total}</span></button>`;
+  /* 「只看主動」是從搜尋建議套上去的，側欄看不到的話，
+     使用者只會覺得「怎麼剩 70 件」卻找不到原因 —— 跟套裝一樣要列出來。 */
+  if (S.act){
+    h += `<button class="tier" data-g="" aria-pressed="true" style="margin-top:4px">
+            <i class="dot" style="background:var(--mat)"></i>
+            <span class="nm">${esc(t('sgActive'))}</span>
+            <span class="ct">${IDS.filter(i => ITEMS[i].act).length}</span></button>`;
+  }
   if (S.set){
     const n = IDS.filter(i => setKeysOf(ITEMS[i]).includes(S.set)).length;
     h += `<button class="tier" data-g="" aria-pressed="true" style="margin-top:4px">
@@ -1136,6 +1191,7 @@ function visible(){
     if (S.tier !== null && ITEMS[id].g !== S.tier) return false;
     if (S.cat !== null && !DATA.cats[S.cat].g.includes(ITEMS[id].g)) return false;
     if (S.set && !setKeysOf(ITEMS[id]).includes(S.set)) return false;
+    if (S.act && !ITEMS[id].act) return false;
     if (q && !HAY[id].includes(q)) return false;
     return true;
   });
@@ -1884,17 +1940,99 @@ rail.addEventListener('click', e => {
   const b = e.target.closest('.tier');
   if (!b) return;
   const g = b.dataset.g === '' ? null : +b.dataset.g;
-  if (g === null){ S.tier = null; S.cat = null; S.set = null; }
+  if (g === null){ S.tier = null; S.cat = null; S.set = null; S.act = null; }
   else { S.tier = (S.tier === g) ? null : g; S.cat = null; S.set = null; }
   renderRail(); renderGrid();
   main.scrollTop = 0;
   setDrawer(false);
 });
 
+/* ---------------------------------------------------------------- 搜尋建議
+   使用者最大的問題不是搜不到，是「不知道可以搜什麼」。
+   所以聚焦搜尋框（且還沒打字）時浮出一張建議表。
+   三種東西混在一起，但行為不同，用左側色點區分：
+     · 純關鍵字 -> 填進搜尋框（狀態效果、能力字眼）
+     · 篩選     -> 直接套條件（套裝、只看主動）
+     · 排行     -> 切換排行依據（「誰的魔抗最高」用排行比用搜尋準）
+   命中數即時算，0 筆的直接不顯示 —— 建議一個搜不到的詞比不建議更糟。 */
+/* l = 顯示文字，q = 實際查詢字串。兩者常常不一樣：
+     · 英文的「點燃」在資料裡是 burn，不是 ignite
+     · 俄文是屈折語，поджог/ауры/чистого 會變格，所以查詢一律用詞幹
+   下面每一組的三語命中數都實際驗證過，不是猜的。 */
+const SUGG = [
+  {t: 'status', k: [
+    {l: ['點燃','Burn','Поджог']},
+    {l: ['易燃','Flammable','Горючесть'], q: ['易燃','flammable','горюч']},
+    {l: ['流血','Bleed','Кровотечение'],  q: ['流血','bleed','кровотеч']},
+    {l: ['疾病','Disease','Болезнь'],     q: ['疾病','disease','болезн']},
+    {l: ['冰凍','Freeze','Заморозка'],    q: ['冰凍','freeze','заморозк']},
+    {l: ['電擊','Shock','Шок']},
+    {l: ['詛咒','Curse','Проклятие'],     q: ['詛咒','curse','проклят']},
+    {l: ['虛弱','Weakness','Слабость'],   q: ['虛弱','weakness','слабост']},
+    {l: ['易傷','Vulnerable','Уязвимость'], q: ['易傷','vulnerab','уязвим']}]},
+  {t: 'kw', k: [
+    {l: ['光環','Aura','Аура'],           q: ['光環','aura','аур']},
+    {l: ['吸血','Lifesteal','Вампиризм'], q: ['吸血','lifesteal','вампириз']},
+    {l: ['反傷','Thorns','Ответный урон'],q: ['反傷','thorns','ответн']},
+    {l: ['穿透','Penetration','Пробитие'],q: ['穿透','penetration','пробити']},
+    {l: ['格擋','Block','Блокирует'],     q: ['格擋','block','блокир']},
+    {l: ['範圍','Area','По области'],     q: ['範圍','area','област']},
+    {l: ['亡靈','Undead','Нежить'],       q: ['亡靈','undead','нежит']},
+    {l: ['近戰','Melee','Ближний бой'],   q: ['近戰','melee','ближнего']},
+    {l: ['免疫','Immunity','Иммунитет'],  q: ['免疫','immun','иммунитет']},
+    {l: ['真實傷害','True damage','Чистый урон'], q: ['真實傷害','true damage','чистого']}]},
+];
+const SUGG_RANK = ['sp', 'atk', 'armor', 'mres', 'sres', 'as'];
+
+function suggCount(word){
+  const w = word.toLowerCase();
+  let n = 0;
+  for (const id of IDS) if (HAY[id].includes(w)) n++;
+  return n;
+}
+function renderSugg(){
+  const box = $('#sugg'), L = li();
+  let h = '';
+  for (const g of SUGG){
+    const chips = g.k.map(o => {
+      const lab = o.l[L] || o.l[0];
+      const w = (o.q || o.l)[L] || (o.q || o.l)[0];
+      const n = suggCount(w);
+      return n ? `<button class="sg" data-sq="${esc(w)}" title="${esc(lab)}">${
+        esc(lab)}<span class="n">${n}</span></button>` : '';
+    }).join('');
+    if (chips) h += `<h6>${esc(t(g.t === 'status' ? 'sgStatus' : 'sgKw'))}</h6>
+                     <div class="row">${chips}</div>`;
+  }
+  const setChips = Object.keys(SETS).map(k => {
+    const G = SETS[k], n = IDS.filter(i => setKeysOf(ITEMS[i]).includes(k)).length;
+    return n ? `<button class="sg f" data-sset="${k}" style="--sc:${G.c}"
+        aria-pressed="${S.set === k}">${esc(G.n[L])}<span class="n">${n}</span></button>` : '';
+  }).join('');
+  const nAct = IDS.filter(i => ITEMS[i].act).length;
+  h += `<h6>${esc(t('sgFilter'))}</h6><div class="row">
+      <button class="sg f" data-sact="1" style="--sc:#57d98a"
+        aria-pressed="${!!S.act}">${esc(t('sgActive'))}<span class="n">${nAct}</span></button>
+      ${setChips}</div>`;
+  h += `<h6>${esc(t('sgRank'))}</h6><div class="row">${
+    SUGG_RANK.map(k => { const m = STAT(k); return m
+      ? `<button class="sg f" data-srank="${k}" style="--sc:var(--accent)"
+           aria-pressed="${S.rank === k}">${esc(m[S.lang] || m.zh)}<span class="n">${m.n}</span></button>`
+      : ''; }).join('')}</div>`;
+  h += `<div class="sg-note">${esc(t('sgHint'))}</div>`;
+  box.innerHTML = h;
+}
+function showSugg(on){
+  const box = $('#sugg');
+  if (on && !q.value.trim()){ renderSugg(); box.hidden = false; }
+  else box.hidden = true;
+}
+
 const q = $('#q');
 let qT = null;
 q.addEventListener('input', () => {
   S.q = q.value;
+  showSugg(!q.value.trim());
   renderGrid(); syncMenuDot();
   clearTimeout(qT); qT = setTimeout(renderRail, 90);   /* rail is cheap but not free */
 });
@@ -1907,6 +2045,30 @@ function clearQ(focus){
   if (focus) q.focus();
 }
 $('#qclr').addEventListener('click', () => clearQ(true));
+
+q.addEventListener('focus', () => showSugg(true));
+/* 用 mousedown 先擋住 blur，否則點 chip 的瞬間清單就收起來了 */
+$('#sugg').addEventListener('mousedown', e => e.preventDefault());
+q.addEventListener('blur', () => setTimeout(() => showSugg(false), 60));
+$('#sugg').addEventListener('click', e => {
+  const b = e.target.closest('button'); if (!b) return;
+  const d = b.dataset;
+  if (d.sq){                       // 關鍵字：填進搜尋框
+    q.value = d.sq; S.q = d.sq;
+    renderGrid(); renderRail(); showSugg(false); q.blur();
+  } else if (d.sset){              // 套裝：套篩選
+    S.set = (S.set === d.sset) ? null : d.sset;
+    S.tier = null; S.cat = null;
+    renderRail(); renderGrid(); main.scrollTop = 0; showSugg(false); q.blur();
+  } else if (d.sact){              // 只看主動技能道具
+    S.act = S.act ? null : 1;
+    renderRail(); renderGrid(); main.scrollTop = 0; showSugg(false); q.blur();
+  } else if (d.srank){             // 切換排行依據
+    S.rank = (S.rank === d.srank) ? '' : d.srank;
+    localStorage.setItem('ud.rank', S.rank);
+    fillRank(); renderGrid(); main.scrollTop = 0; showSugg(false); q.blur();
+  }
+});
 
 $('#lang').addEventListener('click', e => {
   const b = e.target.closest('button'); if (!b) return;
@@ -1990,7 +2152,8 @@ function setSheet(vh){
 /* 篩選鈕上的小圓點：有任何篩選在作用時亮起。
    少了它，使用者只會看到「怎麼只剩 7 件」卻找不到原因。 */
 function syncMenuDot(){
-  $('#menudot').hidden = !(S.tier !== null || S.cat !== null || S.set || S.q.trim());
+  $('#menudot').hidden = !(S.tier !== null || S.cat !== null || S.set ||
+                           S.act || S.q.trim());
 }
 $('#menu').addEventListener('click', () => setDrawer(!drawerOn));
 $('#drclose').addEventListener('click', () => setDrawer(false));
@@ -2069,6 +2232,7 @@ main.addEventListener('scroll', () => { clearTimeout(tipT); tip.dataset.on = '0'
 addEventListener('keydown', e => {
   if (e.key === '/' && document.activeElement !== q){ e.preventDefault(); q.focus(); q.select(); return; }
   if (e.key === 'Escape'){
+    if (!$('#sugg').hidden){ showSugg(false); q.blur(); return; }
     if (armed){ disarmBonus(true); return; }
     if (document.activeElement === q && q.value){ clearQ(false); }
     else if (S.sel) closeItem();
