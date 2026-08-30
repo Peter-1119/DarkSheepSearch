@@ -572,7 +572,7 @@ body[data-resizing="1"]{cursor:col-resize;user-select:none}
 .load{
   flex:0 0 auto;border-bottom:1px solid var(--line);
   background:linear-gradient(180deg,var(--surface),var(--bg-2));
-  padding:10px 20px 12px;
+  padding:10px 20px 18px;      /* 下緣多留一點：收合鈕會往上壓約 11px */
 }
 .lo-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .lo-slots{display:flex;gap:8px;flex-wrap:wrap}
@@ -640,7 +640,21 @@ body[data-resizing="1"]{cursor:col-resize;user-select:none}
   transition:border-color var(--dur),color var(--dur);
 }
 .lo-clear:hover{border-color:var(--line-2);color:var(--ink)}
-.lo-clear .cv{font-size:8px;color:var(--ink-3)}
+
+/* 收合鈕：騎在配裝面板的下緣上。
+   用上下各 -11px 的負邊界讓它「不佔版面高度」（22 - 11 - 11 = 0），
+   所以下面的格子不會被往下推。視覺只有 46×22，但 ::after 把可點範圍
+   撐到 46+36 寬、22+24 高，觸控不會點不到。 */
+.lo-edge{
+  position:relative;z-index:5;align-self:center;flex:0 0 auto;
+  width:46px;height:22px;margin:-11px auto;border-radius:99px;cursor:pointer;
+  display:grid;place-items:center;font-size:9px;line-height:1;
+  background:var(--surface-2);border:1px solid var(--line-2);color:var(--ink-3);
+  transition:background var(--dur),color var(--dur),border-color var(--dur),width var(--dur);
+}
+.lo-edge::after{content:"";position:absolute;inset:-12px -18px}
+.lo-edge:hover{background:var(--surface);border-color:var(--accent);color:var(--accent);width:60px}
+.lo-edge:focus-visible{outline:1px solid var(--accent);outline-offset:2px}
 
 .lo-body{display:flex;gap:22px;flex-wrap:wrap;margin-top:11px}
 .lo-sec{min-width:0}
@@ -743,7 +757,9 @@ body[data-resizing="1"]{cursor:col-resize;user-select:none}
   /* -------- 配裝列
      摘要在手機上很容易吃掉整個畫面，所以限高自己捲，
      另外給一個收合鈕：挑裝備時一鍵把格子的空間還回來。 */
-  .load{padding:9px 11px 11px;max-height:52vh;overflow-y:auto}
+  .load{padding:9px 11px 20px;max-height:52vh;overflow-y:auto}
+  .lo-edge{width:56px;height:24px;margin:-12px auto;font-size:10px}
+  .lo-edge:hover{width:56px}
   .lo-body{gap:14px;flex-direction:column}
   .lo-slot{width:46px;height:46px}
   .lo-slot .x{opacity:1}          /* 觸控沒有 hover，移除鈕要一直看得見 */
@@ -842,6 +858,7 @@ body[data-resizing="1"]{cursor:col-resize;user-select:none}
     </div>
     <div class="col">
       <div class="load" id="load" hidden></div>
+      <button class="lo-edge" id="loedge" type="button" hidden aria-expanded="true"></button>
       <main class="main" id="main"></main>
     </div>
 
@@ -898,7 +915,7 @@ const UI = {
       loPas:'被動效果', loSet:'觸發的套裝加成', loNone:'還沒放入任何裝備',
       loNote:'減傷類同時帶多件不會疊加，這裡取最高值；其餘屬性直接相加',
       loRelic:'另需任一件「聖物」類道具', loRemove:'移除',
-      loFrom:'來自 %s', loRoll:'隨機抽一件', loArmed:'從下方挑一件放進這格',
+      loToggle:'展開／收合屬性總計', loFrom:'來自 %s', loRoll:'隨機抽一件', loArmed:'從下方挑一件放進這格',
       loArtMax:'同一件神器最多 2 件', loSmith:'鐵匠複製',
       loSmithUsed:'鐵匠複製整場只能用一次，已經用在「%s」了',
       loArtNote:'神器每件只能合成一次，所以預設每件只能帶 1 個。鐵匠可以複製神器，'
@@ -934,7 +951,7 @@ const UI = {
       loPas:'Passive effects', loSet:'Set bonuses in effect', loNone:'No items yet',
       loNote:'Damage reductions of the same kind do not stack - the highest applies; everything else adds up',
       loRelic:'Also needs any "Relic" item', loRemove:'Remove',
-      loFrom:'From %s', loRoll:'Roll a random one', loArmed:'Pick an item below for this slot',
+      loToggle:'Expand / collapse totals', loFrom:'From %s', loRoll:'Roll a random one', loArmed:'Pick an item below for this slot',
       loArtMax:'An artifact can appear at most twice', loSmith:'Blacksmith copy',
       loSmithUsed:'The blacksmith copy is once per game - already used on "%s"',
       loArtNote:'Each artifact can only be crafted once, so normally you carry one of each. '
@@ -974,7 +991,7 @@ const UI = {
       loSet:'Действующие бонусы комплекта', loNone:'Пока ничего не выбрано',
       loNote:'Снижения урона одного вида не суммируются - берётся наибольшее; остальное складывается',
       loRelic:'Нужен ещё любой предмет категории «Реликвия»', loRemove:'Убрать',
-      loFrom:'Из %s', loRoll:'Случайный предмет', loArmed:'Выберите предмет ниже для этого слота',
+      loToggle:'Развернуть / свернуть сводку', loFrom:'Из %s', loRoll:'Случайный предмет', loArmed:'Выберите предмет ниже для этого слота',
       loArtMax:'Артефакт может встречаться не более двух раз', loSmith:'Копия кузнеца',
       loSmithUsed:'Копия кузнеца доступна один раз за игру - уже использована на «%s»',
       loArtNote:'Каждый артефакт создаётся только один раз, поэтому обычно он у вас один. '
@@ -1460,8 +1477,15 @@ function rollBonus(k){
 }
 
 function renderLoad(){
-  const box = $('#load');
+  const box = $('#load'), edge = $('#loedge');
   box.hidden = S.mode !== 'build';
+  /* 收合鈕騎在面板下緣 —— 會動的是那條邊界，控制項就該長在那裡。
+     沒有東西可看的時候（空欄位）就不顯示，免得按了沒反應。 */
+  edge.hidden = box.hidden || !loadAll().length;
+  edge.setAttribute('aria-expanded', String(S.loOpen));
+  edge.title = t('loToggle');
+  edge.setAttribute('aria-label', t('loToggle'));
+  edge.textContent = S.loOpen ? '▲' : '▼';
   if (box.hidden) return;
   let slots = '';
   const seenArt = {};
@@ -1504,10 +1528,7 @@ function renderLoad(){
       <span class="lo-count">${S.load.length} / ${MAXSLOT}</span>
       <span class="lo-hint${loMsg ? ' warn' : ''}">${esc(loMsg || (armed ? t('loArmed')
         : (full ? t('loFull') : t('loHint'))))}</span>
-      ${S.load.length ? `<button class="lo-clear" id="lotog" type="button"
-            aria-expanded="${S.loOpen}">${esc(t('loSum'))} <span class="cv">${
-            S.loOpen ? '▲' : '▼'}</span></button>
-        <button class="lo-clear" id="loclear" type="button">${
+      ${S.load.length ? `<button class="lo-clear" id="loclear" type="button">${
           esc(t('loClear'))}</button>` : ''}
     </div>`;
 
@@ -1804,13 +1825,15 @@ $('#load').addEventListener('click', e => {
   if (e.target.closest('#loclear')){
     S.load = []; S.bonus = {}; loadSave(); bonusSave(); renderLoad(); return;
   }
-  if (e.target.closest('#lotog')){
-    S.loOpen = !S.loOpen;
-    localStorage.setItem('ud.loopen', S.loOpen ? '1' : '0');
-    renderLoad(); return;
-  }
+
   const slot = e.target.closest('[data-slot]');
   if (slot) openItem(S.load[+slot.dataset.slot], true);
+});
+
+$('#loedge').addEventListener('click', () => {
+  S.loOpen = !S.loOpen;
+  localStorage.setItem('ud.loopen', S.loOpen ? '1' : '0');
+  renderLoad();
 });
 
 $('#mode').addEventListener('click', e => {
