@@ -110,6 +110,9 @@ input{font:inherit}
   transition:border-color var(--dur),color var(--dur),background var(--dur);
 }
 .sg:hover{border-color:var(--line-2);color:var(--ink);background:var(--bg-2)}
+.sg.tint{color:var(--sc)}
+.sg.tint:hover{border-color:color-mix(in srgb,var(--sc) 55%,var(--line));
+  background:color-mix(in srgb,var(--sc) 12%,var(--bg-2))}
 .sg .n{font:10px/1 ui-monospace,monospace;color:var(--ink-3)}
 /* 篩選型的（套裝／主動／排行）給一條左側色帶，跟純關鍵字區分開 */
 .sg.f{border-color:color-mix(in srgb,var(--sc,var(--accent)) 40%,var(--line))}
@@ -563,7 +566,13 @@ body[data-resizing="1"]{cursor:col-resize;user-select:none}
 /* 狀態說明。用 <details> 讓它預設收起 —— 大部分時候使用者只想確認
    「這件會上點燃」，需要細節時才展開，不必一直佔著面板。 */
 .sts{display:flex;flex-direction:column;gap:5px}
-.st{border:1px solid var(--line);border-radius:9px;background:var(--surface);overflow:hidden}
+/* 左側色帶 ＋ 標題上色 —— 跟套裝加成同一套做法，不另外發明語言。
+   同一個抗性家族用相近色相（火焰橘紅系、詛咒紫系），
+   所以顏色本身也在暗示「該用哪種抗性擋」。 */
+.st{
+  border:1px solid var(--line);border-left:3px solid var(--sc,var(--line-2));
+  border-radius:9px;background:var(--surface);overflow:hidden;
+}
 .st > summary{
   list-style:none;cursor:pointer;padding:9px 12px;display:flex;
   align-items:baseline;gap:7px;flex-wrap:wrap;
@@ -573,8 +582,8 @@ body[data-resizing="1"]{cursor:col-resize;user-select:none}
 .st > summary::after{content:"▾";margin-left:auto;font-size:9px;color:var(--ink-3);
   transition:transform var(--dur)}
 .st[open] > summary::after{transform:rotate(180deg)}
-.st > summary:hover{background:var(--surface-2)}
-.st > summary b{font-size:13.5px;color:var(--ink)}
+.st > summary:hover{background:color-mix(in srgb,var(--sc,var(--ink)) 9%,var(--surface-2))}
+.st > summary b{font-size:13.5px;color:var(--sc,var(--ink))}
 .st > summary .s{font-size:var(--fs-read);color:var(--ink-2);flex:1 1 100%;line-height:1.65}
 .st > summary .tag{
   font-size:10.5px;padding:2px 7px;border-radius:99px;white-space:nowrap;
@@ -701,7 +710,7 @@ body[data-resizing="1"]{cursor:col-resize;user-select:none}
 /* -------- 配裝模式
    欄位列釘在格子上方而不是塞進右面板：配裝時「放一件 -> 馬上看到它做什麼」
    要同時發生，右面板留給單件詳細，兩塊地不互搶。 */
-.col{flex:1;min-width:0;display:flex;flex-direction:column}
+.col{flex:1;min-width:0;min-height:0;display:flex;flex-direction:column}
 .load{
   flex:0 0 auto;border-bottom:1px solid var(--line);
   background:linear-gradient(180deg,var(--surface),var(--bg-2));
@@ -775,21 +784,28 @@ body[data-resizing="1"]{cursor:col-resize;user-select:none}
   transition:border-color var(--dur),color var(--dur);
 }
 .lo-clear:hover{border-color:var(--line-2);color:var(--ink)}
+.lo-clear.on{border-color:color-mix(in srgb,var(--accent) 45%,var(--line));color:var(--ink)}
+.lo-clear.on:hover{border-color:var(--accent);color:var(--accent)}
 
-/* 收合鈕：騎在配裝面板的下緣上。
-   用上下各 -11px 的負邊界讓它「不佔版面高度」（22 - 11 - 11 = 0），
-   所以下面的格子不會被往下推。視覺只有 46×22，但 ::after 把可點範圍
-   撐到 46+36 寬、22+24 高，觸控不會點不到。 */
-.lo-edge{
-  position:relative;z-index:5;align-self:center;flex:0 0 auto;
-  width:46px;height:22px;margin:-11px auto;border-radius:99px;cursor:pointer;
-  display:grid;place-items:center;font-size:9px;line-height:1;
-  background:var(--surface-2);border:1px solid var(--line-2);color:var(--ink-3);
-  transition:background var(--dur),color var(--dur),border-color var(--dur),width var(--dur);
+/* 面板分頁。只在配裝模式出現，緊貼面板頂端，
+   跟工具列的 .seg 用同一種樣式語言，使用者不必再學一種控制項。 */
+.p-tabs{
+  display:flex;gap:2px;flex:0 0 auto;padding:9px 12px 0;
+  background:var(--bg-2);border-bottom:1px solid var(--line);
 }
-.lo-edge::after{content:"";position:absolute;inset:-12px -18px}
-.lo-edge:hover{background:var(--surface);border-color:var(--accent);color:var(--accent);width:60px}
-.lo-edge:focus-visible{outline:1px solid var(--accent);outline-offset:2px}
+.p-tabs button{
+  flex:1;padding:8px 10px;border-radius:8px 8px 0 0;cursor:pointer;
+  font-size:12.5px;color:var(--ink-3);background:none;border:1px solid transparent;
+  border-bottom:0;transition:color var(--dur),background var(--dur),border-color var(--dur);
+}
+.p-tabs button:hover:not(:disabled){color:var(--ink)}
+.p-tabs button[aria-pressed="true"]{
+  color:var(--ink);background:var(--bg-2);border-color:var(--line);
+  box-shadow:0 1px 0 var(--bg-2);
+}
+.p-tabs button:disabled{opacity:.4;cursor:default}
+
+
 
 .lo-body{display:flex;gap:22px;flex-wrap:wrap;margin-top:11px}
 .lo-sec{min-width:0}
@@ -893,9 +909,7 @@ body[data-resizing="1"]{cursor:col-resize;user-select:none}
   /* -------- 配裝列
      摘要在手機上很容易吃掉整個畫面，所以限高自己捲，
      另外給一個收合鈕：挑裝備時一鍵把格子的空間還回來。 */
-  .load{padding:9px 11px 20px;max-height:52vh;overflow-y:auto}
-  .lo-edge{width:56px;height:24px;margin:-12px auto;font-size:10px}
-  .lo-edge:hover{width:56px}
+  .load{padding:9px 11px 20px}
   .lo-body{gap:14px;flex-direction:column}
   .lo-slot{width:46px;height:46px}
   .lo-slot .x{opacity:1}          /* 觸控沒有 hover，移除鈕要一直看得見 */
@@ -925,6 +939,10 @@ body[data-resizing="1"]{cursor:col-resize;user-select:none}
   }
   .handle::before{width:38px;height:4px;margin-top:10px}
   .handle:hover::before,.handle[data-drag="1"]::before{height:4px;width:52px}
+  /* sheet 的拖曳握把是絕對定位的，蓋住面板頂端 26px。
+     分頁現在是第一個子元素，不推下來的話按鈕上半會變成「拖 sheet」。 */
+  .p-tabs{padding:30px 10px 0}
+  .p-tabs:not([hidden]) + .p-head{padding-top:14px}
   .p-head{padding:24px 16px 14px}
   .p-body{padding-bottom:40px}
   .p-close{top:20px;right:10px}
@@ -995,7 +1013,6 @@ body[data-resizing="1"]{cursor:col-resize;user-select:none}
     </div>
     <div class="col">
       <div class="load" id="load" hidden></div>
-      <button class="lo-edge" id="loedge" type="button" hidden aria-expanded="true"></button>
       <main class="main" id="main"></main>
     </div>
 
@@ -1003,6 +1020,7 @@ body[data-resizing="1"]{cursor:col-resize;user-select:none}
       <div class="handle" id="handle" role="separator" aria-orientation="vertical"
            tabindex="0" title="拖曳調整寬度 · 雙擊重設"></div>
       <div class="p-inner" id="pinner">
+        <div class="p-tabs" id="ptabs" hidden></div>
         <div class="p-head" id="phead"></div>
         <div class="p-body" id="pbody"></div>
       </div>
@@ -1057,7 +1075,7 @@ const UI = {
       sgStatus:'狀態效果', sgKw:'常見關鍵字', sgFilter:'快速篩選',
       sgRank:'依數值排行', sgActive:'主動技能',
       sgHint:'點關鍵字直接搜尋；有色點的是篩選條件，再點一次取消',
-      loToggle:'展開／收合屬性總計', loFrom:'來自 %s', loRoll:'隨機抽一件', loArmed:'從下方挑一件放進這格',
+      loTotal:'配裝總計', ptItem:'這件裝備', loSlotsN:'%s 件裝備', loFrom:'來自 %s', loRoll:'隨機抽一件', loArmed:'從下方挑一件放進這格',
       loArtMax:'同一件神器最多 2 件', loSmith:'鐵匠複製',
       loDouble:'這件算作套裝的 2 件',
       loPerfectMax:'完美裝備只能帶 1 件',
@@ -1103,7 +1121,7 @@ const UI = {
       sgStatus:'Status effects', sgKw:'Common keywords', sgFilter:'Quick filters',
       sgRank:'Rank by stat', sgActive:'Active ability',
       sgHint:'Tap a keyword to search it; dotted ones are filters - tap again to clear',
-      loToggle:'Expand / collapse totals', loFrom:'From %s', loRoll:'Roll a random one', loArmed:'Pick an item below for this slot',
+      loTotal:'Loadout totals', ptItem:'This item', loSlotsN:'%s items', loFrom:'From %s', loRoll:'Roll a random one', loArmed:'Pick an item below for this slot',
       loArtMax:'An artifact can appear at most twice', loSmith:'Blacksmith copy',
       loDouble:'Counts as 2 set pieces',
       loPerfectMax:'Only one Perfected item can be carried',
@@ -1153,7 +1171,7 @@ const UI = {
       sgStatus:'Статусы', sgKw:'Частые слова', sgFilter:'Быстрые фильтры',
       sgRank:'Рейтинг по хар-ке', sgActive:'Активное умение',
       sgHint:'Нажмите слово, чтобы найти его; с точкой - это фильтры, нажмите ещё раз для сброса',
-      loToggle:'Развернуть / свернуть сводку', loFrom:'Из %s', loRoll:'Случайный предмет', loArmed:'Выберите предмет ниже для этого слота',
+      loTotal:'Итоги сборки', ptItem:'Этот предмет', loSlotsN:'предметов: %s', loFrom:'Из %s', loRoll:'Случайный предмет', loArmed:'Выберите предмет ниже для этого слота',
       loArtMax:'Артефакт может встречаться не более двух раз', loSmith:'Копия кузнеца',
       loDouble:'Считается за 2 предмета комплекта',
       loPerfectMax:'Можно взять только один Совершенный предмет',
@@ -1186,7 +1204,7 @@ const S = {
   rank: localStorage.getItem('ud.rank') || '',   // '' = 不排行
   mode: localStorage.getItem('ud.mode') || 'browse',        // browse | build
   load: JSON.parse(localStorage.getItem('ud.load') || '[]'),// 配裝欄位（可重複）
-  loOpen: localStorage.getItem('ud.loopen') !== '0',        // 摘要是否展開
+  ptab: 'sum',       // 配裝模式下右面板看哪一頁：sum 總計 / item 這件
   bonus: JSON.parse(localStorage.getItem('ud.bonus') || '{}'),// 兩個不佔格的額外欄位
 };
 const STATS = DATA.stats || [];
@@ -1471,7 +1489,7 @@ function statusRows(keys){
     const grp = (lab, arr) => (arr && arr.length)
       ? `<div class="st-g"><h6>${esc(t(lab))}</h6><ul>${
           arr.map(x => `<li>${esc(x[L])}</li>`).join('')}</ul></div>` : '';
-    return `<details class="st">
+    return `<details class="st" style="--sc:${st.c || 'var(--line-2)'}">
       <summary><b>${esc(st.n[L])}</b>${
         st.kind === 'dmg' ? `<span class="tag">${esc(t('stDmg'))}</span>` : ''}
         <span class="s">${esc(st.sum[L])}</span></summary>
@@ -1612,6 +1630,11 @@ function flash(msg){
 }
 
 function loadSave(){ localStorage.setItem('ud.load', JSON.stringify(S.load)); }
+/* 欄位一動，若正在看總計就同步重畫 —— 加一件就看到數字變 */
+function afterLoadChange(){
+  renderLoad();
+  if (S.mode === 'build' && S.ptab === 'sum' && panel.dataset.open === '1') showSummary();
+}
 function loadAdd(id){
   if (S.load.length >= MAXSLOT) return false;
   if (ITEMS[id].g === PERFECT_G &&
@@ -1628,9 +1651,9 @@ function loadAdd(id){
       }
     }
   }
-  S.load.push(id); loadSave(); renderLoad(); return true;
+  S.load.push(id); loadSave(); afterLoadChange(); return true;
 }
-function loadDel(n){ S.load.splice(n, 1); loadSave(); renderLoad(); }
+function loadDel(n){ S.load.splice(n, 1); loadSave(); afterLoadChange(); }
 
 function loadCalc(){
   const sum = {}, max = {}, setc = {}, act = [], pas = [];
@@ -1709,19 +1732,13 @@ function rollBonus(k){
   const pool = IDS.filter(i => ITEMS[i].g === b.g);
   if (!pool.length) return;
   S.bonus[k] = pool[Math.floor(Math.random() * pool.length)];
-  bonusSave(); renderLoad();
+  bonusSave(); afterLoadChange();
 }
 
 function renderLoad(){
-  const box = $('#load'), edge = $('#loedge');
+  const box = $('#load');
   box.hidden = S.mode !== 'build';
-  /* 收合鈕騎在面板下緣 —— 會動的是那條邊界，控制項就該長在那裡。
-     沒有東西可看的時候（空欄位）就不顯示，免得按了沒反應。 */
-  edge.hidden = box.hidden || !loadAll().length;
-  edge.setAttribute('aria-expanded', String(S.loOpen));
-  edge.title = t('loToggle');
-  edge.setAttribute('aria-label', t('loToggle'));
-  edge.textContent = S.loOpen ? '▲' : '▼';
+  renderTabs();
   if (box.hidden) return;
   let slots = '';
   const seenArt = {};
@@ -1766,15 +1783,23 @@ function renderLoad(){
       <span class="lo-count">${S.load.length} / ${MAXSLOT}</span>
       <span class="lo-hint${loMsg ? ' warn' : ''}">${esc(loMsg || (armed ? t('loArmed')
         : (full ? t('loFull') : t('loHint'))))}</span>
-      ${S.load.length ? `<button class="lo-clear" id="loclear" type="button">${
+      ${loadAll().length ? `<button class="lo-clear on" id="losum" type="button">${
+          esc(t('loTotal'))}</button>
+        <button class="lo-clear" id="loclear" type="button">${
           esc(t('loClear'))}</button>` : ''}
     </div>`;
 
-  if (!loadAll().length){
-    box.innerHTML = h + `<div class="lo-note">${esc(t('loNone'))}<br>${
-      esc(t('loBonusNote'))}</div>`;
-    return;
-  }
+  box.innerHTML = h;
+}
+
+/* 總計的內容。原本擠在上方那條 bar 裡，內容一長就把格子推出畫面、
+   限高之後又變成「永久佔掉半個畫面而且還要捲」——
+   兩種需求本來就不同：欄位要「一直看得到」，總計要「一大片舒服的閱讀面」。
+   所以總計搬到右面板（本來就是可捲的長欄，手機上也已經是底部 sheet），
+   上方只留欄位，格子區完全不被遮擋。 */
+function loadoutSecs(){
+  if (!loadAll().length)
+    return `<div class="note">${esc(t('loNone'))}<br>${esc(t('loBonusNote'))}</div>`;
   const c = loadCalc();
   const secs = [];
   const sumC = statChips(c.sum, '');
@@ -1811,10 +1836,40 @@ function renderLoad(){
   if (loadAll().some(x => ITEMS[x] && ITEMS[x].g === PERFECT_G))
     notes.push(esc(t('loPerfectNote')));
   if (BONUS.some(b => S.bonus[b.k])) notes.push(esc(t('loBonusNote')));
-  box.innerHTML = h + (S.loOpen
-    ? `<div class="lo-body">${secs.join('')}</div>` +
-      (notes.length ? `<div class="lo-note">${notes.join('<br>')}</div>` : '')
-    : '');
+  return `<div class="lo-body">${secs.join('')}</div>` +
+    (notes.length ? `<div class="lo-note">${notes.join('<br>')}</div>` : '');
+}
+
+/* 配裝模式下右面板有兩頁：總計 / 這件。
+   分頁只在配裝模式出現 —— 瀏覽模式沒有「總計」可看，多一排按鈕只是雜訊。 */
+function renderTabs(){
+  const box = $('#ptabs');
+  box.hidden = S.mode !== 'build';
+  if (box.hidden) return;
+  const tab = (k, lab, on) => `<button data-ptab="${k}" aria-pressed="${S.ptab === k}"
+      ${on ? '' : 'disabled'}>${esc(lab)}</button>`;
+  box.innerHTML = tab('sum', t('loTotal'), true) + tab('item', t('ptItem'), !!S.sel);
+}
+
+function showSummary(){
+  S.ptab = 'sum';
+  const wasClosed = panel.dataset.open !== '1';
+  panel.dataset.open = '1';
+  renderTabs();
+  phead.innerHTML = `
+    <button class="p-close" id="pclose" title="${esc(t('close'))}"
+            aria-label="${esc(t('close'))}">✕</button>
+    <div class="p-top"><div class="p-name">
+      <h1>${esc(t('loTotal'))}</h1>
+      <div class="alt">${esc(t('loSlotsN').replace('%s', loadAll().length))}</div>
+    </div></div>`;
+  pbody.innerHTML = loadoutSecs();
+  pbody.scrollTop = 0;
+  $('#pclose').onclick = closeItem;
+  if (!wasClosed){                 // 內容換掉時輕輕淡入，跟切換裝備一樣
+    panel.dataset.swap = '0'; void panel.offsetWidth; panel.dataset.swap = '1';
+  }
+  if (isMobile()){ setDrawer(false); setScrim(); }
 }
 
 /* ---------------------------------------------------------------- render: panel */
@@ -1891,6 +1946,10 @@ function openItem(id, scroll){
   }
   history.replaceState(null,'','#'+id);
   if (isMobile()){ setDrawer(false); setScrim(); }
+  renderTabs();
+  /* 配裝模式下停在「總計」頁時，選取／捲動／高亮照常做，
+     但面板內容維持總計 —— 這樣一邊加裝備一邊看數字即時變動。 */
+  if (S.mode === 'build' && S.ptab === 'sum') showSummary();
 }
 
 function rankedIds(){
@@ -2095,7 +2154,7 @@ $('#load').addEventListener('click', e => {
   const roll = e.target.closest('[data-broll]');
   if (roll){ rollBonus(roll.dataset.broll); return; }
   const bdel = e.target.closest('[data-bdel]');
-  if (bdel){ delete S.bonus[bdel.dataset.bdel]; bonusSave(); renderLoad(); return; }
+  if (bdel){ delete S.bonus[bdel.dataset.bdel]; bonusSave(); afterLoadChange(); return; }
   const bslot = e.target.closest('[data-bonus]');
   if (bslot){
     const k = bslot.dataset.bonus;
@@ -2104,24 +2163,28 @@ $('#load').addEventListener('click', e => {
   }
   const del = e.target.closest('[data-del]');
   if (del){ loadDel(+del.dataset.del); return; }
+  if (e.target.closest('#losum')){ showSummary(); return; }
   if (e.target.closest('#loclear')){
-    S.load = []; S.bonus = {}; loadSave(); bonusSave(); renderLoad(); return;
+    S.load = []; S.bonus = {}; loadSave(); bonusSave(); afterLoadChange(); return;
   }
 
   const slot = e.target.closest('[data-slot]');
   if (slot) openItem(S.load[+slot.dataset.slot], true);
 });
 
-$('#loedge').addEventListener('click', () => {
-  S.loOpen = !S.loOpen;
-  localStorage.setItem('ud.loopen', S.loOpen ? '1' : '0');
-  renderLoad();
+$('#ptabs').addEventListener('click', e => {
+  const b = e.target.closest('[data-ptab]'); if (!b || b.disabled) return;
+  S.ptab = b.dataset.ptab;
+  if (S.ptab === 'sum') showSummary();
+  else if (S.sel) openItem(S.sel);
 });
 
 $('#mode').addEventListener('click', e => {
   const b = e.target.closest('button'); if (!b) return;
   S.mode = b.dataset.v; localStorage.setItem('ud.mode', S.mode);
   applyMode(); renderLoad();
+  if (S.mode === 'build' && loadAll().length) showSummary();
+  else if (S.mode !== 'build' && S.sel) openItem(S.sel);
 });
 function applyMode(){
   document.body.dataset.mode = S.mode;
@@ -2224,8 +2287,13 @@ function renderSugg(){
       const lab = o.l[L] || o.l[0];
       const w = (o.q || o.l)[L] || (o.q || o.l)[0];
       const n = suggCount(w);
-      return n ? `<button class="sg" data-sq="${esc(w)}" title="${esc(lab)}">${
-        esc(lab)}<span class="n">${n}</span></button>` : '';
+      if (!n) return '';
+      /* 狀態關鍵字用該狀態的顏色，跟面板的說明區塊對得起來。
+         只染文字、不加圓點 —— 圓點在這份清單裡代表「這是篩選條件」。 */
+      const sk = SKEYS.find(k => (STATUS[k].n || []).includes(lab));
+      const col = sk ? STATUS[sk].c : '';
+      return `<button class="sg${col ? ' tint' : ''}" data-sq="${esc(w)}" title="${esc(lab)}"${
+        col ? ` style="--sc:${col}"` : ''}>${esc(lab)}<span class="n">${n}</span></button>`;
     }).join('');
     if (chips) h += `<h6>${esc(t(g.t === 'status' ? 'sgStatus' : 'sgKw'))}</h6>
                      <div class="row">${chips}</div>`;
@@ -2502,6 +2570,8 @@ placeTools(); setSheet(62); setDrawer(false);
 renderRail(); renderGrid(); renderLoad();
 const start = location.hash.slice(1);
 if (start && ITEMS[start]) openItem(start, true);
+/* 配裝模式且已經有裝備時直接把總計打開 —— 這模式下你要看的就是這個 */
+else if (S.mode === 'build' && loadAll().length) showSummary();
 })();
 </script>
 </body>
