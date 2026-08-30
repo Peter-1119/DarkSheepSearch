@@ -126,7 +126,7 @@ input{font:inherit}
 #tbtools{display:contents}
 .tb-menu{display:none}
 .scrim{
-  position:fixed;inset:0;z-index:15;background:rgba(6,8,12,.62);
+  position:fixed;inset:0;z-index:18;background:rgba(6,8,12,.62);
   opacity:0;pointer-events:none;transition:opacity .22s var(--ease);
 }
 body[data-scrim="1"] .scrim{opacity:1;pointer-events:auto}
@@ -700,9 +700,12 @@ body[data-resizing="1"]{cursor:col-resize;user-select:none}
   }
 
   /* -------- 側欄變抽屜 */
+  /* 抽屜浮在被壓暗的畫面上，底色要比桌機那個 --bg-2 亮一階，
+     否則跟遮罩後的背景一樣黑，邊界看不出來、會像內容被截掉。 */
   .drawer{
-    position:fixed;left:0;top:0;bottom:0;z-index:16;width:min(84vw,300px);
-    border-right:1px solid var(--line);box-shadow:var(--shadow);
+    position:fixed;left:0;top:0;bottom:0;z-index:19;width:min(84vw,300px);
+    background:var(--surface);
+    border-right:1px solid var(--line-2);box-shadow:0 0 60px rgba(0,0,0,.8);
     transform:translateX(-100%);transition:transform .24s var(--ease);
   }
   body[data-drawer="1"] .drawer{transform:none}
@@ -851,9 +854,9 @@ body[data-resizing="1"]{cursor:col-resize;user-select:none}
       </div>
     </aside>
   </div>
+  <div class="scrim" id="scrim"></div>
 </div>
 
-<div class="scrim" id="scrim"></div>
 <div class="tip" id="tip"></div>
 <div class="hint" id="hint">
   <span data-i="hint">點擊裝備看詳細 · 相關素材會在下方高亮</span>
@@ -1252,8 +1255,14 @@ function renderGrid(){
 /* relationship highlighting is what turns the grid into a crafting graph */
 function paintRelations(){
   const sel = S.sel;
-  const onScreen = !isMobile() &&
-                   !!(sel && main.querySelector(`.tile[data-id="${sel}"]`));
+  /* 暗化只有在「被選中的那格自己看得到」時才有意義 ——
+     看不到錨點的話，滿畫面變暗只會像壞掉。手機還要再扣掉被 sheet 蓋住的部分。 */
+  const anchor = sel && main.querySelector(`.tile[data-id="${sel}"]`);
+  let onScreen = !!anchor;
+  if (anchor && isMobile()){
+    const r = anchor.getBoundingClientRect();
+    onScreen = r.top >= main.getBoundingClientRect().top && r.bottom <= sheetTop();
+  }
   const mats = sel ? new Set(ITEMS[sel].r) : null;
   const into = sel ? new Set(ITEMS[sel].u) : null;
   /* dimming is only meaningful when the anchor of the spotlight is visible */
@@ -1932,9 +1941,18 @@ const tools = $('#tools'), scrim = $('#scrim');
 let drawerOn = false, sheetVH = 62;
 
 function placeTools(){ (isMobile() ? $('#railtools') : $('#tbtools')).appendChild(tools); }
+/* 遮罩只給抽屜用。抽屜是「彈窗」——後面的東西這時候不能操作，蓋暗是對的。
+   底部 sheet 不一樣，它是「非彈窗」：sheet 開著的時候你還要能捲格子、
+   點下一件裝備讓 sheet 直接換內容。蓋一層全螢幕暗色等於宣告後面不能碰，
+   既不符合實際行為，也把上面那截還看得見的格子一起弄暗了。 */
 function setScrim(){
-  document.body.dataset.scrim =
-    (isMobile() && (drawerOn || panel.dataset.open === '1')) ? '1' : '0';
+  document.body.dataset.scrim = (isMobile() && drawerOn) ? '1' : '0';
+}
+/* sheet 從底部蓋上來，被它蓋住的格子不算「看得見」。
+   用目標高度算而不是量 getBoundingClientRect，因為呼叫時 sheet 還在動畫中。 */
+function sheetTop(){
+  return (isMobile() && panel.dataset.open === '1')
+    ? innerHeight * (1 - sheetVH / 100) : innerHeight;
 }
 function setDrawer(on){
   drawerOn = on;
@@ -1944,6 +1962,7 @@ function setDrawer(on){
 function setSheet(vh){
   sheetVH = vh;
   panel.style.setProperty('--sh', vh + 'vh');
+  paintRelations();          // 可見範圍變了，暗化要跟著重算
 }
 /* 篩選鈕上的小圓點：有任何篩選在作用時亮起。
    少了它，使用者只會看到「怎麼只剩 7 件」卻找不到原因。 */
@@ -1952,10 +1971,7 @@ function syncMenuDot(){
 }
 $('#menu').addEventListener('click', () => setDrawer(!drawerOn));
 $('#drclose').addEventListener('click', () => setDrawer(false));
-scrim.addEventListener('click', () => {
-  if (drawerOn) setDrawer(false);
-  else if (S.sel) closeItem();
-});
+scrim.addEventListener('click', () => setDrawer(false));
 MQ.addEventListener('change', () => {
   placeTools(); setDrawer(false); setSheet(62);
   panel.style.height = ''; setScrim();
