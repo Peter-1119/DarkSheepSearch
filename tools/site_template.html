@@ -580,7 +580,45 @@ body[data-resizing="1"]{cursor:col-resize;user-select:none}
 }
 .st > summary::-webkit-details-marker{display:none}
 /* 展開標示：放在標題那一行的最右邊，外面一圈框，一眼看得出可以按 */
-.st-hd{display:flex;align-items:center;gap:7px;width:100%}
+.st-hd{display:flex;align-items:center;gap:8px;width:100%}
+.st-hd .ic{width:26px;height:26px;border-radius:6px;flex:0 0 auto;object-fit:cover;
+  box-shadow:0 0 0 1px color-mix(in srgb,var(--sc) 55%,transparent)}
+
+/* -------- 狀態頁 */
+.spage{padding:6px 20px 60px;max-width:1000px}
+.spage .sec{margin-bottom:30px}
+.spage .note{margin:0 0 14px}
+/* 圖比面板寬時讓它自己橫向捲，不要把整頁撐出橫向捲軸 */
+.smap-wrap{overflow-x:auto;padding-bottom:6px}
+.smap{width:100%;min-width:720px;height:auto;display:block}
+.smap text{font-family:inherit}
+.smap .mn{cursor:pointer}
+.smap .mn:hover rect{stroke-width:2.6}
+.smap-lg{display:flex;gap:18px;flex-wrap:wrap;margin-top:10px;
+  font-size:var(--fs-sub);color:var(--ink-3)}
+.smap-lg span{display:inline-flex;align-items:center;gap:7px}
+.smap-lg i{display:inline-block;flex:0 0 auto}
+.smap-lg i.bx{width:22px;height:13px;border:1.5px dashed #DE6BC6;border-radius:4px}
+.smap-lg i.ar{width:22px;height:0;border-top:2px solid var(--ink-2);position:relative}
+.smap-lg i.ar::after{content:"";position:absolute;right:-1px;top:-4px;
+  border-left:6px solid var(--ink-2);border-top:4px solid transparent;
+  border-bottom:4px solid transparent}
+.stab{border-collapse:collapse;width:100%;max-width:720px}
+.stab td{padding:9px 10px;border-top:1px solid var(--line);vertical-align:middle}
+.stab tr:first-child td{border-top:0}
+.stab code{font:var(--fs-sub)/1.4 ui-monospace,monospace;color:var(--ink-2);
+  background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:3px 7px}
+.stab td.v{text-align:right;font:var(--fs-read)/1 ui-monospace,monospace;color:#e0a340;
+  white-space:nowrap}
+.scz{
+  display:inline-flex;align-items:center;gap:6px;margin:2px 4px 2px 0;cursor:pointer;
+  padding:3px 10px 3px 3px;border-radius:99px;font-size:var(--fs-sub);
+  background:var(--surface);color:var(--sc);
+  border:1px solid color-mix(in srgb,var(--sc) 40%,var(--line));
+  transition:background var(--dur),border-color var(--dur);
+}
+.scz:hover{background:color-mix(in srgb,var(--sc) 14%,var(--surface));border-color:var(--sc)}
+.scz img{width:22px;height:22px;border-radius:5px;flex:0 0 auto;object-fit:cover}
 .st-hd .cv{
   margin-left:auto;flex:0 0 auto;width:21px;height:21px;border-radius:50%;
   display:grid;place-items:center;color:var(--ink-3);
@@ -994,6 +1032,7 @@ body[data-resizing="1"]{cursor:col-resize;user-select:none}
     <div class="tools" id="tools"><div class="seg" id="mode">
       <button data-v="browse" aria-pressed="true" data-i="mBrowse">瀏覽</button>
       <button data-v="build" aria-pressed="false" data-i="mBuild">配裝</button>
+      <button data-v="status" aria-pressed="false" data-i="mStatus">狀態</button>
     </div>
 
     <span class="tb-label" data-i="rankL">排行</span>
@@ -1080,6 +1119,15 @@ const UI = {
       setB:'套裝加成', pcs:'%s 件', unsure:'待確認',
       setSrc:'加成數值取自遊戲內 -c1 ~ -c5，非地圖資料',
       mBrowse:'瀏覽', mBuild:'配裝',
+      mStatus:'狀態',
+      smTitle:'狀態關係圖', smChance:'中招機率', smDmg:'受到傷害',
+      smAll:'對框內所有狀態：中招機率 +%s%',
+      smNoAmp:'沒有專屬放大器', smResist:'抗性對照', smImmune:'免疫',
+      smRules:'系統規則', smAllSt:'各狀態細節',
+      smIntro:'狀態彼此會互相放大。「易傷」提高所有狀態的中招機率，「電擊」加重三種持續傷害，'
+             +'另外三個狀態則各自對應一種持續傷害。點任一個狀態可以回到裝備清單看有哪些裝備會用到它。',
+      smLgBox:'虛線框＝影響框內全部', smLgArrow:'箭頭＝一對一放大',
+      smLgTap:'點狀態＝用它搜尋裝備',
       loHint:'點下方裝備加入欄位，最多 6 件', loClear:'清空', loFull:'欄位已滿',
       loSum:'屬性總計', loMax:'減傷（同類取最高）', loAct:'主動技能',
       loPas:'被動效果', loSet:'觸發的套裝加成', loNone:'還沒放入任何裝備',
@@ -1127,6 +1175,16 @@ const UI = {
       setB:'Set bonuses', pcs:'%s pcs', unsure:'unverified',
       setSrc:'Bonus values transcribed from -c1 ~ -c5 in game, not from map data',
       mBrowse:'Browse', mBuild:'Loadout',
+      mStatus:'Statuses',
+      smTitle:'Status relationships', smChance:'chance', smDmg:'damage',
+      smAll:'Everything inside: +%s% chance to be applied',
+      smNoAmp:'no dedicated amplifier', smResist:'Resistances', smImmune:'immune',
+      smRules:'System rules', smAllSt:'Every status in detail',
+      smIntro:'Statuses amplify each other. Vulnerability raises the chance of every status, '
+             +'Shock increases the three damage-over-time statuses, and three more statuses each '
+             +'amplify one of them. Tap any status to search items that use it.',
+      smLgBox:'Dashed box = affects everything inside', smLgArrow:'Arrow = one-to-one amplifier',
+      smLgTap:'Tap a status to search items',
       loHint:'Tap items below to fill the slots, up to 6', loClear:'Clear', loFull:'Slots full',
       loSum:'Total stats', loMax:'Damage reduction (highest only)', loAct:'Active abilities',
       loPas:'Passive effects', loSet:'Set bonuses in effect', loNone:'No items yet',
@@ -1177,6 +1235,16 @@ const UI = {
       setB:'Бонусы комплекта', pcs:'%s пр.', unsure:'не уточнено',
       setSrc:'Значения переписаны из -c1 ~ -c5 в игре, не из данных карты',
       mBrowse:'Обзор', mBuild:'Сборка',
+      mStatus:'Статусы',
+      smTitle:'Связи статусов', smChance:'шанс', smDmg:'урон',
+      smAll:'Всё внутри рамки: шанс наложения +%s%',
+      smNoAmp:'нет усилителя', smResist:'Сопротивления', smImmune:'иммунитет',
+      smRules:'Системные правила', smAllSt:'Все статусы подробно',
+      smIntro:'Статусы усиливают друг друга. «Уязвимость» повышает шанс всех статусов, '
+             +'«Шок» усиливает три периодических урона, ещё три статуса усиливают по одному. '
+             +'Нажмите на статус, чтобы найти предметы с ним.',
+      smLgBox:'Пунктир = влияет на всё внутри', smLgArrow:'Стрелка = усиление один-к-одному',
+      smLgTap:'Нажмите статус для поиска',
       loHint:'Нажимайте предметы ниже, до 6 штук', loClear:'Очистить', loFull:'Слоты заполнены',
       loSum:'Сумма характеристик', loMax:'Снижение урона (только наибольшее)',
       loAct:'Активные умения', loPas:'Пассивные эффекты',
@@ -1432,7 +1500,60 @@ function renderRank(ids){
   paintRelations();
 }
 
+/* 「狀態」模式的整頁內容：關係圖 → 抗性對照 → 系統規則 → 各狀態細節。
+   由淺入深：先看結構，再看怎麼擋，最後才是逐條數字。 */
+function renderStatusPage(){
+  const L = li(), G = DATA.statusGraph || {};
+  const chip = k => {
+    const st = STATUS[k]; if (!st) return '';
+    return `<button class="scz" data-mq="${esc((st.q||[''])[0])}" style="--sc:${st.c}">
+      ${st.icon ? `<img src="${st.icon}" alt="" loading="lazy">` : ''}${
+      esc((st.n||[])[L] || k)}</button>`;
+  };
+  const rres = (G.resist || []).map(([nme, ks, pct]) => `<tr>
+      <td><code>${esc(nme)}</code></td>
+      <td>${ks.map(chip).join('')}</td>
+      <td class="v">${pct == null ? esc(t('smImmune')) : pct + '%'}</td>
+    </tr>`).join('');
+  const rules = (DATA.statusRules || []).map(r => `<details class="st">
+      <summary title="${esc(t('stMore'))}">
+        <span class="st-hd"><b>${esc(r.n[L])}</b><span class="cv">${CHEV}</span></span>
+      </summary>
+      <div class="st-g"><ul>${r.lines.map(x => `<li>${esc(x[L])}</li>`).join('')}</ul></div>
+    </details>`).join('');
+
+  main.innerHTML = `<div class="spage">
+    <section class="sec">
+      <div class="sec-head"><h2>${esc(t('smTitle'))}</h2><span class="bar"></span></div>
+      <p class="note">${esc(t('smIntro'))}</p>
+      <div class="smap-wrap">${statusMap()}</div>
+      <div class="smap-lg">
+        <span><i class="bx"></i>${esc(t('smLgBox'))}</span>
+        <span><i class="ar"></i>${esc(t('smLgArrow'))}</span>
+        <span>${esc(t('smLgTap'))}</span>
+      </div>
+    </section>
+
+    <section class="sec">
+      <div class="sec-head"><h2>${esc(t('smResist'))}</h2><span class="bar"></span></div>
+      <table class="stab"><tbody>${rres}</tbody></table>
+    </section>
+
+    <section class="sec">
+      <div class="sec-head"><h2>${esc(t('smRules'))}</h2><span class="bar"></span></div>
+      <div class="sts">${rules}</div>
+    </section>
+
+    <section class="sec">
+      <div class="sec-head"><h2>${esc(t('smAllSt'))}</h2><span class="bar"></span>
+        <span class="n">${SKEYS.length}</span></div>
+      <div class="sts">${statusRows(SKEYS)}</div>
+    </section>
+  </div>`;
+}
+
 function renderGrid(){
+  if (S.mode === 'status'){ renderStatusPage(); return; }
   const ids = visible();
   if (S.rank && STAT(S.rank)){ renderRank(ids); return; }
   if (!ids.length){
@@ -1514,7 +1635,9 @@ function statusRows(keys){
           arr.map(x => `<li>${esc(x[L])}</li>`).join('')}</ul></div>` : '';
     return `<details class="st" style="--sc:${st.c || 'var(--line-2)'}">
       <summary title="${esc(t('stMore'))}">
-        <span class="st-hd"><b>${esc(st.n[L])}</b>${
+        <span class="st-hd">${st.icon
+            ? `<img class="ic" src="${st.icon}" alt="" loading="lazy">` : ''}<b>${
+          esc(st.n[L])}</b>${
           st.kind === 'dmg' ? `<span class="tag">${esc(t('stDmg'))}</span>` : ''}
           <span class="cv">${CHEV}</span></span>
         <span class="s">${esc(st.sum[L])}</span>
@@ -1523,6 +1646,89 @@ function statusRows(keys){
     </details>`;
   }).join('');
 }
+/* 狀態關係圖。
+   直覺會想畫成節點連線圖，但「易傷」會影響全部 7 個狀態、「電擊」影響 3 個 ——
+   14 條線交叉在一起只會變成義大利麵，反而更難懂。
+   所以改用「範圍框」表達影響全體（框住誰就影響誰），
+   箭頭只留給 1:1 的專屬放大關係，一眼就看得出結構：
+     易傷  = 外框，框內全部的中招機率 +50%
+     電擊  = 右邊，對三種持續傷害的傷害 +100%
+     易燃／虛弱／詛咒 = 各自放大一種持續傷害（1:1 配對）
+     冰凍  = 沒有專屬放大器，單獨放 */
+function statusMap(){
+  const G = DATA.statusGraph || {}, L = li();
+  const N = k => STATUS[k] || {};
+  const col = k => N(k).c || '#8b93a7';
+
+  /* 節點：圖示 ＋ 名稱。點下去就用該狀態當關鍵字搜尋，
+     這樣圖不只是圖，也是進入裝備清單的入口。 */
+  const node = (k, x, y, sz) => {
+    const st = N(k), s = sz || 54;
+    return `<g class="mn" data-mq="${esc((st.q || [''])[0])}"
+               transform="translate(${x},${y})">
+      <rect x="${-s/2-5}" y="${-s/2-5}" width="${s+10}" height="${s+10}" rx="11"
+            fill="#0c0f15" stroke="${st.c}" stroke-width="1.6"/>
+      <image href="${st.icon}" x="${-s/2}" y="${-s/2}" width="${s}" height="${s}"/>
+      <text x="0" y="${s/2+22}" text-anchor="middle" fill="${st.c}"
+            font-size="13.5" font-weight="600">${esc((st.n||[])[L] || k)}</text>
+    </g>`;
+  };
+  const mk = k => `<marker id="ah-${k}" viewBox="0 0 10 10" refX="9" refY="5"
+      markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 10 5 0 10z" fill="${col(k)}"/></marker>`;
+
+  const PAIR = [['flammable','burn'], ['weakness','bleed'], ['curse','disease']];
+  const YS = [178, 288, 398];
+  const LX = 132, RX = 404;
+
+  let g = '';
+  PAIR.forEach(([a, b], i) => {
+    const y = YS[i];
+    const ch = (G.chance || []).find(e => e[0] === a && e[1] === b);
+    const dm = (G.damage || []).find(e => e[0] === a && e[1] === b);
+    const lab = [ch ? t('smChance') + ' +' + ch[2] + '%' : '',
+                 dm ? t('smDmg') + ' +' + dm[2] + '%' : ''].filter(Boolean).join('　');
+    g += `<line x1="${LX+40}" y1="${y}" x2="${RX-44}" y2="${y}" stroke="${col(a)}"
+            stroke-width="2" marker-end="url(#ah-${a})"/>
+          <text x="${(LX+RX)/2}" y="${y-12}" text-anchor="middle" fill="${col(a)}"
+            font-size="11.5">${esc(lab)}</text>`;
+    g += node(a, LX, y) + node(b, RX, y);
+    // 電擊 -> 三種持續傷害
+    g += `<path d="M636 288 C 566 288, 540 ${y}, ${RX+48} ${y}"
+            fill="none" stroke="${col('shock')}" stroke-width="2"
+            marker-end="url(#ah-shock)" opacity=".85"/>`;
+  });
+
+  const dmgShock = (G.damage || []).find(e => e[0] === 'shock');
+  return `<svg class="smap" viewBox="0 0 880 520" role="img"
+      aria-label="${esc(t('smTitle'))}">
+    <defs>${['flammable','weakness','curse','vulnerable','shock'].map(mk).join('')}</defs>
+
+    <!-- 易傷：外框 = 影響框內全部 -->
+    <rect x="24" y="104" width="832" height="376" rx="18" fill="none"
+          stroke="${col('vulnerable')}" stroke-width="1.6" stroke-dasharray="7 6" opacity=".75"/>
+    ${node('vulnerable', 74, 48, 44)}
+    <text x="126" y="42" fill="${col('vulnerable')}" font-size="13.5" font-weight="600">${
+      esc(N('vulnerable').n ? N('vulnerable').n[L] : '')}</text>
+    <text x="126" y="61" fill="var(--ink-2)" font-size="12">${
+      esc(t('smAll').replace('%s', ((G.chance||[])[0]||[0,0,50])[2]))}</text>
+    <line x1="74" y1="82" x2="74" y2="104" stroke="${col('vulnerable')}"
+          stroke-width="1.6" stroke-dasharray="4 4"/>
+
+    ${g}
+
+    <!-- 電擊：對三種持續傷害 -->
+    ${node('shock', 690, 288)}
+    <text x="690" y="242" text-anchor="middle" fill="${col('shock')}" font-size="12">${
+      esc(t('smDmg') + ' +' + (dmgShock ? dmgShock[2] : 100) + '%')}</text>
+
+    <!-- 冰凍：沒有專屬放大器 -->
+    ${node('freeze', 690, 430, 46)}
+    <text x="690" y="392" text-anchor="middle" fill="var(--ink-3)" font-size="11.5">${
+      esc(t('smNoAmp'))}</text>
+  </svg>`;
+}
+
 function statusBlock(id){
   const keys = STAT_OF[id] || [];
   if (!keys.length) return '';
@@ -2161,6 +2367,16 @@ function closeItem(){
 
 /* ---------------------------------------------------------------- events */
 main.addEventListener('click', e => {
+  /* 關係圖與抗性表上的狀態都可以點 —— 直接用它當關鍵字回到裝備清單，
+     圖不只是圖，也是進入清單的入口。 */
+  const mq = e.target.closest('[data-mq]');
+  if (mq){
+    S.mode = 'browse'; localStorage.setItem('ud.mode', S.mode);
+    S.q = mq.dataset.mq; $('#q').value = S.q;
+    S.tier = null; S.cat = null; S.set = null; S.act = null;
+    applyMode(); renderLoad(); renderRail(); renderGrid(); main.scrollTop = 0;
+    return;
+  }
   const tile = e.target.closest('.tile,.rrow');
   if (!tile) return;
   const id = tile.dataset.id;
@@ -2212,8 +2428,10 @@ $('#mode').addEventListener('click', e => {
   const b = e.target.closest('button'); if (!b) return;
   S.mode = b.dataset.v; localStorage.setItem('ud.mode', S.mode);
   applyMode(); renderLoad();
+  renderGrid(); main.scrollTop = 0;
   if (S.mode === 'build' && loadAll().length) showSummary();
-  else if (S.mode !== 'build' && S.sel) openItem(S.sel);
+  else if (S.mode === 'status') closeItem();
+  else if (S.sel) openItem(S.sel);
 });
 function applyMode(){
   document.body.dataset.mode = S.mode;

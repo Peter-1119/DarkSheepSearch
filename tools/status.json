@@ -9,6 +9,7 @@
     "詛咒（詛咒／虛弱／易傷）紫系，所以看顏色就能猜到該用哪種抗性擋。"
   ],
   "burn": {
+    "icon": "images/status/burn.png",
     "c": "#FF5F3C",
     "n": ["點燃", "Burn", "Поджог"],
     "q": ["點燃", "burn", "поджог"],
@@ -29,6 +30,7 @@
     ]
   },
   "flammable": {
+    "icon": "images/status/flammable.png",
     "c": "#FF9E2C",
     "n": ["易燃", "Flammable", "Горючесть"],
     "q": ["易燃", "flammable", "горюч"],
@@ -47,6 +49,7 @@
     ]
   },
   "bleed": {
+    "icon": "images/status/bleed.png",
     "c": "#E5395B",
     "n": ["流血", "Bleed", "Кровотечение"],
     "q": ["流血", "bleed", "кровотеч"],
@@ -69,6 +72,7 @@
     ]
   },
   "disease": {
+    "icon": "images/status/disease.png",
     "c": "#86C044",
     "n": ["疾病", "Disease", "Болезнь"],
     "q": ["疾病", "disease", "болезн"],
@@ -91,6 +95,7 @@
     ]
   },
   "freeze": {
+    "icon": "images/status/freeze.png",
     "c": "#54C6EC",
     "n": ["冰凍", "Freeze", "Заморозка"],
     "q": ["冰凍", "freeze", "заморозк"],
@@ -110,6 +115,7 @@
     ]
   },
   "shock": {
+    "icon": "images/status/shock.png",
     "c": "#F7E15C",
     "n": ["電擊", "Shock", "Шок"],
     "q": ["電擊", "shock", "шок"],
@@ -129,6 +135,7 @@
     ]
   },
   "curse": {
+    "icon": "images/status/curse.png",
     "c": "#7B4FC4",
     "n": ["詛咒", "Curse", "Проклятие"],
     "q": ["詛咒", "curse", "проклят"],
@@ -147,6 +154,7 @@
     ]
   },
   "weakness": {
+    "icon": "images/status/weakness.png",
     "c": "#A98FC9",
     "n": ["虛弱", "Weakness", "Слабость"],
     "q": ["虛弱", "weakness", "слабост"],
@@ -165,6 +173,7 @@
     ]
   },
   "vulnerable": {
+    "icon": "images/status/vulnerable.png",
     "c": "#DE6BC6",
     "n": ["易傷", "Vulnerability", "Уязвимость"],
     "q": ["易傷", "vulnerab", "уязвим"],
@@ -180,6 +189,38 @@
     ],
     "inter": [
       ["使受到其他狀態的機率 +50%", "Raises the chance of receiving other statuses by 50%", "усиливает шанс получения других статусов на 50%"]
+    ]
+  },
+  "_graph": {
+    "_說明": [
+      "狀態之間的相互關係，從各狀態的『與其他狀態的交互』整理出來，供關係圖使用。",
+      "chance = 提高「中招機率」；damage = 提高「受到的傷害」；每筆為 [來源, 目標, 百分比]。",
+      "resist = 各種抗性擋哪些狀態（機率 -75%，plague 為免疫）。"
+    ],
+    "chance": [
+      ["vulnerable", "burn", 50],
+      ["vulnerable", "flammable", 50],
+      ["vulnerable", "bleed", 50],
+      ["vulnerable", "disease", 50],
+      ["vulnerable", "freeze", 50],
+      ["vulnerable", "weakness", 50],
+      ["vulnerable", "curse", 50],
+      ["flammable", "burn", 50]
+    ],
+    "damage": [
+      ["shock", "burn", 100],
+      ["shock", "bleed", 100],
+      ["shock", "disease", 100],
+      ["flammable", "burn", 50],
+      ["weakness", "bleed", 50],
+      ["curse", "disease", 50]
+    ],
+    "resist": [
+      ["fire resist", ["burn", "flammable"], -75],
+      ["cold resist", ["freeze"], -75],
+      ["bleed resist", ["bleed"], -75],
+      ["curse resist", ["vulnerable", "weakness", "curse"], -75],
+      ["plague", ["disease"], null]
     ]
   },
   "_rules": [

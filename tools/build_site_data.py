@@ -254,6 +254,7 @@ out = {
     # 狀態說明（玩家的遊戲內圖鑑截圖，data/status/*.jpg）
     'status': {k: v for k, v in STAT_INFO.items() if not k.startswith('_')},
     'statusRules': STAT_INFO.get('_rules', []),
+    'statusGraph': STAT_INFO.get('_graph', {}),
     'setDouble': {k: v for k, v in (SETB.get('_double') or {}).items()
                   if not k.startswith('_')},
     'sets': sets,
