@@ -575,16 +575,28 @@ body[data-resizing="1"]{cursor:col-resize;user-select:none}
 }
 .st > summary{
   list-style:none;cursor:pointer;padding:9px 12px;display:flex;
-  align-items:baseline;gap:7px;flex-wrap:wrap;
+  flex-direction:column;align-items:stretch;gap:5px;
   transition:background var(--dur);
 }
 .st > summary::-webkit-details-marker{display:none}
-.st > summary::after{content:"▾";margin-left:auto;font-size:9px;color:var(--ink-3);
-  transition:transform var(--dur)}
-.st[open] > summary::after{transform:rotate(180deg)}
+/* 展開標示：放在標題那一行的最右邊，外面一圈框，一眼看得出可以按 */
+.st-hd{display:flex;align-items:center;gap:7px;width:100%}
+.st-hd .cv{
+  margin-left:auto;flex:0 0 auto;width:21px;height:21px;border-radius:50%;
+  display:grid;place-items:center;color:var(--ink-3);
+  border:1px solid var(--line-2);background:var(--bg-2);
+  transition:transform var(--dur),color var(--dur),
+             border-color var(--dur),background var(--dur);
+}
+.st-hd .cv svg{width:11px;height:11px;display:block}
+.st > summary:hover .cv{
+  color:var(--sc,var(--ink));border-color:var(--sc,var(--line-2));
+  background:color-mix(in srgb,var(--sc,var(--ink)) 14%,var(--bg-2));
+}
+.st[open] .cv{transform:rotate(180deg)}
 .st > summary:hover{background:color-mix(in srgb,var(--sc,var(--ink)) 9%,var(--surface-2))}
 .st > summary b{font-size:13.5px;color:var(--sc,var(--ink))}
-.st > summary .s{font-size:var(--fs-read);color:var(--ink-2);flex:1 1 100%;line-height:1.65}
+.st > summary .s{font-size:var(--fs-read);color:var(--ink-2);line-height:1.65}
 .st > summary .tag{
   font-size:10.5px;padding:2px 7px;border-radius:99px;white-space:nowrap;
   color:#e0a340;border:1px solid rgba(224,163,64,.4);
@@ -1052,6 +1064,7 @@ const UI = {
       stats:'屬性', effects:'效果', recipe:'合成配方', usedin:'用於合成',
       usedNote:'綠色打勾的是你正在看的這件；其餘為該配方還需要的素材',
       stL:'相關狀態', stDmg:'會造成傷害', stTrait:'特性', stInter:'與其他狀態的交互',
+      stMore:'展開／收合詳細說明',
       alias:'舊表名稱', none:'沒有符合的裝備', tryOther:'換個關鍵字或清除篩選',
       hint:'點擊看詳細，再點一次收合 · 相關素材會在格子中高亮', hint2:'搜尋',
       shopL:'商店', setL:'套裝', setFilter:'只看這組套裝', close:'關閉', clear:'清除搜尋', results:'搜尋結果',
@@ -1096,6 +1109,7 @@ const UI = {
       into:'Builds into', stats:'Bonuses', effects:'Effects',
       recipe:'Recipe', usedin:'Used in', alias:'Old sheet name',
       usedNote:'The green ticked one is the item you are viewing; the rest are what that recipe still needs',
+      stMore:'Expand / collapse details',
       stL:'Statuses involved', stDmg:'Deals damage', stTrait:'Traits',
       stInter:'Interaction with other statuses',
       none:'No items match', tryOther:'Try another keyword or clear the filter',
@@ -1144,6 +1158,7 @@ const UI = {
       into:'Входит в', stats:'Бонусы', effects:'Эффекты',
       recipe:'Рецепт', usedin:'Используется в', alias:'Старое название',
       usedNote:'Зелёная галочка - предмет, который вы смотрите; остальное нужно для этого рецепта',
+      stMore:'Развернуть / свернуть подробности',
       stL:'Связанные статусы', stDmg:'Наносит урон', stTrait:'Особенности',
       stInter:'Взаимодействие с другими статусами',
       none:'Ничего не найдено', tryOther:'Измените запрос или сбросьте фильтр',
@@ -1482,6 +1497,14 @@ for (const id of IDS){
     (STATUS[k].q || []).some(w => w && txt.includes(w.toLowerCase())));
 }
 
+/* 展開箭頭。原本只有一個 9px 的 ▾ 靠 ::after 放，而且因為 summary 是
+   flex-wrap，它會被摘要那行擠到第二行的最右邊，看起來只是個雜點 ——
+   使用者根本不知道可以展開。改成放在標題那一行、外面加一圈框，
+   讓它一眼就讀得出是「可以按的」。 */
+const CHEV = `<svg viewBox="0 0 16 16" fill="none" stroke="currentColor"
+    stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"
+    aria-hidden="true"><path d="M4 6.5 8 10.5 12 6.5"/></svg>`;
+
 function statusRows(keys){
   const L = li();
   return keys.map(k => {
@@ -1490,9 +1513,12 @@ function statusRows(keys){
       ? `<div class="st-g"><h6>${esc(t(lab))}</h6><ul>${
           arr.map(x => `<li>${esc(x[L])}</li>`).join('')}</ul></div>` : '';
     return `<details class="st" style="--sc:${st.c || 'var(--line-2)'}">
-      <summary><b>${esc(st.n[L])}</b>${
-        st.kind === 'dmg' ? `<span class="tag">${esc(t('stDmg'))}</span>` : ''}
-        <span class="s">${esc(st.sum[L])}</span></summary>
+      <summary title="${esc(t('stMore'))}">
+        <span class="st-hd"><b>${esc(st.n[L])}</b>${
+          st.kind === 'dmg' ? `<span class="tag">${esc(t('stDmg'))}</span>` : ''}
+          <span class="cv">${CHEV}</span></span>
+        <span class="s">${esc(st.sum[L])}</span>
+      </summary>
       ${grp('stTrait', st.traits)}${grp('stInter', st.inter)}
     </details>`;
   }).join('');
@@ -1817,7 +1843,10 @@ function loadoutSecs(){
   if (stk.length){
     const L2 = li();
     const rules = (DATA.statusRules || []).map(r => `<details class="st">
-        <summary><b>${esc(r.n[L2])}</b></summary>
+        <summary title="${esc(t('stMore'))}">
+          <span class="st-hd"><b>${esc(r.n[L2])}</b>
+            <span class="cv">${CHEV}</span></span>
+        </summary>
         <div class="st-g"><ul>${
           r.lines.map(x => `<li>${esc(x[L2])}</li>`).join('')}</ul></div>
       </details>`).join('');
