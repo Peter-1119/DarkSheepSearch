@@ -6104,7 +6104,8 @@
    "gold": 300,
    "recipe": [],
    "used_in": [
-    "shcw"
+    "shcw",
+    "I00S"
    ],
    "in_wiki": true
   },
@@ -8721,7 +8722,8 @@
    "gold": 900,
    "recipe": [],
    "used_in": [
-    "desc"
+    "desc",
+    "I00S"
    ],
    "in_wiki": true
   },
@@ -12894,7 +12896,10 @@
    "icon_src": "map",
    "level": 4,
    "gold": 1200,
-   "recipe": [],
+   "recipe": [
+    "I04G",
+    "gvsm"
+   ],
    "used_in": [],
    "in_wiki": false
   },

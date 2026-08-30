@@ -181,7 +181,11 @@ for r in DB:
     }
 
 # Recipe corrections confirmed in-game (the wiki is wrong here).
-RECIPE_FIX = {'sbok': ['schl', 'pclr']}     # 黃道十二宮 = 潛能覺醒 + 覺醒卷軸
+# 配方寫在觸發裡，物件資料沒有，Wiki 也漏或寫錯的幾條，在這裡補。
+RECIPE_FIX = {
+    'sbok': ['schl', 'pclr'],       # 黃道十二宮 = 潛能覺醒 + 覺醒卷軸
+    'I00S': ['I04G', 'gvsm'],       # 寒冰之球 = 熔岩球（特殊3）+ 石英法杖（特殊1）
+}
 for k, v in RECIPE_FIX.items():
     items[k]['recipe'] = v
 # derive "used in" from the recipe graph so the two stay consistent
