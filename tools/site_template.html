@@ -625,7 +625,8 @@ body[data-resizing="1"]{cursor:col-resize;user-select:none}
   0%,100%{box-shadow:0 0 0 0 rgba(255,182,72,.42)}
   50%{box-shadow:0 0 0 6px rgba(255,182,72,0)}
 }
-.lo-hint{font-size:12px;color:var(--ink-3)}
+.lo-hint{font-size:12px;color:var(--ink-3);transition:color var(--dur)}
+.lo-hint.warn{color:#e0a340}
 .lo-clear{
   height:28px;padding:0 11px;border-radius:8px;font-size:12px;cursor:pointer;
   background:var(--surface);border:1px solid var(--line);color:var(--ink-2);
@@ -888,6 +889,9 @@ const UI = {
       loNote:'減傷類同時帶多件不會疊加，這裡取最高值；其餘屬性直接相加',
       loRelic:'另需任一件「聖物」類道具', loRemove:'移除',
       loFrom:'來自 %s', loRoll:'隨機抽一件', loArmed:'從下方挑一件放進這格',
+      loDupArt:'同一件神器不能重複配戴',
+      loArtNote:'神器每件只能合成一次；鐵匠雖然可以複製一件神器（全場限用一次），'
+               +'但同一件神器仍無法重複配戴，所以配裝時已擋掉重複的神器。',
       loBonusNote:'右邊兩格是「不佔背包格」的額外欄位：吸收器（特殊 lv.4）放一件選定的特殊 lv.1，'
                  +'祕密寶盒（特殊 lv.5）隨機生成一件特殊 lv.2。這裡的道具也算進套裝件數。',
       chainL:'任務升級鏈', chainSplit:'聖物之後分兩條路：',
@@ -919,6 +923,10 @@ const UI = {
       loNote:'Damage reductions of the same kind do not stack - the highest applies; everything else adds up',
       loRelic:'Also needs any "Relic" item', loRemove:'Remove',
       loFrom:'From %s', loRoll:'Roll a random one', loArmed:'Pick an item below for this slot',
+      loDupArt:'You cannot equip two of the same artifact',
+      loArtNote:'Each artifact can only be crafted once. The blacksmith can duplicate one artifact '
+               +'(once per game), but you still cannot equip two of the same artifact, '
+               +'so duplicates are blocked here.',
       loBonusNote:'The two slots on the right do not use bag space: the Absorber (Special lv.4) holds a chosen '
                  +'Special lv.1, the Secret Box (Special lv.5) rolls a random Special lv.2. '
                  +'Items here also count toward set bonuses.',
@@ -954,6 +962,10 @@ const UI = {
       loNote:'Снижения урона одного вида не суммируются - берётся наибольшее; остальное складывается',
       loRelic:'Нужен ещё любой предмет категории «Реликвия»', loRemove:'Убрать',
       loFrom:'Из %s', loRoll:'Случайный предмет', loArmed:'Выберите предмет ниже для этого слота',
+      loDupArt:'Нельзя надеть два одинаковых артефакта',
+      loArtNote:'Каждый артефакт создаётся только один раз. Кузнец может продублировать один артефакт '
+               +'(один раз за игру), но два одинаковых артефакта надеть всё равно нельзя - '
+               +'поэтому дубликаты здесь блокируются.',
       loBonusNote:'Два слота справа не занимают место в инвентаре: Поглотитель (Особый 4 ур.) хранит выбранный '
                  +'предмет 1 ур., Шкатулка (Особый 5 ур.) создаёт случайный предмет 2 ур. '
                  +'Эти предметы тоже учитываются в комплектах.',
@@ -1303,9 +1315,25 @@ const statName = k => { const m = STAT(k); return m ? (m[S.lang] || m.zh) : k; }
 const statVal  = k => { const m = STAT(k); return v =>
   (v > 0 ? '+' : '') + (+v.toFixed(2)) + (m && m.pct ? '%' : ''); };
 
+/* 神器每件只能合成一次；鐵匠雖然可以複製一件神器，但全場限用一次，
+   而且同一件神器仍然不能同時配戴兩件。所以配裝時要擋掉重複的神器。
+   其他類別（藥水、卷軸之類）帶兩件是合法的，不擋。 */
+const ARTIFACT_G = new Set(GROUPS.map((g, n) => g.zh.startsWith('神器') ? n : -1)
+                                 .filter(n => n >= 0));
+const isArtifact = id => ITEMS[id] && ARTIFACT_G.has(ITEMS[id].g);
+
+let loMsg = null, loMsgT = null;
+function flash(key){
+  loMsg = t(key);
+  clearTimeout(loMsgT);
+  loMsgT = setTimeout(() => { loMsg = null; renderLoad(); }, 2600);
+  renderLoad();
+}
+
 function loadSave(){ localStorage.setItem('ud.load', JSON.stringify(S.load)); }
 function loadAdd(id){
   if (S.load.length >= MAXSLOT) return false;
+  if (isArtifact(id) && loadAll().includes(id)){ flash('loDupArt'); return false; }
   S.load.push(id); loadSave(); renderLoad(); return true;
 }
 function loadDel(n){ S.load.splice(n, 1); loadSave(); renderLoad(); }
@@ -1425,8 +1453,8 @@ function renderLoad(){
   let h = `<div class="lo-top">
       <div class="lo-slots">${slots}<span class="lo-div"></span>${bslots}</div>
       <span class="lo-count">${S.load.length} / ${MAXSLOT}</span>
-      <span class="lo-hint">${esc(armed ? t('loArmed')
-        : (full ? t('loFull') : t('loHint')))}</span>
+      <span class="lo-hint${loMsg ? ' warn' : ''}">${esc(loMsg || (armed ? t('loArmed')
+        : (full ? t('loFull') : t('loHint'))))}</span>
       ${S.load.length ? `<button class="lo-clear" id="lotog" type="button"
             aria-expanded="${S.loOpen}">${esc(t('loSum'))} <span class="cv">${
             S.loOpen ? '▲' : '▼'}</span></button>
@@ -1456,6 +1484,7 @@ function renderLoad(){
 
   const notes = [];
   if (maxC) notes.push(esc(t('loNote')));
+  if (loadAll().some(isArtifact)) notes.push(esc(t('loArtNote')));
   if (BONUS.some(b => S.bonus[b.k])) notes.push(esc(t('loBonusNote')));
   box.innerHTML = h + (S.loOpen
     ? `<div class="lo-body">${secs.join('')}</div>` +
