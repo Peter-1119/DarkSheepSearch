@@ -596,6 +596,35 @@ body[data-resizing="1"]{cursor:col-resize;user-select:none}
 .lo-slot:hover .x,.lo-slot .x:focus-visible{opacity:1}
 .lo-slot .x:hover{background:#5b1f28;border-color:#8d3040;color:#fff}
 .lo-count{font:12px/1 ui-monospace,monospace;color:var(--ink-3)}
+/* 額外欄位：虛線 ＋ 分隔線，一眼看出「這兩格不算在 6 格裡」 */
+.lo-div{width:1px;align-self:stretch;background:var(--line-2);margin:0 4px;flex:0 0 auto}
+.lo-slot.bo{border-style:dashed;border-color:var(--line-2);cursor:pointer}
+.lo-slot.bo[data-on="1"]{border-style:solid}
+.lo-slot.bo .lb{
+  font-size:9px;line-height:1.2;text-align:center;color:var(--ink-3);padding:2px;
+}
+.lo-slot.bo .src{
+  position:absolute;left:-6px;bottom:-6px;width:20px;height:20px;border-radius:5px;
+  overflow:hidden;background:#0c0f15;box-shadow:0 0 0 1px var(--line-2);
+}
+.lo-slot.bo .src img{width:100%;height:100%;object-fit:cover;display:block}
+.lo-slot.bo .src .ph{display:none}
+.lo-slot.bo .rl{
+  position:absolute;bottom:-7px;right:-7px;width:20px;height:20px;border-radius:50%;
+  display:grid;place-items:center;font-size:11px;line-height:1;cursor:pointer;
+  background:var(--surface-2);border:1px solid var(--line-2);color:var(--ink-2);
+  transition:background var(--dur),color var(--dur);
+}
+.lo-slot.bo .rl:hover{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+/* 挑選中：這格自己會呼吸，配合格子已篩到該類別 */
+.lo-slot.bo[data-arm="1"]{
+  border-color:var(--accent);border-style:solid;
+  animation:armPulse 1.3s ease-in-out infinite;
+}
+@keyframes armPulse{
+  0%,100%{box-shadow:0 0 0 0 rgba(255,182,72,.42)}
+  50%{box-shadow:0 0 0 6px rgba(255,182,72,0)}
+}
 .lo-hint{font-size:12px;color:var(--ink-3)}
 .lo-clear{
   height:28px;padding:0 11px;border-radius:8px;font-size:12px;cursor:pointer;
@@ -858,6 +887,9 @@ const UI = {
       loPas:'被動效果', loSet:'觸發的套裝加成', loNone:'還沒放入任何裝備',
       loNote:'減傷類同時帶多件不會疊加，這裡取最高值；其餘屬性直接相加',
       loRelic:'另需任一件「聖物」類道具', loRemove:'移除',
+      loFrom:'來自 %s', loRoll:'隨機抽一件', loArmed:'從下方挑一件放進這格',
+      loBonusNote:'右邊兩格是「不佔背包格」的額外欄位：吸收器（特殊 lv.4）放一件選定的特殊 lv.1，'
+                 +'祕密寶盒（特殊 lv.5）隨機生成一件特殊 lv.2。這裡的道具也算進套裝件數。',
       chainL:'任務升級鏈', chainSplit:'聖物之後分兩條路：',
       qs1:'任務物品 1 階', qs2:'任務物品 2 階', qs3:'聖物',
       qs4:'折射卷軸 → 折射（4 件循環）', qs5:'鐵匠技能 → 完美'},
@@ -886,6 +918,10 @@ const UI = {
       loPas:'Passive effects', loSet:'Set bonuses in effect', loNone:'No items yet',
       loNote:'Damage reductions of the same kind do not stack - the highest applies; everything else adds up',
       loRelic:'Also needs any "Relic" item', loRemove:'Remove',
+      loFrom:'From %s', loRoll:'Roll a random one', loArmed:'Pick an item below for this slot',
+      loBonusNote:'The two slots on the right do not use bag space: the Absorber (Special lv.4) holds a chosen '
+                 +'Special lv.1, the Secret Box (Special lv.5) rolls a random Special lv.2. '
+                 +'Items here also count toward set bonuses.',
       chainL:'Quest upgrade chain', chainSplit:'The relic branches two ways:',
       qs1:'Quest item, stage 1', qs2:'Quest item, stage 2', qs3:'Relic',
       qs4:'Scroll of Refraction → Refracted (4-item cycle)',
@@ -917,6 +953,10 @@ const UI = {
       loSet:'Действующие бонусы комплекта', loNone:'Пока ничего не выбрано',
       loNote:'Снижения урона одного вида не суммируются - берётся наибольшее; остальное складывается',
       loRelic:'Нужен ещё любой предмет категории «Реликвия»', loRemove:'Убрать',
+      loFrom:'Из %s', loRoll:'Случайный предмет', loArmed:'Выберите предмет ниже для этого слота',
+      loBonusNote:'Два слота справа не занимают место в инвентаре: Поглотитель (Особый 4 ур.) хранит выбранный '
+                 +'предмет 1 ур., Шкатулка (Особый 5 ур.) создаёт случайный предмет 2 ур. '
+                 +'Эти предметы тоже учитываются в комплектах.',
       chainL:'Цепочка квеста', chainSplit:'От реликвии два пути:',
       qs1:'Квестовый, 1 этап', qs2:'Квестовый, 2 этап', qs3:'Реликвия',
       qs4:'Свиток преломления → Преломленный (цикл из 4)',
@@ -938,6 +978,7 @@ const S = {
   mode: localStorage.getItem('ud.mode') || 'browse',        // browse | build
   load: JSON.parse(localStorage.getItem('ud.load') || '[]'),// 配裝欄位（可重複）
   loOpen: localStorage.getItem('ud.loopen') !== '0',        // 摘要是否展開
+  bonus: JSON.parse(localStorage.getItem('ud.bonus') || '{}'),// 兩個不佔格的額外欄位
 };
 const STATS = DATA.stats || [];
 const STAT = k => STATS.find(s => s.k === k);
@@ -1241,7 +1282,22 @@ function reveal(id){
    後者的規則寫在地圖觸發裡、匯出資料看不到，是玩家告知的，所以介面上標示出來。 */
 const NOSTACK = new Set(DATA.nostack || []);
 const MAXSLOT = 6;
-const RELIC_G = GROUPS.findIndex(g => g.zh === '聖物');
+const GIDX = zh => GROUPS.findIndex(g => g.zh === zh);
+const RELIC_G = GIDX('聖物');
+
+/* 兩個「不佔格」的額外欄位。來源是兩件主動道具：
+     吸收器 I089（特殊 lv.4）  -> 放入一件「選定」的 特殊 lv.1
+     祕密寶盒 I004（特殊 lv.5）-> 生成一件「隨機」的 特殊 lv.2
+   兩者使用後自己會消失，所以既不佔背包格、也不算在 6 格裡面。
+   放在 6 格右邊、用虛線和不同色區隔，讓人一眼看出「這兩格是外加的」。 */
+const BONUS = [
+  {k: 's1', src: 'I089', g: GIDX('特殊（lv.1）'), roll: false},
+  {k: 's2', src: 'I004', g: GIDX('特殊（lv.2）'), roll: true},
+];
+const bonusOf = k => BONUS.find(b => b.k === k);
+function bonusSave(){ localStorage.setItem('ud.bonus', JSON.stringify(S.bonus)); }
+/* 目前所有生效的道具＝6 格 ＋ 額外欄位 */
+function loadAll(){ return S.load.concat(BONUS.map(b => S.bonus[b.k]).filter(Boolean)); }
 const statMeta = k => STAT(k);
 const statName = k => { const m = STAT(k); return m ? (m[S.lang] || m.zh) : k; };
 const statVal  = k => { const m = STAT(k); return v =>
@@ -1256,7 +1312,7 @@ function loadDel(n){ S.load.splice(n, 1); loadSave(); renderLoad(); }
 
 function loadCalc(){
   const sum = {}, max = {}, setc = {}, act = [], pas = [];
-  S.load.forEach(id => {
+  loadAll().forEach(id => {
     const it = ITEMS[id]; if (!it) return;
     for (const [k, v] of Object.entries(it.v || {})){
       if (NOSTACK.has(k)) max[k] = Math.max(k in max ? max[k] : -Infinity, v);
@@ -1286,7 +1342,7 @@ function effRows(ids){
 }
 
 function setRows(setc){
-  const hasRelic = S.load.some(id => ITEMS[id] && ITEMS[id].g === RELIC_G);
+  const hasRelic = loadAll().some(id => ITEMS[id] && ITEMS[id].g === RELIC_G);
   return Object.keys(setc).map(k => {
     const G = SETS[k], n = setc[k];
     if (!G || !(G.b || []).length) return '';
@@ -1299,6 +1355,38 @@ function setRows(setc){
         esc(t('pcs').replace('%s', n))}${warn}${
       on.map(r => `<div>　${r.n}　${esc(r[S.lang] || r.zh)}</div>`).join('')}</div>`;
   }).join('');
+}
+
+/* 「挑選中」狀態。一件 特殊 lv.1 放正常格也合法、放額外格也合法，
+   自動判斷一定會猜錯，所以改成明確指定：點空的額外欄位 -> 格子篩到該類別
+   -> 點一件放進去。篩選本身就演示了「只能放這類」，不用寫說明。 */
+let armed = null, armPrev = null;
+function armBonus(k){
+  if (armed === k){ disarmBonus(true); return; }
+  const b = bonusOf(k);
+  if (!armPrev) armPrev = {tier: S.tier, cat: S.cat, set: S.set, q: S.q, rank: S.rank};
+  armed = k;
+  S.tier = b.g; S.cat = null; S.set = null; S.q = ''; $('#q').value = '';
+  S.rank = '';                       // 排行是橫列檢視，挑不了東西，先退出
+  fillRank(); renderRail(); renderGrid(); renderLoad(); main.scrollTop = 0;
+  if (isMobile()) setDrawer(false);
+}
+function disarmBonus(restore){
+  if (!armed) return;
+  armed = null;
+  if (restore && armPrev){
+    Object.assign(S, armPrev); $('#q').value = S.q;
+    fillRank(); renderRail(); renderGrid();
+  }
+  armPrev = null;
+  renderLoad();
+}
+function rollBonus(k){
+  const b = bonusOf(k);
+  const pool = IDS.filter(i => ITEMS[i].g === b.g);
+  if (!pool.length) return;
+  S.bonus[k] = pool[Math.floor(Math.random() * pool.length)];
+  bonusSave(); renderLoad();
 }
 
 function renderLoad(){
@@ -1316,11 +1404,29 @@ function renderLoad(){
          </div>`
       : `<div class="lo-slot">${n + 1}</div>`;
   }
+  /* 額外欄位：來源道具的圖示當底、右上角掛類別標，跟 6 格用一條分隔線隔開。
+     空的時候點下去＝進入「挑選」狀態，格子會自動篩到該類別。 */
+  const bslots = BONUS.map(b => {
+    const id = S.bonus[b.k], on = armed === b.k;
+    const g = grpName(b.g);          // GROUPS 用語言字串當 key，不是數字索引
+    return `<div class="lo-slot bo" data-bonus="${b.k}" data-on="${id ? 1 : 0}"
+                 data-arm="${on ? 1 : 0}" style="--c:${id && ITEMS[id] ? (ITEMS[id].k||'#39415a') : '#7a8398'}"
+                 title="${esc(g)}　${esc(t('loFrom').replace('%s', nm(b.src)))}">
+        ${id && ITEMS[id] ? thumb(id) : `<span class="lb">${esc(g)}</span>`}
+        <span class="src">${thumb(b.src)}</span>
+        ${id ? `<button class="x" data-bdel="${b.k}" type="button"
+                  title="${esc(t('loRemove'))}" aria-label="${esc(t('loRemove'))}">✕</button>` : ''}
+        ${b.roll ? `<button class="rl" data-broll="${b.k}" type="button"
+                  title="${esc(t('loRoll'))}" aria-label="${esc(t('loRoll'))}">⚄</button>` : ''}
+      </div>`;
+  }).join('');
+
   const full = S.load.length >= MAXSLOT;
   let h = `<div class="lo-top">
-      <div class="lo-slots">${slots}</div>
+      <div class="lo-slots">${slots}<span class="lo-div"></span>${bslots}</div>
       <span class="lo-count">${S.load.length} / ${MAXSLOT}</span>
-      <span class="lo-hint">${esc(full ? t('loFull') : t('loHint'))}</span>
+      <span class="lo-hint">${esc(armed ? t('loArmed')
+        : (full ? t('loFull') : t('loHint')))}</span>
       ${S.load.length ? `<button class="lo-clear" id="lotog" type="button"
             aria-expanded="${S.loOpen}">${esc(t('loSum'))} <span class="cv">${
             S.loOpen ? '▲' : '▼'}</span></button>
@@ -1328,8 +1434,9 @@ function renderLoad(){
           esc(t('loClear'))}</button>` : ''}
     </div>`;
 
-  if (!S.load.length){
-    box.innerHTML = h + `<div class="lo-note">${esc(t('loNone'))}</div>`;
+  if (!loadAll().length){
+    box.innerHTML = h + `<div class="lo-note">${esc(t('loNone'))}<br>${
+      esc(t('loBonusNote'))}</div>`;
     return;
   }
   const c = loadCalc();
@@ -1347,9 +1454,12 @@ function renderLoad(){
   if (c.pas.length) secs.push(`<div class="lo-sec"><h5>${esc(t('loPas'))} ${
       c.pas.length}</h5><div class="lo-list">${effRows(c.pas)}</div></div>`);
 
+  const notes = [];
+  if (maxC) notes.push(esc(t('loNote')));
+  if (BONUS.some(b => S.bonus[b.k])) notes.push(esc(t('loBonusNote')));
   box.innerHTML = h + (S.loOpen
     ? `<div class="lo-body">${secs.join('')}</div>` +
-      (maxC ? `<div class="lo-note">${esc(t('loNote'))}</div>` : '')
+      (notes.length ? `<div class="lo-note">${notes.join('<br>')}</div>` : '')
     : '');
 }
 
@@ -1586,6 +1696,12 @@ main.addEventListener('click', e => {
   if (!tile) return;
   const id = tile.dataset.id;
   if (S.mode === 'build'){
+    if (armed){                        // 正在挑額外欄位，只收該類別
+      if (ITEMS[id].g === bonusOf(armed).g){
+        S.bonus[armed] = id; bonusSave(); disarmBonus(true); openItem(id);
+      }
+      return;
+    }
     loadAdd(id);            // 滿了就不加，欄位列會顯示「已滿」
     openItem(id);           // 放進去的同時就看得到它做什麼
     return;
@@ -1595,9 +1711,21 @@ main.addEventListener('click', e => {
   else openItem(id);
 });
 $('#load').addEventListener('click', e => {
+  const roll = e.target.closest('[data-broll]');
+  if (roll){ rollBonus(roll.dataset.broll); return; }
+  const bdel = e.target.closest('[data-bdel]');
+  if (bdel){ delete S.bonus[bdel.dataset.bdel]; bonusSave(); renderLoad(); return; }
+  const bslot = e.target.closest('[data-bonus]');
+  if (bslot){
+    const k = bslot.dataset.bonus;
+    if (S.bonus[k]) openItem(S.bonus[k], true); else armBonus(k);
+    return;
+  }
   const del = e.target.closest('[data-del]');
   if (del){ loadDel(+del.dataset.del); return; }
-  if (e.target.closest('#loclear')){ S.load = []; loadSave(); renderLoad(); return; }
+  if (e.target.closest('#loclear')){
+    S.load = []; S.bonus = {}; loadSave(); bonusSave(); renderLoad(); return;
+  }
   if (e.target.closest('#lotog')){
     S.loOpen = !S.loOpen;
     localStorage.setItem('ud.loopen', S.loOpen ? '1' : '0');
@@ -1833,6 +1961,7 @@ main.addEventListener('scroll', () => { clearTimeout(tipT); tip.dataset.on = '0'
 addEventListener('keydown', e => {
   if (e.key === '/' && document.activeElement !== q){ e.preventDefault(); q.focus(); q.select(); return; }
   if (e.key === 'Escape'){
+    if (armed){ disarmBonus(true); return; }
     if (document.activeElement === q && q.value){ clearQ(false); }
     else if (S.sel) closeItem();
     return;
