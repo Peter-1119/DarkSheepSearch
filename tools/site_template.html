@@ -553,6 +553,47 @@ body[data-resizing="1"]{cursor:col-resize;user-select:none}
 .rel .t span{font-size:11px;color:var(--ink-3)}
 .rel .arrow{color:var(--ink-3);font-size:12px;flex:0 0 auto}
 
+/* 用於合成：一個目標一張卡，卡的下半直接列出該配方的全部素材，
+   手上這件打勾。這樣「還缺什麼」不必再點一層。 */
+.uses{display:flex;flex-direction:column;gap:8px}
+.use{border:1px solid var(--line);border-radius:10px;background:var(--surface);overflow:hidden}
+.use-h{
+  display:flex;align-items:center;gap:10px;width:100%;padding:6px;
+  text-align:left;background:none;border:0;cursor:pointer;
+  transition:background var(--dur);
+}
+.use-h:hover{background:var(--surface-2)}
+.use-h img,.use-h .ph{width:34px;height:34px;border-radius:7px;flex:0 0 auto;object-fit:cover;
+  background:#0c0f15;box-shadow:0 0 0 1.5px var(--c2,#39415a)}
+.use-h .ph{display:grid;place-items:center;font-size:10px;color:var(--ink-3)}
+.use-h .t{min-width:0;flex:1}
+.use-h .t b{display:block;font-size:12.5px;font-weight:500;overflow:hidden;
+  text-overflow:ellipsis;white-space:nowrap}
+.use-h .t span{font-size:11px;color:var(--ink-3)}
+.use-h .arrow{color:var(--ink-3);font-size:12px;flex:0 0 auto}
+.use-m{
+  display:flex;align-items:center;gap:4px;flex-wrap:wrap;
+  padding:7px 8px;border-top:1px solid var(--line);background:var(--bg-2);
+}
+.use-m button{
+  display:flex;align-items:center;gap:5px;max-width:100%;cursor:pointer;
+  padding:3px 8px 3px 3px;border-radius:99px;font-size:11px;
+  background:var(--surface);border:1px solid var(--line);color:var(--ink-2);
+  transition:border-color var(--dur),color var(--dur),background var(--dur);
+}
+.use-m button:hover{border-color:var(--line-2);color:var(--ink)}
+/* 「手上這件」—— 綠色＋勾，跟格子上的素材標記同一套語言 */
+.use-m button.have{
+  border-color:var(--mat);color:var(--ink);
+  background:color-mix(in srgb,var(--mat) 15%,var(--surface));
+}
+.use-m button.have::after{content:"✓";color:var(--mat);font-size:10px;flex:0 0 auto}
+.use-m img,.use-m .ph{width:20px;height:20px;border-radius:5px;flex:0 0 auto;object-fit:cover;
+  background:#0c0f15;box-shadow:0 0 0 1px var(--c2,#39415a)}
+.use-m .ph{display:grid;place-items:center;font-size:7px;color:var(--ink-3);overflow:hidden}
+.use-m button > span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.use-m i{color:var(--ink-3);font-style:normal;font-size:10px;flex:0 0 auto}
+
 /* 順序條：用「一排會走動的圖示」表達序列，
    比兩行「上一件／下一件」更能讓人看出這是個連續的環 */
 .seq{display:flex;align-items:flex-end;gap:6px;margin-top:2px}
@@ -957,6 +998,7 @@ const UI = {
       density:'密度', d1:'寬鬆', d2:'緊湊', d3:'純圖', all:'全部裝備',
       tiers:'品質分類', legend:'圖例', sel:'已選取', matAny:'可作為素材', mat:'此裝備的素材', into:'可合成為',
       stats:'屬性', effects:'效果', recipe:'合成配方', usedin:'用於合成',
+      usedNote:'綠色打勾的是你正在看的這件；其餘為該配方還需要的素材',
       alias:'舊表名稱', none:'沒有符合的裝備', tryOther:'換個關鍵字或清除篩選',
       hint:'點擊看詳細，再點一次收合 · 相關素材會在格子中高亮', hint2:'搜尋',
       shopL:'商店', setL:'套裝', setFilter:'只看這組套裝', close:'關閉', clear:'清除搜尋', results:'搜尋結果',
@@ -998,6 +1040,7 @@ const UI = {
       matAny:'Used in a recipe', mat:'Component of this item',
       into:'Builds into', stats:'Bonuses', effects:'Effects',
       recipe:'Recipe', usedin:'Used in', alias:'Old sheet name',
+      usedNote:'The green ticked one is the item you are viewing; the rest are what that recipe still needs',
       none:'No items match', tryOther:'Try another keyword or clear the filter',
       hint:'Click for details, click again to close · related pieces light up',
       hint2:'search', shopL:'Shop', setL:'Set', setFilter:'Show only this set', close:'Close', clear:'Clear search', results:'Results',
@@ -1041,6 +1084,7 @@ const UI = {
       matAny:'Используется в крафте', mat:'Компонент этого предмета',
       into:'Входит в', stats:'Бонусы', effects:'Эффекты',
       recipe:'Рецепт', usedin:'Используется в', alias:'Старое название',
+      usedNote:'Зелёная галочка - предмет, который вы смотрите; остальное нужно для этого рецепта',
       none:'Ничего не найдено', tryOther:'Измените запрос или сбросьте фильтр',
       hint:'Нажмите для деталей, ещё раз — закрыть · связанное подсветится',
       hint2:'поиск', shopL:'Магазин', setL:'Комплект', close:'Закрыть', clear:'Очистить поиск',
@@ -1716,7 +1760,7 @@ function openItem(id, scroll){
   if (it.ref) b += refractBlock(it);
   if (it.chain) b += chainBlock(it);
   if (it.r.length) b += relBlock(t('recipe'), it.r, '＋');
-  if (it.u.length) b += relBlock(t('usedin'), it.u, '↑');
+  if (it.u.length) b += usedInBlock(id, it.u);
   pbody.innerHTML = b || `<div class="note">—</div>`;
   pbody.scrollTop = 0;
 
@@ -1881,6 +1925,32 @@ function relBlock(title, ids, arrow){
         <span class="t"><b>${esc(nm(x))}</b><span>${esc(ITEMS[x].c[li()])}</span></span>
         <span class="arrow">${arrow}</span>
       </button>` : '').join('')}</div></div>`;
+}
+
+/* 「用於合成」原本只列產物名稱，使用者得再點進去才知道還缺什麼。
+   但從素材出發找配方是最常見的動線（手上撿到一件，想知道能做什麼、還差什麼），
+   所以直接把每個目標的完整配方攤開，並把「手上這件」打勾標出來 ——
+   一眼就看得出「還缺這兩樣」。
+   一件最多用在 5 個配方、一個配方最多 4 種素材，所以一個目標一張卡撐得住。 */
+function usedInBlock(id, ids){
+  const rows = ids.filter(x => ITEMS[x]).map(x => {
+    const it = ITEMS[x];
+    const need = (it.r || []).filter(m => ITEMS[m]);
+    const chips = need.map(m => `<button data-goto="${m}" title="${esc(nm(m))}"
+        class="${m === id ? 'have' : ''}" style="--c2:${ITEMS[m].k || '#39415a'}">
+        ${thumb(m)}<span>${esc(nm(m))}</span></button>`).join('<i>＋</i>');
+    return `<div class="use">
+      <button class="use-h" data-goto="${x}" style="--c2:${it.k || '#39415a'}">
+        ${thumb(x)}
+        <span class="t"><b>${esc(nm(x))}</b><span>${esc(it.c[li()])}</span></span>
+        <span class="arrow">↑</span>
+      </button>
+      ${need.length ? `<div class="use-m">${chips}</div>` : ''}
+    </div>`;
+  }).join('');
+  return `<div class="sect"><h4>${esc(t('usedin'))}</h4>
+    <div class="uses">${rows}</div>
+    <div class="note" style="margin-top:7px">${esc(t('usedNote'))}</div></div>`;
 }
 
 function closeItem(){
