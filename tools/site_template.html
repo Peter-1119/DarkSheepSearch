@@ -224,6 +224,14 @@ body[data-scrim="1"] .scrim{opacity:1;pointer-events:auto}
 .meta dd{margin:0;color:var(--ink-2);font-variant-numeric:tabular-nums}
 .legend i{display:inline-block;width:9px;height:9px;border-radius:3px;margin-right:7px;
   vertical-align:-1px}
+/* 圖例直接用跟格子上一模一樣的角標，這樣圖示才會被學起來 */
+.legend i.fl{width:16px;height:16px;border-radius:50%;margin-right:5px;
+  display:inline-grid;place-items:center;vertical-align:-4px;color:#06170d}
+.legend i.fl svg{width:10px;height:10px;display:block}
+.legend i.fl.any{color:var(--mat);opacity:.9}
+.legend i.fl.mat{background:var(--mat)}
+.legend i.fl.into{background:var(--into);color:var(--accent-ink);
+  font:9px/1 ui-monospace,monospace}
 
 /* -------- grid */
 .main{flex:1;min-width:0;overflow-y:auto;scroll-behavior:smooth;padding:0 0 80px}
@@ -318,13 +326,28 @@ body[data-scrim="1"] .scrim{opacity:1;pointer-events:auto}
 .tile[data-rel="mat"]{border-color:var(--mat);box-shadow:0 0 0 1px rgba(87,217,138,.5)}
 .tile[data-rel="into"]{border-color:var(--into);box-shadow:0 0 0 1px rgba(255,182,72,.45)}
 .tile[data-rel] .lbl{color:var(--ink)}
+/* 角標一律用鑄造槌，靠「強度」分兩種意思：
+     淡的 = 這件本身可以拿去合成別的東西（103 件，道具的固有屬性）
+     亮的 = 它是「目前選中那件」的素材（跟著選取變動）
+   同一個圖示兩種強度，使用者只要學一次；如果換成兩個不同符號，
+   反而要記兩件事。「可合成為」維持箭頭，那個本來就只有關聯時才出現。 */
 .tile .flag{
-  position:absolute;top:-5px;right:-5px;width:16px;height:16px;border-radius:50%;
-  display:grid;place-items:center;font:9px/1 ui-monospace,monospace;color:#06170d;
-  border:2px solid var(--surface);
+  position:absolute;top:-5px;right:-5px;width:18px;height:18px;border-radius:50%;
+  display:grid;place-items:center;font:9px/1 ui-monospace,monospace;
+  color:var(--ink-3);border:2px solid transparent;
+  transition:background var(--dur),color var(--dur),
+             border-color var(--dur),opacity var(--dur);
 }
-.tile[data-rel="mat"] .flag{background:var(--mat)}
-.tile[data-rel="into"] .flag{background:var(--into);color:var(--accent-ink)}
+.tile .flag svg{width:11px;height:11px;display:block}
+/* 靜態＝綠色線稿、沒有底；關聯＝綠底填滿。
+   兩者在「形態」上就不同（字形 vs 徽章），所以靜態這個可以夠亮，
+   不必壓到看不見 —— 看不見就失去「快速找到素材」的意義了。 */
+.tile:not([data-rel]) .flag{color:var(--mat);opacity:.9;
+  filter:drop-shadow(0 1px 1.5px rgba(0,0,0,.85))}
+.tile[data-rel="mat"] .flag{
+  background:var(--mat);color:#06170d;border-color:var(--surface);opacity:1}
+.tile[data-rel="into"] .flag{
+  background:var(--into);color:var(--accent-ink);border-color:var(--surface);opacity:1}
 
 /* dimming: keeps layout memory, drops noise */
 .grid[data-focus="1"] .tile:not([data-sel]):not([data-rel]){opacity:.34;filter:saturate(.62)}
@@ -932,7 +955,7 @@ const LI = {zh:0, en:1, ru:2};
 const UI = {
   zh:{title:'裝備圖鑑', sub:'肥羊的聖誕禮物 · Underground Defence', ph:'搜尋裝備…',
       density:'密度', d1:'寬鬆', d2:'緊湊', d3:'純圖', all:'全部裝備',
-      tiers:'品質分類', legend:'圖例', sel:'已選取', mat:'合成素材', into:'可合成為',
+      tiers:'品質分類', legend:'圖例', sel:'已選取', matAny:'可作為素材', mat:'此裝備的素材', into:'可合成為',
       stats:'屬性', effects:'效果', recipe:'合成配方', usedin:'用於合成',
       alias:'舊表名稱', none:'沒有符合的裝備', tryOther:'換個關鍵字或清除篩選',
       hint:'點擊看詳細，再點一次收合 · 相關素材會在格子中高亮', hint2:'搜尋',
@@ -972,7 +995,8 @@ const UI = {
   en:{title:'Item Codex', sub:"Fat Sheep's Christmas Gift · Underground Defence",
       ph:'Search items…', density:'Density', d1:'Roomy', d2:'Compact', d3:'Icons',
       all:'All items', tiers:'Tiers', legend:'Legend', sel:'Selected',
-      mat:'Component', into:'Builds into', stats:'Bonuses', effects:'Effects',
+      matAny:'Used in a recipe', mat:'Component of this item',
+      into:'Builds into', stats:'Bonuses', effects:'Effects',
       recipe:'Recipe', usedin:'Used in', alias:'Old sheet name',
       none:'No items match', tryOther:'Try another keyword or clear the filter',
       hint:'Click for details, click again to close · related pieces light up',
@@ -1014,7 +1038,8 @@ const UI = {
   ru:{title:'Кодекс предметов', sub:'Underground Defence', ph:'Поиск предметов…',
       density:'Плотность', d1:'Свободно', d2:'Плотно', d3:'Иконки',
       all:'Все предметы', tiers:'Классы', legend:'Легенда', sel:'Выбрано',
-      mat:'Компонент', into:'Входит в', stats:'Бонусы', effects:'Эффекты',
+      matAny:'Используется в крафте', mat:'Компонент этого предмета',
+      into:'Входит в', stats:'Бонусы', effects:'Эффекты',
       recipe:'Рецепт', usedin:'Используется в', alias:'Старое название',
       none:'Ничего не найдено', tryOther:'Измените запрос или сбросьте фильтр',
       hint:'Нажмите для деталей, ещё раз — закрыть · связанное подсветится',
@@ -1160,8 +1185,9 @@ function renderRail(){
   h += `<h3>${esc(t('legend'))}</h3>
     <div class="legend">
       <div><i style="background:var(--accent)"></i>${esc(t('sel'))}</div>
-      <div><i style="background:var(--mat)"></i>${esc(t('mat'))}</div>
-      <div><i style="background:var(--into)"></i>${esc(t('into'))}</div>
+      <div><i class="fl any">${FLAG_MAT}</i>${esc(t('matAny'))}</div>
+      <div><i class="fl mat">${FLAG_MAT}</i>${esc(t('mat'))}</div>
+      <div><i class="fl into">↑</i>${esc(t('into'))}</div>
     </div>`;
   const M = DATA.meta || {};
   h += `<h3>${esc(t('dataL'))}</h3>
@@ -1333,6 +1359,15 @@ function renderGrid(){
   paintRelations();
 }
 
+/* 合成素材的角標。用鑄造槌的剪影而不是文字符號：
+   在 474 個格子裡找素材時，辨識形狀比辨識符號快。
+   刻意畫得很單純（槌頭一條、握柄一條），因為實際只有 11px。 */
+const FLAG_MAT = `<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+    <g transform="rotate(45 8 8)">
+      <rect x="1.2" y="1.8" width="5.2" height="10.4" rx="1.6"/>
+      <rect x="6.2" y="5.6" width="8.8" height="2.8" rx="1.4"/>
+    </g></svg>`;
+
 /* relationship highlighting is what turns the grid into a crafting graph */
 function paintRelations(){
   const sel = S.sel;
@@ -1356,10 +1391,12 @@ function paintRelations(){
   main.querySelectorAll('.tile').forEach(el => {
     const id = el.dataset.id;
     el.removeAttribute('data-sel'); el.removeAttribute('data-rel');
-    const f = el.querySelector('.flag'); f.textContent = '';
+    const f = el.querySelector('.flag');
+    /* 底層狀態：只要這件會被拿去合成別的東西，就一直掛著槌子 */
+    f.innerHTML = ITEMS[id].u.length ? FLAG_MAT : '';
     if (!sel) return;
     if (id === sel) el.setAttribute('data-sel','1');
-    else if (mats.has(id)){ el.setAttribute('data-rel','mat'); f.textContent='＋'; }
+    else if (mats.has(id)){ el.setAttribute('data-rel','mat'); f.innerHTML = FLAG_MAT; }
     else if (into.has(id)){ el.setAttribute('data-rel','into'); f.textContent='↑'; }
   });
 }
