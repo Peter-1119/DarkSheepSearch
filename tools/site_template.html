@@ -638,6 +638,8 @@ body[data-resizing="1"]{cursor:col-resize;user-select:none}
   background:var(--accent);color:var(--accent-ink);
   box-shadow:0 0 0 2px var(--bg-2);
 }
+.lo-slot .sm.x2{top:auto;bottom:-6px;left:-6px;background:var(--mat);
+  font:9px/1 ui-monospace,monospace;width:20px}
 .lo-count{font:12px/1 ui-monospace,monospace;color:var(--ink-3)}
 /* 額外欄位：虛線 ＋ 分隔線，一眼看出「這兩格不算在 6 格裡」 */
 .lo-div{width:1px;align-self:stretch;background:var(--line-2);margin:0 4px;flex:0 0 auto}
@@ -957,6 +959,7 @@ const UI = {
       sgHint:'點關鍵字直接搜尋；有色點的是篩選條件，再點一次取消',
       loToggle:'展開／收合屬性總計', loFrom:'來自 %s', loRoll:'隨機抽一件', loArmed:'從下方挑一件放進這格',
       loArtMax:'同一件神器最多 2 件', loSmith:'鐵匠複製',
+      loDouble:'這件算作套裝的 2 件',
       loSmithUsed:'鐵匠複製整場只能用一次，已經用在「%s」了',
       loArtNote:'神器每件只能合成一次，所以預設每件只能帶 1 個。鐵匠可以複製神器，'
                +'但整場只能用一次、而且只能挑其中一件 —— 所以一套配裝裡最多有「一件」'
@@ -996,6 +999,7 @@ const UI = {
       sgHint:'Tap a keyword to search it; dotted ones are filters - tap again to clear',
       loToggle:'Expand / collapse totals', loFrom:'From %s', loRoll:'Roll a random one', loArmed:'Pick an item below for this slot',
       loArtMax:'An artifact can appear at most twice', loSmith:'Blacksmith copy',
+      loDouble:'Counts as 2 set pieces',
       loSmithUsed:'The blacksmith copy is once per game - already used on "%s"',
       loArtNote:'Each artifact can only be crafted once, so normally you carry one of each. '
                +'The blacksmith can duplicate an artifact, but only once per game and only on one '
@@ -1039,6 +1043,7 @@ const UI = {
       sgHint:'Нажмите слово, чтобы найти его; с точкой - это фильтры, нажмите ещё раз для сброса',
       loToggle:'Развернуть / свернуть сводку', loFrom:'Из %s', loRoll:'Случайный предмет', loArmed:'Выберите предмет ниже для этого слота',
       loArtMax:'Артефакт может встречаться не более двух раз', loSmith:'Копия кузнеца',
+      loDouble:'Считается за 2 предмета комплекта',
       loSmithUsed:'Копия кузнеца доступна один раз за игру - уже использована на «%s»',
       loArtNote:'Каждый артефакт создаётся только один раз, поэтому обычно он у вас один. '
                +'Кузнец может продублировать артефакт, но лишь раз за игру и только один из них - '
@@ -1222,6 +1227,9 @@ if (DATA.legion) SETS.c5 = {n: [LEGION.zh, LEGION.en, LEGION.ru],
    c1~c4 寫在道具說明裡（builder 解析成 sk），c5 是另外給的名單。 */
 const setKeysOf = it => (it.sk || []).concat(it.legion != null ? ['c5'] : []);
 const setColour = k => (SETS[k] || {}).c || '#8b93a7';
+/* 少數道具一件算兩件（英勇之錘、風暴之錘、吞噬萬物）—— 套裝件數要照這個算 */
+const SETW = DATA.setDouble || {};
+const setWeight = id => SETW[id] || 1;
 const setName = k => ((SETS[k] || {}).n || [])[li()] || k;
 
 const tileHTML = id => {
@@ -1462,7 +1470,8 @@ function loadCalc(){
       else sum[k] = (sum[k] || 0) + v;
     }
     if ((it.e || []).length) (it.act ? act : pas).push(id);
-    setKeysOf(it).forEach(k => setc[k] = (setc[k] || 0) + 1);
+    const w = setWeight(id);
+    setKeysOf(it).forEach(k => setc[k] = (setc[k] || 0) + w);
   });
   return {sum, max, setc, act, pas};
 }
@@ -1553,6 +1562,8 @@ function renderLoad(){
       if (seenArt[id] === 2)               // 這一格就是鐵匠複製出來的那件
         smith = `<span class="sm" title="${esc(t('loSmith'))}">⧉</span>`;
     }
+    if (id && setWeight(id) > 1)           // 一件算兩件，標出來免得件數看起來跳號
+      smith += `<span class="sm x2" title="${esc(t('loDouble'))}">×${setWeight(id)}</span>`;
     slots += (id && ITEMS[id])
       ? `<div class="lo-slot" data-on="1" data-slot="${n}" style="--c:${ITEMS[id].k || '#39415a'}"
               title="${esc(nm(id))}${smith ? '　' + esc(t('loSmith')) : ''}">${thumb(id)}${smith}

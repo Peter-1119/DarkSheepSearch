@@ -249,6 +249,9 @@ out = {
     'legion': SITE.get('legion'),
     'ritual': SITE.get('ritual', []),
     'items': items,
+    # 英勇之錘／風暴之錘／吞噬萬物 各自算作該套裝的 2 件
+    'setDouble': {k: v for k, v in (SETB.get('_double') or {}).items()
+                  if not k.startswith('_')},
     'sets': sets,
     'groups': [{'zh': g[0], 'ru': g[1], 'en': g[2]} for g in GROUPS],
     'cats': cats,
