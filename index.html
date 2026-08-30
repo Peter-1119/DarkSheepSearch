@@ -595,6 +595,13 @@ body[data-resizing="1"]{cursor:col-resize;user-select:none}
 }
 .lo-slot:hover .x,.lo-slot .x:focus-visible{opacity:1}
 .lo-slot .x:hover{background:#5b1f28;border-color:#8d3040;color:#fff}
+/* 鐵匠複製出來的那一件，左上角掛個標記 —— 整場只有一個名額，值得標出來 */
+.lo-slot .sm{
+  position:absolute;top:-6px;left:-6px;width:18px;height:18px;border-radius:50%;
+  display:grid;place-items:center;font-size:10px;line-height:1;
+  background:var(--accent);color:var(--accent-ink);
+  box-shadow:0 0 0 2px var(--bg-2);
+}
 .lo-count{font:12px/1 ui-monospace,monospace;color:var(--ink-3)}
 /* 額外欄位：虛線 ＋ 分隔線，一眼看出「這兩格不算在 6 格裡」 */
 .lo-div{width:1px;align-self:stretch;background:var(--line-2);margin:0 4px;flex:0 0 auto}
@@ -889,9 +896,11 @@ const UI = {
       loNote:'減傷類同時帶多件不會疊加，這裡取最高值；其餘屬性直接相加',
       loRelic:'另需任一件「聖物」類道具', loRemove:'移除',
       loFrom:'來自 %s', loRoll:'隨機抽一件', loArmed:'從下方挑一件放進這格',
-      loDupArt:'同一件神器不能重複配戴',
-      loArtNote:'神器每件只能合成一次；鐵匠雖然可以複製一件神器（全場限用一次），'
-               +'但同一件神器仍無法重複配戴，所以配裝時已擋掉重複的神器。',
+      loArtMax:'同一件神器最多 2 件', loSmith:'鐵匠複製',
+      loSmithUsed:'鐵匠複製整場只能用一次，已經用在「%s」了',
+      loArtNote:'神器每件只能合成一次，所以預設每件只能帶 1 個。鐵匠可以複製神器，'
+               +'但整場只能用一次、而且只能挑其中一件 —— 所以一套配裝裡最多有「一件」'
+               +'神器可以出現兩次（標記 ⧉），其餘神器仍然各一件。',
       loBonusNote:'右邊兩格是「不佔背包格」的額外欄位：吸收器（特殊 lv.4）放一件選定的特殊 lv.1，'
                  +'祕密寶盒（特殊 lv.5）隨機生成一件特殊 lv.2。這裡的道具也算進套裝件數。',
       chainL:'任務升級鏈', chainSplit:'聖物之後分兩條路：',
@@ -923,10 +932,11 @@ const UI = {
       loNote:'Damage reductions of the same kind do not stack - the highest applies; everything else adds up',
       loRelic:'Also needs any "Relic" item', loRemove:'Remove',
       loFrom:'From %s', loRoll:'Roll a random one', loArmed:'Pick an item below for this slot',
-      loDupArt:'You cannot equip two of the same artifact',
-      loArtNote:'Each artifact can only be crafted once. The blacksmith can duplicate one artifact '
-               +'(once per game), but you still cannot equip two of the same artifact, '
-               +'so duplicates are blocked here.',
+      loArtMax:'An artifact can appear at most twice', loSmith:'Blacksmith copy',
+      loSmithUsed:'The blacksmith copy is once per game - already used on "%s"',
+      loArtNote:'Each artifact can only be crafted once, so normally you carry one of each. '
+               +'The blacksmith can duplicate an artifact, but only once per game and only on one '
+               +'of them - so exactly one artifact may appear twice (marked with an ⧉).',
       loBonusNote:'The two slots on the right do not use bag space: the Absorber (Special lv.4) holds a chosen '
                  +'Special lv.1, the Secret Box (Special lv.5) rolls a random Special lv.2. '
                  +'Items here also count toward set bonuses.',
@@ -962,10 +972,11 @@ const UI = {
       loNote:'Снижения урона одного вида не суммируются - берётся наибольшее; остальное складывается',
       loRelic:'Нужен ещё любой предмет категории «Реликвия»', loRemove:'Убрать',
       loFrom:'Из %s', loRoll:'Случайный предмет', loArmed:'Выберите предмет ниже для этого слота',
-      loDupArt:'Нельзя надеть два одинаковых артефакта',
-      loArtNote:'Каждый артефакт создаётся только один раз. Кузнец может продублировать один артефакт '
-               +'(один раз за игру), но два одинаковых артефакта надеть всё равно нельзя - '
-               +'поэтому дубликаты здесь блокируются.',
+      loArtMax:'Артефакт может встречаться не более двух раз', loSmith:'Копия кузнеца',
+      loSmithUsed:'Копия кузнеца доступна один раз за игру - уже использована на «%s»',
+      loArtNote:'Каждый артефакт создаётся только один раз, поэтому обычно он у вас один. '
+               +'Кузнец может продублировать артефакт, но лишь раз за игру и только один из них - '
+               +'значит ровно один артефакт может встретиться дважды (отмечен ⧉).',
       loBonusNote:'Два слота справа не занимают место в инвентаре: Поглотитель (Особый 4 ур.) хранит выбранный '
                  +'предмет 1 ур., Шкатулка (Особый 5 ур.) создаёт случайный предмет 2 ур. '
                  +'Эти предметы тоже учитываются в комплектах.',
@@ -1315,25 +1326,47 @@ const statName = k => { const m = STAT(k); return m ? (m[S.lang] || m.zh) : k; }
 const statVal  = k => { const m = STAT(k); return v =>
   (v > 0 ? '+' : '') + (+v.toFixed(2)) + (m && m.pct ? '%' : ''); };
 
-/* 神器每件只能合成一次；鐵匠雖然可以複製一件神器，但全場限用一次，
-   而且同一件神器仍然不能同時配戴兩件。所以配裝時要擋掉重複的神器。
-   其他類別（藥水、卷軸之類）帶兩件是合法的，不擋。 */
+/* 神器的持有規則（比一般道具複雜，所以拆成兩條）：
+     1. 每件神器只能合成一次 -> 預設每件最多 1 個
+     2. 鐵匠可以複製神器，但整場只能用一次、而且只能挑其中一件
+        -> 一套配裝裡「最多有一件神器出現兩次」，其餘仍然各一件
+   所以不是單純禁止重複，而是「重複的名額只有一個」。
+   其他類別（藥水、卷軸之類）帶兩件本來就合法，不擋。 */
 const ARTIFACT_G = new Set(GROUPS.map((g, n) => g.zh.startsWith('神器') ? n : -1)
                                  .filter(n => n >= 0));
 const isArtifact = id => ITEMS[id] && ARTIFACT_G.has(ITEMS[id].g);
+function artCounts(){
+  const c = {};
+  loadAll().forEach(id => { if (isArtifact(id)) c[id] = (c[id] || 0) + 1; });
+  return c;
+}
+/* 目前把「鐵匠複製」這個名額用在哪一件上 */
+function smithId(){
+  const c = artCounts();
+  return Object.keys(c).find(id => c[id] >= 2) || null;
+}
 
 let loMsg = null, loMsgT = null;
-function flash(key){
-  loMsg = t(key);
+function flash(msg){
+  loMsg = msg;
   clearTimeout(loMsgT);
-  loMsgT = setTimeout(() => { loMsg = null; renderLoad(); }, 2600);
+  loMsgT = setTimeout(() => { loMsg = null; renderLoad(); }, 3200);
   renderLoad();
 }
 
 function loadSave(){ localStorage.setItem('ud.load', JSON.stringify(S.load)); }
 function loadAdd(id){
   if (S.load.length >= MAXSLOT) return false;
-  if (isArtifact(id) && loadAll().includes(id)){ flash('loDupArt'); return false; }
+  if (isArtifact(id)){
+    const have = artCounts()[id] || 0;
+    if (have >= 2){ flash(t('loArtMax')); return false; }
+    if (have === 1){                       // 這一件會用掉「鐵匠複製」的名額
+      const used = smithId();
+      if (used && used !== id){
+        flash(t('loSmithUsed').replace('%s', nm(used))); return false;
+      }
+    }
+  }
   S.load.push(id); loadSave(); renderLoad(); return true;
 }
 function loadDel(n){ S.load.splice(n, 1); loadSave(); renderLoad(); }
@@ -1422,11 +1455,18 @@ function renderLoad(){
   box.hidden = S.mode !== 'build';
   if (box.hidden) return;
   let slots = '';
+  const seenArt = {};
   for (let n = 0; n < MAXSLOT; n++){
     const id = S.load[n];
+    let smith = '';
+    if (id && isArtifact(id)){
+      seenArt[id] = (seenArt[id] || 0) + 1;
+      if (seenArt[id] === 2)               // 這一格就是鐵匠複製出來的那件
+        smith = `<span class="sm" title="${esc(t('loSmith'))}">⧉</span>`;
+    }
     slots += (id && ITEMS[id])
       ? `<div class="lo-slot" data-on="1" data-slot="${n}" style="--c:${ITEMS[id].k || '#39415a'}"
-              title="${esc(nm(id))}">${thumb(id)}
+              title="${esc(nm(id))}${smith ? '　' + esc(t('loSmith')) : ''}">${thumb(id)}${smith}
            <button class="x" data-del="${n}" type="button"
                    title="${esc(t('loRemove'))}" aria-label="${esc(t('loRemove'))}">✕</button>
          </div>`
