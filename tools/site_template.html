@@ -16,6 +16,12 @@
   --r:10px; --r-sm:7px;
   --shadow:0 18px 50px -12px rgba(0,0,0,.7);
   --tile:104px; --icon:56px;
+  /* 面板文字的三段刻度。原本有 59 處各自寫死 10~12px，
+     所以同一層級的東西大小不一，看起來就亂。統一成三段之後
+     只要調這三個值，整個面板的閱讀感就一起變。 */
+  --fs-read:13px;    /* 可讀內文：說明、條列、屬性 */
+  --fs-sub:12px;     /* 次要資訊：分類、單位、註記 */
+  --fs-label:11px;   /* 小標與代碼（多為全大寫或等寬字） */
   --dur:.16s; --ease:cubic-bezier(.22,.7,.3,1);
 }
 [data-density="compact"]{ --tile:82px; --icon:44px; }
@@ -413,7 +419,7 @@ body[data-scrim="1"] .scrim{opacity:1;pointer-events:auto}
 .rank-head h2{margin:0;font-size:15px;font-weight:600}
 .rank-head .sub{font-size:11.5px;color:var(--ink-3)}
 .rank-head .bar{flex:1;height:1px;background:linear-gradient(90deg,var(--line),transparent)}
-.rank-note{padding:0 20px 12px;font-size:11.5px;color:var(--ink-3);line-height:1.6}
+.rank-note{padding:0 20px 12px;font-size:var(--fs-sub);color:var(--ink-3);line-height:1.7}
 
 .empty{padding:60px 20px;text-align:center;color:var(--ink-3)}
 .empty b{display:block;color:var(--ink-2);margin-bottom:6px;font-weight:500}
@@ -425,7 +431,7 @@ body[data-scrim="1"] .scrim{opacity:1;pointer-events:auto}
   width:0;border-left:0 solid var(--line);
   transition:width .22s var(--ease),border-left-width .22s var(--ease);
 }
-.panel[data-open="1"]{width:var(--pw,420px);border-left-width:1px}
+.panel[data-open="1"]{width:var(--pw,460px);border-left-width:1px}
 /* 拖曳時要即時跟手，不能有過渡 */
 .panel[data-drag="1"]{transition:none}
 .panel[data-open="0"] .handle{opacity:0;pointer-events:none}
@@ -433,7 +439,7 @@ body[data-scrim="1"] .scrim{opacity:1;pointer-events:auto}
 /* 內層固定寬度：外層收合時內容不會被擠壓變形，
    只是被裁切掉，看起來就像整片滑出去 */
 .p-inner{
-  width:var(--pw,420px);flex:0 0 auto;height:100%;
+  width:var(--pw,460px);flex:0 0 auto;height:100%;
   display:flex;flex-direction:column;min-height:0;
   opacity:0;transform:translateX(18px);
   transition:opacity .2s var(--ease) .04s,transform .26s var(--ease) .04s;
@@ -477,31 +483,32 @@ body[data-resizing="1"]{cursor:col-resize;user-select:none}
 .p-icon .ph{width:100%;height:100%;display:grid;place-items:center;color:var(--ink-3);font-size:11px}
 .p-name{min-width:0;flex:1;padding:2px 44px 0 0}
 .p-name h1{margin:0 0 3px;font-size:19px;line-height:1.3;font-weight:600;word-break:break-word}
-.p-name .alt{font-size:12px;color:var(--ink-3);line-height:1.5;word-break:break-word}
+.p-name .alt{font-size:12.5px;color:var(--ink-3);line-height:1.55;word-break:break-word}
 
 .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;position:relative}
 .chip{
   display:inline-flex;align-items:center;gap:5px;padding:3px 9px;border-radius:99px;
-  font-size:11.5px;background:var(--surface);border:1px solid var(--line);color:var(--ink-2);
+  font-size:var(--fs-sub);background:var(--surface);border:1px solid var(--line);color:var(--ink-2);
   flex:0 0 auto;width:max-content;max-width:100%;
 }
-.chip code{font:11px/1 ui-monospace,monospace;opacity:.75}
+.chip code{font:var(--fs-label)/1 ui-monospace,monospace;opacity:.75}
 .chip.tier{color:var(--c,var(--ink));border-color:color-mix(in srgb,var(--c,#39415a) 45%,transparent)}
 /* 套裝加成：一組一段，左邊一條該套裝的色帶，件數做成圓標好掃 */
 .sb{border-left:2px solid var(--sc);padding-left:10px;margin-top:12px}
 .sb:first-of-type{margin-top:2px}
 .sb-h{display:flex;align-items:center;gap:6px;margin-bottom:5px;flex-wrap:wrap}
-.sb-h b{color:var(--sc);font-size:12.5px}
-.sb-h code{font:10.5px/1 ui-monospace,monospace;color:var(--ink-3);
+.sb-h b{color:var(--sc);font-size:13.5px}
+.sb-h code{font:var(--fs-label)/1 ui-monospace,monospace;color:var(--ink-3);
   background:var(--surface);border:1px solid var(--line);border-radius:5px;padding:2px 5px}
-.sb-h .only{font-size:10.5px;color:var(--ink-3)}
-.sb-r{display:flex;gap:8px;align-items:flex-start;padding:3px 0;font-size:12px;line-height:1.55}
+.sb-h .only{font-size:var(--fs-sub);color:var(--ink-3)}
+.sb-r{display:flex;gap:9px;align-items:flex-start;padding:4px 0;
+  font-size:var(--fs-read);line-height:1.7}
 .sb-r .n{flex:0 0 auto;width:18px;height:18px;border-radius:50%;margin-top:2px;
-  display:grid;place-items:center;font:10.5px/1 ui-monospace,monospace;color:var(--sc);
+  display:grid;place-items:center;font:var(--fs-label)/1 ui-monospace,monospace;color:var(--sc);
   background:color-mix(in srgb,var(--sc) 16%,transparent);
   box-shadow:0 0 0 1px color-mix(in srgb,var(--sc) 34%,transparent) inset}
 .sb-r .x{color:var(--ink-2)}
-.sb-r .q{font-size:10px;color:#e0a340;margin-left:5px;white-space:nowrap;
+.sb-r .q{font-size:10.5px;color:#e0a340;margin-left:5px;white-space:nowrap;
   border:1px solid rgba(224,163,64,.4);border-radius:4px;padding:0 4px}
 .chip.set{
   border-color:color-mix(in srgb,var(--sc,#4b3a6b) 55%,transparent);
@@ -516,7 +523,7 @@ body[data-resizing="1"]{cursor:col-resize;user-select:none}
 .sect{margin-bottom:20px}
 .sect:last-child{margin-bottom:0}
 .sect > h4{
-  margin:0 0 8px;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+  margin:0 0 9px;font-size:var(--fs-label);letter-spacing:.12em;text-transform:uppercase;
   color:var(--ink-3);font-weight:600;
 }
 .stats{
@@ -548,9 +555,9 @@ body[data-resizing="1"]{cursor:col-resize;user-select:none}
   background:#0c0f15;box-shadow:0 0 0 1.5px var(--c2,#39415a)}
 .rel .ph{display:grid;place-items:center;font-size:10px;color:var(--ink-3)}
 .rel .t{min-width:0;flex:1}
-.rel .t b{display:block;font-size:12.5px;font-weight:500;overflow:hidden;
+.rel .t b{display:block;font-size:var(--fs-read);font-weight:500;overflow:hidden;
   text-overflow:ellipsis;white-space:nowrap}
-.rel .t span{font-size:11px;color:var(--ink-3)}
+.rel .t span{font-size:var(--fs-sub);color:var(--ink-3)}
 .rel .arrow{color:var(--ink-3);font-size:12px;flex:0 0 auto}
 
 /* 狀態說明。用 <details> 讓它預設收起 —— 大部分時候使用者只想確認
@@ -558,7 +565,7 @@ body[data-resizing="1"]{cursor:col-resize;user-select:none}
 .sts{display:flex;flex-direction:column;gap:5px}
 .st{border:1px solid var(--line);border-radius:9px;background:var(--surface);overflow:hidden}
 .st > summary{
-  list-style:none;cursor:pointer;padding:7px 10px;display:flex;
+  list-style:none;cursor:pointer;padding:9px 12px;display:flex;
   align-items:baseline;gap:7px;flex-wrap:wrap;
   transition:background var(--dur);
 }
@@ -567,17 +574,17 @@ body[data-resizing="1"]{cursor:col-resize;user-select:none}
   transition:transform var(--dur)}
 .st[open] > summary::after{transform:rotate(180deg)}
 .st > summary:hover{background:var(--surface-2)}
-.st > summary b{font-size:12.5px;color:var(--ink)}
-.st > summary .s{font-size:11px;color:var(--ink-3);flex:1 1 100%;line-height:1.5}
+.st > summary b{font-size:13.5px;color:var(--ink)}
+.st > summary .s{font-size:var(--fs-read);color:var(--ink-2);flex:1 1 100%;line-height:1.65}
 .st > summary .tag{
-  font-size:9.5px;padding:1px 6px;border-radius:99px;white-space:nowrap;
+  font-size:10.5px;padding:2px 7px;border-radius:99px;white-space:nowrap;
   color:#e0a340;border:1px solid rgba(224,163,64,.4);
 }
-.st-g{padding:0 10px 9px}
-.st-g h6{margin:8px 0 4px;font-size:10px;font-weight:600;letter-spacing:.08em;
+.st-g{padding:0 12px 11px}
+.st-g h6{margin:10px 0 5px;font-size:var(--fs-label);font-weight:600;letter-spacing:.08em;
   text-transform:uppercase;color:var(--ink-3)}
 .st-g ul{margin:0;padding-left:16px}
-.st-g li{font-size:11.5px;line-height:1.65;color:var(--ink-2);margin:2px 0}
+.st-g li{font-size:var(--fs-read);line-height:1.75;color:var(--ink-2);margin:4px 0}
 
 /* 用於合成：一個目標一張卡，卡的下半直接列出該配方的全部素材，
    手上這件打勾。這樣「還缺什麼」不必再點一層。 */
@@ -593,9 +600,9 @@ body[data-resizing="1"]{cursor:col-resize;user-select:none}
   background:#0c0f15;box-shadow:0 0 0 1.5px var(--c2,#39415a)}
 .use-h .ph{display:grid;place-items:center;font-size:10px;color:var(--ink-3)}
 .use-h .t{min-width:0;flex:1}
-.use-h .t b{display:block;font-size:12.5px;font-weight:500;overflow:hidden;
+.use-h .t b{display:block;font-size:var(--fs-read);font-weight:500;overflow:hidden;
   text-overflow:ellipsis;white-space:nowrap}
-.use-h .t span{font-size:11px;color:var(--ink-3)}
+.use-h .t span{font-size:var(--fs-sub);color:var(--ink-3)}
 .use-h .arrow{color:var(--ink-3);font-size:12px;flex:0 0 auto}
 .use-m{
   display:flex;align-items:center;gap:4px;flex-wrap:wrap;
@@ -603,7 +610,7 @@ body[data-resizing="1"]{cursor:col-resize;user-select:none}
 }
 .use-m button{
   display:flex;align-items:center;gap:5px;max-width:100%;cursor:pointer;
-  padding:3px 8px 3px 3px;border-radius:99px;font-size:11px;
+  padding:4px 9px 4px 4px;border-radius:99px;font-size:var(--fs-sub);
   background:var(--surface);border:1px solid var(--line);color:var(--ink-2);
   transition:border-color var(--dur),color var(--dur),background var(--dur);
 }
@@ -666,7 +673,7 @@ body[data-resizing="1"]{cursor:col-resize;user-select:none}
 .seq-head .pos{font:11px/1 ui-monospace,monospace;color:var(--ink-2)}
 .seq-head .pos b{color:var(--accent)}
 
-.note{font-size:11.5px;color:var(--ink-3);line-height:1.7}
+.note{font-size:var(--fs-sub);color:var(--ink-3);line-height:1.75}
 
 /* -------- toast / hint */
 .hint{
@@ -792,21 +799,22 @@ body[data-resizing="1"]{cursor:col-resize;user-select:none}
 }
 .lo-stats{display:flex;gap:6px;flex-wrap:wrap;max-width:640px}
 .lo-st{
-  font-size:12px;padding:3px 9px;border-radius:7px;white-space:nowrap;
+  font-size:var(--fs-read);padding:4px 10px;border-radius:7px;white-space:nowrap;
   background:var(--surface);border:1px solid var(--line);color:var(--ink);
 }
 .lo-st b{color:var(--accent);font-weight:600}
 .lo-st.max{border-color:color-mix(in srgb,#e0a340 40%,var(--line))}
 .lo-st.max b{color:#e0a340}
 .lo-list{display:flex;flex-direction:column;gap:5px;max-width:520px}
-.lo-row{display:flex;gap:8px;align-items:flex-start;font-size:12px;line-height:1.5}
+.lo-row{display:flex;gap:9px;align-items:flex-start;
+  font-size:var(--fs-read);line-height:1.65}
 .lo-row .ic{width:22px;height:22px;border-radius:5px;overflow:hidden;flex:0 0 auto;
   background:#0c0f15;box-shadow:0 0 0 1px var(--c,#39415a)}
 .lo-row .ic img{width:100%;height:100%;object-fit:cover;display:block}
 .lo-row .tx{min-width:0;color:var(--ink-2)}
 .lo-row .tx b{color:var(--ink);font-weight:600}
-.lo-note{font-size:11px;color:var(--ink-3);margin-top:9px;line-height:1.6}
-.lo-setline{font-size:12px;color:var(--ink-2);line-height:1.6}
+.lo-note{font-size:var(--fs-sub);color:var(--ink-3);margin-top:10px;line-height:1.75}
+.lo-setline{font-size:var(--fs-read);color:var(--ink-2);line-height:1.7}
 .lo-setline b{color:var(--sc,var(--accent))}
 
 /* -------- responsive */
@@ -1167,7 +1175,7 @@ const UI = {
 const S = {
   lang: localStorage.getItem('ud.lang') || 'zh',
   density: localStorage.getItem('ud.density') || 'comfortable',
-  width: +(localStorage.getItem('ud.pw') || 420),
+  width: +(localStorage.getItem('ud.pw') || 460),
   tier: null,        // null = all
   cat: null,         // 取得管道分類
   set: null,         // 套裝（c1~c4）
@@ -2419,7 +2427,7 @@ handle.addEventListener('pointerdown', e => {
   window.addEventListener('pointerup', up);
 });
 handle.addEventListener('dblclick', () => isMobile()
-  ? setSheet(sheetVH >= 94 ? 62 : 94) : setW(420));
+  ? setSheet(sheetVH >= 94 ? 62 : 94) : setW(460));
 handle.addEventListener('keydown', e => {
   if (e.key === 'ArrowLeft') { setW(S.width + 24); e.preventDefault(); }
   if (e.key === 'ArrowRight'){ setW(S.width - 24); e.preventDefault(); }
