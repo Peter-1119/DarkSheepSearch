@@ -4729,7 +4729,7 @@
    "recipe": [
     "ratf",
     "gsou",
-    "gvsm"
+    "rej2"
    ],
    "used_in": [],
    "in_wiki": true
@@ -6045,7 +6045,9 @@
    "level": 6,
    "gold": 300,
    "recipe": [],
-   "used_in": [],
+   "used_in": [
+    "shcw"
+   ],
    "in_wiki": true
   },
   "frhg": {
@@ -6104,7 +6106,6 @@
    "gold": 300,
    "recipe": [],
    "used_in": [
-    "shcw",
     "I00S"
    ],
    "in_wiki": true
@@ -13245,7 +13246,7 @@
     },
     {
      "kind": "item",
-     "id": "gvsm"
+     "id": "rej2"
     },
     {
      "kind": "op",

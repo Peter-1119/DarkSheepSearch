@@ -185,6 +185,7 @@ for r in DB:
 RECIPE_FIX = {
     'sbok': ['schl', 'pclr'],       # 黃道十二宮 = 潛能覺醒 + 覺醒卷軸
     'I00S': ['I04G', 'gvsm'],       # 寒冰之球 = 熔岩球（特殊3）+ 石英法杖（特殊1）
+    'shcw': ['ratf', 'gsou', 'rej2'],  # 矛與盾：新版把石英法杖換成翡翠吊墜
 }
 for k, v in RECIPE_FIX.items():
     items[k]['recipe'] = v
@@ -238,6 +239,16 @@ recipes = [{'row': r['row'],
             'seq': [{'kind': 'item', 'id': s['url'][:-5]} if s['kind'] == 'item'
                     else {'kind': 'op', 'op': s['op']} for s in r['seq']]}
            for r in RECIPES]
+
+# 合成表來自 xlsx，是另一份資料。配方改版時這裡也要跟著換，
+# 否則攻略第四節（合成表）會跟第九節（道具資料）互相矛盾。
+SEQ_FIX = [(3, 'gvsm', 'rej2')]        # 第 3 條：矛與盾 石英法杖 -> 翡翠吊墜
+for _row, _old, _new in SEQ_FIX:
+    for _r in recipes:
+        if _r['row'] == _row:
+            for _s in _r['seq']:
+                if _s.get('id') == _old:
+                    _s['id'] = _new
 
 for n, i in enumerate(LEGION['items']):
     if i in items:
