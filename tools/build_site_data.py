@@ -213,8 +213,9 @@ meta = {
     'siteVersion': (VER.get('site_version') or '').strip(),
     'mapVersion': (VER.get('map_version') or '').strip(),
     'dataDate': data_date,
-    # 建置日期只到「日」，避免每次重跑都製造無意義的 git 差異
-    'builtAt': datetime.date.today().strftime('%Y-%m-%d'),
+    'author': (VER.get('author') or '').strip(),
+    # 網站的更新時間。含時分，方便確認 GitHub Pages 是不是真的換上新版了。
+    'builtAt': datetime.datetime.now().strftime('%Y-%m-%d %H:%M'),
     'items': len(items),
     'icons': sum(1 for v in items.values() if v['img']),
 }

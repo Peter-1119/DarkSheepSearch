@@ -1,6 +1,9 @@
 {
-  "site_version": "v1.7",
+  "site_version": "v1.8",
   "_site_version_說明": "網站版本。每次改完內容要發布時，自己把這裡 +1（v1.1、v1.2…），重跑 build.ps1 後推上去。網站左上角標題旁邊會顯示，用來確認 GitHub Pages 有沒有更新成功。",
+
+  "author": "CC_lemon",
+  "_author_說明": "網站作者，顯示在左下角的資料區塊。留空就不顯示。",
 
   "map_version": "UD_v3.80",
   "_map_version_說明": "地圖版本號。地圖改版時更新這裡。",

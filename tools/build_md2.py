@@ -49,7 +49,9 @@ _dd = _ver.get('data_date') or _dt.datetime.fromtimestamp(
 w('# 肥羊的聖誕禮物 — 裝備合成攻略 & 裝備一覽')
 w()
 w('> 魔獸爭霸 III 地圖《肥羊的聖誕禮物》（原版：**Underground Defence**）裝備資料整理。')
-w('> 地圖版本 **%s**　·　資料擷取日 %s' % (_mv or '未知', _dd))
+_au = (_ver.get('author') or '').strip()
+w('> 地圖版本 **%s**　·　資料擷取日 %s%s'
+  % (_mv or '未知', _dd, ('　·　整理：%s' % _au) if _au else ''))
 w('> 共 **%d** 件裝備 ＋ **%d** 件消耗品／掉落物，其中 **%d** 件附有遊戲內圖示。'
   % (NEQ, len(I) - NEQ, NIMG))
 w()

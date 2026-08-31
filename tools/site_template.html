@@ -1116,7 +1116,7 @@ const UI = {
       hint:'點擊看詳細，再點一次收合 · 相關素材會在格子中高亮', hint2:'搜尋',
       shopL:'商店', setL:'套裝', setFilter:'只看這組套裝', close:'關閉', clear:'清除搜尋', results:'搜尋結果',
       dataL:'資料', dateL:'擷取日', cntL:'道具', icoL:'圖示', verUnknown:'版本未知',
-      siteL:'網站', builtL:'建置日', bySeq:'依循環順序',
+      siteL:'網站', builtL:'更新時間', authorL:'作者', bySeq:'依循環順序',
       rankL:'排行', rankOff:'不排行（瀏覽）', rankBy:'依 %s 排行',
       rankNote:'只計算固定加成；「對英雄傷害」這類條件加成不列入比較',
       cycL:'扭曲循環', cycNote:'再用一次扭曲卷軸就會變成右邊那件，走完 29 件回到起點',
@@ -1176,7 +1176,7 @@ const UI = {
       hint:'Click for details, click again to close · related pieces light up',
       hint2:'search', shopL:'Shop', setL:'Set', setFilter:'Show only this set', close:'Close', clear:'Clear search', results:'Results',
       dataL:'Data', dateL:'Extracted', cntL:'Items', icoL:'Icons', verUnknown:'version unknown',
-      siteL:'Site', builtL:'Built', bySeq:'in cycle order',
+      siteL:'Site', builtL:'Updated', authorL:'Author', bySeq:'in cycle order',
       rankL:'Rank', rankOff:'Off (browse)', rankBy:'Ranked by %s',
       rankNote:'Flat bonuses only; conditional ones like "damage vs heroes" are excluded',
       cycL:'Distortion cycle', cycNote:'Another Scroll of Distortion turns it into the next one; 29 steps loop back',
@@ -1240,7 +1240,7 @@ const UI = {
       hint2:'поиск', shopL:'Магазин', setL:'Комплект', close:'Закрыть', clear:'Очистить поиск',
       setFilter:'Только этот комплект', results:'Результаты', dataL:'Данные', dateL:'Выгрузка', cntL:'Предметов',
       icoL:'Иконок', verUnknown:'версия неизвестна',
-      siteL:'Сайт', builtL:'Сборка', bySeq:'по циклу',
+      siteL:'Сайт', builtL:'Обновлено', authorL:'Автор', bySeq:'по циклу',
       rankL:'Рейтинг', rankOff:'Выкл. (обзор)', rankBy:'Рейтинг по: %s',
       rankNote:'Только фиксированные бонусы; условные не участвуют',
       cycL:'Цикл искажения', cycNote:'Ещё один свиток искажения даёт следующий предмет; 29 шагов по кругу',
@@ -1404,6 +1404,7 @@ function renderRail(){
       <dl>
         <dt>${esc(t('siteL'))}</dt><dd>${esc(M.siteVersion || '—')}</dd>
         <dt>${esc(t('builtL'))}</dt><dd>${esc(M.builtAt || '—')}</dd>
+        ${M.author ? `<dt>${esc(t('authorL'))}</dt><dd>${esc(M.author)}</dd>` : ''}
         <dt>${esc(t('dateL'))}</dt><dd>${esc(M.dataDate || '—')}</dd>
         <dt>${esc(t('cntL'))}</dt><dd>${M.items ?? IDS.length}</dd>
         <dt>${esc(t('icoL'))}</dt><dd>${M.icons ?? ''}</dd>
