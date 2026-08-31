@@ -6337,8 +6337,8 @@
      "ru": "При использовании вызывает 2 скелетов на 40 сек. Перезарядка - 20 сек."
     }
    ],
-   "image": null,
-   "icon_src": null,
+   "image": "images/stre.png",
+   "icon_src": "temp",
    "level": 6,
    "gold": 300,
    "recipe": [],

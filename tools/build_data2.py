@@ -176,9 +176,12 @@ for r in DB:
             xz.read('xl/drawings/media/' + xlsx_img[i]))
         img = 'images/%s.png' % i
     elif i in lack:
-        # 截圖來的，顏色本來就是對的，不要走 load_icon 的 R/B 修正
-        Image.open(lack[i]).convert('RGBA').save(
-            os.path.join(OUT_IMG, i + '.png'), 'PNG', optimize=True)
+        # 截圖來的，顏色本來就是對的，不要走 load_icon 的 R/B 修正。
+        # 尺寸統一成 64×64 —— 玩家截圖的邊界不一定齊，不統一的話格子裡會糊掉。
+        _im = Image.open(lack[i]).convert('RGBA')
+        if _im.size != (64, 64):
+            _im = _im.resize((64, 64), Image.LANCZOS)
+        _im.save(os.path.join(OUT_IMG, i + '.png'), 'PNG', optimize=True)
         img = 'images/%s.png' % i
     else:
         noimg.append(i)
