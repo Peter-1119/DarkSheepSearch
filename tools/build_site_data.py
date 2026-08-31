@@ -9,6 +9,40 @@ sys.stdout.reconfigure(encoding='utf-8')
 ROOT = r'D:/Notebook Program Scripts/Python_Scripts/DarkSheep'
 DB = json.load(open('db_items.json', encoding='utf-8'))
 SETB = json.load(open('set_bonus.json', encoding='utf-8'))
+
+# Бонусы 裡沒被 stat_values 採計的片段。分兩種：
+#   · 條件加成（「對英雄」「對亡靈」「對 N 級敵人」…）—— 不能跟無條件屬性混加，
+#     但也不能整段丟掉，否則像「弒神者 +50% 對英雄傷害」這種主力屬性會憑空消失。
+#   · 無數值旗標（抗詛咒、免疫反傷…）
+# 這裡逐段翻成三語並保留俄文原文當分組鍵，配裝時同條件的可以加總。
+_NUMRE = re.compile(r'^([-+]?\d+(?:\.\d+)?)\s*(%?)\s+(.+)$')
+_ZHNUM = re.compile(r'^([-+]?\d+(?:\.\d+)?%?)\s*(.*)$', re.S)
+
+def leftovers(bonus):
+    if not bonus:
+        return []
+    txt = bonus.replace('НР', 'HP').replace('МР', 'MP').replace('МP', 'MP')
+    out = []
+    for part in re.split(r',(?![^()]*\))', txt):
+        p0 = part.strip().rstrip('.')
+        if not p0:
+            continue
+        m = _NUMRE.match(p0)
+        rest = None
+        if m:
+            rest = re.sub(r'^ед\.(?!/)\s*', '', m.group(3).strip())
+            if any(re.fullmatch(pat, rest, re.I) for _, pat, *_ in stat_values.STATS):
+                continue                      # 已經被採計
+        tri = []
+        for lang in ('zh', 'en'):
+            t = tr_bonus(p0, lang)[0] or p0
+            mm = _ZHNUM.match(t.strip())
+            tri.append(mm.group(2).strip() if (mm and m) else t.strip())
+        val = float(m.group(1)) if m else None
+        pct = 1 if (m and m.group(2)) else 0
+        out.append([rest or p0, val, pct, tri[0], tri[1], rest or p0])
+    return out
+
 STAT_INFO = json.load(open('status.json', encoding='utf-8'))
 NZH = json.load(open('names2.json', encoding='utf-8'))
 NEN = json.load(open('names_en.json', encoding='utf-8'))
@@ -161,6 +195,7 @@ for r in DB:
         'act': 1 if prev.get('active') else None,
         # 暫代圖示（玩家截圖補的），拿到正式圖會換掉
         'tmp': 1 if prev.get('icon_src') == 'temp' else None,
+        'vx': leftovers(r['fields'].get('Бонусы', '')) or None,
         'r': prev['recipe'],
         'u': prev['used_in'],
         'v': stat_values.parse(r['fields'].get('Бонусы', '')) or None,
@@ -184,12 +219,15 @@ meta = {
     'icons': sum(1 for v in items.values() if v['img']),
 }
 
-# 只保留有足夠樣本的屬性，免得下拉選單塞滿只有 1-2 件的項目
+# 這份清單有兩個用途，條件不同，不能共用同一個門檻：
+#   · 排行下拉：樣本太少的排起來沒意義 -> rank=True 才進下拉
+#   · 配裝總計的顯示：有多少算多少，不能過濾，否則屬性會憑空消失
 import collections as _c
 _have = _c.Counter(k for v in items.values() for k in (v['v'] or {}))
-statmeta = [m for m in stat_values.META if _have[m['k']] >= 8]
+statmeta = [m for m in stat_values.META if _have[m['k']] >= 1]
 for m in statmeta:
     m['n'] = _have[m['k']]
+    m['rank'] = _have[m['k']] >= 8
 
 # ---------------------------------------------------------------- 順序資訊
 # 扭曲：舊合成表畫成封閉迴圈，箭頭有明確方向，只有「第一次轉出」是隨機

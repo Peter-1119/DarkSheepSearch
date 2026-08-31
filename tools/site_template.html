@@ -872,6 +872,10 @@ body[data-resizing="1"]{cursor:col-resize;user-select:none}
 }
 .lo-st b{color:var(--accent);font-weight:600}
 .lo-st.max{border-color:color-mix(in srgb,#e0a340 40%,var(--line))}
+/* 條件加成：用不同的邊色跟無條件屬性區隔，避免被誤讀成可以直接相加 */
+.lo-st.cond{border-color:color-mix(in srgb,#7fa8ff 38%,var(--line))}
+.lo-st.cond b{color:#7fa8ff}
+.lo-st.flag{border-color:color-mix(in srgb,var(--mat) 34%,var(--line));color:var(--ink-2)}
 .lo-st.max b{color:#e0a340}
 .lo-list{display:flex;flex-direction:column;gap:5px;max-width:520px}
 .lo-row{display:flex;gap:9px;align-items:flex-start;
@@ -1134,6 +1138,8 @@ const UI = {
       smLgTap:'點狀態＝用它搜尋裝備',
       loHint:'點下方裝備加入欄位，最多 6 件', loClear:'清空', loFull:'欄位已滿',
       loSum:'屬性總計', loMax:'減傷（同類取最高）', loAct:'主動技能',
+      loCond:'條件加成', loFlag:'抗性與特性',
+      loCondNote:'這些只在特定對象上生效（對英雄／亡靈／某等級…），所以不併入上面的總計；同條件之間才會相加',
       loPas:'被動效果', loSet:'觸發的套裝加成', loNone:'還沒放入任何裝備',
       loNote:'減傷類同時帶多件不會疊加，這裡取最高值；其餘屬性直接相加',
       loRelic:'另需任一件「聖物」類道具', loRemove:'移除',
@@ -1193,6 +1199,8 @@ const UI = {
       smLgTap:'Tap a status to search items',
       loHint:'Tap items below to fill the slots, up to 6', loClear:'Clear', loFull:'Slots full',
       loSum:'Total stats', loMax:'Damage reduction (highest only)', loAct:'Active abilities',
+      loCond:'Conditional bonuses', loFlag:'Resistances & traits',
+      loCondNote:'These only apply to specific targets (heroes, undead, a level range...), so they are kept out of the totals above; only identical conditions add up',
       loPas:'Passive effects', loSet:'Set bonuses in effect', loNone:'No items yet',
       loNote:'Damage reductions of the same kind do not stack - the highest applies; everything else adds up',
       loRelic:'Also needs any "Relic" item', loRemove:'Remove',
@@ -1255,6 +1263,8 @@ const UI = {
       smLgTap:'Нажмите статус для поиска',
       loHint:'Нажимайте предметы ниже, до 6 штук', loClear:'Очистить', loFull:'Слоты заполнены',
       loSum:'Сумма характеристик', loMax:'Снижение урона (только наибольшее)',
+      loCond:'Условные бонусы', loFlag:'Сопротивления и особенности',
+      loCondNote:'Действуют только против определённых целей (герои, нежить, уровень...), поэтому не входят в суммы выше; складываются только одинаковые условия',
       loAct:'Активные умения', loPas:'Пассивные эффекты',
       loSet:'Действующие бонусы комплекта', loNone:'Пока ничего не выбрано',
       loNote:'Снижения урона одного вида не суммируются - берётся наибольшее; остальное складывается',
@@ -1897,8 +1907,16 @@ function loadDel(n){ S.load.splice(n, 1); loadSave(); afterLoadChange(); }
 
 function loadCalc(){
   const sum = {}, max = {}, setc = {}, act = [], pas = [];
+  /* 條件加成（只對英雄／亡靈／某等級生效）不能跟無條件屬性混加，
+     但同一個條件之間可以加總，所以照條件分組。無數值的（抗性、免疫）另外列。 */
+  const cond = {}, flag = {};
   loadAll().forEach(id => {
     const it = ITEMS[id]; if (!it) return;
+    (it.vx || []).forEach(([k, v, pct, zh, en, ru]) => {
+      if (v == null){ flag[k] = [zh, en, ru]; return; }
+      const e = cond[k] || (cond[k] = {v: 0, pct: pct, t: [zh, en, ru]});
+      e.v += v;
+    });
     for (const [k, v] of Object.entries(it.v || {})){
       if (NOSTACK.has(k)) max[k] = Math.max(k in max ? max[k] : -Infinity, v);
       else sum[k] = (sum[k] || 0) + v;
@@ -1907,7 +1925,7 @@ function loadCalc(){
     const w = setWeight(id);
     setKeysOf(it).forEach(k => setc[k] = (setc[k] || 0) + w);
   });
-  return {sum, max, setc, act, pas};
+  return {sum, max, setc, act, pas, cond, flag};
 }
 
 /* 屬性照 DATA.stats 的順序排，跟排行下拉一致，掃起來位置固定 */
@@ -2048,6 +2066,20 @@ function loadoutSecs(){
       <div class="lo-stats">${sumC}</div></div>`);
   if (maxC) secs.push(`<div class="lo-sec"><h5>${esc(t('loMax'))}</h5>
       <div class="lo-stats">${maxC}</div></div>`);
+  const L3 = li();
+  const condC = Object.keys(c.cond).map(k => {
+    const e = c.cond[k];
+    return `<span class="lo-st cond">${esc(e.t[L3])} <b>${
+      (e.v > 0 ? '+' : '') + (+e.v.toFixed(2)) + (e.pct ? '%' : '')}</b></span>`;
+  }).join('');
+  if (condC) secs.push(`<div class="lo-sec"><h5>${esc(t('loCond'))}</h5>
+      <div class="lo-stats">${condC}</div>
+      <div class="lo-note" style="margin-top:6px">${esc(t('loCondNote'))}</div></div>`);
+  const flagC = Object.keys(c.flag).map(k =>
+    `<span class="lo-st flag">${esc(c.flag[k][L3])}</span>`).join('');
+  if (flagC) secs.push(`<div class="lo-sec"><h5>${esc(t('loFlag'))}</h5>
+      <div class="lo-stats">${flagC}</div></div>`);
+
   if (c.act.length) secs.push(`<div class="lo-sec"><h5>${esc(t('loAct'))} ${
       c.act.length}</h5><div class="lo-list">${effRows(c.act)}</div></div>`);
   /* 這套配裝總共牽涉到哪些狀態。配裝時才是真正要算傷害的時候，
@@ -2629,8 +2661,10 @@ $('#lang').addEventListener('click', e => {
 });
 const rankSel = $('#rank');
 function fillRank(){
+  /* 只有樣本夠多的才進排行下拉；配裝總計仍會顯示全部屬性 */
   rankSel.innerHTML = `<option value="">${esc(t('rankOff'))}</option>` +
-    STATS.map(m => `<option value="${m.k}">${esc(m[S.lang] || m.zh)}　(${m.n})</option>`).join('');
+    STATS.filter(m => m.rank)
+         .map(m => `<option value="${m.k}">${esc(m[S.lang] || m.zh)}　(${m.n})</option>`).join('');
   rankSel.value = S.rank;
   rankSel.classList.toggle('on', !!S.rank);
 }
