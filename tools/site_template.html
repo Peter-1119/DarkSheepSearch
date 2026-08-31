@@ -521,6 +521,8 @@ body[data-resizing="1"]{cursor:col-resize;user-select:none}
 }
 .chip.set:hover{background:color-mix(in srgb,var(--sc,#4b3a6b) 26%,var(--surface))}
 .chip.shop{border-color:#3c5340;color:#8fd6a3}
+/* 暫代圖示：標一下，之後拿到正式圖才知道要換哪幾件 */
+.chip.tmp{border-color:rgba(224,163,64,.45);color:#e0a340;cursor:help}
 
 .p-body{flex:1;overflow-y:auto;padding:16px 18px 40px;min-height:0}
 .sect{margin-bottom:20px}
@@ -1104,7 +1106,9 @@ const UI = {
       usedNote:'綠色打勾的是你正在看的這件；其餘為該配方還需要的素材',
       stL:'相關狀態', stDmg:'會造成傷害', stTrait:'特性', stInter:'與其他狀態的交互',
       stMore:'展開／收合詳細說明',
-      alias:'舊表名稱', none:'沒有符合的裝備', tryOther:'換個關鍵字或清除篩選',
+      alias:'舊表名稱', tmpIco:'暫代圖示',
+      tmpIcoNote:'這張圖是玩家從遊戲畫面截的暫代圖，非地圖檔內的正式圖示',
+      none:'沒有符合的裝備', tryOther:'換個關鍵字或清除篩選',
       hint:'點擊看詳細，再點一次收合 · 相關素材會在格子中高亮', hint2:'搜尋',
       shopL:'商店', setL:'套裝', setFilter:'只看這組套裝', close:'關閉', clear:'清除搜尋', results:'搜尋結果',
       dataL:'資料', dateL:'擷取日', cntL:'道具', icoL:'圖示', verUnknown:'版本未知',
@@ -1156,6 +1160,8 @@ const UI = {
       matAny:'Used in a recipe', mat:'Component of this item',
       into:'Builds into', stats:'Bonuses', effects:'Effects',
       recipe:'Recipe', usedin:'Used in', alias:'Old sheet name',
+      tmpIco:'placeholder icon',
+      tmpIcoNote:'Screenshot placeholder supplied by a player, not the icon from the map file',
       usedNote:'The green ticked one is the item you are viewing; the rest are what that recipe still needs',
       stMore:'Expand / collapse details',
       stL:'Statuses involved', stDmg:'Deals damage', stTrait:'Traits',
@@ -1215,6 +1221,8 @@ const UI = {
       matAny:'Используется в крафте', mat:'Компонент этого предмета',
       into:'Входит в', stats:'Бонусы', effects:'Эффекты',
       recipe:'Рецепт', usedin:'Используется в', alias:'Старое название',
+      tmpIco:'временная иконка',
+      tmpIcoNote:'Скриншот от игрока, а не иконка из файла карты',
       usedNote:'Зелёная галочка - предмет, который вы смотрите; остальное нужно для этого рецепта',
       stMore:'Развернуть / свернуть подробности',
       stL:'Связанные статусы', stDmg:'Наносит урон', stTrait:'Особенности',
@@ -2132,6 +2140,8 @@ function openItem(id, scroll){
             esc(t('setL'))} · ${esc(setName(k))} <code>-${k}</code></button>`).join('')}
       ${it.shop ? `<span class="chip shop">${esc(it.shop[L])}</span>`:''}
       ${it.a && S.lang==='zh' ? `<span class="chip">${esc(t('alias'))}：${esc(it.a)}</span>`:''}
+      ${it.tmp ? `<span class="chip tmp" title="${esc(t('tmpIcoNote'))}">${
+        esc(t('tmpIco'))}</span>`:''}
     </div>`;
 
   let b = '';

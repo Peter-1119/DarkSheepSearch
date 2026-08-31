@@ -906,8 +906,8 @@
    "stats": "+5護甲，+125生命值，+5反傷，+6%狀態抗性",
    "stats_ru": "+5 armor, +125 HP, +5 ответный урон, +6% защита от статусов",
    "effects": [],
-   "image": null,
-   "icon_src": null,
+   "image": "images/cnob.png",
+   "icon_src": "temp",
    "level": null,
    "gold": 450,
    "recipe": [],
@@ -1250,8 +1250,8 @@
    "stats": "+7護甲，+200生命值，+10反傷，+5%非狀態防禦，+8%狀態抗性",
    "stats_ru": "+7 armor, +200 HP, +10 ответный урон, +5% защита не от статусов, +8% защита от статусов",
    "effects": [],
-   "image": null,
-   "icon_src": null,
+   "image": "images/ciri.png",
+   "icon_src": "temp",
    "level": 2,
    "gold": 950,
    "recipe": [],
@@ -1650,8 +1650,8 @@
      "ru": "30% защита от маг. урона"
     }
    ],
-   "image": null,
-   "icon_src": null,
+   "image": "images/stwa.png",
+   "icon_src": "temp",
    "level": 3,
    "gold": 250,
    "recipe": [],
@@ -1738,8 +1738,8 @@
      "ru": "Телепортирует героя на небольшое расстояние (перезарядка - 15 сек.)"
     }
    ],
-   "image": null,
-   "icon_src": null,
+   "image": "images/brag.png",
+   "icon_src": "temp",
    "level": 3,
    "gold": 250,
    "recipe": [],
@@ -1826,8 +1826,8 @@
      "ru": "Распространяет ауру для союзных войск и героев +10% скорость атаки и движения."
     }
    ],
-   "image": null,
-   "icon_src": null,
+   "image": "images/gobm.png",
+   "icon_src": "temp",
    "level": 3,
    "gold": 250,
    "recipe": [],
@@ -2078,8 +2078,8 @@
      "ru": "Дарует 14% вампиризма от атак."
     }
    ],
-   "image": null,
-   "icon_src": null,
+   "image": "images/rots.png",
+   "icon_src": "temp",
    "level": 3,
    "gold": 250,
    "recipe": [],
@@ -2257,8 +2257,8 @@
      "ru": "Очищает союзников от негативных эффектов и статусов и обновляет действие негативных не наносящих урон статусов на противниках. Призванные противники получают (150 + 50% сила умений) ед. урона. Перезарядка - 12 сек."
     }
    ],
-   "image": null,
-   "icon_src": null,
+   "image": "images/uflg.png",
+   "icon_src": "temp",
    "level": 3,
    "gold": 250,
    "recipe": [],
@@ -2335,8 +2335,8 @@
      "ru": "При активации заставляет ближайших врагов атаковать героя. Повышает атаку героя на (100% сила) ед. в течение 5 сек."
     }
    ],
-   "image": null,
-   "icon_src": null,
+   "image": "images/btst.png",
+   "icon_src": "temp",
    "level": 3,
    "gold": 250,
    "recipe": [],
@@ -2394,8 +2394,8 @@
      "ru": "При активации заставляет врагов в большой области вокруг атаковать героя. Повышает атаку героя на (200% сила) ед. и защиту на 10 ед. в течение 5 сек."
     }
    ],
-   "image": null,
-   "icon_src": null,
+   "image": "images/tlum.png",
+   "icon_src": "temp",
    "level": 3,
    "gold": 1000,
    "recipe": [],
@@ -5758,8 +5758,8 @@
      "ru": "Убийство вражеского героя повышает уровень героя на 1."
     }
    ],
-   "image": null,
-   "icon_src": null,
+   "image": "images/crdt.png",
+   "icon_src": "temp",
    "level": 6,
    "gold": 300,
    "recipe": [],
@@ -5786,8 +5786,8 @@
      "ru": "+3% к скорости атаки за каждый уровень героя. Эффект может суммироваться от одинаковых перчаток."
     }
    ],
-   "image": null,
-   "icon_src": null,
+   "image": "images/klmm.png",
+   "icon_src": "temp",
    "level": 6,
    "gold": 300,
    "recipe": [],
@@ -6359,8 +6359,8 @@
    "stats": "+3生命回復",
    "stats_ru": "+3 HP regen",
    "effects": [],
-   "image": null,
-   "icon_src": null,
+   "image": "images/lure.png",
+   "icon_src": "temp",
    "level": 6,
    "gold": 300,
    "recipe": [],
@@ -6765,8 +6765,8 @@
    "stats": "+15%裝備技能威力，+15%狀態傷害",
    "stats_ru": "+15% сила модификаторов, +15% урон от статусов",
    "effects": [],
-   "image": null,
-   "icon_src": null,
+   "image": "images/oli2.png",
+   "icon_src": "temp",
    "level": 6,
    "gold": 300,
    "recipe": [],
@@ -6793,8 +6793,8 @@
      "ru": "Разрушение героем кристалла или кластера приносит дополнительный ресурс с 50% вероятностью."
     }
    ],
-   "image": null,
-   "icon_src": null,
+   "image": "images/olig.png",
+   "icon_src": "temp",
    "level": 3,
    "gold": 250,
    "recipe": [],
@@ -7591,8 +7591,8 @@
      "ru": "Восстанавливает 400 ед. здоровья."
     }
    ],
-   "image": null,
-   "icon_src": null,
+   "image": "images/I00G.png",
+   "icon_src": "temp",
    "level": 0,
    "gold": 35,
    "recipe": [],
@@ -7619,8 +7619,8 @@
      "ru": "Восстанавливает 200 ед. маны."
     }
    ],
-   "image": null,
-   "icon_src": null,
+   "image": "images/I00H.png",
+   "icon_src": "temp",
    "level": 0,
    "gold": 35,
    "recipe": [],
@@ -7685,8 +7685,8 @@
      "ru": "Используйте флягу или зелья 30 раз чтобы улучшить предмет."
     }
    ],
-   "image": null,
-   "icon_src": null,
+   "image": "images/I00J.png",
+   "icon_src": "temp",
    "level": 1,
    "gold": 750,
    "recipe": [],
@@ -8115,8 +8115,8 @@
      "ru": "Нанесите ответный урон 1000 раз чтобы улучшить предмет."
     }
    ],
-   "image": null,
-   "icon_src": null,
+   "image": "images/I027.png",
+   "icon_src": "temp",
    "level": 1,
    "gold": 750,
    "recipe": [],
@@ -8193,8 +8193,8 @@
      "ru": "Создает бессмертного курьера, который будет помогать герою подбирать и покупать вещи."
     }
    ],
-   "image": null,
-   "icon_src": null,
+   "image": "images/I02I.png",
+   "icon_src": "temp",
    "level": null,
    "gold": 30,
    "recipe": [],
@@ -8635,8 +8635,8 @@
      "ru": "Снижает урон против нежити на 20%, но повышает урон против остальных противников на 15%. Не влияет на статусы."
     }
    ],
-   "image": null,
-   "icon_src": null,
+   "image": "images/I04D.png",
+   "icon_src": "temp",
    "level": 9,
    "gold": 500,
    "recipe": [],
@@ -10217,8 +10217,8 @@
      "ru": "Размещает в указанном месте точку производства."
     }
    ],
-   "image": null,
-   "icon_src": null,
+   "image": "images/I07Z.png",
+   "icon_src": "temp",
    "level": 0,
    "gold": 0,
    "recipe": [],
@@ -10245,8 +10245,8 @@
      "ru": "Размещает в указанном месте базовую точку."
     }
    ],
-   "image": null,
-   "icon_src": null,
+   "image": "images/I080.png",
+   "icon_src": "temp",
    "level": 0,
    "gold": 0,
    "recipe": [],
@@ -11043,8 +11043,8 @@
      "ru": "Размещает в указанном месте точку прибыли."
     }
    ],
-   "image": null,
-   "icon_src": null,
+   "image": "images/I09C.png",
+   "icon_src": "temp",
    "level": 0,
    "gold": 0,
    "recipe": [],
@@ -11071,8 +11071,8 @@
      "ru": "Размещает в указанном месте стратегическую точку."
     }
    ],
-   "image": null,
-   "icon_src": null,
+   "image": "images/I09D.png",
+   "icon_src": "temp",
    "level": 0,
    "gold": 0,
    "recipe": [],
@@ -11099,8 +11099,8 @@
      "ru": "Размещает в указанном месте точку обороны."
     }
    ],
-   "image": null,
-   "icon_src": null,
+   "image": "images/I09E.png",
+   "icon_src": "temp",
    "level": 0,
    "gold": 0,
    "recipe": [],
@@ -12191,8 +12191,8 @@
    "stats": "+7攻擊力，+2主屬性，+10%對遠程單位攻擊與技能傷害",
    "stats_ru": "+7 атаки, +2 main stat, +10% урон от атак и умений по юнитам дальнего боя",
    "effects": [],
-   "image": null,
-   "icon_src": null,
+   "image": "images/I00W.png",
+   "icon_src": "temp",
    "level": 9,
    "gold": 500,
    "recipe": [],
@@ -12237,8 +12237,8 @@
    "stats": "+400法力值，+35%裝備技能威力",
    "stats_ru": "+400 MP, +35% сила модификаторов",
    "effects": [],
-   "image": null,
-   "icon_src": null,
+   "image": "images/I014.png",
+   "icon_src": "temp",
    "level": 10,
    "gold": 900,
    "recipe": [],

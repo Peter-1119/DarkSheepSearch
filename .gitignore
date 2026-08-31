@@ -8,6 +8,8 @@
 data/gg/
 data/photos/
 data/status/
+data/Heros/
+data/Items/
 
 # 從 Wiki 抓下來的 HTML 快取，需要時 tools/parse_wiki.py 會重抓
 tools/pages/

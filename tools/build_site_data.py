@@ -159,6 +159,8 @@ for r in DB:
                        for k in SHOPS) else None,
         'legion': prev.get('legion'),
         'act': 1 if prev.get('active') else None,
+        # 暫代圖示（玩家截圖補的），拿到正式圖會換掉
+        'tmp': 1 if prev.get('icon_src') == 'temp' else None,
         'r': prev['recipe'],
         'u': prev['used_in'],
         'v': stat_values.parse(r['fields'].get('Бонусы', '')) or None,

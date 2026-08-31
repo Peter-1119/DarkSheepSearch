@@ -135,6 +135,24 @@ def is_active(i, r):
     return bool(ACT_TXT.search(blob))
 
 
+# 暫代圖示：玩家從遊戲畫面截下來補的（data/lack_items/中文名.png）。
+# 這些不是遊戲檔裡的正式圖示，之後拿到正式圖會換掉，所以 icon_src 標成 'temp'。
+# 檔名有三個同音／形近字，明確對應過去。
+LACK_DIR = os.path.join(ROOT, 'data', 'lack_items')
+LACK_FIX = {'治療小瓶': 'I00J', '福文手套': 'stwa', '腹膜護符': 'oli2'}
+_N2I = {v: k for k, v in NAMES.items()}
+lack = {}
+if os.path.isdir(LACK_DIR):
+    for _f in os.listdir(LACK_DIR):
+        if not _f.lower().endswith(('.png', '.jpg')):
+            continue
+        _nm = os.path.splitext(_f)[0]
+        _i = LACK_FIX.get(_nm) or _N2I.get(_nm)
+        if _i:
+            lack[_i] = os.path.join(LACK_DIR, _f)
+        else:
+            print('  暫代圖對不上道具：%s' % _f)
+
 items, copied, noimg, fixed = {}, 0, [], 0
 for r in DB:
     i = r['id']
@@ -157,6 +175,11 @@ for r in DB:
         open(os.path.join(OUT_IMG, i + '.png'), 'wb').write(
             xz.read('xl/drawings/media/' + xlsx_img[i]))
         img = 'images/%s.png' % i
+    elif i in lack:
+        # 截圖來的，顏色本來就是對的，不要走 load_icon 的 R/B 修正
+        Image.open(lack[i]).convert('RGBA').save(
+            os.path.join(OUT_IMG, i + '.png'), 'PNG', optimize=True)
+        img = 'images/%s.png' % i
     else:
         noimg.append(i)
     old = zh_old.get(i)
@@ -173,7 +196,9 @@ for r in DB:
         'stats': tr_bonus(r['fields'].get('Бонусы', ''))[0],
         'stats_ru': r['fields'].get('Бонусы', ''),
         'effects': eff,
-        'image': img, 'icon_src': 'map' if src else ('xlsx' if img else None),
+        'image': img,
+        'icon_src': 'map' if src else ('temp' if i in lack
+                                       else ('xlsx' if img else None)),
         'level': r.get('level'), 'gold': r.get('gold'),
         'recipe': [x['url'][:-5] for x in w['recipe']] if w else [],
         'used_in': [],
@@ -263,6 +288,7 @@ json.dump(data, open(os.path.join(ROOT, 'data', 'items.json'), 'w', encoding='ut
 print('items:', len(items))
 print('icons from map:', copied, '(R/B corrected:', str(fixed) + ')',
       '| from xlsx:', sum(1 for v in items.values() if v['icon_src'] == 'xlsx'),
+      '| temp（截圖暫代）:', sum(1 for v in items.values() if v['icon_src'] == 'temp'),
       '| none:', len(noimg))
 print('no image:', [(i, items[i]['name']) for i in noimg])
 unk = sorted({v['group'] for v in items.values()} - set(ORDER))

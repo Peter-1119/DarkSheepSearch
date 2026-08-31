@@ -382,9 +382,18 @@ w()
 w('**圖片：**')
 w()
 nomap = [v for v in I.values() if v['icon_src'] != 'map']
-w('- `images/<道具ID>.png`，%d 張來自地圖檔（統一 64×64），%d 張來自舊 xlsx（尺寸不一）。'
+w('- `images/<道具ID>.png`，%d 張來自地圖檔（統一 64×64），%d 張來自舊 xlsx（尺寸不一），'
   % (sum(1 for v in I.values() if v['icon_src'] == 'map'),
      sum(1 for v in I.values() if v['icon_src'] == 'xlsx')))
+w('  另有 **%d 張為暫代圖**（`data/lack_items/`，玩家從遊戲畫面截的），'
+  % sum(1 for v in I.values() if v['icon_src'] == 'temp'))
+w('  網站上會標示「暫代圖示」，拿到正式圖後把檔案換掉重跑建置即可：')
+w()
+w('| 道具 | ID |')
+w('|---|---|')
+for _v in sorted((v for v in I.values() if v['icon_src'] == 'temp'), key=lambda v: v['id']):
+    w('| %s | `%s` |' % (_v['name'], _v['id']))
+w()
 w('- 仍缺 **%d** 張，都是地圖直接沿用暴雪內建圖示（`ReplaceableTextures\\CommandButtons\\…`）'
   % sum(1 for v in I.values() if not v['image']))
 w('  而沒有被匯出，可從 War3 本體的 `War3.mpq` / `war3.w3mod` 取得：')
