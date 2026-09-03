@@ -11127,8 +11127,8 @@
      "ru": "Усиливает шансы применения статусов на 50%."
     }
    ],
-   "image": null,
-   "icon_src": null,
+   "image": "images/I09G.png",
+   "icon_src": "temp",
    "level": 7,
    "gold": 1400,
    "recipe": [],
@@ -11522,8 +11522,8 @@
      "ru": "Является частью сразу трёх комплектов (за исключением комплекта \"Адский\")."
     }
    ],
-   "image": null,
-   "icon_src": null,
+   "image": "images/I0AC.png",
+   "icon_src": "temp",
    "level": 20,
    "gold": 2150,
    "recipe": [],
