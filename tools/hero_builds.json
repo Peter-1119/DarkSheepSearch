@@ -19,7 +19,11 @@
         "id": "hamg-flam",
         "c": "#FF5722",
         "talent": "A03G",
-        "n": ["易燃雙倍燃", "Flammable Double Burn", "Горючесть: двойной поджог"],
+        "n": [
+          "易燃雙倍燃",
+          "Flammable Double Burn",
+          "Горючесть: двойной поджог"
+        ],
         "key": [
           "易燃讓持續點燃的跳數從 16 變 32 —— 傷害直接翻倍，這是全遊戲最大的單一點燃倍率",
           "Flammable turns a 16-tick burn into 32 ticks - a straight doubling, the largest single burn multiplier in the game",
@@ -30,14 +34,28 @@
           "In the code a burn is \"total damage split into 16 ticks\", and Flammable raises that to 32 ticks - per-tick damage is unchanged, so the total exactly doubles. That is a bigger multiplier than any \"+X% burn damage\" item, and Flammable also multiplies the chance to apply burn by 1.5. So this build does not take Hell on Earth: that talent converts burn into a single instant hit whose coefficient is fixed at 1.5 and cannot benefit from the tick doubling at all - Flammable would only give it the chance bonus. Three sources of Flammable relay into each other: Melting Face (120% chance, 15 s cooldown), Molten Core and Lava Orb (every 5 s). Molten Core is the key item: it applies Flammable, burns on its own, and grants Burn Resistance - and that resistance flag is exactly what the Zero Hour construct checks before granting its +50% status damage. Without a resistance item the construct does nothing for burn at all. Wave of Fire also doubles Fire Torrent from 40 projectiles to 80, doubling the number of burn rolls. Measured: about 252k damage per rotation versus about 145k for the existing instant-burn build. The cost is that burn is a damage-over-time again, so burn-immune enemies cut the chance to a quarter - switch back to Hell on Earth for those.",
           "В коде поджог - это «общий урон, разделённый на 16 тиков», а горючесть поднимает счётчик до 32 тиков: урон за тик не меняется, поэтому итог ровно удваивается. Это больший множитель, чем любой предмет на «+X% урона от поджога», и горючесть вдобавок умножает шанс наложения поджога на 1.5. Поэтому здесь берётся «Волна огня», а не «Ад на земле»: у мгновенного поджога коэффициент фиксирован на 1.5 и удвоение тиков ему недоступно. Источники горючести: «Плавящий лик» (120%, 15 сек.), «Раскалённое ядро» и «Лавовый шар» (каждые 5 сек.). «Раскалённое ядро» - ключевой предмет: оно накладывает горючесть, само поджигает и даёт сопротивление поджогу, а именно этот флаг проверяет «Окалиновый конструкт» перед своим +50%. Расчёт: около 252 тыс. за ротацию против примерно 145 тыс. у сборки на мгновенный поджог."
         ],
-        "items": ["I00E", "sor5", "kpin", "I067", "I086", "I06A"],
-        "bonus": {"s1": "oli2", "s2": "I0AV"}
+        "items": [
+          "I00E",
+          "sor5",
+          "kpin",
+          "I067",
+          "I086",
+          "I06A"
+        ],
+        "bonus": {
+          "s1": "oli2",
+          "s2": "I0AV"
+        }
       },
       {
         "id": "hamg-flam-horse",
         "c": "#FFA000",
         "talent": "A03G",
-        "n": ["易燃・必中版", "Flammable, High Uptime", "Горючесть: высокий аптайм"],
+        "n": [
+          "易燃・必中版",
+          "Flammable, High Uptime",
+          "Горючесть: высокий аптайм"
+        ],
         "key": [
           "用 400 技能強度換幸運馬蹄鐵，機率倍率從 1.5 拉到 2.25，易燃斷檔時反而更穩",
           "Trades 400 spell power for the Lucky Horseshoe: chance multiplier 1.5 to 2.25, and far steadier when Flammable drops",
@@ -48,14 +66,28 @@
           "Chance multipliers are multiplicative: Flammable x1.5 and Lucky Horseshoe x1.5 give x2.25, which turns Fire Vortex's 60% into a guaranteed application. The build above is stronger with Flammable always up (252k vs 218k), but that assumes perfect uptime. Flammable lasts only 6 s, Melting Face has a 15 s cooldown and Molten Core rolls 40% every 5 s, so gaps are unavoidable. Recomputed at 50% Flammable uptime the two builds land at 169k vs 168k - effectively level, and this one has a far higher floor because the Horseshoe's x1.5 is unconditional. Take this against single bosses or when nobody else is applying statuses; take the build above when you can hold Flammable up. Note the Horseshoe also boosts the chance to apply Flammable itself, so it works on both halves of the chain.",
           "Множители шанса перемножаются: горючесть x1.5 и «Счастливая подкова» x1.5 дают x2.25, и 60% «Огненного вихря» становятся гарантией. Сборка выше сильнее при постоянной горючести (252 тыс. против 218 тыс.), но горючесть длится всего 6 сек. Пересчёт при 50% аптайма: 169 тыс. против 168 тыс. - практически поровну, но здесь нижняя граница намного выше. Подкова также повышает шанс наложить саму горючесть."
         ],
-        "items": ["I00E", "kpin", "I067", "I086", "I06A", "I09G"],
-        "bonus": {"s1": "oli2", "s2": "I0AV"}
+        "items": [
+          "I00E",
+          "kpin",
+          "I067",
+          "I086",
+          "I06A",
+          "I09G"
+        ],
+        "bonus": {
+          "s1": "oli2",
+          "s2": "I0AV"
+        }
       },
       {
         "id": "hamg-proc",
         "c": "#FF7043",
         "talent": "A03J",
-        "n": ["瞬燃機率流", "Instant-Burn Proc Rate", "Мгновенный поджог: шанс"],
+        "n": [
+          "瞬燃機率流",
+          "Instant-Burn Proc Rate",
+          "Мгновенный поджог: шанс"
+        ],
         "key": [
           "立即點燃讓每次判定都是完整傷害，所以把「機率」拉滿比堆傷害更划算",
           "Instant burn makes every roll a full hit, so raising the chance beats raising the damage",
@@ -66,14 +98,28 @@
           "Hell on Earth converts burn from a 16-tick damage-over-time into a single instant hit. That path's coefficient is fixed at 1.5 plus your burn bonus and cannot use the tick doubling at all, so Flammable only contributes its x1.5 chance here. Since every successful roll is a full hit, maximising the number of rolls and their chance is the efficient direction. Fire Vortex fires one projectile every 0.30 s for a total of 40 - forty independent rolls - so lifting 60% to a guaranteed application is worth about 40% more damage, more than any single \"+15% burn damage\" item. Spell power is the only real damage source: every ability is base + spell power x ratio, and burn totals are a multiple of that number, so it scales direct damage and burn at once. Astral Earring alone gives +800, the highest in the game. The real value of this build is not raw total (about 145k per rotation, below the Flammable build's 252k) but that it ignores burn resistance: Hell on Earth skips the burn-immunity check entirely, so burn-immune enemies still take the full chance, while every other burn build drops to a quarter chance against them. Note that none of this hero's abilities scale with Modifier power, and that Pillar of Flame applies no burn at all - it is pure magic damage.",
           "«Ад на земле» превращает поджог из урона по времени (16 тиков) в мгновенный удар. Коэффициент этого пути зафиксирован на 1.5 плюс ваш бонус к поджогу, удвоение тиков недоступно, поэтому горючесть даёт здесь только x1.5 к шансу. Раз каждая успешная проверка - полный урон, выгоднее всего наращивать число проверок и шанс. «Огненный вихрь» выпускает снаряд каждые 0.30 сек., всего 40 - сорок независимых проверок. Сила умений - единственный источник урона. Главная ценность сборки не в общем уроне (около 145 тыс. против 252 тыс. у сборки на горючесть), а в том, что «Ад на земле» полностью игнорирует проверку иммунитета к поджогу."
         ],
-        "items": ["I00E", "sor5", "kpin", "I067", "I0AM", "I09G"],
-        "bonus": {"s1": "oli2", "s2": "I0AV"}
+        "items": [
+          "I00E",
+          "sor5",
+          "kpin",
+          "I067",
+          "I0AM",
+          "I09G"
+        ],
+        "bonus": {
+          "s1": "oli2",
+          "s2": "I0AV"
+        }
       },
       {
         "id": "hamg-tanky",
         "c": "#C98A5B",
         "talent": "A03J",
-        "n": ["瞬燃穩健版", "Instant Burn, Durable", "Мгновенный поджог: живучесть"],
+        "n": [
+          "瞬燃穩健版",
+          "Instant Burn, Durable",
+          "Мгновенный поджог: живучесть"
+        ],
         "key": [
           "同樣的機率流骨架，用 400 技能強度換 1000 生命與反傷",
           "The same proc-rate core, trading 400 spell power for 1000 health and reflect",
@@ -84,15 +130,29 @@
           "This hero is a pure caster with no defences - the proc-rate build carries none at all. This version swaps Pure Amethyst (+400 spell power and nothing else) for the Mask of Suffering: +1000 health, +500 mana, +5 to all stats, and it reflects 20% of damage taken back at enemy heroes. That reflect is calculated from the raw incoming damage, so neither your own reduction nor the target's shrinks it - it adds passive damage while adding survivability. The cost is roughly a fifth of a full rotation. Use this against hard-hitting bosses or when you get focused; use the proc-rate build when you can stand still safely.",
           "Огнепоклонник - чистый маг без защиты, а в сборке на шанс её нет совсем. Здесь «Чистый аметист» (+400 силы умений и больше ничего) меняется на «Маску страданий»: +1000 здоровья, +500 маны, +5 ко всем характеристикам и отражение 20% полученного урона во вражеских героев. Отражение считается от исходного урона, поэтому ни ваша защита, ни защита цели его не уменьшают. Цена - около пятой части общего урона за ротацию."
         ],
-        "items": ["I00E", "I068", "kpin", "I067", "I0AM", "I09G"],
-        "bonus": {"s1": "oli2", "s2": "I0AV"}
+        "items": [
+          "I00E",
+          "I068",
+          "kpin",
+          "I067",
+          "I0AM",
+          "I09G"
+        ],
+        "bonus": {
+          "s1": "oli2",
+          "s2": "I0AV"
+        }
       }
     ],
     "E00S": [
       {
         "id": "lictor-hybrid",
         "c": "#C0C8D8",
-        "n": ["五刃門檻・雙修", "Five Blades: the 500 Threshold", "Пять клинков: порог 500"],
+        "n": [
+          "五刃門檻・雙修",
+          "Five Blades: the 500 Threshold",
+          "Пять клинков: порог 500"
+        ],
         "key": [
           "白銀之刃在技能強度 500 時從打 3 個變成打 5 個 —— 一件星界耳環就跨過門檻，其餘全堆攻速",
           "Silver Blades hits 5 targets instead of 3 once spell power reaches 500 - one Astral Earring clears it, the rest goes to attack speed",
@@ -103,13 +163,27 @@
           "The code for Silver Blades reads: if spell power >= 500, pick 5 targets, else pick 3. It is the only hard threshold on any hero, it is worth +67% targets, and nothing in the tooltip mentions it. A single Astral Earring (+800) clears it, so the efficient play is not to keep stacking spell power but to clear the threshold once and spend the other six slots on attack speed and attack damage. Letter of the Law's critical strike is a native attack crit (20% chance, 1.7x rising by 0.3 per enemy hero killed, up to 31 levels or 10.7x), so sustained damage comes from auto-attacks, not abilities. This build reaches +370% attack speed (Leather Gloves give 3% per hero level, so +75% at level 25), cutting the attack interval from 1.5 s to 0.32 s; Pursuit adds another +70% attack damage for 8 s on a 16 s cooldown, so half the time it is up. The abilities are still live: Silver Blades 280 x5, Eye of the Equaliser 210 per tick for 22 ticks. Star of Misfortune's 25% lifesteal covers the auto-attacks, and the abilities carry their own hardcoded 10% lifesteal, so sustain is not a problem.",
           "В коде «Серебряных клинков» написано: если сила умений >= 500, выбрать 5 целей, иначе 3. Это единственный жёсткий порог среди всех героев, он даёт +67% целей, и в описании о нём ни слова. Одна «Астральная серьга» (+800) его перекрывает, поэтому выгоднее не наращивать силу умений дальше, а отдать остальные шесть слотов под скорость атаки и урон. Крит «Буквы закона» - это обычный крит от атак (20%, x1.7 с ростом на 0.3 за каждого убитого вражеского героя, до 31 уровня, то есть x10.7). Сборка достигает +370% скорости атаки, интервал падает с 1.5 до 0.32 сек."
         ],
-        "items": ["I00E", "I0A7", "I076", "gcel", "prvt", "grsl"],
-        "bonus": {"s1": "klmm", "s2": "I08F"}
+        "items": [
+          "I00E",
+          "I0A7",
+          "I076",
+          "gcel",
+          "prvt",
+          "grsl"
+        ],
+        "bonus": {
+          "s1": "klmm",
+          "s2": "I08F"
+        }
       },
       {
         "id": "lictor-crit",
         "c": "#E8B84B",
-        "n": ["律法之刃・純物理", "Letter of the Law: Pure Physical", "Буква закона: чистая физика"],
+        "n": [
+          "律法之刃・純物理",
+          "Letter of the Law: Pure Physical",
+          "Буква закона: чистая физика"
+        ],
         "key": [
           "全力堆平砍：0.32 秒一下，追擊期間攻擊力 583，暴擊倍率隨擊殺英雄無上限成長",
           "All-in on auto-attacks: one swing every 0.32 s, 583 attack damage during Pursuit, crit multiplier growing with every hero kill",
@@ -120,13 +194,27 @@
           "Letter of the Law's crit caps at 31 levels: 1.7x to start, +0.3x per enemy hero killed, 10.7x at the top. Type \"-i\" to read the current multiplier. It is the largest scaling passive in the game and it only applies to auto-attacks, so this build drops spell power entirely and spends all six slots on attack speed and attack damage. +370% attack speed (including Leather Gloves' 3% per hero level) puts the attack interval at 0.32 s; during Pursuit's 8 seconds attack damage is 583, and with a 16 s cooldown that is half the time. Abyssal Blade's +20% non-status damage against heroes multiplies on top of the crit because it is a damage multiplier, not flat attack damage. Two caveats: with no spell power Silver Blades only hits 3 targets and Eye of the Equaliser drops to 50 per tick, so the abilities are effectively given up; and Moonlight Sword's 30%/2.5x crit is the same native critical-strike ability class as Letter of the Law, and the map data cannot tell me how the engine resolves two of them at once - so it is not included here. Its +30 attack damage, +20 agility and +125 spell power are fine on their own if you want to try it.",
           "Крит «Буквы закона» ограничен 31 уровнем: x1.7 в начале, +0.3 за каждого убитого вражеского героя, максимум x10.7. Команда «-i» показывает текущий множитель. Это самая масштабируемая пассивка в игре, и работает она только с автоатаками. +370% скорости атаки дают интервал 0.32 сек.; во время «Преследования» урон атаки 583. Оговорка: крит «Разящего полумесяца» - тот же класс родной способности, что и «Буква закона», и данные карты не позволяют определить, как движок считает два таких эффекта одновременно."
         ],
-        "items": ["I0A7", "I076", "gcel", "prvt", "grsl", "I047"],
-        "bonus": {"s1": "klmm", "s2": "I08F"}
+        "items": [
+          "I0A7",
+          "I076",
+          "gcel",
+          "prvt",
+          "grsl",
+          "I047"
+        ],
+        "bonus": {
+          "s1": "klmm",
+          "s2": "I08F"
+        }
       },
       {
         "id": "lictor-sp",
         "c": "#7E8CE0",
-        "n": ["均衡者・法傷爆發", "Eye of the Equaliser: Burst", "Око Уравнителя: взрыв"],
+        "n": [
+          "均衡者・法傷爆發",
+          "Eye of the Equaliser: Burst",
+          "Око Уравнителя: взрыв"
+        ],
         "key": [
           "均衡者之眼不隨技能等級成長，只吃技能強度 —— 2150 點時每個敵人 10560 傷害",
           "Eye of the Equaliser does not scale with skill level at all, only with spell power - 10,560 per enemy at 2,150",
@@ -137,13 +225,27 @@
           "In the code Eye of the Equaliser is 50 + spell power x 0.20, ticking every 0.5 s for 22 ticks - note that the 50 is a constant and skill level does not affect the damage at all, only spell power does. Its effective ratio is therefore spell power x 4.4, one of the highest single-ability ratios on any hero. At 2,150 spell power every enemy within 400 takes 10,560; a pack of ten is 100k. Boomerang Throw also burns mana equal to 75% of the damage dealt, which shuts down casting enemy heroes outright. This build is for clearing and opening fights, not duels: auto-attack DPS is only 90, so a single large boss in melee range is a problem. Eye of the Equaliser also has an undocumented condition - it only hits enemies whose current health is above yours, so against trash the fuller your health bar the fewer targets qualify; against bosses it always holds. The abilities' built-in 10% lifesteal is counted separately per target hit, so casting the ultimate into a crowd returns a large amount of health.",
           "В коде «Око Уравнителя» - это 50 + сила умений x 0.20, тик каждые 0.5 сек., всего 22 тика. Обратите внимание: 50 - константа, уровень умения на урон не влияет вообще, только сила умений. Эффективный коэффициент - сила умений x 4.4. При 2150 силы умений каждый враг в радиусе 400 получает 10 560. «Бумеранг» вдобавок сжигает ману в размере 75% нанесённого урона. У «Ока» есть недокументированное условие: оно бьёт только по врагам, чьё текущее здоровье выше вашего."
         ],
-        "items": ["I00E", "sor5", "kpin", "ofro", "I007", "mnsf"],
-        "bonus": {"s1": "fgun", "s2": "I01Q"}
+        "items": [
+          "I00E",
+          "sor5",
+          "kpin",
+          "ofro",
+          "I007",
+          "mnsf"
+        ],
+        "bonus": {
+          "s1": "fgun",
+          "s2": "I01Q"
+        }
       },
       {
         "id": "lictor-lowhp",
         "c": "#5FA88A",
-        "n": ["逆境之眼", "Eye of Adversity", "Око невзгод"],
+        "n": [
+          "逆境之眼",
+          "Eye of Adversity",
+          "Око невзгод"
+        ],
         "key": [
           "均衡者之眼只打「血比你高」的敵人，所以這套刻意不堆生命值，改用護甲與吸血活下來",
           "The Eye only hits enemies with more current health than you, so this build deliberately skips health and survives on armour and lifesteal",
@@ -154,25 +256,569 @@
           "This is the most counterintuitive mechanic in the game: every tick, Eye of the Equaliser re-reads your current health and only hits enemies above it. Stacking health therefore shrinks your own ultimate's target list - the map lists health among the Lictor's recommended stats, but the code says the opposite. This build follows the code: not one pure health item in the six slots, relying instead on armour (+28) and 8% non-status reduction for mitigation, and on Star of Misfortune's 25% lifesteal plus the abilities' built-in 10% for recovery. 1,375 spell power clears the 500 threshold so Silver Blades hits 5, and Eye of the Equaliser does 7,150 per enemy, while +100% attack speed keeps the auto-attacks and their lifesteal meaningful. In practice the build gets stronger as the fight goes on: the more health you lose, the more targets the Eye can lock onto, and the more targets it hits the more it heals you back - a built-in negative feedback loop. Pursuit's +8 armour (8 s on a 16 s cooldown) matters more here than in any other build, because armour has its highest marginal value when there is no health pool behind it.",
           "Самая контринтуитивная механика в игре: на каждом тике «Око Уравнителя» заново считывает ваше текущее здоровье и бьёт только по врагам выше него. Накопление здоровья сокращает список целей вашего же ультимейта - карта рекомендует ликтору здоровье, но код говорит обратное. Здесь нет ни одного предмета на чистое здоровье: броня (+28) и 8% снижения нестатусного урона, а восстановление - 25% вампиризма «Звезды злосчастья» плюс встроенные 10% у умений. 1375 силы умений перекрывают порог 500."
         ],
-        "items": ["I00E", "kpin", "ofro", "I0A8", "grsl", "I076"],
-        "bonus": {"s1": "lure", "s2": "I01Q"}
+        "items": [
+          "I00E",
+          "kpin",
+          "ofro",
+          "I0A8",
+          "grsl",
+          "I076"
+        ],
+        "bonus": {
+          "s1": "lure",
+          "s2": "I01Q"
+        }
       },
       {
         "id": "lictor-budget",
         "c": "#9A8FB8",
-        "n": ["平價過渡", "Budget Transition", "Бюджетная сборка"],
+        "n": [
+          "平價過渡",
+          "Budget Transition",
+          "Бюджетная сборка"
+        ],
         "key": [
           "9600 金就能湊齊，技能強度 625 已經過了 5 目標門檻，中期直接能用",
           "9,600 gold in total, 625 spell power already clears the five-target threshold - usable from mid-game",
           "9600 золота, 625 силы умений уже перекрывают порог пяти целей"
         ],
         "why": [
-          "上面幾套都要一萬五到兩萬三千金，中期根本湊不出來。這套只要 9600 金，而且沒有任何神器與特殊 lv.5 以上的道具，全部都是中期商店買得到的東西。重點還是同一個：純淨紫水晶 400 加上大法師之褲 150 加上能量符文 75 就是 625 技能強度，剛好過白銀之刃的 500 門檻，所以清場能力跟後期配裝是同一個量級（每 6 秒 245×5）。攻速 +80% 再加皮革手套每級 3%，25 級時是 +155%，平砍 0.59 秒一下。寒冰長矛與戰鬥砍刀提供 20 點穿透，中期敵人護甲低，穿透的效益反而比後期高。這套湊齊之後往哪裡走：想走物理就把純淨紫水晶換成埃洛波達之羽、其他慢慢換成攻速裝；想走技能就把攻速裝換成星界耳環與大法師長袍。",
-          "The builds above cost 15,000 to 23,000 gold, which is out of reach in the mid-game. This one is 9,600 with no artifacts and nothing above Special lv.4 - everything is available from the mid-game shops. The point is the same: Pure Amethyst 400 plus Archmage Trousers 150 plus Energy Rune 75 is 625 spell power, which clears the 500 threshold for Silver Blades, so clear speed is already in the same class as the late-game builds (245 x5 every 6 s). +80% attack speed plus Leather Gloves' 3% per level is +155% at level 25, an attack every 0.59 s. Frost Spear and Combat Cleaver supply 20 penetration, which is worth more in the mid-game than later because enemy armour is still low. Where to go from here: for the physical route swap Pure Amethyst for Elopoda's Feather and convert the rest to attack speed; for the ability route swap the attack-speed pieces for the Astral Earring and Archmage Robe.",
-          "Сборки выше стоят от 15 до 23 тысяч золота - в середине игры это недостижимо. Здесь 9600, без артефактов и без предметов выше «Особый lv.4». Смысл тот же: «Чистый аметист» 400 плюс «Штаны архимага» 150 плюс «Руна энергии» 75 = 625 силы умений, порог в 500 перекрыт, «Серебряные клинки» бьют по пяти целям. +80% скорости атаки плюс 3% за уровень от «Кожаных перчаток» дают +155% на 25 уровне. 20 пробития от «Ледяного копья» и «Боевого тесака» в середине игры полезнее, чем позже."
+          "上面幾套都要一萬五到兩萬三千金，中期根本湊不出來。這套只要 9600 金，而且沒有任何神器與特殊 lv.5 以上的道具，全部都是中期商店買得到的東西。重點還是同一個：純淨紫水晶 400 加上大法師之褲 150 加上能量符文 75 就是 625 技能強度，剛好過白銀之刃的 500 門檻，所以清場能力跟後期配裝是同一個量級（每 6 秒 245×5）。攻速 +80% 再加皮革手套每級 3%，25 級時是 +155%，平砍 0.59 秒一下。寒冰長矛與戰鬥砍刀提供 20 點穿透。穿透在這張地圖不是護甲穿透 —— 它是每一次傷害事件額外附加的一段真實傷害（ATTACK_TYPE_CHAOS / DAMAGE_TYPE_UNIVERSAL，不受任何減傷影響），所以它的價值只看你製造多少次傷害事件，跟敵人護甲無關。這隻剛好是全地圖傷害事件最密集的英雄之一：白銀之刃一次 5 段、均衡者之眼 22 跳乘上範圍內的敵人數、迴旋投擲近身時每個敵人結算兩次，所以 20 點穿透實際入帳的量遠比字面高。這套湊齊之後往哪裡走：想走物理就把純淨紫水晶換成埃洛波達之羽、其他慢慢換成攻速裝；想走技能就把攻速裝換成星界耳環與大法師長袍。",
+          "The builds above cost 15,000 to 23,000 gold, which is out of reach in the mid-game. This one is 9,600 with no artifacts and nothing above Special lv.4 - everything is available from the mid-game shops. The point is the same: Pure Amethyst 400 plus Archmage Trousers 150 plus Energy Rune 75 is 625 spell power, which clears the 500 threshold for Silver Blades, so clear speed is already in the same class as the late-game builds (245 x5 every 6 s). +80% attack speed plus Leather Gloves' 3% per level is +155% at level 25, an attack every 0.59 s. Frost Spear and Combat Cleaver supply 20 penetration. Penetration in this map is not armour penetration - it is a separate flat damage instance appended to every damage event (ATTACK_TYPE_CHAOS / DAMAGE_TYPE_UNIVERSAL, unaffected by any reduction), so its value depends only on how many damage events you generate, not on enemy armour. This hero happens to generate more damage events than almost any other: Silver Blades fires five at once, Eye of the Equaliser ticks 22 times against every enemy in range, and Boomerang Throw resolves twice on close targets. Where to go from here: for the physical route swap Pure Amethyst for Elopoda's Feather and convert the rest to attack speed; for the ability route swap the attack-speed pieces for the Astral Earring and Archmage Robe.",
+          "Сборки выше стоят от 15 до 23 тысяч золота - в середине игры это недостижимо. Здесь 9600, без артефактов и без предметов выше «Особый lv.4». Смысл тот же: «Чистый аметист» 400 плюс «Штаны архимага» 150 плюс «Руна энергии» 75 = 625 силы умений, порог в 500 перекрыт, «Серебряные клинки» бьют по пяти целям. +80% скорости атаки плюс 3% за уровень от «Кожаных перчаток» дают +155% на 25 уровне. 20 пробития от «Ледяного копья» и «Боевого тесака». Пробитие здесь - не пробитие брони, а отдельный экземпляр урона, добавляемый к каждому событию урона (ATTACK_TYPE_CHAOS / DAMAGE_TYPE_UNIVERSAL, не снижается ничем), поэтому его ценность зависит только от числа событий урона, а не от брони цели. У этого героя их очень много: «Серебряные клинки» бьют по пяти целям, «Око Уравнителя» тикает 22 раза по каждому врагу в радиусе."
         ],
-        "items": ["sor5", "I044", "I003", "rin1", "I006", "odef"],
-        "bonus": {"s1": "klmm", "s2": "I01Q"}
+        "items": [
+          "sor5",
+          "I044",
+          "I003",
+          "rin1",
+          "I006",
+          "odef"
+        ],
+        "bonus": {
+          "s1": "klmm",
+          "s2": "I01Q"
+        }
+      }
+    ],
+    "H01E": [
+      {
+        "id": "bishop-power",
+        "c": "#FFD24A",
+        "talent": "A0LX",
+        "n": [
+          "極限技能強度",
+          "Max Spell Power",
+          "Максимум силы умений"
+        ],
+        "key": [
+          "2,225 技能強度：天堂意志一發 4,850 傷害 + 3,637 團隊治療（天啟之意把傷害與治療各 ×2）",
+          "2,225 spell power: one Heaven's Will = 4,850 damage and 3,637 team heal (Revelation doubles both)",
+          "2 225 силы умений: одна «Воля Небес» - 4 850 урона и 3 637 лечения союзникам (T3 удваивает и то, и другое)"
+        ],
+        "why": [
+          "主教的四個技能全部只吃「技能強度」（udg_ItemBonusDMG），智力一點都不加 —— 全腳本裡沒有任何一行把 GetHeroInt 加進 ItemBonusDMG，所以裝備堆的是純技能強度。這套疊到 2,225（滿帳號等級再 +150）。天堂意志 HeroR14_2（war3map.j:50718）寫的是 dmg=200+技能強度×1.00、heal=150+技能強度×0.75，天啟之意 A0Q3 在 50722 行把兩者各 ×2.0 → 400+2.00×SP 與 300+1.50×SP，也就是每個 275 範圍內的敵人 4,850 點、每個友軍 3,637 點治療，冷卻 60 秒。同一發還會在 50746 行額外跑一次完整的致盲：半徑 500、傷害 15+15×致盲等級+0.15×SP（滿級 424），並掛上 A069 詛咒 —— w3a 的 Crs 欄位是 [0.20,0.27,0.34,0.41,0.48]，滿級 48% 失手、20 秒（英雄 10 秒）。天賦說明只寫「施加致盲效果」，沒說傷害會照打、範圍是 500（比大招本體的 275 還大），也沒說它吃致盲的等級 —— 致盲沒點滿這段就很弱。天堂之光 HeroW14（50643）每 0.5 秒跑一次、共 18 跳，每跳 3+3×等級+0.04×SP，滿級總計 324+0.72×SP = 1,926，對半徑 405 內每個敵人是傷害、每個友軍是等量治療。神聖之焰 480+0.64×SP=1,904，同時讓目標造成的傷害 −28%（HeroSkills14 第 50915 行把 0.08+0.04×等級 從目標的第 6 號實數槽扣掉，那個槽正是通用的「造成傷害 +X%」）。獅子星座每次施法還會淨化自己、回 20 生命 30 法力，並有 25% 機率打出 (200+0.5×SP)×裝備技能威力 = 1,641 點；大法師權杖的 +25% 裝備技能威力（第 18 號實數槽）就是拿來放大這一段的。",
+          "All four Bishop abilities scale only off spell power (udg_ItemBonusDMG). Intellect adds none - no line in the script ever feeds GetHeroInt into ItemBonusDMG - so items must carry raw spell power. This build reaches 2,225 (a maxed account adds another 150). Heaven's Will (HeroR14_2, war3map.j:50718) is dmg = 200 + 1.00*SP and heal = 150 + 0.75*SP; the Revelation talent A0Q3 doubles both at line 50722, giving 400 + 2.00*SP and 300 + 1.50*SP - 4,850 damage to every enemy inside 275 and 3,637 healing to every ally, on a 60 s cooldown. The same cast also runs a full Blind at line 50746: radius 500, damage 15 + 15*blind level + 0.15*SP (424 at max), plus the A069 curse whose w3a Crs field is [0.20,0.27,0.34,0.41,0.48] - 48% miss for 20 s (10 s on heroes). The talent tooltip only says 'applies Blind'; it never mentions that the damage lands too, that the radius (500) is larger than the ultimate's own 275, or that it scales with your Blind level. Heaven's Light (HeroW14, 50643) ticks every 0.5 s for 18 ticks of 3 + 3*level + 0.04*SP: 324 + 0.72*SP = 1,926 total, as damage to every enemy and identical healing to every ally within 405. Holy Flame totals 480 + 0.64*SP = 1,904 and cuts the target's outgoing damage by 28% (line 50915 subtracts 0.08 + 0.04*level from the target's real slot 6, which is the generic '+X% damage dealt' slot). Leo's Constellation also purges you, restores 20 HP / 30 MP per cast and has a 25% chance to deal (200 + 0.5*SP) * mod power = 1,641; the Archmage Staff's +25% mod power (real slot 18) is what scales that.",
+          "Все четыре умения Епископа зависят только от силы умений (udg_ItemBonusDMG); разум не даёт ничего - в скрипте нет ни одной строки, где GetHeroInt добавлялся бы к ItemBonusDMG. Сборка набирает 2 225. «Воля Небес» (HeroR14_2, war3map.j:50718): урон = 200 + 1.00*SP, лечение = 150 + 0.75*SP; талант T3 (A0Q3) удваивает оба значения в строке 50722 - 4 850 урона каждому врагу в радиусе 275 и 3 637 лечения каждому союзнику, перезарядка 60 сек. Тот же каст в строке 50746 запускает полноценное «Ослепление»: радиус 500, урон 15 + 15*уровень + 0.15*SP (424 на максимуме) и проклятие A069 с шансом промаха [0.20,0.27,0.34,0.41,0.48] на 20 сек. Описание таланта об уроне и радиусе 500 не говорит. «Небесный свет» (HeroW14, 50643) - 18 тиков по 0.5 сек, итого 324 + 0.72*SP = 1 926 урона врагам и столько же лечения союзникам в радиусе 405. «Священное пламя» - 1 904 и -28% к урону цели (строка 50915 вычитает 0.08 + 0.04*уровень из вещественного слота 6 цели)."
+        ],
+        "items": [
+          "I00E",
+          "sor5",
+          "kpin",
+          "fgrd",
+          "ofro",
+          "I007"
+        ],
+        "bonus": {
+          "s1": "stre",
+          "s2": "I01Q"
+        }
+      },
+      {
+        "id": "bishop-sanctuary",
+        "c": "#5FBF9B",
+        "talent": "A0LX",
+        "n": [
+          "不倒聖所",
+          "Unbreakable Sanctuary",
+          "Несокрушимое святилище"
+        ],
+        "key": [
+          "每秒回 1% 最大法力 + 50% 魔法傷害減免：1,494 點的全隊治療可以無限開下去，還會隨擊殺永久成長",
+          "1% max mana per second plus 50% magic resistance: a 1,494 team heal you can hold forever, and it grows permanently with every kill",
+          "1% максимума маны в секунду и 50% защиты от магии: командное лечение на 1 494, которое не кончается и растёт с каждым убийством"
+        ],
+        "why": [
+          "主教的治療是 SetUnitState(單位, LIFE, 現有+heal)（HeroW14 第 50665 行、HeroR14_2 第 50741 行）—— 純粹的加血，沒有任何「治療加成」係數，全遊戲也找不到能放大它的裝備。所以治療配裝要解的不是「治多少」，而是「能治幾次」。生命之冠是關鍵：Check_1sec_Item（war3map.j:29736）每秒直接補 1% 最大生命與 1% 最大法力。完整循環（神聖之焰 115 + 致盲 140 + 天堂之光 160 + 天堂意志 200 = 615 法力）攤在 31 秒的天堂之光冷卻上約 20 法力/秒；只要最大法力有 2,000 以上，光生命之冠就打平，水晶項鍊 +800 法力 +8 回復、祭司長袍 +250 +3.5、大法師長袍每次施法再各給 +2 生命/法力回復（最多 5 層，10 秒）就是純賺。生存面：祭司長袍 50% 魔法傷害減免（不可疊加，取最高）、大法師長袍 +6 與生命之冠 +5 共 +11 護甲、+500 生命、+18 全屬性。主教本身還有治療光環 A063（w3a：Uau2=0.01、aare=400），每秒回附近友軍 1% 最大生命，但對自己無效 —— 所以自己的續命全靠生命之冠那 1%。吸收加速器是這套的長線價值：Trig_ItemKills（29591 行）每次擊殺永久 +1 技能強度，沒有上限、沒有衰減，卸下裝備也只扣回原本的 100。天堂之光 9 秒內對半徑 405 打 18 次，清一波小兵就是好幾十層。但條件式（29435 行）要求 GetUnitLevel(死者)!=0，所以 0 級的雜兵不算 —— 這點說明沒寫。1,625 技能強度下：天堂之光每個友軍回 1,494，天堂意志（天啟之意）回 2,737、打 3,650。比極限技能強度那套少約 23% 治療，換來 50% 魔抗、+11 護甲與幾乎無限的法力。",
+          "Bishop healing is a raw SetUnitState(unit, LIFE, current + heal) (HeroW14 line 50665, HeroR14_2 line 50741) - no healing-bonus coefficient exists anywhere, and no item in the game scales it. So a healing build is not about how much per cast, it is about how many casts. Crown of Life is the engine: Check_1sec_Item (war3map.j:29736) restores 1% of max HP and 1% of max mana every second. A full rotation (Holy Flame 115 + Blind 140 + Heaven's Light 160 + Heaven's Will 200 = 615 mana) spread over Heaven's Light's 31 s cooldown is about 20 mana/s; at 2,000+ max mana the Crown alone breaks even, and Crystal Necklace (+800 mana, +8 regen), Priest Robe (+250, +3.5) and Archmage Robe (+2/+2 regen per cast, 5 stacks, 10 s) are pure surplus. Defence: Priest Robe's 50% magic resistance (non-stacking, highest value wins), +11 armor from Archmage Robe and Crown of Life, +500 HP, +18 all stats. The Bishop's own Healing Aura A063 (w3a: Uau2 = 0.01, aare = 400) gives allies 1% max HP per second but explicitly excludes himself - the Crown's 1% is his only self-sustain. Absorption Accelerator is the long game: Trig_ItemKills (line 29591) grants a permanent +1 spell power per kill, uncapped and never decaying; dropping the item only refunds the base 100. Heaven's Light lands 18 hits in 405 radius over 9 s, so one cleared wave is dozens of stacks. Caveat the tooltip omits: the trigger condition at line 29435 requires GetUnitLevel(dying unit) != 0, so level-0 trash does not count. At 1,625 spell power: Heaven's Light heals each ally for 1,494, Heaven's Will (Revelation) heals 2,737 and hits for 3,650 - about 23% less healing than the max-spell-power build, bought with 50% magic resistance, +11 armor and effectively unlimited mana.",
+          "Лечение Епископа - это чистый SetUnitState(LIFE) (строки 50665 и 50741), никаких коэффициентов усиления лечения в игре нет. Поэтому важна не величина, а количество кастов. «Венец жизни» через Check_1sec_Item (war3map.j:29736) каждую секунду возвращает 1% максимума HP и маны. Полная ротация стоит 615 маны, что при кулдауне «Небесного света» в 31 сек даёт около 20 маны/сек - венца одного уже хватает при запасе от 2 000 маны. Защита: 50% защиты от магии («Одеяние жреца», не складывается), +11 брони, +500 HP, +18 ко всем характеристикам. Собственная «Аура исцеления» A063 (Uau2 = 0.01, радиус 400) лечит союзников на 1% максимума HP в секунду, но не самого героя. «Ускоритель поглощения» (строка 29591) навсегда даёт +1 силы умений за убийство без ограничений; но условие в строке 29435 требует GetUnitLevel != 0, поэтому враги 0-го уровня не считаются. При 1 625 силы умений: «Небесный свет» лечит каждого союзника на 1 494, «Воля Небес» с T3 - на 2 737 и наносит 3 650."
+        ],
+        "items": [
+          "I00E",
+          "kpin",
+          "mnsf",
+          "ram2",
+          "I071",
+          "I0AZ"
+        ],
+        "bonus": {
+          "s1": "fgun",
+          "s2": "I01Q"
+        }
+      },
+      {
+        "id": "bishop-pierce",
+        "c": "#8FA8D4",
+        "talent": "A0LX",
+        "n": [
+          "穿透多段",
+          "Penetration Ticks",
+          "Пробитие по тикам"
+        ],
+        "key": [
+          "天堂之光對每個敵人是 18 次獨立傷害判定，而穿透是「每次判定各加一份無視護甲的傷害」—— 112 穿透等於每個敵人多 2,016 點",
+          "Heaven's Light is 18 separate damage events per enemy, and penetration adds a flat armor-ignoring hit to every single one - 112 penetration is +2,016 per enemy",
+          "«Небесный свет» - это 18 отдельных событий урона на каждого врага, а пробитие добавляет плоский урон к каждому из них: 112 пробития = +2 016 на врага"
+        ],
+        "why": [
+          "Trig_HeroTakeDamage 對每一次傷害事件都會做兩件事：第 20055 行用 UnitDamageTarget(...ATTACK_TYPE_CHAOS, DAMAGE_TYPE_UNIVERSAL) 補上 dmg×(DefCof−1)，第 20057-20064 行再補上第 16 號實數槽（也就是「穿透」）的固定值。兩者都是無視護甲的額外傷害，而且**跟傷害是攻擊還是技能無關**。主教的技能傷害走的是 UnitDamageTarget，所以每一跳都吃這兩份。天堂之光每 0.5 秒對範圍內每個敵人打一次、共 18 次；神聖之焰 16 秒打 32 次。所以穿透在主教身上被乘了 18 倍與 32 倍。本套穿透 112（銀器 12＋熾天使長矛 20＋精金鶴嘴鎬 20＋耶夢加得之戒 50＋刺刀 5＋迷霧之矛 5），光穿透就讓天堂之光每個敵人多 18×112 = 2,016、神聖之焰多 32×112 = 3,584。耶夢加得之戒的 −50% 攻擊速度對一個從不平砍的主教是零代價。銀器（第 19946 行）：目標生命 ≥75% 時 DefCof +1.00，也就是整段傷害翻倍，而多出來的那 100% 是以 CHAOS/UNIVERSAL 結算的真傷。防守圖的每一波新怪都是滿血進場，這條幾乎永遠成立；目標被冰凍時門檻還會降到 50%。加上水晶項鍊的 +11%（第 6 號槽），DefCof = 2.11。算式：天堂之光每敵 = 18 ×〔(18+0.04×1075)×2.11 + 112〕= 18×240.7 = 4,333；同樣 1,075 技能強度但沒有穿透與銀器只有 1,098，差 3.9 倍。神聖之焰 = 32×〔36.5×2.11+112〕= 6,048。天堂意志（天啟之意）=（400+2×1075）×2.11+112 = 5,493。治療不受影響（SetUnitState 不經過傷害觸發器），仍有 1,098。這套絕對不能點宗教裁判：BurnUnit 與 Burn_Dmg 在造成傷害前會 DisableTrigger(gg_trg_HeroTakeDamage)（第 1919、1783 行），點燃傷害完全不經過那個觸發器 —— 穿透與銀器會一起歸零。",
+          "Trig_HeroTakeDamage does two things on every single damage event: line 20055 adds dmg*(DefCof-1) as UnitDamageTarget(... ATTACK_TYPE_CHAOS, DAMAGE_TYPE_UNIVERSAL), and lines 20057-20064 add the flat value in real slot 16 - which is Penetration. Both are armor-ignoring extra hits, and neither cares whether the source was an attack or a spell. Bishop spell damage goes through UnitDamageTarget, so every tick collects both. Heaven's Light hits every enemy in range 18 times (every 0.5 s); Holy Flame hits 32 times over 16 s. Penetration is therefore multiplied by 18 and by 32. This build carries 112 penetration (Silverware 12 + Seraph Spear 20 + Adamantite Pickaxe 20 + Ring of Jormungandr 50 + Bayonet 5 + Mist Spear 5), which alone is +2,016 per enemy on Heaven's Light and +3,584 on Holy Flame. Jormungandr's -50% attack speed costs a Bishop who never auto-attacks exactly nothing. Silverware (line 19946): DefCof +1.00 while the target is at 75% HP or more - the whole hit is doubled, and the extra 100% is dealt as CHAOS/UNIVERSAL true damage. In a defence map every fresh wave arrives at full HP, so it is nearly always live; against a frozen target the threshold drops to 50%. With Crystal Necklace's +11% (slot 6), DefCof = 2.11. Numbers: Heaven's Light per enemy = 18 * [(18 + 0.04*1075)*2.11 + 112] = 18 * 240.7 = 4,333, versus 1,098 for the same 1,075 spell power without penetration and Silverware - 3.9x. Holy Flame = 32 * [36.5*2.11 + 112] = 6,048. Heaven's Will with Revelation = (400 + 2*1075)*2.11 + 112 = 5,493. Healing is untouched (SetUnitState never enters the damage trigger) and stays at 1,098. Never take the Inquisition talent with this build: BurnUnit and Burn_Dmg call DisableTrigger(gg_trg_HeroTakeDamage) before dealing damage (lines 1919 and 1783), so burn damage bypasses that trigger entirely - penetration and Silverware both drop to zero.",
+          "Trig_HeroTakeDamage на каждое событие урона делает две вещи: строка 20055 добавляет dmg*(DefCof-1) как CHAOS/UNIVERSAL, а строки 20057-20064 добавляют плоское значение вещественного слота 16 - это «Пробитие». Оба бонуса игнорируют броню и не зависят от того, атака это или умение. «Небесный свет» бьёт каждого врага 18 раз, «Священное пламя» - 32 раза. Значит, пробитие умножается на 18 и на 32. Здесь его 112, то есть +2 016 на врага от «Небесного света» и +3 584 от «Священного пламени». Штраф «Кольца Ёрмунганда» в -50% скорости атаки для Епископа ничего не стоит. «Серебро» (строка 19946) даёт DefCof +1.00, пока у цели 75% HP и больше, и эта добавка идёт как CHAOS/UNIVERSAL. Вместе с +11% «Хрустального ожерелья» DefCof = 2.11. Итог: «Небесный свет» = 18 * [(18 + 43)*2.11 + 112] = 4 333 на врага против 1 098 без пробития и «Серебра». «Священное пламя» = 6 048, «Воля Небес» с T3 = 5 493. Лечение не меняется: 1 098. Талант «Инквизиция» здесь брать нельзя: BurnUnit и Burn_Dmg вызывают DisableTrigger(gg_trg_HeroTakeDamage) (строки 1919 и 1783), поэтому урон от поджога проходит мимо пробития и «Серебра»."
+        ],
+        "items": [
+          "I00E",
+          "hlst",
+          "ankh",
+          "ocor",
+          "I01P",
+          "mnsf"
+        ],
+        "bonus": {
+          "s1": "rej4",
+          "s2": "I04C"
+        }
+      },
+      {
+        "id": "bishop-budget",
+        "c": "#C08457",
+        "talent": "A0JK",
+        "n": [
+          "平價電擊光牧",
+          "Budget Shock Light",
+          "Бюджетный свет с разрядом"
+        ],
+        "key": [
+          "5,250 金：風暴權杖的電擊把敵人四種狀態抗性各扣 1.00，宗教裁判下的每一點技能傷害都變成 2 倍以上的無視護甲真傷",
+          "5,250 gold: Storm Staff's Shock drops all four status resistances by 1.00, so under Inquisition every point of skill damage becomes 2x+ armor-ignoring true damage",
+          "5 250 золота: «Разряд» с «Посоха бури» снимает по 1.00 со всех четырёх сопротивлений, и под «Инквизицией» весь урон умений удваивается и идёт мимо брони"
+        ],
+        "why": [
+          "中期買得起的東西：紫水晶 600 金給 125 技能強度（每 100 金 20.8 點，全遊戲最好的比值），紫水晶戒指 900 金再 125 點，風暴權杖／躍遷這些淬鍊件 1,000 金各 100 點，術士之褲 950 金給 50 點＋每次施法 60 法力，奇術師法杖（魔咒法杖 250 金＋淬鍊卷軸）給 75 點。合計 575 技能強度、5,250 金。天賦選 T2 宗教裁判（A0JL）：HeroSkills14 在偵測到 A0JL 時，把主教每一次技能傷害改寫成 BurnUnit(傷害×1.25, 100%)。點燃結算用的是 ATTACK_TYPE_CHAOS / DAMAGE_TYPE_UNIVERSAL，完全不看護甲 —— 在還買不起傷害％裝的階段，這是最划算的乘數。真正的重點是電擊。風暴權杖的主動（技能 A06C，war3map.j:29264-29277）半徑 305、傷害 150+0.5×技能強度，並以 80% 機率施加電擊；ShockUnit（第 2626-2631 行）會把目標的第 4 號槽 −0.20（受到的傷害 +20%）、第 6 號槽 −0.30（造成的傷害 −30%），以及第 47、48、49、50 四個狀態抗性各 −1.00。Burn_Dmg 第 1782 行算的是 dmg_cof = 1.0 − 第47號槽，所以電擊期間點燃係數直接從 1.00 變 2.00 —— 宗教裁判下這等於全部技能傷害翻倍，持續 4 秒，冷卻 16 秒。再疊上附魔護符（狀態傷害 +15%，第 27 號實數槽）與太陽之書（點燃傷害 +20%），係數是平時 1.35、電擊中 2.35。實算：天堂意志 (200+575)×1.25×係數 = 1,308／電擊中 2,277；致盲 (90+86)×1.25×係數 = 297／518，範圍 500 內每個敵人各一份；神聖之焰 32 跳共 1,431／2,491。治療不受天賦影響，天堂之光每個友軍仍回 324+0.72×575 = 738，天堂意志回 581。兩個必須知道的代價：一，BurnUnit 第 1853-1863 行，目標本身帶點燃抗性時施加機率 ×0.25（抗性值 >50 直接歸零），而點燃「沒施加成功」等於完全沒有傷害，不是打折 —— 奇術師法杖的 50% 易傷（第 29352 行）把所有狀態機率 ×1.5，就是拿來補這個洞的。二，BurnUnit 第 1965 行把目標的 'burn' 槽位數改寫成它重複利用到的空槽編號，而 Burn_Dmg 第 1821 行只跑到那個數字為止 —— 編號更大的存活堆疊會被靜默丟掉。天堂之光 9 秒內對同一個敵人連丟 18 次點燃，正好一直踩到這個 bug，所以宗教裁判下主力應該是致盲與天堂意志（每個敵人只施加一次，不會互相踩），天堂之光當治療與補刀。",
+          "What you can actually afford mid-game: Amethyst is 600 gold for 125 spell power (20.8 per 100 gold, the best ratio in the game), Amethyst Ring another 125 for 900, the tempered Storm Staff and Leap give 100 each for 1,000, Warlock Pants give 50 plus 60 mana per cast for 950, and Trickster Staff (Enchanted Staff 250 plus a tempering scroll) gives 75. That is 575 spell power for 5,250 gold. Talent: T2 Inquisition (A0JL). When HeroSkills14 sees A0JL it rewrites every Bishop skill damage call into BurnUnit(damage * 1.25, 100%). Burn resolves as ATTACK_TYPE_CHAOS / DAMAGE_TYPE_UNIVERSAL, ignoring armor completely - the best multiplier available while you still cannot afford percentage damage items. The real point is Shock. Storm Staff's active (ability A06C, war3map.j:29264-29277) covers radius 305 for 150 + 0.5*spell power and applies Shock at 80% chance. ShockUnit (lines 2626-2631) subtracts 0.20 from the target's real slot 4 (it takes 20% more damage), 0.30 from slot 6 (it deals 30% less damage), and 1.00 from each of slots 47, 48, 49 and 50 - the four status resistances. Burn_Dmg line 1782 computes dmg_cof = 1.0 - slot 47, so during Shock the burn coefficient jumps from 1.00 to 2.00: under Inquisition that doubles all of the Bishop's skill damage, for 4 seconds on a 16 second cooldown. Stack Enchanted Amulet (+15% status damage, real slot 27) and Book of the Sun (+20% burn damage) on top and the coefficient is 1.35 normally, 2.35 during Shock. Concretely: Heaven's Will (200 + 575) * 1.25 * coefficient = 1,308, or 2,277 while shocked; Blind (90 + 86) * 1.25 * coefficient = 297 / 518 to every enemy inside 500; Holy Flame 32 ticks for 1,431 / 2,491. Healing is untouched by the talent - Heaven's Light still heals each ally for 324 + 0.72*575 = 738 and Heaven's Will for 581. Two costs you must know. First, BurnUnit lines 1853-1863: against a target that already carries burn resistance the application chance is multiplied by 0.25 (and zeroed above 50 resistance), and a burn that fails to apply deals nothing at all rather than reduced damage - Trickster Staff's 50% Vulnerability (line 29352) multiplies every status chance by 1.5 and is there to patch that hole. Second, BurnUnit line 1965 overwrites the target's 'burn' slot count with the index of whichever free slot it reused, and Burn_Dmg's loop at line 1821 only iterates up to that number, so live stacks at higher indices are silently dropped. Heaven's Light throws 18 burns at the same enemy in 9 seconds and walks straight into that bug, so under Inquisition lead with Blind and Heaven's Will (one application per enemy, no slot collision) and use Heaven's Light for healing and cleanup.",
+          "Что доступно в середине игры: «Аметист» - 600 золота за 125 силы умений (лучшее соотношение в игре), «Аметистовое кольцо» - ещё 125 за 900, закалённые «Посох бури» и «Скачок» - по 100 за 1 000, «Штаны чернокнижника» - 50 и 60 маны за каст, «Посох ловкача» - 75. Итого 575 силы умений за 5 250 золота. Талант T2 «Инквизиция» (A0JL): HeroSkills14 заменяет весь урон умений на BurnUnit(урон * 1.25, 100%), а поджог считается как CHAOS/UNIVERSAL и полностью игнорирует броню. Главное здесь - «Разряд». Активная способность «Посоха бури» (A06C, war3map.j:29264-29277) бьёт в радиусе 305 на 150 + 0.5*силы умений и с шансом 80% накладывает «Разряд». ShockUnit (строки 2626-2631) вычитает 0.20 из слота 4 цели (она получает на 20% больше урона), 0.30 из слота 6 (наносит на 30% меньше) и по 1.00 из слотов 47, 48, 49, 50 - четырёх сопротивлений статусам. В Burn_Dmg (строка 1782) dmg_cof = 1.0 - слот 47, поэтому под «Разрядом» коэффициент поджога становится 2.00: весь урон умений удваивается на 4 секунды при перезарядке 16 секунд. С «Зачарованным амулетом» (+15% урона от статусов, слот 27) и «Книгой солнца» (+20% урона от поджога) коэффициент равен 1.35 обычно и 2.35 под «Разрядом». «Воля Небес»: (200 + 575) * 1.25 * коэффициент = 1 308 или 2 277; «Ослепление»: 297 / 518 каждому врагу в радиусе 500; «Священное пламя»: 1 431 / 2 491. Лечение талант не трогает: 738 союзнику от «Небесного света» и 581 от «Воли Небес». Две оговорки. Строки 1853-1863: при собственном сопротивлении цели шанс наложения умножается на 0.25 (и обнуляется выше 50), а несработавший поджог не наносит вообще ничего - для этого и нужна «Уязвимость» с «Посоха ловкача» (строка 29352), умножающая все шансы статусов на 1.5. И строка 1965: счётчик 'burn' переписывается номером переиспользованного слота, а цикл Burn_Dmg (строка 1821) доходит только до него, поэтому активные стаки с большими номерами теряются. «Небесный свет» накладывает 18 поджогов за 9 секунд и постоянно попадает в этот баг, поэтому основной урон под «Инквизицией» - «Ослепление» и «Воля Небес»."
+        ],
+        "items": [
+          "tpow",
+          "rag1",
+          "clfm",
+          "anfg",
+          "envl",
+          "oflg"
+        ],
+        "bonus": {
+          "s1": "oli2",
+          "s2": "I0AV"
+        }
+      }
+    ],
+    "H00Q": [
+      {
+        "id": "sorc-nova",
+        "c": "#B44BE0",
+        "talent": "A0JM",
+        "n": [
+          "神化：分裂與小爆",
+          "Apotheosis: Splits and Motes",
+          "Апофеоз: расщепление и вспышки"
+        ],
+        "key": [
+          "分裂數與小爆數都是「基數 + 技能強度÷100」而且沒有上限 —— 2225 技能強度 = 不穩定充能打 25 個目標、超新星丟 32 顆小爆",
+          "Both the split count and the mote count are \"base + spell power/100\" with no cap - at 2225 spell power Unstable Charge hits 25 targets and Supernova drops 32 motes",
+          "Число расщеплений и вспышек = «база + сила умений/100», без предела: при 2225 силы умений «Нестабильный заряд» бьёт по 25 целям, «Сверхнова» роняет 32 вспышки"
+        ],
+        "why": [
+          "神化的兩個數量用的是同一段迴圈：count = 基數 + floor(技能強度÷100)，程式裡沒有上限（不穩定充能 war3map.j:50112-50118、超新星 49962-49968）。本套 2225 技能強度 → E 分裂 3+22 = 25 個目標、W 小爆 10+22 = 32 顆。E 基礎 = 360 + 技能強度×0.50 = 1472，每個分裂 75% = 1104，密集怪群一發約 29,100 點，冷卻 15 秒（執政官下 7.5 秒）。W 基礎 = 250 + 技能強度 + 智力×2 = 2917（Hero12W:49956），主爆 ×1.5 = 4376，32 顆小爆各 729，合計約 27,700 點。技能強度同時決定執政官長度 = 10 + 技能強度×0.02 秒（50265）：2225 → 54.5 秒 ÷ 80 秒冷卻 = 68% 上線率，期間 A0JE 把 Q/W/E 換成半冷卻半法力版（3→1.5、34→17、15→7.5 秒）。儀式聖杯 +11%、水晶項鍊 +11%、儀式之書 +15% 全部加進同一個 DefCof（雜湊 key 6），執政官再 +25% → ×1.62；大法師權杖另外寫進 key 3 的 +0.25，只對敵方英雄生效，打英雄時是 ×1.87。獅子星座每次施法都淨化並有 25% 機率炸出 200 + 技能強度×0.5 = 1313 點範圍傷害；28891-28893 只呼叫 StartModCooldown 卻沒檢查冷卻旗標，所以 Q 每 1.5 秒就觸發一次。注意：儀式之書對亡靈是淨 −20%，亡靈波要換掉。",
+          "Apotheosis derives both counts from the same loop: count = base + floor(spell power/100), with no cap in the code (Unstable Charge war3map.j:50112-50118, Supernova 49962-49968). At 2225 spell power that is 3+22 = 25 split targets on E and 10+22 = 32 motes on W. E base = 360 + 0.50 x spell power = 1472, each split at 75% = 1104, so one cast lands about 29,100 into a packed group on a 15 s cooldown (7.5 s under Archon). W base = 250 + spell power + 2 x intellect = 2917 (Hero12W:49956), main blast x1.5 = 4376 plus 32 motes at 729 each, about 27,700 total. Spell power also sets Archon's length: 10 + 0.02 x spell power seconds (line 50265), so 2225 gives 54.5 s on an 80 s cooldown = 68% uptime, during which A0JE swaps Q/W/E for half-cooldown, half-mana versions (3->1.5, 34->17, 15->7.5 s). Cursed Chalice +11%, Crystal Necklace +11% and Ritual Book +15% all add into the same DefCof (hash key 6), and Archon adds another +25% -> x1.62; Archmage Staff writes a separate +0.25 into key 3, which applies only to enemy heroes, so x1.87 against them. Leo Constellation cleanses on every cast and has a 25% chance to detonate for 200 + 0.5 x spell power = 1313; lines 28891-28893 call StartModCooldown but never check the flag, so it fires on every 1.5 s Magic Flash. Caveat: Ritual Book is a net -20% versus undead - swap it on undead waves.",
+          "Оба счётчика «Апофеоза» считаются одним циклом: count = база + floor(сила умений/100), предела в коде нет (war3map.j:50112-50118 и 49962-49968). При 2225 силы умений это 25 целей расщепления у E и 32 вспышки у W. База E = 360 + 0.50 x силы умений = 1472, каждое расщепление 75% = 1104, около 29 100 за каст по плотной группе. База W = 250 + сила умений + 2 x разум = 2917, главный взрыв x1.5 = 4376 плюс 32 вспышки по 729, итого около 27 700. Сила умений задаёт и длительность «Архонта»: 10 + 0.02 x силы умений сек. (строка 50265) - 54.5 сек. при перезарядке 80 сек., то есть 68% времени с половинными перезарядками. Проклятая чаша +11%, Хрустальное ожерелье +11% и Ритуальная книга +15% складываются в один DefCof, «Архонт» добавляет +25% -> x1.62. У Ритуальной книги против нежити итог -20%."
+        ],
+        "items": [
+          "I00E",
+          "sor5",
+          "kpin",
+          "fgrd",
+          "ofro",
+          "mnsf"
+        ],
+        "bonus": {
+          "s1": "dust",
+          "s2": "I04D"
+        }
+      },
+      {
+        "id": "sorc-eternal",
+        "c": "#2E9BB5",
+        "talent": "A0JC",
+        "n": [
+          "法力永動：×1.75 常駐",
+          "Perpetual Mana: Permanent x1.75",
+          "Вечная мана: x1.75 без перерыва"
+        ],
+        "key": [
+          "魔力充盈的 ×1.75 只在法力 ≥80% 時成立；技能花費是固定值、生命之冠回的是最大法力的 1%／秒 —— 把池子堆大，門檻就再也不會失守",
+          "Mana Surge's x1.75 only applies at 80%+ mana; spell costs are flat while Crown of Life restores 1% of MAX mana per second - grow the pool and the threshold never breaks",
+          "x1.75 от «Магического изобилия» работает только при мане 80%+; стоимость умений фиксированная, а «Корона жизни» возвращает 1% от МАКСИМУМА маны в секунду - чем больше пул, тем надёжнее порог"
+        ],
+        "why": [
+          "魔力充盈（A0JD）在每次施法時即時檢查 GetUnitManaPercent(u)>=80，過了才把 dmg_cof 加 0.75（war3map.j:50196-50200）。技能花費是固定數字（Q 105、E 115、W 263，執政官下對半），而生命之冠回的是「最大法力的 1%／秒」：本套 5425 最大法力 = 54 點／秒，再加水晶項鍊 8、傲羅斗篷 5、法師之戒 3、女巫帽每次施法 +20（28867-28870，這一個本來就沒有內冷），合計約 84 點／秒。執政官下 Q 每 1.5 秒只花 34.7 點／秒，法力實質不會往下走，×1.75 從「開場十幾秒」變成整場常駐。單體輸出反而贏過高輸出套：Q = (150 + 技能強度×0.25)×1.75 = 962（神化套只有 706）、E = (360 + 技能強度×0.5)×3.0625 = 3552（不穩定充能的 ×1.75 被套用兩次，見法力鎖那套的說明）、W = (250 + 技能強度 + 智力×2)×1.75 = 3994。代價很明確：放棄神化的 25 分裂與 32 小爆，對密集怪群的清速大約掉到高輸出套的八分之一。換到的是傲羅斗篷 60% 魔法傷害減免（這個欄位取最高不相加）、19 護甲、+750 生命，以及生命之冠每秒回 1% 生命。",
+          "Mana Surge (A0JD) re-checks GetUnitManaPercent(u)>=80 at the moment of each cast and only then adds 0.75 to dmg_cof (war3map.j:50196-50200). Spell costs are flat numbers (Q 105, E 115, W 263, halved under Archon) while Crown of Life restores 1% of MAX mana per second: 5425 max mana here = 54/s, plus Crystal Necklace 8, Auror Cloak 5, Mage Ring 3 and Witch Hat's +20 per cast (28867-28870, that one genuinely has no internal cooldown) for about 84/s. Under Archon a Magic Flash chain costs only 34.7/s, so mana never trends down and the x1.75 goes from a fifteen-second opener to a permanent state. Single-target output actually beats the max-damage build: Q = (150 + 0.25 x SP) x 1.75 = 962 versus 706, E = (360 + 0.5 x SP) x 3.0625 = 3552 (the double application is explained in the mana-lock build), W = (250 + SP + 2 x INT) x 1.75 = 3994. The price is explicit: no Apotheosis, so no 25 splits and no 32 motes - pack clear speed drops to roughly one eighth of the nova build. In exchange you get Auror Cloak's 60% magic damage reduction (this stat takes the highest value, it does not stack), 19 armour, +750 HP and 1% max HP per second from Crown of Life.",
+          "«Магическое изобилие» (A0JD) проверяет GetUnitManaPercent(u)>=80 в момент каста и только тогда прибавляет 0.75 к dmg_cof (war3map.j:50196-50200). Стоимость умений фиксирована (Q 105, E 115, W 263, вдвое меньше под «Архонтом»), а «Корона жизни» возвращает 1% от МАКСИМУМА маны в секунду: при 5425 маны это 54/сек., плюс 8 + 5 + 3 и +20 за каст от «Шляпы ведьмы» (28867-28870) - около 84/сек. против расхода 34.7/сек. Мана не падает, x1.75 держится постоянно. По одиночной цели это даже сильнее сборки на «Апофеоз»: Q = 962, E = 3552 (x3.0625), W = 3994. Цена - отказ от 25 расщеплений и 32 вспышек: зачистка плотных групп примерно в 8 раз медленнее. Взамен 60% сопротивления магии, 19 брони, +750 HP и 1% HP/сек."
+        ],
+        "items": [
+          "I00E",
+          "ram2",
+          "lgdh",
+          "I0A9",
+          "mnsf",
+          "I088"
+        ],
+        "bonus": {
+          "s1": "rump",
+          "s2": "I04F"
+        }
+      },
+      {
+        "id": "sorc-manalock",
+        "c": "#1E6FD9",
+        "talent": "A0JC",
+        "n": [
+          "法力鎖：三重門檻",
+          "Mana Lock: Three Thresholds",
+          "Замок маны: три порога"
+        ],
+        "key": [
+          "奧術精華每 0.1 秒把法力設回啟動當下的數字、連跑 10 秒 —— 80% 門檻與 1000 法力門檻同時被鎖成永真，期間技能完全免費",
+          "Arcane Essence rewrites your mana back to the value it had on activation every 0.1 s for 10 s - the 80% threshold and the 1000-mana threshold are both pinned true, and spells cost nothing",
+          "«Эссенция арканы» каждые 0.1 сек. возвращает ману к значению на момент активации, и так 10 сек. - порог 80% и порог 1000 маны одновременно закреплены, а умения становятся бесплатными"
+        ],
+        "why": [
+          "Arcane_Essention 每 0.1 秒執行一次 SetUnitState(u, MANA, 啟動當下的值)，跑 100 次剛好 10 秒（war3map.j:27320-27335，觸發於 27449-27456；道具技能 A0DH 冷卻 25 秒）。滿法力啟動後這 10 秒裡三件事同時成立：(1) 魔力充盈的「法力 ≥80%」永遠通過，所有技能 ×1.75；其中不穩定充能實際是 ×3.0625，因為 ×1.75 被套用了兩次 —— 50255 存傷害時乘一次、Hero12E 50084-50085 命中時又乘一次（超新星與魔法閃光都只乘一次，只有 E 這樣，這是程式錯誤）。(2) 風暴侍僧手套檢查的是「當前法力 ≥1000」，鎖住之後永遠成立，DefCof +0.20（19958-19960）。(3) 技能法力被即時退回，等於免費連發。藍寶石耳環 +100 智力 = +1500 最大法力，全套 6870 法力：扭曲權杖每次施法 +25 技能強度、疊到 15 層時清空加成，並對 900 範圍內 15 名敵人各造成「最大法力×0.75」= 5153 點，一輪約 77,300 點（BreachBuffUnit 28676-28700），而且那 15 層期間最多 +375 技能強度也會餵回 Q／E／W 與執政官長度。DefCof 合計 ×1.72（儀式聖杯 11% + 水晶項鍊 11% + 手套 20% + 蔑視者之戒 30%；蔑視者之戒在 24404-24405 是 key 6 +0.30 搭 key 3 −0.30，所以對英雄剛好抵銷成 0），執政官下 ×1.97，炸彈實打約 133,000 點。誠實的缺點：鎖以外的時間法力赤字約 10.6 點／秒（一個 25 秒循環淨掉 2.3% 法力），約三分鐘後要退出來回法；護甲只有 4，很脆。",
+          "Arcane_Essention runs SetUnitState(u, MANA, <value at activation>) every 0.1 s for 100 ticks, exactly 10 s (war3map.j:27320-27335, fired at 27449-27456; item ability A0DH, 25 s cooldown). Activate at full mana and three things hold at once for those 10 s. (1) Mana Surge's \"mana >= 80%\" always passes, so every spell is x1.75 - and Unstable Charge is actually x3.0625 because the x1.75 is applied twice: once when the damage is stored at line 50255 and again on impact in Hero12E at 50084-50085. Supernova and Magic Flash apply it once; only E double-dips, which is a bug. (2) Storm Acolyte's Gloves check CURRENT mana >= 1000, which the lock pins true, adding +0.20 to DefCof (19958-19960). (3) Mana spent is refunded within a tick, so casting is free. Sapphire Earring's +100 intellect is +1500 max mana; at 6870 total, Twisted Sceptre grants +25 spell power per cast and at 15 stacks clears the bonus and hits 15 enemies within 900 range for 0.75 x max mana = 5153 each, roughly 77,300 per cycle (BreachBuffUnit 28676-28700) - and the up-to-+375 spell power on the way there also feeds Q/E/W and Archon's duration. DefCof totals x1.72 (Chalice 11% + Necklace 11% + Gloves 20% + Ring of Contempt 30%; lines 24404-24405 give that ring key 6 +0.30 together with key 3 -0.30, so it is exactly zero against heroes), x1.97 under Archon, putting the bomb at roughly 133,000. Honest downside: outside the lock you run a 10.6 mana/s deficit (2.3% of the pool per 25 s cycle), so after about three minutes you must disengage and regenerate, and with 4 armour you are very fragile.",
+          "Arcane_Essention каждые 0.1 сек. выполняет SetUnitState(u, MANA, <значение при активации>), 100 тиков = ровно 10 сек. (war3map.j:27320-27335, вызов на 27449-27456; способность предмета A0DH, перезарядка 25 сек.). Активировав на полной мане, вы получаете сразу три вещи. (1) Порог «мана >= 80%» у «Магического изобилия» всегда проходит - все умения x1.75, а «Нестабильный заряд» на самом деле x3.0625, потому что x1.75 применяется дважды: при сохранении урона (строка 50255) и при попадании в Hero12E (50084-50085). Это ошибка карты: у «Сверхновой» и «Вспышки» множитель применяется один раз. (2) «Перчатки адепта Бури» проверяют ТЕКУЩУЮ ману >= 1000 - замок держит это условие, +0.20 к DefCof (19958-19960). (3) Мана возвращается за тик, то есть касты бесплатны. Сапфировая серьга даёт +100 разума = +1500 маны; при 6870 маны «Скипетр разлома» на 15 стаках бьёт по 15 врагам в радиусе 900 на 0.75 x макс. маны = 5153 каждому, около 77 300 за цикл (28676-28700). Итоговый DefCof x1.72 (чаша 11% + ожерелье 11% + перчатки 20% + «Кольцо презрения» 30%; в строках 24404-24405 у кольца key 6 +0.30 и key 3 -0.30, поэтому против героев оно даёт ноль), под «Архонтом» x1.97 - бомба выходит около 133 000. Минус: вне замка дефицит около 10.6 маны/сек. и всего 4 брони."
+        ],
+        "items": [
+          "I00Q",
+          "pgin",
+          "shea",
+          "I0AN",
+          "I099",
+          "mnsf"
+        ],
+        "bonus": {
+          "s1": "dust",
+          "s2": "I04F"
+        }
+      },
+      {
+        "id": "sorc-budget",
+        "c": "#7BA23F",
+        "talent": "A0JC",
+        "n": [
+          "六千金的乘法",
+          "Six Thousand Gold of Multipliers",
+          "Множители за шесть тысяч золота"
+        ],
+        "key": [
+          "天賦是乘法、裝備技能強度是加法 —— 810 技能強度配上 ×1.75／×3.0625，6,150 金就有大套約八成的單體輸出",
+          "Talents multiply, item spell power only adds - 810 spell power with x1.75 / x3.0625 gives about 80% of a full build's single-target damage for 6,150 gold",
+          "Талант умножает, сила умений от предметов только складывается: 810 силы умений с x1.75 / x3.0625 дают около 80% одиночного урона дорогой сборки за 6150 золота"
+        ],
+        "why": [
+          "全套 6,150 金、只有 810 技能強度，但靠倍率打出 Q = (150 + 技能強度×0.25)×1.75 = 617、E = (360 + 技能強度×0.5)×3.0625 = 2343、W = (250 + 技能強度 + 智力×2)×1.75 = 2408。E 之所以是 2343 而不是 1339，是因為魔力充盈的 ×1.75 在不穩定充能上被套用了兩次（war3map.j:50255 存值時一次、50084-50085 命中時一次）→ ×3.0625，這是女術士最划算的一招，也是為什麼中期該先點天賦而不是硬湊技能強度。維持 ≥80% 法力靠術士之褲：28989 呼叫了 StartModCooldown(…,'clfm',10.) 卻從來沒有檢查冷卻旗標（正確寫法在 27615-27616），所以「每 10 秒回 60 法力」實際上是「每次施法回 60 法力」；執政官下 Q 每 1.5 秒 = +40 點／秒，而 Q 只花 34.7 點／秒，法力是正收支。儀式聖杯 300 金給 +11% 全部傷害（雜湊 key 6，23872-23874），是全遊戲最便宜的傷害倍率，代價是自己也多吃 11%。風暴權杖 1,000 金多一個 150 + 技能強度×0.5 = 555 的主動範圍傷害並以 80% 機率施加電擊；電擊會讓目標減傷 −0.20、輸出 −0.30、四種狀態抗性各 −1.00（由 RemoveShock 2567-2578 回補的數值反推）。升級路線：紫水晶 → 純淨紫水晶、法力鋼 → 大法師長袍、潛能覺醒 → 星界耳環。",
+          "The whole set is 6,150 gold and only 810 spell power, but the multipliers carry it: Q = (150 + 0.25 x SP) x 1.75 = 617, E = (360 + 0.5 x SP) x 3.0625 = 2343, W = (250 + SP + 2 x INT) x 1.75 = 2408. E is 2343 rather than 1339 because Mana Surge's x1.75 is applied twice to Unstable Charge - once when the damage is stored (war3map.j:50255) and again on impact (50084-50085) - giving x3.0625. That is the Sorceress's best single coefficient and the reason to buy the talent before stacking spell power. Holding 80%+ mana is done with Warlock's Pants: line 28989 calls StartModCooldown(...,'clfm',10.) but never checks the flag afterwards (the correct pattern is at 27615-27616), so \"60 mana every 10 s\" is really \"60 mana every cast\" - +40 mana/s at one Magic Flash per 1.5 s under Archon against a 34.7/s drain, i.e. net positive. Cursed Chalice gives +11% to ALL damage for 300 gold (hash key 6, lines 23872-23874), the cheapest damage multiplier in the game, at the cost of taking 11% more yourself. Storm Sceptre (1,000 g) adds an active 150 + 0.5 x SP = 555 area hit with an 80% chance of Shock, and Shock costs the target 0.20 damage reduction, 0.30 damage dealt and 1.00 of each of the four status resistances (read off what RemoveShock restores at 2567-2578). Upgrade path: Amethyst -> Pure Amethyst, Mana Steel -> Archmage Robe, Awakened Potential -> Astral Earring.",
+          "Вся сборка стоит 6150 золота и даёт всего 810 силы умений, но множители вытягивают: Q = (150 + 0.25 x СУ) x 1.75 = 617, E = (360 + 0.5 x СУ) x 3.0625 = 2343, W = (250 + СУ + 2 x разум) x 1.75 = 2408. E равен 2343, а не 1339, потому что x1.75 применяется к «Нестабильному заряду» дважды (war3map.j:50255 и 50084-50085) - x3.0625. Поэтому талант важнее ранней силы умений. Ману держат «Штаны чернокнижника»: на строке 28989 вызывается StartModCooldown(...,'clfm',10.), но флаг перезарядки нигде не проверяется (правильный пример - 27615-27616), поэтому «60 маны раз в 10 сек.» на деле «60 маны за каждый каст»: +40 маны/сек. против расхода 34.7/сек. «Проклятая чаша» за 300 золота даёт +11% ко ВСЕМУ урону (ключ 6, строки 23872-23874) ценой +11% получаемого урона. «Скипетр бури» добавляет активный удар по области на 555 с 80% шансом шока."
+        ],
+        "items": [
+          "tpow",
+          "rag1",
+          "I01O",
+          "schl",
+          "anfg",
+          "clfm"
+        ],
+        "bonus": {
+          "s1": "dust",
+          "s2": "I01Q"
+        }
+      }
+    ],
+    "H012": [
+      {
+        "id": "arcan-artillery",
+        "c": "#7C4DFF",
+        "talent": "A0J1",
+        "n": [
+          "秘法砲擊·極限技能強度",
+          "Arcane Artillery: Max Skill Power",
+          "Арканная артиллерия: максимум силы умений"
+        ],
+        "key": [
+          "毀滅咒語每顆爆炸是「250 + 100% 技能強度」，而且對敵方英雄再加最大生命的 (4.5% + 技能強度/25000)；技能強度 2075 時等於每顆爆炸 12.8% 最大生命",
+          "Each Destructive Spell blast is 250 + 100% skill power, and against enemy heroes it adds max HP x (4.5% + SP/25000) on top - at 2075 SP that is 12.8% of the boss's max HP per blast",
+          "Каждый взрыв «Разрушительного заклинания» - это 250 + 100% силы умений, а по вражеским героям сверху идёт макс. HP x (4.5% + СУ/25000): при 2075 СУ это 12.8% максимального здоровья за взрыв"
+        ],
+        "why": [
+          "這隻英雄四個技能全部只吃「技能強度」（udg_ItemBonusDMG），沒有任何技能吃裝備技能威力（h.mod 是空的），所以純堆技能強度就是最直接的路線。關鍵在毀滅咒語：ArcanologRCreate（war3map.j:48805）把每顆爆炸的傷害存成 250 + 技能強度，半徑固定 125，然後交給共用函式 SpellBoom（7775 行）結算。SpellBoom 對「敵方英雄」多打一筆 dmg2 = 最大生命 x 0.01 x (1 + dmg/250 + aoe/50)，代入 dmg = 250 + 技能強度、aoe = 125，化簡成 最大生命 x (0.045 + 技能強度/25000)。技能強度 2075 → 每顆爆炸 2325 固定傷害 + 12.8% 最大生命；對非英雄單位是 dmg x 0.75，對建築 x 0.50。天賦選秘法砲擊（A0J1），Trig_HeroSkills8_Actions 的 A0IU 分支（48929）會因為 A0J4 把射線從 3 條變 5 條、距離 1200 變 1800，步長固定 100 → 爆炸數從 3x12=36 顆變 5x18=90 顆。同一個天賦也把秘法齊射換成 A0J5：彈數 x2、施法距離 800→1200、散布半徑 245→320。秘法齊射的彈數是 8 + 當前法力/500（Hero8W，48761 起的迴圈），這套法力約 4025，彈數 (8+8)x2 = 32 顆，每顆 90 + 15% 技能強度 = 401，單次 12840 點範圍傷害。傷害加成是加法疊進 DefCof：蔑視者之戒程式碼是 key6 +0.30、key3 -0.30（24404），也就是對非英雄 +30%、對英雄剛好抵銷成 0；大法師權杖是 key3 +0.25（23813），對英雄 +25%（這條說明書沒寫）；水晶項鍊 key6 +0.11；儀式聖杯 key6 +0.11 但同時 key4 -0.11（自己多吃 11% 傷害）。合計對雜兵 +52%、對英雄／首領 +47%。實戰數字：秘法齊射每次約 19500、異常力場每次約 14600、秘法充能 3860 帶 1 秒暈眩、毀滅咒語每顆爆炸對首領 3418 + 18.8% 最大生命。這套完全沒有防具，靠自己對自己放秘法護盾（+15% 減傷、100% 覆蓋率）與死靈法師之杖的骷髏擋線活下來。",
+          "All four of this hero's skills scale only with skill power (udg_ItemBonusDMG); none of them reads item spell power (h.mod is empty), so raw skill power is the direct route. The centrepiece is Destructive Spell: ArcanologRCreate (war3map.j:48805) stores each blast as 250 + skill power with a fixed 125 radius and hands it to the shared SpellBoom routine (line 7775). Against enemy HEROES SpellBoom adds dmg2 = maxHP x 0.01 x (1 + dmg/250 + aoe/50); substituting dmg = 250 + SP and aoe = 125 this collapses to maxHP x (0.045 + SP/25000). At 2075 SP that is 2325 flat + 12.8% max HP per blast. Non-hero units take dmg x 0.75, structures x 0.50. The Arcane Artillery talent (A0J1) makes the A0IU branch (line 48929) fire 5 rays instead of 3 over 1800 instead of 1200 range with a fixed 100 step, so blasts go from 3x12 = 36 to 5x18 = 90. The same talent swaps Arcane Volley for A0J5: double projectiles, 800 to 1200 cast range, 245 to 320 scatter. Projectile count is 8 + current mana/500 (Hero8W loop from line 48761); with about 4025 mana that is (8+8)x2 = 32 orbs at 90 + 15% SP = 401 each, 12840 area damage per cast. Damage modifiers are purely additive into DefCof: Ring of the Scorner is key6 +0.30 and key3 -0.30 (line 24404), i.e. +30% versus non-heroes and exactly zero versus heroes; Archmage Staff is key3 +0.25 (line 23813), a +25% versus heroes that the tooltip never mentions; Crystal Necklace is key6 +0.11; Ritual Chalice is key6 +0.11 but also key4 -0.11, so you take 11% more damage yourself. Totals: +52% versus creeps, +47% versus heroes and bosses. Practical output: Arcane Volley about 19500 per cast, Anomaly Field about 14600, Arcane Charge 3860 with a 1 s stun, and each Destructive Spell blast 3418 + 18.8% max HP on a boss. There is no defensive item here at all - survival comes from self-casting Arcane Shield (+15% damage reduction, 100% uptime) and the Necromancer Staff skeletons blocking for you.",
+          "Все четыре умения героя масштабируются только от силы умений (udg_ItemBonusDMG); ни одно не читает силу умений предметов (h.mod пуст), поэтому чистый стак силы умений - самый прямой путь. Ключ - «Разрушительное заклинание»: ArcanologRCreate (war3map.j:48805) записывает урон взрыва как 250 + сила умений при радиусе 125 и передаёт его в общую функцию SpellBoom (строка 7775). По вражеским ГЕРОЯМ SpellBoom добавляет dmg2 = макс. HP x 0.01 x (1 + dmg/250 + aoe/50); при dmg = 250 + СУ и aoe = 125 это сводится к макс. HP x (0.045 + СУ/25000). При 2075 СУ - 2325 фикс. урона плюс 12.8% макс. здоровья за взрыв. По не-героям dmg x 0.75, по зданиям x 0.50. Талант «Арканная артиллерия» (A0J1) в ветке A0IU (строка 48929) даёт 5 лучей вместо 3 и дальность 1800 вместо 1200 при шаге 100, то есть 5x18 = 90 взрывов вместо 3x12 = 36. Тот же талант меняет залп на A0J5: снарядов вдвое больше, дальность 800 -> 1200, разброс 245 -> 320. Число снарядов = 8 + текущая мана/500 (Hero8W, цикл со строки 48761); при ~4025 маны это (8+8)x2 = 32 снаряда по 90 + 15% СУ = 401, то есть 12840 урона по площади за каст. Бонусы урона складываются аддитивно в DefCof: «Кольцо презирающего» - это key6 +0.30 и key3 -0.30 (строка 24404), то есть +30% по не-героям и ровно ноль по героям; «Посох архимага» - key3 +0.25 (строка 23813), скрытые +25% по героям; «Хрустальное ожерелье» key6 +0.11; «Ритуальная чаша» key6 +0.11, но и key4 -0.11 (вы сами получаете на 11% больше урона). Итого +52% по мобам и +47% по героям и боссам. Защиты в сборке нет вовсе: выживание держится на самонакладывании «Арканного щита» (+15% снижения урона, 100% аптайм) и скелетах «Посоха некроманта»."
+        ],
+        "items": [
+          "I00E",
+          "sor5",
+          "kpin",
+          "I0AN",
+          "mnsf",
+          "fgrd"
+        ],
+        "bonus": {
+          "s1": "dust",
+          "s2": "I01Q"
+        }
+      },
+      {
+        "id": "arcan-field",
+        "c": "#26A69A",
+        "talent": "A0IX",
+        "n": [
+          "不穩定力場·永續",
+          "Unstable Field: Never Expires",
+          "Нестабильная зона: бесконечная"
+        ],
+        "key": [
+          "程式碼裡不穩定力場擊中 10 個目標就把計時器 count 加回 1 —— 只要場上一直有 10 隻敵人，力場就永遠不會消失，不是「多跳一次」而已",
+          "In code, Unstable Field adds 1 back to the tick counter whenever it hits 10 targets - so while 10 enemies stay inside, the field never expires at all, not just one extra tick",
+          "В коде «Нестабильная зона» возвращает +1 к счётчику тиков каждый раз, когда задевает 10 целей: пока внутри 10 врагов, зона не исчезает вообще"
+        ],
+        "why": [
+          "Hero8Q（war3map.j:48744 起）是異常力場的回呼：每 0.75 秒先 count = count - 1，再從半徑 305 內隨機挑 3 個敵人（有 A0IX 天賦就是 10 個）各打 10 + 10x技能等級 + 10% 技能強度。函式尾端寫著：若 A0IX 存在且這次真的打滿 10 個目標（check >= 10），就 count = count + 1。也就是說擊中數達 10 時計時器淨變化為零 —— 力場的 12 跳上限完全失效，只要範圍內維持 10 隻以上敵人，它會一直跳下去。遊戲說明只寫「再增加 1 次觸發」，實作是無限延長。這套就是圍繞這條寫的：技能強度 1215，每跳每目標 60 + 121.5 = 181.5，蔑視者之戒對非英雄 +30% 之後是 236；打滿 10 目標時是每 0.75 秒 2360 點的持續範圍傷害，而且不受 9 秒限制。冷卻只有 22 秒、法力 121。既然要站在敵群中央長時間輸出，剩下五格全部換成硬度：傲羅斗篷 60% 魔法傷害減免（魔傷減免是 nostack，取最高值，所以只帶這一件）、護甲合計 28、生命之冠每秒回 1% 生命與 1% 法力、獅子星座每次施法呼叫 ClearUnit（2647 行）清掉點燃／流血／疾病／各種負面狀態，內部冷卻只有 1 秒，等於每次放技能就淨化一次。秘法護盾自己對自己放：Trig_HeroSkills8_Actions:48911 把 key4（一般減傷）與 key47～50（點燃／電擊／流血／疾病抗性）各 +0.15，持續 10 + 英雄等級秒 = 25 級時 35 秒，冷卻 20 秒，所以 100% 覆蓋。護盾同時每秒回目標最大法力的 1%（Hero8D:48608），約 38 點；加上生命之冠的 1% 與 13.35 的法力回復，總法力收入約 89/秒，而一輪 Q+W+E 只要 416 點，等於無限續航。代價是技能強度比高輸出套少 860，單次爆發約掉 40%。",
+          "Hero8Q (war3map.j from line 48744) is the Anomaly Field callback: every 0.75 s it does count = count - 1, then picks 3 random enemies inside radius 305 (10 with the A0IX talent) and hits each for 10 + 10 x skill level + 10% skill power. At the end of the function: if A0IX is present and the tick actually hit 10 targets (check >= 10), it does count = count + 1. So at 10 hits the tick counter nets to zero - the 12-tick cap simply stops applying and the field runs forever while 10+ enemies stay in range. The tooltip only claims 'one extra tick'; the implementation is unlimited duration. The build is written around that line: at 1215 skill power each hit is 60 + 121.5 = 181.5, and 236 after Ring of the Scorner's +30% versus non-heroes, so a saturated field is 2360 area damage every 0.75 s with no time limit, on a 22 s cooldown for 121 mana. Since you have to stand inside the pack for a long time, the other five slots are pure toughness: Aurora Cloak's 60% magic damage reduction (magic reduction is nostack, only the highest counts, so one such item is enough), 28 armour total, Crown of Life restoring 1% HP and 1% mana per second, and Leo Constellation calling ClearUnit (line 2647) on every cast with only a 1 s internal cooldown, wiping burn, bleed, disease and other debuffs each time you press a button. Arcane Shield is self-cast: Trig_HeroSkills8_Actions line 48911 adds +0.15 to key4 (general damage reduction) and to keys 47-50 (burn, shock, bleed, disease resistance) for 10 + hero level seconds, i.e. 35 s at level 25 against a 20 s cooldown - permanent uptime. The shield also restores 1% of the target's maximum mana per second (Hero8D line 48608), about 38 mana; together with Crown of Life's 1% and 13.35 flat regen that is roughly 89 mana/s income against 416 mana for a full Q+W+E rotation. The price is 860 less skill power than the damage build, about 40% less burst.",
+          "Hero8Q (war3map.j со строки 48744) - колбэк «Аномального поля»: каждые 0.75 с сначала count = count - 1, затем выбираются 3 случайных врага в радиусе 305 (10 с талантом A0IX), каждому наносится 10 + 10 x уровень + 10% силы умений. В конце функции: если A0IX есть и тик действительно задел 10 целей (check >= 10), то count = count + 1. При 10 попаданиях счётчик тиков не убывает - лимит в 12 тиков перестаёт действовать, и зона живёт бесконечно, пока внутри остаются 10 врагов. В подсказке написано «ещё одно срабатывание», в коде - неограниченная длительность. Сборка построена на этом: при 1215 СУ каждый удар 60 + 121.5 = 181.5, а с +30% «Кольца презирающего» по не-героям - 236, то есть 2360 урона по площади каждые 0.75 с без ограничения времени, откат 22 с, стоимость 121 маны. Так как стоять придётся в гуще, остальные пять слотов - выживание: «Плащ Ауроры» даёт 60% снижения магического урона (снижение магии не складывается, берётся максимум), суммарно 28 брони, «Корона жизни» восстанавливает 1% HP и 1% маны в секунду, а «Созвездие Льва» на каждом касте вызывает ClearUnit (строка 2647) с внутренним откатом 1 с, снимая поджог, кровотечение, болезнь и прочие эффекты. «Арканный щит» кастуется на себя: строка 48911 добавляет +0.15 к key4 (общее снижение урона) и к key47-50 (сопротивления поджогу, шоку, кровотечению, болезни) на 10 + уровень героя секунд, то есть 35 с при откате 20 с - постоянный аптайм. Щит также восстанавливает 1% максимальной маны цели в секунду (Hero8D, строка 48608). Итого около 89 маны/с дохода против 416 маны за полную ротацию. Цена - на 860 меньше силы умений, примерно на 40% меньше всплеска."
+        ],
+        "items": [
+          "kpin",
+          "I0AN",
+          "ofro",
+          "ram2",
+          "I0A9",
+          "sor5"
+        ],
+        "bonus": {
+          "s1": "fgun",
+          "s2": "I08W"
+        }
+      },
+      {
+        "id": "arcan-manaflood",
+        "c": "#2979FF",
+        "talent": "A0J1",
+        "n": [
+          "法力洪流·破裂",
+          "Mana Flood: Breach",
+          "Поток маны: разрыв"
+        ],
+        "key": [
+          "扭曲權杖每次施法 +25 技能強度、滿 15 層時對 15 名敵人各打「75% 最大法力」；配上奧術精華鎖住法力 10 秒，秘法充能與秘法齊射整輪都用最高法力值結算",
+          "Warped Scepter gives +25 skill power per cast and at 15 stacks hits 15 enemies for 75% of your MAX mana each; Arcane Essence freezes your mana for 10 s so Arcane Charge and Arcane Volley resolve at peak mana all rotation",
+          "«Искажённый скипетр» даёт +25 силы умений за каст, а на 15 зарядах бьёт 15 врагов на 75% МАКС. маны каждого; «Арканная эссенция» замораживает ману на 10 с, и весь бурст считается по пиковому значению"
+        ],
+        "why": [
+          "秘法學者是全地圖少數三個係數同時吃法力的英雄，這套把法力當成主要輸出屬性。程式碼依據四條：(1) 秘法充能 Trig_HeroSkills8_Actions:48978 傷害 = 50 + 50x等級 + 40% 技能強度 + 當前法力 x (0.10 + 0.05x等級)，五級就是 35% 當前法力；(2) 秘法齊射 Hero8W 前置的迴圈把彈數算成 8 + 當前法力/500，天賦 A0J1 再 x2；(3) 秘法護盾每秒回目標最大法力的 1%（Hero8D:48608）；(4) 扭曲權杖：Trig_UseSkillsEndcast_Actions 每次施法呼叫 BreachBuffUnit(u, 1.00)（28650 行），機率參數是 1.00 所以必定觸發，每層 udg_ItemBonusDMG +25、整個 buff 共用一個 15 秒計時器並在每次施法重置，所以只要 15 秒內至少放一個技能，層數就會一路疊到 15；第 15 層時 dmg = 最大法力 x 0.75，對 900 半徑內隨機 15 名敵人各打一次，然後清空重疊。法力來源：藍寶石耳環 +100 智力（預設 1 智力 = 15 法力，war3mapMisc.txt 沒有覆寫 IntManaBonus）、水晶項鍊 +40 智力 +800、蔑視者之戒 +750、扭曲權杖 +325、奧術精華 +500、大奶酪 +20% 上限（乘算器，OnEquip_Multiplier:22233；全隊只能帶 1 件乘算器，程式碼在 TryTakeMultiplierSlot:22148）。25 級時約 7440 點法力，並且魔化藥瓶每 60 秒永久 +2 智力（Check_60sec_Item:29933，卸下也不會扣回去），30 分鐘後再多約 1080 法力。實際數字：破裂放電每目標 0.75 x 7440 = 5580，乘上 +52% 傷害加成是 8482，15 個目標約 12.7 萬；秘法充能 300 + 410 + 2604 = 3314 → 5037 並附帶 1 秒暈眩；秘法齊射彈數 (8+14)x2 = 44 顆，單次約 16300。奧術精華的鎖法力（Arcane_Essention:27320，每 0.1 秒把法力寫回啟動當下的值，共 100 次 = 10 秒）是這套的關鍵操作：先補滿法力 → 按奧術精華 → E → W → Q，這 10 秒內所有法力係數都用滿值結算，不會因為施法扣魔而衰減。",
+          "The Arcanologist is one of the very few heroes whose damage reads mana in three separate places, and this build treats mana as the primary offensive stat. Four code facts: (1) Arcane Charge, Trig_HeroSkills8_Actions line 48978, deals 50 + 50 x level + 40% skill power + current mana x (0.10 + 0.05 x level) - 35% of current mana at rank 5; (2) Arcane Volley's projectile count is computed as 8 + current mana/500 in the loop before Hero8W, then doubled by the A0J1 talent; (3) Arcane Shield restores 1% of the target's maximum mana per second (Hero8D line 48608); (4) Warped Scepter: Trig_UseSkillsEndcast_Actions calls BreachBuffUnit(u, 1.00) on every cast (line 28650) - the chance parameter is 1.00 so it always fires, each stack adds +25 to udg_ItemBonusDMG, and the whole buff shares one 15 s timer that is restarted on every cast, so casting anything at least once per 15 s ramps you to 15 stacks. At stack 15 it computes dmg = max mana x 0.75 and hits up to 15 random enemies within 900 range, then clears the stacks. Mana sources: Sapphire Earring +100 int (default 15 mana per int - war3mapMisc.txt does not override IntManaBonus), Crystal Necklace +40 int and +800, Ring of the Scorner +750, Warped Scepter +325, Arcane Essence +500, and Big Cheese +20% to both pools (a multiplier item, OnEquip_Multiplier line 22233; only one multiplier may be worn, enforced by TryTakeMultiplierSlot line 22148). That is about 7440 mana at level 25, and Enchanted Flask adds a permanent +2 int every 60 s (Check_60sec_Item line 29933; the accumulated int is never removed on unequip), roughly another 1080 mana after 30 minutes. Numbers: the Breach discharge is 0.75 x 7440 = 5580 per target, 8482 after the +52% damage modifiers, about 127k across 15 targets; Arcane Charge 300 + 410 + 2604 = 3314 raw and 5037 modified, with a 1 s stun; Arcane Volley fires (8+14)x2 = 44 orbs for about 16300 per cast. The mana lock on Arcane Essence (Arcane_Essention line 27320 writes your mana back to the activation value every 0.1 s, 100 times = 10 s) is the key input: top up, press Arcane Essence, then E, W, Q - every mana coefficient in that window resolves at the full value instead of decaying as you spend.",
+          "«Арканолог» - один из немногих героев, чей урон читает ману сразу в трёх местах, и эта сборка делает ману основной атакующей характеристикой. Четыре факта из кода: (1) «Арканный заряд», Trig_HeroSkills8_Actions строка 48978: 50 + 50 x уровень + 40% силы умений + текущая мана x (0.10 + 0.05 x уровень), то есть 35% текущей маны на 5 ранге; (2) число снарядов залпа = 8 + текущая мана/500 (цикл перед Hero8W), талант A0J1 удваивает; (3) «Арканный щит» восстанавливает 1% максимальной маны цели в секунду (Hero8D, строка 48608); (4) «Искажённый скипетр»: Trig_UseSkillsEndcast_Actions на каждом касте вызывает BreachBuffUnit(u, 1.00) (строка 28650) - параметр шанса 1.00, срабатывает всегда, каждый заряд даёт +25 к udg_ItemBonusDMG, а весь бафф использует один таймер на 15 с, перезапускаемый каждым кастом, поэтому достаточно кастовать хотя бы раз в 15 секунд. На 15-м заряде dmg = макс. мана x 0.75 по 15 случайным врагам в радиусе 900, после чего заряды сбрасываются. Источники маны: «Сапфировая серьга» +100 разума (по умолчанию 1 разум = 15 маны, в war3mapMisc.txt IntManaBonus не переопределён), «Хрустальное ожерелье» +40 разума и +800, «Кольцо презирающего» +750, скипетр +325, эссенция +500, «Большой сыр» +20% к обоим запасам (множитель, OnEquip_Multiplier строка 22233; носить можно только один множитель - TryTakeMultiplierSlot строка 22148). Итого около 7440 маны на 25 уровне, плюс «Зачарованный флакон» даёт постоянные +2 разума каждые 60 с (Check_60sec_Item строка 29933, при снятии не отнимается) - ещё около 1080 маны за 30 минут. Цифры: разряд разрыва 0.75 x 7440 = 5580 по цели, 8482 с учётом +52% модификаторов, около 127 тыс. по 15 целям; «Арканный заряд» 3314 базово и 5037 с модификаторами плюс оглушение 1 с; залп - (8+14)x2 = 44 снаряда, около 16300 за каст. Заморозка маны от эссенции (Arcane_Essention строка 27320: мана переписывается на значение момента активации каждые 0.1 с, 100 раз = 10 с) - ключевое действие: долить ману, нажать эссенцию, затем E, W, Q; все коэффициенты в этом окне считаются по полному значению."
+        ],
+        "items": [
+          "I00Q",
+          "shea",
+          "pgin",
+          "mnsf",
+          "I0AN",
+          "oven"
+        ],
+        "bonus": {
+          "s1": "dust",
+          "s2": "I08Z"
+        }
+      },
+      {
+        "id": "arcan-budget",
+        "c": "#8D6E63",
+        "talent": "A0IX",
+        "n": [
+          "平價力場流",
+          "Budget Field",
+          "Бюджетная зона"
+        ],
+        "key": [
+          "9150 金以內湊出 1000 技能強度與 3535 法力；不穩定力場只要 15 點天賦經驗（秘法砲擊要 24），中期就能開",
+          "1000 skill power and 3535 mana for 9150 gold; Unstable Field only costs 15 talent XP points versus 24 for Arcane Artillery, so it comes online much earlier",
+          "1000 силы умений и 3535 маны за 9150 золота; «Нестабильная зона» стоит 15 очков таланта против 24 у артиллерии - открывается заметно раньше"
+        ],
+        "why": [
+          "天賦的解鎖門檻直接寫在 war3map.w3a 的 arqa 欄位：A0IX 不穩定力場是 15，A0J1 秘法砲擊是 24。所以中期只有 A0IX 拿得到，這套就跟著走力場路線。技能強度用最省錢的三件湊：純淨紫水晶 400（2200 金，0.18 技能強度/金）、紫水晶 125（600 金，0.21/金，全遊戲效率最高）、紫水晶戒指 125（900 金再送 10 智力），加上蔑視者之戒 125、大魔導師項鍊 100、死靈法師之杖 50、能量符文 75，總計 1000。異常力場配 A0IX 是每 0.75 秒挑 10 個目標，每個 60 + 100 = 160，蔑視者之戒對非英雄 +30% 之後 208，打滿 10 目標時每跳 2080、單次 24960，而且 Hero8Q 尾端的 check >= 10 判定會把跳數加回去，密集波次下力場不會過期。法力這邊靠三件平價品：蔑視者之戒 +750、大魔導師項鍊 +500 與 5 點回復、法力催化劑 +500，合計 1750 加上智力換算的 1785，約 3535 —— 剛好夠秘法齊射穩定拿到 8 + 7 = 15 顆彈。法力催化劑除了法力，程式碼裡（Trig_UseSkillsEndcast_Actions:28960）每次施法都給 +20 x (1 + 裝備技能威力) 護甲、持續 3 秒、而且沒有內部冷卻可以疊，這是這套唯一的防具，戰鬥中連續放技能大約能維持 40～60 護甲。順帶一提：大法師之褲的說明寫「回復 150% 智力的法力」，但程式碼寫的是 GetHeroStr(u,true) x 1.50（28995 行），實際吃的是力量，對智力英雄幾乎沒用，所以這套沒有選它。",
+          "The talent unlock cost is written straight into the arqa field of war3map.w3a: A0IX Unstable Field is 15, A0J1 Arcane Artillery is 24. Mid-game only A0IX is reachable, so this build follows the field route. Skill power comes from the cheapest sources: Pure Amethyst 400 (2200 gold, 0.18 SP per gold), Amethyst 125 (600 gold, 0.21 per gold, the best ratio in the game), Amethyst Ring 125 (900 gold plus 10 int), then Ring of the Scorner 125, Archmagister Necklace 100, Necromancer Staff 50 and Energy Rune 75 - 1000 total. Anomaly Field with A0IX picks 10 targets every 0.75 s for 60 + 100 = 160 each, 208 after Ring of the Scorner's +30% versus non-heroes: 2080 per tick and 24960 per cast when saturated, and the check >= 10 branch at the end of Hero8Q refunds the tick, so the field does not expire in a dense wave. Mana comes from three cheap items: Ring of the Scorner +750, Archmagister Necklace +500 with 5 regen, and Mana Catalyst +500, so 1750 flat plus 1785 from intelligence, about 3535 - exactly enough for Arcane Volley to hold 8 + 7 = 15 orbs. Mana Catalyst also does more than the tooltip suggests: in Trig_UseSkillsEndcast_Actions line 28960 every cast grants +20 x (1 + item spell power) armour for 3 s with no internal cooldown, so it stacks; that is the only defence in this build and a normal casting rotation keeps roughly 40-60 armour up. Note also that Archmage Trousers claims to restore 150% of intelligence as mana, but the code reads GetHeroStr(u,true) x 1.50 (line 28995) - it scales with strength, so it is nearly useless on an int hero and is deliberately not included here.",
+          "Порог открытия таланта прописан прямо в поле arqa файла war3map.w3a: у A0IX «Нестабильная зона» - 15, у A0J1 «Арканная артиллерия» - 24. В середине игры доступен только A0IX, поэтому сборка идёт по пути зоны. Сила умений набирается самыми дешёвыми источниками: «Чистый аметист» 400 (2200 золота, 0.18 СУ за золото), «Аметист» 125 (600 золота, 0.21 - лучший показатель в игре), «Аметистовое кольцо» 125 (900 золота и +10 разума), плюс «Кольцо презирающего» 125, «Ожерелье архимагистра» 100, «Посох некроманта» 50 и «Руна энергии» 75 - всего 1000. «Аномальное поле» с A0IX выбирает 10 целей каждые 0.75 с по 60 + 100 = 160, а с +30% кольца по не-героям - 208: 2080 за тик и 24960 за каст при полном покрытии, причём ветка check >= 10 в конце Hero8Q возвращает тик, и в плотной волне зона не истекает. Мана - три дешёвых предмета: кольцо +750, ожерелье +500 и 5 реген, «Катализатор маны» +500; 1750 плюс 1785 от разума, около 3535 - ровно столько, чтобы залп стабильно давал 8 + 7 = 15 снарядов. «Катализатор маны» делает больше, чем написано: в Trig_UseSkillsEndcast_Actions строка 28960 каждый каст даёт +20 x (1 + сила умений предметов) брони на 3 с без внутреннего отката, эффекты складываются - это единственная защита сборки, в бою держится примерно 40-60 брони. И отдельно: «Штаны архимага» обещают вернуть 150% разума маной, но в коде стоит GetHeroStr(u,true) x 1.50 (строка 28995) - работает от силы, для героя разума почти бесполезно, поэтому в сборку не взяты."
+        ],
+        "items": [
+          "sor5",
+          "tpow",
+          "I0AN",
+          "rag1",
+          "I06W",
+          "rst1"
+        ],
+        "bonus": {
+          "s1": "stre",
+          "s2": "I01Q"
+        }
+      }
+    ],
+    "E00A": [
+      {
+        "id": "necro-flood",
+        "c": "#7E4FB5",
+        "talent": "A0Q6",
+        "n": [
+          "亡者洪流",
+          "Legion Flood",
+          "Поток мертвецов"
+        ],
+        "key": [
+          "技能強度堆到 2160，一次召 25 隻骷髏、養 6 隻骷髏法師；但技能強度只有在「強化」旗標亮著時才會變成骷髏的攻擊與生命。",
+          "2160 skill power = 25 skeletons per cast and 6 skeleton mages; skill power only converts into skeleton stats while the Enhance flag is set.",
+          "2160 силы умений = 25 скелетов за каст и 6 скелетов-магов; сила умений превращается в характеристики скелетов только при активном флаге \"Укрепление\"."
+        ],
+        "why": [
+          "war3map.j 的 SummonSkeletons（51506 行）把數量寫死成 count = 4 + floor(技能強度/100)，本套裝備給 2010 技能強度，加帳號等級的 150 就是 2160 → 每次 25 隻。最大的坑在 51553 行：骷髏的生命、攻擊、持續時間只有在 E_check==1（也就是先按了「強化 A09V」）時才會加上 E_count = floor(技能強度/100) 的加成，沒按強化就純粹只是數量變多，攻擊還是 6+3×等級+30% 智力。強化 5 級、E_count=21 時每隻多 +125 攻擊、+1350 生命、+140 秒，存活從 40 秒拉到 180 秒。單隻攻擊約 21+40(智力135×0.3)+125 = 186，攻擊間隔 1.8 秒，25 隻 ≈ 2580 DPS。戰鬥軍旗的 S00J 是 SCae 耐力光環（Oae1/Oae2 = 0.20、範圍 800），是少數會套到召喚物身上的裝備效果，+20% 攻速把 DPS 推到 3100，狂亂 5 級再 +100% 攻速時瞬間 5680 DPS。天賦選亡者軍團：創造法師每 400 技能強度多一隻，2160 → 6 隻骷髏法師，每隻各自每 30 秒再召 2+floor(2160/200)=12 隻骷髏；而且 51535 行每召出一隻骷髏就永久 +0.10 技能強度，本套每分鐘約 +24，會自己滾雪球。",
+          "In SummonSkeletons (war3map.j line 51506) the count is hard-coded as count = 4 + floor(skillPower/100). This build carries 2010 skill power, +150 from account level = 2160, so 25 skeletons per cast. The trap is line 51553: skeleton HP, attack and duration only receive the E_count = floor(skillPower/100) bonus when E_check==1, i.e. when Enhance (A09V) was cast first. Without Enhance, skill power only adds bodies. With Enhance rank 5 and E_count=21 each skeleton gets +125 attack, +1350 HP and +140 s, so 180 s lifetime. Per-skeleton attack is about 21 + 40 (30% of 135 INT) + 125 = 186 on a 1.8 s attack cooldown; 25 of them is ~2580 DPS. War Banner's S00J is a native SCae endurance aura (Oae1/Oae2 = 0.20, radius 800) and is one of the very few item effects that reach summons: +20% attack speed pushes it to 3100 DPS, and rank-5 Frenzy (+100% AS) spikes it to 5680. The Legions of the Dead talent gives one extra skeleton mage per 400 skill power, so 2160 = 6 mages, each casting its own A09P for 2+floor(2160/200)=12 more skeletons every 30 s; line 51535 also grants a permanent +0.10 skill power per skeleton summoned, about +24 per minute here, so the build compounds.",
+          "В SummonSkeletons (war3map.j, строка 51506) количество жёстко задано: count = 4 + floor(сила умений/100). Здесь 2010 от предметов + 150 от уровня аккаунта = 2160, то есть 25 скелетов за каст. Главная ловушка — строка 51553: здоровье, атака и время жизни скелетов получают бонус E_count = floor(сила умений/100) только если E_check==1, то есть если сначала применено \"Укрепление\" (A09V). Без него сила умений даёт только количество. С \"Укреплением\" 5 уровня и E_count=21 каждый скелет получает +125 атаки, +1350 HP и +140 сек. (итого 180 сек.). Атака одного скелета ≈ 21 + 40 (30% от 135 разума) + 125 = 186 при перезарядке 1.8 сек.; 25 скелетов ≈ 2580 DPS. Боевой штандарт даёт S00J — обычную ауру выносливости SCae (Oae1/Oae2 = 0.20, радиус 800), одну из немногих вещей от предметов, которая вообще действует на призванных: +20% скорости атаки поднимает урон до 3100 DPS, а \"Исступление\" 5 уровня (+100%) — до 5680. Талант \"Легионы мёртвых\" добавляет по скелету-магу за каждые 400 силы умений: 2160 = 6 магов, каждый раз в 30 сек. призывает ещё 2+floor(2160/200)=12 скелетов; строка 51535 также даёт +0.10 силы умений навсегда за каждого призванного скелета (~+24 в минуту), так что билд разгоняет сам себя."
+        ],
+        "items": [
+          "I00E",
+          "sor5",
+          "kpin",
+          "ofro",
+          "fgrd",
+          "thdm"
+        ],
+        "bonus": {
+          "s1": "stre",
+          "s2": "I01L"
+        }
+      },
+      {
+        "id": "necro-colossus",
+        "c": "#5C7A99",
+        "talent": "A0Q4",
+        "n": [
+          "骸骨巨像",
+          "Bone Colossus",
+          "Костяной колосс"
+        ],
+        "key": [
+          "骷髏法師的最大生命 = 英雄最大生命的 100%；兩個護甲光環疊加，讓召喚物護甲從 6 變 22。",
+          "The skeleton mage's max HP is literally 100% of the hero's max HP; two stacking devotion auras take summon armor from 6 to 22.",
+          "Максимум HP скелета-мага равен 100% максимума HP героя; две складывающиеся ауры защиты поднимают броню призванных с 6 до 22."
+        ],
+        "why": [
+          "SummonSkeletonMages（51606 行）寫得非常直接：SetUnitLife(u3, R2I(GetUnitState(u,UNIT_STATE_MAX_LIFE)))，而這張地圖的 SetUnitLife 是設定「最大生命」的絕對值（3969 行用 ah00 疊加），所以骷髏法師的血量就是英雄血量，1:1。骷髏則是 75+50×等級+10% 英雄最大生命。鋼鐵守護者要按下啟動（變成 wswd：+2000 生命／+300 技能強度／+20 護甲，檢查器顯示的是未啟動數值），這樣裝備給的最大生命是 9150，加 38 點力量的 950，滿等英雄最大生命約 12000，法師直接變成 12000 血的牆，每隻骷髏 1532 血。裝備效果幾乎全部掛在英雄的 handle 上——Trig_ItemAttacksFromHero_Conditions 要求 IsUnitType(GetAttacker(),UNIT_TYPE_HERO)，傷害係數也全是 LoadReal(hash,GetHandleId(攻擊者),n)——召喚物一律吃不到。唯一例外是原生光環：庇護者的 A0HA 與王國宙斯盾的 A0QM 都是 ACav 虔誠光環 Had1=8，但 buff ID 不同（B01Z 對 B02W），所以會疊加，召喚物 +16 護甲。骷髏護甲 6→22（減傷 26.5%→56.9%，有效生命 ×1.7 到 3550）；骷髏法師本身就有 5 點基礎護甲再加腳本給的 5 點，兩個光環後是 26，減傷 60.9%，等於約 3.1 萬有效生命。代價很明確：技能強度只有 625，每次 10 隻而不是 25 隻，輸出大約剩四成。生命之冠每秒回 1% 生命與 1% 法力，剛好蓋掉鋼鐵守護者（啟動）的維持成本。",
+          "SummonSkeletonMages (line 51606) is blunt: SetUnitLife(u3, R2I(GetUnitState(u,UNIT_STATE_MAX_LIFE))). The map's SetUnitLife (line 3969) sets an absolute MAX HP via ah00 bonus stacks, so the skeleton mage's max HP equals the hero's max HP 1:1; regular skeletons get 75+50*rank + 10% of hero max HP. Iron Guardian must be toggled on (it becomes wswd: +2000 HP / +300 skill power / +20 armor; the checker shows the inactive values), giving 9150 HP from items plus 950 from 38 strength, so a level-25 hero sits near 12000 max HP: the mage is a 12000 HP wall and every skeleton has 1532. Item effects are keyed to the hero's handle - Trig_ItemAttacksFromHero_Conditions requires IsUnitType(GetAttacker(),UNIT_TYPE_HERO) and every damage coefficient is LoadReal(hash,GetHandleId(attacker),n) - so summons get none of it. The one exception is native auras: Protector's A0HA and Aegis of Kings' A0QM are both ACav devotion auras with Had1=8 but different buff ids (B01Z vs B02W), so they stack for +16 armor on every summon. Skeleton armor 6 -> 22 means 26.5% -> 56.9% reduction, effective HP x1.7 to ~3550; the mage already has 5 base armor plus 5 from the script, so 26 with both auras, 60.9% reduction, roughly 31k effective HP. The cost is explicit: only 625 skill power, so 10 skeletons per cast instead of 25, roughly 40% of the flood build's damage. Crown of Life restores 1% max HP and 1% max mana per second, which covers the activated Iron Guardian's upkeep.",
+          "SummonSkeletonMages (строка 51606): SetUnitLife(u3, R2I(GetUnitState(u,UNIT_STATE_MAX_LIFE))). SetUnitLife в этой карте (строка 3969) задаёт абсолютный МАКСИМУМ HP через стеки ah00, поэтому HP скелета-мага равен HP героя один к одному; обычные скелеты получают 75+50*ранг + 10% максимума HP героя. \"Железный страж\" нужно активировать (он становится wswd: +2000 HP / +300 силы умений / +20 брони; чекер показывает неактивные значения): 9150 HP от предметов плюс 950 от 38 силы, итого около 12000 максимума HP на 25 уровне. Маг — стена на 12000 HP, каждый скелет имеет 1532. Эффекты предметов привязаны к хэндлу героя: Trig_ItemAttacksFromHero_Conditions требует IsUnitType(GetAttacker(),UNIT_TYPE_HERO), а все коэффициенты урона читаются как LoadReal(hash,GetHandleId(атакующий),n) — призванным не достаётся ничего. Единственное исключение — обычные ауры: A0HA \"Заступника\" и A0QM \"Эгиды королей\" — обе ACav с Had1=8, но с разными баффами (B01Z и B02W), поэтому складываются: +16 брони всем призванным. Броня скелета 6 -> 22, снижение урона 26.5% -> 56.9%, эффективное HP x1.7 (~3550); у мага уже есть 5 базовой брони плюс 5 от скрипта, с двумя аурами — 26, снижение 60.9%, около 31 тыс. эффективного HP. Плата очевидна: всего 625 силы умений, 10 скелетов вместо 25, примерно 40% урона от \"Потока\". \"Венец жизни\" возвращает 1% HP и 1% маны в секунду, что перекрывает расход активированного \"Железного стража\"."
+        ],
+        "items": [
+          "I00O",
+          "modt",
+          "wlsd",
+          "wshs",
+          "ram2",
+          "thdm"
+        ],
+        "bonus": {
+          "s1": "srbd",
+          "s2": "I097"
+        }
+      },
+      {
+        "id": "necro-deathpact",
+        "c": "#3FA9A0",
+        "talent": "A0Q4",
+        "n": [
+          "死亡契約永動機",
+          "Death Pact Engine",
+          "Двигатель Пакта смерти"
+        ],
+        "key": [
+          "骷髏「時間到自然消失」也算死亡，每隻回 0.5% 最大生命與 0.5% 最大法力；法力池堆大就再也不缺藍。",
+          "A skeleton expiring from timed life still counts as a death, refunding 0.5% max HP and 0.5% max mana each; a big mana pool makes casting free.",
+          "Скелет, исчезнувший по таймеру, всё равно считается умершим и возвращает 0.5% максимума HP и маны; с большим запасом маны касты становятся бесплатными."
+        ],
+        "why": [
+          "Trig_HeroDeath17_Actions（52002 行）對每一隻死掉的己方骷髏都執行 SetWidgetLife(英雄, +0.5% 最大生命) 與 SetUnitState(英雄, MANA, +0.5% 最大法力)，沒有冷卻也沒有次數上限，而且它掛在 EVENT_PLAYER_UNIT_DEATH 上——UnitApplyTimedLife 到期而消失的骷髏一樣會觸發，所以連「召出來讓它自己過期」都能回。本套把最大法力堆到約 5300（水晶項鍊 800、蔑視者之戒 750、大魔導師項鍊 500、神秘之戒 600、儀式之書 200，加上約 154 智力 ×15 與底值），一隻骷髏死掉就是 26 點法力。技能強度 1575 → 每次 19 隻，召喚亡者 5 級花 160 點法力，換回 19×26 = 496 點，淨賺 336 點；穩定期消耗約 18 法力／秒，回收約 33 法力／秒，再加生命之冠每秒 1%（53 點）。天賦選永恆侍奉：Trig_HeroDeath17_Actions 的復活分支只有 0.1 秒的鎖（EndCooldown 計時器），區域持續 20 秒，理論上最多 200 次死亡事件 = 100% 最大生命 + 100% 最大法力一次補滿。死亡契約還有 50%（GetRandomInt(1,2)==1）對兇手造成 100% 智力的魔法傷害，這一發是以英雄為傷害來源，所以會吃英雄身上的「造成傷害 +X%」係數，和骷髏的普攻不同。弱點是幾乎沒堆生命，英雄本體很脆。",
+          "Trig_HeroDeath17_Actions (line 52002) runs SetWidgetLife(hero, +0.5% max HP) and SetUnitState(hero, MANA, +0.5% max mana) for every friendly skeleton that dies. There is no cooldown and no cap, and it is hooked to EVENT_PLAYER_UNIT_DEATH, so skeletons that simply expire from UnitApplyTimedLife refund too. This build reaches roughly 5300 max mana (Crystal Necklace 800, Ring of Contempt 750, Archmage Necklace 500, Ring of Mystery 600, s2 200, plus ~154 INT x15 and base), so each skeleton death is worth 26 mana. With 1575 skill power you summon 19 per cast; rank-5 Raise Dead costs 160 mana and returns 19 x 26 = 496, a net gain of 336. Steady state spend is about 18 mana/s against 33 mana/s returned plus 1% per second (52) from Crown of Life. The Eternal Service talent makes it explosive: the resurrection branch of Trig_HeroDeath17_Actions is gated only by a 0.1 s EndCooldown timer and the zone lasts 20 s, so up to 200 death events - a full 100% max HP and 100% max mana refill. Death Pact also deals 100% of hero INT as magic damage to the killer at 50% chance (GetRandomInt(1,2)==1), and because the damage source is the hero it does scale with the hero's damage-percent items, unlike skeleton auto-attacks. The weakness is obvious: almost no HP items, so the hero himself is fragile.",
+          "Trig_HeroDeath17_Actions (строка 52002) на смерть каждого своего скелета выполняет SetWidgetLife(герой, +0.5% макс. HP) и SetUnitState(герой, MANA, +0.5% макс. маны). Нет ни перезарядки, ни лимита, а событие — EVENT_PLAYER_UNIT_DEATH, поэтому скелеты, исчезнувшие по UnitApplyTimedLife, тоже возвращают ресурсы. Здесь максимум маны ≈ 5300, то есть 26 маны за смерть одного скелета. При 1575 силы умений за каст выходит 19 скелетов; \"Призыв мертвых\" 5 уровня стоит 160 маны и возвращает 19 x 26 = 496 — чистый плюс 336. В устоявшемся режиме расход ~18 маны/сек. против ~33 маны/сек. возврата плюс 1% в секунду (52) от \"Венца жизни\". Талант \"Вечная служба\" усиливает это: ветка воскрешения ограничена лишь таймером EndCooldown в 0.1 сек., а зона живёт 20 сек. — до 200 событий смерти, то есть полные 100% HP и 100% маны. \"Пакт смерти\" ещё и наносит убийце 100% разума магией с шансом 50% (GetRandomInt(1,2)==1); источник урона — герой, поэтому этот удар, в отличие от атак скелетов, усиливается предметами героя на \"+X% наносимого урона\". Слабость очевидна: предметов на HP почти нет, сам герой хрупкий."
+        ],
+        "items": [
+          "I00E",
+          "mnsf",
+          "I0AN",
+          "rst1",
+          "pinv",
+          "ram2"
+        ],
+        "bonus": {
+          "s1": "stre",
+          "s2": "I04D"
+        }
+      },
+      {
+        "id": "necro-budget",
+        "c": "#B08948",
+        "talent": "A0Q6",
+        "n": [
+          "廉價骨海",
+          "Budget Bone Tide",
+          "Бюджетный костяной прилив"
+        ],
+        "key": [
+          "6050 金、每次 10 隻骷髏；主力是 1000 金的戰鬥軍旗光環，加上兩件會隨遊戲時間自己長大的道具。",
+          "6050 gold, 10 skeletons per cast; carried by the 1000-gold War Banner aura plus two items that grow on their own over time.",
+          "6050 золота, 10 скелетов за каст; основа — аура Боевого штандарта за 1000 золота и два предмета, растущих со временем."
+        ],
+        "why": [
+          "技能強度 460（紫水晶戒指 125、法力鋼 85、咒術師項鍊 75、紫水晶 125、死靈法師之杖 50）加滿帳號等級的 150 = 610，count = 4 + floor(610/100) = 10 隻。全套只要 6050 金，中期就湊得齊。最重要的一件反而是 1000 金的戰鬥軍旗：它的 S00J 是原生 SCae 耐力光環（Oae1/Oae2 = 0.20、範圍 800），對友軍部隊生效，也就是全部骷髏 +20% 攻速與移速。這件之所以關鍵，是因為腳本裡所有裝備加成都是查 LoadReal(hash,GetHandleId(單位),n) 或 LoadInteger(hash,GetHandleId(單位),道具ID)，而骷髏的 handle 上什麼都沒存，攻擊觸發還額外要求攻擊者是英雄，所以「原生光環」幾乎是唯一能傳到召喚物身上的裝備效果。另外兩件靠時間長大：生命護符每 1 分鐘 +50 最大生命上限（Check_60sec_Item，29936 行），骷髏法師吃 100%、骷髏吃 10%，40 分鐘就是一隻多 2000 血的法師；魔化藥瓶每 1 分鐘 +2 智力（29933 行），骷髏攻擊吃 30%、法師吃 125%、死亡契約吃 100%。開強化時 E_count=6，每隻骷髏 +50 攻擊、+600 生命、+65 秒。",
+          "460 skill power from items (Amethyst Ring 125, Manasteel 85, Sorcerer Necklace 75, Amethyst 125, Necromancer Staff 50) plus 150 from a maxed account level = 610, so count = 4 + floor(610/100) = 10 skeletons. The whole set costs 6050 gold and is realistic by mid-game. The single most important piece is the 1000-gold War Banner: its S00J is a native SCae endurance aura (Oae1/Oae2 = 0.20, radius 800) that applies to friendly troops, i.e. +20% attack and move speed on every skeleton. It matters because every scripted item bonus is looked up as LoadReal(hash,GetHandleId(unit),n) or LoadInteger(hash,GetHandleId(unit),itemId) and a skeleton's handle stores nothing, while on-attack procs additionally require the attacker to be a hero - so native auras are essentially the only item effect that reaches summons. Two more items grow by themselves: Amulet of Life adds +50 max HP per game minute (Check_60sec_Item, line 29936), which the mage inherits at 100% and skeletons at 10%, so 40 minutes is a mage with 2000 extra HP; Bottle of Enchantment adds +2 INT per minute (line 29933), feeding skeleton attack at 30%, mage attack at 125% and Death Pact at 100%. With Enhance up, E_count=6 gives every skeleton +50 attack, +600 HP and +65 s.",
+          "460 силы умений от предметов + 150 от максимального уровня аккаунта = 610, значит count = 4 + floor(610/100) = 10 скелетов. Весь набор стоит 6050 золота и собирается уже к середине игры. Самый важный предмет — Боевой штандарт за 1000 золота: его S00J это обычная аура выносливости SCae (Oae1/Oae2 = 0.20, радиус 800) для союзных войск, то есть +20% скорости атаки и передвижения всем скелетам. Это важно потому, что все скриптовые бонусы предметов читаются как LoadReal(hash,GetHandleId(юнит),n) или LoadInteger(hash,GetHandleId(юнит),ID предмета), а в хэндле скелета не записано ничего; проки на атаку вдобавок требуют, чтобы атакующий был героем. Поэтому обычные ауры — практически единственный эффект предметов, доходящий до призванных. Ещё два предмета растут сами: \"Амулет жизни\" даёт +50 к максимуму HP за каждую игровую минуту (Check_60sec_Item, строка 29936) — маг наследует это на 100%, скелеты на 10%; \"Бутыль чаролития\" даёт +2 разума в минуту (строка 29933), а разум идёт в атаку скелетов (30%), мага (125%) и в \"Пакт смерти\" (100%). При активном \"Укреплении\" E_count=6 добавляет каждому скелету +50 атаки, +600 HP и +65 сек."
+        ],
+        "items": [
+          "thdm",
+          "rag1",
+          "I01O",
+          "rwiz",
+          "I07S",
+          "tpow"
+        ],
+        "bonus": {
+          "s1": "stre",
+          "s2": "I08Z"
+        }
       }
     ]
   }

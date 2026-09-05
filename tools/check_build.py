@@ -10,7 +10,8 @@
     s1 = 吸收器（特殊 lv.1）—— 自己挑
     s2 = 祕密寶盒（特殊 lv.2）—— 隨機生成
   同一件神器最多 1 個（鐵匠可以複製其中一件，所以最多允許 1 件出現 2 次）
-  耳環類最多 1 件
+  耳環類最多 1 件（war3map.j 的 TryTakeEarringsSlot，違反時裝備會被退回地上）
+  乘算器最多 1 件（TryTakeMultiplierSlot；封閉心智頭盔 iwbr 走同一個處理器但不佔格）
   取得難度篩選：排除 新年／復活節／萬聖節／儀式／完美／特殊 lv.5++
   每套最多 1 件 特殊 lv.5+
 
@@ -27,6 +28,10 @@ NOSTACK = set(S.get('nostack') or [])
 META = {m['k']: m for m in S['stats']}
 
 BAN = {'新年', '復活節', '萬聖節', '儀式', '完美', '特殊（lv.5++）'}
+# 乘算器欄位：war3map.j:24663 走 OnEquip_Multiplier 的那一串道具。
+# iwbr 也走同一個處理器，但 22197 那行把它排除在佔格判斷外，所以不算。
+MULTIPLIER = {'ckng', 'tfar', 'oven', 'kysn', 'jpnt', 'moon', 'I0A8', 'I01P', 'I00B'}
+EARRING = {'I00E', 'I00F', 'I00O', 'I00P', 'I00Q'}
 BY_NAME = {}
 for _i, _v in D.items():
     BY_NAME.setdefault(_v['name'], _i)
@@ -66,8 +71,12 @@ def check(items, s1=None, s2=None):
     g = [D[i]['group'] for i in all_]
     if g.count('特殊（lv.5+）') > 1:
         bad.append('特殊 lv.5+ 有 %d 件，最多 1 件' % g.count('特殊（lv.5+）'))
-    if g.count('耳環') > 1:
-        bad.append('耳環有 %d 件，最多 1 件' % g.count('耳環'))
+    ear = [i for i in all_ if i in EARRING or D[i]['group'] == '耳環']
+    if len(ear) > 1:
+        bad.append('耳環有 %d 件，最多 1 件：%s' % (len(ear), [D[i]['name'] for i in ear]))
+    mul = [i for i in all_ if i in MULTIPLIER]
+    if len(mul) > 1:
+        bad.append('乘算器有 %d 件，最多 1 件：%s' % (len(mul), [D[i]['name'] for i in mul]))
     arts = collections.Counter(i for i in all_ if D[i]['group'].startswith('神器'))
     twice = [k for k, v in arts.items() if v > 1]
     if len(twice) > 1 or any(arts[k] > 2 for k in twice):
@@ -127,6 +136,12 @@ def main():
             rows = [(b['id'] + ' ' + b['n'][0], b) for b in j['list']]
         for hero, bs in (j.get('builds') or {}).items():
             rows += [('%s / %s %s' % (hero, b['id'], b['n'][0]), b) for b in bs]
+        # 也接受直接以英雄 ID 當頂層鍵的形式：{"H01E": [ … ]}
+        for hero, bs in j.items():
+            if hero in ('list', 'builds') or hero.startswith('_'):
+                continue
+            if isinstance(bs, list) and bs and isinstance(bs[0], dict) and 'items' in bs[0]:
+                rows += [('%s / %s %s' % (hero, b['id'], b['n'][0]), b) for b in bs]
         ok = 0
         for tag, b in rows:
             bo = b.get('bonus') or {}
