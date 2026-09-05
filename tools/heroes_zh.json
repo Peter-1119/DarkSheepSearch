@@ -3,7 +3,7 @@
     "英雄資料的人工翻譯表。俄文原文由 map_heroes.py 從 UD_v3.81 地圖直接讀出，",
     "這裡只放中文／英文對照。vocab 是封閉詞彙（強度等級、後期潛力、定位），",
     "names 是英雄名稱，desc 是一句話說明。",
-    "Emoo 在地圖裡沒有覆寫名稱（沿用原版單位），所以名稱是手動補的；第三個元素是俄文，取自單位的 utip「Жрица Луны」。",
+    "Emoo 與 N01K 在地圖裡沒有覆寫名稱，而它們的基礎物件（Emoo 沿用原版、N01K 的 Ntin 被地圖改成別人的皮膚）都不能拿來當名稱，所以手動補；第三個元素是俄文，取自單位的 utip。",
     "Nbrn / Ekee / Nsjs / H03I 這 4 位不在隨機英雄池裡（只能手動挑），全是 T3+。",
     "skins = 英雄皮膚名稱。41 個皮膚分屬 28 位英雄，其中 10 個預設關閉（稀有／限定）。"
   ],
@@ -92,90 +92,42 @@
     }
   },
   "names": {
+    "E00A": [
+      "死靈法師",
+      "Necromancer"
+    ],
+    "E00O": [
+      "長老德魯伊",
+      "Elder Druid"
+    ],
+    "E00S": [
+      "白銀執法官",
+      "Silver Lictor"
+    ],
     "Edem": [
       "惡魔獵手",
       "Demon Hunter"
     ],
-    "H00N": [
-      "神射手",
-      "Sharpshooter"
-    ],
-    "H01G": [
-      "女獵手",
-      "Huntress"
-    ],
-    "N00Z": [
-      "美杜莎",
-      "Medusa"
-    ],
-    "N010": [
-      "德萊尼刺客",
-      "Draenei Assassin"
-    ],
-    "N01P": [
-      "幽魂之狼",
-      "Spirit Wolf"
-    ],
-    "N02E": [
-      "儀式師",
-      "Ritualist"
-    ],
-    "O015": [
-      "暗影獵手",
-      "Shadow Hunter"
+    "Ekee": [
+      "占星師",
+      "Astromancer"
     ],
     "Emoo": [
       "月之女祭司",
       "Priestess of the Moon",
       "Жрица Луны"
     ],
-    "H024": [
-      "盜賊",
-      "Rogue"
-    ],
-    "N05T": [
-      "狂徒",
-      "Cutthroat"
-    ],
-    "O01O": [
-      "劍聖",
-      "Blademaster"
-    ],
-    "U00Q": [
-      "黑暗獵手",
-      "Dark Huntress"
-    ],
-    "U01D": [
-      "死亡使者",
-      "Herald of Death"
-    ],
-    "N06B": [
-      "小混混",
-      "Street Kid"
-    ],
-    "Nngs": [
-      "黑暗主教",
-      "Prelate of Darkness"
-    ],
-    "Npbm": [
-      "龍戰士",
-      "Dragon Warrior"
-    ],
-    "E00S": [
-      "白銀執法官",
-      "Silver Lictor"
-    ],
-    "Hmgd": [
-      "亡者公主",
-      "Princess of the Dead"
-    ],
-    "E00A": [
-      "死靈法師",
-      "Necromancer"
+    "H00N": [
+      "神射手",
+      "Sharpshooter"
     ],
     "H00O": [
       "建築師",
       "Architect"
+    ],
+    "H00P": [
+      "鐵匠",
+      "Blacksmith"
     ],
     "H00Q": [
       "女術士",
@@ -185,65 +137,13 @@
       "生命之靈",
       "Spirit of Life"
     ],
-    "H012": [
-      "秘法學者",
-      "Arcanologist"
-    ],
-    "H01E": [
-      "主教",
-      "Bishop"
-    ],
-    "N01K": [
-      "深淵戰士",
-      "Warrior of the Deep"
-    ],
-    "E00O": [
-      "長老德魯伊",
-      "Elder Druid"
-    ],
-    "Hamg": [
-      "拜火者",
-      "Fire Worshipper"
-    ],
-    "N03R": [
-      "烈焰領主",
-      "Lord of Flame"
-    ],
-    "N03S": [
-      "暴風使者",
-      "Stormbringer"
-    ],
-    "U011": [
-      "獅鷲守護者",
-      "Gryphon Keeper"
-    ],
-    "H02Y": [
-      "吟遊詩人",
-      "Minstrel"
-    ],
-    "H03Z": [
-      "皇家女術士",
-      "Royal Sorceress"
-    ],
-    "Naka": [
-      "最古老的先知",
-      "Eldest Seer"
-    ],
-    "H01Y": [
-      "魔法大師",
-      "Magister of Magic"
-    ],
-    "Nalc": [
-      "宇宙巨龍",
-      "Cosmic Dragon"
-    ],
-    "H00P": [
-      "鐵匠",
-      "Blacksmith"
-    ],
     "H00Z": [
       "邪惡聖誕老人",
       "Evil Santa"
+    ],
+    "H012": [
+      "秘法學者",
+      "Arcanologist"
     ],
     "H01C": [
       "弩砲手",
@@ -253,13 +153,86 @@
       "元帥",
       "Marshal"
     ],
+    "H01E": [
+      "主教",
+      "Bishop"
+    ],
+    "H01F": [
+      "樹人長者",
+      "Ancient of Lore"
+    ],
+    "H01G": [
+      "女獵手",
+      "Huntress"
+    ],
+    "H01H": [
+      "長工",
+      "Farmhand"
+    ],
+    "H01Y": [
+      "魔法大師",
+      "Magister of Magic"
+    ],
+    "H024": [
+      "盜賊",
+      "Rogue"
+    ],
+    "H025": [
+      "懲戒者",
+      "Punisher"
+    ],
+    "H02L": [
+      "軍團特使",
+      "Legion Legate"
+    ],
+    "H02Y": [
+      "吟遊詩人",
+      "Minstrel"
+    ],
+    "H03I": [
+      "遠古九頭蛇",
+      "Ancient Hydra"
+    ],
+    "H03Z": [
+      "皇家女術士",
+      "Royal Sorceress"
+    ],
+    "Hamg": [
+      "拜火者",
+      "Fire Worshipper"
+    ],
     "Hapm": [
       "皇家守衛",
       "Royal Guard"
     ],
+    "Hmgd": [
+      "亡者公主",
+      "Princess of the Dead"
+    ],
+    "Hmkg": [
+      "血騎士女族長",
+      "Blood Knight Matriarch"
+    ],
+    "N00Z": [
+      "美杜莎",
+      "Medusa"
+    ],
+    "N010": [
+      "德萊尼刺客",
+      "Draenei Assassin"
+    ],
     "N017": [
       "釀酒師",
       "Brewmaster"
+    ],
+    "N01K": [
+      "機械師",
+      "Mechanic",
+      "Механик"
+    ],
+    "N01P": [
+      "幽魂之狼",
+      "Spirit Wolf"
     ],
     "N01V": [
       "蠻族戰士",
@@ -269,57 +242,85 @@
       "戰爭首領",
       "Warboss"
     ],
-    "H01H": [
-      "長工",
-      "Farmhand"
-    ],
-    "H025": [
-      "懲戒者",
-      "Punisher"
+    "N02E": [
+      "儀式師",
+      "Ritualist"
     ],
     "N02K": [
       "機械戰體",
       "Mechatron"
     ],
-    "O01M": [
-      "符文守護者",
-      "Rune Guardian"
+    "N03R": [
+      "烈焰領主",
+      "Lord of Flame"
     ],
-    "O022": [
-      "老酋長",
-      "Old Chieftain"
+    "N03S": [
+      "暴風使者",
+      "Stormbringer"
     ],
-    "H02L": [
-      "軍團特使",
-      "Legion Legate"
+    "N05T": [
+      "狂徒",
+      "Cutthroat"
     ],
-    "Hmkg": [
-      "血騎士女族長",
-      "Blood Knight Matriarch"
+    "N06B": [
+      "小混混",
+      "Street Kid"
     ],
-    "Ocbh": [
-      "莫爾格",
-      "Mo'arg"
+    "Naka": [
+      "最古老的先知",
+      "Eldest Seer"
     ],
-    "H01F": [
-      "樹人長者",
-      "Ancient of Lore"
+    "Nalc": [
+      "宇宙巨龍",
+      "Cosmic Dragon"
     ],
     "Nbrn": [
       "女武神",
       "Valkyrie"
     ],
-    "Ekee": [
-      "占星師",
-      "Astromancer"
+    "Nngs": [
+      "黑暗主教",
+      "Prelate of Darkness"
+    ],
+    "Npbm": [
+      "龍戰士",
+      "Dragon Warrior"
     ],
     "Nsjs": [
       "超重型坦克",
       "Super-Heavy Tank"
     ],
-    "H03I": [
-      "遠古九頭蛇",
-      "Ancient Hydra"
+    "O015": [
+      "暗影獵手",
+      "Shadow Hunter"
+    ],
+    "O01M": [
+      "符文守護者",
+      "Rune Guardian"
+    ],
+    "O01O": [
+      "劍聖",
+      "Blademaster"
+    ],
+    "O022": [
+      "老酋長",
+      "Old Chieftain"
+    ],
+    "Ocbh": [
+      "莫爾格",
+      "Mo'arg"
+    ],
+    "U00Q": [
+      "黑暗獵手",
+      "Dark Huntress"
+    ],
+    "U011": [
+      "獅鷲守護者",
+      "Gryphon Keeper"
+    ],
+    "U01D": [
+      "死亡使者",
+      "Herald of Death"
     ]
   },
   "desc": {

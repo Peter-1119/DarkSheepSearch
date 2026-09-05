@@ -162,9 +162,40 @@ def _first(v):
     return v[0] if isinstance(v, list) else v
 
 
+def account_locks(jass):
+    """帳號鎖定的英雄。
+
+    單位的 ureq 欄位寫著要哪個科技，而那些科技只在 Trig_NewInit_Actions 裡
+    對特定的玩家名稱 SetPlayerTechResearched。絕大多數英雄用的是共通的 R00I
+    （＝一般解鎖），只有兩個科技綁了帳號名單。
+
+    回傳 {科技ID: [帳號名, …]}。
+    """
+    out = {}
+    for names, tech in re.findall(
+            r'if ((?:name=="[^"]+"(?: or )?)+)\s*then\s+'
+            r'call SetPlayerTechResearched\(pl,\'(.{4})\',1\)', jass):
+        out.setdefault(tech, []).extend(re.findall(r'"([^"]+)"', names))
+    return out
+
+
+def _base_modified(U, base):
+    """基礎物件本身有沒有被地圖改過。
+
+    魔獸的自訂單位（w3u 第二張表）是從**原版**物件繼承的，不是從地圖對同一個
+    原始物件做的改動繼承。所以 base 若出現在第一張表（＝地圖改過原始物件），
+    它的欄位就不能拿來當自訂單位的預設值。
+
+    這裡有兩隻會踩到：N01K 的 base 是 Ntin，而地圖把 Ntin 改成了儀式師的皮膚
+    「Воитель глубин」；H00Z 的 base 是 Hpb2，被改成蠻族戰士的皮膚「Злой Санта」。
+    照舊的寫法，N01K 會被標成別人皮膚的名字，敏捷與三個成長值也是那個皮膚的。
+    """
+    return base in U and not U[base].get('_base')
+
+
 def _stat(U, uid, base, field):
     v = U.get(uid, {}).get(field)
-    if v is None:
+    if v is None and not _base_modified(U, base):
         v = U.get(base, {}).get(field)
     return v
 
@@ -360,6 +391,7 @@ def load(map_path, jass_text=None):
 
     stock = stock_names()                    # 原版技能名稱（沒裝遊戲就是空的）
     skn = skins(jass_text, U)                # 英雄皮膚
+    locks = account_locks(jass_text)         # 綁帳號名的解鎖科技
     pool = roster(jass_text)                 # 主屬性與解鎖門檻
     picks = pick_list(jass_text)             # 權威名單
     for uid in pool:                         # 理論上是子集，保險起見補齊
@@ -375,7 +407,8 @@ def load(map_path, jass_text=None):
     for uid in picks:
         u = U.get(uid, {})
         base = u.get('_base', '')
-        name = clean(u.get('unam') or U.get(base, {}).get('unam') or '')
+        name = clean(u.get('unam') or (
+            '' if _base_modified(U, base) else U.get(base, {}).get('unam')) or '')
         txt = clean(u.get('utub') or '')
         attr, unlock = pool.get(uid, (None, None))
 
@@ -419,6 +452,8 @@ def load(map_path, jass_text=None):
             'unlock': unlock or 0,
             # 隨機池裡沒有 = 只能手動挑，介面上要標出來
             'random': uid in pool,
+            # 綁帳號名的英雄（占星師、遠古九頭蛇）一般玩家根本拿不到，要標出來
+            'lock': locks.get(str(_first(u.get('ureq')) or '').strip()),
             'icon': (icons.get(uid) or u.get('uico') or '').replace(bs + bs, bs),
             'stats': st,
             'skins': sk_out,

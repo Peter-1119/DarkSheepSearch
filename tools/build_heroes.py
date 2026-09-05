@@ -268,6 +268,9 @@ def main():
             'attr': h['attr'] or 'int',      # 只有樹人長者沒被列進三個屬性池
             'unlock': h['unlock'] or 0,
             'random': h['random'],           # False = 不在隨機池，只能手動挑
+            # 綁帳號名的英雄：ureq 指向的科技只發給名單內的玩家名稱，
+            # 其他人選不到（占星師 6 個帳號、遠古九頭蛇 3 個）
+            **({'lock': h['lock']} if h.get('lock') else {}),
             'builds': HB.get(uid, []),
             # 皮膚不只換外觀：41 個裡有 25 個會換掉一部分英雄技能。
             # add/rm 成對時就是替換，網站上並排顯示「本體 -> 皮膚」。

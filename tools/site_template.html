@@ -738,6 +738,9 @@ body[data-resizing="1"]{cursor:col-resize;user-select:none}
 .hsk-i{font-size:12px;padding:4px 10px;border-radius:99px;color:var(--ink-2);
   background:var(--surface-2);border:1px solid var(--line)}
 .hsk-i.off{color:#F7E15C;border-color:color-mix(in srgb,#F7E15C 40%,var(--line))}
+/* 帳號鎖定：只有名單內的玩家名稱選得到（占星師、遠古九頭蛇） */
+.hc-lk,.hb-lk{color:#E8737D}
+.hb-lk{border-color:color-mix(in srgb,#E8737D 40%,var(--line))}
 /* 會換技能的皮膚。跟純外觀的皮膚分開列，因為玩家需要知道換了什麼。 */
 .hsw{border:1px solid color-mix(in srgb,#C99BE8 32%,var(--line));border-radius:8px;
   margin:6px 0;background:color-mix(in srgb,#C99BE8 5%,transparent)}
@@ -1317,7 +1320,8 @@ const UI = {
       hGrow:'屬性成長', hBase:'初始', hPer:'每級',
       hBuild:'該找什麼裝備', hSkills:'英雄技能', hInnate:'固有技能',
       hLv:'級', hNoText:'（沒有說明文字）',
-      hManual:'不在隨機池，只能手動挑', hBy:'投稿者', hPick:'可選項目', hLvHead:'等級', hSkin:'皮膚', hSkinOff:'預設未開放（稀有／限定）',
+      hManual:'不在隨機池，只能手動挑',
+      hLock:'帳號鎖定：只有指定帳號選得到', hLockWho:'可用帳號', hBy:'投稿者', hPick:'可選項目', hLvHead:'等級', hSkin:'皮膚', hSkinOff:'預設未開放（稀有／限定）',
       hSkinSwap:'換 %s 招', hSkinTo:'改成', hSkinAdd:'額外獲得', hSkinDrop:'失去',
       hSkinNote:'這個皮膚不只換外觀，還會換掉技能',
       hBuilds:'推薦配裝', hNeedTalent:'需搭配天賦：',
@@ -1399,7 +1403,8 @@ const UI = {
       hGrow:'Attribute growth', hBase:'Base', hPer:'Per level',
       hBuild:'What to build', hSkills:'Hero abilities', hInnate:'Innate abilities',
       hLv:'lv', hNoText:'(no description)',
-      hManual:'Not in the random pool - pick manually', hBy:'Contributed by', hPick:'Choices', hLvHead:'Level', hSkin:'Skins', hSkinOff:'Locked by default (rare / limited)',
+      hManual:'Not in the random pool - pick manually',
+      hLock:'Account-locked: only specific accounts can pick this hero', hLockWho:'Allowed accounts', hBy:'Contributed by', hPick:'Choices', hLvHead:'Level', hSkin:'Skins', hSkinOff:'Locked by default (rare / limited)',
       hSkinSwap:'%s changed', hSkinTo:'becomes', hSkinAdd:'Gains', hSkinDrop:'Loses',
       hSkinNote:'This skin is not cosmetic - it replaces abilities',
       hBuilds:'Recommended builds', hNeedTalent:'Requires talent: ',
@@ -1486,7 +1491,8 @@ const UI = {
       hGrow:'Рост характеристик', hBase:'База', hPer:'За уровень',
       hBuild:'Что собирать', hSkills:'Умения героя', hInnate:'Врождённые умения',
       hLv:'ур', hNoText:'(нет описания)',
-      hManual:'Нет в случайном пуле - только вручную', hBy:'Автор', hPick:'Варианты', hLvHead:'Ур.', hSkin:'Облики', hSkinOff:'По умолчанию закрыт (редкий)',
+      hManual:'Нет в случайном пуле - только вручную',
+      hLock:'Привязан к аккаунту: доступен только указанным игрокам', hLockWho:'Кому доступен', hBy:'Автор', hPick:'Варианты', hLvHead:'Ур.', hSkin:'Облики', hSkinOff:'По умолчанию закрыт (редкий)',
       hSkinSwap:'заменено: %s', hSkinTo:'становится', hSkinAdd:'Добавляет', hSkinDrop:'Убирает',
       hSkinNote:'Этот облик меняет не только внешность, но и умения',
       hBuilds:'Сборки для героя', hNeedTalent:'Нужен талант: ',
@@ -1769,6 +1775,7 @@ function heroCard(h){
     <span class="hc-b"><b>${esc(h.n[L])}</b>
       <span class="hc-r">${h.roles.map(r => esc(r[L])).join('・')}</span></span>
     ${h.random === false ? `<span class="hc-m" title="${esc(t('hManual'))}">✋</span>` : ''}
+    ${h.lock ? `<span class="hc-m hc-lk" title="${esc(t('hLock'))}">🔒</span>` : ''}
     ${tier}</button>`;
 }
 
@@ -1820,6 +1827,8 @@ function openHero(id){
       ${h.late ? `<span class="hb-l">${esc(t('hLate'))} ${esc(h.late[L])}</span>` : ''}
       <span class="hb-u">${esc(t('hkUnlock'))} ${esc(unlockLabel(h.unlock))}</span>
       ${h.random === false ? `<span class="hb-m">✋ ${esc(t('hManual'))}</span>` : ''}
+      ${h.lock ? `<span class="hb-m hb-lk" title="${esc(t('hLockWho'))}：${
+        esc(h.lock.join(', '))}">🔒 ${esc(t('hLock'))}</span>` : ''}
     </div>`;
 
   const st = h.st || {};

@@ -820,6 +820,647 @@
           "s2": "I08Z"
         }
       }
+    ],
+    "H01F": [
+      {
+        "id": "lore-tide",
+        "c": "#7EC8E3",
+        "talent": "A0YR",
+        "n": [
+          "星潮長者",
+          "Astral Tide",
+          "Астральный прилив"
+        ],
+        "key": [
+          "技能強度堆到 2200：治療之波單發 10,913、物競天擇每次施法 3,450，兩條線都只吃同一個數字",
+          "Stack spell power to 2200: one Healing Wave heals 10,913 and every cast adds 3,450 Natural Selection damage - both scale off the same number",
+          "Сила умений 2200: одна «Целительная волна» лечит 10 913, а каждое применение умения добавляет 3 450 урона «Естественного отбора»"
+        ],
+        "why": [
+          "這隻英雄三個會算數的地方全部只讀 udg_ItemBonusDMG（技能強度），沒有任何一項吃裝備技能威力（h['mod'] 是空的）。war3map.j:53750 治療之波 dmg = 100 + 100×等級 + 技能強度×0.75，Hero23Q（53584）每跳 SetWidgetLife 加 dmg 之後把 dmg×0.85，8 跳的等比和是 4.8501，所以滿級總治療量 =（600 + 技能強度×0.75）×4.85 = 2910 + 技能強度×3.638。53685 物競天擇 dmg = 30 + 技能強度×0.30，對 800 內 5 名隨機敵人各打一次。這 6 件把技能強度堆到 2200（星界耳環 800、純淨紫水晶 400、大法師長袍 300、最後通牒 200、大法師權杖 200、水晶項鍊 175，再加吸收器死靈法師之杖 50 與寶盒能量符文 75），一發 Q 就是 10,913 點治療，每次施法 3,450 點魔法傷害；把魔力潮汐開在自己身上（53772，滿級 +300，持續 20 秒，說明寫「0 秒」是錯的）時分別是 12,004 與 3,900。最後通牒與大法師權杖各給 +25% 對英雄傷害（hash key 3），水晶項鍊 +11% 全體傷害（key 6），這些在 Trig_HeroTakeDamage_Actions:19866 以外掛的 CHAOS/UNIVERSAL 傷害補上，物競天擇的每一下都吃得到。天賦選蔓生（A0YR）：+6 智力與每級 +3 智力成長，而且 53686 的目標數 Id = 3 + 累積值沒有任何上限，只要每次都打滿就一直往上加。",
+          "Every number this hero computes reads udg_ItemBonusDMG (spell power) and nothing reads modifier power - h['mod'] is empty. war3map.j:53750 gives Healing Wave dmg = 100 + 100*level + spellpower*0.75; Hero23Q (53584) heals with SetWidgetLife and then multiplies dmg by 0.85 each bounce, so 8 bounces sum to 4.8501x: total heal = (600 + 0.75*SP) * 4.85 = 2910 + 3.638*SP at max rank. Line 53685 gives Natural Selection dmg = 30 + 0.30*SP against 5 random enemies inside 800. These six items reach 2200 SP (Astral Earrings 800, Pure Amethyst 400, Archmage Robe 300, Ultimatum 200, Archmage Staff 200, Crystal Necklace 175, plus Necromancer Staff 50 and Energy Rune 75), which is 10,913 healing per Q and 3,450 magic damage per cast; self-casting Mana Tide (53772: +300 at max rank for a real 20 s, the tooltip's \"0 s\" is wrong) makes it 12,004 and 3,900. Ultimatum and Archmage Staff each add +25% damage to heroes (hash key 3) and Crystal Necklace +11% to everything (key 6); those are paid out as extra CHAOS/UNIVERSAL damage at Trig_HeroTakeDamage_Actions:19866, so every one of the five Natural Selection hits benefits. Take Overgrowth (A0YR): +6 Intellect plus +3 Intellect per level, and the target counter at 53686 (Id = 3 + stored value) has no cap in code.",
+          "Все формулы героя читают только udg_ItemBonusDMG (силу умений); силу модификаторов не читает ничего. war3map.j:53750: лечение = 100 + 100*уровень + 0.75*СУ, а Hero23Q (53584) после каждого отскока умножает на 0.85, сумма 8 отскоков = 4.8501, итого (600 + 0.75*СУ) * 4.85 = 2910 + 3.638*СУ. Строка 53685: «Естественный отбор» = 30 + 0.30*СУ по 5 случайным врагам в радиусе 800. Эти шесть предметов дают 2200 СУ - это 10 913 лечения за одну Q и 3 450 урона за каждое применение умения; с «Приливом магии» на себя (53772: +300 на 20 сек., в описании ошибочно «0 сек.») - 12 004 и 3 900. «Ультиматум» и «Посох архимага» дают +25% урона по героям (ключ 3), «Хрустальное ожерелье» +11% ко всему урону (ключ 6) - это доплата типом CHAOS/UNIVERSAL в Trig_HeroTakeDamage_Actions:19866, её получает каждый из пяти ударов. Талант - «Разрастание» (A0YR): счётчик целей Id = 3 + накопление в коде ничем не ограничен."
+        ],
+        "items": [
+          "I00E",
+          "sor5",
+          "kpin",
+          "I007",
+          "fgrd",
+          "mnsf"
+        ],
+        "bonus": {
+          "s1": "stre",
+          "s2": "I01Q"
+        }
+      },
+      {
+        "id": "lore-bulwark",
+        "c": "#4E7A4A",
+        "talent": "A0YR",
+        "n": [
+          "不倒之林",
+          "Standing Grove",
+          "Несгибаемая роща"
+        ],
+        "key": [
+          "少 30% 技能強度，換 +25 護甲、+1400 生命、每 1 秒回 1% 血魔，以及「每一次施法都全身淨化」",
+          "30% less spell power buys +25 armour, +1400 HP, 1% HP/MP per second and a full status cleanse on literally every cast",
+          "На 30% меньше силы умений, но +25 защиты, +1400 HP, 1% HP/MP в секунду и полное очищение статусов при каждом применении умения"
+        ],
+        "why": [
+          "樹人長者要站在自軍裡才能讓治療之波的 500 範圍找得到跳點，所以他一定會被打到。這套把技能強度從 2200 降到 1550（治療 10,913→8,548，物競天擇 3,450→2,475，約 −30%），換來鋼鐵守護者 +10 護甲 +1000 生命、生命之冠 +5 護甲 +18 全屬性、獅子星座 +10 護甲，合計 +25 護甲與 +1,400 生命；生命之冠在 Check_1sec_Item（war3map.j:29737）每秒回滿血與滿魔的各 1%，不朽法冠的 A0O3 是 ACba（輝煌光環）800 範圍，隊友也吃得到 3 點/秒法力回復。關鍵是輝煌法杖與獅子星座：29888 與 29891 兩行都在 Trig_UseSkillsEndcast_Actions 裡直接 call ClearUnit(u)，而 ClearUnit 會清掉所有負面 buff 加上點燃／流血／疾病／冰凍四種狀態；獅子星座那行雖然接著呼叫 StartModCooldown，但整份函式從頭到尾沒有任何地方去讀那個冷卻旗標，所以它每一次施法都會觸發 —— 等於 Q 每 9 秒、W 每 25 秒各一次無冷卻淨化，還附帶 25% 機率的（200 + 技能強度×0.5）範圍傷害。鋼鐵守護者的開關用的是 A0JY，那個 ID 正好在 28632 的排除名單裡，所以切換它不會觸發物競天擇，別指望拿它當施法次數。",
+          "The Ancient has to stand inside his own army for Healing Wave's 500-radius bounce search to find targets, so he gets hit. This build drops spell power from 2200 to 1550 (heal 10,913 -> 8,548, Natural Selection 3,450 -> 2,475, about -30%) and buys +25 armour and +1,400 HP (Iron Guardian +10 armour and +1000 HP, Crown of Life +5 and +18 all stats, Leo Constellation +10), plus Crown of Life's 1% max HP and 1% max mana every second in Check_1sec_Item (war3map.j:29737) and the Imperishable Mitre's A0O3, which is a real ACba brilliance aura with 800 radius, so allies get the 3 mana/s too. The core is Brilliance Staff and Leo Constellation: lines 29888 and 29891 inside Trig_UseSkillsEndcast_Actions both call ClearUnit(u) directly, and ClearUnit strips every negative buff plus burn, bleed, disease and freeze. Leo does call StartModCooldown afterwards, but nothing in the whole function ever reads that cooldown flag, so it fires on every single cast - a free cleanse every 9 s from Q and every 25 s from W, with a 25% chance of (200 + 0.5*SP) area damage attached. Note the Iron Guardian toggle uses A0JY, which is on the exclusion list at 28632, so toggling it does not proc Natural Selection.",
+          "Древень обязан стоять внутри своей армии, иначе поиск отскоков «Целительной волны» (радиус 500) не найдёт цели, - значит, по нему бьют. Здесь сила умений падает с 2200 до 1550 (лечение 10 913 -> 8 548, «Естественный отбор» 3 450 -> 2 475, около -30%), зато +25 защиты, +1400 HP, +18 ко всем характеристикам, 1% HP и маны в секунду (Check_1sec_Item, war3map.j:29737) и аура маны 3/сек. в радиусе 800 от «Нетленной митры» (A0O3 - это ACba). Главное - «Сияющий посох» и «Созвездие льва»: строки 29888 и 29891 в Trig_UseSkillsEndcast_Actions вызывают ClearUnit(u), снимающий все негативные эффекты и статусы (поджог, кровотечение, болезнь, заморозка). Внутренний кулдаун «Созвездия» нигде не проверяется, поэтому эффект срабатывает при каждом применении умения. Переключение «Железного стража» использует A0JY - этот ID в списке исключений (28632), так что «Естественный отбор» от него не срабатывает."
+        ],
+        "items": [
+          "I00E",
+          "ram2",
+          "wshs",
+          "ofro",
+          "I088",
+          "sman"
+        ],
+        "bonus": {
+          "s1": "srbd",
+          "s2": "I097"
+        }
+      },
+      {
+        "id": "lore-evergreen",
+        "c": "#9AD84B",
+        "talent": "A0YP",
+        "n": [
+          "永生林",
+          "Evergreen",
+          "Вечнозелёный лес"
+        ],
+        "key": [
+          "自然的擁抱讓治療之波的跳數計數器在滿血時不減反增 —— 8 跳上限直接消失，而且每個被治滿的友軍永久 +25 生命上限",
+          "Nature's Embrace makes the bounce counter go up instead of down on an overheal - the 8-target cap disappears, and every topped-off ally permanently gains +25 max HP",
+          "«Объятия природы» увеличивают счётчик отскоков при лечении до полного HP - предел в 8 целей исчезает, а каждый союзник навсегда получает +25 к максимуму HP"
+        ],
+        "why": [
+          "Hero23Q（war3map.j:53586-53595）的順序是：先 SetWidgetLife 治療，若帶天賦 A0YQ 且目標被治到滿血就 count = count + 1 並呼叫 SetUnitLife(目標, 目前生命上限 + 25)，最後才 count = count − 1。也就是說只要這一跳把人補滿，計數器就原地不動 —— 8 跳的上限完全消失，波會一直跳到附近（500 範圍內）找不到還在掉血、且沒被 CheckGroup 記錄過的友軍為止。SetUnitLife 不是設定當前血量，它是 3969 行那個用 ah00（AIl2，19 級，Ilif = ±1/2/5/…/2000）加減生命上限的工具函式，而且它每次都重新讀「目前的」上限再加 25，所以同一個隊友可以無限疊。實務上限是衰減：每跳 ×0.85，這套 1500 技能強度時首跳 1725、第 8 跳 553、第 16 跳 151、第 24 跳 41，對輕傷的自軍大概能連 15～25 跳，等於每 9 秒替全隊灑 400～600 點永久生命上限。扭曲權杖是免費的副產品：BreachBuffUnit（28650）每次施法 +25 技能強度、15 秒內再施法就續期，第 15 層立刻引爆，對 900 內 15 名敵人各打「最大法力×75%」。這套沒有耳環，18,000 金就能成形。代價要說清楚：自然的擁抱會把魔力潮汐的永久加成寫成 0（53785），你放棄的是每 25 秒 +13 技能強度的無上限累積。",
+          "Hero23Q (war3map.j:53586-53595) runs in this order: heal with SetWidgetLife, then if talent A0YQ is active and the target is now at full health, count = count + 1 and SetUnitLife(target, current max HP + 25), and only then count = count - 1. So any bounce that tops a target off leaves the counter unchanged - the 8-bounce cap is simply gone, and the wave keeps hopping until no damaged ally that is not already in CheckGroup remains within 500 of the wave. SetUnitLife is not a current-HP setter: it is the helper at line 3969 that adds or removes max HP through ah00 (an AIl2 ability with 19 levels, Ilif = +/-1/2/5/.../2000), and it re-reads the *current* max every time, so the same ally can be stacked without limit. The practical limit is the 0.85 decay: at 1500 spell power the first bounce heals 1725, the 8th 553, the 16th 151, the 24th 41 - on a lightly damaged army that is roughly 15-25 bounces, i.e. 400-600 permanent max HP handed to the team every 9 seconds. Twisted Staff is a free rider: BreachBuffUnit (28650) grants +25 spell power per cast, refreshes its 15 s timer on the next cast, and detonates at stack 15 for 75% of your max mana to 15 enemies within 900. No earring needed, so this is about 18,000 gold. The honest cost: Nature's Embrace writes the permanent Mana Tide bonus to 0 (line 53785), so you give up the uncapped +13 spell power every 25 seconds.",
+          "Hero23Q (war3map.j:53586-53595) работает так: сначала SetWidgetLife лечит, затем при таланте A0YQ и полном HP цели count = count + 1 и SetUnitLife(цель, текущий максимум HP + 25), и только потом count = count - 1. Значит, каждый отскок «в полное HP» оставляет счётчик на месте - предел в 8 отскоков исчезает, волна прыгает, пока в радиусе 500 есть раненые союзники не из CheckGroup. SetUnitLife - это не установка текущего HP, а функция со строки 3969, меняющая максимум HP через ah00 (AIl2, 19 уровней), и она каждый раз читает текущий максимум, поэтому бонус копится без предела. Ограничение - затухание 0.85: при 1500 СУ первый отскок лечит 1725, восьмой 553, шестнадцатый 151 - примерно 15-25 отскоков, то есть 400-600 постоянного максимума HP команде каждые 9 секунд. «Искажённый посох» (BreachBuffUnit, 28650) добавляет +25 СУ за применение и на 15-м заряде бьёт 15 врагов на 75% от максимума маны. Цена честная: «Объятия природы» обнуляют постоянную прибавку «Прилива магии» (строка 53785)."
+        ],
+        "items": [
+          "sor5",
+          "kpin",
+          "mnsf",
+          "ram2",
+          "I088",
+          "shea"
+        ],
+        "bonus": {
+          "s1": "stre",
+          "s2": "I01Q"
+        }
+      },
+      {
+        "id": "lore-sapling",
+        "c": "#C9A227",
+        "talent": "A0YR",
+        "n": [
+          "幼苗",
+          "Sapling",
+          "Саженец"
+        ],
+        "key": [
+          "6,600 金、960 技能強度：一發 Q 治 6,402、每次施法 1,590 傷害，而且魔力潮汐每 25 秒永久 +13 技能強度會自己把差距補回來",
+          "6,600 gold for 960 spell power: 6,402 healing per Q, 1,590 damage per cast - and Mana Tide's permanent +13 every 25 s closes the gap on its own",
+          "6 600 золота, 960 силы умений: 6 402 лечения за Q и 1 590 урона за применение, а постоянные +13 от «Прилива магии» каждые 25 сек. сами закрывают разрыв"
+        ],
+        "why": [
+          "純淨紫水晶 400 + 紫水晶戒指 125 + 紫水晶 125 + 法力鋼 85 + 咒術師項鍊 75 + 閃現 25 = 835，加上吸收器死靈法師之杖 50 與寶盒能量符文 75 共 960 技能強度，總共 6,600 金，中期就能全部湊齊。滿級數字：治療之波（600 + 960×0.75）×4.85 = 6,402，物競天擇 5 ×（30 + 960×0.30）= 1,590。真正的理由是魔力潮汐的實作：53772-53789 把加成寫進 udg_ItemBonusDMG[目標玩家]，20 秒後 Hero23W（53542）先減掉臨時值、再加上 3 + 2×等級 的永久值，滿級是每次 +13。這個陣列從頭到尾只有道具穿脫與這個技能會動它（4906 行初始化之後就沒有任何重算），沒有上限、死亡也不會歸零，所以每 25 秒 +13 等於每分鐘 +31.2 技能強度；一場 40 分鐘的局光靠自己按 W 就能累積約 +1,250，比這 6 件裝備加起來還多。所以平價套的正解不是硬湊裝備，而是先把 W 練起來、有事沒事就對自己或隊友的主 C 按一下 —— 而且 W 的目標是隊友時，那 +13 是加在隊友的玩家編號上，樹人是全地圖唯一能永久幫別人升技能強度的英雄。法力鋼的 +35% 裝備技能威力對本體技能沒有作用，這裡純粹是買它 85 技能強度與 2 點法力回復；閃現則是額外一次施法來源（15 秒冷卻），每次都會多打一輪物競天擇。",
+          "Pure Amethyst 400 + Amethyst Ring 125 + Amethyst 125 + Mana Steel 85 + Sorcerer Necklace 75 + Blink 25 = 835, plus Necromancer Staff 50 and Energy Rune 75 = 960 spell power for 6,600 gold, all reachable mid-game. At max rank: Healing Wave (600 + 0.75*960) * 4.85 = 6,402 and Natural Selection 5 * (30 + 0.30*960) = 1,590. The real argument is how Mana Tide is implemented: lines 53772-53789 add the bonus straight into udg_ItemBonusDMG[target's player], and 20 s later Hero23W (53542) subtracts the temporary value and adds a permanent 3 + 2*level, i.e. +13 at max rank. That array is only ever touched by item equip/unequip and by this ability - after the initialisation at line 4906 nothing recomputes it - so there is no cap and death does not reset it. +13 every 25 s is +31.2 spell power per minute; a 40-minute game of just pressing W on yourself is about +1,250, more than all six items combined. So the budget answer is not to force items but to max W early and keep it on cooldown - and when the target is an ally, the +13 lands on *their* player slot, making the Ancient the only hero in the map that can permanently raise someone else's spell power. Mana Steel's +35% modifier power does nothing for his own abilities; it is bought purely for the 85 spell power and 2 mana regen. Blink is an extra cast source on a 15 s cooldown, and every cast is another Natural Selection volley.",
+          "«Чистый аметист» 400 + «Аметистовое кольцо» 125 + «Аметист» 125 + «Мановая сталь» 85 + «Ожерелье чародея» 75 + «Мигание» 25 = 835, плюс «Посох некроманта» 50 и «Руна энергии» 75 - итого 960 силы умений за 6 600 золота. На максимальном уровне: лечение (600 + 0.75*960) * 4.85 = 6 402, «Естественный отбор» 5 * (30 + 0.30*960) = 1 590. Главный аргумент - реализация «Прилива магии»: строки 53772-53789 добавляют бонус прямо в udg_ItemBonusDMG[игрок цели], а через 20 секунд Hero23W (53542) вычитает временную часть и добавляет постоянные 3 + 2*уровень, то есть +13. Этот массив меняют только надевание предметов и это умение (после инициализации на строке 4906 он нигде не пересчитывается), предела нет, смерть его не сбрасывает. +13 каждые 25 сек. - это +31.2 силы умений в минуту, за 40 минут около +1250, больше, чем дают все шесть предметов. Если целью выбран союзник, +13 достаётся его слоту - Древень единственный герой, способный навсегда поднять чужую силу умений. «Мигание» - дополнительный источник применения умения (кулдаун 15 сек.), то есть ещё один залп «Естественного отбора»."
+        ],
+        "items": [
+          "sor5",
+          "rag1",
+          "tpow",
+          "rwiz",
+          "I01O",
+          "brag"
+        ],
+        "bonus": {
+          "s1": "stre",
+          "s2": "I01Q"
+        }
+      }
+    ],
+    "H00X": [
+      {
+        "id": "life-bond-max",
+        "c": "#5FD9A6",
+        "talent": "A0TE",
+        "n": [
+          "生命連結・極限治療",
+          "Peak Healing Bond",
+          "Предельная целительная связь"
+        ],
+        "key": [
+          "覺醒天賦 3 件傳說＋技能強度 1975，治療連結每次 6,036 點、43 治療／法力",
+          "Awakening talent, 3 legendaries + 1975 spell power: 6,036 HP per Healing Bond, 43 HP per mana",
+          "Талант Пробуждение, 3 легендарных + 1975 силы умений: 6036 HP за одну Целительную связь"
+        ],
+        "why": [
+          "治療連結 A02O 的真公式在 Hero7Q（war3map.j:48207）：每 0.2 秒一跳、共 50 跳，單跳 =（200 + 200×技能等級 + 技能強度×1.50）× 0.02 × item_cof，5 級合計 =（1200 + 技能強度×1.5）× item_cof。item_cof 只有兩個來源（48198–48201）：帶覺醒天賦（被動 A0TF）時每件「傳說」道具 +0.15，帶折射天賦（被動 A02Q）時每件「折射」道具 +0.10。治療本身是 SetUnitState(UNIT_STATE_LIFE, life+heal) 直接寫血量，不經過任何觸發器，全地圖沒有任何「治療加成」係數，所以唯一能推的就是技能強度和傳說件數。6 格窮舉的最佳解是 3 件傳說：大法師之褲＋完美之靴＋大魔導師項鍊（傳說計數只認 10 件，冠軍手套 brac 在 ApplyLegendaryItems 裡漏寫 iLEG，帶了不算），技能強度 1975、item_cof 1.45 → 每次 6,036 點（每跳 120.7），冷卻 22 秒、140 法力 = 43.1 治療／法力、單體 274 HPS。改成 4 件傳說只有 5,640，因為傳說本身技能強度太低。大法師長袍 kpin 每次施法疊 +2 生命／+2 法力回復（ArchmageBuffUnit，上限 5 層 = +10/+10），能量爆發 3 秒冷卻剛好永久掛滿；大法師之褲每次施法還回 力量×1.5 法力（實作用力量，不是說明寫的智力）。三件傳說可用覺醒 A0TF 免費把術士之褲／咒術師項鍊／衛兵之靴（各 950 金）升上來，實際只花約 2,850 金。",
+          "The real Healing Bond (A02O) formula is in Hero7Q (war3map.j:48207): 50 ticks of 0.2 s, each tick = (200 + 200*level + spell power*1.50) * 0.02 * item_cof, so at level 5 the total is (1200 + SP*1.5) * item_cof. item_cof has exactly two sources (lines 48198-48201): +0.15 per Legendary item with the Awakening talent (passive A0TF), or +0.10 per Refraction item with the Refraction talent (passive A02Q). The heal itself is a raw SetUnitState(UNIT_STATE_LIFE, life+heal) - no trigger, and there is no healing-amplification coefficient anywhere in the map, so spell power and Legendary count are the only levers. Brute-forcing all 6-slot combinations, the optimum is exactly 3 Legendaries: Archmage Pants + Perfect Boots + Grand Magister's Necklace (only 10 items increment iLEG - Champion Gloves 'brac' is missing the iLEG line in ApplyLegendaryItems, so it does not count). SP 1975, item_cof 1.45 -> 6,036 HP per cast (120.7 per tick), 22 s cooldown, 140 mana = 43.1 HP per mana and 274 sustained HPS on one target. Four Legendaries drops to 5,640 because Legendaries carry little spell power. Archmage Robe stacks +2 HP / +2 MP regen per cast (ArchmageBuffUnit, capped at 5 = +10/+10) and Energy Surge's 3 s cooldown keeps it permanently maxed. Archmage Pants also refunds STR*1.5 mana per cast (the code uses strength, not the intelligence the tooltip claims). All three Legendaries can be made for free from 950-gold Uniques with Awakening A0TF, so the real cost is about 2,850 gold.",
+          "Настоящая формула Целительной связи (A02O) - в Hero7Q (war3map.j:48207): 50 тиков по 0.2 с, тик = (200 + 200*уровень + сила умений*1.50) * 0.02 * item_cof; на 5 уровне итог = (1200 + СУ*1.5) * item_cof. У item_cof только два источника (строки 48198-48201): +0.15 за каждый легендарный предмет с талантом Пробуждение (пассивка A0TF) либо +0.10 за каждый предмет Преломления с талантом Преломление (A02Q). Само лечение - это прямой SetUnitState(UNIT_STATE_LIFE, life+heal), без триггеров, и во всей карте нет коэффициента усиления лечения. Полный перебор 6 слотов даёт оптимум ровно в 3 легендарных предмета: Штаны архимага + Идеальные сапоги + Ожерелье магистра (iLEG считают только 10 предметов - у Перчаток рыцаря 'brac' строка iLEG в ApplyLegendaryItems просто забыта). СУ 1975, item_cof 1.45 -> 6036 HP за каст, КД 22 с, 140 маны = 43.1 HP на ману и 274 HPS по одной цели. Четыре легендарных дают только 5640. Мантия архимага копит +2/+2 реген за каст (до 5 стаков), а Всплеск с КД 3 с держит их постоянно."
+        ],
+        "items": [
+          "I00E",
+          "sor5",
+          "kpin",
+          "odef",
+          "ssil",
+          "rst1"
+        ],
+        "bonus": {
+          "s1": "stre",
+          "s2": "I01Q"
+        }
+      },
+      {
+        "id": "life-well-sustain",
+        "c": "#4FA8D8",
+        "talent": "A0TE",
+        "n": [
+          "不竭之泉・續戰",
+          "Endless Well",
+          "Неиссякаемый источник"
+        ],
+        "key": [
+          "治療降到 4,651（77%），換 +29 護甲、50% 魔法減傷、每秒 1% 生命＋1% 法力自補",
+          "Heals for 4,651 (77% of peak) but gains +29 armor, 50% magic reduction and 1% HP + 1% MP per second",
+          "Лечение 4651 (77% от максимума), зато +29 брони, 50% магической защиты и 1% HP + 1% MP в секунду"
+        ],
+        "why": [
+          "生命之靈的問題不是治療量，是站不住和沒血可花：能量傳輸 A02T（48431 行）扣的是「當前生命的 10%」，而且冷卻 22 秒的治療連結需要你活到 300 距離內才給滿額（Hero7Q：dist ≤ 300 係數 1.00，1500 以上只剩 0.15）。這套把治療連結從 6,036 降到 4,651（技能強度 1585、2 件傳說 item_cof 1.30，只剩 77%），換來的是：生命之冠 ram2 每秒回 1% 最大生命與 1% 最大法力、大法師長袍 5 層 +10 生命／+10 法力回復、大魔導師項鍊 +500 法力＋5 法力回復、狂信者頭盔 I06C 的 50% 魔法傷害減免與遠程物理 −40、合計 +29 護甲。s1 選預言者寶珠 fgun：Trig_UseSkillsEndcast_Actions（28859 行）寫的是 最大生命×0.03×cof，cof = 裝備技能威力 + 1；配上魔法漿果的 +30% 裝備技能威力就是每次施法回 3.9% 最大生命，而能量爆發只有 3 秒冷卻，等於每秒自補 1.3% 最大生命，能量傳輸砍掉的 10% 當前生命兩次施法就補回來。要注意這 9 個「施法時觸發」道具的內部冷卻是壞的：StartModCooldown（2914 行）寫的是 SaveReal，判定卻讀 LoadInteger，兩者是不同的雜湊槽，所以每次施法都會觸發。",
+          "The Spirit of Life's problem is not raw healing, it is staying alive and having HP to spend: Energy Transfer A02T (line 48431) costs 10% of CURRENT health, and Healing Bond only pays full value inside 300 range (Hero7Q: coefficient 1.00 at <=300, only 0.15 beyond 1500). This build drops Healing Bond from 6,036 to 4,651 (SP 1585, 2 Legendaries, item_cof 1.30 - 77% of peak) and buys back: Crown of Life regenerating 1% max HP AND 1% max MP every second, Archmage Robe's 5 stacks of +10 HP / +10 MP regen, Grand Magister's Necklace (+500 MP, +5 MP regen), Fanatic's Helm I06C for 50% magic damage reduction and -40 ranged physical, and +29 armor in total. The s1 pick is Prophet's Orb 'fgun': Trig_UseSkillsEndcast_Actions (line 28859) heals max life * 0.03 * cof per cast, where cof = mod power + 1; with Magic Berry's +30% mod power that is 3.9% of max HP per cast, and Energy Surge's 3 s cooldown turns it into 1.3% max HP per second - two casts fully repay one Energy Transfer. Note the internal cooldown on these nine on-cast items is broken: StartModCooldown (line 2914) writes a Real while the check reads an Integer from the same key, and those are separate hashtable slots, so they fire on every single cast.",
+          "Главная проблема Духа жизни - не объём лечения, а выживаемость и запас HP: Передача энергии A02T (строка 48431) снимает 10% ТЕКУЩЕГО здоровья, а Целительная связь даёт полный эффект только в радиусе 300 (Hero7Q: коэффициент 1.00 при <=300 и всего 0.15 после 1500). Сборка снижает лечение с 6036 до 4651 (СУ 1585, 2 легендарных, item_cof 1.30 - 77% от максимума) и взамен даёт: Корона жизни - 1% макс. HP и 1% макс. маны каждую секунду, Мантия архимага - 5 стаков по +2/+2 регена, Ожерелье магистра (+500 маны, +5 реген), Шлем фанатика I06C с 50% магической защиты и -40 к дальнему физическому урону, суммарно +29 брони. В слоте s1 - Сфера пророка 'fgun': в Trig_UseSkillsEndcast_Actions (строка 28859) она лечит макс.HP * 0.03 * cof, где cof = сила модификаторов + 1; с +30% от Волшебной ягоды это 3.9% макс. HP за каст, а Всплеск с КД 3 с превращает это в 1.3% макс. HP в секунду. Внутренний КД у этих предметов сломан: StartModCooldown пишет Real, а проверка читает Integer - разные ячейки хеша, так что срабатывает каждый каст."
+        ],
+        "items": [
+          "I00E",
+          "kpin",
+          "ram2",
+          "odef",
+          "rst1",
+          "I06C"
+        ],
+        "bonus": {
+          "s1": "fgun",
+          "s2": "I01L"
+        }
+      },
+      {
+        "id": "life-prism-keeper",
+        "c": "#B98CF0",
+        "talent": "A0TB",
+        "n": [
+          "稜鏡爆發（生命守護者皮膚）",
+          "Prism Surge (Keeper of Life skin)",
+          "Призматический всплеск (скин Хранитель жизни)"
+        ],
+        "key": [
+          "強化能量爆發每次施法約 29.8 次爆炸 × 840 點 ≈ 25,000 傷害，治療仍有 5,509",
+          "Empowered Energy Surge: ~29.8 explosions x 840 = ~25,000 damage per cast, still heals 5,509",
+          "Усиленный всплеск: ~29.8 взрывов по 840 = ~25000 урона за каст, лечение всё ещё 5509"
+        ],
+        "why": [
+          "生命守護者 H046 只換掉一個技能：能量爆發 A02S → 強化能量爆發 A0X4（uhab：A02T,A0X4,A02R,A02O），兩個治療技能原封不動，所以皮膚是純加強。A0X4 在 Trig_HeroSkills7_Actions（48396）把連鎖計數 count 從 9 改成 10（第一次必爆），並且額外算 count2 = floor(技能強度 ÷ 100) 次「邊緣爆炸」。真正的重點是 Hero7W 的終止條件寫成 if Random>count and count2==0：只要 count2 還沒用完，計時器就不會關，已經「中斷」的連鎖每 0.1 秒還會再擲一次骰子。模擬 6 萬次：技能強度 0 時平均 4.03 次爆炸，技能強度 2025 時 count2=20，連鎖部分從 3.03 漲到 8.8，總計 29.8 次。搭配折射天賦（每件折射道具能量爆發 +20%、治療連結 +10%）帶 3 件折射（魔法小瓶／鋼鐵守護者／熾天使長矛，分屬三條聖物線）：技能強度 2025，單爆 =（120 + 405）× 1.60 = 840，一次施法約 25,000 點魔法傷害，冷卻只有 3 秒、90 法力。治療連結同時還有（1200 + 3037.5）× 1.30 = 5,509，只比極限套少 8.7%。另外 26944 行有一個說明沒寫的皮膚特典：H046 用扭曲 A0TC 時會生成一隻 o01K 拿著三件扭曲道具給你挑，本體只能拿隨機（或往後推一格）的一件。鋼鐵守護者的啟動型 wswd 在 war3map.w3t 沒有 ilev 欄位，但 ApplyStaticItemStats 只在 lvl==2 的分支處理它，啟動後屬性是否照樣生效無法從地圖資料確認，所以上面算的是未啟動的 150 技能強度。",
+          "The Keeper of Life (H046) swaps exactly one ability: Energy Surge A02S becomes Empowered Energy Surge A0X4 (uhab: A02T,A0X4,A02R,A02O). Both heals are untouched, so the skin is a pure upgrade. In Trig_HeroSkills7_Actions (line 48396) A0X4 starts the chain counter at 10 instead of 9 (guaranteed first repeat) and additionally computes count2 = floor(spell power / 100) 'edge' explosions. The real prize is the termination test in Hero7W: 'if Random>count and count2==0'. While count2 is still burning down the timer never stops, so a chain that already 'ended' keeps re-rolling every 0.1 s. Monte Carlo over 60k casts: 4.03 explosions at 0 SP, but at 2025 SP (count2=20) the chain part alone grows from 3.03 to 8.8, for 29.8 explosions total. Paired with the Refraction talent (+20% Energy Surge and +10% Healing Bond per Refraction item) and three Refraction items from three different relic lines (Magic Vial / Iron Guardian / Seraph Spear): SP 2025, each blast = (120 + 405) * 1.60 = 840, so roughly 25,000 magic damage per cast on a 3 s cooldown for 90 mana. Healing Bond still lands (1200 + 3037.5) * 1.30 = 5,509, only 8.7% below the max-heal build. Line 26944 also hides an undocumented skin perk: when H046 uses Distortion A0TC the map spawns an o01K unit holding three Distortion items to choose from, while the base hero only gets one forced roll. Caveat: the activated form 'wswd' has no ilev override in war3map.w3t while ApplyStaticItemStats only handles it inside the lvl==2 branch, so whether its doubled stats actually apply cannot be confirmed from the map data - the numbers above use the un-activated 150 spell power.",
+          "Хранитель жизни (H046) меняет ровно одно умение: Энергетический всплеск A02S -> усиленный A0X4 (uhab: A02T,A0X4,A02R,A02O). Оба лечения остаются, так что скин - чистое усиление. В Trig_HeroSkills7_Actions (48396) A0X4 стартует счётчик цепочки с 10 вместо 9 и дополнительно считает count2 = floor(сила умений / 100) взрывов по краю. Главное - условие выхода в Hero7W: 'if Random>count and count2==0'. Пока count2 не обнулился, таймер не выключается, и уже прерванная цепочка каждые 0.1 с бросает кубик заново. Симуляция 60k кастов: 4.03 взрыва при 0 СУ, но при 2025 СУ (count2=20) сама цепочка растёт с 3.03 до 8.8, итого 29.8 взрывов. С талантом Преломление (+20% к Всплеску и +10% к Связи за каждый предмет Преломления) и тремя такими предметами из трёх разных линий реликвий: СУ 2025, взрыв = (120 + 405) * 1.60 = 840, около 25000 магического урона за каст при КД 3 с и 90 маны. Целительная связь при этом даёт (1200 + 3037.5) * 1.30 = 5509. В строке 26944 спрятан ещё один неописанный бонус скина: при использовании Искажения A0TC у H046 появляется юнит o01K с тремя предметами на выбор. Оговорка: у активированной формы 'wswd' в war3map.w3t нет поля ilev, а ApplyStaticItemStats обрабатывает её только в ветке lvl==2, поэтому применяются ли удвоенные характеристики, по данным карты подтвердить нельзя - расчёт выше идёт по неактивированным 150 СУ."
+        ],
+        "items": [
+          "I00E",
+          "sor5",
+          "kpin",
+          "mnst",
+          "wshs",
+          "ankh"
+        ],
+        "bonus": {
+          "s1": "stre",
+          "s2": "I01Q"
+        }
+      },
+      {
+        "id": "life-ghost-sacrifice",
+        "c": "#8C96B4",
+        "talent": "A0TB",
+        "n": [
+          "往昔幽魂・增幅電池（皮膚）",
+          "Ghost of the Past: Buff Battery (skin)",
+          "Призрак прошлого: батарея усиления (скин)"
+        ],
+        "key": [
+          "幽靈幻惑給友軍 +965 攻擊力、+120% 攻速；能量傳輸每 30 秒送出 19% 當前生命的血＋等量法力",
+          "Spectral Delusion gives an ally +965 attack and +120% attack speed; Energy Transfer hands over 19% of current HP as HP and the same amount of mana",
+          "Призрачное наваждение даёт союзнику +965 атаки и +120% скорости атаки; Передача энергии отдаёт 19% текущего HP и столько же маны"
+        ],
+        "why": [
+          "往昔幽魂 E005 不是治療英雄：uhab 是 A02T,A02S,A10Q,A10R —— 治療連結和靈魂治癒都被拿掉，換成犧牲 A10Q 與幽靈幻惑 A10R；連被動的扭曲 A0TC 也被換成吸收 A10P。所以它變成純增幅／補給角色，配裝目標從治療量改成技能強度。幽靈幻惑（48569 行）：攻擊力 = 25×技能等級 + 技能強度×0.40，這套技能強度 2100 → 5 級 +965 攻擊力，A10S 的 Isx1 欄位顯示攻速加成是 40/60/80/100/120%（說明只寫 40%），持續 10 秒、冷卻 25 秒，代價是 200 法力＋(75+25×等級)×1.25 = 250 生命。能量傳輸（48431）沒有 amcs 欄位＝不耗法力，扣 10% 當前生命，5 級把 190% 的量同時當成生命「和」法力送給友軍，是全地圖少見的法力電池。生命之冠每秒回 1% 最大生命／法力、預言者寶珠每次施法回 3% 最大生命，剛好抵掉幻惑的自傷。不朽法冠 I088 掛的 A0O3 是原生的輝煌光環（基底 ACba、半徑 800、3 法力／秒），原生光環不受「召喚物不繼承主人裝備」的限制，隊友和召喚物都吃得到。吸收 A10P（48454）冷卻只有 0.5 秒、不耗法力、射程 200 還能吃地上的道具：特殊 lv.1→+5 技能強度、lv.2→+7、lv.3→+12＋1 全屬、lv.4→+20＋2 全屬、lv.5→+30＋3 全屬、lv.5+→+50＋3 全屬（每金 0.0233 技能強度，是可取得道具裡最划算的）。犧牲 A10Q 會把這些 wSPD/wSTR/wAGI/wINT/wHPR/wMPR 全部永久轉給友方英雄並讓對方回滿血藍、清除負面狀態，自己死亡；注意 lv.16 那一支實際只加 +2.0/+1.0 回復卻記成 +2.2/+1.1（48524 對 48530–48531），轉移時會多給 0.2/0.1。兩個天賦的道具加成對幽魂只剩折射的「能量爆發 +20%／件」有用，而折射是 T3（+1/+3/+3、成長 +0/+1/+1），比覺醒 T2 純數值更好，所以選折射。",
+          "The Ghost of the Past (E005) is not a healer: its uhab is A02T,A02S,A10Q,A10R - both Healing Bond and Healing of Souls are removed and replaced by Sacrifice A10Q and Spectral Delusion A10R, and even the passive Distortion A0TC is swapped for Absorption A10P. It becomes a pure amplifier/battery, so the build target changes from healing to raw spell power. Spectral Delusion (line 48569): bonus attack = 25*level + SP*0.40, so 2100 SP gives +965 attack at level 5; A10S's Isx1 field shows the attack-speed bonus is 40/60/80/100/120% (the tooltip only mentions 40%), 10 s duration, 25 s cooldown, costing 200 mana plus (75+25*level)*1.25 = 250 health. Energy Transfer (line 48431) has no amcs field at all, i.e. no mana cost; it spends 10% of current HP and at level 5 hands 190% of that to an ally as health AND the same number as mana - one of the few real mana batteries in the map. Crown of Life restores 1% max HP/MP per second and Prophet's Orb returns 3% max HP per cast, which covers Delusion's self-damage. Imperishable Mitre I088 carries A0O3, a native Brilliance aura (base ACba, 800 radius, 3 mana/s); native auras are not subject to the 'summons inherit nothing from their owner's items' rule, so allies and summons both benefit. Absorption A10P (line 48454) has a 0.5 s cooldown, costs no mana, has 200 range and can eat items off the ground: Special lv.1 -> +5 SP, lv.2 -> +7, lv.3 -> +12 and +1 all stats, lv.4 -> +20 and +2, lv.5 -> +30 and +3, lv.5+ -> +50 and +3 (0.0233 SP per gold, the best rate among obtainable items). Sacrifice A10Q permanently transfers all of wSPD/wSTR/wAGI/wINT/wHPR/wMPR to an allied hero, fully restores their HP and mana and cleanses them, killing the ghost; note the lv.16 branch applies +2.0/+1.0 regen but records +2.2/+1.1 (line 48524 vs 48530-48531), so the transfer leaks an extra 0.2/0.1. Of the two talents only Refraction's +20% Energy Surge per Refraction item still does anything for the ghost, and Refraction is T3 (+1/+3/+3, growth +0/+1/+1) versus Awakening's T2, so it is the correct pick even without Refraction items.",
+          "Призрак прошлого (E005) - не лекарь: uhab = A02T,A02S,A10Q,A10R, обе лечащие способности заменены на Жертву A10Q и Призрачное наваждение A10R, а пассивное Искажение A0TC заменено на Поглощение A10P. Это чистый усилитель/батарея, поэтому цель сборки - сила умений, а не лечение. Призрачное наваждение (48569): бонус атаки = 25*уровень + СУ*0.40, при 2100 СУ это +965 атаки на 5 уровне; поле Isx1 у A10S показывает бонус скорости атаки 40/60/80/100/120% (в описании только 40%), 10 с, КД 25 с, цена - 200 маны и (75+25*уровень)*1.25 = 250 HP. У Передачи энергии (48431) вообще нет поля amcs, то есть маны она не стоит: тратит 10% текущего HP и на 5 уровне отдаёт союзнику 190% этого объёма и как здоровье, И как ману. Корона жизни возвращает 1% макс. HP/маны в секунду, Сфера пророка - 3% макс. HP за каст, что перекрывает самоурон. У Нетленной митры I088 стоит A0O3 - нативная аура просветления (база ACba, радиус 800, 3 маны/с); нативные ауры действуют и на союзников, и на призванных существ. Поглощение A10P (48454): КД 0.5 с, без маны, радиус 200, работает и по предметам на земле: спец. lv.1 -> +5 СУ, lv.2 -> +7, lv.3 -> +12 и +1 ко всем, lv.4 -> +20 и +2, lv.5 -> +30 и +3, lv.5+ -> +50 и +3 (0.0233 СУ за золото - лучший доступный курс). Жертва A10Q навсегда передаёт wSPD/wSTR/wAGI/wINT/wHPR/wMPR союзному герою, полностью восстанавливает ему HP и ману и снимает негативные статусы, убивая призрака; в ветке lv.16 применяется +2.0/+1.0 регена, а записывается +2.2/+1.1 (строка 48524 против 48530-48531)."
+        ],
+        "items": [
+          "I00E",
+          "sor5",
+          "kpin",
+          "I007",
+          "ram2",
+          "I088"
+        ],
+        "bonus": {
+          "s1": "fgun",
+          "s2": "I01Q"
+        }
+      }
+    ],
+    "H00O": [
+      {
+        "id": "arch-siege",
+        "c": "#D9822B",
+        "n": [
+          "攻城砲台",
+          "Siege Battery",
+          "Осадная батарея"
+        ],
+        "key": [
+          "技能強度 2225：5 級守衛塔 257 攻擊 + 15 穿透，四道解鎖門檻全開。",
+          "2225 spell power: a rank-5 guard tower hits for 257 plus 15 penetration, all four gates open.",
+          "2225 силы умений: башня 5 ур. бьёт на 257 плюс 15 пробития, все четыре порога открыты."
+        ],
+        "why": [
+          "建築師的塔只吃兩樣東西：施放當下的技能強度，以及英雄當下的最大生命（war3map.j:48086 起，Trig_HeroSkills6_Actions）。守衛塔 h011 的攻擊力是 count=10+5×等級+R2I(技能強度×0.10)，等於每 10 點技能強度 = 塔 +1 攻擊。這套六件（星界耳環 800、純淨紫水晶 400、大法師長袍 300、獅子星座 200、大法師權杖 200、最後通牒 200）＝2100，加 s1 死靈法師之杖 50、s2 能量符文 75，共 2225。5 級塔攻擊力 = 35 + 222 = 257，攻擊間隔 1.0 秒。\n\n程式碼有四道以 udg_ItemBonusDMG 判定的門檻，全開：≥150 讓塔的存續從 80 秒變 120 秒——冷卻 30 秒，所以同時站著的塔從 2 座變 4 座；≥300 執行 SaveReal(hash,塔,16,+15.0)，那是 15 點穿透，每次傷害事件後另補一發 CHAOS/UNIVERSAL，不吃護甲也不吃任何減傷（第 20057 行起，但對建築目標無效）；≥500 掛 A0Y0，第 19673 行 BleedUnit(a,d,dmg×1.5,0.40)，40% 機率打出 1.5 倍的流血；≥1000 掛 A0NS 多重射擊（Aroc、Efk3=1、範圍 750），每次多打一個目標。\n\n火砲強化 5 級是 +100% 攻擊速度（A0KM 的 Isx1=1.00），20 秒持續、20 秒冷卻，可以在一座塔上永久掛著，那座塔就是 514 點/秒再加穿透。瞬間修復 = 625 + 技能強度×1.00 = 2850 點，30 秒一次。獅子星座、大法師權杖、最後通牒合計 +10 法力回復，加上大法師長袍每次施法疊 +2/+2 回復（最多 5 層 = +10/+10），剛好撐得住三隻技能全開約 14 點/秒的耗藥。\n\n這套完全沒有生命裝，塔只有 300 + 英雄自身最大生命的 30%，會很脆——這是刻意的取捨。另外注意：智力對塔一點貢獻都沒有，它只是法力池；還有別碰鋼鐵守護者（啟動）wswd，它每秒抽 1% 最大法力，而且塔的攻擊力在建造那一瞬間就被寫死，開關切換會讓你蓋出強弱不一的塔。",
+          "The Architect's towers scale off exactly two things: spell power at the instant of casting, and the hero's max HP at that instant (Trig_HeroSkills6_Actions, war3map.j:48086+). Guard tower h011's damage is count=10+5*level+R2I(spellpower*0.10), so every 10 spell power is +1 tower attack. These six (Astral Earring 800, Pure Amethyst 400, Archmage Robe 300, Lion Constellation 200, Archmage Staff 200, Ultimatum 200) = 2100, plus s1 Necromancer Staff 50 and s2 Energy Rune 75 = 2225. A rank-5 tower hits for 35 + 222 = 257 on a 1.0s attack cycle.\n\nFour code gates keyed on udg_ItemBonusDMG all open: >=150 raises tower lifetime 80 -> 120s, and with a 30s cooldown that means 4 towers standing instead of 2; >=300 executes SaveReal(hash,tower,16,+15.0) - 15 penetration, an extra CHAOS/UNIVERSAL hit after every damage event that ignores armour and all reduction (war3map.j:20057+, though it does nothing against structure targets); >=500 adds A0Y0 and line 19673 fires BleedUnit(a,d,dmg*1.5,0.40), a 40% chance of bleed worth 1.5x the hit; >=1000 adds A0NS barrage (Aroc, Efk3=1, 750 radius) for one extra target per shot.\n\nOvercharge rank 5 is +100% attack speed (A0KM Isx1=1.00) for 20s on a 20s cooldown, so one tower holds it permanently at 514 dps plus penetration. Instant Repair heals 625 + 1.00*spell power = 2850 every 30s. Lion Constellation, Archmage Staff and Ultimatum give +10 mana regen combined, and Archmage Robe stacks +2/+2 regen per cast up to 5 stacks (+10/+10) - together that covers the roughly 14 mana/sec you burn casting all three abilities on cooldown.\n\nThere is no HP item here, so towers sit at 300 + 30% of the hero's own max life and die fast; that is the deliberate trade. Two notes: intelligence contributes nothing to towers, it is only a mana pool; and avoid the activated Iron Guardian (wswd) - it drains 1% max mana per second, and since tower damage is frozen at build time, toggling it leaves you with towers of wildly different strength.",
+          "Башни Архитектора зависят ровно от двух вещей: силы умений в момент применения и макс. здоровья героя в тот же момент (Trig_HeroSkills6_Actions, war3map.j:48086+). Урон башни h011 = count=10+5*уровень+R2I(сила_умений*0.10): каждые 10 СУ дают +1 к атаке. Шесть предметов (800+400+300+200+200+200) = 2100, плюс s1 50 и s2 75 = 2225. Башня 5 ур. бьёт на 35 + 222 = 257 с интервалом 1.0 сек.\n\nВсе четыре порога по udg_ItemBonusDMG открыты: >=150 - время жизни 80 -> 120 сек (при КД 30 сек стоит 4 башни вместо 2); >=300 - SaveReal(hash,башня,16,+15.0), то есть 15 пробития: отдельный удар CHAOS/UNIVERSAL после каждого события урона, игнорирующий броню и любое снижение (не работает по строениям); >=500 - A0Y0, строка 19673: BleedUnit(a,d,dmg*1.5,0.40); >=1000 - мультишот A0NS (Aroc, Efk3=1, радиус 750), +1 цель за выстрел.\n\nУсиление орудий 5 ур. - это +100% скорости атаки (A0KM Isx1=1.00), 20 сек при КД 20 сек, то есть постоянно на одной башне: 514 урона в секунду плюс пробитие. Мгновенная починка лечит 625 + 1.00*СУ = 2850 каждые 30 сек. Созвездие льва, Посох архимага и Ультиматум дают суммарно +10 реген маны, а Мантия архимага копит +2/+2 регена за каждое применение (до 5 зарядов).\n\nПредметов на здоровье здесь нет: башни получают только 300 + 30% макс. здоровья героя и умирают быстро - это осознанный размен. Разум башням не даёт ничего. Активированного Железного стража (wswd) избегайте: он съедает 1% макс. маны в секунду, а урон башни фиксируется в момент постройки, так что переключения дают башни разной силы."
+        ],
+        "items": [
+          "I00E",
+          "sor5",
+          "kpin",
+          "ofro",
+          "fgrd",
+          "I007"
+        ],
+        "bonus": {
+          "s1": "stre",
+          "s2": "I01Q"
+        }
+      },
+      {
+        "id": "arch-bulwark",
+        "c": "#6E7C8C",
+        "n": [
+          "不倒的牆",
+          "Unbreakable Wall",
+          "Несокрушимая стена"
+        ],
+        "key": [
+          "裝備 +9225 生命＝每座塔 +2767 生命；放掉 1000 那一階，保住 150/300/500。",
+          "+9225 HP from gear = +2767 HP per tower; gives up the 1000 gate, keeps 150/300/500.",
+          "+9225 здоровья с предметов = +2767 каждой башне; порог 1000 отдан, 150/300/500 сохранены."
+        ],
+        "why": [
+          "塔的生命值是 R2I(英雄最大生命×0.3)+50+50×等級（war3map.j:48090）。這是全地圖唯一一條「主人的裝備直接進到召喚物身上」的通道——其他任何裝備效果都進不去，因為觸發判定讀的都是攻擊者／擊殺者 handle 上的道具計數，而塔的 handle 上什麼都沒有。所以生命裝在建築師身上是雙份的：自己耐打，塔也耐打。\n\n黃金耳環 +4000、純淨蛋白石 +2000、狂信者鎧甲 +2225、黃金鎧甲 +1000＝裝備 +9225 生命，光這四件就讓每座 5 級守衛塔多 2767 點生命；再加上本體，塔通常落在 3500～4500，而純輸出流的塔只有 1500 上下。塔活滿 120 秒＝火砲強化與瞬間修復不會白費，也不必一直退回去重蓋。\n\n技能強度 = 大法師長袍 300 + 純淨紫水晶 400 + s2 能量符文 75 = 775。這一套明確放棄 1000 那一階（多重射擊），但完整保留 ≥150 的 120 秒存續、≥300 的 15 穿透、≥500 的 40% 流血。代價講清楚：塔的攻擊力從 257 掉到 35+77=112，單體輸出 −56%，換來塔的耐久大約 ×2.5，還有 21 點護甲與黃金鎧甲的線性減傷——war3map.j:19956 寫 DefCof −((100−生命百分比)/2.5)×0.01，掉到 50% 血是 −20% 非狀態受傷，20% 血是 −32%。狂信者鎧甲另外帶「抵抗流血」旗標（旗標與 +X% 抗性是兩回事，這是旗標）。\n\ns1 選法師之戒（+3 法力回復）而不是死靈法師之杖，是因為這套沒有任何法力回復裝；配上大法師長袍每次施法 +2/+2、最多 5 層的疊加回復，才撐得住三隻技能一直開。",
+          "Tower HP is R2I(hero max life*0.3)+50+50*level (war3map.j:48090). This is the only channel in the entire map where the owner's gear reaches a summon - nothing else gets through, because every proc check reads item counts stored on the attacker's or killer's handle, and a tower's handle holds none of them. So HP items pay double on the Architect: he survives, and so do his towers.\n\nGolden Earring +4000, Pure Opal +2000, Fanatic Armour +2225, Golden Armour +1000 = +9225 HP from items, which is +2767 HP on every rank-5 guard tower. With the hero's own pool on top, towers land around 3500-4500 against roughly 1500 on the pure-damage build. Towers that survive their full 120 seconds mean Overcharge and Instant Repair are never wasted and you are not walking back to re-plant.\n\nSpell power is Archmage Robe 300 + Pure Amethyst 400 + s2 Energy Rune 75 = 775. This set deliberately gives up the 1000 gate (barrage) but keeps all of the 120s lifetime at 150, the 15 penetration at 300 and the 40% bleed at 500. Stated plainly: tower damage drops from 257 to 35+77 = 112, about -56% single-target, for roughly 2.5x tower durability plus 21 armour and Golden Armour's linear mitigation - war3map.j:19956 writes DefCof -= ((100-life%)/2.5)*0.01, so -20% non-status damage taken at half health and -32% at 20%. Fanatic Armour also carries the \"resist bleed\" flag (a binary flag, which is a different thing from +X% resistance).\n\ns1 is Mage Ring (+3 mana regen) rather than the Necromancer Staff because nothing else here regenerates mana; together with Archmage Robe's +2/+2 per cast up to 5 stacks it is what lets you keep all three abilities on cooldown.",
+          "Здоровье башни = R2I(макс_здоровье_героя*0.3)+50+50*уровень (war3map.j:48090). Это единственный канал на карте, по которому снаряжение хозяина попадает в саммона: всё остальное отсекается, потому что проверки предметов читают счётчики на хэндле атакующего/убийцы, а у башни их нет. Поэтому предметы на здоровье работают дважды.\n\nЗолотая серьга +4000, Чистый опал +2000, Броня фанатика +2225, Золотая броня +1000 = +9225 здоровья, то есть +2767 каждой башне 5 ур. Башни выходят на 3500-4500 против примерно 1500 у сборки на урон.\n\nСила умений: 300 + 400 + 75 = 775. Порог 1000 (мультишот) отдан сознательно, но сохранены 120 сек жизни (150), 15 пробития (300) и кровотечение 40% (500). Цена: урон башни падает с 257 до 35+77 = 112 (-56% по одиночной цели) за примерно 2.5x прочности, 21 брони и линейное снижение урона Золотой брони - war3map.j:19956: DefCof -= ((100-процент_здоровья)/2.5)*0.01, то есть -20% на половине здоровья и -32% на 20%. Броня фанатика даёт ещё флаг \"сопротивление кровотечению\".\n\nВ s1 стоит Кольцо мага (+3 регена маны), а не Жезл некроманта, потому что реген маны здесь больше взять негде."
+        ],
+        "items": [
+          "I00O",
+          "sor4",
+          "I06B",
+          "I0AB",
+          "kpin",
+          "sor5"
+        ],
+        "bonus": {
+          "s1": "rump",
+          "s2": "I01Q"
+        }
+      },
+      {
+        "id": "arch-storm",
+        "c": "#4FA3E3",
+        "n": [
+          "雷霆工坊（貴族）",
+          "Thunder Workshop (Nobleman)",
+          "Громовая мастерская (Дворянин)"
+        ],
+        "key": [
+          "貴族皮膚專用：閃電塔的連鎖閃電讀「當下」技能強度，7 目標 × (150 + 25% 技能強度)。",
+          "Nobleman skin only: the tower's chain lightning reads LIVE spell power - 7 targets x (150 + 25% SP).",
+          "Только скин Дворянин: цепь молний башни читает текущую СУ - 7 целей x (150 + 25% СУ)."
+        ],
+        "why": [
+          "這一套用三個不明顯、但都能在程式碼裡指出來的機制。注意它只適用於貴族皮膚 Hhkl：皮膚把守衛塔 A04G 換成閃電塔 A0DO，把生產據點 A077 換成基礎據點 A04H。\n\n第一，塔的普攻傷害在建造那一瞬間就被 SetUnitBaseDamage 寫死，之後再換裝也不會變。但技能強度 ≥500 時閃電塔拿到的 A0DP「雷暴水晶」不是這樣——war3map.j:20435 的 Trig_UAttacks_Actions 每次觸發都現算 dmg=150.+udg_ItemBonusDMG[n]*0.25，然後丟一發 A0X2 連鎖閃電（等級 6，Ocl2 表 = 7 個目標，Ocl3=0 表示每一跳都是全額）。技能強度 1425 時每跳 506 點、7 跳 3542 點，內冷 8 秒。閃電塔存續 105 秒、冷卻 35 秒，等於同時站三座＝人群裡約 1330 點/秒，而且這一半的輸出完全跟著你當下的裝備走。\n\n第二，技能強度 ≥300 的 A0Y1「震盪」讓閃電塔每次傷害事件有 20% 施加電擊（第 19731 行 ShockUnit(a,d,0.20)）。電擊在 war3map.j:2626 起把目標 key 4 −0.20（所有人打它 +20% 傷害）、key 6 −0.30（它輸出 −30%），並且四種狀態抗性各 −1.00。閃電塔 n06F 是 100 半徑全額濺射（ua1w=msplash、ua1f/h/q=100），一次攻擊可以對好幾隻同時擲骰，整隊的點燃／流血／疾病係數集體 +1.00——而這全是塔自己做的，不需要你身上有任何觸發裝。\n\n第三，魔法齒輪 tcas 是全地圖唯一一件光環明確寫進 structure 的道具：A0MT 基底 ACua，atar=\"air,friend,structure,mechanical,ground\"，Uau2=5.0、範圍 375。每座塔每秒回 5 點，一輪 105 秒＝525 點免費修理。其他所有光環道具（庇護者 A0HA、王國宙斯盾 A0QM、戰鬥軍旗 S00J、英勇警鐘 A0SY）的 atar 都沒有 structure，對塔完全無效——這是很容易配錯的一環。不朽法冠再補 3 點/秒法力光環（A0O3，範圍 800，也給隊友）。\n\n技能強度合計 1425（400+300+50+200+200+150+50+75），過 1000，閃電塔另外拿到 A0CU 的 80% 魔法減傷、A0Y4，且生命值再 ×1.15。",
+          "This set leans on three non-obvious mechanics, all traceable in code. It applies only to the Nobleman skin (Hhkl), which swaps guard tower A04G for lightning tower A0DO and production point A077 for base point A04H.\n\nOne: a tower's white damage is frozen by SetUnitBaseDamage the instant it is planted and never changes. But A0DP \"Storm Crystal\", which the lightning tower gains at 500 spell power, is different: Trig_UAttacks_Actions at war3map.j:20435 recomputes dmg=150.+udg_ItemBonusDMG[n]*0.25 on every proc and fires an A0X2 chain lightning at level 6 (Ocl2 table = 7 targets, Ocl3=0 so every bounce is full damage). At 1425 spell power that is 506 per bounce, 3542 per proc, on an 8s internal cooldown. Lightning towers live 105s on a 35s cooldown, so three stand at once - roughly 1330 dps into a crowd, and this half of your output tracks whatever you are wearing right now.\n\nTwo: A0Y1 \"Shock\", granted at 300 spell power, gives the tower a 20% chance per damage event to apply Shock (line 19731, ShockUnit(a,d,0.20)). From war3map.j:2626 Shock sets key 4 to -0.20 (everyone deals +20% to that target), key 6 to -0.30 (it deals -30%), and all four status resistances to -1.00. n06F has a 100-radius full-damage splash (ua1w=msplash, ua1f/h/q=100), so one attack rolls on several units at once - the whole team's burn/bleed/disease coefficients get +1.00, done entirely by the tower with no proc items on you.\n\nThree: Magic Gear (tcas) is the only item in the map whose aura explicitly lists structures: A0MT is based on ACua with atar=\"air,friend,structure,mechanical,ground\", Uau2=5.0, radius 375 - 5 HP/sec per tower, 525 free repair over a 105-second life. Every other aura item (Protector A0HA, Aegis of Kings A0QM, Battle Standard S00J, Alarm of Valour A0SY) has no \"structure\" in its atar and does absolutely nothing for towers; this is the easiest mistake to make on this hero. Imperishable Mitre adds a 3 mana/sec aura (A0O3, radius 800, allies included).\n\nTotal spell power is 1425 (400+300+50+200+200+150+50+75), clearing 1000, so the lightning tower also gets A0CU's 80% magic mitigation, A0Y4, and 1.15x HP.",
+          "Сборка использует три неочевидных механики, все подтверждены кодом. Работает только со скином Дворянин (Hhkl): он меняет сторожевую башню A04G на башню молний A0DO и точку производства A077 на базовую точку A04H.\n\nПервое: обычный урон башни замораживается SetUnitBaseDamage при постройке. Но A0DP \"Грозовой кристалл\" (с 500 СУ) работает иначе: Trig_UAttacks_Actions (war3map.j:20435) каждый раз пересчитывает dmg=150.+udg_ItemBonusDMG[n]*0.25 и запускает A0X2 цепь молний 6 ур. (Ocl2 = 7 целей, Ocl3=0 - каждый прыжок полный). При 1425 СУ это 506 за прыжок, 3542 за срабатывание, внутренний КД 8 сек. Башни живут 105 сек при КД 35 сек - стоят три штуки, около 1330 урона в секунду по толпе, и эта половина урона следует за текущим снаряжением.\n\nВторое: A0Y1 \"Шок\" (с 300 СУ) даёт 20% наложить электрошок на каждое событие урона (строка 19731). Шок (war3map.j:2626) ставит ключ 4 на -0.20 (все бьют цель на +20%), ключ 6 на -0.30 и все четыре сопротивления статусам на -1.00. У n06F сплэш 100 с полным уроном, поэтому бросок идёт сразу по нескольким целям.\n\nТретье: Волшебная шестерёнка - единственный предмет, у чьей ауры в atar прямо указано structure: A0MT на базе ACua, atar=\"air,friend,structure,mechanical,ground\", Uau2=5.0, радиус 375 - 5 здоровья в секунду каждой башне, 525 за её жизнь. У всех остальных аур-предметов (Заступник A0HA, Эгида королей A0QM, Боевой штандарт S00J, Набат доблести A0SY) structure в atar нет, башням они не дают ничего. Нетленная митра добавляет ауру 3 маны в секунду (A0O3, радиус 800).\n\nИтого 1425 СУ - выше 1000, башня получает ещё A0CU (80% маг. защиты), A0Y4 и x1.15 здоровья."
+        ],
+        "items": [
+          "sor5",
+          "kpin",
+          "tcas",
+          "I007",
+          "fgrd",
+          "I088"
+        ],
+        "bonus": {
+          "s1": "stre",
+          "s2": "I01Q"
+        }
+      },
+      {
+        "id": "arch-thrift",
+        "c": "#7FA65C",
+        "n": [
+          "速成工地",
+          "Quick Site",
+          "Быстрая стройплощадка"
+        ],
+        "key": [
+          "4750 金越過 500 技能強度：120 秒存續、15 穿透、40% 流血全部到手。",
+          "4750 gold clears 500 spell power: 120s lifetime, 15 penetration and the 40% bleed all included.",
+          "4750 золота дают 525 силы умений: 120 сек жизни, 15 пробития и кровотечение 40%."
+        ],
+        "why": [
+          "建築師的強度是階梯狀的，不是線性的：真正值錢的是 150 和 300 這兩級，而它們便宜到中期就能湊齊。150 讓守衛塔存續從 80 秒變 120 秒——冷卻是 30 秒，所以場上同時站著的塔從 2 座直接變 4 座，等於總輸出 +100%，只要 150 點技能強度。300 再送 15 點穿透（war3map.j:48104 的 SaveReal(hash,塔,16,+15.0)），那是每次攻擊之後獨立補的 CHAOS/UNIVERSAL 傷害，不吃護甲、不吃減傷，對前期高護甲小怪特別有感。\n\n六件只要 3950 金：紫水晶 125、紫水晶戒指 125、奇術師法杖 75（由 250 金的魔咒法杖淬鍊而來）、咒術師項鍊 75、生命護符、金蛋白石。加 s1 死靈法師之杖 50、s2 能量符文 75 共 525，連 500 那一級的 40% 流血（BleedUnit(a,d,dmg×1.5,0.40)）都摸到了。生命護符 +800 與金蛋白石 +600 共 +1400 生命，直接是每座塔 +420 生命；生命護符還會每過 1 分鐘再 +50 生命上限，愈晚愈值。\n\n奇術師法杖是這套的靈魂：12 秒冷卻，對範圍 255 的敵人有 50% 機率掛「易傷」B045。腳本裡每一支狀態函式（BleedUnit 第 2125 行、ShockUnit 第 2603 行、VulnerabilityUnit）都寫 if B045 then chanse*1.50，所以塔的流血機率會從 40% 變 60%，而且對全隊所有人施加的狀態都有效。它同時淨化友軍身上的減益，對召喚物敵人另外造成 300 + 100% 技能強度 的傷害。\n\n要避開的坑：擊殺金幣類道具（詛咒之金 tels 之類）對建築師是負收益。war3map.j:9027 的 Trig_gold_Actions 讀的是 LoadReal(hash,GetHandleId(GetKillingUnit()),10)，塔的 handle 上沒有這個值，所以塔搶到的人頭只給基礎金幣、拿不到任何加成，而 tels 還會把被動收入整個關掉。同理，攻擊觸發類道具也全部無效——Trig_ItemAttacksFromHero_Conditions（第 27470 行）要求 IsUnitType(GetAttacker(),UNIT_TYPE_HERO)。",
+          "The Architect's power curve is a staircase, not a line, and the two rungs that matter - 150 and 300 - are cheap enough to own by mid-game. At 150 the guard tower's lifetime goes 80 -> 120s; against a 30s cooldown that turns 2 standing towers into 4, a flat +100% total output for 150 spell power. At 300, war3map.j:48104 runs SaveReal(hash,tower,16,+15.0): 15 penetration, an independent CHAOS/UNIVERSAL hit after each attack that ignores armour and every reduction - exactly what early high-armour creeps hate.\n\nThe six items cost 3950 gold: Amethyst 125, Amethyst Ring 125, Trickster Staff 75 (refined from the 250-gold Spell Staff), Sorcerer Necklace 75, Amulet of Life and Golden Opal. With s1 Necromancer Staff 50 and s2 Energy Rune 75 that is 525, enough to also reach the 500 gate and its 40% bleed (BleedUnit(a,d,dmg*1.5,0.40)). The +800 and +600 HP are +420 HP on every tower, and Amulet of Life keeps adding +50 max HP per game minute, so it only gets better.\n\nTrickster Staff is the heart of the set: 12s cooldown, 50% chance to apply Vulnerability (B045) to enemies in a 255 radius. Every status function in the script (BleedUnit line 2125, ShockUnit line 2603, VulnerabilityUnit) contains if B045 then chanse*1.50, so the tower's bleed chance goes from 40% to 60% - and so does every status your whole team applies. It also dispels debuffs off allies and deals 300 + 100% spell power to summoned enemies.\n\nTraps to avoid: gold-per-kill items (Cursed Gold, tels) are a net loss here. Trig_gold_Actions at war3map.j:9027 reads LoadReal(hash,GetHandleId(GetKillingUnit()),10); a tower's handle has no such value, so kills your towers take pay base gold only - and tels additionally switches your passive income off. Likewise every on-attack proc item is dead weight: Trig_ItemAttacksFromHero_Conditions (line 27470) requires IsUnitType(GetAttacker(),UNIT_TYPE_HERO).",
+          "Сила Архитектора растёт ступенями, а не линейно, и две важные ступени - 150 и 300 - стоят дёшево. На 150 время жизни сторожевой башни идёт 80 -> 120 сек; при КД 30 сек это 4 стоящие башни вместо 2, ровно +100% суммарного урона за 150 СУ. На 300 в war3map.j:48104 выполняется SaveReal(hash,башня,16,+15.0) - 15 пробития, отдельный удар CHAOS/UNIVERSAL после каждой атаки, игнорирующий броню и любое снижение.\n\nШесть предметов стоят 3950 золота; вместе с s1 (50) и s2 (75) выходит 525 силы умений - взят и порог 500 с кровотечением 40% (BleedUnit(a,d,dmg*1.5,0.40)). +1400 здоровья с предметов дают +420 каждой башне, а Амулет жизни добавляет ещё +50 к максимуму здоровья за каждую игровую минуту.\n\nПосох кудесника - основа сборки: КД 12 сек, 50% наложить уязвимость (B045) в радиусе 255. Во всех функциях статусов (BleedUnit строка 2125, ShockUnit строка 2603, VulnerabilityUnit) стоит if B045 then chanse*1.50, поэтому шанс кровотечения башни растёт с 40% до 60%, как и все статусы всей команды.\n\nЧего избегать: предметы на золото за убийство (Проклятое золото tels) здесь убыточны - Trig_gold_Actions (war3map.j:9027) читает LoadReal(hash,GetHandleId(GetKillingUnit()),10), а у башни этого значения нет. Предметы с эффектом при атаке тоже бесполезны: Trig_ItemAttacksFromHero_Conditions (строка 27470) требует IsUnitType(GetAttacker(),UNIT_TYPE_HERO)."
+        ],
+        "items": [
+          "tpow",
+          "rag1",
+          "oflg",
+          "rwiz",
+          "I07S",
+          "guvi"
+        ],
+        "bonus": {
+          "s1": "stre",
+          "s2": "I01Q"
+        }
+      }
+    ],
+    "N01K": [
+      {
+        "id": "deep-arsenal",
+        "c": "#E2601F",
+        "n": [
+          "軍火庫",
+          "Arsenal",
+          "Арсенал"
+        ],
+        "key": [
+          "技能強度 2150：過 1000 之後每一座砲塔都會跟著英雄同步發射亂射火箭，一輪 9 枚而不是 3 枚",
+          "2150 spell power: past 1000 every gun tower fires the hero's Rocket Barrage too - 9 rockets a volley instead of 3",
+          "2150 силы умений: после 1000 каждая башня повторяет «Шальные ракеты» героя - 9 ракет за залп вместо 3"
+        ],
+        "why": [
+          "這隻英雄的四個技能公式裡完全沒有屬性，只有 udg_ItemBonusDMG（技能強度）與英雄最大生命，所以技能強度是唯一的傷害鈕。Trig_HeroSkills20_Actions 有四道沒寫在技能說明裡的門檻（門檻本身只寫在召喚物身上的 A0CA 被動）：150 使砲塔存續 40→60 秒；300 給砲塔減傷 15；500 把砲塔換成 h021（濺射半徑 +25%、SaveReal(hash,塔,5,1.00) = 對 0-1 級敵人傷害 +100%）；1000 讓每一座 h021 在英雄施法時額外發射一輪火箭，而且 SaveUnitHandle(hash,火箭,13,英雄) 把傷害掛回英雄。2150 技能強度下：砲塔每發 90+0.15×2150=412（1d1，固定值），2.5 秒一發，對小兵再 ×2；火箭每枚 150+0.25×2150=687.5，蔑視者之戒 key6 +0.30 後 894，冷卻 10−floor(2150/150) 取下限 5 秒；場上兩座砲塔時一輪就是 9 枚 8,044 傷害。地雷每顆 120+430=550→715。60 秒對 6 隻聚集的 1 級敵人估算約 21.9 萬，其中砲塔普攻 39%、砲塔連動火箭 22%、地雷 24%、本體火箭 15%。代價是這套一點生命都沒堆：以 25 級（地圖上限，war3mapMisc MaxHeroLevel=25）約 52 力量推算，英雄最大生命只有約 1,400，砲塔只有 1,080 耐久，正面吃傷會很快被拆。（N01K 沒有覆寫力量成長，成長值取自基礎物件，數字可能有偏差，但「不堆生命 = 砲塔很脆」這件事不變。）",
+          "None of this hero's four spell formulas reads an attribute - only udg_ItemBonusDMG (spell power) and the hero's max HP - so spell power is the only damage knob. Trig_HeroSkills20_Actions hides four thresholds that the skill tooltips never mention (they are only described on the summon's A0CA passive): 150 extends tower life 40s -> 60s; 300 grants 15 flat damage reduction; 500 swaps the tower for h021 (+25% splash radius, SaveReal(hash,tower,5,1.00) = +100% damage vs level 0-1 enemies); 1000 makes every h021 fire an extra Rocket Barrage whenever the hero casts, with SaveUnitHandle(hash,rocket,13,hero) crediting the damage back to the hero. At 2150 spell power: tower hits for 90+0.15*2150=412 (1d1, deterministic) every 2.5s, doubled against trash; each rocket is 150+0.25*2150=687.5, 894 after the Ring of Contempt's key6 +0.30, on a 10-floor(2150/150) cooldown clamped to 5s; with two towers up a single volley is 9 rockets for 8,044. Mines are 120+430=550 -> 715 each. Over 60s against six clustered level-1 enemies that is roughly 219k, split 39% tower attacks, 22% tower-echoed rockets, 24% mines, 15% the hero's own rockets. The price: hero max HP is only 1,400 (52 strength at level 25), so towers get just 1,080 HP and melt if they tank.",
+          "Ни одна из четырёх формул героя не читает характеристики - только udg_ItemBonusDMG (сила умений) и макс. здоровье героя. В Trig_HeroSkills20_Actions спрятаны четыре порога, которых нет в описании умений (они описаны лишь в пассивке саммона A0CA): 150 - башня живёт 60 сек. вместо 40; 300 - снижение получаемого урона на 15; 500 - башня меняется на h021 (радиус разлёта +25%, SaveReal(hash,башня,5,1.00) = +100% урона врагам 0-1 уровня); 1000 - каждая h021 повторяет «Шальные ракеты» при касте героя, причём SaveUnitHandle(hash,ракета,13,герой) записывает урон на героя. При 2150: башня бьёт на 90+0.15*2150=412 каждые 2.5 сек., по мелочи вдвое; ракета - 150+0.25*2150=687.5, с key6 +0.30 от «Кольца презрения» = 894, перезарядка 10-floor(2150/150) с полом 5 сек.; при двух башнях залп - 9 ракет на 8,044. Мина - 120+430=550 -> 715. За 60 сек. по шести сгруппированным врагам 1 уровня выходит ~219 тыс.: 39% атаки башен, 22% ракеты от башен, 24% мины, 15% собственные ракеты. Цена - всего 1,400 макс. здоровья героя, поэтому у башни лишь 1,080 прочности."
+        ],
+        "items": [
+          "I00E",
+          "sor5",
+          "kpin",
+          "fgrd",
+          "ofro",
+          "I0AN"
+        ],
+        "bonus": {
+          "s1": "stre",
+          "s2": "I01Q"
+        }
+      },
+      {
+        "id": "deep-fortress",
+        "c": "#4C7FA8",
+        "talent": "A0RK",
+        "n": [
+          "鋼鐵防線",
+          "Iron Line",
+          "Железная линия"
+        ],
+        "key": [
+          "砲塔／工廠／地精的耐久直接抄英雄最大生命的 45%／50%／20%，所以堆生命值就是在堆召喚物",
+          "Tower, factory and goblin HP are literally 45% / 50% / 20% of the hero's max HP - stacking HP is stacking summons",
+          "Прочность башни, завода и гоблинов - это 45% / 50% / 20% макс. здоровья героя: качая HP, вы качаете саммонов"
+        ],
+        "why": [
+          "程式碼寫得很直白：砲塔 SetUnitLife(0.45×英雄最大生命 + 75+75×等級)、工廠 0.50×+500、地精 0.20×+125、坦克 0.50×+100+100×等級。軍火庫那套的英雄最大生命約 1,400，砲塔只有 1,080；這套加了 7,275 生命後英雄約 8,675，砲塔 4,354、地精 1,860、工廠 4,838、坦克 4,938 —— 大約 4 倍（道具生命遠大於裸生命，所以就算基礎力量推算有偏差，倍率也只在 3.5～4 倍之間），而且魔法齒輪 tcas 的 A0MT 是 ACua 光環，atar 明寫 structure/mechanical、範圍 375、Uau2=5.0，等於對砲塔與坦克每秒回 5 點（這是全地圖唯一真的能修召喚物的道具）。技能強度仍有 1,025（鋼鐵守護者啟動成 wswd 後 1,175），四道門檻全部開著：砲塔還是 h021、對 0-1 級敵人 +100%、火箭仍會連動。代價要說清楚：砲塔每發只有 244（軍火庫是 412），60 秒總傷害估算 11.1 萬對 21.9 萬，少 49%。天賦選土製改裝而不是工兵，因為這套的地雷只有 325 一顆，工兵的加成不划算，而據點建築多升一級對守線更有價值。共產主義鬥士皮膚跑這套最好：Orex 在 w3u 裡明寫 ustr=24、ustp=3.0（25 級 96 點力量），本體 N01K 只寫 ustr=16、成長沿用基礎物件，兩者差距至少 20 點以上 = 500 以上最大生命，全部按比例轉給坦克與地精。",
+          "The code is blunt: tower SetUnitLife(0.45 * hero max HP + 75+75*level), factory 0.50x+500, goblin 0.20x+125, tank 0.50x+100+100*level. The Arsenal build leaves the hero at 1,400 max HP and the tower at 1,080. This build adds 7,275 HP, so the hero sits at 8,675 and the tower at 4,354, goblins 1,860, factory 4,838, tank 4,938 - four times tougher. Magic Gear's A0MT is an ACua aura whose atar explicitly lists structure and mechanical, radius 375, Uau2=5.0, so it repairs towers and tanks for 5 HP/s - the only item in the map that actually heals your summons. Spell power is still 1,025 (1,175 once the Iron Guardian is toggled to wswd), so all four thresholds stay lit: h021 towers, +100% versus level 0-1, rocket echo included. Be honest about the cost: the tower hits for 244 instead of 412 and the 60-second estimate drops from 219k to 111k, a 49% loss. Take Home-made Modding rather than Sapper: mines only hit for 325 here so the extra 19 mines are not worth much, while one more upgrade tier on base and support points is. The Champion of Communism skin suits this build best - Orex has 24 strength +3.0/level (96 at level 25) versus the base hero's 16 +1.5/level (52), which is 1,100 extra max HP before items.",
+          "Код прямолинеен: башня SetUnitLife(0.45 * макс. HP героя + 75+75*уровень), завод 0.50x+500, гоблин 0.20x+125, танк 0.50x+100+100*уровень. В «Арсенале» у героя 1,400 HP и у башни 1,080. Здесь +7,275 HP: герой 8,675, башня 4,354, гоблины 1,860, завод 4,838, танк 4,938 - вчетверо крепче. У «Волшебной шестеренки» способность A0MT - аура ACua, в atar явно указаны structure и mechanical, радиус 375, Uau2=5.0, то есть 5 ед./сек. ремонта башням и танку (единственный предмет в карте, который реально лечит саммонов). Сила умений 1,025 (1,175 после активации wswd), все четыре порога работают. Цена: башня бьёт на 244 вместо 412, оценка за 60 сек. падает с 219 тыс. до 111 тыс. (-49%). Талант - «Самопальные разработки», а не «Сапёр»: мины тут всего по 325, зато лишний уровень построек важнее. Скин «Чемпион коммунизма» подходит лучше всего: у Orex сила 24 +3.0/уровень (96 на 25-м) против 16 +1.5/уровень (52), это +1,100 макс. здоровья ещё до предметов."
+        ],
+        "items": [
+          "I00O",
+          "sor5",
+          "kpin",
+          "wshs",
+          "modt",
+          "tcas"
+        ],
+        "bonus": {
+          "s1": "stre",
+          "s2": "I01Q"
+        }
+      },
+      {
+        "id": "deep-harvest",
+        "c": "#C9A227",
+        "talent": "A0LS",
+        "n": [
+          "地雷收割",
+          "Minefield Harvest",
+          "Жатва минного поля"
+        ],
+        "key": [
+          "地雷的傷害是 UnitDamageTarget(udg_Hero[n],…)，所以每一次地雷擊殺都算英雄擊殺，把整套「擊殺時」道具餵飽",
+          "Mine damage is UnitDamageTarget(udg_Hero[n],...), so every mine kill counts as a hero kill and feeds the whole on-kill item family",
+          "Урон мины - это UnitDamageTarget(udg_Hero[n],...), поэтому каждое убийство миной засчитывается герою и кормит все предметы «при убийстве»"
+        ],
+        "why": [
+          "Trig_HeroDeath20_Actions 對 n01S（地雷）死亡的處理是 UnitDamageTarget(udg_Hero[n], 目標, 20+20×等級+0.20×技能強度, …)，傷害來源是英雄本人，而且外面沒有 DisableTrigger。所以地雷不是「召喚物傷害」，它是不折不扣的英雄傷害：吃穿透（key 16）、吃 key6 造成傷害加成，而且擊殺會通過 Trig_ItemKills_Conditions（只檢查 GetKillingUnit 的擁有者敵對、目標等級≠0）。這套就是把整排「擊殺時」道具塞進去：吸收加速器 I0AZ 每殺一隻 udg_ItemBonusDMG[n] += 1，永久且沒有上限；收割項鍊 I079 每殺 +1 力量直到基礎力量 80（本體 25 級的基礎力量遠低於 80，推算約 52，還能吃約 28 次 = +700 最大生命 = 砲塔 +315）；魔法小瓶 mnst 每殺回 20 生命 8 法力；詛咒之金 tels 擊殺金幣 +150%。搭工兵天賦後一次雷區是 30 顆（A0RJ，冷卻 27 秒、範圍 500），每顆 20+100+0.2×1650=450，蔑視者之戒 +30% 後 585，一片雷區清掉一整波就是幾十點永久技能強度。開局 1,650 技能強度，清 500 隻之後是 2,150，等於免費長出一件星界耳環。要注意兩件事：詛咒之金會完全關掉被動金幣收入（Trig 16668 直接把 Доход 顯示成 0）；還有英雄死亡時 udg_Hero[n] 是屍體，那段時間地雷不會造成任何傷害。共產主義鬥士皮膚不要跑這套 —— Orex 的 w3u 明寫 ustr=24、ustp=3.0，25 級基礎力量 96 > 80，收割項鍊從第一秒起就完全失效。",
+          "Trig_HeroDeath20_Actions handles the death of n01S (a mine) with UnitDamageTarget(udg_Hero[n], target, 20+20*level+0.20*spell power, ...) - the source is the hero himself, and nothing wraps it in DisableTrigger. So mines are not summon damage, they are hero damage: they carry penetration (key 16) and the key6 damage-dealt coefficient, and their kills pass Trig_ItemKills_Conditions (which only checks that the victim is hostile to the killer's owner and has level != 0). This build stuffs in the whole on-kill family: Absorbing Accelerator I0AZ adds udg_ItemBonusDMG[n] += 1 per kill, permanently and with no cap; Reaper's Necklace I079 adds +1 strength per kill until base strength hits 80 (the base hero is at 52 at level 25, so 28 more = +700 max HP = +315 tower HP); Magic Vial mnst restores 20 HP and 8 MP per kill; Cursed Gold tels gives +150% kill gold. With the Sapper talent one cast is 30 mines (A0RJ, 27s cooldown, 500 radius) at 20+100+0.2*1650=450 each, 585 after the +30%, so clearing a wave with one field is tens of permanent spell power. You start at 1,650 and after 500 kills you are at 2,150 - a free Astral Earring. Two caveats: Cursed Gold switches off passive income entirely (line 16668 prints income as 0), and while the hero is dead udg_Hero[n] is a corpse, so mines deal no trigger damage at all. Do not run this on the Champion of Communism skin - Orex has 96 base strength at level 25, so I079 is already dead weight.",
+          "Trig_HeroDeath20_Actions на смерть n01S (мины) вызывает UnitDamageTarget(udg_Hero[n], цель, 20+20*уровень+0.20*сила умений, ...) - источник урона сам герой, и DisableTrigger вокруг нет. Значит мины - не урон саммона, а урон героя: работает пробитие (key 16) и коэффициент key6, а убийства проходят Trig_ItemKills_Conditions (проверяются только враждебность и уровень цели != 0). Сборка набита предметами «при убийстве»: «Поглощающий ускоритель» I0AZ даёт udg_ItemBonusDMG[n] += 1 за убийство, навсегда и без предела; «Ожерелье жнеца» I079 - +1 силы за убийство, пока базовая сила < 80 (у героя на 25-м уровне 52, значит ещё 28 = +700 макс. HP = +315 башне); «Волшебный пузырёк» mnst - 20 HP и 8 MP за убийство; «Проклятое золото» tels - +150% золота за убийства. С талантом «Сапёр» один каст - 30 мин (A0RJ, 27 сек., радиус 500) по 20+100+0.2*1650=450, с +30% это 585. Старт - 1,650 силы умений, после 500 убийств - 2,150, то есть бесплатная «Астральная серьга». Две оговорки: «Проклятое золото» полностью отключает пассивный доход (строка 16668), а пока герой мёртв, udg_Hero[n] - труп и мины не наносят урона вовсе. На скине «Чемпион коммунизма» так играть не стоит: у Orex базовая сила 96 > 80, I079 бесполезен."
+        ],
+        "items": [
+          "I00E",
+          "sor5",
+          "I0AZ",
+          "I079",
+          "mnst",
+          "I0AN"
+        ],
+        "bonus": {
+          "s1": "tels",
+          "s2": "I01Q"
+        }
+      },
+      {
+        "id": "deep-scrapyard",
+        "c": "#6F8C7A",
+        "talent": "A0LS",
+        "n": [
+          "廢料工班",
+          "Scrapyard Crew",
+          "Бригада со свалки"
+        ],
+        "key": [
+          "8,000 金就把技能強度推到 1,075，150／300／500／1000 四道門檻一次全開",
+          "8,000 gold buys 1,075 spell power - every one of the 150 / 300 / 500 / 1000 thresholds at once",
+          "8,000 золота дают 1,075 силы умений - все четыре порога 150 / 300 / 500 / 1000 сразу"
+        ],
+        "why": [
+          "這隻英雄的成長是階梯狀的，砸錢砸到 1,000 技能強度的邊際效益遠大於之後每一點，所以中期最重要的是「便宜地過門檻」。純技能強度／金幣效率最好的是紫水晶 tpow（125／600 金 = 0.21）、純淨紫水晶 sor5（400／2200）、紫水晶戒指 rag1（125／900）、潛能覺醒 schl 與風暴權杖 anfg（各 100／1000）、諾伊斗篷 asbl（100／1500，順便 +5 護甲），再加吸收器裝死靈法師之杖（+50）與祕密寶盒的能量符文（+75），總共 1,075 技能強度、8,000 金 —— 軍火庫那套要 21,250 金才拿到 2,150。過線後拿到的東西：砲塔升成 h021（濺射半徑 +25%、對 0-1 級敵人 +100%）、存續 60 秒、減傷 15、砲塔會跟著放火箭；1,075 也超過 750，火箭冷卻已經壓到下限 5 秒（公式 10−floor(SP/150)）。實際數值：砲塔每發 251、地雷每顆 335、火箭每枚 419，60 秒估算約 13.5 萬，是軍火庫 21.9 萬的 62%，但只花了 38% 的錢。天賦選工兵，因為 30 顆地雷是這個價位唯一能大幅放大的東西。風暴權杖本身還是一發 150+0.5×1075=688 的範圍雷擊，而且它是主動道具 —— 主動道具會觸發 EVENT_UNIT_SPELL_EFFECT，所以也會順便打出一輪亂射火箭。",
+          "This hero's power curve is a staircase, and the marginal value of reaching 1,000 spell power dwarfs every point after it, so the mid-game job is simply to cross the thresholds cheaply. The best spell power per gold: Amethyst tpow (125/600 = 0.21), Pure Amethyst sor5 (400/2200), Amethyst Ring rag1 (125/900), Awakened Potential schl and Storm Staff anfg (100/1000 each), Noi's Cloak asbl (100/1500, plus 5 armor), then Necromancer's Staff in the absorber (+50) and Energy Rune from the secret box (+75). That is 1,075 spell power for 8,000 gold, where Arsenal needs 21,250 to reach 2,150. Crossing the line buys: h021 towers (+25% splash radius, +100% versus level 0-1 enemies), 60-second duration, 15 flat damage reduction, and towers echoing the Rocket Barrage; 1,075 also clears 750, so the rocket cooldown is already at its 5-second floor (formula 10-floor(SP/150)). Real numbers: 251 per tower shot, 335 per mine, 419 per rocket, roughly 135k over 60 seconds - 62% of Arsenal's 219k for 38% of the gold. Take Sapper, since 30 mines is the only large multiplier available at this price. Storm Staff also throws a 150+0.5*1075=688 area lightning, and because it is an active item it fires EVENT_UNIT_SPELL_EFFECT, which triggers a Rocket Barrage volley as well.",
+          "Сила героя растёт ступеньками, и выгода от достижения 1,000 силы умений намного выше, чем от каждой единицы после. Задача середины игры - дёшево перешагнуть пороги. Лучшее соотношение силы умений к золоту: «Аметист» tpow (125/600 = 0.21), «Чистый аметист» sor5 (400/2200), «Аметистовое кольцо» rag1 (125/900), «Пробуждение потенциала» schl и «Посох бури» anfg (по 100/1000), «Плащ Ноя» asbl (100/1500, плюс 5 защиты), затем «Посох некроманта» в поглотителе (+50) и «Руна энергии» из тайника (+75). Итого 1,075 силы умений за 8,000 золота против 21,250 у «Арсенала». За порогом: башня h021 (+25% радиус разлёта, +100% по врагам 0-1 уровня), 60 сек. жизни, -15 получаемого урона и повтор ракет башнями; 1,075 больше 750, поэтому перезарядка ракет уже на минимуме 5 сек. (формула 10-floor(SP/150)). Цифры: 251 за выстрел башни, 335 за мину, 419 за ракету, около 135 тыс. за 60 сек. - 62% от 219 тыс. «Арсенала» за 38% денег. Талант - «Сапёр»: 30 мин единственный крупный множитель в этой ценовой категории. «Посох бури» даёт молнию на 150+0.5*1075=688 и, будучи активным предметом, вызывает EVENT_UNIT_SPELL_EFFECT, то есть заодно и залп ракет."
+        ],
+        "items": [
+          "sor5",
+          "tpow",
+          "rag1",
+          "schl",
+          "anfg",
+          "asbl"
+        ],
+        "bonus": {
+          "s1": "stre",
+          "s2": "I01Q"
+        }
+      }
+    ],
+    "Ekee": [
+      {
+        "id": "astro-nova",
+        "c": "#8E4EC6",
+        "n": [
+          "星核引爆",
+          "Void Nova",
+          "Пустотная новая"
+        ],
+        "key": [
+          "乳光對每個目標打 67 跳、虛空充能 26 跳、引爆內圈 2 跳 —— 穿透是唯一按「傷害事件次數」計價的屬性，所以 20 穿透的熾天使長矛贏過 300 技能強度的大法師長袍",
+          "Opalescence hits each target 67 times, Void Charge 26, the inner detonation twice - penetration is the only stat priced per damage event, so 20 pen on the Seraph Spear beats 300 spell power on the Archmage Robe",
+          "Опалесценция бьёт по цели 67 раз, Пустотный заряд - 26: пробитие считается за каждое событие урона, поэтому 20 пробития выгоднее 300 силы умений"
+        ],
+        "why": [
+          "三個技能的係數都是從 war3map.j 抄的。乳光的每跳傷害在施法瞬間就凍結成 30＋技能強度×0.05（3695 行），之後 time 從 10.0 每跳扣 0.15，共 67 跳，等於每個目標 2010＋技能強度×3.35。虛空引爆的 HeroA54_Boom（64905）先用 225 半徑點名一次、再用 450 半徑點名一次，內圈目標因此被結算兩遍 —— 說明寫的「內圈全額、外圈 50%」是靠重複計算做出來的，內圈＝當前法力×0.50＋技能強度×1.00，而且是兩個獨立的傷害事件。虛空充能每 0.15 秒一跳、共 26 跳，每跳 (120＋技能強度×0.15＋當前法力×0.10)×0.15。關鍵在於：每一次 UnitDamageTarget 都會讓 Trig_HeroTakeDamage_Actions 第 20057 行追加一段等於穿透值、走 CHAOS／UNIVERSAL、不吃護甲也不吃任何減傷的傷害。所以一輪 Q→Z→R 對同一個目標會結算 95 次穿透。這套因此把 300 技能強度的大法師長袍換成 100 技能強度＋20 穿透的熾天使長矛：技能強度少 200 讓乳光少 670，但 20 穿透換回 67×20＝1340（乳光）＋26×20＝520（虛空充能），淨賺 1190 而且完全無視護甲。成品：技能強度 1840、最大法力 5145、穿透 26。乳光單目標 8174＋1742＝9916，引爆內圈 4412＋52，外圈半價；水晶項鍊的 +11%（hash key 6，無條件）與大法師權杖的 +25% 對英雄（key 3）都是加進 DefCof 再乘上去。代價講清楚：法力回復只有約 26/秒，而 Q＋Z 每 10 秒循環就要 37/秒 —— 這是純爆發配裝，開場能連打 5 輪，之後要等回魔，要續戰請看「恆星屏障」。",
+          "All three coefficients are read straight out of war3map.j. Opalescence freezes its per-tick damage at cast time to 30 + spell power x 0.05 (line 3695); `time` then counts down from 10.0 in 0.15 steps, giving 67 ticks, so each target takes 2010 + SP x 3.35. Void Detonation's HeroA54_Boom (line 64905) enumerates a 225 group and then a separate 450 group, so inner targets are damaged twice - the tooltip's \"full damage inside, 50% outside\" is produced by that double count. Inner = current mana x 0.50 + SP x 1.00, delivered as two separate damage events. Void Charge ticks every 0.15 s for 26 ticks at (120 + SP x 0.15 + current mana x 0.10) x 0.15 each. The decisive detail: every one of those UnitDamageTarget calls makes Trig_HeroTakeDamage_Actions line 20057 append a second hit equal to your penetration, dealt as CHAOS/UNIVERSAL - it ignores armor and every damage reduction in the game. One Q -> Z -> R rotation therefore resolves penetration 95 times on the same target. That is why this build drops the Archmage Robe (300 SP) for the Seraph Spear (100 SP + 20 pen): losing 200 SP costs Opalescence 670 damage, but 20 pen returns 67 x 20 = 1340 on the ult plus 26 x 20 = 520 on Void Charge - a net +1190 that no armor can touch. Result: 1840 spell power, 5145 max mana, 26 penetration. Opalescence deals 8174 + 1742 = 9916 per target, inner detonation 4412 + 52, outer half. The Crystal Necklace's +11% (hash key 6, unconditional) and the Archmage Staff's +25% vs heroes (key 3) both feed DefCof on top. The honest cost: about 26 mana/sec of regeneration against 37 mana/sec for a Q+Z loop every 10 s - this is a burst kit, good for roughly five rotations from full, then you wait. For sustain take Stellar Bastion instead.",
+          "Все коэффициенты взяты из war3map.j. Урон Опалесценции фиксируется в момент каста как 30 + сила умений x 0.05 (строка 3695), тиков ровно 67, итого 2010 + СУ x 3.35 на цель. HeroA54_Boom (64905) перебирает область 225, а затем отдельно область 450, поэтому цели во внутреннем круге получают урон дважды: внутри = текущая мана x 0.50 + СУ x 1.00, и это два отдельных события урона. Пустотный заряд - 26 тиков по (120 + СУ x 0.15 + мана x 0.10) x 0.15. Главное: каждое событие урона добавляет в строке 20057 отдельный удар, равный пробитию, типом CHAOS/UNIVERSAL - без учёта брони и любых снижений. За ротацию Q -> Z -> R пробитие срабатывает 95 раз. Поэтому вместо Мантии архимага (300 СУ) взято Копьё серафима (100 СУ + 20 пробития): минус 670 урона ульты, но плюс 1340 (ульта) и 520 (заряд) чистого пробития. Итог: 1840 СУ, 5145 маны, 26 пробития; Опалесценция 9916 по цели, подрыв 4412 внутри. Минус: реген около 26 маны/сек против 37 на цикл Q+Z - это чисто бёрст-сборка примерно на пять ротаций."
+        ],
+        "items": [
+          "I00E",
+          "sor5",
+          "ankh",
+          "fgrd",
+          "mnsf",
+          "lgdh"
+        ],
+        "bonus": {
+          "s1": "rump",
+          "s2": "I08W"
+        }
+      },
+      {
+        "id": "astro-bastion",
+        "c": "#2E8B9E",
+        "n": [
+          "恆星屏障",
+          "Stellar Bastion",
+          "Звёздный бастион"
+        ],
+        "key": [
+          "引爆吃的是最大法力，所以續戰裝幾乎不用付輸出稅：引爆只掉 4%，換來 60% 魔法減傷、97 法力/秒與每次施法 +20 護甲",
+          "The detonation scales off mana, so sustain items cost almost no damage: 4% less detonation for 60% magic resist, 97 mana/sec and +20 armor per cast",
+          "Подрыв масштабируется от маны, поэтому предметы на выживание почти ничего не стоят: -4% урона подрыва за 60% магзащиты, 97 маны/сек и +20 брони за каждый каст"
+        ],
+        "why": [
+          "占星師的傷害有一半掛在法力上（引爆內圈＝當前法力×0.50＋技能強度×1.00，虛空充能每秒＋當前法力×0.10），所以「加法力的續戰裝」在這隻身上等於半件輸出裝，這是這套能便宜換到生存的原因。大奶酪走乘算器欄位，程式碼是 SetUnitMana(u, MP+MP/5)，直接把最大法力乘 1.2；配上水晶項鍊的 +40 智力／+800 法力，最大法力 6486 —— 引爆內圈 4393，只比「星核引爆」的 4412 低 0.4%。真正被犧牲的是乳光：技能強度 1150 對 1840，乳光從 8174 掉到 5862（−28%），而且沒有穿透。換回來的三樣東西都查過原始碼：生命之冠在 Check_1sec_Item（29736 行）每秒回復最大生命與最大法力各 1%，這裡是 64.9 法力/秒，加上裝備 21 與智力本身的回復，總共約 97/秒，是滿頻施法（3495 法力/分＝58/秒）的 1.7 倍，可以無限循環。法力催化劑在 Trig_UseSkillsEndcast_Actions 第 28960 行每次施法給 +20×(1＋裝備技能威力) 護甲、持續 3 秒、可疊加，而且那一段完全沒有冷卻檢查 —— 占星師 Q／W／E／Z 輪流按下去，護甲實際常駐在 +40～60。傲羅斗篷的 60% 魔法傷害減免是不可疊加屬性取最高值，配 5＋5 基礎護甲。占星師沒有普通攻擊（單位資料 uaen=0），被貼身就只能靠銀河把人推開，這套是唯一能站在乳光半徑 400 的圈子裡不被秒的版本。",
+          "Half of the Astromancer's damage hangs off mana (inner detonation = current mana x 0.50 + SP x 1.00; Void Charge adds current mana x 0.10 per second), so a mana-flavoured sustain item is half a damage item on this hero - that is why survivability is nearly free here. The Big Cheese takes the multiplier slot and its code is literally SetUnitMana(u, MP + MP/5), a straight x1.2 on maximum mana; together with the Crystal Necklace (+40 INT, +800 mana) that is 6486 max mana, and an inner detonation of 4393 - only 0.4% behind Void Nova's 4412. What is actually sacrificed is Opalescence: 1150 spell power instead of 1840 drops the ult from 8174 to 5862 (-28%), and there is no penetration. The three things bought back are all code-verified. The Crown of Life ticks in Check_1sec_Item (line 29736) for 1% of max HP and 1% of max mana every second - 64.9 mana/sec here; with 21 from items and intellect's own regen that is about 97/sec, 1.7x the 58/sec that full-rate casting costs, so the rotation never stops. The Mana Catalyst fires in Trig_UseSkillsEndcast_Actions line 28960 for +20 x (1 + mod power) armor for 3 s, stacking, with no cooldown check in that branch at all - cycling Q/W/E/Z keeps you at roughly +40 to +60 armor permanently. The Auror Cloak's 60% magic resist is a no-stack stat taken at its maximum, on top of 5+5 flat armor. The Astromancer has no attack at all (unit field uaen = 0), so once something reaches her she only has Milky Way to push it away - this is the one version that can stand inside her own 400-radius ult.",
+          "Половина урона Астроманта завязана на ману (подрыв внутри = текущая мана x 0.50 + СУ x 1.00), поэтому предметы на выживание с маной почти не стоят урона. Большой сыр занимает слот множителя, в коде это SetUnitMana(u, MP + MP/5) - ровно x1.2 к максимуму маны; вместе с Хрустальным ожерельем это 6486 маны и подрыв 4393 - всего на 0.4% ниже, чем у Пустотной новой. Жертвуется Опалесценция: 1150 СУ вместо 1840, ульта падает с 8174 до 5862. Взамен: Корона жизни в Check_1sec_Item (строка 29736) даёт 1% максимума HP и маны в секунду - 64.9 маны/сек, суммарно около 97/сек против 58/сек на полную ротацию. Катализатор маны в строке 28960 даёт +20 брони на 3 сек за каждый каст без проверки перезарядки - фактически постоянные +40...60 брони. Плащ аврора - 60% магзащиты. У Астроманта вообще нет атаки (uaen = 0), поэтому только эта сборка позволяет стоять внутри собственной ульты."
+        ],
+        "items": [
+          "I00E",
+          "I0A9",
+          "ram2",
+          "mnsf",
+          "oven",
+          "I06W"
+        ],
+        "bonus": {
+          "s1": "tgxp",
+          "s2": "I08Z"
+        }
+      },
+      {
+        "id": "astro-ironstar",
+        "c": "#C0A062",
+        "n": [
+          "鋼鐵星辰",
+          "Iron Star",
+          "Железная звезда"
+        ],
+        "key": [
+          "鋼鐵守護者的「每秒消耗 1% 法力」與耀目法光是同一種光環、數值剛好 −0.01 與 +0.01；扭曲權杖的爆炸讀的是最大法力，花掉的法力不會削弱它",
+          "The Iron Guardian's \"1% mana per second\" upkeep and Radiant Light are the same aura type with values of exactly -0.01 and +0.01; and the Twisted Staff's blast reads MAX mana, so spending mana never shrinks it",
+          "Расход Железного стража и Сияющий свет - одна и та же аура со значениями -0.01 и +0.01; взрыв Искажённого посоха считает МАКСИМУМ маны, поэтому траты его не уменьшают"
+        ],
+        "why": [
+          "兩個支點都在物件資料裡。第一：鋼鐵守護者（啟動）wswd 身上掛的隱藏技能 A07Q 是光輝光環（ACba），Hab1＝−0.01、只作用自己、buff 是 B029；占星師的耀目法光 A0BQ 是同一個基底 ACba，Hab1＝+0.01、範圍 99999、buff 是 B00L。buff ID 不同所以兩個都會生效，數值一正一負剛好抵銷。而且這是全地圖唯一一對：其他同型光環（不朽法冠 A0O3＝3.0、生命之泉 3／4.5／6／7.5、抑制光環 −12～−36）都是整數點數，說明也寫「3 點/秒」—— 這強烈暗示 Hab1 其實是「每秒幾點法力」，也就是說鋼鐵守護者的維持費實際只有每秒 0.01 點、根本不存在（同理耀目法光的「1% 法力回復」也只有 0.01 點/秒，說明與實作不符）。兩種解釋下這套都成立：不是沒有代價，就是代價被自己的光環吃掉。於是啟動態的 +20 護甲、+2000 生命、+300 技能強度是白拿的，等於一格裝備同時是坦裝也是全地圖第二高的單件技能強度。（撿到的是未啟動的鋼鐵守護者，按一下就換成啟動態 wswd；檢查器列出的技能強度 1425 是未啟動的數字，啟動後是 1575。）第二：扭曲權杖走 BreachBuffUnit（28650 行），在 Trig_UseSkillsEndcast_Actions 第 29080 行以 chance=1.00 呼叫，而且那個分支沒有任何冷卻檢查 —— 每施放一次技能就 +25 技能強度／15 秒，第 15 層清空並對 900 範圍內最多 15 個敵人造成「最大法力×0.75」（28681 行）。注意是最大法力不是當前法力，所以你把法力全花在堆疊上完全不影響爆炸威力。這裡最大法力 6252（大奶酪 ×1.2 之後），一顆炸彈就是 4689×15＝約 7 萬，再乘上蔑視者之戒的 +30%（key 6，對非英雄）與水晶項鍊的 +11%，對雜兵是 6096/目標。占星師有 Q／W／E／Z／R 五顆按鈕，一分鐘約 17～18 次施放，等於一分鐘一顆炸彈。同時技能強度 1575（含 15 層時 1950）、引爆內圈 4701 是四套裡最高的。",
+          "Both pivots come out of the object data. First: the activated Iron Guardian (wswd) carries a hidden ability A07Q, a Brilliance Aura (ACba) with Hab1 = -0.01, self only, buff B029. The Astromancer's Radiant Light (A0BQ) is the same ACba base with Hab1 = +0.01, radius 99999, buff B00L. Different buff IDs, so both apply, and the values are exactly equal and opposite. This is the only such pair in the map: every other aura of that type uses whole-number values (Immortal Mitre A0O3 = 3.0, the mana fountains 3/4.5/6/7.5, the suppression aura -12 to -36) and their tooltips say \"3 points per second\" - which strongly suggests Hab1 is flat mana per second, i.e. the Iron Guardian's upkeep is really 0.01 mana/sec and does not exist at all (and Radiant Light's advertised \"1% mana regen\" is likewise only 0.01/sec, tooltip not matching implementation). The build works under either reading: either there is no cost, or your own aura eats it. So the activated form's +20 armor, +2000 HP and +300 spell power are free - one slot that is simultaneously a tank item and the second-largest single source of spell power in the game. (You pick up the inactive Iron Guardian and click it once to switch to wswd; the checker's 1425 spell power is the inactive figure, 1575 once activated.) Second: the Twisted Staff runs BreachBuffUnit (line 28650), called from Trig_UseSkillsEndcast_Actions line 29080 with chance = 1.00, and that branch contains no cooldown check at all - every cast gives +25 spell power for 15 s, and the 15th stack clears the buff and deals MAX mana x 0.75 (line 28681) to up to 15 enemies within 900. Max, not current: emptying your bar to build the stacks does not shrink the bomb. Here max mana is 6252 after the Big Cheese's x1.2, so one blast is 4689 x 15 targets, about 70k, raised to 6096 per target against non-heroes by the Ring of Contempt (+30%, hash key 6) and the Crystal Necklace (+11%). With five castable buttons the Astromancer fires roughly 17-18 spells a minute, i.e. one bomb per minute. Spell power still lands at 1575 (1950 at 15 stacks) and the 4701 inner detonation is the highest of the four builds.",
+          "Обе опоры - из данных объектов. Первое: у активированного Железного стража (wswd) есть скрытая способность A07Q - аура просветления (ACba) с Hab1 = -0.01, только на себя, бафф B029. Сияющий свет Астроманта (A0BQ) - та же база ACba, Hab1 = +0.01, радиус 99999, бафф B00L. ID баффов разные, значит работают обе, а значения ровно противоположны. Это единственная такая пара на карте: все прочие ауры того же типа используют целые значения (Нетленная митра A0O3 = 3.0, фонтаны 3/4.5/6/7.5, аура подавления -12...-36) и в описаниях сказано \"3 ед./сек\" - то есть Hab1 почти наверняка это плоские единицы маны в секунду, и расход Железного стража на деле равен 0.01 в секунду, то есть его нет вовсе. При любом прочтении сборка работает. Значит +20 брони, +2000 HP и +300 силы умений достаются бесплатно. (Подбирается неактивный Железный страж, одно нажатие переключает его в wswd; 1425 силы умений в проверке - это неактивная форма, после активации 1575.) Второе: Искажённый посох вызывает BreachBuffUnit (28650) из строки 29080 с шансом 1.00 и без проверки перезарядки: каждый каст даёт +25 СУ на 15 сек, а 15-й стак взрывается на МАКСИМУМ маны x 0.75 (строка 28681) по 15 врагам в радиусе 900. Именно максимум - потраченная мана взрыв не ослабляет. Здесь это 6252 маны, то есть 4689 x 15 целей, а с +30% Кольца презрения и +11% ожерелья - 6096 по цели. Пять кнопок дают около 17-18 кастов в минуту, то есть примерно один взрыв в минуту."
+        ],
+        "items": [
+          "wshs",
+          "shea",
+          "oven",
+          "mnsf",
+          "I0AN",
+          "I00E"
+        ],
+        "bonus": {
+          "s1": "rump",
+          "s2": "I08Z"
+        }
+      },
+      {
+        "id": "astro-thrift",
+        "c": "#4E9A62",
+        "n": [
+          "節儉星圖",
+          "Thrifty Astrolabe",
+          "Бережливая астролябия"
+        ],
+        "key": [
+          "引爆的換算率是 1 點技能強度＝2 點法力，而法力比技能強度便宜得多：6550 金就有 4310 法力，引爆內圈 2580",
+          "For the detonation 1 spell power equals 2 mana, and mana is far cheaper: 4310 mana for 6550 gold, inner detonation 2580",
+          "Для подрыва 1 сила умений = 2 маны, а мана намного дешевле: 4310 маны за 6550 золота, подрыв 2580"
+        ],
+        "why": [
+          "虛空引爆內圈是「當前法力×0.50＋技能強度×1.00」，所以對這個技能而言 2 點法力＝1 點技能強度。價目表卻完全不是這個比例：星界耳環 5000 金給 800 技能強度（6.25 金／點），法力催化劑 900 金給 500 法力（1.8 金／點、換算成技能強度是 3.6 金／點），法力之石、咒術師項鍊也都在同一區間。所以中期只要買法力就能拿到大半的引爆傷害。這套 6550 金：技能強度 425、最大法力 4310，引爆內圈 2580、外圈 1290、乳光 3434。對照全裝版本的 4412，中期就有 58% 的引爆傷害，而花費只有 28%。洞察之戒是這套的支柱，程式碼 22016 行是 GetHeroInt(u,false)×0.05 的法力回復乘算，25 級 184 智力就是 +9.2/秒，加上其他裝備與智力本身，總共約 25/秒；要注意它在 24679 行走的是跟大奶酪、朱砂護符同一個玩家 hash key 13 的乘算器欄位（違反時遊戲會噴「不能戴超過一個乘算器」把裝備退回地上），所以這套不能再帶第二件乘算器。法力催化劑除了 500 法力，還在每次施法給 +20 護甲 3 秒且無冷卻，對一個沒有普通攻擊、必須靠站位活命的法師是中期最好的護甲來源。風暴權杖的主動是（150＋技能強度×0.50）的範圍閃電加 80% 電擊；電擊會把目標四種狀態抗性各 −1.00，隊上有點燃／流血流的隊友時特別有價值。要升級時的順序：先把咒術師項鍊換成水晶項鍊，再把紫水晶換成星界耳環。",
+          "The inner detonation is current mana x 0.50 + spell power x 1.00, so for that ability two mana equal one spell power. The price list does not follow that ratio at all: the Astral Earring costs 5000 gold for 800 spell power (6.25 g/point), while the Mana Catalyst costs 900 for 500 mana (1.8 g/point, i.e. 3.6 g per spell-power-equivalent), and the Mana Stone and Sorcerer's Necklace sit in the same band. So mid-game you can buy most of your detonation damage with mana alone. This build costs 6550 gold: 425 spell power, 4310 max mana, inner detonation 2580, outer 1290, Opalescence 3434 - 58% of the full build's 4412 detonation for 28% of the price. The Ring of Insight is the backbone: line 22016 recomputes mana regeneration as GetHeroInt(u, false) x 0.05, which at 184 intellect on a level 25 hero is +9.2/sec, taking the build to roughly 25 mana/sec. Note that at line 24679 it claims the same player-hash key 13 multiplier slot as the Big Cheese and the Cinnabar Amulet (the game prints \"you cannot wear more than one multiplier\" and drops the item on the ground), so no second multiplier can go in this build. Besides its 500 mana the Mana Catalyst also grants +20 armor for 3 s on every cast with no cooldown, the best mid-game armor source for a mage who has no attack at all and lives on positioning. The Storm Staff's active is a (150 + SP x 0.50) area bolt with an 80% chance of Shock, and Shock subtracts 1.00 from all four of the target's status resistances, which is worth a lot next to a burn or bleed teammate. Upgrade order: Sorcerer's Necklace to Crystal Necklace first, then Amethyst to Astral Earring.",
+          "Подрыв во внутреннем круге = текущая мана x 0.50 + сила умений x 1.00, то есть 2 маны = 1 СУ. Цены этому не соответствуют: Астральная серьга - 5000 золота за 800 СУ (6.25 за единицу), Катализатор маны - 900 за 500 маны (1.8 за единицу, то есть 3.6 в пересчёте на СУ). Поэтому в середине игры основную часть урона подрыва можно купить одной маной. Сборка стоит 6550 золота: 425 СУ, 4310 маны, подрыв 2580 внутри и 1290 снаружи, Опалесценция 3434 - это 58% урона подрыва полной сборки за 28% цены. Кольцо прозрения - основа: строка 22016 пересчитывает реген как GetHeroInt(u,false) x 0.05, что на 184 разума даёт +9.2/сек, итого около 25 маны/сек. Внимание: в строке 24679 оно занимает тот же слот множителя (ключ 13), что и Большой сыр, поэтому второй множитель сюда не влезет. Катализатор маны вдобавок даёт +20 брони на 3 сек за каждый каст без перезарядки. Порядок апгрейда: сначала ожерелье колдуна на Хрустальное ожерелье, затем аметист на Астральную серьгу."
+        ],
+        "items": [
+          "rag1",
+          "tpow",
+          "rwiz",
+          "anfg",
+          "I06W",
+          "I078"
+        ],
+        "bonus": {
+          "s1": "rump",
+          "s2": "I08Z"
+        }
+      }
     ]
   }
 }

@@ -30,7 +30,10 @@ META = {m['k']: m for m in S['stats']}
 BAN = {'新年', '復活節', '萬聖節', '儀式', '完美', '特殊（lv.5++）'}
 # 乘算器欄位：war3map.j:24663 走 OnEquip_Multiplier 的那一串道具。
 # iwbr 也走同一個處理器，但 22197 那行把它排除在佔格判斷外，所以不算。
-MULTIPLIER = {'ckng', 'tfar', 'oven', 'kysn', 'jpnt', 'moon', 'I0A8', 'I01P', 'I00B'}
+# I078 洞察之戒走的是另一段程式（24678-24680），但佔的是同一個 player hash key 13，
+# 所以它也算乘算器。只看 OnEquip_Multiplier 的道具清單會漏掉它。
+MULTIPLIER = {'ckng', 'tfar', 'oven', 'kysn', 'jpnt', 'moon',
+              'I0A8', 'I01P', 'I00B', 'I078'}
 EARRING = {'I00E', 'I00F', 'I00O', 'I00P', 'I00Q'}
 BY_NAME = {}
 for _i, _v in D.items():
