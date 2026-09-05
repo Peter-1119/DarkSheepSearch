@@ -228,6 +228,16 @@ def main():
         if a['id'] in TXT:
             return TXT[a['id']] + [a['text_ru']]
         return [a['text_ru']] * 3
+
+    def skin_ab(a):
+        """皮膚換上／換掉的技能，欄位跟一般技能一致，網站可以共用同一個元件。"""
+        return {
+            'id': a['id'],
+            'n': tri_name(a),
+            't': tri_text(a),
+            'icon': 'images/heroes/a_%s.png' % a['id'],
+            **({'lvt': a['perlv']} if a.get('perlv') else {}),
+        }
     H = map_heroes.load(MAP)
     jass = MPQ(MAP).read('war3map.j').decode('utf-8', 'replace')
     scale = scaling(H, jass)
@@ -259,10 +269,14 @@ def main():
             'unlock': h['unlock'] or 0,
             'random': h['random'],           # False = 不在隨機池，只能手動挑
             'builds': HB.get(uid, []),
+            # 皮膚不只換外觀：41 個裡有 25 個會換掉一部分英雄技能。
+            # add/rm 成對時就是替換，網站上並排顯示「本體 -> 皮膚」。
             'skins': [{'id': k['id'], 'on': k['on'],
                        'n': (SKIN[k['name_ru']] + [k['name_ru']])
-                            if k['name_ru'] in SKIN else [k['name_ru']] * 3}
-                      for k in h['skins']],
+                            if k['name_ru'] in SKIN else [k['name_ru']] * 3,
+                       **({'add': [skin_ab(a) for a in k['add']]} if k['add'] else {}),
+                       **({'rm': [skin_ab(a) for a in k['rm']]} if k['rm'] else {}),
+                       } for k in h['skins']],
             'author': p.get('author'),       # 玩家投稿英雄的作者
             'icon': 'images/heroes/h_%s.png' % uid,
             'proper': h['proper_ru'],
@@ -334,6 +348,11 @@ def main():
         len(sk), sum(1 for r in out if r['skins']),
         sum(1 for k in sk if not k['on']),
         sum(1 for k in sk if k['n'][0] == k['n'][2])))
+    swap = [k for k in sk if k.get('add') or k.get('rm')]
+    sab = {a['id']: a for k in swap for a in k.get('add', [])}
+    print('  其中會換技能的皮膚：%d 個（換上 %d 個不重複技能，未翻譯 %d 個）' % (
+        len(swap), len(sab),
+        sum(1 for a in sab.values() if a['n'][0] == a['n'][2])))
     nlv = sum(1 for a in ab if a.get('lvt'))
     print('  有等級數值表的技能：%d 個（共 %d 列數值）' % (
         nlv, sum(len(a['lvt']) for a in ab if a.get('lvt'))))

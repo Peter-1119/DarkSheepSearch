@@ -738,6 +738,20 @@ body[data-resizing="1"]{cursor:col-resize;user-select:none}
 .hsk-i{font-size:12px;padding:4px 10px;border-radius:99px;color:var(--ink-2);
   background:var(--surface-2);border:1px solid var(--line)}
 .hsk-i.off{color:#F7E15C;border-color:color-mix(in srgb,#F7E15C 40%,var(--line))}
+/* 會換技能的皮膚。跟純外觀的皮膚分開列，因為玩家需要知道換了什麼。 */
+.hsw{border:1px solid color-mix(in srgb,#C99BE8 32%,var(--line));border-radius:8px;
+  margin:6px 0;background:color-mix(in srgb,#C99BE8 5%,transparent)}
+.hsw>summary{cursor:pointer;list-style:none;padding:7px 10px}
+.hsw>summary::-webkit-details-marker{display:none}
+.hsw-n{font-size:11px;color:#C99BE8;border:1px solid color-mix(in srgb,#C99BE8 40%,var(--line));
+  border-radius:99px;padding:1px 7px;white-space:nowrap}
+.hsw-b{padding:0 10px 8px}
+.hsw-note{font-size:11px;color:var(--ink-2);margin:0 0 6px}
+.hsw-p{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:4px 0}
+.hsw-p img{width:26px;height:26px;border-radius:5px;flex:none}
+.hsw-old{display:flex;align-items:center;gap:6px;opacity:.55;text-decoration:line-through}
+.hsw-ar{color:#C99BE8;flex:none}
+.hsw-new{flex:1 1 200px;min-width:0}
 .lvt-w{margin:0 0 10px 34px;overflow-x:auto;-webkit-overflow-scrolling:touch}
 .lvt{border-collapse:collapse;font-size:11.5px;white-space:nowrap}
 .lvt th,.lvt td{padding:3px 8px;border-bottom:1px solid var(--line)}
@@ -1304,6 +1318,8 @@ const UI = {
       hBuild:'該找什麼裝備', hSkills:'英雄技能', hInnate:'固有技能',
       hLv:'級', hNoText:'（沒有說明文字）',
       hManual:'不在隨機池，只能手動挑', hBy:'投稿者', hPick:'可選項目', hLvHead:'等級', hSkin:'皮膚', hSkinOff:'預設未開放（稀有／限定）',
+      hSkinSwap:'換 %s 招', hSkinTo:'改成', hSkinAdd:'額外獲得', hSkinDrop:'失去',
+      hSkinNote:'這個皮膚不只換外觀，還會換掉技能',
       hBuilds:'推薦配裝', hNeedTalent:'需搭配天賦：',
       hBuildHint:'這些標籤是從該英雄的技能文字掃出來的機制，點一下就會帶你回裝備清單。',
       hModYes:'◈ 這招會吃「裝備技能威力」：傷害 ×（1 + 威力 × 0.33）。沒有 ◈ 的技能不吃 —— 228 個英雄技能裡只有 18 個會。',
@@ -1384,6 +1400,8 @@ const UI = {
       hBuild:'What to build', hSkills:'Hero abilities', hInnate:'Innate abilities',
       hLv:'lv', hNoText:'(no description)',
       hManual:'Not in the random pool - pick manually', hBy:'Contributed by', hPick:'Choices', hLvHead:'Level', hSkin:'Skins', hSkinOff:'Locked by default (rare / limited)',
+      hSkinSwap:'%s changed', hSkinTo:'becomes', hSkinAdd:'Gains', hSkinDrop:'Loses',
+      hSkinNote:'This skin is not cosmetic - it replaces abilities',
       hBuilds:'Recommended builds', hNeedTalent:'Requires talent: ',
       hBuildHint:'These tags are the mechanics found in this hero\'s ability text - click one to jump back to the items.',
       hModYes:'◈ This ability scales with Modifier power: damage x (1 + power x 0.33). Abilities without the mark do not - only 18 of 228 hero abilities do.',
@@ -1469,6 +1487,8 @@ const UI = {
       hBuild:'Что собирать', hSkills:'Умения героя', hInnate:'Врождённые умения',
       hLv:'ур', hNoText:'(нет описания)',
       hManual:'Нет в случайном пуле - только вручную', hBy:'Автор', hPick:'Варианты', hLvHead:'Ур.', hSkin:'Облики', hSkinOff:'По умолчанию закрыт (редкий)',
+      hSkinSwap:'заменено: %s', hSkinTo:'становится', hSkinAdd:'Добавляет', hSkinDrop:'Убирает',
+      hSkinNote:'Этот облик меняет не только внешность, но и умения',
       hBuilds:'Сборки для героя', hNeedTalent:'Нужен талант: ',
       hBuildHint:'Эти метки найдены в тексте умений героя - нажмите, чтобы вернуться к предметам.',
       hModYes:'◈ Это умение зависит от силы модификаторов: урон x (1 + сила x 0.33). Умения без метки - нет, таких всего 18 из 228.',
@@ -1887,12 +1907,52 @@ function heroBuilds(h, L){
 
 /* 英雄皮膚。只換外觀不影響數值，所以獨立成一小區，不混進技能。
    預設關閉的多半是稀有／限定，標出來讓人知道不是每個帳號都有。 */
+/* 皮膚。41 個裡有 25 個不只換外觀，還會換掉英雄技能 —— 那些單獨列出來，
+   把「本體技能 -> 皮膚技能」並排顯示，換上的技能可以展開看說明。 */
 function skinBlock(h, L){
   if (!h.skins || !h.skins.length) return '';
-  return `<h5>${esc(t('hSkin'))}<span class="cnt">${h.skins.length}</span></h5>
-    <div class="hsk">${h.skins.map(s => `<span class="hsk-i${s.on ? '' : ' off'}"
+  const plain = h.skins.filter(s => !s.add && !s.rm);
+  const swap  = h.skins.filter(s => s.add || s.rm);
+  const chip = s => `<span class="hsk-i${s.on ? '' : ' off'}"
       ${s.on ? '' : `title="${esc(t('hSkinOff'))}"`}>${esc(s.n[L])}${
-      s.on ? '' : ' ✦'}</span>`).join('')}</div>`;
+      s.on ? '' : ' ✦'}</span>`;
+  /* 換上的技能：可展開看說明與等級數值，跟一般技能共用同一套排版 */
+  const newAb = a => `<details class="ha">
+      <summary><span class="ha-hd">
+        <img src="${a.icon}" alt="" loading="lazy"
+             onerror="this.style.visibility='hidden'">
+        <b>${esc(a.n[L])}</b><span class="cv">${CHEV}</span></span></summary>
+      <pre class="ha-t">${esc((a.t && a.t[L]) || t('hNoText'))}</pre>
+      ${lvTable(a, L)}</details>`;
+  const oldAb = a => `<span class="hsw-old">
+      <img src="${a.icon}" alt="" loading="lazy"
+           onerror="this.style.visibility='hidden'"><span>${esc(a.n[L])}</span></span>`;
+  const body = s => {
+    const add = s.add || [], rm = s.rm || [];
+    const n = Math.max(add.length, rm.length);
+    let out = `<p class="hsw-note">${esc(t('hSkinNote'))}</p>`;
+    for (let i = 0; i < n; i++){
+      if (add[i] && rm[i])
+        out += `<div class="hsw-p">${oldAb(rm[i])}
+          <span class="hsw-ar">→</span>
+          <span class="hsw-new">${newAb(add[i])}</span></div>`;
+      else if (add[i])
+        out += `<div class="hsw-p"><span class="hsw-ar">＋</span>
+          <span class="hsw-new">${newAb(add[i])}</span></div>`;
+      else
+        out += `<div class="hsw-p"><span class="hsw-ar">－</span>${oldAb(rm[i])}</div>`;
+    }
+    return out;
+  };
+  return `<h5>${esc(t('hSkin'))}<span class="cnt">${h.skins.length}</span></h5>
+    ${plain.length ? `<div class="hsk">${plain.map(chip).join('')}</div>` : ''}
+    ${swap.map(s => `<details class="hsw">
+      <summary><span class="ha-hd">
+        <b>${esc(s.n[L])}</b>${s.on ? '' : ' <span class="hsk-i off">✦</span>'}
+        <span class="hsw-n">${esc(t('hSkinSwap').replace('%s',
+          Math.max((s.add || []).length, (s.rm || []).length)))}</span>
+        <span class="cv">${CHEV}</span></span></summary>
+      <div class="hsw-b">${body(s)}</div></details>`).join('')}`;
 }
 
 /* 技能分兩區：QWER 可升級的，與固有的（被動／專屬機制／選擇天賦的入口）。

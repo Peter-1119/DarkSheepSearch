@@ -110,6 +110,12 @@ if __name__ == '__main__':
                 if x['id'] not in seen:
                     seen.add(x['id'])
                     jobs.append(('a_' + x['id'], x['icon']))
+        # 皮膚換掉的技能同理 —— 41 個皮膚裡有 25 個的技能跟本體不一樣
+        for k in h['skins']:
+            for x in k['add'] + k['rm']:
+                if x['id'] not in seen:
+                    seen.add(x['id'])
+                    jobs.append(('a_' + x['id'], x['icon']))
     ok, bad = save_all(src, jobs, os.path.join(
         os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'images', 'heroes'))
     print('輸出 %d 張，失敗 %d 張' % (ok, len(bad)))

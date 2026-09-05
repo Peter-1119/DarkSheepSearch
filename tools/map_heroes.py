@@ -342,6 +342,11 @@ def skins(jass, U):
                 'name_ru': clean(U.get(sid, {}).get('unam') or '') or sid,
                 # 預設關閉的多半是稀有／限定，介面上要標出來
                 'on': default.get(sid, 'on') != 'off',
+                # 皮膚不是只換外觀 —— 41 個裡有 25 個的英雄技能跟本體不一樣，
+                # 換皮膚等於換掉一部分技能。這裡先原樣記下，load() 再跟本體比對。
+                'hab': [a.strip() for a in
+                        str(U.get(sid, {}).get('uhab') or '').split(',')
+                        if a.strip()],
             })
     return out
 
@@ -389,6 +394,23 @@ def load(map_path, jass_text=None):
             ('int', 'uint'), ('int_lv', 'uinp'),
             ('speed', 'umvs'))}
 
+        # 皮膚的技能差異。base_hab 是本體的英雄技能，順序有意義（QWER）。
+        base_hab = [a.strip() for a in str(u.get('uhab') or '').split(',')
+                    if a.strip() and a.strip() not in SKIP_ABIL]
+        sk_out = []
+        for k in skn.get(uid, []):
+            hab = [a for a in k.get('hab', []) if a not in SKIP_ABIL]
+            add = [a for a in hab if a not in base_hab]
+            rm = [a for a in base_hab if a not in hab]
+            sk_out.append({
+                'id': k['id'],
+                'name_ru': k['name_ru'],
+                'on': k['on'],
+                # add 與 rm 成對出現時就是「替換」，介面上並排顯示比較好懂
+                'add': [_abil(A, a, 'hero', stock=stock) for a in add],
+                'rm': [_abil(A, a, 'hero', stock=stock) for a in rm],
+            })
+
         out[uid] = {
             'id': uid,
             'name_ru': name,
@@ -399,7 +421,7 @@ def load(map_path, jass_text=None):
             'random': uid in pool,
             'icon': (icons.get(uid) or u.get('uico') or '').replace(bs + bs, bs),
             'stats': st,
-            'skins': skn.get(uid, []),
+            'skins': sk_out,
             'profile_ru': parse_profile(txt),
             'text_ru': txt,
             'abilities': abils,
