@@ -1461,6 +1461,509 @@
           "s2": "I08Z"
         }
       }
+    ],
+    "Edem": [
+      {
+        "id": "dh-void-pen",
+        "c": "#7B4BC9",
+        "talent": "A0RX",
+        "n": [
+          "虛空之刃 · 穿透洪流",
+          "Void Blades: Penetration Flood",
+          "Клинки Пустоты: поток пробивания"
+        ],
+        "key": [
+          "燃燒之刃每 0.25 秒對範圍內每個敵人各產生一次傷害事件，穿透就按「事件數」計費；虛空之刃再把範圍愈滾愈大。",
+          "Burning Blades fires one damage event per enemy in radius every 0.25 s, and penetration is billed per event; Void Blades keeps growing that radius.",
+          "«Горящие клинки» создают одно событие урона на каждого врага в радиусе каждые 0.25 с, а пробивание начисляется за событие; «Клинки Пустоты» непрерывно расширяют радиус."
+        ],
+        "why": [
+          "燃燒之刃的實作在 Trig_HeroQ1_Actions（war3map.j:46678）：傷害 dmg = 10 + 10×等級 + 技能強度×0.08（46684 行），5 級時 60 +（技能強度×0.08）；它對半徑 aoe = 225 + LoadReal(hash,u,'A0RY') 內的「每一個」敵人各呼叫一次 UnitDamageTarget，而且這段沒有包 DisableTrigger，所以每一次命中都是一個完整的傷害事件。Trig_HeroTakeDamage_Actions（20056–20074 行）在每個傷害事件之後額外補一發 ATTACK_TYPE_CHAOS / DAMAGE_TYPE_UNIVERSAL 的傷害，數值就是攻擊者的穿透值，不吃護甲也不吃魔抗。本套 75 穿透 + 1290 技能強度 ⇒ 每個敵人每次觸發吃 60+103=163 魔法 + 75 純傷 = 238 點；打 8 隻就是一次 1904 點。觸發有 0.25 秒內冷（46745 行 StartCooldown(u_Id,'B00C',0.25)），上限 4 次/秒，所以攻速直接等於傷害：fgrg 30% + I0AX 50%，再加吸收器皮革手套的每級 +3% 攻速（23935 行、45487 行），30 級時就是 +90%。虛空之刃（Trig_HeroD1_Actions 46771–46777 行）每殺一隻讓半徑 +1，累積到 200 之後改 +0.5，沒有上限：200 殺半徑 425（面積 ×3.57）、600 殺 625（×7.7）。放棄的點燃在這裡只值約 20%（0.20 機率 × 1.00 係數），換到 3～7 倍的命中數是穩賺。",
+          "Burning Blades lives in Trig_HeroQ1_Actions (war3map.j:46678): dmg = 10 + 10*level + SkillPower*0.08 (line 46684), i.e. 60 + SP*0.08 at level 5. It calls UnitDamageTarget once for EVERY enemy inside aoe = 225 + LoadReal(hash,u,'A0RY'), and that block is not wrapped in DisableTrigger, so every hit is a full damage event. Trig_HeroTakeDamage_Actions (lines 20056-20074) appends an extra ATTACK_TYPE_CHAOS / DAMAGE_TYPE_UNIVERSAL hit equal to the attacker's penetration after every damage event, ignoring armour and magic resistance. With 75 pen and 1290 skill power each enemy takes 60+103=163 magic + 75 true = 238 per proc; 8 enemies = 1904 per proc. Procs have a 0.25 s internal cooldown (line 46745, StartCooldown(u_Id,'B00C',0.25)) capping them at 4/s, so attack speed is damage: fgrg 30% + I0AX 50%, plus Leather Gloves' +3% attack speed per hero level (lines 23935, 45487) = +90% at level 30. Void Blades (Trig_HeroD1_Actions, lines 46771-46777) adds +1 radius per kill, +0.5 after the stored value reaches 200, with no cap: 425 radius at 200 kills (3.57x area), 625 at 600 kills (7.7x). The burn you give up is worth only ~20% here (0.20 chance x 1.00 coefficient) - a bad trade against 3-7x more targets hit.",
+          "«Горящие клинки» (Trig_HeroQ1_Actions, war3map.j:46678): урон = 10 + 10*уровень + сила умений*0.08 (строка 46684), на 5 уровне 60 + СУ*0.08. UnitDamageTarget вызывается для КАЖДОГО врага в радиусе aoe = 225 + LoadReal(hash,u,'A0RY'), и блок не обёрнут в DisableTrigger, поэтому каждое попадание - полноценное событие урона. Trig_HeroTakeDamage_Actions (строки 20056-20074) после каждого события наносит дополнительный удар ATTACK_TYPE_CHAOS / DAMAGE_TYPE_UNIVERSAL, равный пробиванию атакующего, игнорируя броню и сопротивление магии. При 75 пробивания и 1290 силы умений каждый враг получает 60+103=163 магии + 75 чистого = 238 за срабатывание; по 8 врагам - 1904. Есть внутренний откат 0.25 с (строка 46745), то есть максимум 4 срабатывания в секунду, поэтому скорость атаки = урон: fgrg 30% + I0AX 50% плюс Кожаные перчатки, дающие +3% скорости атаки за уровень героя (строки 23935, 45487) - это +90% на 30 уровне. «Клинки Пустоты» (строки 46771-46777) дают +1 к радиусу за убийство и +0.5 после накопления 200, без предела: 425 при 200 убийствах (площадь x3.57), 625 при 600 (x7.7). Потерянный поджог стоит здесь лишь ~20%."
+        ],
+        "items": [
+          "I00E",
+          "kpin",
+          "ankh",
+          "fgrg",
+          "I0AX",
+          "ocor"
+        ],
+        "bonus": {
+          "s1": "klmm",
+          "s2": "I01L"
+        }
+      },
+      {
+        "id": "dh-fencer-guard",
+        "c": "#3E7CB1",
+        "talent": "A0YG",
+        "n": [
+          "精湛劍術 · 不倒的劍舞",
+          "Masterful Fencing: Unbroken Dance",
+          "Искусное фехтование: несломленный танец"
+        ],
+        "key": [
+          "43 護甲 + 25% 吸血 + 閃避，著魔期間閃避 30%、魔法減傷 70%、裝備技能冷卻 ×0.60；技能強度只剩 450，換來的是能站住的 20 秒。",
+          "43 armour, 25% lifesteal and evasion; during Obsession 30% evasion, 70% spell reduction and a 0.60x modifier-cooldown multiplier. Skill power drops to 450 - that is what you pay for standing your ground.",
+          "43 брони, 25% вампиризма и уклонение; в «Одержимости» 30% уклонения, 70% снижения магического урона и множитель отката модификаторов 0.60. Сила умений падает до 450 - это цена устойчивости."
+        ],
+        "why": [
+          "精湛劍術在選取當下（Trig_HeroSkills1_Actions 46640–46651 行）給 +2/+3/+1 屬性、加上 A0YH 標記，並把裝備技能冷卻係數 key1 從 1.00 減到 0.80；著魔（46652–46666 行）在有 A0YH 時再減 0.20 → 0.60，同時把閃避 A0S1 升到第 2 級。A0S1 的物件資料只覆寫第 2 級 Eev1 = 0.30，第 1 級沿用原生 ACev 的預設值，所以「15% 閃避」的說明無法從地圖資料證實（覆寫值不存在）。著魔的魔抗來自 A04U（AIsr，isr2 = 0.70），是 70% 的法術傷害減免——但點燃/流血跳傷與穿透都是 DAMAGE_TYPE_UNIVERSAL，完全不受它保護。著魔的敏捷加成是 SetHeroAgi(u, i+i) 且 i = GetHeroAgi(u,false)；而地圖所有道具屬性都走 ApplyStaticItemStats（23124 行起）的 SetHeroAgi(...,true)，也就是加在「基礎」敏捷上，所以本套 30 點道具敏捷在著魔時會再翻一份。輸出面：技能強度 450 ⇒ 燃燒之刃每跳 60+36=96，加 20 穿透共 116，約為高輸出套 238 的 49%。換回來的是 43 護甲、1500 生命、25% 吸血，以及災妄之星每 3 秒的 100×(1+裝備技能威力) 傷害＋流血——因為 key1=0.80，實際是每 2.4 秒；著魔中 key1=0.60 → 每 1.8 秒（StartModCooldown，2914–2921 行，下限 0.20）。",
+          "Masterful Fencing (Trig_HeroSkills1_Actions, lines 46640-46651) grants +2/+3/+1 stats, the A0YH marker, and lowers the modifier-cooldown coefficient key1 from 1.00 to 0.80. Obsession (lines 46652-46666) subtracts another 0.20 when A0YH is present (0.60) and raises evasion ability A0S1 to level 2. A0S1's object data only overrides level 2 (Eev1 = 0.30); level 1 falls back to native ACev's default, so the tooltip's '15% evasion' cannot be confirmed from map data. Obsession's magic resistance is A04U (AIsr, isr2 = 0.70) - 70% spell damage reduction - but burn/bleed ticks and penetration are DAMAGE_TYPE_UNIVERSAL and bypass it entirely. Obsession does SetHeroAgi(u, i+i) with i = GetHeroAgi(u,false), and every item stat in this map goes through ApplyStaticItemStats (from line 23124) using SetHeroAgi(...,true), i.e. it modifies BASE agility - so the 30 item agility in this build is doubled too. Output: 450 skill power gives 60+36=96 per Burning Blades tick, 116 with the 20 penetration, about 49% of the 238 of the damage build. In exchange: 43 armour, 1500 HP, 25% lifesteal, and Star of Calamity's 100*(1+modifier power) hit plus bleed every 3 s - actually every 2.4 s at key1=0.80 and every 1.8 s during Obsession (StartModCooldown, lines 2914-2921, floor 0.20).",
+          "«Искусное фехтование» (Trig_HeroSkills1_Actions, строки 46640-46651) даёт +2/+3/+1 к характеристикам, метку A0YH и снижает коэффициент отката модификаторов key1 с 1.00 до 0.80. «Одержимость» (строки 46652-46666) при наличии A0YH вычитает ещё 0.20 (итого 0.60) и повышает уклонение A0S1 до 2 уровня. В данных объекта A0S1 переопределён только 2 уровень (Eev1 = 0.30), 1 уровень берёт значение из исходной ACev, поэтому «15% уклонения» из описания подтвердить по данным карты нельзя. Сопротивление магии - это A04U (AIsr, isr2 = 0.70), 70% снижения урона от заклинаний, но тики поджога/кровотечения и пробивание идут как DAMAGE_TYPE_UNIVERSAL и не снижаются. «Одержимость» выполняет SetHeroAgi(u, i+i), где i = GetHeroAgi(u,false), а все предметы карты меняют именно БАЗОВУЮ ловкость через ApplyStaticItemStats (со строки 23124), поэтому 30 ловкости с предметов тоже удваиваются. Урон: 450 силы умений = 96 за тик, 116 с учётом 20 пробивания, около 49% от боевой сборки. Взамен: 43 брони, 1500 HP, 25% вампиризма и «Звезда бедствия» каждые 2.4 с (1.8 с в «Одержимости»)."
+        ],
+        "items": [
+          "kpin",
+          "wshs",
+          "brac",
+          "grsl",
+          "I06A",
+          "ocor"
+        ],
+        "bonus": {
+          "s1": "frgd",
+          "s2": "I072"
+        }
+      },
+      {
+        "id": "dh-burn-chain",
+        "c": "#E2622A",
+        "talent": "A0YG",
+        "n": [
+          "易傷 → 易燃 → 點燃 連鎖",
+          "Vulnerability -> Flammable -> Burn Chain",
+          "Цепь: уязвимость -> воспламеняемость -> поджог"
+        ],
+        "key": [
+          "精湛劍術的 30% 易傷、熾熱核心的易燃、幸運馬蹄鐵三段 ×1.5 疊乘，把 20% 點燃機率推到 67.5%，係數推到 2.625，且全部是無視護甲與魔抗的 UNIVERSAL 傷害。",
+          "Masterful Fencing's 30% vulnerability, Molten Core's flammability and Lucky Horseshoe multiply the 20% burn chance by 1.5 three times to 67.5%, with a 2.625 coefficient - all as armour- and resistance-ignoring UNIVERSAL damage.",
+          "30% уязвимости от «Искусного фехтования», воспламеняемость от «Раскалённого ядра» и Счастливая подкова трижды умножают шанс поджога на 1.5 - до 67.5% при коэффициенте 2.625, и весь урон идёт как UNIVERSAL."
+        ],
+        "why": [
+          "只有精湛劍術的燃燒之刃會呼叫 VulnerabilityUnit(u,u3,0.30)，而且在同一迴圈裡它排在 BurnUnit 之前（46720、46722 行），所以本次觸發打上的易傷立刻就替本次的點燃加成。BurnUnit（1837 行）的機率是連乘：易燃 B042 ×(1+0.5×(1+key46)) = ×1.5（1872–1873 行）、易傷 B045 ×1.5（1875–1876 行）、幸運馬蹄鐵 I09G ×1.5（1878–1879 行），0.20 × 1.5³ = 0.675。易燃同時把跳數從 16 改成 16 + R2I(8×(1+(1+key46))) = 32（1937 行），總傷害直接翻倍——說明寫的 +50% 是錯的。係數方面 Burn_Dmg（1797–1805 行）算 cof = 1.00 + 實數 key27 + 0.50（帶零時迷子 I086 且整數 key27 ≥ 1，也就是有「抵抗點燃」旗標——本套由熾熱核心 I06A 提供，22766 行）。實數 key27 = 0.15（附魔護符）+0.30（薩弗拉斯）+0.20（太陽之書）+0.50×裝備技能威力（魔術師的面具 sor1，24642–24648 行，由 PercentStatsRefresh 每 0.5 秒重算，21778–21787 行）。裝備技能威力 = 0.80+0.15 = 0.95 ⇒ +0.475，總 key27 = 1.125，cof = 2.625；著魔期間精湛劍術再加 +0.40 威力（46661 行）⇒ cof = 2.825。技能強度 300 ⇒ 每跳基底 84，一次點燃總傷害 84×2（易燃）×2.625 = 441，期望 0.675×441 = 298／每目標每觸發，且是 ATTACK_TYPE_CHAOS/DAMAGE_TYPE_UNIVERSAL。注意：BurnUnit 重用過期槽位時會把堆疊數寫成槽位編號，高頻疊點燃會靜默丟掉堆疊，實戰要打折。",
+          "Only Masterful Fencing's Burning Blades calls VulnerabilityUnit(u,u3,0.30), and it runs before BurnUnit in the same loop (lines 46720 and 46722), so the vulnerability applied this proc already boosts this proc's burn. BurnUnit (line 1837) multiplies chances: flammable B042 x(1+0.5*(1+key46)) = x1.5 (lines 1872-1873), vulnerability B045 x1.5 (lines 1875-1876), Lucky Horseshoe I09G x1.5 (lines 1878-1879): 0.20 x 1.5^3 = 0.675. Flammability also changes the tick count from 16 to 16 + R2I(8*(1+(1+key46))) = 32 (line 1937), doubling total burn damage - the tooltip's '+50%' is wrong. Burn_Dmg (lines 1797-1805) computes cof = 1.00 + real key27 + 0.50 (holding Zero-Hour Waif I086 while integer key27 >= 1, the 'resist burn' flag, supplied here by Molten Core I06A, line 22766). Real key27 = 0.15 (Enchanted Amulet) + 0.30 (Sulfuras) + 0.20 (Book of the Sun) + 0.50 x modifier power (Magician's Mask sor1, lines 24642-24648, recomputed every 0.5 s by PercentStatsRefresh, lines 21778-21787). Modifier power = 0.80+0.15 = 0.95 gives +0.475, so key27 = 1.125 and cof = 2.625; Obsession adds another +0.40 power (line 46661) for cof = 2.825. With 300 skill power the tick base is 84, one burn totals 84 x 2 (flammable) x 2.625 = 441, expected 0.675 x 441 = 298 per target per proc as ATTACK_TYPE_CHAOS / DAMAGE_TYPE_UNIVERSAL. Caveat: BurnUnit writes the stack count as the slot index when reusing expired slots, so rapid re-application silently drops stacks - discount this in practice.",
+          "Только с «Искусным фехтованием» «Горящие клинки» вызывают VulnerabilityUnit(u,u3,0.30), причём до BurnUnit в том же цикле (строки 46720 и 46722), поэтому наложенная уязвимость сразу усиливает этот же поджог. В BurnUnit (строка 1837) шансы перемножаются: воспламеняемость B042 x1.5 (строки 1872-1873), уязвимость B045 x1.5 (строки 1875-1876), Счастливая подкова I09G x1.5 (строки 1878-1879): 0.20 x 1.5^3 = 0.675. Воспламеняемость также меняет число тиков с 16 на 32 (строка 1937), то есть удваивает суммарный урон - в описании ошибочно указано +50%. Burn_Dmg (строки 1797-1805): cof = 1.00 + вещественный key27 + 0.50 (при наличии I086 и целочисленного key27 >= 1, то есть флага «сопротивление поджогу», который даёт I06A, строка 22766). key27 = 0.15 + 0.30 + 0.20 + 0.50 x сила модификаторов (sor1, строки 24642-24648, пересчёт каждые 0.5 с). При силе модификаторов 0.95 это +0.475, итого key27 = 1.125, cof = 2.625; в «Одержимости» +0.40 силы даёт 2.825. При 300 силы умений база тика 84, один поджог = 84 x 2 x 2.625 = 441, ожидание 0.675 x 441 = 298 на цель за срабатывание, тип ATTACK_TYPE_CHAOS / DAMAGE_TYPE_UNIVERSAL. Важно: BurnUnit теряет стаки при частом наложении - в бою результат ниже расчётного."
+        ],
+        "items": [
+          "sor1",
+          "I067",
+          "I06A",
+          "I086",
+          "I09G",
+          "kpin"
+        ],
+        "bonus": {
+          "s1": "oli2",
+          "s2": "I0AV"
+        }
+      },
+      {
+        "id": "dh-budget-pen",
+        "c": "#6C9A3F",
+        "talent": "A0RX",
+        "n": [
+          "六千九的穿透流",
+          "6,900-Gold Penetration",
+          "Пробивание за 6900 золота"
+        ],
+        "key": [
+          "6900 金換到 47 穿透與 36% 攻速：穿透是平坦數值、不吃護甲也不吃魔抗，而燃燒之刃每觸發對每個敵人各收一次。",
+          "6,900 gold buys 47 penetration and 36% attack speed: penetration is a flat number that ignores armour and resistances, and Burning Blades bills it once per enemy per proc.",
+          "6900 золота дают 47 пробивания и 36% скорости атаки: пробивание - плоское число, игнорирующее броню и сопротивления, и «Горящие клинки» начисляют его каждому врагу за срабатывание."
+        ],
+        "why": [
+          "中期買不起 800 技能強度的星界耳環，但穿透不需要昂貴的裝備：精金鶴嘴鎬 20、戰鬥砍刀 10、位移匕首 7、穿刺長矛 10，六千一百金就有 47 點。因為 Trig_HeroQ1_Actions（46678 行）對半徑內每個敵人各呼叫一次 UnitDamageTarget、而且沒有 DisableTrigger，Trig_HeroTakeDamage_Actions（20056–20074 行）會替每一次命中補一發等同穿透值的 CHAOS/UNIVERSAL 傷害。以 270 技能強度算，燃燒之刃每跳 60+21.6 = 81.6 魔法（要吃護甲與抗性），穿透卻是穩定的 47 點純傷——同一筆錢買技能強度只有 47÷0.08 = 587 點技能強度才能打平，而且還會被減傷打折。觸發率靠 20%（位移匕首）+16%（穿刺長矛）攻速，再加吸收器皮革手套的每級 +3%（23935 行、45487 行），25 級時額外 +75%，遠低於 0.25 秒內冷的 4 次/秒上限（46745 行），所以攻速是純增益。天賦選虛空之刃：每擊殺 +1 半徑（46771–46777 行）在防守圖的清兵節奏下滾得很快，而這套沒有點燃係數道具，本來就不該留著點燃。法力鋼另外給 +35% 裝備技能威力，讓 s2 期望值與後續 MOD 道具都有基礎。",
+          "Mid-game you cannot afford the 800-skill-power Astral Earring, but penetration is cheap: Adamantine Pickaxe 20, Combat Cleaver 10, Displacement Dagger 7, Piercing Spear 10 - 47 points for 6,100 gold. Because Trig_HeroQ1_Actions (line 46678) calls UnitDamageTarget once per enemy in radius with no DisableTrigger, Trig_HeroTakeDamage_Actions (lines 20056-20074) appends a CHAOS/UNIVERSAL hit equal to penetration for every one of those hits. At 270 skill power each Burning Blades tick is 60+21.6 = 81.6 magic (reduced by armour and resistances) while penetration is a flat 47 true damage - you would need 47/0.08 = 587 skill power to match it, and that would still be mitigated. Proc rate comes from 20% (Displacement Dagger) + 16% (Piercing Spear) attack speed plus Leather Gloves' +3% per hero level (lines 23935, 45487), +75% at level 25 - far below the 4/s ceiling imposed by the 0.25 s internal cooldown (line 46745), so attack speed is pure gain. Take Void Blades: +1 radius per kill (lines 46771-46777) compounds fast in a defence map's clear rhythm, and this build carries no burn-damage items anyway. Mana Steel adds +35% modifier power as a base for the s2 roll and any later proc items.",
+          "В середине игры Астральная серьга с 800 силы умений недоступна, но пробивание дёшево: Адамантитовая кирка 20, Боевой тесак 10, Кинжал смещения 7, Пронзающее копьё 10 - 47 единиц за 6100 золота. Так как Trig_HeroQ1_Actions (строка 46678) вызывает UnitDamageTarget для каждого врага в радиусе без DisableTrigger, Trig_HeroTakeDamage_Actions (строки 20056-20074) добавляет удар CHAOS/UNIVERSAL, равный пробиванию, за каждое попадание. При 270 силы умений тик «Горящих клинков» - 81.6 магии (снижается бронёй и сопротивлениями), а пробивание - стабильные 47 чистого урона; чтобы сравняться, понадобилось бы 47/0.08 = 587 силы умений, и она всё равно снижалась бы. Частота срабатываний: 20% + 16% скорости атаки плюс Кожаные перчатки (+3% за уровень героя, строки 23935, 45487), на 25 уровне это +75% - намного ниже потолка в 4 срабатывания в секунду из-за отката 0.25 с (строка 46745). Талант - «Клинки Пустоты»: +1 к радиусу за убийство (строки 46771-46777) быстро накапливается, а предметов на урон поджогом здесь нет. Мана-сталь добавляет +35% силы модификаторов."
+        ],
+        "items": [
+          "ocor",
+          "I003",
+          "I05G",
+          "I03D",
+          "rag1",
+          "I01O"
+        ],
+        "bonus": {
+          "s1": "klmm",
+          "s2": "I01L"
+        }
+      }
+    ],
+    "Nbrn": [
+      {
+        "id": "valk-pierce",
+        "c": "#E8C15A",
+        "n": [
+          "貫穿之光．斬首",
+          "Piercing Light Executioner",
+          "Пронзающий свет: казнь"
+        ],
+        "key": [
+          "堆滿敏捷再乘上 +266% 傷害係數，每 3 秒一發（敏捷×7.84）純粹傷害的單體核彈。",
+          "Stack Agility, then multiply it by a +266% damage coefficient: one AGI×7.84 pure-damage nuke every 3 seconds.",
+          "Максимум ловкости плюс коэффициент урона +266%: чистый удар в ловкость×7.84 каждые 3 секунды."
+        ],
+        "why": [
+          "女武神四個技能的傷害只吃一個東西：敏捷。war3map.j:64770 是 dmg=GetHeroAgi(u,true)*(0.80+0.40*等級)，滿級 = 敏捷×2.80；沒有技能強度、沒有攻擊力、沒有最大生命。貫穿之光在 64787 再乘 (1.3+0.3*等級)=2.80，等於敏捷×7.84；64788 若目標身上有易傷 B045，這一發改用 ATTACK_TYPE_CHAOS/DAMAGE_TYPE_UNIVERSAL —— 純粹傷害，護甲與減傷全部無效。所以易傷不是附帶效果，是輸出開關：詛咒者之弩 I08I（27693 起）每 5 秒 100% 施加易傷、持續 8 秒，覆蓋率接近滿。翡翠耳環 +100、純淨翡翠 +50、敏捷吊墜 +12 直接堆分子。分母那一側走 DefCof：銀器 hlst 在 19946 對生命 75% 以上的目標 DefCof+1.00（防守圖的來波怪永遠滿血），蔑視者之戒 I0AN 在 24404 對非英雄 +0.30，黑暗容器 ratf 23774 +0.25，儀式聖杯 dust 23874 +0.11，合計 DefCof=2.66。而 20054 那行把超過 1.00 的部分改用 CHAOS/UNIVERSAL 再打一次 —— 這 1.66 倍全部是純粹傷害。以總敏捷 340 估：貫穿 340×7.84×2.66≈7090，流星 100% 觸發再補 340×3.92×2.66≈3540（並永久扣 5 點護甲），每 3 秒一輪。注意兩件光技能的法力是 25/30/35/40/20（war3map.w3a），滿級反而最便宜，蔑視者之戒的 +750 法力與 +1.5 回復就是為了撐住這個 3 秒循環。",
+          "Every damage number this hero produces reads exactly one stat: Agility. war3map.j:64770 is dmg=GetHeroAgi(u,true)*(0.80+0.40*level) - AGI×2.80 at rank 5. No spell power, no attack damage, no max HP. Piercing Light multiplies again by (1.3+0.3*level)=2.80 at line 64787, i.e. AGI×7.84, and line 64788 switches that hit to ATTACK_TYPE_CHAOS/DAMAGE_TYPE_UNIVERSAL whenever the target carries the Vulnerability buff B045 - pure damage, armour and resistances ignored. Vulnerability is therefore a damage switch, not a rider: Curser's Crossbow I08I (line 27693) applies it at 100% every 5s for an 8s duration, so uptime is near total. Emerald Earring +100, Pure Emerald +50 and Agility Pendant +12 feed the numerator. The multiplier side is DefCof: Silverware hlst at 19946 adds +1.00 against targets above 75% HP (in a defence map every incoming wave is at full HP), Ring of Contempt I0AN adds +0.30 vs non-heroes at 24404, Dark Vessel ratf +0.25 at 23774, Ritual Chalice dust +0.11 at 23874 - DefCof 2.66. Line 20054 re-deals everything above 1.00 as CHAOS/UNIVERSAL, so that whole 1.66x is pure damage too. At 340 total AGI: Piercing 340×7.84×2.66 ~ 7090, plus the guaranteed meteor 340×3.92×2.66 ~ 3540 and a permanent -5 armour, every 3 seconds. Mana costs in war3map.w3a are 25/30/35/40/20 - rank 5 is the cheapest - and I0AN's +750 MP / +1.5 regen is what sustains the 3-second loop.",
+          "Весь урон героини считается от одного параметра - ловкости. war3map.j:64770: dmg=GetHeroAgi(u,true)*(0.80+0.40*уровень), на 5 ранге ловкость×2.80. Ни силы умений, ни атаки, ни HP. Пронзающий свет в строке 64787 умножает ещё на (1.3+0.3*уровень)=2.80 - ловкость×7.84, а строка 64788 переводит удар в ATTACK_TYPE_CHAOS/DAMAGE_TYPE_UNIVERSAL, если на цели баф уязвимости B045: чистый урон мимо брони и сопротивлений. Поэтому уязвимость - это выключатель урона. Арбалет проклинателя I08I (строка 27693) вешает её со 100% шансом каждые 5 сек на 8 сек. Изумрудная серьга +100, чистый изумруд +50, подвеска ловкости +12 наращивают ловкость. Множители идут через DefCof: серебро hlst (19946) +1.00 по целям выше 75% HP, кольцо презрения I0AN (24404) +0.30 по не-героям, тёмный сосуд ratf (23774) +0.25, ритуальная чаша dust (23874) +0.11 - итого 2.66. Строка 20054 наносит всё сверх 1.00 отдельным CHAOS/UNIVERSAL. При 340 ловкости: 340×7.84×2.66 ~ 7090 плюс гарантированный метеор ~3540 и -5 брони навсегда, каждые 3 сек. Мана умений в war3map.w3a - 25/30/35/40/20, на 5 ранге дешевле всего; +750 маны и +1.5 реген от I0AN держат цикл."
+        ],
+        "items": [
+          "I00F",
+          "sor2",
+          "hlst",
+          "I0AN",
+          "ratf",
+          "I08I"
+        ],
+        "bonus": {
+          "s1": "dust",
+          "s2": "I074"
+        }
+      },
+      {
+        "id": "valk-scatter",
+        "c": "#5BA9D6",
+        "n": [
+          "星雨潮汐．削甲",
+          "Scattered Light Armour Breaker",
+          "Рассеянный свет: слом брони"
+        ],
+        "key": [
+          "用散射之光把易傷與永久削甲鋪滿整群，靠穿透與續戰活到後期，換掉一半的傷害係數。",
+          "Scattered Light blankets the pack with Vulnerability and permanent armour shred; penetration and regeneration replace half the damage coefficient.",
+          "Рассеянный свет накрывает толпу уязвимостью и вечным сломом брони; пробитие и реген вместо половины множителей урона."
+        ],
+        "why": [
+          "散射之光走 war3map.j:64795-64807：傷害 ×(1.15+0.15*等級)=1.90，但範圍內所有人（含主目標）只吃 ×0.50，也就是每個敵人固定敏捷×2.66；範圍 250×(1.1+0.05*等級)=337.5；VulnerabilityUnit 的機率 0.20×等級 滿級 =1.00，整群必中易傷 8 秒。流星在散射狀態下用的是放大後的傷害，dmg×0.75=敏捷×3.99，範圍同樣 337.5、50% 機率、每次 −2 護甲。換句話說一次散射閃耀對群體的期望值是 敏捷×(2.66+0.5×3.99)≈敏捷×4.66，而且是一群人同時吃。這正是穿透最划算的形狀：19501 起的 Trig_HeroTakeDamage_Actions 在 20057 對每一次傷害事件額外補一段 CHAOS/UNIVERSAL 的穿透值，8 個敵人 ×（閃耀＋流星）＝16 次事件，35 點穿透就是 560 點無視一切減傷的額外傷害。狩獵女神之戒 +15、精金鶴嘴鎬 +20 便宜地把它撐起來。取捨寫清楚：這套沒有銀器與黑暗容器，DefCof 只有 1+0.20（吞噬萬物 22400）+0.15（儀式之書 24145）=1.35，比高輸出套少掉整整 1.31 倍；換回來的是 +1800 生命、+14 護甲、帝王鎧甲對滿血敵人 −25% 受傷、以及能真正跑完整場的法力 —— 女武神智力成長是 0（heroes.json int_lv 為 null），法力池永遠停在 20 智力的水準，不朽法冠的 3/秒法力回復光環（同時惠及隊友）與生命之冠的每秒 1% 是這套能一直施法的原因。",
+          "Scattered Light lives at war3map.j:64795-64807: damage ×(1.15+0.15*level)=1.90, but every unit in radius - the primary target included - only takes ×0.50, i.e. a flat AGI×2.66 each; radius is 250×(1.1+0.05*level)=337.5; VulnerabilityUnit is called with 0.20×level, so rank 5 is a guaranteed 8-second Vulnerability on the whole pack. Under Scattered Light the meteor uses the already-amplified damage: dmg×0.75 = AGI×3.99 over the same 337.5 radius at 50% chance, each hit shredding 2 armour permanently. Expected group damage per proc is AGI×(2.66+0.5×3.99) ~ AGI×4.66, on everyone at once. That is exactly the shape penetration wants: Trig_HeroTakeDamage_Actions (from 19501) appends a separate CHAOS/UNIVERSAL hit equal to your penetration on every damage event at line 20057, so 8 enemies × (flare + meteor) = 16 events; 35 penetration is 560 extra damage that no reduction touches. Ring of the Hunt +15 and Adamantite Pick +20 buy that cheaply. The trade is explicit: no Silverware, no Dark Vessel, so DefCof is only 1+0.20 (All-Devourer, 22400) +0.15 (Ritual Book, 24145) = 1.35 - a full 1.31x less than the burst build. In exchange: +1800 HP, +14 armour, Imperial Armour's -25% from enemies above 70% HP, and mana that actually lasts. Her Intelligence growth is zero (int_lv is null in heroes.json), so her pool is frozen at 20 INT; the Immortal Crown's 3/s mana-regen aura (which also feeds allies) plus Crown of Life's 1%/s is what keeps the 3-second cast loop alive.",
+          "Рассеянный свет - war3map.j:64795-64807: урон ×(1.15+0.15*уровень)=1.90, но все в радиусе, включая основную цель, получают ×0.50, то есть по ловкость×2.66 каждому; радиус 250×(1.1+0.05*уровень)=337.5; VulnerabilityUnit вызывается с 0.20×уровень, на 5 ранге - гарантированная уязвимость на 8 сек всей толпе. Метеор под рассеянным светом берёт уже усиленный урон: dmg×0.75 = ловкость×3.99 в том же радиусе 337.5, шанс 50%, каждый раз -2 брони навсегда. Ожидание по группе - ловкость×4.66 за прок, сразу по всем. Это лучшая форма для пробития: Trig_HeroTakeDamage_Actions в строке 20057 добавляет отдельный CHAOS/UNIVERSAL удар размером с пробитие на каждое событие урона; 8 врагов × (вспышка + метеор) = 16 событий, 35 пробития - это 560 урона мимо любых снижений. Размен честный: без серебра и тёмного сосуда DefCof всего 1+0.20 (22400) +0.15 (24145) = 1.35, на 1.31 меньше, чем у бёрст-сборки. Взамен +1800 HP, +14 брони, -25% урона от врагов выше 70% HP и мана на всю игру: рост разума у героини нулевой (int_lv = null), поэтому аура реген маны 3/сек от короны бессмертия и 1%/сек от короны жизни и держат цикл."
+        ],
+        "items": [
+          "ram2",
+          "I088",
+          "tbak",
+          "stel",
+          "I052",
+          "ocor"
+        ],
+        "bonus": {
+          "s1": "klmm",
+          "s2": "I04D"
+        }
+      },
+      {
+        "id": "valk-modpower",
+        "c": "#9B7BE8",
+        "n": [
+          "無主之力．裝備技能威力",
+          "Borrowed Power: Modifier Build",
+          "Заёмная сила: сила модификаторов"
+        ],
+        "key": [
+          "她一個技能都不吃裝備技能威力，卻是全圖最適合堆它的英雄：145% 威力把冠軍手套變成敏捷×6.13、女巫帽變成法力永動機。",
+          "None of her abilities read modifier power - yet she is the best user of it: 145% turns Champion Gloves into AGI×6.13 and the Witch Hat into a perpetual mana engine.",
+          "Ни одно её умение не использует силу модификаторов - и всё же ей она нужнее всех: 145% превращают перчатки чемпиона в ловкость×6.13, а шляпу ведьмы - в вечный источник маны."
+        ],
+        "why": [
+          "工具掃出來的 mod 清單是空的 —— 沒錯，女武神四個技能都不讀 LoadReal(hash,單位,18)。但那個係數不只作用在技能上：27517 起的 Trig_ItemAttacksFromHero_Actions 一開頭就是 cof=LoadReal(hash,Id,18)+1，所有道具觸發傷害都乘它。而她最好的道具正好是敏捷係數的：冠軍手套 brac 在 27809 是 dmg=GetHeroAgi(a,true)*2.50*cof，每 4 秒一次。幽魂匕首 I017 給 key18 +1.00、魔法漿果 I01L +0.30、附魔護符 oli2 +0.15，cof=2.45，手套的 250% 敏捷變成 612.5% 敏捷 —— 以 250 總敏捷算是每 4 秒 1531 點魔法傷害，接近一發滿級星光閃耀。第二個掛鉤是法力：war3map.w3a 顯示貫穿之光／散射之光滿級各只花 20 點法力（25/30/35/40/20，滿級反而最便宜），而女巫帽 I04F 在 28867 每次施法回 20*cof = 49 點。施一次法花 20 回 49，淨賺 29 —— 兩件光技能的 3 秒冷卻可以無限空放，星光閃耀的 5 秒內冷卻因此每 3 秒被重置兩次（64681-64692 直接 PauseTimer/DestroyTimer 再把旗標寫 0）。第三個掛鉤是說明寫錯的門檻：詛咒者之弩 I08I 的說明寫「裝備技能威力達 80% 以上」，27698 實際檢查的是 cof>=2.00，也就是 100%。這套剛好站在門檻上方，多拿到每 5 秒 50% 的詛咒。",
+          "The tooling reports an empty modifier list, and that is correct - none of her four abilities read LoadReal(hash,unit,18). But that coefficient is not only for abilities: Trig_ItemAttacksFromHero_Actions (from 27517) opens with cof=LoadReal(hash,Id,18)+1 and multiplies every item proc by it. Her best item happens to be an Agility-scaling proc: Champion Gloves brac at 27809 is dmg=GetHeroAgi(a,true)*2.50*cof on a 4-second timer. Phantom Dagger I017 gives key 18 +1.00, Magic Berry I01L +0.30 and Enchanted Amulet oli2 +0.15, so cof = 2.45 and the gloves' 250% AGI becomes 612.5% AGI - at 250 total Agility that is 1531 magic damage every 4 seconds, comparable to a full-rank Starlight Flare. The second hook is mana: war3map.w3a lists both Light abilities at 25/30/35/40/20 mana, so rank 5 is the cheapest at 20, while the Witch Hat I04F refunds 20*cof = 49 mana per cast at line 28867. Spend 20, get 49 back, net +29 - the 3-second cooldowns can be fired forever, and each cast wipes Starlight Flare's 5-second internal cooldown outright (64681-64692 pauses and destroys the timer and writes the flag back to 0). The third hook is a tooltip that lies: Curser's Crossbow I08I claims a threshold of 80% modifier power, but line 27698 checks cof>=2.00, i.e. 100%. This build sits above it and collects the hidden 50% Curse rider every 5 seconds.",
+          "Инструмент показывает пустой список mod - и это верно, ни одно из четырёх умений не читает LoadReal(hash,юнит,18). Но коэффициент работает не только на умениях: Trig_ItemAttacksFromHero_Actions (с 27517) начинается с cof=LoadReal(hash,Id,18)+1 и умножает на него весь урон от прок-предметов. А лучший её предмет как раз масштабируется от ловкости: перчатки чемпиона brac в 27809 - dmg=GetHeroAgi(a,true)*2.50*cof раз в 4 секунды. Призрачный кинжал I017 даёт key18 +1.00, магическая ягода I01L +0.30, зачарованный амулет oli2 +0.15; cof=2.45, и 250% ловкости превращаются в 612.5%: при 250 ловкости это 1531 магического урона каждые 4 сек. Второй крючок - мана: в war3map.w3a оба световых умения стоят 25/30/35/40/20, то есть на 5 ранге дешевле всего - 20, а шляпа ведьмы I04F в строке 28867 возвращает 20*cof = 49 маны за каждое применение. Потратил 20, вернул 49 - цикл вечный, а каждое применение полностью сбрасывает 5-секундный внутренний кулдаун вспышки (64681-64692). Третий крючок - ошибка в описании: арбалет I08I обещает порог 80% силы модификаторов, а строка 27698 проверяет cof>=2.00, то есть 100%. Эта сборка стоит выше порога и получает скрытые 50% проклятия каждые 5 секунд."
+        ],
+        "items": [
+          "I017",
+          "I01L",
+          "I04F",
+          "brac",
+          "I08I",
+          "sor2"
+        ],
+        "bonus": {
+          "s1": "oli2",
+          "s2": "I074"
+        }
+      },
+      {
+        "id": "valk-budget",
+        "c": "#7FBF6A",
+        "n": [
+          "流星獵手．平價",
+          "Meteor Hunter (Budget)",
+          "Охотница за метеорами (бюджет)"
+        ],
+        "key": [
+          "5,300 金、全部低階便宜貨，只跑「貫穿之光」單線循環，靠永久削甲滾到後期。",
+          "5,300 gold of cheap low-tier items, running the single-line Piercing Light loop and snowballing on permanent armour shred.",
+          "5300 золота на дешёвых предметах: одна линия Пронзающего света и вечный слом брони как снежный ком."
+        ],
+        "why": [
+          "平價版不追求係數，追求「循環跑得動」。只放貫穿之光（3 秒冷卻、滿級 20 法力）就是每 3 秒 20 點法力、每 3 秒只需要 1 次攻擊；衛兵手套 +20% 攻速把 1.6 秒的基礎攻擊間隔壓到 1.33 秒，法師之戒 +3 法力回復加上儀式之書的 +200 法力／+0.85 回復，足以在波與波之間補回來。傷害端：完美敏捷戒指 +20、翡翠 +15、衛兵手套 +10、儀式之書 +6 主屬性（女武神主屬性就是敏捷）、敏捷吊墜 +12，合計 +63 敏捷；DefCof 用最便宜的兩件湊 —— 黑暗容器 ratf 600 金 key6 +0.25（23774），儀式之書 I04D 500 金 key6 +0.15（24145，代價是對亡靈 key9 −0.35），尖刺手套對近戰再 +0.08，合計約 1.48。真正的長線價值在流星：A0AL 在貫穿之光狀態下是 100% 觸發、−5 護甲，而 SetUnitExtraArmor（3846）把值存進 hash key 35 且負數同樣寫回（3885），所以削甲會一路疊、不會被覆蓋、也沒有上限。同一隻精英怪被打 12 輪就是 −60 護甲。另外星光閃耀擊殺目標時有 50% 讓 SetHeroAgi(u,GetHeroAgi(u,false)+1) 永久 +1 基礎敏捷（64810-64815），清兵越多滾越大 —— 這套的定位就是用便宜裝備先把這兩個永久累積跑起來。",
+          "The budget list does not chase coefficients, it chases a loop that actually runs. Casting only Piercing Light (3s cooldown, 20 mana at rank 5) means 20 mana per 3 seconds and only one attack needed per cycle; Guard Gloves' +20% attack speed pulls the 1.6s base attack interval down to 1.33s, and Mage Ring's +3 mana regen plus Ritual Book's +200 MP / +0.85 regen refills between waves. Damage side: Perfect Agility Ring +20, Emerald +15, Guard Gloves +10, Ritual Book +6 main stat (her main stat is Agility) and Agility Pendant +12 - 63 Agility for pocket change. DefCof is assembled from the two cheapest sources: Dark Vessel ratf at 600 gold gives key 6 +0.25 (23774) and Ritual Book at 500 gold gives key 6 +0.15 (24145, at the cost of key 9 -0.35 versus undead), with Spiked Gauntlets adding +0.08 versus melee - roughly 1.48. The long-game value is the meteor: under Piercing Light A0AL fires at 100% for -5 armour, and SetUnitExtraArmor (3846) stores the value in hash key 35 and writes negatives back too (3885), so the shred stacks without cap and is never overwritten. Twelve cycles on one elite is -60 armour. Starlight Flare also has a 50% chance on kill to run SetHeroAgi(u,GetHeroAgi(u,false)+1) for a permanent point of base Agility (64810-64815), so wave clearing compounds. This build exists to get both permanent counters running early on cheap gear.",
+          "Бюджет гонится не за множителями, а за тем, чтобы цикл вообще крутился. Только Пронзающий свет (кулдаун 3 сек, 20 маны на 5 ранге) - это 20 маны раз в 3 секунды и всего одна атака за цикл; перчатки стражи +20% скорости атаки сжимают базовые 1.6 сек до 1.33, кольцо мага +3 регена маны и книга ритуалов (+200 маны, +0.85 регена) восполняют между волнами. Урон: кольцо ловкости +20, изумруд +15, перчатки +10, книга ритуалов +6 к основному параметру (у неё это ловкость), подвеска +12 - итого 63 ловкости. DefCof собран из самого дешёвого: тёмный сосуд ratf за 600 - key6 +0.25 (23774), книга ритуалов за 500 - key6 +0.15 (24145, ценой key9 -0.35 по нежити), шипованные перчатки +0.08 по ближнему бою; около 1.48. Главная долгая ценность - метеор: под Пронзающим светом A0AL срабатывает со 100% шансом и снимает 5 брони, а SetUnitExtraArmor (3846) хранит значение в hash key 35 и записывает отрицательные тоже (3885) - слом копится без предела. Двенадцать циклов по одному элитнику - минус 60 брони. Плюс 50% шанс при добивании навсегда поднять базовую ловкость на 1 (64810-64815)."
+        ],
+        "items": [
+          "belv",
+          "gomn",
+          "sbch",
+          "I01C",
+          "ratf",
+          "I04D"
+        ],
+        "bonus": {
+          "s1": "rump",
+          "s2": "I074"
+        }
+      }
+    ],
+    "N03S": [
+      {
+        "id": "storm-maxsp",
+        "c": "#4FC3F7",
+        "n": [
+          "雷神怒濤",
+          "Thunderhead",
+          "Громовой вал"
+        ],
+        "key": [
+          "五個技能全部只吃技能強度、完全不吃裝備技能威力 —— 堆到 2150 並跨過 800 門檻，致命閃電從 3 目標變 5 目標",
+          "All five abilities scale off Spell Power only, none off Modifier Power - stack it to 2150 and cross the 800 threshold that turns Striking Lightning from 3 targets into 5",
+          "Все пять умений масштабируются только от силы умений - 2150 ед. и порог 800 превращает «Разящую молнию» из 3 целей в 5"
+        ],
+        "why": [
+          "heroes.json 的 mod 欄是空的，war3map.j 也證實：暴風使者五個技能的公式裡只有 udg_ItemBonusDMG（技能強度），沒有一個讀 LoadReal(hash,u,18)（裝備技能威力）。係數是 閃電打擊 40+40×等級+SP×0.35（57371 行）、連鎖引爆 30+30×等級+SP×0.18 且每跳 ×1.1（57387／57225 行）、吸收法球 200+SP×0.75（57424 行）、致命閃電 30+40×等級+SP×0.20 每目標（57480 行）、過載 智力×1.5+SP×0.20（57463 行）。所以技能強度是唯一的乘數。SP=2150 時：閃電打擊 992／目標（255 半徑全體）、連鎖引爆 567／跳／目標再乘 1.1^k、吸收法球 1812 底值（20 隻雜兵站滿 10 秒 ×2.0＝3624）、致命閃電 660×5＝3300／10 秒。跨過 800 那條門檻的收益特別大：57490 行把 dummy 的分岔閃電升到 3 級（5 目標），而 57470／57475 行的 2% 最大法力與 2% 最大生命回復也一起生效。蔑視者之戒在 24404-24405 行把 hash key 6 加 0.30、key 3 減 0.30；key 6 是 19877 行的「造成傷害 +X%」總係數，對雜兵就是純 +30%。最後通牒（24406）與大法師權杖各 +0.25 到 key 3，對英雄再 +50%。代價是幾乎沒有護甲與生命，法力只有 +750。",
+          "The mod field in heroes.json is empty and war3map.j confirms it: every Stormbringer formula reads udg_ItemBonusDMG (Spell Power) and none reads LoadReal(hash,u,18) (Modifier Power). The coefficients are: Lightning Strike 40+40*lvl+SP*0.35 (line 57371), Chain Detonation 30+30*lvl+SP*0.18 with *1.1 per hop (57387/57225), Orb of Absorption 200+SP*0.75 (57424), Striking Lightning 30+40*lvl+SP*0.20 per target (57480), Overload INT*1.5+SP*0.20 (57463). Spell Power is the only multiplier he has. At SP 2150: Lightning Strike 992 per target across a 255 radius, Chain Detonation 567 per hop per target times 1.1^k, Orb 1812 base (x2.0 = 3624 with 20 creeps parked in it for the full 10 s), Striking Lightning 660 x 5 = 3300 every 10 s. Crossing 800 is worth more than the raw stat: line 57490 raises the dummy's forked lightning to level 3 (5 targets) and lines 57470/57475 also hand you 2% max mana and 2% max HP per proc. Ring of Scorn writes +0.30 into hash key 6 and -0.30 into key 3 (lines 24404-24405); key 6 is the global damage-dealt coefficient read at line 19877, so against non-heroes it is a flat +30%. Ultimatum (24406) and Archmage Staff each add +0.25 to key 3 for another +50% against heroes. The price is almost no armour or HP and only +750 mana.",
+          "Поле mod в heroes.json пустое, и war3map.j это подтверждает: все формулы Буревестника читают udg_ItemBonusDMG (силу умений) и ни одна не читает LoadReal(hash,u,18). Коэффициенты: «Удар молнии» 40+40*ур+СУ*0.35 (строка 57371), «Цепной подрыв» 30+30*ур+СУ*0.18 с множителем 1.1 за прыжок (57387/57225), «Сфера поглощения» 200+СУ*0.75 (57424), «Разящая молния» 30+40*ур+СУ*0.20 на цель (57480), «Перегрузка» РАЗУМ*1.5+СУ*0.20 (57463). При 2150 СУ: «Удар молнии» 992 на цель в радиусе 255, сфера 1812 базово (x2.0 при 20 врагах внутри), «Разящая молния» 660 x 5 = 3300 каждые 10 с. Порог 800 особенно ценен: строка 57490 поднимает разветвлённую молнию до 3 уровня (5 целей), а строки 57470/57475 дают 2% маны и 2% здоровья за срабатывание. «Кольцо презрения» пишет +0.30 в ключ 6 и -0.30 в ключ 3 (24404-24405); ключ 6 - это общий коэффициент нанесённого урона в строке 19877, то есть чистые +30% по не-героям. Цена - почти нет брони и здоровья."
+        ],
+        "items": [
+          "I00E",
+          "sor5",
+          "kpin",
+          "fgrd",
+          "I0AN",
+          "I007"
+        ],
+        "bonus": {
+          "s1": "stre",
+          "s2": "I01Q"
+        }
+      },
+      {
+        "id": "storm-sustain",
+        "c": "#7E8CE0",
+        "n": [
+          "不熄雷雲",
+          "Everlasting Thundercloud",
+          "Негаснущая туча"
+        ],
+        "key": [
+          "拿 825 點技能強度（−38%）換 +2100 生命、+1800 法力、17.5 法力回復、17 護甲與 20% 魔法傷害減免 —— 這隻的官方定位就是「非常吃法力」",
+          "Trades 825 Spell Power (-38%) for +2100 HP, +1800 mana, 17.5 mana regen, 17 armour and 20% magic damage reduction - the hero's own blurb calls him extremely mana-hungry",
+          "Меняет 825 силы умений (-38%) на +2100 здоровья, +1800 маны, 17.5 реген маны, 17 брони и 20% снижение магического урона"
+        ],
+        "why": [
+          "地圖給這隻的官方描述就是「非常吃法力」，而他四個主動技能（Q 15 秒、W 22 秒、D 28 秒、R 60 秒）幾乎沒有空檔。這套把技能強度從 2150 砍到 1325（−38%），換來的是可量化的續戰：+1800 最大法力、17.5／秒法力回復（水晶項鍊 8＋大魔導師項鍊 5＋諾伊斗篷 1.5＋法師之戒 3）、+2100 生命、17 護甲、20% 魔法傷害減免。輸出的實際損失：閃電打擊每目標 992→704（−29%）、吸收法球底值 1812→1194（−34%）、致命閃電 660→518，但技能強度 1325 仍然穩穩壓過 800 門檻，5 目標與 2%HP/2%MP 回復完全保留。水晶項鍊另外把 hash key 6 加 0.11（23799 行），也就是 19877 行的全域「造成傷害 +11%」，可以補回一小截。鋼鐵守護者平時就是 +10 護甲／+1000 生命／+150 技能強度，需要硬吃一波時再啟動翻倍（+20 護甲／+2000 生命／+300 技能強度），代價是每秒 1% 最大法力 —— 以這套約 3500 的法力池等於 35／秒，遠超過 17.5 的回復，所以只能短開，不能常駐。苦難面具的 20% 反傷（20077 行）只對敵方英雄生效，打雜兵時它就是一件 +1000 生命／+500 法力／+5 全屬性的純數值裝，別把它當清兵手段。",
+          "The map's own blurb for this hero says he is extremely mana-hungry, and his four actives (Q 15 s, W 22 s, D 28 s, R 60 s) leave almost no idle time. This build cuts Spell Power from 2150 to 1325 (-38%) and buys measurable staying power: +1800 max mana, 17.5 mana per second (Crystal Necklace 8 + Archmagister Necklace 5 + Noi Cloak 1.5 + Mage Ring 3), +2100 HP, 17 armour, 20% magic damage reduction. The real damage cost: Lightning Strike 992 -> 704 per target (-29%), Orb of Absorption 1812 -> 1194 base (-34%), Striking Lightning 660 -> 518 per target. But 1325 still sits comfortably above the 800 threshold, so the 5-target lightning and the 2% HP / 2% mana returns are fully kept. Crystal Necklace also writes +0.11 into hash key 6 (line 23799), the global damage-dealt coefficient read at 19877, clawing back a slice. Iron Guardian is +10 armour / +1000 HP / +150 SP passively; activating doubles it (+20 / +2000 / +300) at 1% max mana per second - about 35 mana/s on this build's ~3500 pool, twice the regen, so it is a burst button, not a permanent state. The Mask of Misery reflect (line 20077) only fires against enemy heroes; versus creeps it is purely a +1000 HP / +500 mana / +5 all stat stick.",
+          "Описание героя в карте прямо говорит, что он очень требователен к мане, а четыре активных умения (Q 15 с, W 22 с, D 28 с, R 60 с) почти не оставляют пауз. Сборка снижает силу умений с 2150 до 1325 (-38%) и покупает выживание: +1800 маны, 17.5 реген маны в секунду, +2100 здоровья, 17 брони, 20% снижение магического урона. Потери урона: «Удар молнии» 992 -> 704 на цель (-29%), сфера 1812 -> 1194 (-34%). Но 1325 уверенно выше порога 800, поэтому 5 целей и возврат 2% HP/MP сохраняются. «Хрустальное ожерелье» пишет +0.11 в ключ 6 (строка 23799) - это общий коэффициент урона из строки 19877. «Железный страж» пассивно даёт +10 брони / +1000 HP / +150 СУ; активация удваивает, но стоит 1% маны в секунду (~35/с при пуле 3500), поэтому только на короткие отрезки. Отражение «Маски страданий» (строка 20077) работает только против вражеских героев."
+        ],
+        "items": [
+          "I00E",
+          "mnsf",
+          "rst1",
+          "I068",
+          "asbl",
+          "wshs"
+        ],
+        "bonus": {
+          "s1": "rump",
+          "s2": "I05I"
+        }
+      },
+      {
+        "id": "storm-six",
+        "c": "#26C6DA",
+        "n": [
+          "風暴六件套",
+          "Storm Set 6/6",
+          "Комплект Шторма 6/6"
+        ],
+        "key": [
+          "湊滿 6 件「風暴」—— 程式碼裡藏了兩段道具說明完全沒寫的加成：2 件時每次施法回 25 法力，6 件時每次施法對 1500 半徑內 3 名敵人打 250×(1＋裝備技能威力)，而且沒有任何冷卻",
+          "Six Storm pieces unlock two set bonuses that appear in no tooltip: at 2 pieces every cast refunds 25 mana, at 6 pieces every cast hits 3 random enemies within 1500 range for 250 x (1 + Modifier Power) - with no cooldown at all",
+          "Шесть предметов «Шторма» открывают два бонуса, которых нет ни в одной подсказке: при 2 предметах каждый каст возвращает 25 маны, при 6 - каждый каст бьёт 3 случайных врагов в радиусе 1500 на 250 x (1 + сила модификаторов), без всякой перезарядки"
+        ],
+        "why": [
+          "ApplySetStorm（22467 行起）只公開了四段門檻：2 件 +10 智力、3 件 +50 技能強度、4 件 +20 智力、5 件 +150 技能強度（合計 +30 智力／+200 技能強度，第 6 件不再給屬性）。真正沒寫在任何說明裡的兩段藏在 Trig_UseSkillsEndcast_Actions：29134 行 `if LoadInteger(hash,Id,9)>=2 then manaheal=manaheal+25`（key 9 就是風暴計數器），以及 29110 行 `if LoadInteger(hash,Id,9)>=6 then` —— 每次施法對 1500 半徑內隨機 3 名敵人造成 250×cof，cof＝1＋裝備技能威力，而且整段沒有 StartModCooldown，等於零冷卻。風暴之錘算 2 件（22480-22484 行），所以 6/6 只要 5 個格子：風暴之錘＋風暴冠冕＋風暴護身符＋雷霆之刃＋風暴侍僧手套，第 6 格留給星界耳環。裝備技能威力堆到 125%（冠冕 40＋護身符 40＋附魔護符 15＋魔法漿果 30）→ cof=2.25：套裝爆擊 562×3＝1687／每次施法，雷霆之刃 150→337 每 2 秒。雷霆之刃 50% 電擊機率再被風暴之錘的 +25%（ShockUnit 2597 行是加法）推到 75%，等於幾乎常駐電擊；電擊在 2626-2627 行把目標 key 4 −0.20、key 6 −0.30，key 4 在 19881 行反號進 DefCof，就是目標受到的所有傷害 +20%，而且沒有任何裝備能擋。風暴侍僧手套在 19958-19960 行只要當前法力 ≥1000 就再 +20%。技能強度 1060（800＋60＋套裝 200）仍在 800 門檻之上。",
+          "ApplySetStorm (from line 22467) exposes four thresholds: 2 pieces +10 INT, 3 pieces +50 Spell Power, 4 pieces +20 INT, 5 pieces +150 Spell Power (+30 INT / +200 SP total; the 6th piece grants no stat). The two bonuses that appear in no tooltip live in Trig_UseSkillsEndcast_Actions: line 29134 `if LoadInteger(hash,Id,9)>=2 then manaheal=manaheal+25` (key 9 is the Storm counter), and line 29110 `if LoadInteger(hash,Id,9)>=6 then` - every cast damages 3 random enemies within 1500 range for 250*cof where cof = 1 + Modifier Power, and the whole block never calls StartModCooldown, so it has zero cooldown. Storm Hammer counts as 2 pieces (lines 22480-22484), so 6/6 costs only 5 slots: Hammer + Storm Crown + Storm Amulet + Thunder Blade + Storm Acolyte Gloves, leaving one slot for the Astral Earring. Modifier Power reaches 125% (Crown 40 + Amulet 40 + Enchanted Talisman 15 + Magic Berry 30) so cof = 2.25: the set proc is 562 x 3 = 1687 per cast, and Thunder Blade goes from 150 to 337 every 2 s. Thunder Blade's 50% shock chance is pushed to 75% by the Hammer's +25% (ShockUnit adds it at line 2597), so shock is nearly permanent on whatever you are hitting; shock writes -0.20 into the target's key 4 and -0.30 into key 6 (lines 2626-2627), and key 4 is subtracted into DefCof at line 19881 - that is +20% damage taken from every source, and no item in the game blocks it. Storm Acolyte Gloves add another +20% whenever current mana is at least 1000 (lines 19958-19960). Spell Power still lands at 1060 (800 + 60 + 200 set), above the 800 threshold.",
+          "ApplySetStorm (со строки 22467) даёт четыре порога: 2 предмета +10 разума, 3 +50 силы умений, 4 +20 разума, 5 +150 силы умений (итого +30 разума / +200 СУ; шестой предмет характеристик не даёт). Два бонуса, которых нет ни в одной подсказке, лежат в Trig_UseSkillsEndcast_Actions: строка 29134 `if LoadInteger(hash,Id,9)>=2 then manaheal=manaheal+25` (ключ 9 - счётчик «Шторма») и строка 29110 `if LoadInteger(hash,Id,9)>=6 then` - каждый каст бьёт 3 случайных врагов в радиусе 1500 на 250*cof, где cof = 1 + сила модификаторов, и во всём блоке нет StartModCooldown, то есть перезарядки нет вообще. «Молот Шторма» считается за 2 предмета (22480-22484), поэтому 6/6 занимает всего 5 слотов, шестой остаётся под «Астральную серьгу». Сила модификаторов 125% даёт cof = 2.25: проки комплекта 562 x 3 = 1687 за каст, «Клинок грома» 150 -> 337 каждые 2 с. Шанс шока 50% + 25% от молота (сложение в строке 2597) = 75%. Шок пишет -0.20 в ключ 4 цели (строки 2626-2627), а ключ 4 вычитается в DefCof в строке 19881 - это +20% получаемого урона, и ни один предмет от этого не защищает. Перчатки дают ещё +20% при мане не ниже 1000 (19958-19960)."
+        ],
+        "items": [
+          "I0AL",
+          "I098",
+          "sora",
+          "I0AM",
+          "I099",
+          "I00E"
+        ],
+        "bonus": {
+          "s1": "oli2",
+          "s2": "I01L"
+        }
+      },
+      {
+        "id": "storm-budget",
+        "c": "#9CCC65",
+        "n": [
+          "八百門檻",
+          "Crossing 800",
+          "Порог 800"
+        ],
+        "key": [
+          "7800 金把技能強度堆到 835 —— 剛好跨過 800 那條門檻，致命閃電變 5 目標並附帶 2% 最大生命與 2% 最大法力回復",
+          "7800 gold puts Spell Power at 835 - just past the 800 threshold, so Striking Lightning hits 5 targets and refunds 2% max HP and 2% max mana",
+          "7800 золота дают 835 силы умений - чуть выше порога 800: «Разящая молния» бьёт 5 целей и возвращает 2% здоровья и 2% маны"
+        ],
+        "why": [
+          "致命閃電的四道門檻寫死在 57470-57493 行：200 回 2% 最大法力、400 分岔閃電 2 級（4 目標）、600 回 2% 最大生命、800 分岔閃電 3 級（5 目標）。門檻之間沒有插值，所以中期的目標很單純 —— 用最低的金幣把技能強度推過 800。這套 6 格全是 600～1800 金的便宜貨：紫水晶 125＋紫水晶戒指 125＋法力鋼 85＋風暴權杖 100＋蔑視者之戒 125＋不朽法冠 150＝710，加上吸收器放死靈法師之杖 50 與祕密寶盒期望能量符文 75，總計 835，剛好越線且不會因為升級而掉下去（udg_ItemBonusDMG 只會被玩家等級 +30／階往上加）。蔑視者之戒的 +30% 對非英雄（24404 行寫進 key 6，19877 行結算）在打雜兵的防守圖裡就是全套配裝最划算的單一乘數，1800 金換 +30% 全技能傷害。風暴權杖是這套的第二個關鍵：它的主動在 29265-29280 行是 150＋技能強度×0.50（835 時 568 點）打 305 半徑，而且 80% 機率上電擊 —— 電擊在 2626 行把目標 key 4 −0.20，經 19881 行等於該目標受到的所有傷害 +20%，持續 4 秒（背上能量符文變 5 秒，2600 行）。先按風暴權杖再放閃電打擊與連鎖引爆，整套爆發都吃到那 20%。法力方面靠不朽法冠的 3／秒回復光環＋法力鋼 2＋蔑視者之戒 1.5。",
+          "Striking Lightning's four thresholds are hard-coded at lines 57470-57493: 200 refunds 2% max mana, 400 raises the forked lightning to level 2 (4 targets), 600 refunds 2% max HP, 800 raises it to level 3 (5 targets). Nothing is interpolated between them, so the mid-game goal is simple - push Spell Power past 800 for as little gold as possible. Every slot here costs 600-1800: Amethyst 125 + Amethyst Ring 125 + Mana Steel 85 + Storm Sceptre 100 + Ring of Scorn 125 + Crown of Immortality 150 = 710, plus 50 from the Necromancer Staff absorber and an expected 75 from an Energy Rune box, for 835 total - over the line, and it cannot fall back below it because udg_ItemBonusDMG only ever gains from player tiers (+30 each). Ring of Scorn's +30% versus non-heroes (written into key 6 at line 24404, resolved at 19877) is the best single multiplier per gold in a creep-defence map: 1800 gold for +30% on every ability. Storm Sceptre is the second key piece: its active at lines 29265-29280 is 150 + SP*0.50 (568 at 835 SP) over a 305 radius with an 80% chance to shock - and shock writes -0.20 into the target's key 4 (line 2626), which line 19881 turns into +20% damage taken from every source for 4 seconds (5 with the Energy Rune, line 2600). Press the sceptre first, then Lightning Strike and Chain Detonation, and the whole burst lands inside that window. Mana comes from the Crown's 3/s regen aura plus 2 from Mana Steel and 1.5 from Ring of Scorn.",
+          "Четыре порога «Разящей молнии» жёстко записаны в строках 57470-57493: 200 - возврат 2% маны, 400 - разветвлённая молния 2 уровня (4 цели), 600 - возврат 2% здоровья, 800 - 3 уровень (5 целей). Между порогами ничего не интерполируется, поэтому цель середины игры проста: перешагнуть 800 как можно дешевле. Здесь все слоты по 600-1800 золота: 125 + 125 + 85 + 100 + 125 + 150 = 710, плюс 50 от «Посоха некроманта» и ожидаемые 75 от «Руны энергии» - итого 835, и ниже порога сборка уже не упадёт. «Кольцо презрения» с +30% по не-героям (ключ 6, строка 24404, расчёт в 19877) - лучший множитель за золото на карте обороны. «Скипетр Шторма»: активка в строках 29265-29280 это 150 + СУ*0.50 (568 при 835) в радиусе 305 и 80% шанс шока; шок пишет -0.20 в ключ 4 цели (строка 2626), что через строку 19881 даёт +20% получаемого урона на 4 секунды (5 с «Руной энергии»). Сначала скипетр, затем «Удар молнии» и «Цепной подрыв» - вся связка попадает в это окно."
+        ],
+        "items": [
+          "tpow",
+          "rag1",
+          "I01O",
+          "anfg",
+          "I0AN",
+          "I088"
+        ],
+        "bonus": {
+          "s1": "stre",
+          "s2": "I01Q"
+        }
+      }
+    ],
+    "N03R": [
+      {
+        "id": "flame-triple-zone",
+        "c": "#FF6A1F",
+        "n": [
+          "三重火場",
+          "Triple Firefield",
+          "Тройное огненное поле"
+        ],
+        "key": [
+          "燃盡持續 18＋2%技能強度、冷卻固定 18 秒 —— 技能強度一高就能同時疊 3 輪火場，所以純堆技能強度贏過任何「+% 點燃」。本體只有 4 格，前 4 件才是核心。",
+          "Burnout lasts 18 + 2% skill power on a flat 18 s cooldown, so high skill power keeps three casts overlapping - raw skill power beats any \"+% burn\" item. The base hero has only 4 slots: the first four items are the core.",
+          "Выгорание длится 18 + 2% силы умений при фиксированном КД 18 с - при высокой силе умений три залпа накладываются друг на друга. Чистая сила умений выгоднее любого «+% поджога». У героя всего 4 слота: основа - первые четыре предмета."
+        ],
+        "why": [
+          "war3map.j:57082 起：燃盡一次生成 3 個火場（角度＝英雄面向 +120/+240/+360，離施法點 175，各自半徑 135，彼此不重疊，施法點正中央反而是空的），跳數 count＝36＋技能強度×0.04，每 0.5 秒結算 5＋5×等級＋技能強度×0.04。技能強度 1735（星界耳環 800＋純淨紫水晶 400＋大法師長袍 300＋水晶項鍊 175＋魔法漿果 60）時：每跳 99.4、持續 52.7 秒、冷卻只有 18 秒 → 同時有 2.93 輪火場在跑，單點 2×99.4×1.11（水晶項鍊 +11% 攻擊與技能傷害）×2.93 ≈ 647／秒，三個點合計 1941。技能強度在這隻身上一次買四樣東西：跳傷、火場持續時間、火焰之靈攻擊（90＋技能強度×0.10＝264）、隕石（350＋1.25×技能強度＝2519）。反過來說點燃只佔本英雄約 15% 的輸出，薩弗拉斯的 +30% 點燃只換到約 +5% 總傷，遠輸給純淨紫水晶的 +400 技能強度（約 +20%）—— 這正是烈焰領主跟拜火者最大的路線差別。本體 4 格請留星界耳環／純淨紫水晶／大法師長袍／水晶項鍊；大法師權杖與最後通牒只有 6 格的遠古元素形態裝得下。",
+          "war3map.j:57082 onward: one Burnout spawns three fire zones (angle = hero facing +120/+240/+360, 175 units from the target point, radius 135 each - they do not overlap, and the cast point itself is a dead spot). Tick count = 36 + skillpower*0.04; every 0.5 s it deals 5 + 5*level + skillpower*0.04. At 1735 skill power (Astral Earring 800 + Pure Amethyst 400 + Archmage Robe 300 + Crystal Necklace 175 + Magic Berry 60): 99.4 per tick, 52.7 s duration, 18 s cooldown - 2.93 casts alive at once, so one spot takes 2*99.4*1.11 (Crystal Necklace +11% attack & ability damage) * 2.93 = 647 DPS, 1941 across all three spots. Skill power buys four things at once here: tick damage, zone duration, Fire Spirit attack (90 + 0.10*SP = 264) and Meteor (350 + 1.25*SP = 2519). Burn is only ~15% of this hero's output, so Sylvanas' +30% burn is worth about +5% total - far less than Pure Amethyst's +400 skill power (~+20%). That is the core difference from the Firewalker. On the base hero keep Astral Earring / Pure Amethyst / Archmage Robe / Crystal Necklace; the Archmage Staff and Ultimatum only fit in the 6-slot Ancient Elemental form.",
+          "war3map.j:57082: Выгорание создаёт три зоны (угол = поворот героя +120/+240/+360, 175 от точки, радиус 135 каждая; зоны не пересекаются, а центр точки вообще не задет). Тиков = 36 + сила умений*0.04, каждые 0.5 с урон 5 + 5*уровень + сила умений*0.04. При 1735 силы умений: 99.4 за тик, длительность 52.7 с, КД 18 с - одновременно живут 2.93 залпа, одна точка получает 2*99.4*1.11*2.93 = 647 в секунду, три точки - 1941. Сила умений здесь усиливает сразу четыре вещи: урон тика, длительность зоны, атаку духа огня (90 + 0.10*СУ = 264) и Метеор (350 + 1.25*СУ = 2519). Поджог даёт лишь ~15% урона, поэтому +30% поджога от Сульфураса стоит около +5% общего урона - гораздо меньше, чем +400 силы умений от Чистого аметиста (~+20%). В этом главное отличие от Огнепоклонника. На базовом герое оставьте первые четыре предмета; Посох архимага и Ультиматум влезут только в форму Древнего элементаля с 6 слотами."
+        ],
+        "items": [
+          "I00E",
+          "sor5",
+          "kpin",
+          "mnsf"
+        ],
+        "bonus": {
+          "s1": "oli2",
+          "s2": "I01L"
+        }
+      },
+      {
+        "id": "flame-emberkeep",
+        "c": "#B4472A",
+        "n": [
+          "不滅火種",
+          "Everlasting Ember",
+          "Неугасимый уголёк"
+        ],
+        "key": [
+          "零時迷子檢查的是整數槽 27 的旗標，而烈焰領主天生就寫死 27＝51 —— 一件抗性裝都不用買就吃滿 +50% 狀態傷害，同一個 51 也讓它完全免疫敵方點燃。",
+          "Zero-Hour Wanderer checks integer hash key 27, and the Lord of Flame is hard-coded to 51 - he gets the +50% status damage with no resist item at all, and the same 51 makes him fully burn-immune.",
+          "Странник нулевого часа проверяет целочисленный ключ 27, а у Лорда пламени он жёстко задан равным 51 - он получает +50% урона состояний без единого предмета на сопротивление, и тот же 51 даёт полный иммунитет к поджогу."
+        ],
+        "why": [
+          "零時迷子的條件（Burn_Dmg，war3map.j:1793-1798；BurnUnit 1876-1880）不是「+X% 點燃抗性」，而是 LoadInteger(hash,damager,27)>=1 這個旗標。烈焰領主在 war3map.j:45087 被寫死 SaveInteger(hash,GetHandleId(u),27,51)，所以它天生滿足條件 —— 拜火者得靠熾熱核心（22762 行 +1）或生鏽頭盔（23875 行 +1）才拿得到，這隻等於白賺一件裝備。同一個 51 也在 BurnUnit:1853-1856 讓 chanse=0（>50 即免疫），所以它完全不怕敵方點燃，點燃防護裝可以全部不帶。這套把獅子星座＋大法師長袍＋零時迷子疊到 +18 護甲，並維持 1.85 的點燃係數（1＋0.15 附魔護符＋0.20 太陽之書＋0.50 零時迷子），代價是技能強度 1735→1300：燃盡每跳 99.4→82、持續 52.7→44 秒、可疊層數 2.93→2.44，單點 647→400（−38%）。換回來的是 +18 護甲、+3 全屬性、獅子星座每次施法都淨化一次負面狀態（施法觸發道具的內冷在這張圖是壞的，見簡報第 3 節），以及更大的法力池 —— 火焰銘文的復活反擊是 0.35×最大法力＋1.05×技能強度，滿格 6 格時苦難面具的 +500 法力直接加 175 點爆發。",
+          "Zero-Hour Wanderer's condition (Burn_Dmg at war3map.j:1793-1798, BurnUnit at 1876-1880) is not \"+X% burn resistance\" but the flag LoadInteger(hash, damager, 27) >= 1. The Lord of Flame is hard-coded at war3map.j:45087 with SaveInteger(hash, GetHandleId(u), 27, 51), so he satisfies it innately - the Firewalker has to buy Molten Core (+1 at line 22762) or Rusty Helm (+1 at 23875) for the same flag. That same 51 also sets chanse = 0 in BurnUnit:1853-1856 (>50 means immune), so enemy burn cannot touch him and every burn-protection item is dead weight. This build stacks Lion Constellation + Archmage Robe + Zero-Hour Wanderer to +18 armor while keeping a 1.85 burn coefficient (1 + 0.15 amulet + 0.20 Sun Book + 0.50 Wanderer). The cost is 1735 -> 1300 skill power: Burnout ticks 99.4 -> 82, duration 52.7 -> 44 s, overlapping casts 2.93 -> 2.44, one spot 647 -> 400 DPS (-38%). In return: +18 armor, +3 all stats, and Lion Constellation dispelling on every cast (the internal cooldown on cast-triggered items is broken in this map). Bigger mana also matters: the Fire Inscription revival blast is 0.35*maxMana + 1.05*skillpower, so Mask of Suffering's +500 mana adds 175 flat damage to it.",
+          "Условие Странника нулевого часа (Burn_Dmg, war3map.j:1793-1798; BurnUnit, 1876-1880) - не «+X% сопротивление поджогу», а флаг LoadInteger(hash, damager, 27) >= 1. У Лорда пламени в war3map.j:45087 жёстко записано SaveInteger(hash, GetHandleId(u), 27, 51), поэтому условие выполнено изначально - Огнепоклоннику для того же флага нужен Раскалённый сердечник (+1, строка 22762) или Ржавый шлем (+1, строка 23875). Тот же 51 в BurnUnit:1853-1856 обнуляет шанс (>50 = иммунитет), так что вражеский поджог его не берёт. Сборка даёт +18 брони и коэффициент поджога 1.85 (1 + 0.15 + 0.20 + 0.50). Цена: сила умений 1735 -> 1300, тик Выгорания 99.4 -> 82, длительность 52.7 -> 44 с, наложений 2.93 -> 2.44, одна точка 647 -> 400 в секунду (-38%). Взамен: броня, живучесть, снятие эффектов от Созвездия льва при каждом касте и больший запас маны - взрыв воскрешения равен 0.35*макс. мана + 1.05*сила умений."
+        ],
+        "items": [
+          "I00E",
+          "kpin",
+          "ofro",
+          "I086"
+        ],
+        "bonus": {
+          "s1": "oli2",
+          "s2": "I0AV"
+        }
+      },
+      {
+        "id": "flame-ancient-slots",
+        "c": "#8E5BE0",
+        "n": [
+          "遠古元素的第五格",
+          "The Elemental's Fifth Slot",
+          "Пятый слот Древнего элементаля"
+        ],
+        "key": [
+          "遠古元素皮膚在物件資料裡帶的是原版 AInv（6 格），本體帶的是 A08K（inv1＝4）—— 皮膚多兩格，但腳本只認 N03R，皮膚形態下引爆完全不會觸發，易燃要靠熾熱核心自己補。",
+          "The Ancient Elemental skin carries the stock AInv (6 slots) while the base hero carries A08K (inv1 = 4) - the skin gets two extra slots, but the attack trigger only accepts unit type N03R, so Detonate never fires in skin form and Flammable has to come from Molten Core instead.",
+          "Скин «Древний элементаль» в данных объектов носит стандартный AInv (6 слотов), а базовый герой - A08K (inv1 = 4): у скина на два слота больше. Но триггер атаки принимает только N03R, поэтому Подрыв в форме скина не срабатывает, и Горючесть приходится брать с Раскалённого сердечника."
+        ],
+        "why": [
+          "war3map.w3u：N03R 的 uabi＝A05M,A03V,A08K，而 A08K 是 AInv 的衍生、inv1＝4（欄位名就叫「(4 слота)」）；遠古元素 Nfir 的 uabi＝A05M,A03V,AInv，也就是原版 6 格。皮膚是在 war3map.j:45071 用 ReplaceUnitBJ 換成 Nfir 的，換完單位類型就變 Nfir —— 但 57162 行的 Trig_HeroAttack34_Conditions 寫的是 GetUnitTypeId(GetAttacker())=='N03R'，所以皮膚形態下引爆（150 傷害／4 秒＋80% 易燃）整個不觸發；同一支腳本 46574 行的死亡判定卻同時列了 N03R 與 Nfir，看起來是漏寫。因此這套自己補易燃：熾熱核心每 5 秒 40% 易燃＋60% 點燃 225（war3map.j:29810-29826，5 秒表在 15988 行），配幸運馬蹄鐵在 FlammabilityUnit:1818 與 BurnUnit:1929 的 ×1.5 變成 60%／90%，同時把燃盡每跳 15% 的點燃判定拉到 22.5%。易燃在 BurnUnit:1937-1939 讓跳數 16＋8×(1＋(1＋key46))＝32，等於所有點燃傷害翻倍，是全遊戲最大的單一點燃倍率。技能強度 1500：燃盡每跳 90、持續 48 秒、疊 2.67 輪、單點 480；點燃係數 1＋0.15＋0.20＋0.50＝1.85。多出來的兩格值不值得，就看你能不能穩定站在敵人 300 距離內讓熾熱核心生效 —— 站不進去就退回本體 4 格。",
+          "war3map.w3u: N03R's uabi = A05M,A03V,A08K, and A08K derives from AInv with inv1 = 4 (its editor suffix literally reads \"(4 slots)\"); the Ancient Elemental Nfir has uabi = A05M,A03V,AInv, i.e. the stock 6 slots. The skin is applied with ReplaceUnitBJ at war3map.j:45071, which changes the unit type to Nfir - but Trig_HeroAttack34_Conditions at line 57162 reads GetUnitTypeId(GetAttacker()) == 'N03R', so Detonate (150 damage / 4 s + 80% Flammable) never fires in skin form, while the death handler at line 46574 does test both N03R and Nfir - it looks like an oversight. So this build buys Flammable instead: Molten Core applies 40% Flammable + 60% burn for 225 every 5 s (war3map.j:29810-29826; the 5 s timer is set at 15988), and Lucky Horseshoe's x1.5 in FlammabilityUnit:1818 and BurnUnit:1929 turns that into 60% / 90% while lifting Burnout's 15% per-tick burn roll to 22.5%. Flammable raises the tick count in BurnUnit:1937-1939 from 16 to 16 + 8*(1+(1+key46)) = 32, i.e. burn damage exactly doubles - the biggest single burn multiplier in the game. At 1500 skill power: 90 per tick, 48 s duration, 2.67 overlapping casts, 480 DPS per spot, burn coefficient 1 + 0.15 + 0.20 + 0.50 = 1.85. Whether the two extra slots pay off depends on whether you can stand within 300 units of the enemy for Molten Core; if you cannot, go back to the 4-slot base hero.",
+          "war3map.w3u: у N03R uabi = A05M,A03V,A08K, а A08K происходит от AInv с inv1 = 4 (суффикс в редакторе - «(4 слота)»); у Древнего элементаля Nfir uabi = A05M,A03V,AInv, то есть стандартные 6 слотов. Скин применяется через ReplaceUnitBJ в war3map.j:45071, тип юнита становится Nfir - но Trig_HeroAttack34_Conditions в строке 57162 проверяет GetUnitTypeId(GetAttacker()) == 'N03R', поэтому Подрыв (150 урона / 4 с + 80% Горючести) в форме скина не работает вообще, хотя обработчик смерти в строке 46574 проверяет и N03R, и Nfir - похоже на недосмотр. Поэтому Горючесть берём с Раскалённого сердечника: каждые 5 с 40% Горючести + 60% поджога на 225 (war3map.j:29810-29826), а Счастливая подкова умножает шансы на 1.5 (FlammabilityUnit:1818, BurnUnit:1929) - 60% / 90%, и шанс поджога от тика Выгорания растёт с 15% до 22.5%. Горючесть в BurnUnit:1937-1939 поднимает число тиков с 16 до 32, то есть удваивает весь урон поджога. При 1500 силы умений: тик 90, длительность 48 с, 2.67 наложений, 480 в секунду на точку, коэффициент поджога 1.85."
+        ],
+        "items": [
+          "I00E",
+          "sor5",
+          "kpin",
+          "I086",
+          "I06A",
+          "I09G"
+        ],
+        "bonus": {
+          "s1": "oli2",
+          "s2": "I0AV"
+        },
+        "slots": 6
+      },
+      {
+        "id": "flame-threshold-spirit",
+        "c": "#3FA089",
+        "n": [
+          "門檻火靈",
+          "Threshold Spirit",
+          "Дух порогов"
+        ],
+        "key": [
+          "火焰之靈藏著 150／300／500 技能強度三個說明沒寫的門檻，燃盡另外在 300 有一個 −50% 移速光環 —— 9200 金湊到 710 技能強度就全部越過，之後才是線性成長。",
+          "The Fire Spirit hides three undocumented skill-power thresholds at 150 / 300 / 500, and Burnout gains a -50% slow aura at 300 - 9,200 gold and 710 skill power clears all four; everything after that is linear.",
+          "У Духа огня три недокументированных порога силы умений - 150 / 300 / 500, а Выгорание при 300 получает ауру замедления -50%. За 9200 золота и 710 силы умений вы проходите все четыре порога; дальше рост линейный."
+        ],
+        "why": [
+          "war3map.j:57119-57131 的三個門檻說明只在 A0CA 的圖示上提了一句（而且那句寫「150／300／500／1000 共 4 個」—— 1000 那一階在腳本裡根本沒有實作）：技能強度 ≥150 換上 A0GY，火靈攻擊 40% 機率點燃，實作在 19630-19633 行是 BurnUnit(spirit,target,dmg×1.25)，說明卻寫「25% 的傷害」，實際是 125%；≥300 換上 A07F／A0S7，A0S7 的 isr2＝0.7，也就是 70% 魔法減傷；≥500 換上 A0KE，UnitApplyTimedLife 從 60 秒變 80 秒、SetUnitLifeRegeneration 從 2 變 32（說明只寫「+12 生命回復」）。冷卻 60 秒配 80 秒壽命＝火靈永不斷線，而且每 60 秒有 20 秒是兩隻同時在場。燃盡在 57094-57096 行技能強度 ≥300 時給三個火場各掛一個 S008（Oae1＝−0.5、範圍 135），對防守圖就是三個永久減速區。這套用最後通牒＋不朽法冠＋紫水晶戒指＋紫水晶（本體 4 格）加上死靈法師之杖／魔法漿果，9200 金就有 710 技能強度：燃盡每跳 58.4、持續 32 秒、疊 1.79 輪、單點 209；火靈攻擊 161、生命 1150＋英雄最大生命 25%、護甲 6、射程 500、範圍潑濺、攻擊類型是魔法。",
+          "The three thresholds at war3map.j:57119-57131 are only hinted at on the A0CA icon - and that tooltip claims four tiers at 150 / 300 / 500 / 1000, while the 1000 tier is simply not implemented anywhere in the script. At >= 150 skill power the spirit gains A0GY: 40% of its attacks apply burn, implemented at lines 19630-19633 as BurnUnit(spirit, target, dmg * 1.25) - the tooltip says \"25% of the damage dealt\", the code passes 125%. At >= 300 it gains A07F / A0S7, and A0S7's isr2 = 0.7, i.e. 70% magic damage reduction. At >= 500 it gains A0KE: UnitApplyTimedLife goes 60 s -> 80 s and SetUnitLifeRegeneration 2 -> 32 (the tooltip only promises +12). An 80 s lifetime against a 60 s cooldown means the spirit is permanent, with two spirits up for 20 s out of every 60. Separately, at >= 300 skill power Burnout attaches S008 (Oae1 = -0.5, radius 135) to all three zones - three permanent slow fields, which is exactly what a defence map wants. Ultimatum + Immortal Crown + Amethyst Ring + Amethyst (the base hero's four slots) plus Necromancer Staff / Magic Berry costs 9,200 gold for 710 skill power: Burnout 58.4 per tick, 32 s duration, 1.79 overlapping casts, 209 DPS per spot; the spirit hits for 161, has 1150 + 25% of the hero's max HP, 6 armor, 500 range, splash, and a magic attack type.",
+          "Три порога в war3map.j:57119-57131 упомянуты только в описании A0CA - и там сказано о четырёх ступенях (150 / 300 / 500 / 1000), тогда как ступень 1000 в скрипте вообще не реализована. При силе умений >= 150 дух получает A0GY: 40% атак накладывают поджог, реализация в строках 19630-19633 - BurnUnit(дух, цель, урон * 1.25); в описании сказано «25% от нанесённого урона», в коде 125%. При >= 300 - A07F / A0S7 с isr2 = 0.7, то есть 70% снижения магического урона. При >= 500 - A0KE: время жизни 60 -> 80 с, регенерация 2 -> 32 (в описании только +12). 80 секунд жизни против КД 60 секунд = дух не пропадает никогда, и 20 секунд из каждых 60 их двое. Кроме того, при >= 300 Выгорание вешает на все три зоны S008 (Oae1 = -0.5, радиус 135) - три постоянные зоны замедления. За 9200 золота собирается 710 силы умений: тик Выгорания 58.4, длительность 32 с, 1.79 наложений, 209 в секунду на точку; дух бьёт на 161, имеет 1150 + 25% макс. HP героя, 6 брони, дальность 500 и сплеш."
+        ],
+        "items": [
+          "I007",
+          "I088",
+          "rag1",
+          "tpow"
+        ],
+        "bonus": {
+          "s1": "stre",
+          "s2": "I01L"
+        }
+      }
     ]
   }
 }

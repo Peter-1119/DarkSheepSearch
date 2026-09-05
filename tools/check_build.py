@@ -35,6 +35,14 @@ BAN = {'新年', '復活節', '萬聖節', '儀式', '完美', '特殊（lv.5++�
 MULTIPLIER = {'ckng', 'tfar', 'oven', 'kysn', 'jpnt', 'moon',
               'I0A8', 'I01P', 'I00B', 'I078'}
 EARRING = {'I00E', 'I00F', 'I00O', 'I00P', 'I00Q'}
+# 每隻英雄的背包格數（幽魂之狼／烈焰領主／機械戰體只有 4 格）
+try:
+    SLOTS = {h['id']: h.get('slots', 6) for h in json.load(
+        io.open(os.path.join(ROOT, 'data', 'heroes.json'),
+                encoding='utf-8'))['heroes']}
+except Exception:
+    SLOTS = {}
+
 BY_NAME = {}
 for _i, _v in D.items():
     BY_NAME.setdefault(_v['name'], _i)
@@ -61,13 +69,13 @@ def totals(ids):
     return tot
 
 
-def check(items, s1=None, s2=None):
-    """回傳問題清單，空的代表合法。"""
+def check(items, s1=None, s2=None, slots=6):
+    """回傳問題清單，空的代表合法。slots = 該英雄的背包格數（多數 6，3 隻只有 4）。"""
     bad = []
     extra = [x for x in (s1, s2) if x]
     all_ = list(items) + extra
-    if len(items) != 6:
-        bad.append('正常欄位有 %d 件，應該是 6 件' % len(items))
+    if len(items) != slots:
+        bad.append('正常欄位有 %d 件，這隻英雄只有 %d 格' % (len(items), slots))
     for i in all_:
         if D[i]['group'] in BAN:
             bad.append('%s 是「%s」，不在取得範圍內' % (D[i]['name'], D[i]['group']))
@@ -96,11 +104,11 @@ def check(items, s1=None, s2=None):
     return bad
 
 
-def report(tag, items, s1=None, s2=None, verbose=True):
+def report(tag, items, s1=None, s2=None, verbose=True, slots=6):
     items = [resolve(x) for x in items]
     s1 = resolve(s1) if s1 else None
     s2 = resolve(s2) if s2 else None
-    bad = check(items, s1, s2)
+    bad = check(items, s1, s2, slots)
     print('%s %s' % ('✔' if not bad else '✘', tag))
     for b in bad:
         print('    ! ' + b)
@@ -130,31 +138,35 @@ def main():
     ap.add_argument('--s2')
     ap.add_argument('--file', help='配裝 JSON（{"list":[…]} 或 {"builds":{英雄:[…]}}）')
     ap.add_argument('-q', '--quiet', action='store_true', help='只印總計，不列每件裝備')
+    ap.add_argument('--slots', type=int, default=6, help='背包格數（預設 6）')
     a = ap.parse_args()
 
     if a.file:
         j = json.load(io.open(a.file, encoding='utf-8'))
         rows = []
         if isinstance(j.get('list'), list):
-            rows = [(b['id'] + ' ' + b['n'][0], b) for b in j['list']]
+            rows = [(b['id'] + ' ' + b['n'][0], b, None) for b in j['list']]
         for hero, bs in (j.get('builds') or {}).items():
-            rows += [('%s / %s %s' % (hero, b['id'], b['n'][0]), b) for b in bs]
+            rows += [('%s / %s %s' % (hero, b['id'], b['n'][0]), b, hero) for b in bs]
         # 也接受直接以英雄 ID 當頂層鍵的形式：{"H01E": [ … ]}
         for hero, bs in j.items():
             if hero in ('list', 'builds') or hero.startswith('_'):
                 continue
             if isinstance(bs, list) and bs and isinstance(bs[0], dict) and 'items' in bs[0]:
-                rows += [('%s / %s %s' % (hero, b['id'], b['n'][0]), b) for b in bs]
+                rows += [('%s / %s %s' % (hero, b['id'], b['n'][0]), b, hero)
+                         for b in bs]
         ok = 0
-        for tag, b in rows:
+        for tag, b, hero in rows:
             bo = b.get('bonus') or {}
-            ok += report(tag, b['items'], bo.get('s1'), bo.get('s2'), not a.quiet)
+            # 配裝可以自己覆寫格數（例如只有換上 6 格皮膚才成立的那種）
+            ok += report(tag, b['items'], bo.get('s1'), bo.get('s2'), not a.quiet,
+                         b.get('slots') or SLOTS.get(hero, 6))
         print('=== %d / %d 套通過 ===' % (ok, len(rows)))
         sys.exit(0 if ok == len(rows) else 1)
 
     if not a.items:
         ap.error('請給 6 件道具，或用 --file')
-    report('（指定的配裝）', a.items, a.s1, a.s2, not a.quiet)
+    report('（指定的配裝）', a.items, a.s1, a.s2, not a.quiet, a.slots)
 
 
 if __name__ == '__main__':

@@ -117,8 +117,14 @@ def scaling(heroes, jass):
 
     # --- 直接用到的行 --------------------------------------------------
     KEY18 = re.compile(r'LoadReal\(hash,[A-Za-z_0-9()]+,18\)')
+    # 「SaveReal(…,18, LoadReal(…,18)+x)」是把裝備技能威力**加給**單位，
+    # 不是拿它來放大傷害。67 處讀取裡有 30 處是這種，不排掉的話
+    # 惡魔獵手的「著魔」（它其實是 +40% 的來源）會被標成「吃裝備技能威力」。
+    KEY18_SET = re.compile(
+        r'SaveReal\(hash,[A-Za-z_0-9()]+,18,\s*LoadReal\(hash,[A-Za-z_0-9()]+,18\)')
     CALLED = re.compile(r'\b(?:function|call) ([A-Za-z0-9_]+)')
-    dmod = [bool(KEY18.search(l)) for l in lines]
+    dmod = [bool(KEY18.search(l)) and not KEY18_SET.search(l) for l in lines]
+    dgive = [bool(KEY18_SET.search(l)) for l in lines]      # 反過來：授予裝備技能威力
     dsp = ['udg_ItemBonusDMG' in l for l in lines]
     # 每行提到的其他函式（排除函式定義那行）
     ref = [() if l.startswith('function ') else tuple(CALLED.findall(l))
@@ -126,6 +132,7 @@ def scaling(heroes, jass):
 
     fmod = {fn[i] for i in range(n) if dmod[i]}
     fsp = {fn[i] for i in range(n) if dsp[i]}
+    fgive = {fn[i] for i in range(n) if dgive[i]}
 
     # --- 呼叫關係的傳遞閉包 -------------------------------------------
     calls = {}
@@ -135,9 +142,10 @@ def scaling(heroes, jass):
     while True:
         gm = fmod | {f for f, c in calls.items() if c & fmod}
         gs = fsp | {f for f, c in calls.items() if c & fsp}
-        if gm == fmod and gs == fsp:
+        gg = fgive | {f for f, c in calls.items() if c & fgive}
+        if gm == fmod and gs == fsp and gg == fgive:
             break
-        fmod, fsp = gm, gs
+        fmod, fsp, fgive = gm, gs, gg
 
     def uses(lo, hi, direct, reach):
         for i in range(lo, hi):
@@ -182,24 +190,31 @@ def scaling(heroes, jass):
 
     out = {}
     for uid, h in heroes.items():
-        mod, sp = [], []
+        mod, sp, give = [], [], []
         for a in h['abilities']:
             if a.get('opts'):                     # 技能書本身不標
                 continue
             txt = a.get('text_ru') or ''
             m = bool(SAYS_MOD.search(txt))
             p = bool(SAYS_SP.search(txt))
+            g = False
             for lo, hi in spans.get(a['id'], ()):
                 m = m or uses(lo, hi, dmod, fmod)
                 p = p or uses(lo, hi, dsp, fsp)
-                if m and p:
+                g = g or uses(lo, hi, dgive, fgive)
+                if m and p and g:
                     break
             if m:
                 mod.append(a['id'])
             if p:
                 sp.append(a['id'])
-        out[uid] = {'mod': mod, 'sp': sp}
+            # 只在「不是消費者」時才標成來源，避免同一個技能掛兩個標記
+            if g and not m:
+                give.append(a['id'])
+        out[uid] = {'mod': mod, 'sp': sp, 'give': give}
     return out
+
+
 def main():
     tr = json.load(io.open(os.path.join(HERE, 'heroes_zh.json'), encoding='utf-8'))
     AB = json.load(io.open(os.path.join(HERE, 'abilities_zh.json'),
@@ -268,6 +283,8 @@ def main():
             'attr': h['attr'] or 'int',      # 只有樹人長者沒被列進三個屬性池
             'unlock': h['unlock'] or 0,
             'random': h['random'],           # False = 不在隨機池，只能手動挑
+            # 背包格數：3 隻英雄只有 4 格（幽魂之狼／烈焰領主／機械戰體）
+            'slots': h['slots'],
             # 綁帳號名的英雄：ureq 指向的科技只發給名單內的玩家名稱，
             # 其他人選不到（占星師 6 個帳號、遠古九頭蛇 3 個）
             **({'lock': h['lock']} if h.get('lock') else {}),
@@ -287,6 +304,10 @@ def main():
             'roles': [tri(V['role'], r) for r in roles],
             'sc': [stats, sts],              # 連到裝備用的
             'mod': scale[uid]['mod'],        # 吃裝備技能威力的技能
+            # 反過來：會「給」裝備技能威力的技能（例如惡魔獵手的著魔）
+            **({'give': scale[uid]['give']} if scale[uid]['give'] else {}),
+            # 反過來：會「給」裝備技能威力的技能（例如惡魔獵手的著魔）
+            **({'give': scale[uid]['give']} if scale[uid]['give'] else {}),
             'sp': scale[uid]['sp'],          # 吃技能強度的技能
             # kind: 'hero' = QWER 可升級技能；'innate' = 固有技能（被動／專屬機制／天賦入口）
             'ab': [{

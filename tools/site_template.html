@@ -714,6 +714,9 @@ body[data-resizing="1"]{cursor:col-resize;user-select:none}
 .hlink.s:hover{border-color:var(--sc)}
 .hnote{font-size:var(--fs-sub);line-height:1.6;border-radius:8px;padding:8px 10px;
   margin-top:9px;border:1px solid var(--line)}
+/* ⊕ 是「裝備技能威力的來源」，跟 ◈「吃裝備技能威力」是相反的兩件事 */
+.ha-g{color:#7BD3A0;font-weight:700}
+.hnote.give{color:#7BD3A0;border-color:color-mix(in srgb,#7BD3A0 40%,var(--line))}
 .hnote.mod{color:#F7E15C;border-color:color-mix(in srgb,#F7E15C 40%,var(--line));
   background:color-mix(in srgb,#F7E15C 8%,var(--surface))}
 /* 技能：跟狀態說明用同一種展開樣式 */
@@ -1326,7 +1329,8 @@ const UI = {
       hSkinNote:'這個皮膚不只換外觀，還會換掉技能',
       hBuilds:'推薦配裝', hNeedTalent:'需搭配天賦：',
       hBuildHint:'這些標籤是從該英雄的技能文字掃出來的機制，點一下就會帶你回裝備清單。',
-      hModYes:'◈ 這招會吃「裝備技能威力」：傷害 ×（1 + 威力 × 0.33）。沒有 ◈ 的技能不吃 —— 228 個英雄技能裡只有 18 個會。',
+      hModYes:'◈ 這招會吃「裝備技能威力」：傷害 ×（1 + 威力）。沒有 ◈ 的技能不吃 —— 228 個英雄技能裡只有 4 個會（判定方式是看該技能的程式碼有沒有讀 hash key 18）。',
+      hGive:'⊕ 這招是「裝備技能威力」的來源 —— 它會提升你的威力值，讓道具觸發的傷害變強，但它自己的傷害不吃這個屬性。',
       hSkillRu:'技能說明譯自地圖原文；數值、公式與換行結構均保留原樣。',
       ptAI:'AI 配裝', bdApply:'套用', bdWhy:'為什麼有效',
       bdSub:'%s 套推薦，已排除幾乎抽不到的裝備',
@@ -1409,7 +1413,8 @@ const UI = {
       hSkinNote:'This skin is not cosmetic - it replaces abilities',
       hBuilds:'Recommended builds', hNeedTalent:'Requires talent: ',
       hBuildHint:'These tags are the mechanics found in this hero\'s ability text - click one to jump back to the items.',
-      hModYes:'◈ This ability scales with Modifier power: damage x (1 + power x 0.33). Abilities without the mark do not - only 18 of 228 hero abilities do.',
+      hModYes:'◈ This ability scales with Modifier power: damage x (1 + power). Abilities without the mark do not - only 4 of 228 hero abilities do (decided by whether the code behind the ability reads hash key 18).',
+      hGive:'⊕ This ability is a source of Modifier power - it raises your power value, which strengthens item procs. Its own damage does not scale with it.',
       hSkillRu:'Ability text translated from the map source; numbers, formulas and line breaks preserved.',
       ptAI:'AI builds', bdApply:'Apply', bdWhy:'Why it works',
       bdSub:'%s builds, ultra-rare items excluded',
@@ -1497,7 +1502,8 @@ const UI = {
       hSkinNote:'Этот облик меняет не только внешность, но и умения',
       hBuilds:'Сборки для героя', hNeedTalent:'Нужен талант: ',
       hBuildHint:'Эти метки найдены в тексте умений героя - нажмите, чтобы вернуться к предметам.',
-      hModYes:'◈ Это умение зависит от силы модификаторов: урон x (1 + сила x 0.33). Умения без метки - нет, таких всего 18 из 228.',
+      hModYes:'◈ Это умение зависит от силы модификаторов: урон x (1 + сила). Умений с такой зависимостью всего 4 из 228.',
+      hGive:'⊕ Это умение - источник силы модификаторов: оно повышает её значение и усиливает срабатывания предметов, но собственный урон от неё не зависит.',
       hSkillRu:'Описания умений - оригинальный текст карты.',
       ptAI:'Сборки ИИ', bdApply:'Применить', bdWhy:'Почему это работает',
       bdSub:'%s сборок, без сверхредких предметов',
@@ -1860,6 +1866,7 @@ function openHero(id){
     <h5>${esc(t('hBuild'))}</h5>
     <div class="hlinks">${wantStats.map(statBtn).join('')}${wantSt.map(stBtn).join('')}</div>
     ${h.mod && h.mod.length ? `<div class="hnote mod">${esc(t('hModYes'))}</div>` : ''}
+    ${h.give && h.give.length ? `<div class="hnote give">${esc(t('hGive'))}</div>` : ''}
     <div class="sg-note">${esc(t('hBuildHint'))}</div>
 
     ${heroBuilds(h, L)}
@@ -1979,6 +1986,7 @@ function abilBlock(h, kind, label){
         ${a.k ? `<kbd>${esc(a.k)}</kbd>` : ''}
         ${a.lv > 1 ? `<span class="ha-lv">${a.lv} ${esc(t('hLv'))}</span>` : ''}
         ${h.mod.includes(a.id) ? `<span class="ha-m" title="${esc(t('hModYes'))}">◈</span>` : ''}
+        ${(h.give || []).includes(a.id) ? `<span class="ha-g" title="${esc(t('hGive'))}">⊕</span>` : ''}
         <span class="cv">${CHEV}</span></span></summary>
       <pre class="ha-t">${esc((a.t && a.t[L]) || t('hNoText'))}</pre>
       ${lvTable(a, L)}

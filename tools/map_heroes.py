@@ -179,6 +179,21 @@ def account_locks(jass):
     return out
 
 
+def _slots(U, A, uid):
+    """背包格數。原版 AInv 是 6 格，地圖另外做了一個 4 格的 A08K。"""
+    for aid in str(U.get(uid, {}).get('uabi') or '').split(','):
+        aid = aid.strip()
+        if not aid:
+            continue
+        if aid == 'AInv':
+            return 6
+        a = A.get(aid, {})
+        if a.get('_base') == 'AInv':
+            v = _first(a.get('inv1'))
+            return int(v) if v is not None else 6
+    return 6
+
+
 def _base_modified(U, base):
     """基礎物件本身有沒有被地圖改過。
 
@@ -457,6 +472,10 @@ def load(map_path, jass_text=None):
             'icon': (icons.get(uid) or u.get('uico') or '').replace(bs + bs, bs),
             'stats': st,
             'skins': sk_out,
+            # 背包格數。多數英雄用原版 AInv（6 格），但有 3 隻掛的是 A08K
+            # （AInv 的衍生，inv1 = 4）—— 幽魂之狼、烈焰領主、機械戰體只有 4 格。
+            # 配裝要照這個數字算，不然會多配兩件放不下的東西。
+            'slots': _slots(U, A, uid),
             'profile_ru': parse_profile(txt),
             'text_ru': txt,
             'abilities': abils,
