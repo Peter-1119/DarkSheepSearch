@@ -4296,6 +4296,516 @@
      "s2": "I0AV"
     }
    }
+  ],
+  "Nsjs": [
+   {
+    "id": "tank-turrets",
+    "c": "#B5651D",
+    "n": [
+     "雙聯砲塔全速運轉",
+     "Twin Turrets at Full Rate",
+     "Бортовые турели на полном ходу"
+    ],
+    "key": [
+     "砲塔不是召喚物，傷害寫死 0.90×力量：力量堆到 488、魔法齒輪讓射速翻倍 → 2.67 發／秒、每發 439",
+     "The turrets are not summons: flat 0.90x STR per shell. 488 STR + Magic Gear = 2.67 shells/s at 439 each.",
+     "Турели — не призыв: 0.90×сила за снаряд. 488 силы + «Волшебная шестерёнка» = 2.67 снаряда/с по 439."
+    ],
+    "why": [
+     "側翼砲塔不是召喚單位。Turret55（war3map.j:64553）只是用 CreateProjectile 生一顆 o02C 投射物，命中時 ProjectileMove 呼叫的是 UnitDamageTarget(英雄, 目標, …)，攻擊者就是英雄本人 —— 所以砲塔傷害吃 DefCof（key 3/5/6/9/40/41）、吃穿透，而不是像召喚物那樣什麼都不繼承。傷害寫死 GetHeroStr(u,true)×0.90，完全不讀 A0XR 的技能等級（A0XR 在整份 war3map.j 裡一次都沒被讀過），所以砲塔只吃力量，不吃技能強度。這套把力量堆滿：基礎 182（38+6×24）＋紅寶石耳環 100＋純淨紅寶石 50＋泰坦神拳 40＋大力神之戒 30＋守護者護肩 72（= GetHeroInt(u,false)，每 0.5 秒重算一次的基礎智力 20+2.2×24）＋力量吊墜 12＋魔法齒輪 2 = 488 力量。每發砲彈 0.90×488 = 439，AoE 100。魔法齒輪 tcas 是 Turret55 唯一讀的道具：`if UnitHasItemOfType(u,'tcas')` 把重設間隔從 1.0–2.0 秒改成 0.5–1.0 秒，兩座砲塔合計從 1.33 發／秒變 2.67 發／秒 —— 整整翻倍，全地圖沒有第二件 1,700 金的道具對這隻有這種效率。原始 1,171 點／秒；大力神之戒 key6 +0.18／key3 −0.18 讓對非英雄目標再 ×1.18 → 1,381 點／秒。燃燒砲塔 5 級再疊 60% 機率、以 488 為底的點燃。泰坦神拳每 10 秒一次 2.50×488×1.15（附魔護符 +15% 裝備技能威力）= 1,403 點 300 範圍傷害＋50% 暈眩 2 秒。附帶 488 力量 = 350+25×488 = 12,550 生命，這套本身就是坦克。",
+     "The flank turrets are NOT summons. Turret55 (war3map.j:64553) merely spawns an o02C projectile via CreateProjectile; on impact ProjectileMove calls UnitDamageTarget(hero, target, ...), so the hero is the damage source — turret hits go through DefCof (keys 3/5/6/9/40/41) and carry penetration, unlike real summons which inherit nothing. Damage is hardcoded GetHeroStr(u,true)*0.90 and never reads A0XR's level (A0XR is never read anywhere in war3map.j), so turrets scale on STR only, never on skill power. STR here: 182 base + 100 Ruby Earring + 50 Pure Ruby + 40 Titan's Fist + 30 Ring of Hercules + 72 Guardian's Pauldrons (= GetHeroInt(u,false), base INT, refreshed every 0.5s) + 12 Strength Pendant + 2 Magic Gear = 488. Each shell 0.90*488 = 439 in a 100 AoE. Magic Gear (tcas) is the ONLY item Turret55 checks: `UnitHasItemOfType(u,'tcas')` changes the re-arm timer from 1.0-2.0s to 0.5-1.0s, i.e. 1.33 -> 2.67 shells/s for the pair — a literal doubling for 1,700 gold. That is 1,171 raw DPS; Ring of Hercules (key6 +0.18 / key3 -0.18) multiplies non-hero targets by 1.18 -> 1,381 DPS. Burning Turrets rank 5 adds a 60%-chance burn based on 488 STR. Titan's Fist procs 2.50*488*1.15 = 1,403 in a 300 AoE every 10s with a 50% 2s stun. 488 STR is also 350+25*488 = 12,550 HP.",
+     "Бортовые турели — не призванные юниты. Turret55 (war3map.j:64553) создаёт снаряд o02C через CreateProjectile, а при попадании ProjectileMove вызывает UnitDamageTarget(герой, цель, ...) — источник урона сам герой, поэтому урон турелей проходит DefCof (ключи 3/5/6/9/40/41) и несёт пробивание. Урон жёстко задан: GetHeroStr(u,true)*0.90, уровень A0XR не читается нигде в war3map.j — турели масштабируются только от силы, не от силы умений. Сила: 182 база + 100 + 50 + 40 + 30 + 72 (наплечники = GetHeroInt(u,false), обновление каждые 0.5 с) + 12 + 2 = 488. Снаряд 0.90*488 = 439, радиус 100. «Волшебная шестерёнка» (tcas) — единственный предмет, который проверяет Turret55: интервал 1.0-2.0 с меняется на 0.5-1.0 с, то есть 1.33 -> 2.67 снаряда/с, ровно вдвое за 1700 золота. Итого 1171 урона/с, с Кольцом Геракла (key6 +0.18 / key3 -0.18) против не-героев 1381. Поджигающие турели 5 ур. добавляют поджог с шансом 60% на базе 488. Кулак Титана: 2.50*488*1.15 = 1403 в радиусе 300 каждые 10 с. И 488 силы = 12 550 здоровья."
+    ],
+    "items": [
+     "I00P",
+     "rma2",
+     "I0A8",
+     "tcas",
+     "spre",
+     "bgst"
+    ],
+    "bonus": {
+     "s1": "oli2",
+     "s2": "I073"
+    }
+   },
+   {
+    "id": "tank-bastion",
+    "c": "#52708C",
+    "n": [
+     "不動要塞",
+     "Immovable Bastion",
+     "Неподвижный бастион"
+    ],
+    "key": [
+     "「強化」對六種攻擊類型全是 ×1.00，救不了你 —— 要靠 82% 護甲 × 50% 魔法減免 × DefCof 減項疊出 11 萬有效生命",
+     "\"Fortified\" takes x1.00 from all six attack types, so armor type saves you nothing: stack 82% armor x 50% magic reduction x DefCof cuts for ~114k EHP.",
+     "«Укреплённый» получает x1.00 от всех шести типов атак — тип защиты не спасает. Копим 82% брони x 50% магической защиты x вычеты DefCof ≈ 114k эффективного HP."
+    ],
+    "why": [
+     "先破除一個誤會：卷宗把「防禦類型為強化」寫成賣點，但 war3mapMisc.txt 六張倍率表的第 5 欄（城牆／強化）全部是 1.00 —— 普通 1.00、穿刺 1.00、攻城 1.00、魔法 1.00、混亂 1.00、英雄 1.00（連 DamageBonusSpells 也是 1.00）。對照英雄護甲那一欄 1.00/0.60/0.50/0.60/1.00/1.00：這隻對穿刺與魔法攻擊實際吃 1/0.60 = 1.67 倍、對攻城吃 2 倍於一般英雄。護甲類型不但沒有加分，還比英雄護甲差，所以生存必須全部從「乘起來的三層」買：（1）護甲值：宙斯盾 20＋狂信者頭盔 10＋帝王鎧甲 5＋黃金鎧甲 7＋冥界之盾 10＋重盾 8＋蠻族之盾 2 = 62，加宙斯盾自帶的 8 點虔誠光環 = 70，再加敏捷 30 帶來的 −1+0.25×30 = 6.5 → 約 76.5，減傷 0.06×76.5/(1+0.06×76.5) = 82.1%。（2）狂信者頭盔的 A075 原型是 AIsr（符文護腕），isr2 = 0.5，對 DAMAGE_TYPE_MAGIC 再砍 50%，而這張地圖幾乎所有技能傷害都是 ATTACK_TYPE_NORMAL + DAMAGE_TYPE_MAGIC。（3）DefCof 減項：帝王鎧甲 −0.25（攻擊者生命 ≥70% 時）、黃金鎧甲 −((100−生命%)/2.5)×0.01，滿到 −0.40，下限 0.20。生命 = 350+25×217（力量 182+20+15）+4000+2000+1000+1500+1000 = 15,275。滿血對新鮮敵人：15,275/(0.179×0.75) ≈ 11.4 萬有效生命；對魔法型技能傷害再除 0.5 ≈ 22.8 萬。物理攻擊還會先被宙斯盾（A0QN：50% 機率減 200，最低通過 10）與狂信者頭盔（A0L5：減 40，最低 2）兩層硬皮吃掉。反傷 55（冥界之盾 40＋蠻族之盾 15）×1.05 走 Trig_UAttacks（EVENT_PLAYER_UNIT_ATTACKED，起手就結算、CHAOS/UNIVERSAL、不吃護甲也不吃 DefCof），被 10 隻攻速 1.5 秒的怪圍毆 ≈ 385 點／秒的免費回敬。誠實的弱點：敵方點燃與穿透走 UNIVERSAL，護甲、魔法減免、DefCof 三層一個都擋不到。",
+     "First, correct a misconception: the tooltip sells \"Fortified\" as a feature, but column 5 (Fortified) of all six war3mapMisc.txt tables is 1.00 — Normal 1.00, Pierce 1.00, Siege 1.00, Magic 1.00, Chaos 1.00, Hero 1.00 (DamageBonusSpells is 1.00 too). Compare the Hero-armor column 1.00/0.60/0.50/0.60/1.00/1.00: this hero eats 1/0.60 = 1.67x more from pierce and magic attacks and 2x more from siege than a normal hero-armor hero. Armor type is a downgrade, so survivability must come from three multiplying layers. (1) Armor: 20+10+5+7+10+8+2 = 62, plus Aegis's own 8-point Devotion aura = 70, plus -1+0.25*30 = 6.5 from agility ~ 76.5 -> 0.06*76.5/(1+0.06*76.5) = 82.1% reduction. (2) Zealot Helm's A075 is an AIsr (Runed Bracers) with isr2 = 0.5: another flat 50% off DAMAGE_TYPE_MAGIC, and nearly every scripted skill hit in this map is ATTACK_TYPE_NORMAL + DAMAGE_TYPE_MAGIC. (3) DefCof cuts: Imperial Armor -0.25 while the attacker is above 70% HP, Golden Armor -((100-life%)/2.5)*0.01 up to -0.40, floor 0.20. HP = 350+25*217 + 4000+2000+1000+1500+1000 = 15,275. At full HP vs fresh enemies that is 15,275/(0.179*0.75) ~ 114k EHP; against magic-type skill damage divide by another 0.5 -> ~228k. Physical hits are further eaten by two hardened-skin layers: Aegis A0QN (50% chance, -200, min 10) and Zealot Helm A0L5 (-40, min 2). Thorns 55 (40+15) x1.05 runs through Trig_UAttacks on EVENT_PLAYER_UNIT_ATTACKED (fires on the swing start, CHAOS/UNIVERSAL, ignores armor and DefCof) — ten 1.5s attackers means ~385 free DPS. Honest weakness: enemy burn and penetration are UNIVERSAL, so none of the three layers touch them.",
+     "Сначала развеем миф: тип защиты «Укреплённый» подан как достоинство, но 5-я колонка (укреплённый) во всех шести таблицах war3mapMisc.txt равна 1.00 — обычный 1.00, пронзающий 1.00, осадный 1.00, магический 1.00, хаос 1.00, героический 1.00 (и DamageBonusSpells тоже 1.00). Для героической брони колонка 1.00/0.60/0.50/0.60/1.00/1.00, то есть танк получает в 1.67 раза больше от пронзающих и магических атак и вдвое больше от осадных. Тип защиты не помогает, поэтому выживание строится на трёх перемножающихся слоях. (1) Броня 62 + 8 (аура Эгиды) + 6.5 (ловкость) ~ 76.5 -> снижение 82.1%. (2) A075 у Шлема изувера — это AIsr (рунические браслеты), isr2 = 0.5: минус 50% к DAMAGE_TYPE_MAGIC, а почти весь скриптовый урон карты именно такой. (3) Вычеты DefCof: Императорская броня -0.25 (враг выше 70% HP), Золотая броня до -0.40, нижний предел 0.20. HP = 15 275. На полном здоровье против свежих врагов ~114 тыс. эффективного HP, против магического урона ~228 тыс. Плюс два слоя «каменной кожи»: A0QN (50%, -200, минимум 10) и A0L5 (-40, минимум 2). Шипы 55 x1.05 идут через Trig_UAttacks (срабатывает на замахе, CHAOS/UNIVERSAL, игнорирует броню и DefCof): десять атакующих с интервалом 1.5 с ≈ 385 урона/с. Слабость: вражеский поджог и пробивание идут как UNIVERSAL и не режутся ничем из перечисленного."
+    ],
+    "items": [
+     "I00O",
+     "modt",
+     "I06C",
+     "tbak",
+     "I0AB",
+     "pnvl"
+    ],
+    "bonus": {
+     "s1": "vddl",
+     "s2": "I072"
+    }
+   },
+   {
+    "id": "tank-emberstack",
+    "c": "#D9482B",
+    "n": [
+     "點燃層層加碼",
+     "Ember Stack",
+     "Накопленное пламя"
+    ],
+    "key": [
+     "每 100 次擊殺永久 +0.05 點燃係數，而砲塔擊殺算英雄擊殺 —— 全地圖唯一會自己刷層數的英雄",
+     "Every 100 kills permanently adds +0.05 to the burn coefficient, and turret kills count as hero kills — the only hero in the map that farms its own stacks.",
+     "Каждые 100 убийств навсегда дают +0.05 к коэффициенту поджога, а убийства турелей засчитываются герою — единственный герой, который фармит стаки сам."
+    ],
+    "why": [
+     "累積機制的完整樣子：Trig_HeroKills55_Actions（war3map.j:64640）在 GetKillingUnit() 是 Nsjs 且死者是敵人時，把整數槽 'TAL1' +1；數到 100 就歸零並 SaveReal(hash,u_Id,27, +0.05)。key 27 的實數槽正是 Burn_Dmg 讀的「點燃傷害 +%」，所以每 100 殺 = 點燃係數永久 +0.05，加法、不相乘（技能說明的「層數之間不會互相相乘」是對的）。沒有上限，也不會歸零：Trig_DieHero_Actions 對 Nsjs 只做兩件事 —— 暫停 'TUR1'／'TUR2' 兩個砲塔計時器，沒有 flush 英雄的子雜湊表；ResHero 用 ReviveHeroLoc 復活同一個 unit handle 並重新啟動砲塔。'TAL1' 只在選英雄那一刻（war3map.j:45358）初始化一次。重要的是砲塔投射物的 UnitDamageTarget 攻擊者是英雄本人，所以砲塔打死的東西全算英雄擊殺 —— 這隻不用做任何事就會一直疊。注意說明寫「每 100 次擊殺點燃傷害額外乘上 2%」，俄文原文也是 2%，但程式碼是 +0.05，實際是 5%。這套把係數推到 cof = 1.00 + 0.50（零時迷子 I086，條件是自己身上有「抵抗點燃」旗標 —— 熾熱核心的 equip 段 SaveInteger(hash,u_Id,27,+1) 就是這個旗標）+ 0.30 薩弗拉斯 + 0.20 太陽之書 + 0.15 附魔護符 + 0.05k = 2.15 + 0.05k。走的是 Burn_Dmg 那條：外面包 DisableTrigger(gg_trg_HeroTakeDamage)，所以不吃 DefCof、不帶穿透、只被 key 47 點燃抗性扣。熾熱核心每 5 秒對 300 範圍內敵人施 FlammabilityUnit(0.40) 與 BurnUnit(225, 0.60)；易燃讓跳數從 16 變 16+8×(1+(1+key46)) = 32，總傷害再 ×2，持續 6 秒。幸運馬蹄鐵在 BurnUnit／FlammabilityUnit 的機率鏈上 ×1.5，所以易燃機率 0.60、砲塔點燃機率 0.60×1.5 = 0.90（目標已易燃時再 ×1.5 → 必中）。燃燒砲塔 5 級底值 = 力量×1.00 = 294，單次點燃總量 294×2.15×2 = 1,264；1,000 殺後 1,558、2,000 殺後 1,852。薩弗拉斯除了 +30% 點燃，本身還有第二個點燃來源：英雄攻擊時每 5 秒一次，對 325 範圍內隨機 4 個非魔免敵人各打 150×(1+裝備技能威力) 並 BurnUnit(135, 0.50)（底值 135 是寫死的，不吃裝備技能威力）—— 本體攻擊冷卻 3.0 秒、射程 500，只要在打就會固定觸發。務必打折看：BurnUnit 重用過期槽位時把 'burn' 寫成該槽位編號，Burn_Dmg 只跑到那個數字，編號更大的存活堆疊就永遠不再結算 —— 以 2.67 發／秒的施加頻率，實際同時生效的堆疊遠少於理論值。",
+     "The stacking mechanic in full: Trig_HeroKills55_Actions (war3map.j:64640) increments integer slot 'TAL1' whenever GetKillingUnit() is Nsjs and the victim is an enemy; at 100 it resets to 0 and does SaveReal(hash,u_Id,27, +0.05). The real slot of key 27 is exactly the \"burn damage +%\" that Burn_Dmg reads, so every 100 kills is a permanent +0.05 to the burn coefficient, added not multiplied (the tooltip's \"stacks do not multiply each other\" is accurate). No cap, and it never resets: Trig_DieHero_Actions only pauses the 'TUR1'/'TUR2' turret timers for Nsjs and never flushes the hero's child hashtable, while ResHero revives the same unit handle with ReviveHeroLoc and restarts the turrets. 'TAL1' is initialised exactly once, at hero pick (war3map.j:45358). Crucially the turret projectile's UnitDamageTarget lists the hero as the source, so everything the turrets kill counts as a hero kill — this hero farms its own stacks passively. Note the tooltip (Russian original included) says \"burn damage is additionally multiplied by 2% per 100 kills\"; the code adds 0.05, i.e. 5%. This build pushes cof = 1.00 + 0.50 (Zero Hour I086, which requires the binary \"resist burn\" flag on yourself — Burning Core's equip code does SaveInteger(hash,u_Id,27,+1)) + 0.30 Sulfuras + 0.20 Book of the Sun + 0.15 Enchanted Amulet + 0.05k = 2.15 + 0.05k. It runs on the Burn_Dmg pipeline: wrapped in DisableTrigger(gg_trg_HeroTakeDamage), so no DefCof, no penetration, only key 47 burn resistance subtracts. Burning Core applies FlammabilityUnit(0.40) and BurnUnit(225, 0.60) to everything within 300 every 5s; flammability turns the tick count from 16 into 16+8*(1+(1+key46)) = 32, doubling total burn, for 6 seconds. Lucky Horseshoe multiplies the chance chain in both BurnUnit and FlammabilityUnit by 1.5, so flammability lands at 0.60 and the turret burn at 0.60*1.5 = 0.90 (another x1.5 once the target is flammable -> guaranteed). Burning Turrets rank 5 uses STR*1.00 = 294 as the base, so one burn totals 294*2.15*2 = 1,264; after 1,000 kills 1,558, after 2,000 kills 1,852. Discount that heavily in practice: when BurnUnit reuses an expired slot it writes 'burn' as that slot index, and Burn_Dmg only loops to that number, so live stacks with a higher index stop ticking forever — at 2.67 applications/s far fewer stacks are actually live than theory suggests.",
+     "Механика накопления целиком: Trig_HeroKills55_Actions (war3map.j:64640) увеличивает целочисленный слот 'TAL1', если GetKillingUnit() — Nsjs и жертва враг; на 100 счётчик обнуляется и выполняется SaveReal(hash,u_Id,27, +0.05). Вещественный слот ключа 27 — это и есть «+% к урону поджога», который читает Burn_Dmg: каждые 100 убийств навсегда +0.05 к коэффициенту, сложением, а не умножением. Предела нет и сброса нет: Trig_DieHero_Actions для Nsjs только приостанавливает таймеры 'TUR1'/'TUR2' и не чистит дочернюю хеш-таблицу героя, а ResHero воскрешает тот же handle через ReviveHeroLoc. 'TAL1' обнуляется единственный раз — при выборе героя (war3map.j:45358). Важно: источником урона снаряда турели указан сам герой, поэтому убийства турелей засчитываются герою. В описании (и в русском оригинале) сказано «умножается на 2%», но в коде +0.05, то есть 5%. Здесь cof = 1.00 + 0.50 (I086 при бинарном флаге «сопротивление поджогу» — его даёт Пылающее ядро через SaveInteger(hash,u_Id,27,+1)) + 0.30 + 0.20 + 0.15 + 0.05k = 2.15 + 0.05k. Это ветка Burn_Dmg: обёрнута в DisableTrigger, значит без DefCof и без пробивания, вычитается только сопротивление поджогу (ключ 47). Пылающее ядро каждые 5 с накладывает FlammabilityUnit(0.40) и BurnUnit(225, 0.60) в радиусе 300; воспламеняемость меняет число тиков с 16 на 32, удваивая суммарный урон, на 6 с. Подкова умножает шансы на 1.5. База поджога турелей на 5 ур. = сила*1.00 = 294, один поджог 294*2.15*2 = 1264; после 1000 убийств 1558, после 2000 — 1852. На практике меньше: BurnUnit при переиспользовании слота записывает 'burn' как номер слота, и стаки с большим номером перестают тикать."
+    ],
+    "items": [
+     "I00P",
+     "tcas",
+     "I06A",
+     "I086",
+     "I067",
+     "I09G"
+    ],
+    "bonus": {
+     "s1": "oli2",
+     "s2": "I0AV"
+    }
+   },
+   {
+    "id": "tank-budget",
+    "c": "#6E8B5A",
+    "n": [
+     "量產型砲塔",
+     "Mass-Production Turrets",
+     "Серийные турели"
+    ],
+    "key": [
+     "6,350 金：1,700 金的魔法齒輪讓砲塔 DPS 直接翻倍，剩下全買便宜力量",
+     "6,350 gold: a 1,700g Magic Gear literally doubles turret DPS, the rest is cheap strength.",
+     "6350 золота: «Волшебная шестерёнка» за 1700 буквально удваивает урон турелей, остальное — дешёвая сила."
+    ],
+    "why": [
+     "中期最划算的一件是 1,700 金的魔法齒輪。Turret55（war3map.j:64553）結尾只判斷一件事：`if UnitHasItemOfType(u,'tcas') then TimerStart(t,GetRandomReal(0.5,1.),…) else TimerStart(t,GetRandomReal(1.,2.),…)`。有它，兩座砲塔的合計射速從 1.33 發／秒變 2.67 發／秒 —— 砲塔輸出整整翻倍，沒有第二件道具在這隻身上有這種金錢效率（順帶 +50 技能強度、+275 生命、+2 全屬性）。剩下的錢全買便宜力量，因為砲彈傷害寫死 0.90×力量：完美力量戒指 950 金 +20、紅寶石 600 金 +15、強力力量戒指 450 金 +10、力量吊墜（祕密寶盒）+12、魔法齒輪 +2 → 182+59 = 241 力量。每發 0.90×241 = 217，2.67 發／秒 = 578 點／秒；燃燒砲塔 5 級再以 241 為底、60% 機率點燃，附魔護符（吸收器，300 金，key 27/28/29/45 各 +0.15）把每次點燃拉到 241×1.15 = 277。生存靠兩件盾：守衛之盾 900 金的 A06E 是 AIsr（isr2 = 0.30），對 DAMAGE_TYPE_MAGIC 減 30%，這在強化護甲對魔法完全沒有折扣（×1.00）的情況下特別重要；老兵之盾 950 金給 +7 護甲、key4 −0.05、四種狀態抗性各 +0.08（keys 47/48/49/50），另外兩件盾合計 30 反傷。六格 5,550 金，加上不佔格的吸收器 300 與祕密寶盒 500，總計 6,350 金 —— 一萬金以內、中期就能湊齊。要升級時第一步是把紅寶石換成純淨紅寶石（+50 力量），第二步才是耳環。",
+     "The best value item in the mid game is the 1,700g Magic Gear. The tail of Turret55 (war3map.j:64553) checks exactly one thing: `if UnitHasItemOfType(u,'tcas') then TimerStart(t,GetRandomReal(0.5,1.),...) else TimerStart(t,GetRandomReal(1.,2.),...)`. With it the pair goes from 1.33 to 2.67 shells/s — a literal doubling of turret output, and nothing else in the shop is that gold-efficient on this hero (plus +50 skill power, +275 HP, +2 all stats). Everything else is cheap strength, because shell damage is hardcoded 0.90*STR: Perfect Ring of Strength 950g +20, Ruby 600g +15, Greater Ring of Strength 450g +10, Strength Pendant (secret box) +12, Magic Gear +2 -> 182+59 = 241 STR. Each shell 0.90*241 = 217, at 2.67/s = 578 DPS; Burning Turrets rank 5 adds a 60% burn based on 241, and the Enchanted Amulet absorber (300g, +0.15 to keys 27/28/29/45) raises each burn to 241*1.15 = 277. Defence comes from two shields: Guard's Shield 900g carries A06E, an AIsr with isr2 = 0.30, i.e. -30% against DAMAGE_TYPE_MAGIC, which matters precisely because Fortified armor gets no discount at all against magic (x1.00); Veteran's Shield 950g gives +7 armor, key4 -0.05 and +0.08 to all four status resistances (keys 47/48/49/50), and the two shields together are 30 thorns. Six slots for 5,550 gold plus the free absorber 300 and secret box 500 = 6,350 total. First upgrade is Ruby -> Pure Ruby (+50 STR); the earring comes later.",
+     "Самая выгодная покупка середины игры — «Волшебная шестерёнка» за 1700. В конце Turret55 (war3map.j:64553) проверяется ровно одно: `if UnitHasItemOfType(u,'tcas') then TimerStart(t,GetRandomReal(0.5,1.),...) else TimerStart(t,GetRandomReal(1.,2.),...)`. С ней пара турелей стреляет 2.67 раза/с вместо 1.33 — ровно вдвое, ни один другой предмет не даёт такой отдачи на золото (плюс +50 силы умений, +275 HP, +2 ко всем характеристикам). Остальное — дешёвая сила, ведь урон снаряда жёстко равен 0.90*сила: 950 за +20, 600 за +15, 450 за +10, подвеска силы +12, шестерёнка +2 -> 241 силы. Снаряд 0.90*241 = 217, 2.67/с = 578 урона/с; поджигающие турели 5 ур. дают поджог с шансом 60% на базе 241, а амулет-поглотитель (300 золота, +0.15 к ключам 27/28/29/45) поднимает каждый поджог до 277. Защита — два щита: Щит стража (900) несёт A06E, это AIsr с isr2 = 0.30, минус 30% к DAMAGE_TYPE_MAGIC, что важно именно потому, что укреплённая броня против магии не даёт скидки вовсе (x1.00); Щит ветерана (950) даёт +7 брони, key4 -0.05 и +0.08 ко всем четырём сопротивлениям статусам, а вместе щиты дают 30 шипов. Шесть слотов за 5550 золота плюс поглотитель 300 и тайный сундук 500 = 6350. Первое улучшение — Рубин на Чистый рубин (+50 силы)."
+    ],
+    "items": [
+     "tcas",
+     "rde2",
+     "lmbr",
+     "rat9",
+     "ciri",
+     "I04A"
+    ],
+    "bonus": {
+     "s1": "oli2",
+     "s2": "I073"
+    }
+   }
+  ],
+  "N027": [
+   {
+    "id": "warboss-massacre-metronome",
+    "c": "#B5342B",
+    "talent": "A0YK",
+    "n": [
+     "屠殺節拍器",
+     "Massacre Metronome",
+     "Метроном резни"
+    ],
+    "key": [
+     "屠殺 A09A 的內部冷卻走 StartModCooldown，會被「裝備技能冷卻」乘進去：6 秒縮成 1.5 秒。",
+     "Massacre A09A runs its internal cooldown through StartModCooldown, so item cooldown reduction applies: 6 s becomes 1.5 s.",
+     "Внутренняя перезарядка «Резни» A09A идёт через StartModCooldown, поэтому «перезарядка модификаторов» её сокращает: 6 с → 1.5 с."
+    ],
+    "why": [
+     "戰爭首領的傷害全是最大生命的百分比：屠殺 A09A 每次打 4 名敵人、各 8% 最大生命；震地一擊 10%；狂戰士把 5% 最大生命當攻擊力。但真正被低估的是冷卻。war3map.j:53494 與 53522 用的是 `StartModCooldown(u_Id,'A09A',6.)` / `('A09D',3.)`，而 StartModCooldown（2914 行）第一行就是 `CDCof=LoadReal(hash,u_Id,1)`，`CD=CD*CDCof`，下限 0.20。key 1 就是道具的「裝備技能冷卻」，開局初始化為 1.00（44559 行）。也就是說：全地圖 78 個 StartModCooldown 呼叫裡，只有 6 個傳的是技能 ID（A034／A08W／A09A／A09D／A0YX／A0ZG），其中兩個是這隻的。大師手套 -30%、導師手套 -20%、榮譽頭盔 -10%、王室火槍 -15% 合計 -75% → CDCof 0.25 → 屠殺每 1.5 秒一次、終結每 0.75 秒（實際被 1.21 秒的攻擊間隔卡住）。再配幽魂匕首 +100%、附魔護符 +15%、魔法漿果 +30%，cof = 1+1.45 = 2.45。星界耳環 +800 技能強度經天賦 A0YK 換成 +4000 生命上限。結算：最大生命 9,100，屠殺每擊 1,784×4 = 7,134，每 1.5 秒一次 = 4,756 DPS，是不碰冷卻的最佳解（2,467 DPS）的 1.93 倍。這四件冷卻裝同時給 +65% 攻擊速度，剛好讓 1.21 秒的攻擊間隔追得上 1.5 秒的內部冷卻，一次都不空轉。代價是只有 5 護甲、9,100 生命，得靠隊友擋線。",
+     "Every damage number on the Warboss is a percentage of max HP: Massacre A09A hits 4 enemies for 8% max HP each, Ground Smash for 10%, and Berserk converts 5% max HP into attack damage. The underrated axis is cooldown. war3map.j:53494 and 53522 call `StartModCooldown(u_Id,'A09A',6.)` / `('A09D',3.)`, and StartModCooldown (line 2914) opens with `CDCof=LoadReal(hash,u_Id,1)`, `CD=CD*CDCof`, floored at 0.20. Key 1 is the item stat \"equipment skill cooldown\", initialised to 1.00 at hero pick (line 44559). Of the 78 StartModCooldown calls in the map, only six pass an ability ID instead of an item ID (A034/A08W/A09A/A09D/A0YX/A0ZG), and two of them are this hero's. Master Gloves -30%, Mentor Gloves -20%, Helm of Honour -10%, Royal Musket -15% sum to -75% -> CDCof 0.25 -> Massacre every 1.5 s, Execute every 0.75 s (capped by the 1.21 s attack interval). Add Ghost Dagger +100%, Enchanted Amulet +15%, Magic Berry +30% for cof = 2.45. Astral Earring's +800 skill power becomes +4000 max HP through talent A0YK. Result: 9,100 max HP, Massacre 1,784 x4 = 7,134 every 1.5 s = 4,756 DPS, which is 1.93x the best cooldown-free build (2,467 DPS). Those four cooldown items also carry +65% attack speed, so the 1.21 s attack interval keeps up with the 1.5 s internal cooldown with zero idle procs. The price is 5 armor and only 9,100 HP - you need a front line.",
+     "Весь урон Варбосса — проценты от максимального здоровья: «Резня» A09A бьёт 4 врагов по 8% макс. HP, «Удар по земле» — 10%, «Берсерк» превращает 5% макс. HP в силу атаки. Недооценённая ось — перезарядка. war3map.j:53494 и 53522 вызывают `StartModCooldown(u_Id,'A09A',6.)` / `('A09D',3.)`, а StartModCooldown (строка 2914) начинается с `CDCof=LoadReal(hash,u_Id,1)`, `CD=CD*CDCof`, нижний предел 0.20. Ключ 1 — это предметная «перезарядка модификаторов», при выборе героя ставится 1.00 (строка 44559). Из 78 вызовов StartModCooldown лишь 6 получают ID способности (A034/A08W/A09A/A09D/A0YX/A0ZG), и два из них — этого героя. Перчатки мастера -30%, перчатки наставника -20%, шлем чести -10%, королевский мушкет -15% = -75% -> CDCof 0.25 -> «Резня» каждые 1.5 с. Плюс призрачный кинжал +100%, зачарованный амулет +15%, магическая ягода +30% -> cof = 2.45. Астральная серьга (+800 силы умений) через талант A0YK даёт +4000 к макс. HP. Итог: 9,100 HP, «Резня» 1,784 x4 = 7,134 каждые 1.5 с = 4,756 DPS — в 1.93 раза больше лучшей сборки без перезарядки (2,467 DPS). Эти же предметы дают +65% скорости атаки: интервал 1.21 с успевает за КД 1.5 с. Цена — 5 брони и всего 9,100 HP."
+    ],
+    "items": [
+     "I08J",
+     "I087",
+     "ssan",
+     "I0AA",
+     "I017",
+     "I00E"
+    ],
+    "bonus": {
+     "s1": "oli2",
+     "s2": "I01L"
+    }
+   },
+   {
+    "id": "warboss-meat-mountain",
+    "c": "#6E5637",
+    "talent": "A0YK",
+    "n": [
+     "肉山",
+     "Meat Mountain",
+     "Гора мяса"
+    ],
+    "key": [
+     "最大生命就是傷害：16,800 生命 = 屠殺每擊 1,949×4、震地 1,930、狂戰士 +840 攻擊力。",
+     "Max HP is the damage stat: 16,800 HP = Massacre 1,949 x4, Ground Smash 1,930, Berserk +840 attack.",
+     "Максимальное здоровье и есть урон: 16,800 HP = «Резня» 1,949 x4, «Удар по земле» 1,930, «Берсерк» +840 к атаке."
+    ],
+    "why": [
+     "這一套刻意不碰冷卻與威力，換來 43 護甲（+8 光環）與 16,800 生命上限，作為「裝備技能威力值不值得」的對照組。天賦 A0YK 讓技能強度以 500% 轉成生命上限（WarbossD2，war3map.j:53331，`i2=R2I(udg_ItemBonusDMG[n]*5.)`），所以黃金耳環 +4000 生命與星界耳環 +800 技能強度在這隻身上完全等值，這裡選黃金耳環是為了讓配裝不綁死天賦。生命來源：黃金耳環 4000、狂信者鎧甲 2225、王國宙斯盾 2000、純淨蛋白石 2000、帝王鎧甲 1500+20力量、狂信者頭盔 1000、魔法漿果 60 技能強度→300，裸值 3,275，合計 16,800。減傷疊法：43 護甲 +8 光環 = 51 → 0.06×51/(1+0.06×51) = 75.4% 物理減傷；狂信者頭盔的 50% 魔法減免（不可疊加，取最高）；帝王鎧甲讓 70% 以上血量的敵人少打 25%（DefCof 減項，與護甲相乘）；王國宙斯盾 50% 機率格擋 200 點。輸出剩 1,299 DPS —— 只有第一套的 27%，但活得下去，而且震地一擊 1,930 的 305 範圍暈眩仍是全隊最好的開場。用飽食的獸人（見下）持續往上疊上限。",
+     "This build deliberately skips cooldown and modifier power to buy 43 armor (plus an 8 aura) and 16,800 max HP - it is the control group for the \"is equipment skill power worth it\" question. Talent A0YK converts skill power to max HP at 500% (WarbossD2, war3map.j:53331, `i2=R2I(udg_ItemBonusDMG[n]*5.)`), so Golden Earring's +4000 HP and Astral Earring's +800 skill power are exactly equal on this hero; Golden Earring is picked so the build does not hard-depend on the talent. HP: earring 4000, Fanatic Armour 2225, Kingdom Aegis 2000, Pure Opal 2000, Imperial Armour 1500 + 20 STR, Fanatic Helm 1000, Magic Berry 60 SP -> 300, 3,275 naked = 16,800. Mitigation: 43 + 8 aura = 51 armor -> 0.06*51/(1+0.06*51) = 75.4% physical reduction; Fanatic Helm's 50% magic reduction (non-stacking, highest wins); Imperial Armour cuts damage from enemies above 70% HP by 25% (a DefCof subtraction, multiplicative with armor); Kingdom Aegis blocks 200 with 50% chance. Output drops to 1,299 DPS, only 27% of build 1 - but it survives, and the 1,930 Ground Smash with a 305-radius stun is still the best opener on the team. Keep raising the cap with Well-Fed Orc.",
+     "Эта сборка сознательно отказывается от перезарядки и силы модификаторов ради 43 брони (+8 аура) и 16,800 макс. HP — контрольная группа для вопроса «стоит ли сила модификаторов». Талант A0YK переводит силу умений в макс. HP по 500% (WarbossD2, war3map.j:53331, `i2=R2I(udg_ItemBonusDMG[n]*5.)`), поэтому золотая серьга (+4000 HP) и астральная (+800 силы умений) для этого героя равноценны; золотая выбрана, чтобы сборка не зависела от таланта. HP: серьга 4000, доспех фанатика 2225, эгида королевства 2000, чистый опал 2000, имперский доспех 1500 + 20 силы, шлем фанатика 1000, ягода 300, голый герой 3,275 = 16,800. Снижение урона: 51 броня -> 75.4% против физического; 50% против магии (не складывается, берётся максимум); имперский доспех -25% от врагов выше 70% HP (вычет DefCof, множится с бронёй); эгида — 50% шанс блока 200. Урон падает до 1,299 DPS — 27% от первой сборки, зато герой выживает, а «Удар по земле» на 1,930 с оглушением в радиусе 305 остаётся лучшим открывающим ударом."
+    ],
+    "items": [
+     "I00O",
+     "I06B",
+     "modt",
+     "sor4",
+     "tbak",
+     "I06C"
+    ],
+    "bonus": {
+     "s1": "oli2",
+     "s2": "I01L"
+    }
+   },
+   {
+    "id": "warboss-second-choppa",
+    "c": "#C87D32",
+    "talent": "A0YM",
+    "slots": 7,
+    "n": [
+     "英勇的第七格",
+     "The Seventh Slot",
+     "Седьмая ячейка"
+    ],
+    "key": [
+     "備用砍刀 A0YM 開出第 7 個道具格（只收 34 種斧／鎚），拿它塞英勇之錘湊滿英勇 6/6。",
+     "Spare Choppa A0YM opens a 7th item slot (34 axes/hammers only); put the Hammer of Valor there to complete Valor 6/6.",
+     "«Запасная чоппа» A0YM открывает 7-ю ячейку (только 34 топора/молота); молот Доблести там закрывает комплект 6/6."
+    ],
+    "why": [
+     "備用砍刀 A0YM 不只是屬性天賦，它加上 A0YN（war3map.j:53427），可以把 34 種指定重武器之一放進第二背包 F2 —— 那是實打實的第 7 格。白名單裡對這隻最有價值的是英勇之錘 I0AJ：+20% 裝備技能威力，而且「視為 2 件英勇套裝道具」。於是英勇之錘(2) + 英勇腰帶 + 英勇鎧甲 + 三位一體 + 守衛徽章(s2) = 6/6。套裝計數存在整數 key 6（war3map.j:23046，畫面會顯示「Комплект Доблесть N/6」），而傷害管線裡有一行 `if LoadInteger(hash,GetHandleId(d),6)>=6 and GetUnitLevel(a)<=4 then set DefCof=DefCof-0.40` —— 六件套讓 4 級以下的敵人少打 40%，這在打小兵潮的地圖上幾乎是全時生效。再疊英勇腰帶 -7%、英勇鎧甲對近戰 -20%，面對低階近戰兵 DefCof = 1-0.40-0.07-0.20 = 0.33，乘上 11 護甲的 39.8% 減傷後只吃 19.9% 的傷害。輸出方面 A0YM 給 +4 力量與每級 +2（第 10 級點、25 級時共 +34 力量 = 850 生命），最大生命 12,575、cof 2.35，屠殺每擊 2,364×4 = 9,456、1,576 DPS。另有 80 點反傷 —— 反傷走 Trig_UAttacks_Actions 的獨立管線，縮放來源是「被幾隻打」，正好符合這套站前排的定位。注意：套裝 4 件的加成程式碼寫的是 +10 力量／+5 智力（23054 行），說明寫 +12／+6，不符。",
+     "Spare Choppa A0YM is not just a stat talent - it also grants A0YN (war3map.j:53427), which moves one of 34 listed heavy weapons into the second backpack (F2). That is a genuine 7th item slot. The most valuable whitelisted item for this hero is the Hammer of Valor I0AJ: +20% equipment skill power, and it \"counts as 2 Valor set pieces\". So Hammer (2) + Valor Belt + Valor Armour + Trinity + Guard Badge (s2) = 6/6. The set counter lives in integer key 6 (war3map.j:23046, the game prints \"Valor N/6\"), and the damage pipeline contains `if LoadInteger(hash,GetHandleId(d),6)>=6 and GetUnitLevel(a)<=4 then set DefCof=DefCof-0.40` - the 6-piece cuts damage from level 4 and below by 40%, which on a creep-wave map is close to permanent uptime. Stack Valor Belt -7% and Valor Armour -20% vs melee: against a low-level melee creep DefCof = 1-0.40-0.07-0.20 = 0.33, and after 11 armor (39.8% reduction) you take 19.9% of nominal. Offensively A0YM gives +4 STR and +2 per level (taken at 10, that is +34 STR = 850 HP by 25): 12,575 max HP, cof 2.35, Massacre 2,364 x4 = 9,456 for 1,576 DPS. Plus 80 thorns - thorns run the separate Trig_UAttacks_Actions pipeline and scale with how many things are hitting you, which fits a front-line build exactly. Note: the 4-piece set bonus is coded as +10 STR / +5 INT (line 23054) while the tooltip says +12 / +6.",
+     "«Запасная чоппа» A0YM — не просто талант на характеристики: она даёт A0YN (war3map.j:53427), позволяющую положить один из 34 тяжёлых видов оружия во второй рюкзак (F2). Это настоящая 7-я ячейка. Лучший вариант из белого списка — молот Доблести I0AJ: +20% силы модификаторов и «считается как 2 предмета комплекта». Итого молот(2) + пояс + доспех + троица + значок стража(s2) = 6/6. Счётчик комплекта хранится в целочисленном ключе 6 (war3map.j:23046, на экран выводится «Комплект Доблесть N/6»), а в конвейере урона есть строка `if LoadInteger(hash,GetHandleId(d),6)>=6 and GetUnitLevel(a)<=4 then set DefCof=DefCof-0.40` — комплект из 6 предметов снижает урон от врагов 4-го уровня и ниже на 40%, что на карте с волнами мобов работает почти всегда. Плюс пояс -7% и доспех -20% против ближнего боя: DefCof = 0.33, а после 11 брони (39.8%) проходит лишь 19.9% урона. По урону A0YM даёт +4 силы и +2 за уровень (взят на 10-м — это +34 силы = 850 HP к 25-му): 12,575 HP, cof 2.35, «Резня» 2,364 x4 = 9,456, 1,576 DPS. Ещё 80 ответного урона — он идёт по отдельному конвейеру Trig_UAttacks_Actions и растёт от числа бьющих. Замечание: бонус за 4 предмета в коде — +10 силы / +5 разума (строка 23054), а в описании +12 / +6."
+    ],
+    "items": [
+     "I0AJ",
+     "I00M",
+     "I049",
+     "I0AC",
+     "I06B",
+     "I00O",
+     "I017"
+    ],
+    "bonus": {
+     "s1": "oli2",
+     "s2": "I095"
+    }
+   },
+   {
+    "id": "warboss-budget-butcher",
+    "c": "#3F7D8C",
+    "talent": "A0YK",
+    "n": [
+     "九千金的屠夫",
+     "Nine-Thousand Butcher",
+     "Мясник за девять тысяч"
+    ],
+    "key": [
+     "9,000 金拿到 2,146 屠殺 DPS —— 是 14,650 金旗艦套的 45%，卻只花 61% 的錢。",
+     "9,000 gold buys 2,146 Massacre DPS - 45% of the 14,650-gold flagship for 61% of the cost.",
+     "9,000 золота дают 2,146 DPS «Резни» — 45% от флагманской сборки за 14,650, но за 61% цены."
+    ],
+    "why": [
+     "全部是 900～1800 金的貨，中期就能湊齊。核心是「便宜的裝備技能威力＋冷卻」：法力鋼 900 金給 +85 技能強度（經天賦 A0YK = +425 生命上限）與 +35% 威力；風暴護身符 900 金給 +40% 威力與 +30% 攻速；裝甲護手 1400 金給 +50% 威力；再加免費的兩格 —— 附魔護符 +15%（s1，300 金）與魔法漿果 +30%（s2，500 金）。cof = 2.70。兩雙手套（大師 -30%、導師 -20%）把 CDCof 壓到 0.50，屠殺 6 秒→3 秒，同時給 +45% 攻速；三件加起來 +75% 攻速讓攻擊間隔變成 1.14 秒，遠快於 3 秒的內部冷卻。狂信者鎧甲 1800 金 +2225 生命是全地圖生命／金幣比最好的一件。結算：最大生命 7,450、cof 2.70、屠殺每擊 1,609×4 = 6,437 每 3 秒 = 2,146 DPS；終結每 1.5 秒 243 傷害＋162 回血 = 108 HPS，等於一條小型續航。單看每金幣的屠殺傷害，法力鋼是全地圖最好的一件（900 金換 +35% 威力＋425 生命，約 +27% 屠殺傷害），魔法漿果放在不佔格的 s2 更是白拿。弱點是 7,450 生命與 9 護甲，別去接大招。",
+     "Everything here is a 900-1800 gold item you can assemble by mid-game. The core idea is cheap equipment skill power plus cooldown: Mana Steel (900) gives +85 skill power (= +425 max HP through talent A0YK) and +35% power; Storm Amulet (900) gives +40% power and +30% attack speed; Armoured Gauntlet (1400) gives +50%. Add the two free slots - Enchanted Amulet +15% (s1, 300) and Magic Berry +30% (s2, 500). cof = 2.70. The two glove pairs (Master -30%, Mentor -20%) push CDCof to 0.50, turning Massacre's 6 s into 3 s while adding +45% attack speed; all three attack-speed sources give +75%, a 1.14 s attack interval, comfortably inside the 3 s internal cooldown. Fanatic Armour at 1800 for +2225 HP is the best HP-per-gold item in the map. Result: 7,450 max HP, cof 2.70, Massacre 1,609 x4 = 6,437 every 3 s = 2,146 DPS; Execute lands 243 damage and 162 healing every 1.5 s = 108 HPS of free sustain. Per gold spent on Massacre damage, Mana Steel is the single best item in the game for this hero (900 gold for +35% power and +425 HP, about +27% Massacre damage), and Magic Berry in the non-slot s2 is free. The weakness is 7,450 HP and 9 armor - do not tank ultimates.",
+     "Всё здесь стоит 900-1800 золота и собирается к середине игры. Идея — дешёвая сила модификаторов плюс перезарядка: мановая сталь (900) даёт +85 силы умений (через талант A0YK = +425 макс. HP) и +35% силы модификаторов; амулет бури (900) — +40% и +30% скорости атаки; бронированная перчатка (1400) — +50%. Плюс две бесплатные ячейки: зачарованный амулет +15% (s1, 300) и магическая ягода +30% (s2, 500). cof = 2.70. Две пары перчаток (мастера -30%, наставника -20%) снижают CDCof до 0.50: «Резня» с 6 с до 3 с, плюс +45% скорости атаки; суммарно +75% скорости даёт интервал 1.14 с — с запасом внутри 3-секундного КД. Доспех фанатика за 1800 (+2225 HP) — лучшее соотношение HP к золоту на карте. Итог: 7,450 HP, cof 2.70, «Резня» 1,609 x4 = 6,437 каждые 3 с = 2,146 DPS; «Добивание» — 243 урона и 162 лечения каждые 1.5 с = 108 HPS. По урону «Резни» на золото мановая сталь — лучший предмет карты для этого героя (900 золота за +35% силы и +425 HP, около +27% урона). Слабое место — 7,450 HP и 9 брони."
+    ],
+    "items": [
+     "I01O",
+     "sora",
+     "I087",
+     "I01M",
+     "I06B",
+     "I08J"
+    ],
+    "bonus": {
+     "s1": "oli2",
+     "s2": "I01L"
+    }
+   }
+  ],
+  "O022": [
+   {
+    "id": "chief-frenzy-cleave",
+    "c": "#C8382B",
+    "n": [
+     "雙重狂熱",
+     "Double Frenzy",
+     "Двойное исступление"
+    ],
+    "key": [
+     "帝王之劍與戰鬥狂熱是兩個 buff ID 不同的指揮光環，加起來 +160% 基礎攻擊力；力量全部灌進基礎攻擊力再被乘一次。",
+     "Emperor's Sword and Battle Frenzy are two Command Auras with different buff IDs: +160% base damage stacked, and every point of Strength is base damage that gets multiplied.",
+     "Меч императора и Боевое исступление — две ауры команды с разными баффами: +160% к базовому урону, и вся сила умножается вместе с ним."
+    ],
+    "why": [
+     "戰鬥狂熱 A0NY 的加成是腳本加上去的 A0O0（war3map.j:58261），原型 ACac 指揮光環、Cac1=0.80、範圍 100 只給自己、掛 buff B02N；帝王之劍 spro 的 A0BN 也是 ACac、Cac1=0.80，但掛的是 B017。buff ID 不同 → 兩個光環同時生效，總共 +160%。魔獸的百分比攻擊力加成作用在「基礎攻擊力」（5+1d14 加主屬性），道具的「+X 攻擊力」是另一段不被乘 —— 所以這套只堆力量不堆攻擊力：25 級裸力 111，加泰坦神拳 40、紅寶石耳環 100、純淨紅寶石 50、羽毛 10、力量吊墜 12 = 323，優雅吊墜再快照 +1/3 = 430 力量（10900 生命）。基礎攻擊力 442，狂熱中 ×2.6 = 1150，加道具 60 = 1210/下。攻速 88（敏捷）+125（羽毛）+75（皮革手套 3%×25 級）= +288%，1.9/3.88 = 0.49 秒一下 = 2.04 次/秒。單體 2470 DPS，狂熱的 30% 濺射（A0NZ，ACce、nca1=0.30、範圍 400）打 5 隻 = 5434 DPS；沒狂熱只有帝王之劍時是 1748 DPS。泰坦神拳每 10 秒再補 250% 力量 = 1075 範圍傷害。代價：狂熱期間每次攻擊起手扣當前生命 4%（58291 行 SetUnitState LIFE×0.96），24 次後只剩 36.7%，但那是乘法，永遠殺不死自己。優雅吊墜的 +1/3 是每 0.5 秒重算的，不是拿起來當下的快照 ——  的  分支確實包在  裡，但它有 （21865 行）：一般英雄走 ，聖物守衛持有者走 。所以裝備順序無所謂，也不需要重拿。",
+     "Frenzy's damage bonus is A0O0 added by script (war3map.j:58261): base ACac Command Aura, Cac1=0.80, radius 100 self-only, buff B02N. Emperor's Sword spro grants A0BN — also ACac, Cac1=0.80 — but with buff B017. Different buff IDs means both auras apply: +160% total. Percentage damage bonuses in WC3 multiply base damage (5+1d14 plus primary attribute); flat +X damage from items is added afterwards and is not multiplied. So this build stacks Strength, not attack damage: 111 base at 25, +40 Titan Fist, +100 Ruby Earring, +50 Pure Ruby, +10 feather, +12 pendant = 323, then Pendant of Grace snapshots +1/3 = 430 STR (10,900 HP). Base damage 442, x2.6 in frenzy = 1150, +60 item damage = 1210 per hit. Attack speed 88 (agi) + 125 (feather) + 75 (leather gloves, 3% per level at 25) = +288%, 1.9/3.88 = 0.49s = 2.04 hits/s. 2,470 single-target DPS; with the 30% cleave (A0NZ, ACce nca1=0.30, radius 400) on 5 targets, 5,434 DPS; without frenzy, only the sword's +80% gives 1,748 DPS. Titan Fist adds 250% STR = 1,075 AoE every 10s. Cost: each attack order during frenzy strips 4% of current HP (line 58291, LIFE*0.96) — 36.7% left after 24 swings, but it is multiplicative and can never kill you. Pendant of Grace's +1/3 is recomputed every 0.5 s, not snapshotted on pickup: the  branch of  is indeed gated on , but it has an  (line 21865) - ordinary heroes take , Relic Guardian holders take . Equip order does not matter and there is no need to re-equip.",
+     "Бонус исступления — это A0O0 (war3map.j:58261): аура команды ACac, Cac1=0.80, радиус 100 на себя, бафф B02N. Меч императора даёт A0BN — тоже ACac, Cac1=0.80, но бафф B017. Разные баффы — обе ауры работают, итого +160%. Процентные бонусы умножают базовый урон (5+1d14 плюс главный атрибут), а «+X к атаке» с предметов добавляется после и не умножается. Поэтому копим силу: 111 на 25 уровне, +40, +100, +50, +10, +12 = 323, подвеска изящества даёт ещё +1/3 = 430 силы (10900 HP). Базовый урон 442, в исступлении ×2.6 = 1150 (+60 с предметов). Скорость атаки +288% → 2.04 удара/с. 2470 DPS по одной цели, 5434 по пяти целям с 30% сплешем (радиус 400); без исступления — 1748. Кулак титана добавляет 250% силы каждые 10 с. Цена: каждая атака в исступлении снимает 4% текущего HP (строка 58291), после 24 ударов остаётся 36.7%, но убить себя этим нельзя. Бонус подвески — снимок при подборе, перевозьмите её после сборки."
+    ],
+    "items": [
+     "spro",
+     "spre",
+     "I00P",
+     "rma2",
+     "tfar",
+     "I0A7"
+    ],
+    "bonus": {
+     "s1": "klmm",
+     "s2": "I073"
+    }
+   },
+   {
+    "id": "chief-thorns-taunt",
+    "c": "#4E7A9B",
+    "n": [
+     "以身為餌",
+     "Bait and Bleed",
+     "Приманка и шипы"
+    ],
+    "key": [
+     "反傷是獨立管線，縮放來源是「被幾隻打」；戰爭號角把人拉過來，順便餵灌注恐懼的 10% 觸發。",
+     "Thorns is its own pipeline that scales with how many enemies hit you; the War Horn taunt pulls them in and feeds Instill Fear's 10% proc.",
+     "Шипы — отдельный конвейер, зависящий от числа атакующих; рог войны стягивает врагов и кормит 10% шанс страха."
+    ],
+    "why": [
+     "反傷不在 Trig_HeroTakeDamage 那 697 行裡，走 Trig_UAttacks 的 EVENT_PLAYER_UNIT_ATTACKED（起手就結算，打不打得到無所謂），CHAOS/UNIVERSAL、外面包 DisableTrigger：不吃護甲、不吃護甲類型倍率、不經 DefCof。公式是 key17 ×（1 + key19）。這套湊 80（地獄之盾）+40（冥界之盾）+40（英勇腰帶）+15（蠻族之盾）+10（守衛徽章）= 185 反傷，加成 60%（荊棘戒指）+5%（蠻族之盾）= 185×1.65 = 305 點／每一次被攻擊。被 10 隻攻擊間隔 1.5 秒的敵人圍住 = 6.7 次/秒 = 2034 點/秒，完全不需要自己的攻速。戰爭號角 tlum 的 A0QS 是原生嘲諷（Atau、範圍 1000、CD 10 秒），主動把敵人拉進來，同時 +200% 力量攻擊力與 +10 護甲 5 秒。灌注恐懼 A0NU 是被動固有技（uabi），每次「敵人攻擊你」有 10% 上 A0NV 10 秒：−20% 攻速（AIsx Isx1=−0.20），而且吃你技能傷害 +30%（A0NQ/A0NW 裡寫死 dmg×1.30）。被圍毆時每秒約 0.67 次觸發。防禦面：力量 170（7300 生命）、護甲 58.5 → 77.8% 物理減傷，帝王鎧甲讓 70% 血以上的敵人少打 25%。代價講清楚：沒有任何攻擊力道具，狂熱中單體只有 287 DPS，是「高輸出」那套的九分之一，換來 7300 生命與一條不吃減傷的 2000 DPS 反傷。",
+     "Thorns is not part of the 697-line Trig_HeroTakeDamage pipeline: it lives in Trig_UAttacks on EVENT_PLAYER_UNIT_ATTACKED (it fires on the attack order, hit or miss), deals CHAOS/UNIVERSAL inside a DisableTrigger, and therefore ignores armor, armor-type tables and DefCof. Formula: key17 x (1 + key19). This build assembles 80 (Hell Shield) + 40 (Nether Shield) + 40 (Valor Belt) + 15 (Barbarian Shield) + 10 (Guard Badge) = 185 thorns with +65% bonus (Thorn Ring 60% + Barbarian Shield 5%) = 305 damage per incoming attack. Surrounded by 10 enemies attacking every 1.5s that is 6.7 events/s = 2,034 DPS with zero attack speed of your own. War Horn's A0QS is a native Taunt (Atau, radius 1000, 10s cooldown) that drags them in, plus 200% STR attack damage and +10 armor for 5s. Instill Fear A0NU is an innate passive (uabi): each enemy attack on you has a 10% chance to apply A0NV for 10s, which is -20% attack speed (AIsx Isx1=-0.20) and +30% damage taken from your skills (hardcoded dmg*1.30 in A0NQ/A0NW), roughly 0.67 procs/s while surrounded. Defence: 170 STR (7,300 HP), 58.5 armor = 77.8% physical mitigation, Imperial Armor cuts 25% from enemies above 70% HP. The trade is explicit: no attack damage items at all, so frenzy single-target DPS is only 287 — a ninth of the high-damage build — bought with 7,300 HP and a 2,000 DPS reflect that nothing mitigates.",
+     "Шипы работают вне конвейера Trig_HeroTakeDamage: это Trig_UAttacks на событии ATTACKED (срабатывает на замахе), CHAOS/UNIVERSAL внутри DisableTrigger, поэтому броня, таблицы типов брони и DefCof не действуют. Формула key17 x (1 + key19): 80+40+40+15+10 = 185 шипов, бонус 65% = 305 за каждую атаку по вам. Десять врагов с интервалом 1.5 с — 6.7 событий/с = 2034 урона в секунду без собственной скорости атаки. Рог войны (A0QS, нативный Atau, радиус 1000, КД 10 с) стягивает врагов и даёт +200% силы к атаке и +10 брони на 5 с. Внушение страха A0NU — врождённая пассивка: 10% на A0NV (-20% скорости атаки, +30% урона от ваших умений). Защита: 170 силы (7300 HP), 58.5 брони = 77.8% снижения. Цена честная: без предметов на атаку урон по одной цели всего 287 в секунду."
+    ],
+    "items": [
+     "I081",
+     "fwss",
+     "pnvl",
+     "tlum",
+     "tbak",
+     "I00M"
+    ],
+    "bonus": {
+     "s1": "vddl",
+     "s2": "I095"
+    }
+   },
+   {
+    "id": "chief-invuln-flame",
+    "c": "#E67E22",
+    "n": [
+     "無敵烈焰",
+     "Untouchable Flame",
+     "Неуязвимое пламя"
+    ],
+    "key": [
+     "天使護符的 8 秒無敵蓋掉邪能之焰 20 跳裡的 16 跳自傷，敵人照樣全額吃；疊層只在「活過整輪」時才 +16%。",
+     "Angel Charm's 8s invulnerability zeroes 16 of the 20 self-damage ticks of Fel Flame while enemies still take full damage, and the +16% stack only lands if you survive the whole channel.",
+     "8 секунд неуязвимости от ангельского оберега обнуляют 16 из 20 тиков самоурона Пламени скверны, а стак +16% начисляется только если вы пережили весь цикл."
+    ],
+    "why": [
+     "邪能之焰 A0NW 每 0.5 秒跳一次、共 20 跳（Trig_HeroSkills38 存 count=20），每跳對範圍 235 內「每一個」敵人打 (10+8×等級+技能強度×0.10)×倍率×0.50，並對自己打同一個數字的 (0.85−0.05×等級)= 60% 倍。倍率存在 hash 的 'A0NW' 槽，開場與死亡各設成 1.00（45144、46584 行），每跑完一整輪 +0.06+0.02×等級 = 滿級 +16%，而且「英雄中途死掉就不加」（Hero38W 先檢查 UnitAlive）。天使護符 arsh 的 A0QQ 是原生 AIvu 無敵、8 秒、冷卻 20 秒 —— 無敵期間你自己打自己的那 16 跳全部歸零，敵人那邊一分不少；技能冷卻 18 秒對護符 20 秒，等於幾乎全程覆蓋，還保證「活過整輪」拿到那 16%。剩下 4 跳再被 57 點護甲吃掉 77%。技能強度 2135（星界耳環 800＋純淨紫水晶 400＋大法師長袍 300＋鋼鐵守護者 300＋生命之冠 175＋護符 50＋死靈杖 50＋魔法漿果 60）：每跳 131.75×倍率，一輪對每個敵人 2635×倍率；疊到 2.6 倍時每輪每個敵人 6851 點，範圍 235 內全部吃。徒手格鬥同步變成 625+0.85×2135 = 2440（對恐懼目標 3172）。生命之冠每秒回 1% 法力，剛好抵掉鋼鐵守護者每秒 1% 的法力消耗。這套刻意不帶穿透與「對英雄傷害 +%」：自傷也走 Trig_HeroTakeDamage，key 3 會加在自己頭上，key 16 的穿透會在 20 跳裡每跳再補一刀給自己。",
+     "Fel Flame A0NW ticks every 0.5s for 20 ticks (count=20 stored in Trig_HeroSkills38). Each tick hits every enemy within 235 for (10 + 8*level + skillpower*0.10) * multiplier * 0.50 and hits you for 60% of that same number at level 5 (0.85 - 0.05*level). The multiplier lives in hash slot 'A0NW', is set to 1.00 on pick and on death (lines 45144 and 46584), and gains 0.06 + 0.02*level = +16% at max level only when the full channel completes — Hero38W checks UnitAlive first, so dying mid-channel grants nothing. Angel Charm's A0QQ is a native AIvu invulnerability, 8s, 20s cooldown: during it 16 of the 20 self-ticks deal zero while the enemy side is untouched, the 18s skill cooldown against the 20s charm cooldown gives near-full coverage, and it guarantees you collect the 16%. The remaining 4 ticks are then cut 77% by 57 armor. Skill power 2,135 (800 Astral Earring + 400 Pure Amethyst + 300 Archmage Robe + 300 Iron Guardian + 175 Crown of Life + 50 charm + 50 staff + 60 berry): 131.75 per tick per enemy, 2,635 per channel, 6,851 once the multiplier reaches 2.6 — on everything inside 235. Fist Fight becomes 625 + 0.85*2135 = 2,440 (3,172 on a feared target). Crown of Life's 1% mana per second exactly cancels Iron Guardian's 1% drain. The build deliberately avoids penetration and '+% damage vs heroes': self-damage also runs through Trig_HeroTakeDamage, so key 3 inflates it and key 16 penetration adds a second self-hit on every one of the 20 ticks.",
+     "Пламя скверны тикает каждые 0.5 с, всего 20 тиков. Каждый тик бьёт всех врагов в радиусе 235 на (10+8*уровень+сила умений*0.10)*множитель*0.50 и вас самих на 60% от этого числа. Множитель хранится в хеше 'A0NW', ставится в 1.00 при выборе героя и при смерти (строки 45144, 46584) и растёт на +16% только если вы пережили весь цикл (Hero38W проверяет UnitAlive). Ангельский оберег даёт нативную неуязвимость AIvu на 8 с с КД 20 с: 16 из 20 тиков самоурона обнуляются, урон по врагам не меняется, а КД умения 18 с почти полностью покрывается. Оставшиеся 4 тика режет броня 57 (−77%). Сила умений 2135: 131.75 за тик на врага, 2635 за цикл, 6851 при множителе 2.6. Кулачный бой — 2440 (3172 по цели со страхом). Корона жизни возвращает 1% маны в секунду и компенсирует расход стража. Пробивание и «+% урона по героям» сюда не берём: самоурон тоже идёт через Trig_HeroTakeDamage."
+    ],
+    "items": [
+     "arsh",
+     "I00E",
+     "sor5",
+     "kpin",
+     "wswd",
+     "ram2"
+    ],
+    "bonus": {
+     "s1": "stre",
+     "s2": "I01L"
+    }
+   },
+   {
+    "id": "chief-budget-bruiser",
+    "c": "#6E8B74",
+    "n": [
+     "中期酋長",
+     "Midgame Chieftain",
+     "Вождь середины игры"
+    ],
+    "key": [
+     "7150 金：帝王之劍把狂熱翻成 +160%，兩顆紫水晶餵邪能之焰，重盾把自傷砍掉六成。",
+     "7,150 gold: the Emperor's Sword turns frenzy into +160%, two amethysts feed Fel Flame, and a Heavy Shield cuts the self-burn by 60%.",
+     "7150 золота: меч императора превращает исступление в +160%, два аметиста кормят пламя, тяжёлый щит режет самоурон на 60%."
+    ],
+    "why": [
+     "整套 7150 金（本體 6350 ＋ 吸收器 300 ＋ 寶盒 500），中期就能湊齊，而且每一件都指到這隻的兩條線上。帝王之劍 1700 金是全地圖最便宜的 +80% 攻擊力，跟戰鬥狂熱的 A0O0 是兩個不同 buff（B017 對 B02N），可以疊 → 狂熱中 ×2.6。力量線：巨人頭盔 15、完美力量戒指 20、黑暗精華 6，加 25 級裸力 111 = 152 力量 = 3950 生命，再加頭盔 500、精華 200 = 4650。基礎攻擊力 12.5+152 = 164.5，狂熱中 428/下；攻速靠皮革手套（每級 +3%，25 級 = +75%）加敏捷 66% = +141% → 0.79 秒一下 = 1.27 次/秒 → 狂熱中單體 543 DPS、5 隻 1195 DPS（30% 濺射 400 範圍）。技能線：紫水晶戒指 125 ＋ 紫水晶 125 = 250 技能強度，邪能之焰每輪對每個敵人 750×倍率、徒手格鬥 837；自傷 450×倍率被 24.5 護甲吃掉 59.5% → 實際 182×倍率，完美力量戒指 4 點生命回復就補得回來。重盾 500 金 +8 護甲的價值在這裡：它同時減自傷與敵人的物理攻擊。巨人頭盔的 A0HD 是原生 Ansk（硬皮），每次物理攻擊固定扣 20 點、最低通過 4 點 —— 對前期一群低攻擊力雜兵幾乎等於免疫。黑暗精華讓附近敵人 −20% 攻速，跟灌注恐懼的 −20% 是不同技能，兩層都算。",
+     "The whole set is 7,150 gold (6,350 in slots plus 300 absorber and 500 chest) and every piece points at one of the hero's two lines. The Emperor's Sword at 1,700 is the cheapest +80% attack damage on the map and stacks with frenzy's A0O0 because the buffs differ (B017 vs B02N), giving x2.6 during frenzy. Strength line: 15 (Giant Helm) + 20 (Perfect Strength Ring) + 6 (Dark Essence) on top of 111 base at level 25 = 152 STR = 3,950 HP, plus 500 and 200 flat = 4,650. Base damage 12.5 + 152 = 164.5, 428 per hit in frenzy; attack speed from Leather Gloves (+3% per level, +75% at 25) plus 66% from agility = +141%, 0.79s per swing = 1.27 hits/s = 543 single-target DPS in frenzy and 1,195 against five targets with the 30% cleave. Skill line: 125 + 125 = 250 skill power, so Fel Flame does 750 x multiplier per enemy per channel and Fist Fight 837; the 450 x multiplier of self-burn is cut 59.5% by 24.5 armor to 182, which the ring's 4 HP/s covers. That is why a 500-gold Heavy Shield earns its slot: armor reduces both your own burn and incoming physical damage. Giant Helm's A0HD is a native Ansk (Hardened Skin) that removes a flat 20 damage per physical hit with a 4 damage floor — near-immunity to low-damage creep packs. Dark Essence slows nearby enemy attack speed by 20%, a separate ability from Instill Fear's -20%, so both apply.",
+     "Вся сборка — 7150 золота, собирается к середине игры. Меч императора за 1700 — самый дешёвый +80% к атаке, и он складывается с исступлением (баффы B017 и B02N разные), итого ×2.6. Сила: 111 + 15 + 20 + 6 = 152 (3950 HP, плюс 700 с предметов = 4650). Базовый урон 164.5, в исступлении 428 за удар; скорость атаки +141% (кожаные перчатки +3% за уровень и 66% от ловкости) — 1.27 удара/с, 543 DPS по одной цели и 1195 по пяти со сплешем. Сила умений 250: пламя 750×множитель на врага за цикл, кулачный бой 837; самоурон 450×множитель режется бронёй 24.5 на 59.5% до 182 и покрывается регенерацией 4 в секунду. Тяжёлый щит за 500 снижает и самоурон, и физический урон. Шлем великана — нативный Ansk: минус 20 от каждой физической атаки."
+    ],
+    "items": [
+     "spro",
+     "wneu",
+     "rde2",
+     "rag1",
+     "tpow",
+     "I072"
+    ],
+    "bonus": {
+     "s1": "klmm",
+     "s2": "I050"
+    }
+   }
+  ],
+  "Hmkg": [
+   {
+    "id": "matriarch-light-charge",
+    "c": "#F2C14E",
+    "n": [
+     "聖光衝鋒",
+     "Charge of the Light",
+     "Натиск Света"
+    ],
+    "key": [
+     "技能強度堆到 2100：猛衝一次對同一個敵人打出 3 段（碰撞 + 兩道力量波）約 3990 點。",
+     "2100 skill power: one Charge lands 3 separate damage events on the same enemy for ~3990.",
+     "2100 силы умений: один Рывок наносит 3 отдельных события урона по одной цели, ~3990."
+    ],
+    "why": [
+     "這隻的傷害全走 Trig_HeroTakeDamage_Actions（吃 DefCof、吃穿透），所以技能強度是唯一的乘數來源，本套把它堆到 2100（星界耳環 800 + 純淨紫水晶 400 + 大法師長袍 300 + 大法師權杖 200 + 水晶項鍊 175 + 無限手套 150 + 能量符文 75）。\n\n猛衝 lv5 的基數是 dmg = 50 + 50×5 + 技能強度×0.40 = 1140。Skill43Q（war3map.j:59595）判斷的是 IsUnitType(u, UNIT_TYPE_HERO)，而 u 是「衝鋒的人」不是被打的人 —— 說明寫「敵方英雄受到的傷害提高 100%」，實作卻是對所有目標都 ×2.00。所以碰撞是 2280，不分英雄雜兵。\n\n閃耀護盾啟動時（hash 整數 key 29 == 1），碰撞點還會生成兩隻 o010，各帶 SaveReal(...,13, dmg×0.75) = 855。key 13 的中繼在 war3map.j:19563：中繼把來源換成英雄本人再打一次 NORMAL/MAGIC，所以兩道波是兩個獨立的英雄傷害事件，各自吃 DefCof、各自附帶一段穿透。一個站在碰撞點又被兩道波掃到的敵人 = 3 個傷害事件、3 段穿透。\n\n閃耀護盾自己 10 跳 ×（48 + 技能強度×0.05 = 153）= 1530，每跳一個穿透事件。反攻的 o02K 每發 = 210 + 技能強度×0.25 = 735，結束後 8 秒 +270 攻擊力、+75/秒生命回復。\n\n灼燒印記是 DefCof 加項（war3map.j:19808）：帶印記的目標對 Hmkg 的 DefCof +0.25，向聖光祈願期間變 +0.50。配上大法師權杖 +25%（對英雄）與水晶項鍊 +11%，打帶印記的英雄 DefCof 可到 1.86。",
+     "All of her damage runs through Trig_HeroTakeDamage_Actions (DefCof + penetration), so skill power is the only multiplier that matters. This build stacks it to 2100 (Astral Earring 800 + Pure Amethyst 400 + Archmage Robe 300 + Archmage Scepter 200 + Crystal Necklace 175 + Infinity Gauntlet 150 + Energy Rune 75).\n\nCharge rank 5 base is dmg = 50 + 50x5 + SP x0.40 = 1140. Skill43Q (war3map.j:59595) tests IsUnitType(u, UNIT_TYPE_HERO) where u is the DASHER, not the victim - the tooltip promises +100% against enemy heroes, but the code doubles it against everything. Impact = 2280 on every target.\n\nWhile Sparkling Shield is up (integer hash key 29 == 1) the impact also spawns two o010 dummies carrying SaveReal(...,13, dmg x0.75) = 855 each. The key-13 relay at war3map.j:19563 re-issues the damage with the HERO as source, so each wave is its own hero-sourced damage event: its own DefCof, its own penetration proc. An enemy caught by impact plus both waves takes 3 damage events and 3 penetration hits.\n\nThe shield itself ticks 10 x (48 + SP x0.05 = 153) = 1530, one penetration proc per tick. Counteroffensive's o02K deals 210 + SP x0.25 = 735 per projectile, then +270 attack and +75/s regen for 8s.\n\nScorching Mark is a DefCof addend (war3map.j:19808): a marked target takes DefCof +0.25 from Hmkg, +0.50 while Appeal to the Light is running. With the Scepter's +25% (vs heroes) and the Necklace's +11%, DefCof against a marked hero reaches 1.86.",
+     "Весь её урон идёт через Trig_HeroTakeDamage_Actions (DefCof и пробитие), поэтому сила умений - единственный множитель. Здесь она доведена до 2100 (Астральная серьга 800 + Чистый аметист 400 + Мантия архимага 300 + Скипетр архимага 200 + Хрустальное ожерелье 175 + Перчатка бесконечности 150 + Руна энергии 75).\n\nБаза Рывка 5 ур.: dmg = 50 + 50x5 + СУ x0.40 = 1140. В Skill43Q (war3map.j:59595) проверяется IsUnitType(u, UNIT_TYPE_HERO), где u - сам герой, а не цель. В описании обещано +100% по вражеским героям, но код удваивает урон по всем. Столкновение = 2280 по любой цели.\n\nПри активном Искрящемся щите (целочисленный ключ 29 == 1) создаются два o010 с SaveReal(...,13, dmg x0.75) = 855. Ретранслятор ключа 13 (war3map.j:19563) заново наносит урон уже от героя, поэтому каждая волна - отдельное событие урона со своим DefCof и своим пробитием. Враг, пойманный столкновением и обеими волнами, получает 3 события урона и 3 удара пробития.\n\nСам щит: 10 тиков x (48 + СУ x0.05 = 153) = 1530, пробитие на каждом тике. o02K от Контрнаступления: 210 + СУ x0.25 = 735 за снаряд, затем +270 к атаке и +75/сек к реген. здоровья на 8 сек.\n\nОпаляющая метка - слагаемое DefCof (war3map.j:19808): +0.25, а под Обращением к Свету +0.50. Вместе с +25% скипетра и +11% ожерелья DefCof по помеченному герою доходит до 1.86."
+    ],
+    "items": [
+     "I00E",
+     "sor5",
+     "kpin",
+     "fgrd",
+     "mnsf",
+     "lgdh"
+    ],
+    "bonus": {
+     "s1": "rej4",
+     "s2": "I01Q"
+    }
+   },
+   {
+    "id": "matriarch-counter-bulwark",
+    "c": "#8C3B3B",
+    "n": [
+     "反攻壁壘",
+     "Counteroffensive Bulwark",
+     "Бастион контрнаступления"
+    ],
+    "key": [
+     "反攻的減傷被算了兩次（−1.04），直接壓到 DefCof 下限 0.20；用戰爭號角把敵人拉過來吃 400 點反傷。",
+     "Counteroffensive's mitigation is applied twice (-1.04), pinning DefCof at its 0.20 floor; taunt with the War Horn and every swing costs them ~400 thorns.",
+     "Снижение урона от Контрнаступления применяется дважды (-1.04) и упирает DefCof в порог 0.20; Боевой рог стягивает врагов под ~400 ответного урона за удар."
+    ],
+    "why": [
+     "反攻的屏障被寫進了兩個地方：Trig_HeroSkills43_Actions:59738 把 0.12+0.08×等級 存進 hash 實數 key 4（DefCof 會減 key 4，war3map.j:19801），Trig_HeroTakeDamage_Actions:19805 又因為 buff B03I 再減一次同樣的值。lv5 時是 0.52×2 = −1.04，DefCof 變成負數後被 19881 的 `if DefCof<0.20 then DefCof=0.20` 夾住 —— 也就是屏障那 5 秒實際是 80% 減傷，不是說明寫的 52%。這是本套的骨幹（24 秒 CD，5 秒無敵窗）。\n\n反傷走的是完全不同的一條線：Trig_UAttacks_Actions:20277 掛在 EVENT_PLAYER_UNIT_ATTACKED（起手就結算，打不打得中無所謂），公式是 key17 ×（1 + key19），走 CHAOS/UNIVERSAL，外面包 DisableTrigger —— 不吃護甲、不吃護甲類型、不經 DefCof、跟對方攻擊力也無關。本套 key17 = 80（地獄之盾）+40（不詳之盾）+40（英勇腰帶）+30（英勇鎧甲）+15（蠻族之盾）= 205，key19 = 0.60（荊棘戒指）+0.15（不詳之盾）+0.05（蠻族之盾）+0.15（王室徽記）= 0.95，**每一次敵人揮刀 = 399.75 點不可減免傷害**。\n\n反傷的縮放軸是「被幾隻打 × 對方攻速」，所以戰爭號角的強制嘲諷是乘數不是點綴：拉 10 隻進來就是 10 倍吞吐，而且那 5 秒剛好對齊反攻的 80% 減傷。同時被攻擊也是閃耀護盾的觸發條件（Trig_HeroAttack43_Actions:59831）與灼燒印記的來源（每次敵人攻擊 10% 機率上印記）。\n\n代價要講清楚：技能強度 0。猛衝碰撞從 2280 掉到 600、力量波 2×225、護盾 480/輪、反攻子彈 210/發 —— **技能輸出只剩高輸出套的 15% 左右**，換來的是 39 護甲、約 2500 額外生命、80% 的 5 秒窗，以及一條完全繞過所有減傷的輸出管線。",
+     "The barrier is applied in two places: Trig_HeroSkills43_Actions:59738 stores 0.12+0.08xrank into real hash key 4 (DefCof subtracts key 4 at war3map.j:19801), and Trig_HeroTakeDamage_Actions:19805 subtracts the same value again because of buff B03I. At rank 5 that is 0.52 x2 = -1.04; DefCof goes negative and is clamped by `if DefCof<0.20 then DefCof=0.20` at 19881. So those 5 seconds are 80% mitigation, not the 52% the tooltip claims. That is the spine of this build (24s cooldown, 5s window).\n\nThorns is a completely separate pipeline: Trig_UAttacks_Actions:20277 hangs off EVENT_PLAYER_UNIT_ATTACKED (it fires on the swing, whether or not it connects), computes key17 x (1 + key19), deals CHAOS/UNIVERSAL and is wrapped in DisableTrigger - no armor, no armor-type multiplier, no DefCof, and independent of the attacker's damage. Here key17 = 80 (Hellish Shield) + 40 (Ominous Shield) + 40 (Valorous Belt) + 30 (Valorous Armor) + 15 (Barbarian Shield) = 205, key19 = 0.60 (Thorn Ring) + 0.15 + 0.05 + 0.15 (Royal Insignia) = 0.95. **Every enemy swing costs them 399.75 unmitigable damage.**\n\nThorns scales with how many things hit you times their attack speed, so the War Horn's forced taunt is a multiplier, not a garnish: pulling 10 enemies is 10x throughput, and its 5 seconds line up with the 80% window. Being attacked is also the trigger for Sparkling Shield (Trig_HeroAttack43_Actions:59831) and the only source of Scorching Mark (10% per enemy attack).\n\nThe cost, stated plainly: zero skill power. Charge impact drops from 2280 to 600, waves to 2x225, shield to 480 per cycle, Counteroffensive to 210 per shot - **about 15% of the high-output build's ability damage** - in exchange for 39 armor, ~2500 extra HP, an 80% window and a damage pipeline nothing can reduce.",
+     "Барьер применяется дважды: Trig_HeroSkills43_Actions:59738 кладёт 0.12+0.08xуровень в вещественный ключ 4 (DefCof вычитает ключ 4, war3map.j:19801), а Trig_HeroTakeDamage_Actions:19805 вычитает то же значение ещё раз из-за баффа B03I. На 5 ур. это 0.52x2 = -1.04; DefCof уходит в минус и обрезается до 0.20 строкой 19881. То есть эти 5 секунд дают 80% снижения урона, а не 52% из описания. Это основа сборки (КД 24 сек).\n\nОтветный урон - отдельный конвейер: Trig_UAttacks_Actions:20277 на событии EVENT_PLAYER_UNIT_ATTACKED (срабатывает на замахе), формула key17 x (1 + key19), тип CHAOS/UNIVERSAL, обёрнут в DisableTrigger - без брони, без типа брони, без DefCof. Здесь key17 = 80+40+40+30+15 = 205, key19 = 0.60+0.15+0.05+0.15 = 0.95. **Каждый замах врага стоит ему 399.75 несокращаемого урона.**\n\nОтветный урон масштабируется от числа атакующих и их скорости атаки, поэтому принудительный вызов огня Боевого рога - множитель: 10 врагов = 10-кратная отдача, и его 5 секунд совпадают с окном 80%. Быть атакованной - также условие Искрящегося щита (59831) и единственный источник Опаляющей метки (10% за атаку врага).\n\nЦена: сила умений 0. Столкновение Рывка падает с 2280 до 600, волны 2x225, щит 480 за цикл, снаряд Контрнаступления 210 - **около 15% урона от сборки на максимум урона** - взамен 39 брони, ~2500 здоровья, окно 80% и конвейер, который ничем не снижается."
+    ],
+    "items": [
+     "I081",
+     "fwss",
+     "I029",
+     "I00M",
+     "I049",
+     "tlum"
+    ],
+    "bonus": {
+     "s1": "vddl",
+     "s2": "I01S"
+    }
+   },
+   {
+    "id": "matriarch-flag-lock",
+    "c": "#8E6FD8",
+    "n": [
+     "旗標鎖：永駐力量波",
+     "Flag Lock: Permanent Force Waves",
+     "Замок флагов: вечные силовые волны"
+    ],
+    "key": [
+     "超凡護符同時佔住 hash 整數 key 28 與 29：閃耀護盾永久關閉，猛衝的兩道力量波卻永久打開。",
+     "Amulet of Transcendence occupies integer hash keys 28 and 29 at once: Sparkling Shield is permanently off, but Charge's two force waves are permanently on.",
+     "Амулет превосходства занимает целочисленные ключи 28 и 29 сразу: Искрящийся щит выключен навсегда, но обе силовые волны Рывка работают всегда."
+    ],
+    "why": [
+     "這一套建立在兩個 hash 槽位的撞號上，兩邊都能在程式碼裡指出來。\n\n（1）閃耀護盾的內部冷卻旗標。Trig_HeroAttack43_Actions:59832 的條件是 `if LoadInteger(hash,GetHandleId(u),28)!=1`。但整數 key 28 同時是全地圖的「抵抗冰凍」旗標，裝備處理器每帶一件就 +1（war3map.j:23743 等處）。帶**恰好一件**抵抗冰凍的道具 → key 28 == 1 → 護盾的判斷永遠是 false，**永久失效**（而且因為護盾從不執行，它也永遠不會把旗標寫回 0）。\n\n（2）力量波的閘門。Skill43Q:59615 的條件是 `if LoadInteger(hash,GetHandleId(u),29)==1`。整數 key 29 是「抵抗流血」旗標，也是每件 +1。正常流程是護盾開始時把 key 29 硬寫成 1、結束時硬寫成 0（59839 / 59802），所以力量波只在護盾期間存在 —— 但護盾既然被 (1) 關掉了，就沒人會把 key 29 歸零。\n\n超凡護符 `ram4` 一件同時對 key 27/28/29/30 各 +1（war3map.j:23741-23744），一次滿足兩個條件：key 28 = 1（護盾死）、key 29 = 1（力量波永開）。**猛衝從此每 10 秒、700 距離外、不需要先被攻擊，就固定產生兩道力量波。**\n\n算帳：技能強度 1725 時，猛衝基數 = 300 + 690 = 990，碰撞 ×2 = 1980，兩道波各 742.5 = 1485，加 3 段 ×61 穿透 = 183，合計約 3648／10 秒。放棄的護盾是 10×(48+86.25) = 1342.5／20 秒；同期兩次猛衝的力量波是 2970，**淨賺約 121%**，而且不必挨打就能觸發。三個獨立傷害事件也正是耶夢加得之戒 +50 穿透值錢的地方 —— 穿透是每個傷害事件之後另打一段 CHAOS/UNIVERSAL，事件數越多越划算。\n\n注意事項：全套只能有這一件抵抗冰凍道具（第二件會讓 key 28 = 2，護盾又活過來並在結束時把兩個旗標都清成 0）。祕密寶盒有機會開出鏡面項鍊 I06Z（抵抗冰凍＋抵抗詛咒），開到就會破壞這套 —— 這是本套唯一的隨機風險。另外因為護盾永不執行，超凡護符的四個抗性旗標（點燃／冰凍／流血／詛咒，其中流血是把機率 ×0.25，見 BleedUnit:2119）也永遠不會被清掉。",
+     "This build rests on two hash-slot collisions, both citable in the script.\n\n(1) The shield's internal-cooldown flag. Trig_HeroAttack43_Actions:59832 gates on `if LoadInteger(hash,GetHandleId(u),28)!=1`. But integer key 28 is also the map-wide freeze-resistance flag, incremented by +1 per equipped item (war3map.j:23743 and friends). Carry **exactly one** freeze-resist item and key 28 == 1, so the shield's test is false forever - **permanently disabled** - and because the shield never runs, nothing ever writes the flag back to 0.\n\n(2) The force-wave gate. Skill43Q:59615 gates on `if LoadInteger(hash,GetHandleId(u),29)==1`. Integer key 29 is the bleed-resistance flag, also +1 per item. Normally the shield hard-writes key 29 to 1 on start and 0 on expiry (59839 / 59802), which is why the waves only exist during the shield - but with the shield disabled by (1), nobody zeroes key 29.\n\nAmulet of Transcendence `ram4` adds +1 to keys 27/28/29/30 in one item (war3map.j:23741-23744), satisfying both conditions at once: key 28 = 1 (shield dead), key 29 = 1 (waves always on). **Charge now spawns both force waves every 10 seconds, from 700 range, with no need to be attacked first.**\n\nMath: at 1725 skill power, Charge base = 300 + 690 = 990, impact x2 = 1980, two waves at 742.5 = 1485, plus 3 penetration procs x61 = 183, total ~3648 per 10s. The shield we gave up is 10 x (48+86.25) = 1342.5 per 20s; two Charges' waves over the same 20s are 2970 - a **net gain of about 121%**, without needing to take a hit. Three independent damage events is also exactly why Jormungand's Ring's +50 penetration pays here: penetration is an extra CHAOS/UNIVERSAL hit after each damage event, so event count is the whole story.\n\nCaveats: exactly one freeze-resist item, no more (a second makes key 28 = 2, the shield revives and wipes both flags to 0 on expiry). The Secret Chest can roll Mirror Necklace I06Z (freeze + curse resist), which would break the build - the only random risk here. On the upside, since the shield never runs, the Amulet's four resistance flags (burn / freeze / bleed / curse; bleed multiplies the chance by 0.25, see BleedUnit:2119) are never cleared either.",
+     "Сборка держится на двух коллизиях слотов хеш-таблицы, обе видны в скрипте.\n\n(1) Флаг внутреннего КД щита. Trig_HeroAttack43_Actions:59832 проверяет `if LoadInteger(hash,GetHandleId(u),28)!=1`. Но целочисленный ключ 28 - это ещё и общий флаг сопротивления заморозке, +1 за каждый надетый предмет (war3map.j:23743 и др.). **Ровно один** такой предмет даёт key 28 == 1, проверка щита навсегда ложна - **щит отключён**, и раз он не запускается, никто не вернёт флаг в 0.\n\n(2) Ворота силовых волн. Skill43Q:59615 проверяет `if LoadInteger(hash,GetHandleId(u),29)==1`. Целочисленный ключ 29 - флаг сопротивления кровотечению, тоже +1 за предмет. Обычно щит жёстко пишет 1 при старте и 0 при завершении (59839 / 59802) - поэтому волны и существуют только под щитом. Но щит выключен пунктом (1), и ключ 29 никто не обнуляет.\n\nАмулет превосходства `ram4` даёт +1 сразу к ключам 27/28/29/30 (war3map.j:23741-23744) и выполняет оба условия: key 28 = 1 (щит мёртв), key 29 = 1 (волны всегда). **Рывок теперь создаёт обе волны каждые 10 секунд, с 700 дистанции, без необходимости быть атакованной.**\n\nРасчёт: при 1725 силы умений база Рывка = 990, столкновение x2 = 1980, две волны по 742.5 = 1485, плюс 3 пробития x61 = 183, итого ~3648 за 10 сек. Утраченный щит - 1342.5 за 20 сек; волны двух Рывков за те же 20 сек - 2970, **чистый прирост ~121%**, и без нужды получать удары. Три независимых события урона - именно то, за что здесь платит +50 пробития Кольца Ёрмунганда: пробитие бьёт отдельно после каждого события.\n\nОговорки: ровно один предмет с сопротивлением заморозке (второй даёт key 28 = 2, щит оживает и обнуляет оба флага). Тайный сундук может выдать Зеркальное ожерелье I06Z - это сломает сборку. Зато щит не работает, и четыре флага сопротивления амулета не стираются никогда."
+    ],
+    "items": [
+     "ram4",
+     "I00E",
+     "sor5",
+     "kpin",
+     "lgdh",
+     "I01P"
+    ],
+    "bonus": {
+     "s1": "rej4",
+     "s2": "I01Q"
+    }
+   },
+   {
+    "id": "matriarch-budget-knight",
+    "c": "#5C8A9E",
+    "n": [
+     "中期血騎士",
+     "Midgame Blood Knight",
+     "Кровавый рыцарь: середина игры"
+    ],
+    "key": [
+     "7800 金、技能強度 775：猛衝仍打 2135，護盾 867，反攻子彈 404，全部靠便宜的技能強度堆出來。",
+     "7800 gold, 775 skill power: Charge still hits 2135, the shield 867, Counteroffensive 404 per shot - all from cheap skill-power items.",
+     "7800 золота, 775 силы умений: Рывок всё ещё 2135, щит 867, снаряд Контрнаступления 404 - на дешёвых предметах силы умений."
+    ],
+    "why": [
+     "血騎士女族長四個技能的係數（猛衝 0.40、閃耀護盾 0.05／跳、反攻 0.25、引爆 0.25）全部只吃 udg_ItemBonusDMG，也就是技能強度，跟力量／敏捷／智力無關。所以中期最有效率的做法就是買「每金幣技能強度」最高的東西：紫水晶 125／600 金（0.21）、純淨紫水晶 400／2200 金（0.18）、能量符文 75／500 金（0.15）、紫水晶戒指 125／900 金（0.14）。本套湊到 775。\n\n數字：猛衝 lv5 基數 = 300 + 775×0.40 = 610，碰撞 ×2.00 = 1220（Skill43Q 判的是施法者的英雄旗標，所以對雜兵也雙倍），閃耀護盾期間再加兩道各 457.5 的力量波 = 2135。護盾 10 跳 ×（48 + 38.75）= 867.5。反攻子彈 210 + 193.75 = 403.75／發，屏障結束後 8 秒 +137 攻擊力、+35／秒生命回復。引爆 243.75。\n\n矛與盾（1500 金）在這個價位特別划算：+50 技能強度 +10 力量，而且「使用技能對附近 7 名隨機敵人造成 40% 全屬性」每次施法都跑一次 —— 她每 10 秒一次猛衝、每 24 秒一次反攻，等於白送兩條額外的傷害事件流（每個事件都再帶一段穿透）。\n\n鐵製小圓盾與生命護符是活下來的部分：+4 護甲、+35 反傷（走 Trig_UAttacks_Actions 那條獨立管線，敵人一起手就結算）、+1050 生命；生命護符每分鐘再永久 +50 生命上限。刺刀（吸收器）+5 穿透很便宜但很值 —— 猛衝一次就是 3 個傷害事件，護盾一輪 10 個。\n\n本套刻意不帶任何「抵抗冰凍」的道具（完美之靴、永恆之夢、鏡面項鍊、超凡護符、永恆聖木）：帶一件會讓 hash 整數 key 28 == 1，Trig_HeroAttack43_Actions:59832 的判斷永遠 false，閃耀護盾與它帶來的力量波會一起消失。",
+     "All four of her coefficients (Charge 0.40, Sparkling Shield 0.05/tick, Counteroffensive 0.25, detonation 0.25) read only udg_ItemBonusDMG - skill power - and nothing from strength, agility or intellect. So the efficient midgame play is simply the best skill-power-per-gold items: Amethyst 125/600 (0.21), Pure Amethyst 400/2200 (0.18), Energy Rune 75/500 (0.15), Amethyst Ring 125/900 (0.14). This build reaches 775.\n\nNumbers: Charge rank 5 base = 300 + 775 x0.40 = 610, impact x2.00 = 1220 (Skill43Q checks the CASTER's hero flag, so trash takes double too), plus two 457.5 force waves while the shield is up = 2135. Shield: 10 ticks x (48 + 38.75) = 867.5. Counteroffensive projectile 210 + 193.75 = 403.75, then +137 attack and +35/s regen for 8s. Detonation 243.75.\n\nSpear and Shield (1500g) punches above its price here: +50 skill power, +10 strength, and its 'on cast, hit 7 random nearby enemies for 40% of total attributes' fires on every cast - she casts Charge every 10s and Counteroffensive every 24s, so that is two free streams of extra damage events, each of which also carries a penetration hit.\n\nIron Buckler and Life Amulet are the survival half: +4 armor, +35 thorns (the separate Trig_UAttacks_Actions pipeline, settled on the enemy's swing), +1050 HP, and the Amulet adds a permanent +50 max HP per game minute. The Bayonet in the absorber slot is 300g for +5 penetration, which is cheap given one Charge is 3 damage events and one shield cycle is 10.\n\nThis build deliberately carries no freeze-resist item (Perfect Boots, Eternal Dream, Mirror Necklace, Amulet of Transcendence, Eternal Sacred Wood): one of them sets integer hash key 28 to 1, the test at Trig_HeroAttack43_Actions:59832 becomes permanently false, and Sparkling Shield - along with the force waves it enables - disappears.",
+     "Все четыре коэффициента (Рывок 0.40, Искрящийся щит 0.05 за тик, Контрнаступление 0.25, подрыв 0.25) читают только udg_ItemBonusDMG - силу умений - и ничего от силы, ловкости или интеллекта. Поэтому в середине игры эффективнее всего брать лучшие предметы по силе умений за золото: Аметист 125/600 (0.21), Чистый аметист 400/2200 (0.18), Руна энергии 75/500 (0.15), Аметистовое кольцо 125/900 (0.14). Здесь получается 775.\n\nЦифры: база Рывка 5 ур. = 300 + 775 x0.40 = 610, столкновение x2.00 = 1220 (Skill43Q проверяет флаг героя у КАСТЕРА, поэтому мобы тоже получают вдвое), плюс две волны по 457.5 под щитом = 2135. Щит: 10 тиков x (48 + 38.75) = 867.5. Снаряд Контрнаступления 210 + 193.75 = 403.75, затем +137 к атаке и +35/сек реген на 8 сек. Подрыв 243.75.\n\nКопьё и щит (1500 з.) здесь особенно выгодны: +50 силы умений, +10 силы, а эффект «при использовании умения - урон 7 случайным врагам в размере 40% всех атрибутов» срабатывает на каждом применении: Рывок каждые 10 сек, Контрнаступление каждые 24 сек - два бесплатных потока событий урона, каждое с пробитием.\n\nЖелезный баклер и Амулет жизни - выживаемость: +4 брони, +35 ответного урона (отдельный конвейер Trig_UAttacks_Actions, срабатывает на замахе врага), +1050 здоровья, плюс +50 к максимуму здоровья за каждую игровую минуту. Штык в слоте поглотителя - 300 з. за +5 пробития, дёшево при 3 событиях урона на Рывок и 10 на цикл щита.\n\nСборка намеренно не берёт ни одного предмета с сопротивлением заморозке (Идеальные сапоги, Вечная мечта, Зеркальное ожерелье, Амулет превосходства, Вечное священное древо): любой из них ставит целочисленный ключ 28 в 1, проверка Trig_HeroAttack43_Actions:59832 навсегда ложна, и Искрящийся щит вместе с силовыми волнами исчезает."
+    ],
+    "items": [
+     "sor5",
+     "tpow",
+     "rag1",
+     "shcw",
+     "I06Y",
+     "I07S"
+    ],
+    "bonus": {
+     "s1": "rej4",
+     "s2": "I01Q"
+    }
+   }
   ]
  }
 }
