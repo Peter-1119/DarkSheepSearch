@@ -33,7 +33,7 @@
   - 第 3 行：100 / 150 / 200 / 250 / 300
   - 第 5 行：10 / 20 / 30 / 40 / 50
 
-物件欄位（原型 `None`）：`Owk1 = 0.20000000298023224`, `Owk2 = [0.20000000298023224, 0.30000001192092896, 0.4000000059604645, 0.5]`, `Owk3 = 0.0`, `Owk4 = 0`, `acdn = 11.0`, `adur = 11.0`, `ahdu = 11.0`, `alev = 5`, `amcs = [60, 70, 80, 90, 100]`
+物件欄位（原型 `None`）：`Owk1 = 0.20000000298023224`, `Owk2 = [None, 0.20000000298023224, 0.30000001192092896, 0.4000000059604645, 0.5]`, `Owk3 = 0.0`, `Owk4 = 0`, `acdn = 11.0`, `adur = 11.0`, `ahdu = 11.0`, `alev = 5`, `amcs = [60, 70, 80, 90, 100]`
 
 實作：
 
@@ -177,7 +177,7 @@ endif
 冷卻：50 秒。
 ```
 
-物件欄位（原型 `ANcl`）：`Ncl1 = [0.6000000238418579, 1.0]`, `Ncl2 = 1`, `Ncl3 = 1`, `Ncl4 = [0.6000000238418579, 1.0]`, `Ncl5 = 0`, `Ncl6 = ['channel', 'chemicalrage']`, `acap = `, `acdn = [50.0, 17.0]`, `alev = 1`, `amcs = [125, 80, 90, 100, 110, 120]`, `aran = [700.0, 900.0]`, `atar = ['air,ground,enemy,neutral,organic', 'air,ground,friend,neutral,self']`
+物件欄位（原型 `ANcl`）：`Ncl1 = [0.6000000238418579, None, 1.0]`, `Ncl2 = [1, None]`, `Ncl3 = [1, None]`, `Ncl4 = [0.6000000238418579, None, 1.0]`, `Ncl5 = [0, None]`, `Ncl6 = ['chemicalrage', None, 'channel']`, `acap = `, `acdn = [50.0, None, 17.0]`, `alev = 1`, `amcs = [125, None, 80, 90, 100, 110, 120]`, `aran = [900.0, None, 700.0]`, `atar = ['air,ground,enemy,neutral,organic', None, 'air,ground,friend,neutral,self']`
 
 實作：
 
@@ -234,7 +234,7 @@ endif
 選擇自己的據點或建築，將其轉移給其他玩家，或在不損失地基的情況下摧毀它。可從任意距離施放。
 ```
 
-物件欄位（原型 `ANcl`）：`Ncl1 = [0.009999999776482582, 0.8999999761581421]`, `Ncl2 = 1`, `Ncl3 = 1`, `Ncl4 = [0.009999999776482582, 0.8999999761581421]`, `Ncl5 = 0`, `Ncl6 = ['channel', 'unburrow']`, `acdn = [1.0, 16.0]`, `aher = 0`, `alev = 1`, `amcs = [95, 110, 125, 140, 155, 170]`, `aran = [99999.0, 100.0]`, `atar = ['player,structure', 'air,ground,debris,enemy,neutral,organic']`
+物件欄位（原型 `ANcl`）：`Ncl1 = [0.009999999776482582, 0.8999999761581421]`, `Ncl2 = 1`, `Ncl3 = 1`, `Ncl4 = [0.009999999776482582, 0.8999999761581421]`, `Ncl5 = 0`, `Ncl6 = ['unburrow', 'channel']`, `acdn = [1.0, 16.0]`, `aher = 0`, `alev = 1`, `amcs = [None, 95, 110, 125, 140, 155, 170]`, `aran = [99999.0, 100.0]`, `atar = ['player,structure', 'air,ground,debris,enemy,neutral,organic']`
 
 實作：
 

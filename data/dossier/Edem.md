@@ -32,12 +32,322 @@
   - 第 3 行：20 / 30 / 40 / 50 / 60
   - 第 4 行：60 / 70 / 80 / 90 / 100
 
-物件欄位（原型 `Absk`）：`abuf = B00C`, `acdn = 20.0`, `adur = 12.0`, `ahdu = 12.0`, `aher = 1`, `alev = 5`, `amcs = [80, 88, 96, 104, 112]`, `bsk1 = 0.0`, `bsk2 = 0.0`, `bsk3 = 0.0`
+物件欄位（原型 `Absk`）：`abuf = B00C`, `acdn = 20.0`, `adur = [None, 12.0]`, `ahdu = [None, 12.0]`, `aher = 1`, `alev = 5`, `amcs = [80, 88, 96, 104, 112]`, `bsk1 = 0.0`, `bsk2 = 0.0`, `bsk3 = 0.0`
 
 實作：
 
-`BurnUnit`　war3map.j:1837
+`RemoveFrost`　war3map.j:1527
 ```jass
+function RemoveFrost takes nothing returns nothing
+local timer t=GetExpiredTimer()
+local unit u=LoadUnitHandle(hash,GetHandleId(t),1)
+call UnitRemoveAbility(u,'S00G')
+call UnitRemoveAbility(u,'B02V')
+call RemoveSavedHandle(hash,GetHandleId(u),'B02V')
+call PauseTimer(t)
+call FlushChildHashtable(hash,GetHandleId(t))
+call DestroyTimer(t)
+set t=null
+set u=null
+endfunction
+function FrostUnit takes unit damager,unit target,real chanse returns nothing
+local real dmg
+local real cof=1.0
+local timer t
+local integer t_Id=GetHandleId(target)
+local integer d_Id=GetHandleId(damager)
+local integer random
+local integer chanse_random
+if IsUnitType(target,UNIT_TYPE_STRUCTURE)or IsUnitType(target,UNIT_TYPE_MECHANICAL)or not UnitAlive(target)or LoadInteger(hash,t_Id,44)>0 then
+set t=null
+return
+endif
+if LoadInteger(hash,t_Id,28)>0 and LoadInteger(hash,GetHandleId(damager),'I07G')==0 then
+set chanse=chanse*0.25
+endif
+if GetUnitAbilityLevel(target,'B00W')>0 then
+set chanse=chanse*0.70
+endif
+if GetUnitAbilityLevel(target,'B045')==1 then
+set chanse=chanse*1.50
+endif
+if LoadInteger(hash,d_Id,'I09G')>=1 then
+set chanse=chanse*1.50
+endif
+set chanse_random=R2I(chanse*100)
+set random=GetRandomInt(1,100)
+if random<=chanse_random then
+if GetUnitAbilityLevel(damager,'A0AQ')==1 and GetUnitAbilityLevel(target,'B046')==1 then
+if IsUnitType(target,UNIT_TYPE_HERO)then
+set dmg=GetUnitState(target,UNIT_STATE_MAX_LIFE)*0.25
+else
+set dmg=GetUnitState(target,UNIT_STATE_MAX_LIFE)*0.05
+endif
+if LoadInteger(hash,d_Id,'I00R')>=1 then
+set dmg=dmg+150.
+endif
+call DestroyEffect(AddSpecialEffectTarget("Abilities\\Spells\\Other\\CrushingWave\\CrushingWaveDamage.mdl",target,"chest"))
+if LoadInteger(hash,d_Id,'I086')>=1 then
+if LoadInteger(hash,d_Id,48)>=1 then
+set cof=cof+0.50
+endif
+endif
+if GetUnitAbilityLevel(damager,'B01H')==1 then
+set cof=cof+0.50
+endif
+if LoadInteger(hash,t_Id,'I07A')>=1 then
+if UnitLifePercent(target)<=25.0 then
+set cof=cof-0.50
+endif
+endif
+if LoadInteger(hash,t_Id,'I048')>=1 then
+if UnitLifePercent(target)<=30.0 then
+set cof=cof-0.25
+endif
+endif
+if LoadInteger(hash,t_Id,'tbak')>=1 then
+if UnitLifePercent(damager)>=75.0 then
+set cof=cof-0.25
+endif
+endif
+if LoadInteger(hash,t_Id,'pman')>=1 then
+if UnitLifePercent(damager)>=75.0 then
+set cof=cof-0.18
+endif
+endif
+call DisableTrigger(gg_trg_HeroTakeDamage)
+set cof=cof-LoadReal(hash,t_Id,48)+LoadReal(hash,d_Id,28)
+if cof<0.20 then
+set cof=0.20
+endif
+call UnitDamageTarget(damager,target,dmg*cof,false,false,ATTACK_TYPE_NORMAL,DAMAGE_TYPE_NORMAL,null)
+if LoadInteger(hash,t_Id,'I068')>=1 then
+call UnitDamageTarget(target,damager,dmg*cof*0.20,false,false,ATTACK_TYPE_NORMAL,DAMAGE_TYPE_NORMAL,null)
+endif
+call EnableTrigger(gg_trg_HeroTakeDamage)
+endif
+if GetUnitAbilityLevel(target,'B02V')==1 then
+set cof=1.00
+if IsUnitType(target,UNIT_TYPE_HERO)then
+set dmg=GetUnitState(target,UNIT_STATE_MAX_LIFE)*0.25
+else
+set dmg=GetUnitState(target,UNIT_STATE_MAX_LIFE)*0.05
+endif
+if LoadInteger(hash,d_Id,'I00R')>=1 then
+set dmg=dmg+150.
+endif
+if GetPlayerTechCount(GetOwningPlayer(damager),'Rufb',true)==1 then
+if GetUnitTypeId(damager)=='n041' or GetUnitTypeId(damager)=='n06L' or GetUnitTypeId(damager)=='n06S' or GetUnitTypeId(damager)=='n06U' or GetUnitTypeId(damager)=='n06V' then
+set dmg=dmg+100.
+endif
+endif
+call DestroyEffect(AddSpecialEffectTarget("Abilities\\Spells\\Other\\CrushingWave\\CrushingWaveDamage.mdl",target,"chest"))
+if LoadInteger(hash,d_Id,'I086')>=1 then
+if LoadInteger(hash,d_Id,48)>=1 then
+set cof=cof+0.50
+endif
+endif
+if GetUnitAbilityLevel(damager,'B01H')==1 then
+set cof=cof+0.50
+endif
+if LoadInteger(hash,t_Id,'I07A')>=1 then
+if UnitLifePercent(target)<=25.0 then
+set cof=cof-0.50
+endif
+endif
+if LoadInteger(hash,t_Id,'I048')>=1 then
+if UnitLifePercent(target)<=30.0 then
+set cof=cof-0.25
+endif
+endif
+if LoadInteger(hash,t_Id,'tbak')>=1 then
+if UnitLifePercent(damager)>=75.0 then
+set cof=cof-0.25
+endif
+endif
+if LoadInteger(hash,t_Id,'pman')>=1 then
+if UnitLifePercent(damager)>=75.0 then
+set cof=cof-0.18
+endif
+endif
+call DisableTrigger(gg_trg_HeroTakeDamage)
+set cof=cof-LoadReal(hash,t_Id,48)+LoadReal(hash,d_Id,28)
+if cof<0.20 then
+set cof=0.20
+endif
+call UnitDamageTarget(damager,target,dmg*cof,false,false,ATTACK_TYPE_NORMAL,DAMAGE_TYPE_NORMAL,null)
+if LoadInteger(hash,t_Id,'I068')>=1 then
+call UnitDamageTarget(target,damager,dmg*cof*0.20,false,false,ATTACK_TYPE_NORMAL,DAMAGE_TYPE_NORMAL,null)
+endif
+call EnableTrigger(gg_trg_HeroTakeDamage)
+set t=LoadTimerHandle(hash,t_Id,'B02V')
+call TimerStart(t,0.,false,function RemoveFrost)
+else
+call UnitAddAbility(target,'S00G')
+set t=CreateTimer()
+call SaveUnitHandle(hash,GetHandleId(t),1,target)
+call SaveTimerHandle(hash,t_Id,'B02V',t)
+call TimerStart(t,6.,false,function RemoveFrost)
+endif
+endif
+set t=null
+endfunction
+function RemoveFlammability takes nothing returns nothing
+local timer t=GetExpiredTimer()
+local unit u=LoadUnitHandle(hash,GetHandleId(t),1)
+call UnitRemoveAbility(u,'S00M')
+call UnitRemoveAbility(u,'B042')
+call RemoveSavedHandle(hash,GetHandleId(u),'B042')
+call PauseTimer(t)
+call FlushChildHashtable(hash,GetHandleId(t))
+call DestroyTimer(t)
+set t=null
+set u=null
+endfunction
+function FlammabilityUnit takes unit damager,unit target,real chanse returns nothing
+local timer t
+local integer t_Id=GetHandleId(target)
+local integer d_Id=GetHandleId(damager)
+local integer random
+local integer chanse_random
+if IsUnitType(target,UNIT_TYPE_STRUCTURE)or IsUnitType(target,UNIT_TYPE_MECHANICAL)then
+set chanse=chanse*0.50
+elseif LoadInteger(hash,GetHandleId(target),'tkno')>=1 then
+elseif LoadInteger(hash,GetHandleId(target),27)>0 then
+set chanse=chanse*0.25
+elseif not UnitAlive(target)or LoadInteger(hash,GetHandleId(target),44)>0 then
+set chanse=0.
+endif
+if GetUnitAbilityLevel(target,'B00W')>0 then
+set chanse=chanse*0.70
+endif
+if GetUnitAbilityLevel(target,'B045')==1 then
+set chanse=chanse*1.50
+endif
+if LoadInteger(hash,d_Id,'I09G')>=1 then
+set chanse=chanse*1.50
+endif
+set chanse_random=R2I(chanse*100)
+set random=GetRandomInt(1,100)
+if random<=chanse_random then
+if GetUnitAbilityLevel(target,'B042')==1 then
+set t=LoadTimerHandle(hash,GetHandleId(target),'B042')
+call TimerStart(t,6.,false,function RemoveFlammability)
+else
+call UnitAddAbility(target,'S00M')
+set t=CreateTimer()
+call SaveUnitHandle(hash,GetHandleId(t),1,target)
+call SaveTimerHandle(hash,GetHandleId(target),'B042',t)
+call TimerStart(t,6.,false,function RemoveFlammability)
+endif
+if LoadInteger(hash,GetHandleId(damager),'I00Y')>=1 then
+call FrostUnit(damager,target,0.50)
+endif
+endif
+set t=null
+endfunction
+function Burn_Dmg takes nothing returns nothing
+local timer t=GetExpiredTimer()
+local integer Id=GetHandleId(t)
+local unit u
+local integer u_Id
+local unit u2=LoadUnitHandle(hash,Id,0)
+local integer u2_Id=GetHandleId(u2)
+local integer count=LoadInteger(hash,u2_Id,'burn')
+local integer i=0
+local integer check=0
+local integer L
+local real dmg
+local real dmg_cof=1.0
+local real cof
+if not UnitAlive(u2)then
+call SaveInteger(hash,u2_Id,'burn',0)
+call UnitRemoveAbility(u2,'A0Y6')
+call UnitRemoveAbility(u2,'B040')
+call FlushChildHashtable(hash,Id)
+call PauseTimer(t)
+call DestroyTimer(t)
+call RemoveSavedHandle(hash,u2_Id,'burt')
+set u=null
+set u2=null
+set t=null
+return
+endif
+if LoadInteger(hash,u2_Id,'I07A')>=1 then
+if UnitLifePercent(u2)<=25.0 then
+set dmg_cof=dmg_cof-0.50
+endif
+endif
+if LoadInteger(hash,u2_Id,'I048')>=1 then
+if UnitLifePercent(u2)<=30.0 then
+set dmg_cof=dmg_cof-0.25
+endif
+endif
+if LoadInteger(hash,u2_Id,'tbak')>=1 then
+if UnitLifePercent(u2)>=75.0 then
+set dmg_cof=dmg_cof-0.25
+endif
+endif
+if LoadInteger(hash,u2_Id,'pman')>=1 then
+if UnitLifePercent(u2)>=75.0 then
+set dmg_cof=dmg_cof-0.18
+endif
+endif
+set dmg_cof=dmg_cof-LoadReal(hash,u2_Id,47)
+call DisableTrigger(gg_trg_HeroTakeDamage)
+loop
+set i=i+1
+set L=LoadInteger(hash,Id,i)
+if L>0 then
+set u=LoadUnitHandle(hash,Id,i)
+set u_Id=GetHandleId(u)
+set dmg=LoadReal(hash,Id,i)
+set cof=dmg_cof
+if LoadInteger(hash,u_Id,'gvsm')>=1 or LoadInteger(hash,u_Id,'I00S')>=1 then
+if GetUnitAbilityLevel(u2,'B02V')==1 then
+set cof=cof+0.35
+endif
+endif
+if LoadInteger(hash,u_Id,'I086')>=1 then
+if LoadInteger(hash,u_Id,27)>=1 then
+set cof=cof+0.50
+endif
+endif
+if GetUnitAbilityLevel(u,'B01H')==1 then
+set cof=cof+0.50
+endif
+set cof=cof+LoadReal(hash,u_Id,27)
+if cof<0.20 then
+set cof=0.20
+endif
+call UnitDamageTarget(u,u2,dmg*cof,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_UNIVERSAL,WEAPON_TYPE_WHOKNOWS)
+if LoadInteger(hash,u2_Id,'I068')>=1 then
+call UnitDamageTarget(u2,u,dmg*cof*0.20,false,false,ATTACK_TYPE_NORMAL,DAMAGE_TYPE_NORMAL,null)
+endif
+set L=L-1
+if L>0 then
+set check=1
+else
+call RemoveSavedHandle(hash,Id,i)
+endif
+call SaveInteger(hash,Id,i,L)
+endif
+exitwhen i==count
+endloop
+call EnableTrigger(gg_trg_HeroTakeDamage)
+if check==0 then
+call SaveInteger(hash,u2_Id,'burn',0)
+call UnitRemoveAbility(u2,'A0Y6')
+call UnitRemoveAbility(u2,'B040')
+call FlushChildHashtable(hash,Id)
+call PauseTimer(t)
+call DestroyTimer(t)
+call RemoveSavedHandle(hash,u2_Id,'burt')
+endif
+set u=null
+set u2=null
+set t=null
+endfunction
 function BurnUnit takes unit damager,unit target,real dmg,real chanse returns nothing
 local timer t
 local integer Id
@@ -148,164 +458,6 @@ if count2==0 then
 set t=CreateTimer()
 set Id=GetHandleId(t)
 call SaveUnitHandle(hash,Id,0,target)
-call SaveUnitHandle(hash,Id,1,damager)
-call SaveInteger(hash,Id,1,count)
-call SaveReal(hash,Id,1,dmg)
-call UnitAddAbility(target,'A0Y6')
-call SaveInteger(hash,t_Id,'burn',1)
-call SaveTimerHandle(hash,t_Id,'burt',t)
-call TimerStart(t,0.25,true,function Burn_Dmg)
-else
-set t=LoadTimerHandle(hash,t_Id,'burt')
-set Id=GetHandleId(t)
-set i2=0
-set i=0
-loop
-set i=i+1
-if LoadInteger(hash,Id,i)==0 then
-call SaveUnitHandle(hash,Id,i,damager)
-call SaveInteger(hash,Id,i,count)
-call SaveReal(hash,Id,i,dmg)
-call SaveInteger(hash,t_Id,'burn',i)
-set i=count2
-set i2=1
-endif
-exitwhen i==count2
-endloop
-if i2==0 then
-set count2=count2+1
-call SaveUnitHandle(hash,Id,count2,damager)
-call SaveInteger(hash,Id,count2,count)
-call SaveReal(hash,Id,count2,dmg)
-call SaveInteger(hash,t_Id,'burn',count2)
-endif
-endif
-if LoadInteger(hash,GetHandleId(damager),'I00Y')>=1 then
-call FrostUnit(damager,target,0.50)
-endif
-else
-if LoadInteger(hash,GetHandleId(damager),'silk')>=1 then
-call FlammabilityUnit(damager,target,0.35)
-endif
-endif
-set t=null
-set e=null
-endfunction
-```
-
-`BleedUnit`　war3map.j:2104
-```jass
-function BleedUnit takes unit damager,unit target,real dmg,real chanse returns nothing
-local timer t
-local integer Id
-local integer count
-local integer count2
-local integer i
-local integer i2
-local integer t_Id=GetHandleId(target)
-local integer d_Id=GetHandleId(damager)
-local effect e
-local integer random
-local integer chanse_random
-if IsUnitType(target,UNIT_TYPE_STRUCTURE)or IsUnitType(target,UNIT_TYPE_MECHANICAL)or not UnitAlive(target)or LoadInteger(hash,GetHandleId(target),44)>0 then
-set chanse=0.
-endif
-if LoadInteger(hash,GetHandleId(target),29)>0 then
-if LoadInteger(hash,GetHandleId(target),29)>50 then
-set chanse=0.
-endif
-set chanse=chanse*0.25
-endif
-if GetUnitAbilityLevel(target,'B045')==1 then
-set chanse=chanse*1.50
-endif
-if GetUnitAbilityLevel(target,'B00W')>0 then
-set chanse=chanse*0.70
-endif
-if LoadInteger(hash,d_Id,'I09G')>=1 then
-set chanse=chanse*1.50
-endif
-if LoadInteger(hash,d_Id,'shdt')>=1 then
-if IsUnitType(target,UNIT_TYPE_HERO)then
-set count=GetHeroLevel(target)
-else
-set count=GetUnitLevel(target)
-endif
-set chanse=chanse*(1.0+0.05*I2R(count))
-endif
-set chanse_random=R2I(chanse*100)
-set random=GetRandomInt(1,100)
-if random<=chanse_random then
-set dmg=dmg/16.
-if GetUnitAbilityLevel(target,'A064')==1 then
-set count=8
-else
-set count=16
-endif
-set count2=LoadInteger(hash,t_Id,'bled')
-if count2==0 then
-set t=CreateTimer()
-set Id=GetHandleId(t)
-call SaveUnitHandle(hash,Id,0,target)
-call SaveUnitHandle(hash,Id,1,damager)
-call SaveInteger(hash,Id,1,count)
-call SaveReal(hash,Id,1,dmg)
-call UnitAddAbility(target,'A0Y7')
-call SaveInteger(hash,t_Id,'bled',1)
-call SaveTimerHandle(hash,t_Id,'blud',t)
-call TimerStart(t,0.5,true,function Bleed_Dmg)
-else
-set t=LoadTimerHandle(hash,t_Id,'blud')
-set Id=GetHandleId(t)
-set i2=0
-set i=0
-loop
-set i=i+1
-if LoadInteger(hash,Id,i)==0 then
-call SaveUnitHandle(hash,Id,i,damager)
-call SaveInteger(hash,Id,i,count)
-call SaveReal(hash,Id,i,dmg)
-call SaveInteger(hash,t_Id,'bled',i)
-set i=count2
-set i2=1
-endif
-exitwhen i==count2
-endloop
-if i2==0 then
-set count2=count2+1
-call SaveUnitHandle(hash,Id,count2,damager)
-call SaveInteger(hash,Id,count2,count)
-call SaveReal(hash,Id,count2,dmg)
-call SaveInteger(hash,t_Id,'bled',count2)
-endif
-endif
-if LoadInteger(hash,GetHandleId(damager),'I00Y')>=1 then
-call FrostUnit(damager,target,0.50)
-endif
-endif
-set t=null
-set e=null
-endfunction
-```
-
-`VulnerabilityUnit`　war3map.j:2519
-```jass
-function VulnerabilityUnit takes unit damager,unit target,real chanse returns nothing
-local timer t
-local integer t_Id=GetHandleId(target)
-local integer d_Id=GetHandleId(damager)
-local integer random
-local integer chanse_random
-if IsUnitType(target,UNIT_TYPE_STRUCTURE)or IsUnitType(target,UNIT_TYPE_MECHANICAL)or not UnitAlive(target)or LoadInteger(hash,GetHandleId(target),44)>0 then
-set chanse=0.
-endif
-if LoadInteger(hash,GetHandleId(target),30)>0 then
-if LoadInteger(hash,GetHandleId(target),30)>50 then
-set chanse=0.
-endif
-set chanse=chanse*0.25
-endif
-if GetUnitAbilityLevel(target,'B045')==1 then
 ```
 
 ## 致命一擊 `A04V`
@@ -340,7 +492,7 @@ if GetUnitAbilityLevel(target,'B045')==1 then
 冷卻：80 秒
 ```
 
-物件欄位（原型 `ANcl`）：`Ncl1 = [0.5, 1.0]`, `Ncl3 = 1`, `Ncl4 = [0.5, 1.0]`, `Ncl5 = 0`, `Ncl6 = channel`, `acdn = [80.0, 30.0]`, `alev = 1`, `amcs = [115, 70, 80, 90, 100, 110]`, `aran = 800.0`, `atar = air,ground,debris,enemy,neutral,organic`
+物件欄位（原型 `ANcl`）：`Ncl1 = [0.5, None, 1.0]`, `Ncl3 = [1, None]`, `Ncl4 = [0.5, None, 1.0]`, `Ncl5 = [0, None]`, `Ncl6 = [None, 'channel']`, `acdn = [80.0, None, 30.0]`, `alev = 1`, `amcs = [115, None, 70, 80, 90, 100, 110]`, `aran = [800.0, None]`, `atar = ['air,ground,debris,enemy,neutral,organic', None]`
 
 實作：
 
@@ -405,7 +557,7 @@ endif
   - 第 3 行：30 / 40 / 50 / 60 / 70
   - 第 4 行：180 / 170 / 160 / 150 / 140
 
-物件欄位（原型 `AOmi`）：`Omi1 = 2`, `Omi2 = [0.5, 0.6000000238418579, 0.7000000476837158, 0.8000000715255737, 0.9000000953674316]`, `Omi3 = [1.7999999523162842, 1.7000000476837158, 1.600000023841858, 1.5, 1.399999976158142]`, `acdn = 30.0`, `adur = 30.0`, `ahdu = 30.0`, `alev = 5`, `amat = Abilities\Weapons\SpiritOfVengeanceMissile\SpiritOfVengeanceMissile.mdl`, `amcs = [90, 100, 110, 120, 130]`, `asat = Abilities\Spells\NightElf\Blink\BlinkCaster.mdl`
+物件欄位（原型 `AOmi`）：`Omi1 = [2, None]`, `Omi2 = [0.5, 0.6000000238418579, 0.7000000476837158, 0.8000000715255737, 0.9000000953674316]`, `Omi3 = [1.7999999523162842, 1.7000000476837158, 1.600000023841858, 1.5, 1.399999976158142]`, `acdn = 30.0`, `adur = 30.0`, `ahdu = 30.0`, `alev = 5`, `amat = Abilities\Weapons\SpiritOfVengeanceMissile\SpiritOfVengeanceMissile.mdl`, `amcs = [90, 100, 110, 120, 130]`, `asat = Abilities\Spells\NightElf\Blink\BlinkCaster.mdl`
 
 *（JASS 裡沒有對應實作 —— 這是原生技能，效果看上面的物件欄位）*
 
@@ -469,7 +621,7 @@ endif
 選擇自己的據點或建築，將其轉移給其他玩家，或在不損失地基的情況下摧毀它。可從任意距離施放。
 ```
 
-物件欄位（原型 `ANcl`）：`Ncl1 = [0.009999999776482582, 0.8999999761581421]`, `Ncl2 = 1`, `Ncl3 = 1`, `Ncl4 = [0.009999999776482582, 0.8999999761581421]`, `Ncl5 = 0`, `Ncl6 = ['channel', 'unburrow']`, `acdn = [1.0, 16.0]`, `aher = 0`, `alev = 1`, `amcs = [95, 110, 125, 140, 155, 170]`, `aran = [99999.0, 100.0]`, `atar = ['player,structure', 'air,ground,debris,enemy,neutral,organic']`
+物件欄位（原型 `ANcl`）：`Ncl1 = [0.009999999776482582, 0.8999999761581421]`, `Ncl2 = 1`, `Ncl3 = 1`, `Ncl4 = [0.009999999776482582, 0.8999999761581421]`, `Ncl5 = 0`, `Ncl6 = ['unburrow', 'channel']`, `acdn = [1.0, 16.0]`, `aher = 0`, `alev = 1`, `amcs = [None, 95, 110, 125, 140, 155, 170]`, `aran = [99999.0, 100.0]`, `atar = ['player,structure', 'air,ground,debris,enemy,neutral,organic']`
 
 實作：
 
@@ -507,7 +659,7 @@ endif
 技能「燃燒之刃」失去點燃效果。擊殺敵人可使技能「燃燒之刃」的作用範圍提升 1 點。累積 200 次擊殺後，累積效果減弱為 0.5 點。
 ```
 
-物件欄位（原型 `ANcl`）：`Ncl1 = [0.5, 0.8999999761581421]`, `Ncl2 = 1`, `Ncl3 = 1`, `Ncl4 = [0.5, 0.8999999761581421]`, `Ncl5 = 0`, `Ncl6 = ['channel', 'acidbomb']`, `acap = `, `acdn = [1.0, 16.0]`, `aher = 0`, `alev = 1`, `amcs = [95, 110, 125, 140, 155, 170]`, `aran = 100.0`, `arqa = 15`, `atar = air,ground,debris,enemy,neutral,organic`
+物件欄位（原型 `ANcl`）：`Ncl1 = [0.5, 0.8999999761581421]`, `Ncl2 = [None, 1]`, `Ncl3 = 1`, `Ncl4 = [0.5, 0.8999999761581421]`, `Ncl5 = 0`, `Ncl6 = ['acidbomb', 'channel']`, `acap = `, `acdn = [1.0, 16.0]`, `aher = 0`, `alev = 1`, `amcs = [None, 95, 110, 125, 140, 155, 170]`, `aran = 100.0`, `arqa = 15`, `atar = air,ground,debris,enemy,neutral,organic`
 
 實作：
 
@@ -541,7 +693,7 @@ call SaveInteger(hash,GetHandleId(pl),15,1)
 技能「著魔」在持續期間會將閃避提升至 30%，額外降低 20% 裝備技能冷卻，並增加 +40% 裝備技能威力。
 ```
 
-物件欄位（原型 `ANcl`）：`Ncl1 = [0.5, 0.8999999761581421]`, `Ncl2 = 1`, `Ncl3 = 1`, `Ncl4 = [0.5, 0.8999999761581421]`, `Ncl5 = 0`, `Ncl6 = ['channel', 'faeriefireon']`, `acap = `, `acdn = [1.0, 16.0]`, `aher = 0`, `alev = 1`, `amcs = [95, 110, 125, 140, 155, 170]`, `aran = 100.0`, `arqa = 24`, `atar = air,ground,debris,enemy,neutral,organic`
+物件欄位（原型 `ANcl`）：`Ncl1 = [0.5, 0.8999999761581421]`, `Ncl2 = [None, 1]`, `Ncl3 = 1`, `Ncl4 = [0.5, 0.8999999761581421]`, `Ncl5 = 0`, `Ncl6 = ['faeriefireon', 'channel']`, `acap = `, `acdn = [1.0, 16.0]`, `aher = 0`, `alev = 1`, `amcs = [None, 95, 110, 125, 140, 155, 170]`, `aran = 100.0`, `arqa = 24`, `atar = air,ground,debris,enemy,neutral,organic`
 
 實作：
 
@@ -574,10 +726,11 @@ endif
   - **1** — 裝備技能冷卻乘數〔持有者〕StartModCooldown 讀，CD×它，下限 0.20
   - **18** — 裝備技能威力〔持有者〕道具觸發用 cof = key18 + 1
   - **27** — 實數＝點燃傷害 +%〔施加者〕／整數＝抵抗點燃旗標〔受害者〕**兩者不同表**
-  - **29** — 實數＝流血傷害 +%〔施加者〕／整數＝抵抗流血旗標〔受害者〕（加成寫錯變數，實際無效 —— 見 地圖問題回報 A-4）
+  - **28** — 實數＝冰凍傷害 +%〔施加者〕／整數＝抵抗冰凍旗標〔受害者〕
   - **44** — 狀態免疫旗標〔受害者〕>0 則所有狀態函式開頭直接 return，完全不判定
   - **46** — 易燃效果強化〔施加者〕影響易燃的機率倍率與跳數加成
   - **47** — 點燃抗性〔受害者〕係數減去它；電擊讓它 −1.00
+  - **48** — 冰凍抗性〔受害者〕；電擊 −1.00
 
 ---
 

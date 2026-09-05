@@ -30,7 +30,7 @@
   - 第 3 行：40 / 60 / 80 / 100 / 120
   - 第 5 行：14 / 13 / 12 / 11 / 10
 
-物件欄位（原型 `ANcl`）：`Ncl1 = 1.0`, `Ncl2 = 2`, `Ncl3 = 1`, `Ncl4 = 1.0`, `Ncl5 = 0`, `Ncl6 = channel`, `acap = `, `acdn = [13.0, 12.0, 11.0, 10.0, 14.0]`, `alev = 5`, `amcs = [115, 140, 170, 205, 245]`, `aran = 800.0`
+物件欄位（原型 `ANcl`）：`Ncl1 = 1.0`, `Ncl2 = 2`, `Ncl3 = 1`, `Ncl4 = 1.0`, `Ncl5 = 0`, `Ncl6 = [None, 'channel']`, `acap = `, `acdn = [14.0, 13.0, 12.0, 11.0, 10.0]`, `alev = 5`, `amcs = [115, 140, 170, 205, 245]`, `aran = 800.0`
 
 實作：
 
@@ -176,6 +176,40 @@ call HeroA54_Boom(u,LoadUnitHandle(hash,GetHandleId(u),'A0KU'))
 
 實作：
 
+`RemoveDummy`　war3map.j:2746
+```jass
+function RemoveDummy takes nothing returns nothing
+local timer t=GetExpiredTimer()
+local unit u=LoadUnitHandle(hash,GetHandleId(t),1)
+call RemoveUnit(u)
+call PauseTimer(t)
+call FlushChildHashtable(hash,GetHandleId(t))
+call DestroyTimer(t)
+set u=null
+set t=null
+endfunction
+function StunUnit takes unit attacker,unit target,integer seconds,real chanse returns nothing
+local integer random
+local integer chanse_random
+local unit u
+local player pl=GetOwningPlayer(attacker)
+local timer t=CreateTimer()
+set chanse_random=R2I(chanse*100)
+set random=GetRandomInt(1,100)
+if random<=chanse_random and IsUnitEnemy(target,pl)and UnitAlive(target)then
+set u=CreateUnit(pl,'o010',GetUnitX(target),GetUnitY(target),0.)
+call UnitAddAbility(u,'A0Y8')
+call SetUnitAbilityLevel(u,'A0Y8',seconds)
+call IssueTargetOrder(u,"creepthunderbolt",target)
+call SaveUnitHandle(hash,GetHandleId(t),1,u)
+call TimerStart(t,2.,false,function RemoveDummy)
+endif
+set u=null
+set pl=null
+set t=null
+endfunction
+```
+
 `HeroW54`　war3map.j:64940
 ```jass
 function HeroW54 takes nothing returns nothing
@@ -305,8 +339,20 @@ endif
 endif
 ```
 
-`PortalBuffUnit`　war3map.j:64890
+`RemovePortalBuff`　war3map.j:64878
 ```jass
+function RemovePortalBuff takes nothing returns nothing
+local timer t=GetExpiredTimer()
+local unit u=LoadUnitHandle(hash,GetHandleId(t),1)
+call UnitRemoveAbility(u,'S00I')
+call UnitRemoveAbility(u,'B00W')
+call SaveReal(hash,GetHandleId(u),8,LoadReal(hash,GetHandleId(u),8)+0.25)
+call RemoveSavedHandle(hash,GetHandleId(u),'B00W')
+call PauseTimer(t)
+call FlushChildHashtable(hash,GetHandleId(t))
+call DestroyTimer(t)
+set t=null
+endfunction
 function PortalBuffUnit takes unit target returns nothing
 local timer t
 if GetUnitAbilityLevel(target,'B00W')==1 then
@@ -406,6 +452,63 @@ call TimerStart(t,2.,false,function HeroE54_HeroImmune)
 
 實作：
 
+`s__vector_deallocate`　war3map.j:1323
+```jass
+function s__vector_deallocate takes integer this returns nothing
+if this==null then
+return
+elseif(si__vector_V[this]!=-1)then
+return
+endif
+set si__vector_V[this]=si__vector_F
+set si__vector_F=this
+endfunction
+```
+
+`s__OpalescenceLib___OpalescenceS_deallocate`　war3map.j:1346
+```jass
+function s__OpalescenceLib___OpalescenceS_deallocate takes integer this returns nothing
+if this==null then
+return
+elseif(si__OpalescenceLib___OpalescenceS_V[this]!=-1)then
+return
+endif
+set si__OpalescenceLib___OpalescenceS_V[this]=si__OpalescenceLib___OpalescenceS_F
+set si__OpalescenceLib___OpalescenceS_F=this
+endfunction
+```
+
+`s__OpalescenceLib___OpalescenceMoveS_deallocate`　war3map.j:1370
+```jass
+function s__OpalescenceLib___OpalescenceMoveS_deallocate takes integer this returns nothing
+if this==null then
+return
+elseif(si__OpalescenceLib___OpalescenceMoveS_V[this]!=-1)then
+return
+endif
+set si__OpalescenceLib___OpalescenceMoveS_V[this]=si__OpalescenceLib___OpalescenceMoveS_F
+set si__OpalescenceLib___OpalescenceMoveS_F=this
+endfunction
+```
+
+`OpalescenceLib___SetUnitPositionEx`　war3map.j:3408
+```jass
+function OpalescenceLib___SetUnitPositionEx takes unit u,real x,real y returns nothing
+if x>OpalescenceLib___MaxX then
+set x=OpalescenceLib___MaxX
+elseif x<OpalescenceLib___MinX then
+set x=OpalescenceLib___MinX
+endif
+if y>OpalescenceLib___MaxY then
+set y=OpalescenceLib___MaxY
+elseif y<OpalescenceLib___MinY then
+set y=OpalescenceLib___MinY
+endif
+call SetUnitX(u,x)
+call SetUnitY(u,y)
+endfunction
+```
+
 `s__vector_normalize`　war3map.j:3425
 ```jass
 function s__vector_normalize takes integer this returns nothing
@@ -419,8 +522,97 @@ set s__vector_z[this]=s__vector_z[this]/l
 endfunction
 ```
 
-`OpalescenceLib___OpalescenceDamage`　war3map.j:3530
+`OpalescenceLib___OpalescenceMove`　war3map.j:3441
 ```jass
+function OpalescenceLib___OpalescenceMove takes nothing returns nothing
+local integer A=LoadInteger(hash,GetHandleId(GetExpiredTimer()),0)
+local integer i=0
+local integer k=0
+local real array x
+local real array y
+local real array z
+local real r
+local unit u
+set s__OpalescenceLib___OpalescenceMoveS_time[A]=s__OpalescenceLib___OpalescenceMoveS_time[A]+0.03125/s__OpalescenceLib___OpalescenceMoveS_timeMax[A]
+if s__OpalescenceLib___OpalescenceMoveS_time[A]>1.00 then
+set s__OpalescenceLib___OpalescenceMoveS_time[A]=1.00
+endif
+loop
+set x[k]=s__vector_x[s___OpalescenceLib___OpalescenceMoveS_l[s__OpalescenceLib___OpalescenceMoveS_l[A]+k]]
+set y[k]=s__vector_y[s___OpalescenceLib___OpalescenceMoveS_l[s__OpalescenceLib___OpalescenceMoveS_l[A]+k]]
+set z[k]=s__vector_z[s___OpalescenceLib___OpalescenceMoveS_l[s__OpalescenceLib___OpalescenceMoveS_l[A]+k]]
+set k=k+1
+exitwhen k>=6
+endloop
+set k=0
+loop
+set i=0
+loop
+set x[i]=(1.00-s__OpalescenceLib___OpalescenceMoveS_time[A])*x[i]+s__OpalescenceLib___OpalescenceMoveS_time[A]*x[i+1]
+set y[i]=(1.00-s__OpalescenceLib___OpalescenceMoveS_time[A])*y[i]+s__OpalescenceLib___OpalescenceMoveS_time[A]*y[i+1]
+set z[i]=(1.00-s__OpalescenceLib___OpalescenceMoveS_time[A])*z[i]+s__OpalescenceLib___OpalescenceMoveS_time[A]*z[i+1]
+set i=i+1
+exitwhen i>6-k
+endloop
+set k=k+1
+exitwhen k>=6-1
+endloop
+call OpalescenceLib___SetUnitPositionEx(s__OpalescenceLib___OpalescenceMoveS_dummy[A],x[0],y[0])
+call SetUnitFlyHeight(s__OpalescenceLib___OpalescenceMoveS_dummy[A],z[0]-OpalescenceLib___GetLocZ(x[0],y[0]),0.00)
+call SetUnitFacing(s__OpalescenceLib___OpalescenceMoveS_dummy[A],Atan2(y[0]-s__vector_y[s__OpalescenceLib___OpalescenceMoveS_last[A]],x[0]-s__vector_x[s__OpalescenceLib___OpalescenceMoveS_last[A]])*bj_RADTODEG)
+if s__OpalescenceLib___OpalescenceMoveS_time[A]>=1.00 then
+call PauseTimer(s__OpalescenceLib___OpalescenceMoveS_t[A])
+call FlushChildHashtable(hash,GetHandleId(s__OpalescenceLib___OpalescenceMoveS_t[A]))
+call DestroyTimer(s__OpalescenceLib___OpalescenceMoveS_t[A])
+call UnitApplyTimedLife(s__OpalescenceLib___OpalescenceMoveS_dummy[A],'BTLF',2.00)
+call SetUnitAnimation(s__OpalescenceLib___OpalescenceMoveS_dummy[A],"death")
+set i=0
+loop
+call s__vector_deallocate(s___OpalescenceLib___OpalescenceMoveS_l[s__OpalescenceLib___OpalescenceMoveS_l[A]+i])
+set i=i+1
+exitwhen i>=6
+endloop
+call s__vector_deallocate(s__OpalescenceLib___OpalescenceMoveS_last[A])
+set s__OpalescenceLib___OpalescenceMoveS_t[A]=null
+set s__OpalescenceLib___OpalescenceMoveS_dummy[A]=null
+call s__OpalescenceLib___OpalescenceMoveS_deallocate(A)
+else
+set s__vector_x[s__OpalescenceLib___OpalescenceMoveS_last[A]]=x[0]
+set s__vector_y[s__OpalescenceLib___OpalescenceMoveS_last[A]]=y[0]
+set s__vector_z[s__OpalescenceLib___OpalescenceMoveS_last[A]]=z[0]
+endif
+endfunction
+function OpalescenceLib___SetScale_1 takes nothing returns nothing
+local timer t=GetExpiredTimer()
+local integer i=GetHandleId(t)
+local real r=LoadReal(hash,i,1)+1.75
+if r>=15.00 then
+call KillUnit(LoadUnitHandle(hash,i,0))
+call PauseTimer(t)
+call DestroyTimer(t)
+call FlushChildHashtable(hash,i)
+else
+call SetUnitScale(LoadUnitHandle(hash,i,0),r,r,r)
+call SetUnitVertexColor(LoadUnitHandle(hash,i,0),255,255,255,R2I(255.00*(1.00-r/15.00)))
+call SaveReal(hash,i,1,r)
+endif
+set t=null
+endfunction
+function OpalescenceLib___SetScale takes nothing returns nothing
+local timer t=GetExpiredTimer()
+local integer i=GetHandleId(t)
+local real r=LoadReal(hash,i,1)+0.25
+if r>=30.00 then
+call KillUnit(LoadUnitHandle(hash,i,0))
+call PauseTimer(t)
+call DestroyTimer(t)
+call FlushChildHashtable(hash,i)
+else
+call SetUnitScale(LoadUnitHandle(hash,i,0),r,r,r)
+call SaveReal(hash,i,1,r)
+endif
+set t=null
+endfunction
 function OpalescenceLib___OpalescenceDamage takes nothing returns nothing
 local integer A=LoadInteger(hash,GetHandleId(GetExpiredTimer()),0)
 local integer B
@@ -626,7 +818,7 @@ endfunction
 冷卻：10 秒。
 ```
 
-物件欄位（原型 `ANcl`）：`Ncl1 = 0.8999999761581421`, `Ncl2 = 1`, `Ncl3 = 1`, `Ncl4 = 0.8999999761581421`, `Ncl5 = 0`, `Ncl6 = ['channel', 'drain']`, `acap = `, `acdn = [10.0, 16.0]`, `aher = 0`, `alev = 1`, `amcs = [125, 95, 110, 140, 155, 170]`, `aran = 100.0`, `atar = air,ground,debris,enemy,neutral,organic`
+物件欄位（原型 `ANcl`）：`Ncl1 = 0.8999999761581421`, `Ncl2 = [None, 1]`, `Ncl3 = 1`, `Ncl4 = 0.8999999761581421`, `Ncl5 = 0`, `Ncl6 = ['drain', 'channel']`, `acap = `, `acdn = [10.0, 16.0]`, `aher = 0`, `alev = 1`, `amcs = [125, 95, 110, 140, 155, 170]`, `aran = [None, 100.0]`, `atar = air,ground,debris,enemy,neutral,organic`
 
 實作：
 
@@ -685,7 +877,7 @@ call HeroA54_Boom(u,LoadUnitHandle(hash,GetHandleId(u),'A0KU'))
 使用「-clear skill」指令可以重新選擇敵方英雄。
 ```
 
-物件欄位（原型 `ANcl`）：`Ncl1 = [1.2000000476837158, 0.8999999761581421]`, `Ncl2 = 1`, `Ncl3 = 1`, `Ncl4 = [1.2000000476837158, 0.8999999761581421]`, `Ncl5 = 0`, `Ncl6 = ['channel', 'setrally']`, `acdn = [1.0, 16.0]`, `aher = 0`, `alev = 1`, `amcs = [95, 110, 125, 140, 155, 170]`, `aran = [1000.0, 100.0]`, `atar = air,ground,debris,enemy,neutral,organic`
+物件欄位（原型 `ANcl`）：`Ncl1 = [1.2000000476837158, 0.8999999761581421]`, `Ncl2 = 1`, `Ncl3 = 1`, `Ncl4 = [1.2000000476837158, 0.8999999761581421]`, `Ncl5 = 0`, `Ncl6 = ['setrally', 'channel']`, `acdn = [1.0, 16.0]`, `aher = 0`, `alev = 1`, `amcs = [None, 95, 110, 125, 140, 155, 170]`, `aran = [1000.0, 100.0]`, `atar = air,ground,debris,enemy,neutral,organic`
 
 實作：
 
@@ -786,7 +978,7 @@ endif
 選擇自己的據點或建築，將其轉移給其他玩家，或在不損失地基的情況下摧毀它。可從任意距離施放。
 ```
 
-物件欄位（原型 `ANcl`）：`Ncl1 = [0.009999999776482582, 0.8999999761581421]`, `Ncl2 = 1`, `Ncl3 = 1`, `Ncl4 = [0.009999999776482582, 0.8999999761581421]`, `Ncl5 = 0`, `Ncl6 = ['channel', 'unburrow']`, `acdn = [1.0, 16.0]`, `aher = 0`, `alev = 1`, `amcs = [95, 110, 125, 140, 155, 170]`, `aran = [99999.0, 100.0]`, `atar = ['player,structure', 'air,ground,debris,enemy,neutral,organic']`
+物件欄位（原型 `ANcl`）：`Ncl1 = [0.009999999776482582, 0.8999999761581421]`, `Ncl2 = 1`, `Ncl3 = 1`, `Ncl4 = [0.009999999776482582, 0.8999999761581421]`, `Ncl5 = 0`, `Ncl6 = ['unburrow', 'channel']`, `acdn = [1.0, 16.0]`, `aher = 0`, `alev = 1`, `amcs = [None, 95, 110, 125, 140, 155, 170]`, `aran = [99999.0, 100.0]`, `atar = ['player,structure', 'air,ground,debris,enemy,neutral,organic']`
 
 實作：
 

@@ -143,7 +143,7 @@ endif
   - 第 3 行：15 / 30 / 45 / 60 / 75
   - 第 4 行：15 / 20 / 25 / 30 / 35
 
-物件欄位（原型 `ANcl`）：`Ncl1 = 1.0`, `Ncl2 = 1`, `Ncl3 = 1`, `Ncl4 = 1.0`, `Ncl5 = 0`, `Ncl6 = channel`, `acdn = 15.0`, `alev = 5`, `amcs = [60, 68, 76, 84, 92]`, `aran = 800.0`, `atar = air,ground,friend,neutral,self`
+物件欄位（原型 `ANcl`）：`Ncl1 = 1.0`, `Ncl2 = 1`, `Ncl3 = 1`, `Ncl4 = 1.0`, `Ncl5 = 0`, `Ncl6 = [None, 'channel']`, `acdn = 15.0`, `alev = 5`, `amcs = [60, 68, 76, 84, 92]`, `aran = 800.0`, `atar = air,ground,friend,neutral,self`
 
 實作：
 
@@ -257,7 +257,7 @@ call SetUnitState(u2,UNIT_STATE_LIFE,r+(dmg*6))
   - 第 5 行：5 / 5.5 / 6 / 6.5 / 7
   - 第 6 行：3 / 3.3 / 3.6 / 3.9 / 4.2
 
-物件欄位（原型 `AHtc`）：`Htc1 = 1.0`, `aare = 300.0`, `acdn = 9.0`, `adur = [5.5, 6.0, 6.5, 7.0]`, `ahdu = [3.299999952316284, 3.5999999046325684, 3.8999998569488525, 4.199999809265137]`, `alev = 5`, `amcs = [85, 105, 115, 125, 95]`
+物件欄位（原型 `AHtc`）：`Htc1 = 1.0`, `aare = [300.0, None]`, `acdn = 9.0`, `adur = [None, 5.5, 6.0, 6.5, 7.0]`, `ahdu = [None, 3.299999952316284, 3.5999999046325684, 3.8999998569488525, 4.199999809265137]`, `alev = 5`, `amcs = [85, 95, 105, 115, 125]`
 
 實作：
 
@@ -513,7 +513,7 @@ call SaveInteger(hash,I_Id,1,i2)
 選擇自己的據點或建築，將其轉移給其他玩家，或在不損失地基的情況下摧毀它。可從任意距離施放。
 ```
 
-物件欄位（原型 `ANcl`）：`Ncl1 = [0.009999999776482582, 0.8999999761581421]`, `Ncl2 = 1`, `Ncl3 = 1`, `Ncl4 = [0.009999999776482582, 0.8999999761581421]`, `Ncl5 = 0`, `Ncl6 = ['channel', 'unburrow']`, `acdn = [1.0, 16.0]`, `aher = 0`, `alev = 1`, `amcs = [95, 110, 125, 140, 155, 170]`, `aran = [99999.0, 100.0]`, `atar = ['player,structure', 'air,ground,debris,enemy,neutral,organic']`
+物件欄位（原型 `ANcl`）：`Ncl1 = [0.009999999776482582, 0.8999999761581421]`, `Ncl2 = 1`, `Ncl3 = 1`, `Ncl4 = [0.009999999776482582, 0.8999999761581421]`, `Ncl5 = 0`, `Ncl6 = ['unburrow', 'channel']`, `acdn = [1.0, 16.0]`, `aher = 0`, `alev = 1`, `amcs = [None, 95, 110, 125, 140, 155, 170]`, `aran = [99999.0, 100.0]`, `atar = ['player,structure', 'air,ground,debris,enemy,neutral,organic']`
 
 實作：
 
@@ -599,7 +599,7 @@ endif
 英雄每次受到傷害時回復 1 點生命值。
 ```
 
-物件欄位（原型 `ANcl`）：`Ncl1 = [0.5, 0.8999999761581421]`, `Ncl2 = 1`, `Ncl3 = 1`, `Ncl4 = [0.5, 0.8999999761581421]`, `Ncl5 = 0`, `Ncl6 = ['channel', 'acidbomb']`, `acap = `, `acdn = [1.0, 16.0]`, `aher = 0`, `alev = 1`, `amcs = [95, 110, 125, 140, 155, 170]`, `aran = 100.0`, `arqa = 15`, `atar = air,ground,debris,enemy,neutral,organic`
+物件欄位（原型 `ANcl`）：`Ncl1 = [0.5, 0.8999999761581421]`, `Ncl2 = [None, 1]`, `Ncl3 = 1`, `Ncl4 = [0.5, 0.8999999761581421]`, `Ncl5 = 0`, `Ncl6 = ['acidbomb', 'channel']`, `acap = `, `acdn = [1.0, 16.0]`, `aher = 0`, `alev = 1`, `amcs = [None, 95, 110, 125, 140, 155, 170]`, `aran = 100.0`, `arqa = 15`, `atar = air,ground,debris,enemy,neutral,organic`
 
 實作：
 
@@ -630,7 +630,7 @@ call SaveInteger(hash,GetHandleId(pl),15,1)
 英雄獲得點燃抗性、流血抗性以及 +20% 反傷加成。
 ```
 
-物件欄位（原型 `ANcl`）：`Ncl1 = [0.5, 0.8999999761581421]`, `Ncl2 = 1`, `Ncl3 = 1`, `Ncl4 = [0.5, 0.8999999761581421]`, `Ncl5 = 0`, `Ncl6 = ['channel', 'acolyteharvest']`, `acap = `, `acdn = [1.0, 16.0]`, `aher = 0`, `alev = 1`, `amcs = [95, 110, 125, 140, 155, 170]`, `aran = 100.0`, `arqa = 24`, `atar = air,ground,debris,enemy,neutral,organic`
+物件欄位（原型 `ANcl`）：`Ncl1 = [0.5, 0.8999999761581421]`, `Ncl2 = [None, 1]`, `Ncl3 = 1`, `Ncl4 = [0.5, 0.8999999761581421]`, `Ncl5 = 0`, `Ncl6 = ['acolyteharvest', 'channel']`, `acap = `, `acdn = [1.0, 16.0]`, `aher = 0`, `alev = 1`, `amcs = [None, 95, 110, 125, 140, 155, 170]`, `aran = 100.0`, `arqa = 24`, `atar = air,ground,debris,enemy,neutral,organic`
 
 實作：
 

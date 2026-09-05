@@ -304,6 +304,60 @@ call TimerStart(t2,0.03,true,function HeroQ50_Dmg)
 call SaveReal(hash,Id,4,count+0.01)
 set dmg=(10+4*I2R(GetUnitAbilityLevel(u,'A0VS')))*0.05
 if count>1.60 then
+set dmg=dmg*(count-0.60)
+endif
+if GetUnitState(u,UNIT_STATE_MANA)<dmg then
+call PauseTimer(t)
+call DestroyTimer(t)
+call FlushChildHashtable(hash,Id)
+call RemoveSavedHandle(hash,GetHandleId(u),20)
+call IssueImmediateOrderById(u,Order_stop)
+else
+call SetUnitState(u,UNIT_STATE_MANA,GetUnitState(u,UNIT_STATE_MANA)-dmg)
+endif
+set u=null
+set u2=null
+set t=null
+set t2=null
+set pl=null
+endfunction
+```
+
+`Trig_HeroQ50_Actions`　war3map.j:62528
+```jass
+if GetSpellAbilityId()=='A0VS' then
+set x2=GetSpellTargetX()
+set y2=GetSpellTargetY()
+set Id_u=GetHandleId(u)
+set t=CreateTimer()
+set Id_t=GetHandleId(t)
+call SaveTimerHandle(hash,Id_u,'A0VS',t)
+call SaveUnitHandle(hash,Id_t,1,u)
+call SaveReal(hash,Id_t,1,x)
+call SaveReal(hash,Id_t,2,y)
+set x=bj_RADTODEG*Atan2(y2-y,x2-x)
+call SaveReal(hash,Id_t,3,x)
+call SaveReal(hash,Id_t,4,0.)
+call TimerStart(t,0.05,true,function HeroQ50_Create)
+```
+
+`Trig_HeroQ50_Stop_Conditions`　war3map.j:62559
+```jass
+function Trig_HeroQ50_Stop_Conditions takes nothing returns boolean
+return GetSpellAbilityId()=='A0VS'
+endfunction
+function Trig_HeroQ50_Stop_Actions takes nothing returns nothing
+local unit u=GetSpellAbilityUnit()
+local integer Id=GetHandleId(u)
+local timer t=LoadTimerHandle(hash,Id,'A0VS')
+local integer Id_t=GetHandleId(t)
+call FlushChildHashtable(hash,Id_t)
+call PauseTimer(t)
+call DestroyTimer(t)
+call RemoveSavedHandle(hash,Id,'A0VS')
+set u=null
+set t=null
+endfunction
 ```
 
 ## 宇宙飛行 `A0VT`
@@ -325,7 +379,7 @@ if count>1.60 then
   - 第 3 行：10 / 15 / 20 / 25 / 30
   - 第 4 行：1000 / 1200 / 1400 / 1600 / 1800
 
-物件欄位（原型 `ANcl`）：`Ncl1 = 0.20000000298023224`, `Ncl2 = 2`, `Ncl3 = 1`, `Ncl4 = 0.20000000298023224`, `Ncl5 = 0`, `Ncl6 = channel`, `acap = `, `acdn = 15.0`, `alev = 5`, `amcs = [50, 55, 60, 65, 70]`, `aran = [1200.0, 1400.0, 1600.0, 1800.0, 1000.0]`
+物件欄位（原型 `ANcl`）：`Ncl1 = 0.20000000298023224`, `Ncl2 = 2`, `Ncl3 = 1`, `Ncl4 = 0.20000000298023224`, `Ncl5 = 0`, `Ncl6 = [None, 'channel']`, `acap = `, `acdn = 15.0`, `alev = 5`, `amcs = [50, 55, 60, 65, 70]`, `aran = [1000.0, 1200.0, 1400.0, 1600.0, 1800.0]`
 
 實作：
 
@@ -341,8 +395,97 @@ endif
 endif
 ```
 
-`HeroW50_Create`　war3map.j:62085
+`HeroW50_Dmg`　war3map.j:61996
 ```jass
+function HeroW50_Dmg takes nothing returns nothing
+local timer t=GetExpiredTimer()
+local integer Id=GetHandleId(t)
+local unit u
+local unit u2=LoadUnitHandle(hash,Id,2)
+local unit u3
+local unit u4
+local real x=GetUnitX(u2)
+local real y=GetUnitY(u2)
+local player pl
+local real dmg=LoadReal(hash,Id,1)
+local real degrees=LoadReal(hash,Id,4)
+local integer check=LoadInteger(hash,Id,2)
+local integer count=LoadInteger(hash,Id,3)
+local group ug
+local boolean B=false
+local real r
+set degrees=degrees+GetRandomReal(-3.0,3.0)+LoadReal(hash,Id,5)
+call SaveReal(hash,Id,4,degrees)
+call SetUnitX(u2,PolarX(x,30,degrees))
+call SetUnitY(u2,PolarY(y,30,degrees))
+call SetUnitFacing(u2,degrees)
+set check=check+1
+set count=count-1
+if check==2 and count !=0 then
+set check=0
+set u=LoadUnitHandle(hash,Id,1)
+set pl=GetOwningPlayer(u)
+set ug=CreateGroup()
+call GroupEnumUnitsInRange(ug,x,y,55,null)
+loop
+set u3=FirstOfGroup(ug)
+exitwhen u3==null or B==true
+if UnitAlive(u3)and IsUnitEnemy(u3,pl)then
+set B=true
+set u4=u3
+endif
+call GroupRemoveUnit(ug,u3)
+endloop
+call DestroyGroup(ug)
+if IsTerrainPathable(x,y,PATHING_TYPE_WALKABILITY)==true and B !=true then
+call RemoveUnit(u2)
+set t=null
+set u=null
+set u2=null
+set u3=null
+set u4=null
+set pl=null
+return
+endif
+if B==true then
+call UnitDamageTarget(u,u4,dmg,false,false,ATTACK_TYPE_NORMAL,DAMAGE_TYPE_MAGIC,null)
+if not UnitAlive(u4)then
+if IsUnitType(u4,UNIT_TYPE_HERO)then
+call SaveReal(hash,GetHandleId(u),'Nalc',LoadReal(hash,GetHandleId(u),'Nalc')+8.)
+else
+call SaveReal(hash,GetHandleId(u),'Nalc',LoadReal(hash,GetHandleId(u),'Nalc')+(0.20*I2R(GetUnitLevel(u4))))
+endif
+endif
+call PauseTimer(t)
+call DestroyTimer(t)
+call FlushChildHashtable(hash,Id)
+call RemoveUnit(u2)
+set t=null
+set u=null
+set u2=null
+set u3=null
+set u4=null
+set pl=null
+return
+endif
+endif
+call SaveInteger(hash,GetHandleId(t),2,check)
+if count==0 then
+call PauseTimer(t)
+call DestroyTimer(t)
+call FlushChildHashtable(hash,Id)
+call RemoveUnit(u2)
+else
+call SaveInteger(hash,GetHandleId(t),3,count)
+endif
+set t=null
+set u=null
+set u2=null
+set u3=null
+set u4=null
+set pl=null
+set ug=null
+endfunction
 function HeroW50_Create takes nothing returns nothing
 local timer t=GetExpiredTimer()
 local timer t2
@@ -603,12 +746,76 @@ call TimerStart(t,0.5,true,function Hero50E)
 星辰物質會產生衝擊波，對被波及的敵人造成此技能傷害的 10%。衝擊波概略分為「波次」，每產生一個波次需要 125 點星辰物質。
 ```
 
-物件欄位（原型 `ANcl`）：`Ncl1 = [2.799999952316284, 1.0]`, `Ncl2 = [1, 2]`, `Ncl3 = [3, 1]`, `Ncl4 = [2.799999952316284, 1.0]`, `Ncl5 = 0`, `Ncl6 = ['channel', 'dismount']`, `aare = 300.0`, `acap = `, `acdn = [120.0, 17.0]`, `alev = 1`, `amcs = [300, 80, 90, 100, 110, 120]`, `aran = [700.0, 1200.0]`, `atar = air,ground,friend,neutral,self`
+物件欄位（原型 `ANcl`）：`Ncl1 = [2.799999952316284, None, 1.0]`, `Ncl2 = [2, None, 1]`, `Ncl3 = [3, None, 1]`, `Ncl4 = [2.799999952316284, None, 1.0]`, `Ncl5 = [0, None]`, `Ncl6 = ['dismount', None, 'channel']`, `aare = 300.0`, `acap = `, `acdn = [120.0, None, 17.0]`, `alev = 1`, `amcs = [300, None, 80, 90, 100, 110, 120]`, `aran = [1200.0, None, 700.0]`, `atar = ['air,ground,friend,neutral,self', None]`
 
 實作：
 
-`Hero50R`　war3map.j:62231
+`Hero50R_Wave`　war3map.j:62167
 ```jass
+function Hero50R_Wave takes nothing returns nothing
+local timer t=GetExpiredTimer()
+local integer Id=GetHandleId(t)
+local unit u=LoadUnitHandle(hash,Id,1)
+local unit u3
+local real x=LoadReal(hash,Id,1)
+local real y=LoadReal(hash,Id,2)
+local real x2
+local real y2
+local player pl=GetOwningPlayer(u)
+local real dmg=LoadReal(hash,Id,3)
+local integer count=LoadInteger(hash,Id,1)
+local group ug
+local real dist=LoadReal(hash,Id,4)
+local real dist2=dist
+local integer i
+local integer L
+call SaveReal(hash,Id,4,dist+150)
+set i=4
+loop
+exitwhen dist2<400
+set i=i+1
+set dist2=dist2-75
+endloop
+set L=1
+loop
+exitwhen L>i
+set x2=x+dist*Cos(L*(360/i)*bj_DEGTORAD)
+set y2=y+dist*Sin(L*(360/i)*bj_DEGTORAD)
+call DestroyEffect(AddSpecialEffect("Abilities\\Spells\\Human\\Thunderclap\\ThunderClapCaster.mdl",x2,y2))
+set ug=CreateGroup()
+call GroupEnumUnitsInRange(ug,x2,y2,225,null)
+loop
+set u3=FirstOfGroup(ug)
+exitwhen u3==null
+if UnitAlive(u3)and IsUnitEnemy(u3,pl)then
+call UnitDamageTarget(u,u3,dmg,false,false,ATTACK_TYPE_NORMAL,DAMAGE_TYPE_MAGIC,WEAPON_TYPE_WHOKNOWS)
+if not UnitAlive(u3)then
+if IsUnitType(u3,UNIT_TYPE_HERO)then
+call SaveReal(hash,GetHandleId(u),'Nalc',LoadReal(hash,GetHandleId(u),'Nalc')+8.)
+else
+call SaveReal(hash,GetHandleId(u),'Nalc',LoadReal(hash,GetHandleId(u),'Nalc')+(0.20*I2R(GetUnitLevel(u3))))
+endif
+endif
+endif
+call GroupRemoveUnit(ug,u3)
+endloop
+call DestroyGroup(ug)
+set L=L+1
+endloop
+set count=count-1
+if count==0 then
+call PauseTimer(t)
+call DestroyTimer(t)
+call FlushChildHashtable(hash,Id)
+else
+call SaveInteger(hash,GetHandleId(t),1,count)
+endif
+set t=null
+set u=null
+set u3=null
+set pl=null
+set ug=null
+endfunction
 function Hero50R takes nothing returns nothing
 local timer t=GetExpiredTimer()
 local integer Id=GetHandleId(t)
@@ -701,7 +908,7 @@ endif
 選擇自己的據點或建築，將其轉移給其他玩家，或在不損失地基的情況下摧毀它。可從任意距離施放。
 ```
 
-物件欄位（原型 `ANcl`）：`Ncl1 = [0.009999999776482582, 0.8999999761581421]`, `Ncl2 = 1`, `Ncl3 = 1`, `Ncl4 = [0.009999999776482582, 0.8999999761581421]`, `Ncl5 = 0`, `Ncl6 = ['channel', 'unburrow']`, `acdn = [1.0, 16.0]`, `aher = 0`, `alev = 1`, `amcs = [95, 110, 125, 140, 155, 170]`, `aran = [99999.0, 100.0]`, `atar = ['player,structure', 'air,ground,debris,enemy,neutral,organic']`
+物件欄位（原型 `ANcl`）：`Ncl1 = [0.009999999776482582, 0.8999999761581421]`, `Ncl2 = 1`, `Ncl3 = 1`, `Ncl4 = [0.009999999776482582, 0.8999999761581421]`, `Ncl5 = 0`, `Ncl6 = ['unburrow', 'channel']`, `acdn = [1.0, 16.0]`, `aher = 0`, `alev = 1`, `amcs = [None, 95, 110, 125, 140, 155, 170]`, `aran = [99999.0, 100.0]`, `atar = ['player,structure', 'air,ground,debris,enemy,neutral,organic']`
 
 實作：
 
@@ -746,7 +953,7 @@ endif
 冷卻：20 秒
 ```
 
-物件欄位（原型 `ANcl`）：`Ncl1 = 0.8999999761581421`, `Ncl2 = 1`, `Ncl3 = 1`, `Ncl4 = 0.8999999761581421`, `Ncl5 = 0`, `Ncl6 = ['channel', 'charm']`, `acap = `, `acdn = [20.0, 16.0]`, `aher = 0`, `alev = 1`, `amcs = [75, 95, 110, 125, 140, 155, 170]`, `aran = 100.0`, `atar = air,ground,debris,enemy,neutral,organic`
+物件欄位（原型 `ANcl`）：`Ncl1 = 0.8999999761581421`, `Ncl2 = [None, 1]`, `Ncl3 = 1`, `Ncl4 = 0.8999999761581421`, `Ncl5 = 0`, `Ncl6 = ['charm', 'channel']`, `acap = `, `acdn = [20.0, 16.0]`, `aher = 0`, `alev = 1`, `amcs = [75, 95, 110, 125, 140, 155, 170]`, `aran = [None, 100.0]`, `atar = air,ground,debris,enemy,neutral,organic`
 
 實作：
 

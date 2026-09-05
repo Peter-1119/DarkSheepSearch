@@ -55,8 +55,13 @@ def parse(data, has_level=False):
                 mid = data[p:p + 4].decode('latin-1')
                 vt = struct.unpack_from('<i', data, p + 4)[0]
                 p += 8
+                lvl = 0
                 if has_level:
-                    p += 8                     # 等級 + 欄位指標，這裡用不到
+                    # 等級 + 欄位指標。等級一定要讀 —— 檔案裡的順序**不保證**
+                    # 是 1,2,3,4,5，照順序 append 會把「滿級 8 秒」排到中間，
+                    # 讀的人會以為是數值倒退的地圖 bug。
+                    lvl = struct.unpack_from('<i', data, p)[0]
+                    p += 8
                 if vt == 0:
                     v = struct.unpack_from('<i', data, p)[0]; p += 4
                 elif vt in (1, 2):
@@ -65,8 +70,17 @@ def parse(data, has_level=False):
                     raw, p = _cstr(data, p)
                     v = _txt(raw)
                 p += 4                         # 結束標記
-                # 同一個代號可能出現多次（例如多個技能欄位），存成清單
-                if mid in rec:
+                if lvl >= 1:
+                    # 有等級的欄位：放進 list 的第 lvl-1 格，中間缺的補 None
+                    cur = rec.get(mid)
+                    if not isinstance(cur, list):
+                        cur = [] if cur is None else [cur]
+                    while len(cur) < lvl:
+                        cur.append(None)
+                    cur[lvl - 1] = v
+                    rec[mid] = cur
+                elif mid in rec:
+                    # 沒有等級卻出現多次（例如多個技能欄位），存成清單
                     if isinstance(rec[mid], list):
                         rec[mid].append(v)
                     else:

@@ -1964,6 +1964,520 @@
           "s2": "I01L"
         }
       }
+    ],
+    "U011": [
+      {
+        "id": "gryph-thunder",
+        "c": "#4F7FE8",
+        "talent": "A10A",
+        "n": [
+          "無盡雷暴",
+          "Endless Thunderstorm",
+          "Бесконечная гроза"
+        ],
+        "key": [
+          "球狀閃電傷害＝75＋8% 最大法力，雷霆使者天賦讓它燒到 25% 法力才停：把法力池堆到一萬，等於一顆 876 傷害的地毯打 120 秒。",
+          "Ball Lightning deals 75 + 8% max mana, and the Thunderer talent makes it run until mana drops to 25%: a 10k mana pool turns into 876-damage bolts for ~120 seconds.",
+          "Шаровые молнии наносят 75 + 8% от макс. маны, а талант «Громовержец» продлевает их до 25% маны: пул 10 000 маны — это болты по 876 урона в течение ~120 секунд."
+        ],
+        "why": [
+          "球狀閃電是這隻真正的主力，而且完全不吃技能強度。程式碼 war3map.j:56246 寫死 uron=75+最大法力×0.08，所以唯一的縮放來源是最大法力。雷霆使者 A10A（56341-56348）把「28 顆」改成「每產生一顆扣 25 法力，法力 >25% 就繼續」，0.25 秒一顆＝每秒 100 法力，於是持續時間＝(0.75×最大法力)÷(100−法力回復)。\n這套的算式：A10A 基礎智力 176（25 級上限＋天賦 +6 與每級 +2），道具智力 100+50+40+15+12=217，優雅吊墜再 +33%（22220-22232 是真的呼叫 SetHeroInt 加基礎值）→ 智力 524。最大法力＝100＋15×524＋(800+750+500)＝10,010。每顆＝75＋801＝876。法力回復＝0.4＋0.05×524＋8＋1.5＋3＝39.1/秒，淨耗 60.9/秒 → 123 秒、493 顆。\n落點是 GetRandomReal(120,500)、爆炸半徑 280，所以站在英雄腳下的目標吃到 (280−120)/(500−120)=42% 的彈體 → 207 次命中。蔑視者之戒 +30%（對非英雄）與水晶項鍊 +11% 是加法係數 → 876×1.41=1,235。單體對雜兵 DPS＝207×1,235÷123＝2,078，而且每一顆都是半徑 280 的範圍傷害。對照平砍極限值（下面那套的算法）約 800 DPS，技能流勝出兩倍以上。\n法球回收在這套只有 660 傷害（A10B 讓爆炸 ×0.75），但範圍從 400 變 700、附帶 3 秒暈眩（英雄 2 秒），當開場控場用。",
+          "Ball Lightning is the real damage engine and it ignores spell power entirely: war3map.j:56246 hardcodes uron = 75 + maxMana*0.08. The Thunderer talent A10A (56341-56348) replaces the 28-bolt counter with 'spend 25 mana per bolt, keep going while mana > 25%'. One bolt per 0.25s = 100 mana/s, so duration = (0.75 * maxMana) / (100 - manaRegen).\nMath: A10A base INT 176 at the level cap of 25, +217 from items, +33% from Elegant Pendant (22220-22232 really calls SetHeroInt) = 524 INT. Max mana = 100 + 15*524 + 2050 = 10,010. Each bolt = 75 + 801 = 876. Regen 39.1/s, net drain 60.9/s -> 123 s and 493 bolts.\nImpact points roll GetRandomReal(120,500) with a 280 blast radius, so a target at the hero's feet is caught by (280-120)/(500-120) = 42% of them: 207 hits. Ring of Contempt +30% vs non-heroes and Crystal Necklace +11% are additive: 876 * 1.41 = 1,235. Single-target DPS = 207 * 1235 / 123 = 2,078, all of it AoE. The best auto-attack build only reaches about 800 DPS.\nThe orb recall only does 660 here (A10B multiplies it by 0.75) but the radius goes 400 -> 700 with a 3s stun (2s on heroes) - use it to open a fight.",
+          "Шаровые молнии — главный источник урона и не зависят от силы умений: в war3map.j:56246 жёстко задано uron = 75 + макс.мана*0.08. Талант A10A (56341-56348) убирает счётчик из 28 снарядов: каждый снаряд стоит 25 маны и умение длится, пока мана > 25%. Один снаряд в 0.25 с = 100 маны/сек.\nРасчёт: базовый инт 176 (уровень 25 + талант), +217 от предметов, +33% от Изящной подвески = 524 инт. Макс. мана = 100 + 15*524 + 2050 = 10 010. Снаряд = 876. Реген 39.1/с, чистый расход 60.9/с -> 123 сек и 493 снаряда.\nТочка удара — GetRandomReal(120,500), радиус взрыва 280, значит цель у ног героя ловит 42% снарядов = 207 попаданий. +30% (Кольцо презрения) и +11% (Хрустальное ожерелье) складываются: 876*1.41 = 1235. Урон по одной цели = 2078 в секунду, и всё это по площади. Лучшая сборка на автоатаку даёт лишь ~800.\nВозврат сферы здесь бьёт на 660 (A10B умножает на 0.75), но радиус 700 и оглушение 3 сек (2 сек по героям)."
+        ],
+        "items": [
+          "I00Q",
+          "sor3",
+          "mnsf",
+          "I0AN",
+          "lgdh",
+          "tfar"
+        ],
+        "bonus": {
+          "s1": "rump",
+          "s2": "I075"
+        }
+      },
+      {
+        "id": "gryph-barrier",
+        "c": "#3FA9A0",
+        "talent": "A108",
+        "n": [
+          "絕對屏障",
+          "Absolute Barrier",
+          "Абсолютный барьер"
+        ],
+        "key": [
+          "魔法護盾 5 級每點法力擋 6 點傷害；把法力回復堆到 220/秒，等於每秒吸收 1,300 點傷害而且永不停。",
+          "Magic Shield at level 5 blocks 6 damage per mana point; stack regen to 220 mana/s and you absorb ~1,300 damage per second forever.",
+          "Магический щит 5 уровня блокирует 6 урона за единицу маны; реген 220 маны/сек = поглощение ~1300 урона в секунду без остановки."
+        ],
+        "why": [
+          "這套把法力當血條。物件資料裡 A0ES 的 Nms1 只覆寫 2~5 級（3/4/5/6），1 級沿用底層 ACmf 的預設值，而學習說明寫「2（+1）」——所以真正的每級數值是 2/3/4/5/6，卷宗印的「3/4/5/6/2」是抽取工具位移了一格，5 級不是變爛而是 6 點。\n絕對屏障 A108 的實作（war3map.j:56160-56166）是給一本 spellbook A109，內容 Neg3='A0ES,A106'；A106 是同一個護盾的複製品，Nms2=1.0（100% 吸收）而不是 A0ES 的 0.5。注意：A106 的 1.0 只覆寫到 2~5 級，腳本從頭到尾沒設定 A106 的等級，所以「100% 吸收」是否真的生效無法從地圖資料確認——這套在 50% 吸收下依然成立，只是效率減半。\n數字：A108 基礎智力＝122＋15＋3×24＝209，道具再 +144 → 353，最大法力 6,795。法力回復＝0.4＋0.05×353（基礎）＋0.05×353（洞察之戒，war3map.j:22018 確認是每 1 智力 +0.05）＋5＋3＋0.85＋1%×6,795（生命之冠，29737-29738）＝112.5/秒；超凡護符每 60 秒回滿 6,795 再折算 113/秒 → 合計約 226 法力/秒 × 6＝每秒吸收 1,356 點傷害，另有 6,795×6＝40,770 的一次性緩衝。\n代價：力量被天賦扣 10，生命只有約 3,150。傲羅斗篷的 60% 魔法減免與 31 護甲（65% 物理減免）補上，苦難面具再把受到傷害的 20% 丟回敵方英雄。輸出只剩 28 顆球狀閃電（每顆 75＋0.08×6,795＝619）。",
+          "This build turns mana into the health bar. In the object data A0ES only overrides Nms1 for levels 2-5 (3/4/5/6); level 1 falls back to the base ACmf default, and the learn tooltip reads '2 (+1)'. So the real progression is 2/3/4/5/6 damage blocked per mana point - the dossier's '3/4/5/6/2' is off by one level, and level 5 is 6, not 2.\nTalent A108 (war3map.j:56160-56166) grants spellbook A109 whose Neg3 = 'A0ES,A106'. A106 is a clone of the shield with Nms2 = 1.0 (100% absorption) instead of 0.5. Caveat: A106's 1.0 is only defined for levels 2-5 and no script ever sets A106's level, so whether the 100% actually applies cannot be confirmed from the map data. The build still works at 50%, just half as efficient.\nNumbers: A108 base INT = 122 + 15 + 3*24 = 209, +144 from items = 353, max mana 6,795. Regen = 0.4 + 0.05*353 (base) + 0.05*353 (Ring of Insight, confirmed at 22018) + 5 + 3 + 0.85 + 1% of 6,795 (Crown of Life, 29737-29738) = 112.5/s; Amulet of Transcendence refills the whole pool every 60s (another 113/s average) = ~226 mana/s * 6 = 1,356 damage absorbed per second, plus a 40,770 one-shot buffer.\nCost: the talent removes 10 STR, HP sits near 3,150. Auroth's Cloak (60% magic reduction) and 31 armor (65% physical reduction) cover that, and Mask of Suffering reflects 20% back at enemy heroes. Damage drops to 28 bolts of 619.",
+          "Мана здесь — это полоса здоровья. В данных объектов Nms1 у A0ES переопределён только для уровней 2-5 (3/4/5/6), уровень 1 берёт значение базового ACmf, а подсказка обучения гласит «2 (+1)». Настоящая прогрессия — 2/3/4/5/6, а «3/4/5/6/2» из досье сдвинуто на уровень.\nТалант A108 (56160-56166) выдаёт книгу заклинаний A109 с Neg3 = 'A0ES,A106'; A106 — копия щита с Nms2 = 1.0 (100% поглощения). Но 1.0 задано только для уровней 2-5, а уровень A106 скрипт нигде не задаёт, поэтому работает ли 100% — по данным карты подтвердить нельзя. При 50% сборка тоже работает, просто вдвое хуже.\nЦифры: инт 353, макс. мана 6795. Реген = 112.5/сек + полное восстановление раз в 60 сек (ещё ~113/сек) = ~226 маны/сек * 6 = 1356 поглощённого урона в секунду, плюс буфер 40 770.\nЦена: талант снимает 10 силы, здоровья около 3150. Компенсируют 60% сопротивления магии и 26 брони."
+        ],
+        "items": [
+          "I00Q",
+          "ram2",
+          "ram4",
+          "I0A9",
+          "I068",
+          "I078"
+        ],
+        "bonus": {
+          "s1": "rump",
+          "s2": "I04D"
+        }
+      },
+      {
+        "id": "gryph-shock",
+        "c": "#D9A441",
+        "talent": "A10A",
+        "n": [
+          "電擊引擎",
+          "Shock Engine",
+          "Двигатель разрядов"
+        ],
+        "key": [
+          "守護者護肩把智力複製成力量，碎界讓每一次電擊打出 125% 力量；雷霆使者的球狀閃電每顆都擲 25% 電擊，機率再被風暴之錘與幸運馬蹄鐵推到 75%。",
+          "Guardian Pauldrons copy INT into STR, Collapse deals 125% STR per shock, and Thunderer's Ball Lightning rolls a shock on every hit - pushed to 75% by Storm Hammer and Lucky Horseshoe.",
+          "Наплечники стража копируют интеллект в силу, «Коллапс» бьёт на 125% силы за каждый разряд, а шаровые молнии с талантом бросают проверку на разряд с шансом до 75%."
+        ],
+        "why": [
+          "這套靠三段程式碼串起來。第一段：守護者護肩的裝備與刷新程式（war3map.j:24740 與 21986）都是 SetHeroStr(u, 力量 + GetHeroInt(u,false))，也就是力量直接等於智力（含道具智力，因為這張地圖的道具是用 SetHeroStr/Int 永久加基礎值）。第二段：ShockUnit（war3map.j:2637-2639）——只要持有碎界，每一次電擊判定成功就額外打一發 GetHeroStr(u,true)×1.25 的魔法傷害。第三段：雷霆使者的球狀閃電每次命中都呼叫 ShockUnit(GT,GE,0.25)（war3map.j:56253）。\n機率鏈（war3map.j:2594-2611）：基礎 0.25，風暴之錘 I0AL 是加法 +0.25，幸運馬蹄鐵 I09G 是乘法 ×1.5，對英雄再 ×0.5。所以對雜兵 (0.25+0.25)×1.5＝75%，對英雄 37.5%。建築與機械單位免疫。\n數字：A10A 基礎智力 176＋道具 185＝361，護肩 → 力量 123＋361＝484，碎界每次電擊＝605 傷害。最大法力 5,515 → 每顆球狀閃電 516。法力回復 21.5/秒、淨耗 78.6/秒 → 52.6 秒、210 顆；單體吃到 42%＝88 次命中 → 45,408（球）＋66 次電擊×605＝39,930，合計 85,338÷52.6＝1,622 單體 DPS，其中將近一半來自一件 2,500 金的碎界。\n附加價值：電擊在 hash 上把目標的 key4 −0.20（受到傷害 +20%）、key6 −0.30（造成傷害 −30%），並把四種狀態抗性各 −1.00，持續 4 秒（能量符文 +1 秒）。所以整隊的點燃／流血／疾病傷害在被電擊的目標上直接翻倍，這是沒有任何裝備能擋的減益。",
+          "Three pieces of code chain together. One: Guardian Pauldrons' equip and refresh code (war3map.j:24740 and 21986) both run SetHeroStr(u, str + GetHeroInt(u,false)) - STR simply becomes INT, item INT included, because this map adds item attributes permanently to the base value. Two: ShockUnit (war3map.j:2637-2639) - if the damager carries Collapse, every successful shock roll fires an extra GetHeroStr(u,true)*1.25 magic hit. Three: with the Thunderer talent every Ball Lightning impact calls ShockUnit(GT,GE,0.25) (war3map.j:56253).\nChance chain (war3map.j:2594-2611): base 0.25, Storm Hammer adds +0.25 flat, Lucky Horseshoe multiplies by 1.5, heroes halve it. So 75% versus creeps and 37.5% versus heroes; buildings and mechanical units are immune.\nNumbers: base INT 176 + 185 from items = 361, so STR = 123 + 361 = 484 and each shock deals 605. Max mana 5,515 -> 516 per bolt. Regen 21.5/s, net drain 78.6/s -> 52.6 s and 210 bolts; a single target catches 42% = 88 hits = 45,408, plus 66 shocks * 605 = 39,930. Total 85,338 / 52.6 = 1,622 DPS, half of it from one 2,500 gold item.\nBonus: shock writes key4 -0.20 (target takes +20% damage), key6 -0.30 (target deals -30%) and -1.00 to all four status resistances for 4 seconds (5 with the Energy Rune). Nothing in the game blocks it, and it doubles your whole team's burn/bleed/disease damage on that target.",
+          "Три куска кода складываются в одну связку. Первый: Наплечники стража при надевании и при обновлении (24740 и 21986) делают SetHeroStr(u, сила + GetHeroInt(u,false)) — сила равна интеллекту вместе с предметным. Второй: ShockUnit (2637-2639) — с «Коллапсом» каждый удачный разряд наносит дополнительно GetHeroStr(u,true)*1.25. Третий: с талантом каждое попадание шаровой молнии вызывает ShockUnit(GT,GE,0.25) (56253).\nШанс (2594-2611): база 0.25, Штормовой молот прибавляет +0.25, Счастливая подкова умножает на 1.5, по героям делится пополам. Итого 75% по крипам и 37.5% по героям; строения и механические юниты невосприимчивы.\nЦифры: инт 361 -> сила 484 -> 605 урона за разряд. Мана 5515 -> 516 за снаряд. 52.6 сек канала, 210 снарядов, 88 попаданий по одной цели: 45 408 + 66 разрядов * 605 = 39 930. Всего 1622 урона в секунду.\nБонус: разряд даёт цели -0.20 к key4 (+20% получаемого урона), -0.30 к key6 и -1.00 ко всем четырём сопротивлениям статусам на 4 сек (5 с Руной энергии)."
+        ],
+        "items": [
+          "I0A8",
+          "rej3",
+          "I0AL",
+          "I09G",
+          "I00Q",
+          "sor3"
+        ],
+        "bonus": {
+          "s1": "rump",
+          "s2": "I01Q"
+        }
+      },
+      {
+        "id": "gryph-budget",
+        "c": "#7BA05B",
+        "n": [
+          "七千金的暴風雨",
+          "Seven-Thousand-Gold Storm",
+          "Шторм за семь тысяч"
+        ],
+        "key": [
+          "7,200 金、不需要天賦：便宜的技能強度每點只要 4.8～6.7 金，直接餵法球回收的 50% 係數與風暴法球的 24 跳。",
+          "7,200 gold, no talent required: cheap spell power costs 4.8-6.7 gold per point and feeds the recall explosion's 50% coefficient and the orb's 24 ticks.",
+          "7200 золота и без таланта: дешёвая сила умений стоит 4.8-6.7 золота за единицу и питает взрыв возврата сферы и 24 такта штормовой сферы."
+        ],
+        "why": [
+          "中期沒有耳環與純淨寶石的時候，技能強度的單位成本反而比後期還低：紫水晶 tpow 600 金 +125（4.8 金/點）、紫水晶戒指 rag1 900 金 +125＋10 智力、潛能覺醒 schl 1,000 金 +100＋5 智力＋2 法力回復，都比星界耳環的 6.25 金/點便宜。這套六件加上吸收器與寶盒共 750 點技能強度、20 點道具智力，總價 7,200 金。\n受益的是兩個吃技能強度的技能（卷宗標的 A0EX 與 A0EZ）。法球回收的爆炸公式在 war3map.j:56094 是 GetHeroInt(u,true)×1.25＋技能強度×0.50：25 級不點天賦的基礎智力 122＋20＝142 → 178＋375＝553 傷害、半徑 400，冷卻只有 5 秒（實際受風暴法球的 16 秒限制）。風暴法球 5 級每跳＝8＋8×5＋0.08×750＝108，計時器每 0.03 秒跑一次、每 7 次結算一次（56072）、總共 168 次 → 24 跳、半徑 210，而且法球會加速：初速 12／格、每格 +0.15，168 格總共飛 4,120 距離，等於沿著一條走廊灑 2,592 點範圍傷害，是這個價位最好的清線工具。\n風暴權杖 anfg 主動＝150＋0.5×750＝525 並有 80% 機率電擊，16 秒冷卻，剛好補上法球的空窗；死靈法師之杖當吸收器（+50 技能強度，還送兩隻骷髏）。球狀閃電也能用：最大法力 100＋15×142＋1,000＝3,230 → 每顆 333、28 顆共 9,324。\n注意：召喚出來的骷髏不繼承任何裝備效果，只是擋刀用的。",
+          "In the mid game, before earrings and pure gems, spell power is actually cheaper per point than later: Amethyst (600g / +125 = 4.8 gold per point), Amethyst Ring (900g / +125 + 10 INT) and Awakened Potential (1000g / +100 + 5 INT + 2 mana regen) all beat the Astral Earring's 6.25 gold per point. Six items plus absorber and casket give 750 spell power and 20 item INT for 7,200 gold.\nThat feeds the two spell-power abilities the dossier flags, A0EX and A0EZ. The recall explosion formula at war3map.j:56094 is GetHeroInt(u,true)*1.25 + spellPower*0.50: with no talent, INT 122 + 20 = 142 gives 178 + 375 = 553 damage in a 400 radius on a 5 second cooldown (gated in practice by the orb's 16s). Storm Orb rank 5 ticks for 8 + 8*5 + 0.08*750 = 108; the timer runs every 0.03s and resolves every 7th tick (56072) for 168 ticks total = 24 ticks in a 210 radius. The orb accelerates - 12 units per tick plus 0.15 each tick - covering 4,120 units, so it lays 2,592 area damage down a whole corridor. Best wave clear at this price.\nStorm Scepter's active is 150 + 0.5*750 = 525 with an 80% shock chance on a 16s cooldown, filling the orb's downtime; the Necromancer Staff absorber adds 50 spell power and two skeletons. Ball Lightning still works: max mana 100 + 15*142 + 1,000 = 3,230 gives 333 per bolt, 9,324 over 28 bolts.\nNote: summoned skeletons inherit none of your item effects, they are only a body block.",
+          "В середине игры сила умений стоит дешевле, чем в конце: Аметист 600 золота за +125 (4.8 за единицу), Аметистовое кольцо 900 за +125 и 10 инт, Пробуждённый потенциал 1000 за +100. Всё вместе — 750 силы умений и 20 инт за 7200 золота.\nЭто питает два умения, зависящих от силы умений (A0EX и A0EZ). Формула взрыва (war3map.j:56094): GetHeroInt(u,true)*1.25 + сила умений*0.50 = 178 + 375 = 553 в радиусе 400. Штормовая сфера 5 уровня: 8 + 8*5 + 0.08*750 = 108 за такт, 168 тиков таймера по 0.03 с, срабатывание каждый 7-й = 24 такта в радиусе 210. Сфера ускоряется (12 + 0.15 за тик) и пролетает 4120 единиц — 2592 урона по всему коридору.\nШтормовой скипетр даёт 150 + 0.5*750 = 525 и 80% шанс разряда раз в 16 сек. Шаровые молнии: мана 3230 -> 333 за снаряд, 9324 за 28 снарядов.\nПримечание: призванные скелеты не наследуют эффекты предметов."
+        ],
+        "items": [
+          "rst1",
+          "rag1",
+          "tpow",
+          "rwiz",
+          "anfg",
+          "schl"
+        ],
+        "bonus": {
+          "s1": "stre",
+          "s2": "I01Q"
+        }
+      }
+    ],
+    "E00O": [
+      {
+        "id": "druid-earth-storm",
+        "c": "#4E7A33",
+        "talent": "A0MF",
+        "n": [
+          "馭地・根縛龍捲",
+          "Earth Mastery: Rooted Tornado",
+          "Подчинение земли: смерч по корням"
+        ],
+        "key": [
+          "馭地讓龍捲風對「被纏繞」的目標傷害 ×2.50，纏繞又把他們釘在原地讓龍捲風每一跳都打得到 —— 全英雄唯一的乘算窗口",
+          "Earth Mastery makes the tornado deal x2.50 to entangled targets, and Entangle pins them so every tick connects - the hero's only multiplicative window",
+          "Подчинение земли даёт смерчу x2.50 по опутанным целям, а опутывание держит их на месте - все тики попадают"
+        ],
+        "why": [
+          "Hero37Q（war3map.j:57800）在 A0MG（馭地）下對帶 BEer 或 B03Z buff 的目標打 dmg*2.50，dmg = 10 + 10×等級 + 技能強度×0.10。這套技能強度 2100（星界耳環 800＋純淨紫水晶 400＋大法師長袍 300＋獅子星座 200＋大法師權杖 200＋蔑視者之戒 125＋能量符文 75），5 級龍捲風每跳 60+210 = 270，被纏繞後 675，全程 17 跳。蔑視者之戒 +30%（對非英雄）與儀式聖杯 +11% 是加進同一個 DefCof 係數，×1.41 後每跳 952，一次龍捲風打穿一團被釘住的敵人約 6 千～1.1 萬／人。纏繞本身（Hero37W:57860）每 0.25 秒 (36+189)×0.25，馭地把非英雄的根縛從 6 秒拉到 10 秒（A0M3 adur 6.0→10.0），單體 2250，×1.41 = 3172。獅子星座在這裡特別划算：它是 9 個「施法內冷壞掉」的道具之一，每次施法都跑一次 25% 機率的 200+50% 技能強度＝1250 傷害，還順便淨化自己並回 20 生命／30 法力，這隻一輪要放三個技能。大法師權杖的每 0.75 秒 125 點＝167 持續 dps。附帶：森林守衛攻擊 70+0.2×SP = 490，大地重擊（A0M9，冷卻 15 秒、範圍 350）是 115+50% 技能強度 = 1165，而且馭地把守衛存在時間拉到 100 秒＝與 100 秒冷卻打平，等於常駐。回復同時是 1025+1.25×2100 = 3650 的團隊補血。施放順序固定：纏繞 → 龍捲風，第二發龍捲風（10 秒後）剛好卡在根縛結束的邊緣，通常吃不到 ×2.5。",
+          "Hero37Q (war3map.j:57800) deals dmg*2.50 to targets carrying the BEer/B03Z buff when A0MG (Earth Mastery) is active, where dmg = 10 + 10*level + spellpower*0.10. This build runs 2100 spell power (Astral Earring 800 + Pure Amethyst 400 + Archmage Robe 300 + Leo Constellation 200 + Archmage Scepter 200 + Ring of Contempt 125 + Energy Rune 75), so a rank-5 tornado ticks for 60+210 = 270, or 675 on an entangled target, over 17 ticks. Ring of Contempt's +30% vs non-heroes and the Ritual Chalice's +11% add into the same DefCof coefficient, x1.41 -> 952 per tick, roughly 6k-11k per pinned target per cast. Entangle itself (Hero37W:57860) ticks (36+189)*0.25 every 0.25 s, and Earth Mastery stretches the non-hero root from 6 s to 10 s (A0M3 adur 6.0 -> 10.0), so 2250 per target, 3172 after the multipliers. Leo Constellation is one of the nine items whose on-cast internal cooldown is broken, so every single cast rolls its 25% chance for 200 + 50% spell power = 1250 damage plus a self-purge and 20 HP / 30 MP - and this hero casts three spells per rotation. The Archmage Scepter's 125 damage every 0.75 s is 167 sustained dps. Side benefits: the Forest Warden hits for 70 + 0.2*SP = 490 and its Ground Slam (A0M9, 15 s cooldown, 350 radius) is 115 + 50% spell power = 1165, while Earth Mastery raises the warden's lifespan to 100 s - exactly its 100 s cooldown, so it is permanent. Restoration heals 1025 + 1.25*2100 = 3650. Cast order is fixed: Entangle, then Tornado; the second tornado 10 s later lands right at the edge of the root and usually misses the x2.5.",
+          "Hero37Q (war3map.j:57800) при A0MG наносит dmg*2.50 целям с баффом BEer/B03Z, где dmg = 10 + 10*уровень + сила умений*0.10. При 2100 силы умений тик смерча 5 уровня = 270, по опутанной цели 675, всего 17 тиков. +30% (Кольцо презрения, по не-героям) и +11% (Ритуальная чаша) складываются в один коэффициент DefCof: x1.41, то есть 952 за тик. Опутывание (Hero37W:57860) тикает каждые 0.25 с, а подчинение земли растягивает корни с 6 до 10 с (A0M3 adur 6.0 -> 10.0): 2250 за цель. Созвездие Льва - один из девяти предметов со сломанным внутренним кулдауном: срабатывает на каждом касте (25% на 200 + 50% силы умений = 1250). Страж лесов бьёт на 490, его Удар по земле = 115 + 50% силы умений = 1165, и при подчинении земли живёт 100 с при кулдауне 100 с - то есть постоянно."
+        ],
+        "items": [
+          "I00E",
+          "sor5",
+          "kpin",
+          "ofro",
+          "fgrd",
+          "I0AN"
+        ],
+        "bonus": {
+          "s1": "dust",
+          "s2": "I01Q"
+        }
+      },
+      {
+        "id": "druid-necro-wall",
+        "c": "#6D5099",
+        "talent": "A0MD",
+        "n": [
+          "死靈德魯伊・肉牆",
+          "Necrodruid: Wall of Flesh",
+          "Некродруид: стена плоти"
+        ],
+        "key": [
+          "憎惡的生命是「1200 + 英雄最大生命的 50%」，所以堆自己的血就等於堆召喚物；守護者護肩把智力換成等量力量是這隻最便宜的生命來源",
+          "The Abomination gets 1200 + 50% of the hero's max HP, so stacking your own HP stacks the summon; Guardian Pauldrons converting INT into STR is this hero's cheapest source of HP",
+          "Поганище получает 1200 + 50% макс. HP героя, поэтому свой запас здоровья = запас призыва; Наплечники хранителя переводят интеллект в силу"
+        ],
+        "why": [
+          "這套是給死靈德魯伊皮膚 E014 用的。A06S 憎惡（war3map.j:58053）建立 u01O，生命 = 1200 + 英雄最大生命×0.50、攻擊 = 100 + 技能強度×0.20、護甲 10、每秒回 15 生命，物件資料還有 ACce 濺射（15%／160）與 A0AO 格擋 4 點 —— 比本體森林守衛多 400 生命、多 30 攻擊、多 5 護甲、多 10 生命回復，但沒有大地重擊、沒有減速光環、也沒有 20% 魔法減免（守衛的 A07D+A0F9）。所以憎惡是純肉牆，值得專門為它堆生命。守護者護肩（21986 行：SetHeroStr(u, str + GetHeroInt(u,false))）給等同基礎智力的力量，長老德魯伊每級 +3.8 智力，60 級約 252 基礎智力＝+252 力量，比黃金耳環的 +4000 生命還多（war3mapMisc.txt 只覆寫了 AgiDefenseBonus 與 HeroFactorXP，力量換生命用魔獸預設值）；它同時給 +10 護甲與 +8% 傷害減免，而且只吃基礎智力，所以不要為了它去買智力裝。裝備固定生命 4000+2225+1000+250 = 7475，護甲 +34，狂信者頭盔的 50% 魔法減免（不可疊加、取最高）讓遠程物理再 −40。天賦選馭風：回復可以指向自己的憎惡（A0M4 的 atar 含 friend），一次補 1025+1.25×475 = 1619 生命再加 6 秒 +75% 攻擊速度；龍捲風變成 6 秒、350 半徑、20 跳的移動減速區，敵人攻速 −50%，這是這隻最強的防守工具。扭曲權杖在這裡是雙用途：UnitHasItemOfType(u,'shea') 直接給憎惡 +30% 攻擊速度（58073 行），它的疊層又每次施法 +25 技能強度（BreachBuffUnit，28670 行）最多 15 層，疊到 14 層再召喚可以把憎惡的攻擊從 195 拉到 265。",
+          "This build is for the Necrodruid skin E014. A06S Abomination (war3map.j:58053) spawns u01O with HP = 1200 + 50% of the hero's max HP, attack = 100 + 0.20*spell power, 10 armor and 15 HP/s regen; object data adds ACce cleave (15% / 160) and A0AO block 4. Compared to the base Forest Warden it has +400 HP, +30 attack, +5 armor and +10 regen, but loses Ground Slam, the slow aura and the 20% magic reduction (A07D+A0F9). So it is a pure meat wall, and stacking HP is the right way to feed it. Guardian Pauldrons (line 21986: SetHeroStr(u, str + GetHeroInt(u,false))) grant strength equal to base intelligence; the Elder Druid gains 3.8 INT per level, so around 252 base INT at level 60 = +252 STR, more HP than the Golden Earring's flat +4000 (war3mapMisc.txt only overrides AgiDefenseBonus and HeroFactorXP, so STR-to-HP uses the Warcraft default). It also brings +10 armor and +8% damage reduction, and since it reads base INT only, do not buy INT items for it. Flat item HP is 4000+2225+1000+250 = 7475 with +34 armor, and the Fanatic Helm's 50% magic reduction (non-stacking, highest wins) plus -40 ranged physical. Take Wind Mastery: Restoration can target your own Abomination (A0M4's atar includes friend) for 1025 + 1.25*475 = 1619 HP plus 6 s of +75% attack speed, and the tornado becomes a 6 s, 350-radius, 20-tick zone that slows enemy attack speed by 50% - this hero's strongest defensive tool. The Scepter of Distortion does double duty: UnitHasItemOfType(u,'shea') gives the Abomination +30% attack speed outright (line 58073), and its stacking buff adds +25 spell power per cast up to 15 stacks (BreachBuffUnit, line 28670), so summoning at 14 stacks raises the Abomination's attack from 195 to 265.",
+          "Сборка для скина Некродруид (E014). A06S (war3map.j:58053) создаёт u01O: HP = 1200 + 50% макс. HP героя, атака = 100 + 0.20*сила умений, 10 защиты, 15 HP/с; плюс сплеш ACce (15%/160) и блок A0AO на 4. По сравнению со стражем лесов: +400 HP, +30 атаки, +5 защиты, но нет Удара по земле, ауры замедления и 20% защиты от магии. Наплечники хранителя (строка 21986: SetHeroStr(u, str + GetHeroInt(u,false))) дают силу, равную базовому интеллекту - около 252 на 60 уровне, что больше, чем +4000 HP Золотой серьги. Учитывается только базовый интеллект, предметы на INT бесполезны. Итого 7475 фикс. HP, +34 защиты, 50% защиты от магии. Талант - подчинение ветра: Восстановление можно направить на своё поганище (1619 HP + 75% скорости атаки на 6 с), а смерч превращается в зону на 6 с и 350 радиуса со -50% скорости атаки врагов. Скипетр искажения даёт поганищу +30% скорости атаки и +25 силы умений за каст (до 15 стаков)."
+        ],
+        "items": [
+          "I00O",
+          "I0A8",
+          "I06B",
+          "I06C",
+          "kpin",
+          "shea"
+        ],
+        "bonus": {
+          "s1": "rump",
+          "s2": "I097"
+        }
+      },
+      {
+        "id": "druid-pierce-ticks",
+        "c": "#3F9BC4",
+        "talent": "A0MF",
+        "n": [
+          "跳數穿透流",
+          "Penetration per Tick",
+          "Пробивание за тик"
+        ],
+        "key": [
+          "穿透是「每一次傷害事件之後再補一段無視減傷的傷害」—— 這隻一輪能製造 340 次傷害事件，是全遊戲最會刷穿透的英雄之一",
+          "Penetration fires an unmitigable hit after every damage event - this hero generates ~340 damage events per rotation, one of the highest counts in the game",
+          "Пробивание срабатывает после каждого события урона - этот герой создаёт около 340 событий за ротацию"
+        ],
+        "why": [
+          "Trig_HeroTakeDamage_Actions（war3map.j:20057）在每一次傷害事件之後讀攻擊者的 hash key 16，用 ATTACK_TYPE_CHAOS / DAMAGE_TYPE_UNIVERSAL 再打一段，完全不受護甲、魔法減免或任何 DefCof 影響，目標冰凍時 ×1.5，帶復仇之手時對英雄再 ×1.5（20060-20068 行，check 由 fgfh 設為 1）。這隻的兩個攻擊技能都是「一大堆小跳」：纏繞每 0.25 秒一跳、每個中招的敵人各開一個計時器，馭地把非英雄根縛拉到 10 秒＝每人 40 跳；龍捲風固定 17 跳、每跳對半徑 235 內全體結算。六個敵人被釘在一起就是 240 + 102 = 342 次獨立傷害事件。這套穿透 140（耶夢加得之戒 50＋毀滅之錘 25＋熾天使長矛 20＋精金鶴嘴鎬 20＋復仇之手 15＋刺刀 5＋迷霧之矛 5），寒冰之球每 5 秒 100% 機率冰凍周圍敵人，把每一發都變成 210，342 × 210 ≈ 7.2 萬純無視減傷傷害，對英雄有復仇之手加持時 ×2.0 = 280。相對地技能強度只有 130，龍捲風本體每跳 (60+13)×2.5 = 182，整套約 96% 的輸出來自穿透 —— 這正是重點：這條路線完全不用買 5000 金的耳環。耶夢加得之戒的 −50% 攻擊速度對一個不平砍的法師是零代價，+30 力量還順便補血；精金鶴嘴鎬的採礦加成在防守圖裡是實打實的經濟。注意穿透對建築完全無效（20059 行的 STRUCTURE 判斷），純打建築波次時這套會突然變得很弱。",
+          "Trig_HeroTakeDamage_Actions (war3map.j:20057) reads the attacker's hash key 16 after every damage event and fires an extra ATTACK_TYPE_CHAOS / DAMAGE_TYPE_UNIVERSAL hit that ignores armor, magic reduction and every DefCof modifier; it is x1.5 against a frozen target and a further x1.5 against heroes while you carry the Avenging Hand (lines 20060-20068, check set to 1 by fgfh). Both of this hero's damage spells are made of many small ticks: Entangle runs a separate 0.25 s timer per hit enemy, and Earth Mastery stretches the non-hero root to 10 s = 40 ticks each; the tornado is a fixed 17 ticks, each hitting everything inside 235. Six enemies pinned together is 240 + 102 = 342 independent damage events. This build carries 140 penetration (Jormungandr Ring 50 + Hammer of Ruin 25 + Seraph Spear 20 + Adamantite Pick 20 + Avenging Hand 15 + Bayonet 5 + Mist Spear 5), and the Orb of Frost freezes everything nearby at 100% every 5 s, turning each proc into 210: 342 x 210 is roughly 72k of completely unmitigated damage, or 280 per proc against heroes with the Avenging Hand. Spell power is only 130, so the tornado's own tick is (60+13)*2.5 = 182 and about 96% of the output is penetration - which is the point: this line never needs the 5000-gold earring. The Jormungandr Ring's -50% attack speed costs a non-attacking caster nothing and its +30 STR is free HP; the Adamantite Pick's mining bonus is real economy in a defence map. Note that penetration does nothing to structures (the STRUCTURE check on line 20059), so this build falls off hard against building waves.",
+          "Trig_HeroTakeDamage_Actions (war3map.j:20057) после каждого события урона читает hash key 16 атакующего и наносит дополнительный удар ATTACK_TYPE_CHAOS / DAMAGE_TYPE_UNIVERSAL, игнорирующий броню и любые снижения урона; x1.5 по замороженной цели и ещё x1.5 по героям при наличии Руки возмездия (строки 20060-20068). Оба атакующих умения состоят из множества мелких тиков: опутывание тикает каждые 0.25 с отдельным таймером на каждого врага (40 тиков при подчинении земли), смерч - ровно 17 тиков по всем в радиусе 235. Шесть врагов = 342 отдельных события урона. Здесь 140 пробивания, а Сфера льда замораживает всех рядом каждые 5 с со 100% шансом, превращая каждый прок в 210: около 72 тыс. чистого урона без каких-либо снижений. Сила умений всего 130 - около 96% урона идёт от пробивания, поэтому серьга за 5000 не нужна. Пробивание не работает по строениям."
+        ],
+        "items": [
+          "I01P",
+          "pnvu",
+          "ankh",
+          "fgfh",
+          "I00S",
+          "ocor"
+        ],
+        "bonus": {
+          "s1": "rej4",
+          "s2": "I04C"
+        }
+      },
+      {
+        "id": "druid-treant-budget",
+        "c": "#B08A54",
+        "talent": "A0MB",
+        "n": [
+          "八千金樹人潮",
+          "8k-Gold Treant Tide",
+          "Прилив энтов за 8 тысяч"
+        ],
+        "key": [
+          "樹人數量 = floor((400 + 技能強度)/200)，40 秒存在、50 秒冷卻、只要 75 法力 —— 是全英雄最便宜的「把技能強度換成血肉」",
+          "Treant count = floor((400 + spell power)/200), 40 s duration, 50 s cooldown, 75 mana - the cheapest way in the game to turn spell power into bodies",
+          "Число энтов = floor((400 + сила умений)/200), 40 с, кулдаун 50 с, всего 75 маны"
+        ],
+        "why": [
+          "召喚樹人 A0MC（war3map.j:58118）的迴圈是 dmg = 400 + 技能強度，然後每造一隻樹人扣 200，直到不足 200 為止 —— 也就是 floor((400+SP)/200) 隻，跟說明的「2 + 每 200 技能強度 1 隻」一致。樹人是固定的 e008：600 生命、護甲 4、攻擊 22（+2 骰）、攻速 1.35 秒，本身完全不吃技能強度也不吃裝備，只有數量會變。物件資料：A0MC 冷卻 50 秒、法力 75、樹人存在 40 秒，所以幾乎是常駐 80% 的時間。全套 8100 金：扭曲權杖 175＋傳送權杖 135＋諾伊斗篷 100＋紫水晶戒指 125＋紫水晶 125＋法力鋼 85＋死靈法師之杖 50＋能量符文 75 = 870 技能強度，6 隻樹人＝3600 點可以擋路的血量；扭曲權杖每次施法 +25（最多 15 層，第 15 層會清空並炸掉，所以停在 14 層）疊到 350 之後是 1220 技能強度＝8 隻。死靈法師之杖放在吸收器格位是這套的關鍵細節：它自己每 20 秒再召 2 隻骷髏，不佔格。傳送權杖可以直接閃到隊友身上補血，對一個 700 施法距離的醫者很有用。另外一個取捨要講清楚：Trig_HeroSkills37_Actions 檢查的是 UnitHasItemOfType(u,'I089')，也就是「背包裡還沒用掉的吸收器」，有的話每隻樹人 +5 護甲（4→9，等於減傷再多一截）；但吸收器一旦用掉就變成 s1 格位的加成，兩者只能選一個。這套把 1800 金的吸收器用掉換 +50 技能強度與 2 隻骷髏，因為 6 隻樹人的 +5 護甲換不到同樣的價值。治療部分：這隻的回復吃的是纏繞等級（見下方 bug），所以點纏繞到 5、回復留 1 級，治療一樣是 1025 + 1.25×870 = 2113，但法力成本從 220 降到 100。",
+          "The Summon Treants loop A0MC (war3map.j:58118) sets dmg = 400 + spell power and spawns one treant per 200 until it runs out, i.e. floor((400+SP)/200), matching the tooltip's \"2 + one per 200 spell power\". Treants are plain e008 units: 600 HP, 4 armor, 22 (+2 dice) attack, 1.35 s attack cooldown - they inherit nothing from spell power or your items, only the count changes. Object data: A0MC has a 50 s cooldown and costs 75 mana, treants last 40 s, so uptime is about 80%. The whole 8100-gold set - Scepter of Distortion 175 + Scepter of Teleport 135 + Noi Cloak 100 + Amethyst Ring 125 + Amethyst 125 + Mana Steel 85 + Necromancer Staff 50 + Energy Rune 75 - is 870 spell power = 6 treants = 3600 HP of blockers; the Scepter of Distortion's +25 per cast (15 stacks max, the 15th wipes and detonates, so stop at 14) brings it to 1220 = 8 treants. Putting the Necromancer Staff in the absorber slot is the key detail: it summons 2 more skeletons every 20 s on its own without costing a bag slot. The Scepter of Teleport blinks you onto an ally to heal, which matters for a 700-range healer. One trade-off worth stating: Trig_HeroSkills37_Actions checks UnitHasItemOfType(u,'I089'), i.e. an absorber still sitting unused in your bag, which gives every treant +5 armor (4 -> 9); but once you consume the absorber it becomes the s1 bonus instead, and you cannot have both. This build spends it, because +5 armor on six 600-HP treants is worth less than +50 spell power plus two skeletons. On healing: this hero's Restoration scales off the Entangle rank (see the bug note), so max Entangle and leave Restoration at rank 1 - the heal is still 1025 + 1.25*870 = 2113 but costs 100 mana instead of 220.",
+          "Цикл A0MC (war3map.j:58118): dmg = 400 + сила умений, по 200 за энта, то есть floor((400+SP)/200). Энты - обычные e008: 600 HP, 4 защиты, атака 22 (+2 куба), 1.35 с. Они не наследуют ни силу умений, ни предметы - меняется только количество. Кулдаун A0MC 50 с, 75 маны, энты живут 40 с (аптайм ~80%). Весь сет за 8100 золота даёт 870 силы умений = 6 энтов (3600 HP мяса), а стаки Скипетра искажения (+25 за каст, до 14) поднимают до 1220 = 8 энтов. Посох некроманта в слоте поглотителя сам призывает 2 скелета каждые 20 с. Важный размен: Trig_HeroSkills37_Actions проверяет UnitHasItemOfType(u,'I089') - неиспользованный поглотитель в сумке даёт каждому энту +5 защиты, но использованный поглотитель превращается в бонус слота s1. Одновременно нельзя. Лечение: Восстановление масштабируется от уровня Опутывания (см. баг), поэтому качайте Опутывание, а Восстановление оставьте на 1 уровне - лечение то же (2113), но 100 маны вместо 220."
+        ],
+        "items": [
+          "shea",
+          "mcri",
+          "asbl",
+          "rag1",
+          "tpow",
+          "I01O"
+        ],
+        "bonus": {
+          "s1": "stre",
+          "s2": "I01Q"
+        }
+      }
+    ],
+    "H02Y": [
+      {
+        "id": "bard-ensemble",
+        "c": "#E8B54A",
+        "talent": "A0KB",
+        "n": [
+          "不休的合奏",
+          "Endless Ensemble",
+          "Бесконечный ансамбль"
+        ],
+        "key": [
+          "法力永動把節奏／頓悟／戰歌鎖在 100% 冷卻上線，再疊三層零成本的道具光環",
+          "Infinite mana keeps Rhythm/Insight/War Song on 100% cooldown uptime, plus three zero-cost item auras",
+          "Бесконечная мана держит Ритм/Прозрение/Боевую песнь на 100% отката, плюс три ауры от предметов"
+        ],
+        "why": [
+          "吟遊詩人的瓶頸是法力不是數值。滿級三個增益同時壓冷卻要 130/19 + 170/18 + 50/20 = 18.8 MP/s，加上重金屬 120/11 共 29.7 MP/s（法力值取自 w3a 的 amcs：A0K8=130、A0K3=170、A0KA/A0KB=50、A0K5=120）。四層回復把它蓋掉：生命之冠每秒回 1% 最大法力（war3map.j:29736-29739，無條件、無內冷）；大法師長袍每次施法 +2 MP/s 疊到 5 層、每次施法刷新 10 秒（28753-28770），以本套約 0.26 次/秒的施法頻率等於常駐 +10 MP/s；不朽法冠 +3、法師之戒 +3、女巫帽每次施法 +20（28867-28870，程式裡根本沒有內冷判定）。另外頓悟給的 A0K4 是 ACba 光環（Hab1=11、半徑 400、atar 含 friend+self），站在被 buff 的隊友 400 內吟遊詩人自己也吃 +11 MP/s，10/18 = 56% 上線。星界耳環 +800 技能強度一件就同時越過治癒之歌的 200（60654）與戰歌的 500（60666）兩道門檻，全套 1425。戰歌因此每 20 秒對隊友永久 +2 力量（60663-60668，SetHeroStr permanent=true，死亡不歸零）：10 分鐘 30 次 = +60 力量；頓悟 10 分鐘 33 次 = +33 智力。最後三件是零法力成本的團隊增益：戰鬥軍旗的 S00J 是 SCae 光環（Oae1=Oae2=0.20、半徑 800），友軍 +20% 攻速 +20% 移速，而且原生光環不經過 hash key 36，不吃 SetUnitAttackSpeed 的 400% 上限；不朽法冠的 A0O3 是 ACba +3 MP/s、半徑 800、buff B02O，跟頓悟的 B02B 不同 ID 所以疊加；英勇警鐘的 A0SY 是 Acht，半徑 400、持續 15 秒／冷卻 35 秒 = 43% 上線，友軍 +30% 攻擊力 +6 護甲。",
+          "The Bard is mana-bound, not stat-bound. Holding all three buffs on cooldown at max rank costs 130/19 + 170/18 + 50/20 = 18.8 MP/s, and 29.7 MP/s with Heavy Metal (mana costs from w3a amcs: A0K8=130, A0K3=170, A0KA/A0KB=50, A0K5=120). Four layers cover it: Crown of Life restores 1% max mana per second (war3map.j:29736-29739, unconditional, no ICD); Archmage Robe adds +2 MP/s per cast up to 5 stacks with a 10 s refresh (28753-28770) — at this build's ~0.26 casts/s that is a permanent +10 MP/s; Immortal Mitre +3, Mage Ring +3, Witch Hat +20 per cast (28867-28870 — the code contains no internal cooldown check at all). On top of that Insight's A0K4 is an ACba aura (Hab1=11, radius 400, atar includes friend+self), so standing within 400 of the buffed ally gives the Bard himself +11 MP/s at 10/18 = 56% uptime. Astral Earring's +800 spell power alone clears both thresholds — 200 for Healing Song (60654) and 500 for War Song (60666); the build totals 1425. War Song therefore grants a permanent +2 Strength every 20 s (60663-60668, SetHeroStr with permanent=true, not lost on death): 30 casts per 10 min = +60 STR, while Insight adds +33 INT over the same window. The last three items are zero-mana team buffs: Battle Banner's S00J is an SCae aura (Oae1=Oae2=0.20, radius 800) giving allies +20% attack and move speed — and being a native aura it never touches hash key 36, so it is exempt from SetUnitAttackSpeed's 400% cap; Immortal Mitre's A0O3 is ACba +3 MP/s, radius 800, buff B02O, a different buff ID from Insight's B02B so the two stack; Valour Bell's A0SY is Acht, radius 400, 15 s duration / 35 s cooldown = 43% uptime, +30% attack damage and +6 armor to allies.",
+          "Барда ограничивает мана, а не характеристики. Держать все три бафа на откате стоит 130/19 + 170/18 + 50/20 = 18.8 MP/s, с Хэви металом — 29.7 MP/s (значения amcs из w3a). Четыре источника это перекрывают: Корона жизни возвращает 1% макс. маны в секунду (war3map.j:29736-29739, без условий и без КД); Мантия архимага даёт +2 MP/s за каждое заклинание до 5 стаков с обновлением на 10 сек. (28753-28770) — при ~0.26 каста/сек это постоянные +10 MP/s; Нетленная митра +3, Кольцо мага +3, Шляпа ведьмы +20 за каст (28867-28870 — проверки внутреннего КД в коде вообще нет). Кроме того, аура Прозрения A0K4 — это ACba (Hab1=11, радиус 400, atar включает friend+self), поэтому, стоя в 400 от цели, бард сам получает +11 MP/s при аптайме 10/18 = 56%. Астральная серьга (+800 силы умений) одна перекрывает оба порога — 200 для Целебной песни (60654) и 500 для Боевой песни (60666); всего в сборке 1425. Боевая песнь даёт союзнику постоянные +2 силы каждые 20 сек. (60663-60668, SetHeroStr с permanent=true, не теряется при смерти): 30 кастов за 10 минут = +60 силы, Прозрение за то же время = +33 разума. Последние три предмета — бафы команде без затрат маны: S00J Боевого знамени — аура SCae (Oae1=Oae2=0.20, радиус 800), +20% скорости атаки и передвижения союзникам, причём нативная аура не идёт через hash key 36 и не попадает под лимит 400% функции SetUnitAttackSpeed; A0O3 Нетленной митры — ACba +3 MP/s, радиус 800, бафф B02O, отличный от B02B Прозрения, поэтому складывается; A0SY Набата доблести — Acht, радиус 400, 15 сек. действия / 35 сек. отката = 43% аптайма, +30% урона атаки и +6 брони союзникам."
+        ],
+        "items": [
+          "I00E",
+          "ram2",
+          "kpin",
+          "I088",
+          "thdm",
+          "I0AK"
+        ],
+        "bonus": {
+          "s1": "rump",
+          "s2": "I04F"
+        }
+      },
+      {
+        "id": "bard-shieldwall",
+        "c": "#5A7FA8",
+        "talent": "A0KA",
+        "n": [
+          "護盾牆的伴奏",
+          "Shieldwall Accompaniment",
+          "Аккомпанемент стены щитов"
+        ],
+        "key": [
+          "兩道 buff ID 不同的 +8 護甲光環疊成 +16，換來吟遊詩人站得住、把增益發完",
+          "Two +8 armor auras with different buff IDs stack to +16, so the Bard survives inside the fight to finish his rotation",
+          "Две ауры +8 брони с разными ID баффов складываются в +16 — бард выживает в бою и додаёт бафы"
+        ],
+        "why": [
+          "吟遊詩人的所有輸出都要求他站在隊伍裡：施法距離 600（A0K3/A0K8/A0KA/A0KB 的 aran）、頓悟光環半徑 400、樂感 S00A 半徑 800、道具光環 800／400。他一倒，全部歸零，所以生存就是增益量。兩件護甲光環可以疊：王國宙斯盾的 A0QM 是 ACav、半徑 800、buff B02W；庇護者的 A0HA 也是 ACav 但 buff 是 B01Z。依 BUILD_BRIEF 已驗證的通則「原生光環 buff ID 不同才會疊加」，兩者同時生效 = 全隊 +16 護甲，100% 上線、零法力成本，這比任何主動技能都穩。自身面板：+4300 生命（宙斯盾 2000／庇護者 750／祭司長袍 500／天使頭盔 800／s2 250）、約 38 點自帶護甲再加自己吃到的 16 點光環、50% 魔法傷害減免（祭司長袍，NOSTACK 取最高），續戰靠生命之冠每秒 1% 最大生命、大法師長袍常駐 +10 HP/s、天使頭盔每 5 秒回復已損失生命的 2%。天賦取治癒之歌：技能強度 475 已越過 200 門檻（60654），所以每次施法除了 15% 最大生命的即時治療，還會呼叫 SetUnitLife(目標, 最大生命+25)；那不是原生函式，是 war3map.j:3969 的自製函式，它把「參數 − 目前最大生命」當成差額用 ah00 疊上去，等於永久 +25 最大生命。15 秒冷卻 = 10 分鐘 40 次 = 永久 +1000 最大生命再加 40 次大治療。代價說清楚：技能強度只有 475（第一套是 1425），重金屬每次少 0.5×950 = 475 傷害，安魂曲每跳少 0.1×950 = 95、整輪 320 跳少 30,400；戰歌若改用這套也拿不到 500 門檻的第二點力量。",
+          "Everything the Bard does requires him to stand inside the fight: 600 cast range (aran on A0K3/A0K8/A0KA/A0KB), Insight's 400-radius aura, Musicality S00A at 800, item auras at 800/400. If he dies, all of it stops — so survivability is buff throughput. Two armor auras stack here: Aegis of Kings' A0QM is ACav, radius 800, buff B02W; Protector's A0HA is also ACav but buff B01Z. By the verified rule in BUILD_BRIEF (native auras stack only when buff IDs differ), both apply: +16 armor for the whole team, 100% uptime, zero mana. Personal sheet: +4300 HP (2000/750/500/800 plus 250 from s2), roughly 38 points of own armor plus the 16 from his own auras, and 50% magic damage reduction from the Priest Robe (NOSTACK, highest value wins). Sustain comes from Crown of Life's 1% max HP per second, Archmage Robe's permanent +10 HP/s and Angel Helm's 2% of missing HP every 5 s. The talent is Healing Song: 475 spell power already clears the 200 threshold (60654), so every cast adds, on top of the instant 15% max-HP heal, a call to SetUnitLife(target, maxlife+25). That is not the Blizzard native — it is the custom function at war3map.j:3969 which treats (argument − current max life) as a delta and applies it through the ah00 ability, i.e. a permanent +25 max HP. On a 15 s cooldown that is 40 casts per 10 minutes = a permanent +1000 max HP plus 40 large heals. The cost stated plainly: spell power is only 475 versus 1425 in build one, so Heavy Metal loses 0.5×950 = 475 damage per cast and Doom Requiem loses 0.1×950 = 95 per tick, i.e. 30,400 over a full 320-tick channel; and this build never reaches War Song's 500 threshold.",
+          "Всё, что делает бард, требует находиться внутри боя: дальность каста 600 (aran у A0K3/A0K8/A0KA/A0KB), аура Прозрения радиусом 400, Музыкальность S00A на 800, ауры предметов 800/400. Погибнет — всё встанет, поэтому живучесть здесь и есть объём бафов. Две ауры брони складываются: A0QM Эгиды королей — ACav, радиус 800, бафф B02W; A0HA Заступника — тоже ACav, но бафф B01Z. По проверенному правилу из BUILD_BRIEF нативные ауры складываются, если ID баффов разные: итого +16 брони всей команде, 100% аптайма, без маны. Личные показатели: +4300 здоровья, около 38 собственной брони плюс 16 от своих же аур, 50% снижения магического урона от Мантии жреца (NOSTACK — берётся максимум). Отхил: Корона жизни 1% макс. HP в секунду, Мантия архимага постоянные +10 HP/s, Шлем ангела 2% потерянного здоровья каждые 5 сек. Талант — Целебная песнь: 475 силы умений уже перекрывают порог 200 (60654), поэтому кроме мгновенного лечения на 15% макс. HP каждый каст вызывает SetUnitLife(цель, макс.HP+25) — это не нативная функция, а самописная из war3map.j:3969, которая берёт (аргумент − текущий максимум) как дельту и применяет её через способность ah00, то есть постоянные +25 к максимуму HP. При КД 15 сек. это 40 кастов за 10 минут = постоянные +1000 макс. HP плюс 40 крупных лечений. Цена прямо: силы умений всего 475 против 1425 в первой сборке — Хэви метал теряет 0.5×950 = 475 урона за каст, Роковой реквием теряет 0.1×950 = 95 за такт, то есть 30 400 за все 320 тактов; и порог 500 для Боевой песни здесь не берётся."
+        ],
+        "items": [
+          "modt",
+          "wlsd",
+          "ram2",
+          "kpin",
+          "I071",
+          "I091"
+        ],
+        "bonus": {
+          "s1": "frgd",
+          "s2": "I097"
+        }
+      },
+      {
+        "id": "bard-rocker-solo",
+        "c": "#C6395F",
+        "n": [
+          "搖滾樂手：獨奏",
+          "Rocker: Solo",
+          "Рокер: соло"
+        ],
+        "key": [
+          "搖滾樂手皮膚把四個團隊技能全變成自用，安魂曲的 320 次傷害事件讓穿透變成主要傷害",
+          "The Rocker skin turns all four support skills inward; Requiem's 320 damage events make penetration the main damage source",
+          "Скин Рокера разворачивает все четыре умения на себя; 320 событий урона Реквиема делают пробивание основным уроном"
+        ],
+        "why": [
+          "皮膚 Ocb2 換掉的不只兩個技能。單位物件資料裡 H02Y 的 uabi = S00A,A0K9,A03V,AInv、uhab = A0K8,A0K5,A0K3,A0JW；Ocb2 的 uabi = S00A,A0WE,A03V,AInv、uhab = A0WH,A0K5,A0WG,A0JW —— 額外技能書從 A0K9 換成 A0WE，天賦清單也從 A0JV/A0KA/A0KB/S00B 變成 A0JV/A0WF/A0WD/S00B，也就是治癒之歌與戰歌一併換成對自己的版本（卷宗沒寫這一段）。這套取 A0WD 戰歌（對自己）。滾雪球的算式：A0WG（60700-60709）SetHeroInt(自己,+1,true)、18 秒一次沒有上限；A0WD（60669-60674）SetHeroStr(自己,+1,true)，技能強度 ≥500 再加一點。本套技能強度 855（復仇之手 30＋熾天使長矛 100＋無限手套 150＋純淨紫水晶 400＋生命之冠 175），30 分鐘不中斷 = 100 次頓悟 +100 智力、90 次戰歌 +180 力量，兩者都寫進 base、死亡不歸零。守護者護肩再把智力算第二次：24735-24742 取 Loop = GetHeroInt(u,false)，而這張地圖所有道具屬性都是用 SetHeroX(...,true) 寫進 base，所以那就是全部智力，並且每 0.5 秒由 StartPercentTimer 重算一次，跟著頓悟一起漲。安魂曲的 HeroR46_dmg（60744-60781）每 0.5 秒對 2000 內隨機 8 名敵人各打一次，20.1 秒 = 40 跳 × 8 = 320 次 UnitDamageTarget，傷害 20 + 0.10×技能強度 + 0.30×(力+敏+智)。以 30 分鐘後的約 895 全屬性計算是 374／次 ≈ 119,700 魔法傷害。真正的重點是穿透：每一次傷害事件之後都會再打一段等於穿透值的 CHAOS/UNIVERSAL 傷害（20073），不受護甲也不受任何減傷影響。本套 50 穿透 × 320 = 16,000；而復仇之手是全地圖唯一把 check 設成 1 的道具（19996），check==1 時對英雄的穿透 ×1.5（20064）、對冰凍英雄 ×2.0（20062），所以打英雄是 24,000～32,000。重金屬同時是 0.5×855 + 0.6×895 ≈ 965，範圍 305 沒有目標數上限，冷卻 11 秒、對英雄暈眩 4 秒 = 36% 常駐暈眩。",
+          "The Ocb2 skin swaps more than two abilities. In the unit data H02Y has uabi = S00A,A0K9,A03V,AInv and uhab = A0K8,A0K5,A0K3,A0JW; Ocb2 has uabi = S00A,A0WE,A03V,AInv and uhab = A0WH,A0K5,A0WG,A0JW — the extra-skills spellbook changes from A0K9 to A0WE, and its talent list changes from A0JV/A0KA/A0KB/S00B to A0JV/A0WF/A0WD/S00B, i.e. Healing Song and War Song also become self-cast versions (the dossier does not mention this). This build takes A0WD, War Song (self). The snowball: A0WG (60700-60709) calls SetHeroInt(self, +1, true) every 18 s with no cap; A0WD (60669-60674) calls SetHeroStr(self, +1, true) and adds a second point at 500+ spell power. This build has 855 spell power (30 + 100 + 150 + 400 + 175), so 30 uninterrupted minutes give 100 Insight casts for +100 INT and 90 War Song casts for +180 STR, both written to the base value and kept through death. Guardian Pauldrons then counts Intelligence a second time: 24735-24742 takes Loop = GetHeroInt(u,false), and since every item stat in this map is written into the base with SetHeroX(...,true), that value is the full Intelligence — recomputed every 0.5 s by StartPercentTimer, so it tracks Insight upward. Requiem's HeroR46_dmg (60744-60781) hits 8 random enemies within 2000 every 0.5 s: 20.1 s = 40 ticks × 8 = 320 separate UnitDamageTarget calls of 20 + 0.10×spell power + 0.30×(STR+AGI+INT). At roughly 895 total attributes after 30 minutes that is 374 per hit, about 119,700 magic damage. The real point is penetration: after every damage event the engine fires an extra CHAOS/UNIVERSAL hit equal to the attacker's penetration (20073), ignoring armor and every damage reduction. 50 penetration × 320 events = 16,000; and Hand of Vengeance is the only item in the map that sets check to 1 (19996), which multiplies penetration against heroes by 1.5 (20064) and against frozen heroes by 2.0 (20062) — so 24,000 to 32,000 against heroes. Heavy Metal meanwhile deals 0.5×855 + 0.6×895 ≈ 965 to every enemy within 305 with no target cap, on an 11 s cooldown with a 4 s hero stun: 36% permanent stun uptime.",
+          "Скин Ocb2 меняет не два умения, а больше. В данных юнита у H02Y uabi = S00A,A0K9,A03V,AInv и uhab = A0K8,A0K5,A0K3,A0JW; у Ocb2 uabi = S00A,A0WE,A03V,AInv и uhab = A0WH,A0K5,A0WG,A0JW — книга дополнительных умений меняется с A0K9 на A0WE, а её список талантов — с A0JV/A0KA/A0KB/S00B на A0JV/A0WF/A0WD/S00B, то есть Целебная и Боевая песни тоже становятся «на себя» (в досье этого нет). Берём A0WD, Боевую песнь (на себя). Снежный ком: A0WG (60700-60709) вызывает SetHeroInt(себе, +1, true) раз в 18 сек. без потолка; A0WD (60669-60674) — SetHeroStr(себе, +1, true) и вторую единицу при силе умений от 500. В сборке 855 силы умений (30 + 100 + 150 + 400 + 175), поэтому 30 минут без перерыва дают 100 кастов Прозрения (+100 разума) и 90 кастов Боевой песни (+180 силы), причём всё пишется в базовое значение и не теряется при смерти. Наплечники стража считают разум второй раз: 24735-24742 берут Loop = GetHeroInt(u,false), а все предметные характеристики в этой карте пишутся в базу через SetHeroX(...,true) — значит это полный разум, и StartPercentTimer пересчитывает его каждые 0.5 сек. HeroR46_dmg Реквиема (60744-60781) каждые 0.5 сек. бьёт 8 случайных врагов в радиусе 2000: 20.1 сек. = 40 тактов × 8 = 320 отдельных вызовов UnitDamageTarget по 20 + 0.10×сила умений + 0.30×(сила+ловкость+разум). При ~895 суммарных характеристик это 374 за удар, около 119 700 магического урона. Главное же — пробивание: после каждого события урона движок наносит дополнительный удар CHAOS/UNIVERSAL, равный пробиванию атакующего (20073), в обход брони и любых снижений. 50 пробивания × 320 = 16 000; а Рука возмездия — единственный предмет в карте, который ставит check = 1 (19996), из-за чего пробивание по героям умножается на 1.5 (20064), а по замороженным героям — на 2.0 (20062): 24 000–32 000 по героям. Хэви метал при этом наносит 0.5×855 + 0.6×895 ≈ 965 каждому врагу в радиусе 305 без лимита целей, КД 11 сек., оглушение героев 4 сек. = 36% постоянного оглушения."
+        ],
+        "items": [
+          "I0A8",
+          "fgfh",
+          "ankh",
+          "lgdh",
+          "sor5",
+          "ram2"
+        ],
+        "bonus": {
+          "s1": "rej4",
+          "s2": "I01K"
+        }
+      },
+      {
+        "id": "bard-busker",
+        "c": "#5B9E6A",
+        "talent": "A0KA",
+        "n": [
+          "街頭賣藝",
+          "Street Busker",
+          "Уличный музыкант"
+        ],
+        "key": [
+          "5,900 金：裝備技能威力堆到 1.50，每次施法回 180 法力，技能強度剛好 260 過門檻",
+          "5,900 gold: item skill power at 1.50, 180 mana back per cast, spell power 260 just clears the threshold",
+          "5900 золота: сила предметных умений ×1.50, 180 маны за каст, 260 силы умений — порог взят"
+        ],
+        "why": [
+          "這套只解決一件事：吟遊詩人中期唯一的瓶頸——法力。Trig_UseSkillsEndcast_Actions 第 28824 行把係數定成 cof = LoadReal(hash,Id,18) + 1，也就是 1 + 裝備技能威力，而所有「使用技能回復法力」的道具都乘上它。法力鋼 +0.35（24331-24334）加附魔護符 +0.15（23926-23931）把 cof 頂到 1.50。回復的三件：術士之褲 60（28988-28992）、侍僧之褲 40（28983-28987）、女巫帽 20（28867-28870）。前兩件雖然呼叫了 StartModCooldown，但整段程式沒有任何地方回頭檢查那個冷卻（這是 BUILD_BRIEF 列的 9 個內冷失效道具中的兩件），女巫帽則連冷卻呼叫都沒寫。所以每一次施法固定回 (60+40+20)×1.50 = 180 點法力。施法頻率：節奏 19 秒＋頓悟 18 秒＋治癒之歌 15 秒＋重金屬 11 秒 = 0.266 次/秒，等於 47.8 MP/s，而這四招全開的帳單只有 6.84+9.44+3.33+10.91 = 30.5 MP/s，還有 17 MP/s 的餘裕。技能強度 125（紫水晶戒指）+85（法力鋼）+50（術士之褲）= 260，剛好越過治癒之歌的 200 門檻（60654），所以每 15 秒就給隊友 15% 最大生命的治療再加永久 +25 最大生命上限。順帶的兩個好處：戰鬥軍旗只要 1000 金就有半徑 800 的友軍 +20% 攻速／+20% 移速原生光環（S00J，Oae1=Oae2=0.20），而且原生光環不佔 hash key 36、不吃 400% 上限；法力催化劑每次施法給 20×cof = 30 點護甲、持續 3 秒且可疊加（28960-28967），以 0.266 次/秒等於幾乎常駐一層、爆發時兩到三層。全套含 s1／s2 共 5,900 金，最貴的一件 1000 金。",
+          "This build solves exactly one thing: the Bard's only mid-game bottleneck, mana. Line 28824 of Trig_UseSkillsEndcast_Actions defines cof = LoadReal(hash,Id,18) + 1, i.e. 1 + item skill power, and every on-cast mana refund is multiplied by it. Mana Steel's +0.35 (24331-24334) plus Enchanted Amulet's +0.15 (23926-23931) push cof to 1.50. The three refunds are Warlock Pants 60 (28988-28992), Acolyte Pants 40 (28983-28987) and Witch Hat 20 (28867-28870). The first two do call StartModCooldown, but nothing anywhere in the script ever reads that cooldown back (two of the nine broken-ICD items listed in BUILD_BRIEF), and the Witch Hat does not even make the call. So every single cast returns (60+40+20)×1.50 = 180 mana. Cast rate: Rhythm 19 s + Insight 18 s + Healing Song 15 s + Heavy Metal 11 s = 0.266 casts/s, which is 47.8 MP/s against a full-rotation bill of only 6.84+9.44+3.33+10.91 = 30.5 MP/s — a 17 MP/s surplus. Spell power is 125 (Amethyst Ring) + 85 (Mana Steel) + 50 (Warlock Pants) = 260, just past Healing Song's 200 threshold (60654), so every 15 s an ally gets a 15% max-HP heal plus a permanent +25 max HP. Two bonuses come along: Battle Standard costs 1000 gold for a radius-800 native aura giving allies +20% attack and move speed (S00J, Oae1=Oae2=0.20), and native auras bypass hash key 36 entirely so they are exempt from the 400% cap; and Mana Catalyst grants 20×cof = 30 armor for 3 s per cast, stacking (28960-28967) — at 0.266 casts/s that is essentially one permanent stack and two or three during a burst. The whole set including s1/s2 is 5,900 gold, with no single item above 1000.",
+          "Сборка решает ровно одну задачу — единственное узкое место барда в середине игры: ману. Строка 28824 в Trig_UseSkillsEndcast_Actions задаёт cof = LoadReal(hash,Id,18) + 1, то есть 1 + сила предметных умений, и на него умножаются все возвраты маны за каст. Мана-сталь +0.35 (24331-24334) и Зачарованный амулет +0.15 (23926-23931) поднимают cof до 1.50. Три источника возврата: Штаны чернокнижника 60 (28988-28992), Штаны послушника 40 (28983-28987), Шляпа ведьмы 20 (28867-28870). Первые два вызывают StartModCooldown, но нигде в скрипте этот откат не проверяется (два из девяти предметов со сломанным внутренним КД из BUILD_BRIEF), а Шляпа ведьмы вызова вообще не делает. Итог: каждый каст возвращает (60+40+20)×1.50 = 180 маны. Частота кастов: Ритм 19 + Прозрение 18 + Целебная песнь 15 + Хэви метал 11 = 0.266 каста/сек, то есть 47.8 MP/s против счёта в 6.84+9.44+3.33+10.91 = 30.5 MP/s — запас 17 MP/s. Сила умений 125 + 85 + 50 = 260, порог Целебной песни в 200 взят (60654): каждые 15 сек. союзник получает лечение на 15% макс. HP и постоянные +25 к максимуму HP. Два бонуса сверху: Боевое знамя за 1000 золота даёт нативную ауру радиусом 800 (+20% скорости атаки и передвижения союзникам, S00J, Oae1=Oae2=0.20), а нативные ауры не идут через hash key 36 и не попадают под лимит 400%; Катализатор маны даёт 20×cof = 30 брони на 3 сек. за каст со стаком (28960-28967) — при 0.266 каста/сек это фактически постоянный один стак и два-три в бурсте. Вся сборка с s1/s2 — 5900 золота, ни один предмет дороже 1000."
+        ],
+        "items": [
+          "rag1",
+          "I01O",
+          "clfm",
+          "hcun",
+          "thdm",
+          "I06W"
+        ],
+        "bonus": {
+          "s1": "oli2",
+          "s2": "I04F"
+        }
+      }
+    ],
+    "H03Z": [
+      {
+        "id": "royal-manaflood",
+        "c": "#6C5CE7",
+        "n": [
+          "法力洪流",
+          "Mana Flood",
+          "Поток маны"
+        ],
+        "key": [
+          "火花每跳吃 10% 最大法力、8 跳＝80%，魔法控制再免費續 8 跳；而英雄的最大法力＝智力×15，所以這隻堆智力的效率大約是堆技能強度的 20 倍。",
+          "Sparks deals 10% of max mana per tick for 8 ticks, and Magic Control restarts it for 8 more. With 15 mana per intelligence, INT is worth roughly 20x spell power on this hero.",
+          "«Искры» бьют на 10% макс. маны за тик (8 тиков), «Контроль магии» продлевает ещё на 8. 1 разум = 15 маны, поэтому разум здесь примерно в 20 раз ценнее силы умений."
+        ],
+        "why": [
+          "`Hero42W_Dmg`（war3map.j:59240）每跳傷害是 `10+10×等級 + 最大法力×0.10 + 技能強度×0.06`，8 跳等於一次火花＝480 + 0.8×最大法力 + 0.48×技能強度；`Trig_HeroSkills42_Actions`:59470 的魔法控制會對帶有 A024 標記的目標重建一個 8 跳計時器，等於免費再打一次。所以最大法力的整輪係數是 1.6，技能強度整輪（壓制 0.48 ＋ 火花 0.48×2 ＋ 強化充能 0.40）只有 1.84 —— 但 1 點智力就是 15 點最大法力，也就是 12 點火花係數，再疊上強化充能的 0.9×智力（59285）、能量噴發的 0.25×智力／彈體（59229），以及壓制減益的放大倍率 `r = 0.10+0.05×等級+智力×0.0015`（59203），一點智力約等於 20 點技能強度。這套：智力 468（藍寶石耳環 100＋純淨藍寶石 50＋水晶項鍊 40＋規律女神之戒 30，再吃優雅吊墜 +33% 屬性），最大法力 8,770，r＝1.052（×2.05）。先用壓制把減益掛上，一發火花對 180 範圍內每個敵人打 27,592，魔法控制續一次共 55,184；能量噴發是 `25+最大法力×0.01`＝113 顆彈體，每顆 167 點。蔑視者之戒 +0.30、水晶項鍊 +0.11、規律女神之戒 +0.09、儀式聖杯 +0.11、儀式之書 +0.15 全部寫進同一個 hash key 6（19877），DefCof 疊到 1.76，而 19947 行超過 1 的部分是以 CHAOS/UNIVERSAL 補打的，完全不吃護甲類型表。",
+          "`Hero42W_Dmg` (war3map.j:59240) ticks for `10+10*level + maxMana*0.10 + spellPower*0.06`; 8 ticks make one Sparks = 480 + 0.8*maxMana + 0.48*spellPower, and Magic Control (59470) rebuilds an 8-tick timer on any target carrying the A024 mark, i.e. a free second cast. So max mana carries a 1.6 coefficient over a rotation while spell power only carries 1.84 (Suppression 0.48 + Sparks 0.48x2 + Charge 0.40) - but 1 INT = 15 max mana = 12 points of Sparks coefficient, plus Charge's 0.9*INT, Burst's 0.25*INT per projectile, and the Suppression debuff multiplier `r = 0.10+0.05*level+INT*0.0015` (59203). One INT is worth about 20 spell power. This build reaches 468 INT (Sapphire Earring 100 + Pure Sapphire 50 + Crystal Necklace 40 + Ring of Themis 30, then +33% from the Elegant Pendant), 8,770 max mana, r = 1.052 (x2.05). Land Suppression first, then one Sparks hits every enemy within 180 for 27,592 - 55,184 once Magic Control refreshes it. Burst fires `25 + maxMana*0.01` = 113 projectiles at 167 each. Ring of the Scorner +0.30, Crystal Necklace +0.11, Ring of Themis +0.09, Ritual Chalice +0.11 and Ritual Book +0.15 all write into the same hash key 6 (19877): DefCof 1.76, and line 19947 delivers everything above 1.0 as CHAOS/UNIVERSAL, ignoring the armour-type table.",
+          "`Hero42W_Dmg` (59240): урон за тик = `10+10*ур. + макс.мана*0.10 + сила умений*0.06`, 8 тиков = 480 + 0.8*макс.маны + 0.48*силы умений. «Контроль магии» (59470) создаёт новый таймер на 8 тиков — фактически второй бесплатный каст. Коэффициент макс. маны за ротацию — 1.6, силы умений — только 1.84. Но 1 разум = 15 макс. маны, плюс 0.9*разум в «Усиленном заряде», 0.25*разум на снаряд в «Выбросе» и множитель дебаффа `r = 0.10+0.05*ур.+разум*0.0015` (59203). Итог: 1 разум ≈ 20 силы умений. Здесь 468 разума, 8770 маны, r = 1.052. Одни «Искры» — 27 592 по всем врагам в радиусе 180, с продлением — 55 184. «Выброс» даёт 113 снарядов по 167. Ключ 6 (19877) суммирует +0.30/+0.11/+0.09/+0.11/+0.15 → DefCof 1.76, а излишек свыше 1.0 наносится как CHAOS/UNIVERSAL и игнорирует броню."
+        ],
+        "items": [
+          "I00Q",
+          "sor3",
+          "tfar",
+          "mnsf",
+          "I0AN",
+          "lhst"
+        ],
+        "bonus": {
+          "s1": "dust",
+          "s2": "I04D"
+        }
+      },
+      {
+        "id": "royal-aegis",
+        "c": "#2E8B7A",
+        "n": [
+          "智慧化甲",
+          "Wisdom Made Armour",
+          "Разум как броня"
+        ],
+        "key": [
+          "力量成長是 None、25 級只有 14 點 —— 守護者護肩把整份智力複製成力量（22260 行 `Loop=int`），一件裝備把生命值從四百多變成九千多，代價是輸出 −51%。",
+          "Strength growth is None: 14 STR at level 25. Guardian's Pauldrons copies the whole INT pool into STR (line 22260, `Loop=int`), turning ~450 HP into ~9,000 - at the cost of 51% of the damage.",
+          "Прирост силы — None, на 25 уровне всего 14. «Наплечники хранителя» копируют весь разум в силу (22260, `Loop=int`): ~450 ОЗ превращаются в ~9 000 ценой −51% урона."
+        ],
+        "why": [
+          "皇家女術士的力量每級成長是 None，而 `war3mapMisc.txt` 的 `MaxHeroLevel=25`，所以她 25 級的裸力量就是 14 點 —— 生命值只有四百多，是全遊戲最脆的法師之一。守護者護肩 `I0A8` 在 `OnEquip_Multiplier`（22260）寫的是 `set Loop=int` 後 `SetHeroStr(u,str+Loop,true)`，21974 行的百分比計時器還會持續用當下智力重算，所以它是「全額、且會跟著智力成長」的轉換：這套智力 286 → 力量 14+18+286＝318 ≈ +7,950 生命，另加 +10 護甲與 hash key 4 +0.08 的非狀態減傷。狂信者頭盔再補 +1,000 生命／+10 護甲／50% 魔法減免，生命之冠每秒回 1% 生命與法力（5,840 法力＝58 法力/秒，對上整輪約 640 法力的消耗等於永不斷法），秘密寶盒的魔法師之帽每次施法回 50 生命，預言者寶珠每次施法回 3% 生命。代價要講清楚：乘算器欄被護肩佔掉就拿不到優雅吊墜的 +33% 屬性，智力 468→286、最大法力 8,770→5,840、r 1.052→0.779、DefCof 1.76→1.41，一次火花從 27,592 掉到 13,495，能量噴發從 113 顆彈體掉到 83 顆 —— **輸出約 −51%，有效生命約 ×20（450 → 9,000 以上）**。這套的定位是「壓制場站得住」：壓制要在 275 範圍裡撐滿 8 秒（16 跳）才會把減益發滿，站不住就等於整套連段廢掉。",
+          "Her STR growth is None and `war3mapMisc.txt` caps heroes at level 25, so she sits on 14 base STR - roughly 450 HP, one of the squishiest casters in the map. Guardian's Pauldrons (`I0A8`, OnEquip_Multiplier line 22260) runs `set Loop=int` then `SetHeroStr(u,str+Loop,true)`, and the percent timer at 21974 keeps recomputing it from live INT, so the conversion is full and self-scaling: 286 INT becomes 14+18+286 = 318 STR, about +7,950 HP, plus 10 armour and hash key 4 +0.08 non-status mitigation. Fanatic's Helm adds 1,000 HP / 10 armour / 50% magic reduction; Crown of Life restores 1% HP and mana per second (58 mana/s against a ~640-mana rotation, so she never runs dry); the Mage's Hat from the secret chest heals 50 per cast and the Prophet's Orb 3% per cast. The cost is explicit: the pauldrons take the multiplier slot, so no +33% attributes from the Elegant Pendant. INT 468 -> 286, max mana 8,770 -> 5,840, r 1.052 -> 0.779, DefCof 1.76 -> 1.41, Sparks 27,592 -> 13,495, Burst 113 -> 83 projectiles: about 51% less damage for roughly 20x the effective HP (450 -> 9,000+). The point is being able to stand inside your own Suppression field for the full 8 seconds (16 ticks) so the debuff actually gets applied - if you get pushed out, the whole combo collapses.",
+          "Прирост силы — None, а `MaxHeroLevel=25`, поэтому на 25 уровне у неё 14 силы и около 450 ОЗ. «Наплечники хранителя» (22260) выполняют `set Loop=int` и `SetHeroStr(...)`, а таймер на 21974 постоянно пересчитывает значение по текущему разуму: 292 разума = +292 силы ≈ +7 300 ОЗ, плюс 10 брони и ключ 4 +0.08. «Шлем фанатика» даёт ещё 1 000 ОЗ, 10 брони и 50% маг. защиты, «Корона жизни» — 1% ОЗ и маны в секунду (58 маны/с при расходе ~640 за ротацию). Цена: слот множителя занят, «Изящный кулон» (+33% характеристик) недоступен. Разум 468→286, мана 8 770→5 840, r 1.052→0.779, DefCof 1.76→1.41, «Искры» 27 592→13 495, «Выброс» 113→83 снаряда — около −51% урона за ~20-кратный запас прочности (450 → 9 000+)."
+        ],
+        "items": [
+          "I00Q",
+          "I0A8",
+          "mnsf",
+          "ram2",
+          "I06C",
+          "I0AN"
+        ],
+        "bonus": {
+          "s1": "fgun",
+          "s2": "I084"
+        }
+      },
+      {
+        "id": "royal-frostpierce",
+        "c": "#4FB3D9",
+        "n": [
+          "穿刺霜獄",
+          "Piercing Frost",
+          "Пронзающий мороз"
+        ],
+        "key": [
+          "穿透是「每一次傷害事件之後再補一段不可減免的傷害」，而能量噴發一次製造 73 顆彈體、每顆對範圍內每個敵人各算一次事件；寒冰之球把目標凍住後，20060 行讓穿透 ×1.5。",
+          "Penetration fires an unmitigated extra hit after every single damage event - and Burst creates 73 projectiles, each counting once per enemy in its blast. Orb of Ice keeps targets frozen, and line 20060 multiplies penetration by 1.5 on frozen units.",
+          "Пробивание добавляет неснижаемый удар после каждого события урона, а «Выброс» создаёт 73 снаряда, и каждый считается отдельно по каждому врагу в радиусе. «Сфера льда» держит цели замороженными, а строка 20060 умножает пробивание на 1.5."
+        ],
+        "why": [
+          "`Trig_HeroTakeDamage_Actions` 從 20054 行起讀攻擊者的 hash key 16，對**每一次**傷害事件額外補一段 `ATTACK_TYPE_CHAOS / DAMAGE_TYPE_UNIVERSAL`，不吃護甲、不吃 DefCof、不吃任何減傷；20060 行如果目標身上有 `B02V`（冰凍）就 ×1.5。皇家女術士是全地圖最會製造傷害事件的英雄：壓制 16 跳（59196，0.5 秒一跳、275 範圍內每個敵人各一次）、火花 8 跳＋魔法控制再 8 跳、強化充能 1 次，而能量噴發是 `25+最大法力×0.01` 顆彈體（59431），這套 4,775 法力＝73 顆，每顆在 175 範圍炸開時對每個敵人各觸發一次事件（ProjectileMove 的 `UnitDamageTarget`，2988 行）。耶夢加得之戒 50 ＋ 精金鶴嘴鎬 20 ＋ 熾天使長矛 20 ＋ 刺刀 5 ＋ 迷霧之矛 5 ＝ 100 穿透，冰凍後每事件 150。單體一輪 33 個事件就是 4,950 點完全不可減免的傷害（技能本身的火花這套是 8,597，所以穿透大約再加半成到六成）；能量噴發若每顆平均炸到 3 隻，就是 219 次事件、約 32,850。寒冰之球每 5 秒以 100% 機率冰凍附近敵人，不用普攻就能維持 ×1.5，順便吃 `FrostMoveSpeedDecrease=0.25` 的減速。兩個限制要記住：20057 的 `IsUnitType(d,UNIT_TYPE_STRUCTURE)!=true` 讓穿透對建築完全無效，而狀態跳傷外面包了 `DisableTrigger(gg_trg_HeroTakeDamage)`，所以能量噴發附帶的點燃**不帶穿透**。",
+          "From line 20054 `Trig_HeroTakeDamage_Actions` reads the attacker's hash key 16 and appends an extra `ATTACK_TYPE_CHAOS / DAMAGE_TYPE_UNIVERSAL` hit after every single damage event - no armour, no DefCof, no mitigation of any kind - and line 20060 multiplies it by 1.5 if the victim carries `B02V` (frozen). This hero generates more damage events than anyone: Suppression ticks 16 times (59196, every 0.5s, once per enemy in 275), Sparks 8 + 8 from Magic Control, Charge once, and Burst spawns `25 + maxMana*0.01` projectiles (59431) - 73 here on 4,775 mana - each of which calls `UnitDamageTarget` once per enemy in its 175 blast (ProjectileMove, line 2988). Jormungandr's Ring 50 + Adamantite Pickaxe 20 + Seraphim Spear 20 + Bayonet 5 + Mist Spear 5 = 100 penetration, 150 per event against frozen targets. A single-target rotation is 33 events = 4,950 fully unmitigated damage (Sparks itself lands 8,597 here, so penetration adds roughly 50-60% on top); a Burst that averages 3 enemies per projectile is 219 events, roughly 32,850. Orb of Ice freezes nearby enemies at 100% every 5 seconds with no attack required, keeping the x1.5 live and stacking `FrostMoveSpeedDecrease=0.25`. Two caveats: line 20057 skips structures entirely, and status ticks run inside `DisableTrigger(gg_trg_HeroTakeDamage)`, so the burn Burst applies carries no penetration.",
+          "`Trig_HeroTakeDamage_Actions` (20054) читает ключ 16 атакующего и после **каждого** события урона добавляет удар `ATTACK_TYPE_CHAOS / DAMAGE_TYPE_UNIVERSAL` — без брони и без снижения; строка 20060 даёт x1.5 по замороженным (`B02V`). Эта героиня создаёт больше всего событий урона: «Подавление» 16 тиков по каждому врагу в радиусе 275, «Искры» 8+8, «Заряд» 1, а «Выброс» — `25 + макс.мана*0.01` снарядов (здесь 73), и каждый взрыв считается отдельно по каждому врагу в радиусе 175. 50+20+20+5+5 = 100 пробивания, 150 по замороженным. Ротация по одной цели — 33 события = 4 950 неснижаемого урона; «Выброс» при 3 целях на снаряд — 219 событий, около 32 850. Важно: по строениям пробивание не работает (20057), а горение идёт под `DisableTrigger`, поэтому пробивания не даёт."
+        ],
+        "items": [
+          "I00Q",
+          "mnsf",
+          "I01P",
+          "ocor",
+          "ankh",
+          "I00S"
+        ],
+        "bonus": {
+          "s1": "rej4",
+          "s2": "I04C"
+        }
+      },
+      {
+        "id": "royal-apprentice",
+        "c": "#C9903A",
+        "n": [
+          "宮廷學徒",
+          "Court Apprentice",
+          "Придворная ученица"
+        ],
+        "key": [
+          "6,100 金的六件套：朱砂護符 +25% 屬性把智力推到 221，風暴侍僧手套只要 900 金就是無條件 +20% 傷害（它檢查的是當前法力 ≥1000，這隻永遠成立）。",
+          "Six items for 6,100 gold. Cinnabar Amulet's +25% attributes pushes INT to 221, and the 900-gold Storm Acolyte Gloves are an unconditional +20% damage - they check current mana >= 1000, which this hero never drops below.",
+          "Шесть предметов за 6 100 золота. «Киноварный амулет» (+25% характеристик) поднимает разум до 221, а «Перчатки послушника бури» за 900 золота дают безусловные +20% урона: проверяется текущая мана >= 1000, что у неё выполняется всегда."
+        ],
+        "why": [
+          "平價版把錢全押在「智力 → 最大法力 → 火花」這條主線上，完全不買技能強度大件。朱砂護符 1,500 金 +25% 全屬性、萬用戒指 900 金 +20 主屬性、完美智力戒指 950 金 +20 智力，把智力拉到 221（＝3,315 法力），再加咒術師項鍊 +300、法力催化劑 +500、檢察官的斗篷 +150，最大法力 4,315。結果：r＝0.681（×1.68）、DefCof 1.20，一次火花 8,021、魔法控制續一次共 16,042，能量噴發 `25+4,315×0.01`＝68 顆彈體、每顆 105 點。真正的便宜貨是風暴侍僧手套：19958 行寫的是 `if LoadInteger(hash,Id,'I099')>=1 then / if mana2>=1000.00 then set DefCof=DefCof+0.20`，而 `mana2` 是 `GetUnitState(a,UNIT_STATE_MANA)` —— 攻擊者的**當前**法力，不是上限。她的池子永遠在 4,000 以上，所以這 900 金等於無條件 +20% 傷害。法力催化劑另外給「使用技能 +20 護甲、持續 3 秒、可疊加」，一輪四個技能能疊到 60–80 護甲撐過波次；沼澤法杖每次施法回 5 生命 5 法力，補這套完全沒有防具的問題。主裝 6,100 金，含吸收器約 8,200 金。升級路線：先把咒術師項鍊換成蔑視者之戒（+750 法力、+30% 對非英雄傷害），再把朱砂護符換成優雅吊墜。",
+          "The budget list spends everything on the INT -> max mana -> Sparks chain and buys no big spell-power pieces at all. Cinnabar Amulet (1,500) gives +25% attributes, Universal Ring (900) +20 main stat, Perfect Ring of Intelligence (950) +20 INT, taking her to 221 INT = 3,315 mana; Sorcerer's Necklace +300, Mana Catalyst +500 and the Inspector's Cloak +150 bring max mana to 4,315. That yields r = 0.681 (x1.68) and DefCof 1.20: Sparks for 8,021 (16,042 with the Magic Control refresh) and `25 + 4,315*0.01` = 68 Burst projectiles at 105 each. The real bargain is the Storm Acolyte Gloves: line 19958 reads `if mana2>=1000.00 then set DefCof=DefCof+0.20`, and `mana2` is `GetUnitState(a,UNIT_STATE_MANA)` - the attacker's *current* mana, not the maximum. Her pool never drops near 4,000, so 900 gold buys an unconditional +20% damage. Mana Catalyst also grants +20 armour for 3 seconds per cast and it stacks, so a four-spell rotation holds 60-80 armour through a wave, and the Swamp Staff returns 5 HP / 5 mana per cast, which is this build's only defence. 6,100 gold for the six items, about 8,200 including the absorber. Upgrade path: swap the Sorcerer's Necklace for the Ring of the Scorner (+750 mana, +30% vs non-heroes), then the Cinnabar Amulet for the Elegant Pendant.",
+          "Бюджетный вариант вкладывается только в цепочку «разум → макс. мана → Искры». «Киноварный амулет» (1 500) +25% характеристик, «Универсальное кольцо» (900) +20 к основной, «Совершенное кольцо разума» (950) +20 разума — итого 221 разума (3 315 маны); плюс ожерелье +300, катализатор +500, плащ +150 = 4 315 маны. r = 0.681, DefCof 1.20, «Искры» 8 021 (16 042 с продлением), «Выброс» — 68 снарядов по 105. Главная находка — «Перчатки послушника бури»: строка 19958, `if mana2>=1000.00 then DefCof=DefCof+0.20`, где `mana2` — **текущая** мана атакующего. У неё она всегда выше 4 000, значит 900 золота = безусловные +20% урона. «Катализатор маны» даёт +20 брони на 3 с за каст со стаком (60–80 брони за ротацию), «Болотный посох» возвращает 5 ОЗ и 5 маны за каст. Итого 6 100 золота, с поглотителем — около 8 200."
+        ],
+        "items": [
+          "ckng",
+          "I07J",
+          "rde1",
+          "I099",
+          "rwiz",
+          "I06W"
+        ],
+        "bonus": {
+          "s1": "jdrn",
+          "s2": "I08W"
+        }
+      }
     ]
   }
 }

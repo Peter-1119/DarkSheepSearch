@@ -16,18 +16,27 @@
 - 皮膚換掉哪些技能
 - 這隻碰到的 hash key 及其意義
 
-再加一份 **`data/dossier/_items.md`** —— 取得範圍內的 369 件道具，
-含屬性排行榜（「技能強度最高的是誰」這種問題直接查）與硬性規則。
+另外兩份共用附錄：
+
+- **`data/dossier/_items.md`** —— 取得範圍內的 369 件道具，含屬性排行榜
+  （「技能強度最高的是誰」直接查）與硬性規則。
+- **`data/dossier/_engine.md`** —— 所有英雄共用的東西：狀態怎麼被施加
+  （**每個狀態的機率修正鏈**）與結算、投射物命中時附帶什麼、傷害管線怎麼組
+  DefCof、以及 `MaxHeroLevel=25`、屬性換算、護甲類型倍率表這些全域常數。
+  **算裸屬性或判斷「這隻是不是狀態系」之前先看這一份。**
 
 ```bash
 cd "D:/Notebook Program Scripts/Python_Scripts/DarkSheep"
-# 你的英雄卷宗（約 20 KB）
 cat data/dossier/H01E.md          # <- 換成你的英雄 ID
-# 道具速查
-cat data/dossier/_items.md
-# 驗配裝
-python tools/check_build.py --file <你的檔案>
+cat data/dossier/_engine.md       # 共用機制與常數
+cat data/dossier/_items.md        # 道具速查
+python tools/check_build.py --file <你的檔案>   # 驗配裝
 ```
+
+**先問自己一句：這隻的傷害走哪條管線？**（直接傷害／狀態／召喚物／普攻）
+那一句就決定了穿透、DefCof、狀態抗性這三大類裝備對它有沒有用 ——
+拜火者與皇家女術士同樣是法師，但因為一個走狀態、一個走直接傷害，
+該買的裝備完全不重疊。
 
 卷宗由 `tools/build_dossier.py` 從地圖檔直接產生，跟地圖同步。
 

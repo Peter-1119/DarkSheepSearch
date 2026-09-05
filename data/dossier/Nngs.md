@@ -29,7 +29,7 @@
 每級變動：
   - 第 3 行：60 / 90 / 120 / 150 / 180
 
-物件欄位（原型 `ANcl`）：`Ncl1 = 0.009999999776482582`, `Ncl2 = 2`, `Ncl3 = 1`, `Ncl4 = 0.009999999776482582`, `Ncl5 = 0`, `Ncl6 = channel`, `acdn = 10.0`, `alev = 5`, `amcs = [75, 84, 93, 102, 111]`, `aran = 600.0`, `atar = air,enemies,ground,neutral,organic,item,debris`
+物件欄位（原型 `ANcl`）：`Ncl1 = 0.009999999776482582`, `Ncl2 = 2`, `Ncl3 = 1`, `Ncl4 = 0.009999999776482582`, `Ncl5 = 0`, `Ncl6 = [None, 'channel']`, `acdn = 10.0`, `alev = 5`, `amcs = [75, 84, 93, 102, 111]`, `aran = 600.0`, `atar = air,enemies,ground,neutral,organic,item,debris`
 
 實作：
 
@@ -437,7 +437,7 @@ endif
 選擇自己的據點或建築，將其轉移給其他玩家，或在不損失地基的情況下摧毀它。可從任意距離施放。
 ```
 
-物件欄位（原型 `ANcl`）：`Ncl1 = [0.009999999776482582, 0.8999999761581421]`, `Ncl2 = 1`, `Ncl3 = 1`, `Ncl4 = [0.009999999776482582, 0.8999999761581421]`, `Ncl5 = 0`, `Ncl6 = ['channel', 'unburrow']`, `acdn = [1.0, 16.0]`, `aher = 0`, `alev = 1`, `amcs = [95, 110, 125, 140, 155, 170]`, `aran = [99999.0, 100.0]`, `atar = ['player,structure', 'air,ground,debris,enemy,neutral,organic']`
+物件欄位（原型 `ANcl`）：`Ncl1 = [0.009999999776482582, 0.8999999761581421]`, `Ncl2 = 1`, `Ncl3 = 1`, `Ncl4 = [0.009999999776482582, 0.8999999761581421]`, `Ncl5 = 0`, `Ncl6 = ['unburrow', 'channel']`, `acdn = [1.0, 16.0]`, `aher = 0`, `alev = 1`, `amcs = [None, 95, 110, 125, 140, 155, 170]`, `aran = [99999.0, 100.0]`, `atar = ['player,structure', 'air,ground,debris,enemy,neutral,organic']`
 
 實作：
 

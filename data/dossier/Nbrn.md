@@ -31,7 +31,7 @@
 每級變動：
   - 第 4 行：60 / 90 / 120 / 150 / 180
 
-物件欄位（原型 `ANcl`）：`Ncl1 = 0.20000000298023224`, `Ncl3 = 1`, `Ncl4 = 0.20000000298023224`, `Ncl5 = 0`, `Ncl6 = channel`, `acap = `, `acdn = 3.0`, `alev = 5`, `amcs = [25, 30, 35, 40, 20]`
+物件欄位（原型 `ANcl`）：`Ncl1 = 0.20000000298023224`, `Ncl3 = 1`, `Ncl4 = 0.20000000298023224`, `Ncl5 = 0`, `Ncl6 = [None, 'channel']`, `acap = `, `acdn = 3.0`, `alev = 5`, `amcs = [20, 25, 30, 35, 40]`
 
 實作：
 
@@ -65,7 +65,7 @@ call SaveInteger(hash,GetHandleId(u),'A0AB',0)
   - 第 5 行：15 / 20 / 25 / 30 / 35
   - 第 6 行：20 / 40 / 60 / 80 / 100
 
-物件欄位（原型 `ANcl`）：`Ncl1 = 0.20000000298023224`, `Ncl3 = 1`, `Ncl4 = 0.20000000298023224`, `Ncl5 = 0`, `Ncl6 = charm`, `acap = `, `acdn = 3.0`, `alev = 5`, `amcs = [25, 30, 35, 40, 20]`
+物件欄位（原型 `ANcl`）：`Ncl1 = 0.20000000298023224`, `Ncl3 = 1`, `Ncl4 = 0.20000000298023224`, `Ncl5 = 0`, `Ncl6 = charm`, `acap = `, `acdn = 3.0`, `alev = 5`, `amcs = [20, 25, 30, 35, 40]`
 
 實作：
 
@@ -99,8 +99,178 @@ endif
 
 實作：
 
-`VulnerabilityUnit`　war3map.j:2519
+`RemoveFrost`　war3map.j:1527
 ```jass
+function RemoveFrost takes nothing returns nothing
+local timer t=GetExpiredTimer()
+local unit u=LoadUnitHandle(hash,GetHandleId(t),1)
+call UnitRemoveAbility(u,'S00G')
+call UnitRemoveAbility(u,'B02V')
+call RemoveSavedHandle(hash,GetHandleId(u),'B02V')
+call PauseTimer(t)
+call FlushChildHashtable(hash,GetHandleId(t))
+call DestroyTimer(t)
+set t=null
+set u=null
+endfunction
+function FrostUnit takes unit damager,unit target,real chanse returns nothing
+local real dmg
+local real cof=1.0
+local timer t
+local integer t_Id=GetHandleId(target)
+local integer d_Id=GetHandleId(damager)
+local integer random
+local integer chanse_random
+if IsUnitType(target,UNIT_TYPE_STRUCTURE)or IsUnitType(target,UNIT_TYPE_MECHANICAL)or not UnitAlive(target)or LoadInteger(hash,t_Id,44)>0 then
+set t=null
+return
+endif
+if LoadInteger(hash,t_Id,28)>0 and LoadInteger(hash,GetHandleId(damager),'I07G')==0 then
+set chanse=chanse*0.25
+endif
+if GetUnitAbilityLevel(target,'B00W')>0 then
+set chanse=chanse*0.70
+endif
+if GetUnitAbilityLevel(target,'B045')==1 then
+set chanse=chanse*1.50
+endif
+if LoadInteger(hash,d_Id,'I09G')>=1 then
+set chanse=chanse*1.50
+endif
+set chanse_random=R2I(chanse*100)
+set random=GetRandomInt(1,100)
+if random<=chanse_random then
+if GetUnitAbilityLevel(damager,'A0AQ')==1 and GetUnitAbilityLevel(target,'B046')==1 then
+if IsUnitType(target,UNIT_TYPE_HERO)then
+set dmg=GetUnitState(target,UNIT_STATE_MAX_LIFE)*0.25
+else
+set dmg=GetUnitState(target,UNIT_STATE_MAX_LIFE)*0.05
+endif
+if LoadInteger(hash,d_Id,'I00R')>=1 then
+set dmg=dmg+150.
+endif
+call DestroyEffect(AddSpecialEffectTarget("Abilities\\Spells\\Other\\CrushingWave\\CrushingWaveDamage.mdl",target,"chest"))
+if LoadInteger(hash,d_Id,'I086')>=1 then
+if LoadInteger(hash,d_Id,48)>=1 then
+set cof=cof+0.50
+endif
+endif
+if GetUnitAbilityLevel(damager,'B01H')==1 then
+set cof=cof+0.50
+endif
+if LoadInteger(hash,t_Id,'I07A')>=1 then
+if UnitLifePercent(target)<=25.0 then
+set cof=cof-0.50
+endif
+endif
+if LoadInteger(hash,t_Id,'I048')>=1 then
+if UnitLifePercent(target)<=30.0 then
+set cof=cof-0.25
+endif
+endif
+if LoadInteger(hash,t_Id,'tbak')>=1 then
+if UnitLifePercent(damager)>=75.0 then
+set cof=cof-0.25
+endif
+endif
+if LoadInteger(hash,t_Id,'pman')>=1 then
+if UnitLifePercent(damager)>=75.0 then
+set cof=cof-0.18
+endif
+endif
+call DisableTrigger(gg_trg_HeroTakeDamage)
+set cof=cof-LoadReal(hash,t_Id,48)+LoadReal(hash,d_Id,28)
+if cof<0.20 then
+set cof=0.20
+endif
+call UnitDamageTarget(damager,target,dmg*cof,false,false,ATTACK_TYPE_NORMAL,DAMAGE_TYPE_NORMAL,null)
+if LoadInteger(hash,t_Id,'I068')>=1 then
+call UnitDamageTarget(target,damager,dmg*cof*0.20,false,false,ATTACK_TYPE_NORMAL,DAMAGE_TYPE_NORMAL,null)
+endif
+call EnableTrigger(gg_trg_HeroTakeDamage)
+endif
+if GetUnitAbilityLevel(target,'B02V')==1 then
+set cof=1.00
+if IsUnitType(target,UNIT_TYPE_HERO)then
+set dmg=GetUnitState(target,UNIT_STATE_MAX_LIFE)*0.25
+else
+set dmg=GetUnitState(target,UNIT_STATE_MAX_LIFE)*0.05
+endif
+if LoadInteger(hash,d_Id,'I00R')>=1 then
+set dmg=dmg+150.
+endif
+if GetPlayerTechCount(GetOwningPlayer(damager),'Rufb',true)==1 then
+if GetUnitTypeId(damager)=='n041' or GetUnitTypeId(damager)=='n06L' or GetUnitTypeId(damager)=='n06S' or GetUnitTypeId(damager)=='n06U' or GetUnitTypeId(damager)=='n06V' then
+set dmg=dmg+100.
+endif
+endif
+call DestroyEffect(AddSpecialEffectTarget("Abilities\\Spells\\Other\\CrushingWave\\CrushingWaveDamage.mdl",target,"chest"))
+if LoadInteger(hash,d_Id,'I086')>=1 then
+if LoadInteger(hash,d_Id,48)>=1 then
+set cof=cof+0.50
+endif
+endif
+if GetUnitAbilityLevel(damager,'B01H')==1 then
+set cof=cof+0.50
+endif
+if LoadInteger(hash,t_Id,'I07A')>=1 then
+if UnitLifePercent(target)<=25.0 then
+set cof=cof-0.50
+endif
+endif
+if LoadInteger(hash,t_Id,'I048')>=1 then
+if UnitLifePercent(target)<=30.0 then
+set cof=cof-0.25
+endif
+endif
+if LoadInteger(hash,t_Id,'tbak')>=1 then
+if UnitLifePercent(damager)>=75.0 then
+set cof=cof-0.25
+endif
+endif
+if LoadInteger(hash,t_Id,'pman')>=1 then
+if UnitLifePercent(damager)>=75.0 then
+set cof=cof-0.18
+endif
+endif
+call DisableTrigger(gg_trg_HeroTakeDamage)
+set cof=cof-LoadReal(hash,t_Id,48)+LoadReal(hash,d_Id,28)
+if cof<0.20 then
+set cof=0.20
+endif
+call UnitDamageTarget(damager,target,dmg*cof,false,false,ATTACK_TYPE_NORMAL,DAMAGE_TYPE_NORMAL,null)
+if LoadInteger(hash,t_Id,'I068')>=1 then
+call UnitDamageTarget(target,damager,dmg*cof*0.20,false,false,ATTACK_TYPE_NORMAL,DAMAGE_TYPE_NORMAL,null)
+endif
+call EnableTrigger(gg_trg_HeroTakeDamage)
+set t=LoadTimerHandle(hash,t_Id,'B02V')
+call TimerStart(t,0.,false,function RemoveFrost)
+else
+call UnitAddAbility(target,'S00G')
+set t=CreateTimer()
+call SaveUnitHandle(hash,GetHandleId(t),1,target)
+call SaveTimerHandle(hash,t_Id,'B02V',t)
+call TimerStart(t,6.,false,function RemoveFrost)
+endif
+endif
+set t=null
+endfunction
+```
+
+`RemoveVulnerability`　war3map.j:2507
+```jass
+function RemoveVulnerability takes nothing returns nothing
+local timer t=GetExpiredTimer()
+local unit u=LoadUnitHandle(hash,GetHandleId(t),1)
+call UnitRemoveAbility(u,'S014')
+call UnitRemoveAbility(u,'B045')
+call RemoveSavedHandle(hash,GetHandleId(u),'B045')
+call PauseTimer(t)
+call FlushChildHashtable(hash,GetHandleId(t))
+call DestroyTimer(t)
+set t=null
+set u=null
+endfunction
 function VulnerabilityUnit takes unit damager,unit target,real chanse returns nothing
 local timer t
 local integer t_Id=GetHandleId(target)
@@ -424,7 +594,7 @@ endif
 選擇自己的據點或建築，將其轉移給其他玩家，或在不損失地基的情況下摧毀它。可從任意距離施放。
 ```
 
-物件欄位（原型 `ANcl`）：`Ncl1 = [0.009999999776482582, 0.8999999761581421]`, `Ncl2 = 1`, `Ncl3 = 1`, `Ncl4 = [0.009999999776482582, 0.8999999761581421]`, `Ncl5 = 0`, `Ncl6 = ['channel', 'unburrow']`, `acdn = [1.0, 16.0]`, `aher = 0`, `alev = 1`, `amcs = [95, 110, 125, 140, 155, 170]`, `aran = [99999.0, 100.0]`, `atar = ['player,structure', 'air,ground,debris,enemy,neutral,organic']`
+物件欄位（原型 `ANcl`）：`Ncl1 = [0.009999999776482582, 0.8999999761581421]`, `Ncl2 = 1`, `Ncl3 = 1`, `Ncl4 = [0.009999999776482582, 0.8999999761581421]`, `Ncl5 = 0`, `Ncl6 = ['unburrow', 'channel']`, `acdn = [1.0, 16.0]`, `aher = 0`, `alev = 1`, `amcs = [None, 95, 110, 125, 140, 155, 170]`, `aran = [99999.0, 100.0]`, `atar = ['player,structure', 'air,ground,debris,enemy,neutral,organic']`
 
 實作：
 
@@ -492,7 +662,9 @@ set count=8
 ## 這隻碰到的 hash key
 
   - **1** — 裝備技能冷卻乘數〔持有者〕StartModCooldown 讀，CD×它，下限 0.20
+  - **28** — 實數＝冰凍傷害 +%〔施加者〕／整數＝抵抗冰凍旗標〔受害者〕
   - **44** — 狀態免疫旗標〔受害者〕>0 則所有狀態函式開頭直接 return，完全不判定
+  - **48** — 冰凍抗性〔受害者〕；電擊 −1.00
 
 ---
 

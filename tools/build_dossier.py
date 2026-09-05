@@ -31,7 +31,7 @@ import map_heroes, w3obj
 from mpq import MPQ
 
 OUT = os.path.join(ROOT, 'data', 'dossier')
-MAXCODE = 260          # 每個技能最多附幾行程式碼，避免整份函式灌進來
+MAXCODE = 420          # 每個技能最多附幾行程式碼，避免整份函式灌進來
 
 # 這些函式太巨大又什麼都提到，附上去只是雜訊
 NOISE_FN = {'Trig_HeroPick_Actions', 'Trig_i_Actions', 'Trig_NewInit_Actions',
@@ -159,8 +159,13 @@ def ability_spans(idx):
     return spans
 
 
-def follow_callbacks(idx, rngs, depth=1):
-    """跟著 TimerStart(...,function X) 與 call X( 往下追，傷害常寫在回呼裡。"""
+def follow_callbacks(idx, rngs, depth=3):
+    """跟著 TimerStart(...,function X) 與 call X( 往下追，傷害常寫在回呼裡。
+
+    深度要夠：獅鷲守護者的球狀閃電是 Actions -> Create -> Move1 -> Move2，
+    真正的傷害公式在第三層；只跟一層的話那隻最大的輸出來源整個看不到。
+    UTIL_FN 黑名單擋住了樣板函式，所以加深不會爆量。
+    """
     lines, strip, fn, fspan, path = idx
     out = list(rngs)
     seen = {fn[lo] for lo, hi in rngs}

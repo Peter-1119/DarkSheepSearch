@@ -26,6 +26,7 @@ $steps = @(
     @{ f = 'build_md2.py';       d = '產生攻略              -> 裝備合成攻略.md' }
     @{ f = 'build_dossier.py';   d = '英雄卷宗              -> data/dossier/*.md' }
     @{ f = 'build_itemref.py';   d = '道具速查              -> data/dossier/_items.md' }
+    @{ f = 'build_engineref.py'; d = '引擎附錄              -> data/dossier/_engine.md' }
 )
 
 $n = 0
