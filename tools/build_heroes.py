@@ -59,31 +59,147 @@ def mechanics(hero):
 
 
 def scaling(heroes, jass):
-    """哪些英雄的技能真的吃裝備技能威力 / 技能強度（讀原始碼判斷）。"""
+    """哪些英雄的技能真的吃裝備技能威力 / 技能強度（讀原始碼判斷）。
+
+    早期版本是「函式級」判定 —— 技能 ID 只要出現在任何有讀
+    udg_ItemBonusDMG／hash key 18 的函式裡就算數。那太寬鬆：
+    Trig_HeroPick_Actions 幾乎提到每一個技能，Trig_i_Actions（-i 指令）
+    更是把所有屬性印一遍，害 32 個標記裡有一半是誤判。
+
+    現在改成三件事：
+      1. 分支級 —— 技能若出現在 if/elseif 的條件式裡（技能分派的標準寫法），
+         範圍就只算那個分支，不是整個函式。
+      2. 跟著呼叫走 —— 分支裡寫 TimerStart(...,function Hero49R) 的話，
+         Hero49R 用到的東西也算，因為技能常把傷害丟給計時器回呼。
+      3. 忽略純顯示 —— DisplayTimedTextToPlayer 那行提到的技能不算使用。
+      4. 忽略排除條件 —— GetSpellAbilityId()!='A03V' 是「這個技能不走這裡」，
+         不是使用。轉移據點被 14 個處理器排除，不修的話每隻英雄都會中。
+      5. 條件接動作 —— 魔獸的觸發器拆成 Foo_Conditions / Foo_Actions 兩半，
+         技能 ID 只出現在前者，傷害寫在後者（例如烈焰旋風 A03O）。
+
+    最後再跟技能說明文字取聯集：說明明講「сила умений」的就算，
+    程式碼那邊還是有 8 個抓不到（傷害寫在追不到的輔助函式裡）。
+    技能書本身不標記 —— 該標的是書裡的個別天賦。
+    """
     lines = jass.split('\n')
-    fn, cur = [], '?'
-    for l in lines:
+    n = len(lines)
+    strip = [l.strip() for l in lines]
+
+    # --- 切函式（JASS 的函式在檔案裡是連續的，記起訖行號就好） --------
+    fn, fspan, cur, start = [], {}, '?', 0
+    for i, l in enumerate(lines):
         m = re.match(r'function ([A-Za-z0-9_]+) ', l)
         if m:
-            cur = m.group(1)
+            fspan[cur] = (start, i)
+            cur, start = m.group(1), i
         fn.append(cur)
-    use_mod, use_sp = set(), set()
-    where = {}
+    fspan[cur] = (start, n)
+
+    # --- 每行的分支路徑（同一函式內 if/elseif/else 的巢狀編號） --------
+    IFLINE = re.compile(r'(else)?if\b.*\bthen$')
+    path, stack, seq, prev = [], [], 0, None
+    for i, t in enumerate(strip):
+        if fn[i] != prev:
+            stack, prev = [], fn[i]
+        if IFLINE.match(t):
+            if t.startswith('elseif') and stack:
+                stack.pop()
+            seq += 1
+            stack.append(seq)
+        elif t == 'else':
+            if stack:
+                stack.pop()
+            seq += 1
+            stack.append(seq)
+        path.append(tuple(stack))          # if 那行本身就屬於自己的分支
+        if t == 'endif' and stack:
+            stack.pop()
+
+    # --- 直接用到的行 --------------------------------------------------
+    KEY18 = re.compile(r'LoadReal\(hash,[A-Za-z_0-9()]+,18\)')
+    CALLED = re.compile(r'\b(?:function|call) ([A-Za-z0-9_]+)')
+    dmod = [bool(KEY18.search(l)) for l in lines]
+    dsp = ['udg_ItemBonusDMG' in l for l in lines]
+    # 每行提到的其他函式（排除函式定義那行）
+    ref = [() if l.startswith('function ') else tuple(CALLED.findall(l))
+           for l in strip]
+
+    fmod = {fn[i] for i in range(n) if dmod[i]}
+    fsp = {fn[i] for i in range(n) if dsp[i]}
+
+    # --- 呼叫關係的傳遞閉包 -------------------------------------------
+    calls = {}
+    for i in range(n):
+        if ref[i]:
+            calls.setdefault(fn[i], set()).update(ref[i])
+    while True:
+        gm = fmod | {f for f, c in calls.items() if c & fmod}
+        gs = fsp | {f for f, c in calls.items() if c & fsp}
+        if gm == fmod and gs == fsp:
+            break
+        fmod, fsp = gm, gs
+
+    def uses(lo, hi, direct, reach):
+        for i in range(lo, hi):
+            if direct[i] or (ref[i] and reach & set(ref[i])):
+                return True
+        return False
+
+    # --- 每個技能的有效範圍（可能有多處，取聯集） ----------------------
+    ABIL = re.compile(r"'(A[A-Za-z0-9]{3})'")
+    NEG = re.compile(r"!=\s*'(A[A-Za-z0-9]{3})'")
+    spans = {}
     for i, l in enumerate(lines):
-        if re.search(r'LoadReal\(hash,[A-Za-z_0-9()]+,18\)', l):
-            use_mod.add(fn[i])
-        if 'udg_ItemBonusDMG' in l:
-            use_sp.add(fn[i])
-        for a in re.findall(r"'(A[A-Za-z0-9]{3})'", l):
-            where.setdefault(a, set()).add(fn[i])
+        if 'DisplayTimedTextToPlayer' in l:
+            continue
+        skip = set(NEG.findall(l))
+        ids = [a for a in ABIL.findall(l) if a not in skip]
+        if not ids:
+            continue
+        if path[i]:
+            # 在某個 if/elseif 分支裡 -> 只算最內層那個分支。
+            # 技能分派（if Skill=='A0OA' then）與 hero pick 裡的
+            # UnitAddAbility 都適用：分支在檔案裡是連續的，往前後掃即可。
+            p = path[i]
+            lo = i
+            while lo > 0 and fn[lo - 1] == fn[i] and path[lo - 1][:len(p)] == p:
+                lo -= 1
+            hi = i + 1
+            while hi < n and fn[hi] == fn[i] and path[hi][:len(p)] == p:
+                hi += 1
+        else:
+            lo, hi = fspan[fn[i]]
+        rngs = [(lo, hi)]
+        if fn[i].endswith('_Conditions'):
+            act = fn[i][:-11] + '_Actions'
+            if act in fspan:
+                rngs.append(fspan[act])
+        for a in ids:
+            spans.setdefault(a, []).extend(rngs)
+
+    SAYS_SP = re.compile(r'сил[аыу]\s+умений', re.I)
+    SAYS_MOD = re.compile(r'сил[аыу]\s+модификатор', re.I)
+
     out = {}
     for uid, h in heroes.items():
-        mod = [a['id'] for a in h['abilities'] if where.get(a['id'], set()) & use_mod]
-        sp = [a['id'] for a in h['abilities'] if where.get(a['id'], set()) & use_sp]
+        mod, sp = [], []
+        for a in h['abilities']:
+            if a.get('opts'):                     # 技能書本身不標
+                continue
+            txt = a.get('text_ru') or ''
+            m = bool(SAYS_MOD.search(txt))
+            p = bool(SAYS_SP.search(txt))
+            for lo, hi in spans.get(a['id'], ()):
+                m = m or uses(lo, hi, dmod, fmod)
+                p = p or uses(lo, hi, dsp, fsp)
+                if m and p:
+                    break
+            if m:
+                mod.append(a['id'])
+            if p:
+                sp.append(a['id'])
         out[uid] = {'mod': mod, 'sp': sp}
     return out
-
-
 def main():
     tr = json.load(io.open(os.path.join(HERE, 'heroes_zh.json'), encoding='utf-8'))
     AB = json.load(io.open(os.path.join(HERE, 'abilities_zh.json'),
@@ -136,7 +252,9 @@ def main():
 
         rec = {
             'id': uid,
-            'n': [nm[0], nm[1], h['name_ru']],
+            # 地圖沒覆寫名稱的英雄（Emoo）俄文是空的，改用手動表的第三個元素
+            'n': [nm[0], nm[1],
+                  h['name_ru'] or (nm[2] if len(nm) > 2 else nm[1])],
             'attr': h['attr'] or 'int',      # 只有樹人長者沒被列進三個屬性池
             'unlock': h['unlock'] or 0,
             'random': h['random'],           # False = 不在隨機池，只能手動挑
