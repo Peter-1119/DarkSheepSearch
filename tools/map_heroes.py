@@ -1,0 +1,322 @@
+# -*- coding: utf-8 -*-
+"""從 .w3x 地圖檔讀出可選英雄。
+
+名單來源分兩層：
+  1. Trig_HeroPick_Actions —— 選英雄時真正比對的清單，共 57 個，這是權威。
+  2. RandomStr / RandomAgi / RandomInt —— 隨機英雄池，只有 53 個，
+     但額外提供「主屬性」與「經驗值解鎖門檻」。
+兩者相差的 4 個（占星師／超重型坦克／女武神／遠古九頭蛇）全是 T3+，
+只能手動挑、不會被隨機抽到，所以不在隨機池裡 —— 只讀隨機池會漏掉它們。
+
+技能也分兩種：
+  uhab = 英雄技能（QWER，可升級）
+  uabi = 固有技能（被動、專屬機制、「選擇天賦」的入口）
+
+說明文字的欄位也有兩個：可學習技能寫在 arut，被動／固有技能寫在 aub1，
+兩個都要試，否則會有 73 個技能抓不到文字。
+"""
+import re, sys, os, io, json
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from mpq import MPQ
+import w3obj
+from map_items import clean
+
+ATTR = {'RandomStr': 'str', 'RandomAgi': 'agi', 'RandomInt': 'int'}
+
+# 這些不是真的技能，不列出來：
+#   AInv = 背包欄位
+#   A03U = LHGlow，掛在英雄身上的光暈特效（base 是減速光環但數值 0，只有模型）
+SKIP_ABIL = {'AInv', 'A03U'}
+
+# 遊戲本體的原版技能名稱檔。地圖沒覆寫的技能，名稱在這裡面。
+GAME_DIRS = [r'D:\Warcraft III', r'C:\Program Files (x86)\Warcraft III',
+             r'C:\Program Files\Warcraft III']
+GAME_MPQS = ['War3Patch.mpq', 'War3x.mpq', 'war3.mpq']
+STOCK_FILES = ['Human', 'Orc', 'NightElf', 'Undead',
+               'Neutral', 'Common', 'Item', 'Campaign']
+
+
+def stock_names():
+    """讀遊戲本體的原版技能名稱。沒裝遊戲就回空的，不影響其他流程。"""
+    import os
+    bs = chr(92)
+    arcs = []
+    for d in GAME_DIRS:
+        if not os.path.isdir(d):
+            continue
+        for n in GAME_MPQS:
+            p = os.path.join(d, n)
+            if os.path.isfile(p):
+                try:
+                    arcs.append(MPQ(p))
+                except Exception:
+                    pass
+        break
+    out = {}
+    for f in STOCK_FILES:
+        d = None
+        for a in arcs:
+            try:
+                d = a.read('Units' + bs + f + 'AbilityStrings.txt')
+            except Exception:
+                d = None
+            if d:
+                break
+        if not d:
+            continue
+        try:
+            txt = d.decode('utf-8-sig')
+        except UnicodeDecodeError:
+            txt = d.decode('cp950', 'replace')
+        cur = None
+        for line in txt.replace(chr(13), chr(10)).split(chr(10)):
+            line = line.strip()
+            m = re.match(r'^\[([A-Za-z0-9]{4})\]$', line)
+            if m:
+                cur = m.group(1)
+                continue
+            if cur and line.startswith('Name='):
+                out.setdefault(cur, line[5:].strip().strip('"'))
+    return out
+
+# 英雄說明是半結構化的，有兩種格式：
+#   A) Ранг силы / Потенциал поздней игры / Роль / Описание
+#   B) Роль / Атака / Тип защиты / Особенности
+PROFILE_LINE = {
+    'tier': r'Ранг\s+силы\s*:\s*(.+)',
+    'late': r'Потенциал\s+поздней\s+игры\s*:\s*(.+)',
+    'role': r'Роль\s*:\s*(.+)',
+    'atk':  r'Атака\s*:\s*(.+)',
+    'def':  r'Тип\s+защиты\s*:\s*(.+)',
+}
+PROFILE_BLOCK = {
+    'desc':  r'Описание\s*:\s*(.+?)(?=\n[А-ЯЁ][а-яёА-ЯЁ ]{2,30}\s*:|\Z)',
+    'trait': r'Особенности\s*:\s*(.+?)(?=\n[А-ЯЁ][а-яёА-ЯЁ ]{2,30}\s*:|\Z)',
+}
+
+
+def _fn_body(lines, name):
+    st = en = None
+    for i, l in enumerate(lines):
+        if l.startswith('function %s ' % name):
+            st = i
+        elif st is not None and l.startswith('endfunction'):
+            en = i
+            break
+    return lines[st:en] if st is not None else []
+
+
+def pick_list(jass):
+    """Trig_HeroPick_Actions 比對過的英雄 = 可選名單（權威）。"""
+    out = []
+    for l in _fn_body(jass.split('\n'), 'Trig_HeroPick_Actions'):
+        for u in re.findall(r"GetUnitTypeId\(u\)=='(.{4})'", l):
+            if u not in out:
+                out.append(u)
+    return out
+
+
+def roster(jass):
+    """隨機英雄池，回傳 {英雄ID: (主屬性, 解鎖經驗)}。"""
+    lines = jass.split('\n')
+    out = {}
+    for fn, attr in list(ATTR.items()) + [('RandomAll', None)]:
+        thr = 0
+        for l in _fn_body(lines, fn):
+            m = re.match(r'if ExpGo\[n\]>=(\d+) then', l.strip())
+            if m:
+                thr = int(m.group(1))
+                continue
+            m = re.match(r"set RH\[\d+\]='(.{4})'", l.strip())
+            if m:
+                uid = m.group(1)
+                if uid not in out or (attr and out[uid][0] is None):
+                    out[uid] = (attr, thr if uid not in out else out[uid][1])
+    return out
+
+
+# 玩家投稿的英雄會在說明結尾署名，抽出來單獨顯示，不要混在敘述裡
+MADEBY = re.compile(r'\s*Made\s+by\s+(\S+)\s*$', re.I)
+
+
+def parse_profile(txt):
+    out = {}
+    m = MADEBY.search(txt)
+    if m:
+        out['author'] = m.group(1)
+        txt = MADEBY.sub('', txt)
+    for k, pat in PROFILE_LINE.items():
+        m = re.search(pat, txt)
+        if m and m.group(1).strip():
+            out[k] = m.group(1).strip()
+    for k, pat in PROFILE_BLOCK.items():
+        m = re.search(pat, txt, re.S)
+        if m and m.group(1).strip():
+            out[k] = m.group(1).strip()
+    return out
+
+
+def _first(v):
+    """有多個等級的技能，欄位會是 list（每級一段文字），取第一段。"""
+    return v[0] if isinstance(v, list) else v
+
+
+def _stat(U, uid, base, field):
+    v = U.get(uid, {}).get(field)
+    if v is None:
+        v = U.get(base, {}).get(field)
+    return v
+
+
+def _primary(st, fallback):
+    """隨機池沒收錄的英雄，用「每級成長最高」判主屬性。
+
+    地圖的 upra 欄位不可靠（軍團特使標 INT，實際卻在力量池），所以不採用。
+    """
+    if fallback:
+        return fallback
+    g = {k: (st.get(k + '_lv') or 0) for k in ('str', 'agi', 'int')}
+    return max(g, key=lambda k: g[k]) if any(g.values()) else 'int'
+
+
+# 技能 ID 也被混入了西里爾同形字（例如釀酒師的天賦寫成 'А0НК'，
+# А 和 Н 是西里爾字母），不還原就查不到那個技能。
+ID_HOMO = str.maketrans({
+    'А': 'A', 'В': 'B', 'С': 'C', 'Е': 'E', 'Н': 'H', 'К': 'K', 'М': 'M',
+    'О': 'O', 'Р': 'P', 'Т': 'T', 'Х': 'X',
+    'а': 'a', 'е': 'e', 'о': 'o', 'р': 'p', 'с': 'c', 'у': 'y', 'х': 'x',
+})
+
+
+# 「[Уровень %d]」等級標記與結尾的快捷鍵「(Q)」，從提示文字取名時要去掉
+_LVLTAG = re.compile(r'\s*\[[^\]]*\]\s*')
+_HOTKEY = re.compile(r'\s*\([^)]{1,4}\)\s*$')
+
+
+def _abil_name(a):
+    """技能名稱。
+
+    大多數技能寫在 anam，但有 18 個技能（含拜火者的 Q「火柱」）沒有 anam，
+    名稱改寫在 aret / atp1 這兩個提示欄位裡。只看 anam 會把它們整個漏掉，
+    英雄就會少一招。
+    """
+    nm = clean(_first(a.get('anam')) or '')
+    if nm:
+        return nm
+    for k in ('aret', 'atp1'):
+        t = clean(_first(a.get(k)) or '')
+        if t:
+            t = _HOTKEY.sub('', _LVLTAG.sub(' ', t)).strip()
+            # 提示文字有時是「名稱, 說明…」的形式，只取名稱那一段
+            return t.split(',')[0].strip(' ,.-')
+    return ''
+
+
+def _abil(A, aid, kind, depth=0, stock=None):
+    a = A.get(aid, {})
+    nm = _abil_name(a)
+    if not nm and stock:                    # 最後才問遊戲本體的原版名稱
+        nm = stock.get(a.get('_base') or aid, '') or stock.get(aid, '')
+    rec = {
+        'id': aid,
+        'kind': kind,                       # 'hero' = QWER；'innate' = 固有
+        'name_ru': nm,
+        # aub1（一般提示）優先，arut（學習提示）只當備援。
+        # 原因：很多技能沒有自訂 arut，那裡殘留著預設的擊退說明 —— 70 個技能
+        # 因此拿到同一段不相干的文字。aub1 則是遊戲裡實際會顯示的那一段。
+        'text_ru': clean(_first(a.get('aub1')) or '') or clean(_first(a.get('arut')) or ''),
+        'icon': (_first(a.get('aart')) or _first(a.get('arar')) or '').strip(),
+        'hotkey': (_first(a.get('ahky')) or '').strip(),
+        'levels': _first(a.get('alev')),
+    }
+    # 技能書（Aspb）—— 「選擇天賦」「選擇技能」「額外技能」都是這種。
+    # 真正的選項清單在 spb1，每個英雄可選的天賦都不一樣。
+    if a.get('_base') == 'Aspb' and depth == 0:
+        ids = [x.strip().translate(ID_HOMO)
+               for x in str(_first(a.get('spb1')) or '').split(',') if x.strip()]
+        opts = [_abil(A, i, 'opt', depth + 1, stock) for i in ids if i in A]
+        if opts:
+            rec['opts'] = opts
+    return rec
+
+
+def load(map_path, jass_text=None):
+    m = MPQ(map_path)
+    if jass_text is None:
+        jass_text = m.read('war3map.j').decode('utf-8', 'replace')
+    U = w3obj.parse(m.read('war3map.w3u'))
+    A = w3obj.parse(m.read('war3map.w3a'), True)
+
+    stock = stock_names()                    # 原版技能名稱（沒裝遊戲就是空的）
+    pool = roster(jass_text)                 # 主屬性與解鎖門檻
+    picks = pick_list(jass_text)             # 權威名單
+    for uid in pool:                         # 理論上是子集，保險起見補齊
+        if uid not in picks:
+            picks.append(uid)
+
+    bs = chr(92)
+    icons = dict(re.findall("SaveStr" + re.escape("(hash,1,'") + '(.{4})' +
+                            re.escape("',") + '"((?:[^"' + bs + bs + ']|' +
+                            bs + bs + '.)*)"' + re.escape(")"), jass_text))
+
+    out = {}
+    for uid in picks:
+        u = U.get(uid, {})
+        base = u.get('_base', '')
+        name = clean(u.get('unam') or U.get(base, {}).get('unam') or '')
+        txt = clean(u.get('utub') or '')
+        attr, unlock = pool.get(uid, (None, None))
+
+        abils = []
+        for aid in str(u.get('uhab') or '').split(','):
+            if aid.strip() and aid.strip() not in SKIP_ABIL:
+                abils.append(_abil(A, aid.strip(), 'hero', stock=stock))
+        for aid in str(u.get('uabi') or '').split(','):
+            aid = aid.strip()
+            if aid and aid not in SKIP_ABIL:
+                abils.append(_abil(A, aid, 'innate', stock=stock))
+
+        st = {k: _stat(U, uid, base, f) for k, f in (
+            ('str', 'ustr'), ('str_lv', 'ustp'),
+            ('agi', 'uagi'), ('agi_lv', 'uagp'),
+            ('int', 'uint'), ('int_lv', 'uinp'),
+            ('speed', 'umvs'))}
+
+        out[uid] = {
+            'id': uid,
+            'name_ru': name,
+            'proper_ru': clean(u.get('upro') or '').split(',')[0],
+            'attr': _primary(st, attr),
+            'unlock': unlock or 0,
+            # 隨機池裡沒有 = 只能手動挑，介面上要標出來
+            'random': uid in pool,
+            'icon': (icons.get(uid) or u.get('uico') or '').replace(bs + bs, bs),
+            'stats': st,
+            'profile_ru': parse_profile(txt),
+            'text_ru': txt,
+            'abilities': abils,
+        }
+    return out
+
+
+if __name__ == '__main__':
+    sys.stdout.reconfigure(encoding='utf-8')
+    import collections
+    h = load(sys.argv[1])
+    print('可選英雄 %d 個（其中 %d 個不在隨機池，只能手動挑）' %
+          (len(h), sum(1 for v in h.values() if not v['random'])))
+    print('主屬性:', dict(collections.Counter(v['attr'] for v in h.values())))
+    print('有強度等級:', sum(1 for v in h.values() if 'tier' in v['profile_ru']))
+    ab = [a for v in h.values() for a in v['abilities']]
+    print('技能 %d 個（英雄技能 %d ／ 固有 %d），不重複 %d 個' % (
+        len(ab), sum(1 for a in ab if a['kind'] == 'hero'),
+        sum(1 for a in ab if a['kind'] == 'innate'),
+        len({a['id'] for a in ab})))
+    print('有說明文字的不重複技能:',
+          len({a['id'] for a in ab if a['text_ru']}))
+    print()
+    for uid in ['Nbrn', 'Ekee', 'Nsjs', 'H03I']:
+        v = h[uid]
+        print('  %-6s %-22s %s %s' % (uid, v['name_ru'][:22], v['attr'],
+                                      v['profile_ru'].get('tier', '')))

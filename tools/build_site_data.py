@@ -44,6 +44,7 @@ def leftovers(bonus):
     return out
 
 STAT_INFO = json.load(open('status.json', encoding='utf-8'))
+BUILDS = json.load(open('builds.json', encoding='utf-8'))
 NZH = json.load(open('names2.json', encoding='utf-8'))
 NEN = json.load(open('names_en.json', encoding='utf-8'))
 AB = json.load(open('ab_db.json', encoding='utf-8'))
@@ -243,6 +244,10 @@ RIT = {i: n for n, i in enumerate(SITE.get('ritual', []))}
 #                                      └─ 鐵匠技能 ─> 完美
 # 完美是從「聖物」分支出來的，不是接在折射後面。
 REF, CHAIN = {}, {}
+# 英雄資料由 build_heroes.py 直接從地圖產生，這裡只負責搬進 site.json
+_hp = os.path.join(ROOT, 'data', 'heroes.json')
+HEROES = json.load(open(_hp, encoding='utf-8'))['heroes'] if os.path.isfile(_hp) else []
+
 for gi, (q1, q2, relic, group, perfect) in enumerate(SITE['refract']):
     line = {'g': gi, 'q1': q1, 'q2': q2, 'relic': relic,
             'group': group, 'perfect': perfect}
@@ -296,6 +301,9 @@ out = {
     'status': {k: v for k, v in STAT_INFO.items() if not k.startswith('_')},
     'statusRules': STAT_INFO.get('_rules', []),
     'statusGraph': STAT_INFO.get('_graph', {}),
+    # 推薦配裝（AI 從道具文字與狀態規則推導，非實測）
+    'builds': BUILDS.get('list', []),
+    'heroes': HEROES,
     'setDouble': {k: v for k, v in (SETB.get('_double') or {}).items()
                   if not k.startswith('_')},
     'sets': sets,
@@ -310,6 +318,7 @@ out = {
 json.dump(out, open(os.path.join(ROOT, 'data', 'site.json'), 'w', encoding='utf-8'),
           ensure_ascii=False, separators=(',', ':'))
 print('meta:', meta)
+print('heroes:', len(HEROES))
 print('rankable stats:', ', '.join('%s(%d)' % (m['zh'], m['n']) for m in statmeta))
 print('items:', len(items))
 print('with colour:', sum(1 for v in items.values() if v['k']))
