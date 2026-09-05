@@ -242,6 +242,27 @@ def w3a_fields(a):
     return out
 
 
+PIPE = [
+    ('狀態', re.compile(r'(BurnUnit|FrostUnit|BleedUnit|DiseaseUnit|ShockUnit'
+                       r'|FlammabilityUnit|CurseUnit|WeakUnit|VulnerabilityUnit'
+                       r'|CharmUnit|SliceUnit|AnathemaUnit)'),
+     '走 `Burn_Dmg` 那條，**外面包了 DisableTrigger** → 不吃 DefCof、不帶穿透、'
+     '被狀態抗性擋。該買的是「狀態傷害 +%」「易燃」「機率倍率」。'),
+    ('直接傷害', re.compile(r'UnitDamageTarget'),
+     '走 `Trig_HeroTakeDamage_Actions` → **吃 DefCof（key 3/5/6/9/40/41）'
+     '也吃穿透**，而且事件數越多穿透越划算。'),
+    ('召喚物', re.compile(r'CreateUnit'),
+     '召喚物**不繼承**主人的裝備觸發／狀態／傷害 +%，只吃主人技能公式裡'
+     '明寫的屬性（通常是最大生命與技能強度）與原生光環。'),
+    ('治療／增益', re.compile(r'SetWidgetLife|UNIT_STATE_LIFE\s*,\s*GetUnit'
+                            r'|SetHeroStr|SetHeroAgi|SetHeroInt'),
+     '直接寫數值，不經傷害事件 —— 全地圖沒有「治療加成」這種屬性，'
+     '只能靠技能公式裡的係數（多半是技能強度）。'),
+    ('普攻觸發', re.compile(r'EVENT_PLAYER_UNIT_ATTACKED'),
+     '掛在「攻擊起手」而不是命中，攻速有價值；但注意技能常有自己的內冷。'),
+]
+
+
 def _f(d, k):
     v = d.get(k)
     return v[0] if isinstance(v, list) else v
@@ -281,6 +302,9 @@ def hero_doc(h, rec, idx, A, U, spans):
     L.append('**縮放**：吃技能強度的技能 %s ／ ◈ 吃裝備技能威力 %s ／ ⊕ 給裝備技能威力 %s'
              % (sorted(sp) or '無', sorted(mod) or '無', sorted(give) or '無'))
     L.append('')
+    PIPE_AT = len(L)          # 傷害管線摘要待會兒補在這裡（要先掃完程式碼）
+    L.append('')
+    L.append('')
     L.append('---')
     L.append('')
 
@@ -300,6 +324,7 @@ def hero_doc(h, rec, idx, A, U, spans):
                 ablist.append(dict(x, _from='皮膚「%s」' % k['n'][0]))
 
     keys_seen, summons = set(), set()
+    allcode = []
     for a in ablist:
         aid = a['id']
         tag = []
@@ -352,6 +377,7 @@ def hero_doc(h, rec, idx, A, U, spans):
                 L.extend(body)
                 L.append('```')
                 joined = '\n'.join(body)
+                allcode.append(joined)
                 for m in HASHKEY.finditer(joined):
                     keys_seen.add(int(m.group(1)))
                 summons.update(CREATE.findall(joined))
@@ -359,6 +385,18 @@ def hero_doc(h, rec, idx, A, U, spans):
             L.append('')
             L.append('*（JASS 裡沒有對應實作 —— 這是原生技能，效果看上面的物件欄位）*')
         L.append('')
+
+    # 這隻的傷害走哪條管線 —— 這一句就決定了穿透、DefCof、狀態抗性
+    # 三大類裝備對它有沒有用，放在最前面讓人先看到。
+    blob = '\n'.join(allcode)
+    hit = [(nm, note) for nm, rx, note in PIPE if rx.search(blob)]
+    if hit:
+        pl = ['**傷害／效果走哪條管線**（決定哪些裝備對這隻有用）：', '']
+        for nm, note in hit:
+            pl.append('- **%s** —— %s' % (nm, note))
+        pl.append('')
+        pl.append('細節見 `data/dossier/_engine.md`。')
+        L[PIPE_AT:PIPE_AT] = pl
 
     # 召喚出來的單位。召喚師的一半戰力在這裡，而這些數值只在 w3u 裡，
     # 光看技能程式碼看不到（守衛有沒有魔法減免、憎惡有沒有大地重擊…）。

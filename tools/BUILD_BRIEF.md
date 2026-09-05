@@ -33,6 +33,17 @@ cat data/dossier/_items.md        # 道具速查
 python tools/check_build.py --file <你的檔案>   # 驗配裝
 ```
 
+**兩份共用附錄各約 60 KB，不要 `cat` 整份** —— 那是 15k token。
+用 grep 查你要的東西就好：
+
+```bash
+grep -n "BurnUnit" -A 40 data/dossier/_engine.md   # 只看點燃的機率鏈
+grep -n "薩弗拉斯\|零時迷子" data/dossier/_items.md   # 只查這兩件
+sed -n '/## 屬性排行榜/,/^---$/p' data/dossier/_items.md  # 只要排行榜
+```
+
+自己的英雄卷宗（20~30 KB）倒是可以整份讀，那是為你準備的。
+
 **先問自己一句：這隻的傷害走哪條管線？**（直接傷害／狀態／召喚物／普攻）
 那一句就決定了穿透、DefCof、狀態抗性這三大類裝備對它有沒有用 ——
 拜火者與皇家女術士同樣是法師，但因為一個走狀態、一個走直接傷害，
