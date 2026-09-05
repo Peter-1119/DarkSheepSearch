@@ -1,0 +1,553 @@
+{
+  "_說明": [
+    "英雄資料的人工翻譯表。俄文原文由 map_heroes.py 從 UD_v3.81 地圖直接讀出，",
+    "這裡只放中文／英文對照。vocab 是封閉詞彙（強度等級、後期潛力、定位），",
+    "names 是英雄名稱，desc 是一句話說明。",
+    "Emoo 在地圖裡沒有覆寫名稱（沿用原版單位），所以名稱是手動補的。",
+    "Nbrn / Ekee / Nsjs / H03I 這 4 位不在隨機英雄池裡（只能手動挑），全是 T3+。"
+  ],
+  "vocab": {
+    "tier": {
+      "Т1": [
+        "T1",
+        "T1"
+      ],
+      "Т2": [
+        "T2",
+        "T2"
+      ],
+      "Т3": [
+        "T3",
+        "T3"
+      ],
+      "Т3+": [
+        "T3+",
+        "T3+"
+      ]
+    },
+    "late": {
+      "низкий": [
+        "低",
+        "Low"
+      ],
+      "средний": [
+        "中",
+        "Medium"
+      ],
+      "высокий": [
+        "高",
+        "High"
+      ],
+      "высший": [
+        "極高",
+        "Top"
+      ]
+    },
+    "role": {
+      "убийца": [
+        "刺客",
+        "Assassin"
+      ],
+      "маг": [
+        "法師",
+        "Mage"
+      ],
+      "поддержка": [
+        "輔助",
+        "Support"
+      ],
+      "рубака": [
+        "戰士",
+        "Fighter"
+      ],
+      "танк": [
+        "坦克",
+        "Tank"
+      ],
+      "призыватель": [
+        "召喚師",
+        "Summoner"
+      ],
+      "проклинатель": [
+        "詛咒者",
+        "Curser"
+      ],
+      "исцеление": [
+        "治療",
+        "Healing"
+      ],
+      "лекарь": [
+        "醫者",
+        "Healer"
+      ],
+      "добытчик": [
+        "斂財",
+        "Earner"
+      ],
+      "артиллерия": [
+        "砲擊",
+        "Artillery"
+      ]
+    }
+  },
+  "names": {
+    "Edem": [
+      "惡魔獵手",
+      "Demon Hunter"
+    ],
+    "H00N": [
+      "神射手",
+      "Sharpshooter"
+    ],
+    "H01G": [
+      "女獵手",
+      "Huntress"
+    ],
+    "N00Z": [
+      "美杜莎",
+      "Medusa"
+    ],
+    "N010": [
+      "德萊尼刺客",
+      "Draenei Assassin"
+    ],
+    "N01P": [
+      "幽魂之狼",
+      "Spirit Wolf"
+    ],
+    "N02E": [
+      "儀式師",
+      "Ritualist"
+    ],
+    "O015": [
+      "暗影獵手",
+      "Shadow Hunter"
+    ],
+    "Emoo": [
+      "守望者",
+      "Warden"
+    ],
+    "H024": [
+      "盜賊",
+      "Rogue"
+    ],
+    "N05T": [
+      "狂徒",
+      "Cutthroat"
+    ],
+    "O01O": [
+      "劍聖",
+      "Blademaster"
+    ],
+    "U00Q": [
+      "黑暗獵手",
+      "Dark Huntress"
+    ],
+    "U01D": [
+      "死亡使者",
+      "Herald of Death"
+    ],
+    "N06B": [
+      "小混混",
+      "Street Kid"
+    ],
+    "Nngs": [
+      "黑暗主教",
+      "Prelate of Darkness"
+    ],
+    "Npbm": [
+      "龍戰士",
+      "Dragon Warrior"
+    ],
+    "E00S": [
+      "白銀執法官",
+      "Silver Lictor"
+    ],
+    "Hmgd": [
+      "亡者公主",
+      "Princess of the Dead"
+    ],
+    "E00A": [
+      "死靈法師",
+      "Necromancer"
+    ],
+    "H00O": [
+      "建築師",
+      "Architect"
+    ],
+    "H00Q": [
+      "女術士",
+      "Sorceress"
+    ],
+    "H00X": [
+      "生命之靈",
+      "Spirit of Life"
+    ],
+    "H012": [
+      "秘法學者",
+      "Arcanologist"
+    ],
+    "H01E": [
+      "主教",
+      "Bishop"
+    ],
+    "N01K": [
+      "深淵戰士",
+      "Warrior of the Deep"
+    ],
+    "E00O": [
+      "長老德魯伊",
+      "Elder Druid"
+    ],
+    "Hamg": [
+      "拜火者",
+      "Fire Worshipper"
+    ],
+    "N03R": [
+      "烈焰領主",
+      "Lord of Flame"
+    ],
+    "N03S": [
+      "暴風使者",
+      "Stormbringer"
+    ],
+    "U011": [
+      "獅鷲守護者",
+      "Gryphon Keeper"
+    ],
+    "H02Y": [
+      "吟遊詩人",
+      "Minstrel"
+    ],
+    "H03Z": [
+      "皇家女術士",
+      "Royal Sorceress"
+    ],
+    "Naka": [
+      "最古老的先知",
+      "Eldest Seer"
+    ],
+    "H01Y": [
+      "魔法大師",
+      "Magister of Magic"
+    ],
+    "Nalc": [
+      "宇宙巨龍",
+      "Cosmic Dragon"
+    ],
+    "H00P": [
+      "鐵匠",
+      "Blacksmith"
+    ],
+    "H00Z": [
+      "邪惡聖誕老人",
+      "Evil Santa"
+    ],
+    "H01C": [
+      "弩砲手",
+      "Ballista"
+    ],
+    "H01D": [
+      "元帥",
+      "Marshal"
+    ],
+    "Hapm": [
+      "皇家守衛",
+      "Royal Guard"
+    ],
+    "N017": [
+      "釀酒師",
+      "Brewmaster"
+    ],
+    "N01V": [
+      "蠻族戰士",
+      "Barbarian"
+    ],
+    "N027": [
+      "戰爭首領",
+      "Warboss"
+    ],
+    "H01H": [
+      "長工",
+      "Farmhand"
+    ],
+    "H025": [
+      "懲戒者",
+      "Punisher"
+    ],
+    "N02K": [
+      "機械戰體",
+      "Mechatron"
+    ],
+    "O01M": [
+      "符文守護者",
+      "Rune Guardian"
+    ],
+    "O022": [
+      "老酋長",
+      "Old Chieftain"
+    ],
+    "H02L": [
+      "軍團特使",
+      "Legion Legate"
+    ],
+    "Hmkg": [
+      "血騎士女族長",
+      "Blood Knight Matriarch"
+    ],
+    "Ocbh": [
+      "莫爾格",
+      "Mo'arg"
+    ],
+    "H01F": [
+      "樹人長者",
+      "Ancient of Lore"
+    ],
+    "Nbrn": [
+      "女武神",
+      "Valkyrie"
+    ],
+    "Ekee": [
+      "占星師",
+      "Astromancer"
+    ],
+    "Nsjs": [
+      "超重型坦克",
+      "Super-Heavy Tank"
+    ],
+    "H03I": [
+      "遠古九頭蛇",
+      "Ancient Hydra"
+    ]
+  },
+  "desc": {
+    "Edem": [
+      "容易上手的近戰刺客。",
+      "A melee assassin that is easy to learn."
+    ],
+    "H00N": [
+      "高效的射手，擊殺高危目標可以額外累積自身威力。",
+      "An effective shooter that gains extra power from killing high-value targets."
+    ],
+    "H01G": [
+      "遠程英雄，擅長消滅單一目標，可短時間大幅提高攻擊速度。",
+      "A ranged hero who excels at deleting single targets and can briefly spike her attack speed."
+    ],
+    "N00Z": [
+      "遠程英雄，能降低單體防禦並擾亂敵方隊伍。",
+      "A ranged hero who lowers single-target armour and sows confusion in enemy ranks."
+    ],
+    "N010": [
+      "危險的近戰英雄，對單一目標效率極高；學習高階天賦後更強。",
+      "A dangerous melee hero, highly effective against single targets and stronger with advanced talents."
+    ],
+    "N01P": [
+      "背包格數受限，但攻擊速度極高，能短暫變身。",
+      "Limited inventory, but extremely high attack speed and a temporary transformation."
+    ],
+    "N02E": [
+      "近戰刺客，需要按順序連續施放技能才能發揮。",
+      "A melee assassin who needs her abilities cast in the right order to perform."
+    ],
+    "O015": [
+      "能把傷害集中在單一目標，並製造巫毒娃娃快速處理敵人。",
+      "Concentrates damage on single targets and creates voodoo dolls to delete enemies quickly."
+    ],
+    "Emoo": [
+      "刺客型英雄，物理與魔法傷害兼具，泛用性高。",
+      "An assassin dealing physical and magical damage in equal measure - very versatile."
+    ],
+    "H024": [
+      "可以偷取敵方英雄的道具並在戰鬥中賺取金幣，但戰鬥力偏弱。",
+      "Steals items from enemy heroes and earns gold in combat, but is weak in a straight fight."
+    ],
+    "N05T": [
+      "著魔的刺客，攻擊與移動速度都很高，能累積力量。",
+      "An obsessed assassin with high attack and movement speed who builds up power."
+    ],
+    "O01O": [
+      "近戰英雄，普攻與技能傷害相當平衡。",
+      "A melee hero with damage balanced evenly between attacks and abilities."
+    ],
+    "U00Q": [
+      "侵略性的遠程英雄，能擾亂敵方隊伍並高效清場。",
+      "An aggressive ranged hero who disrupts enemy formations and clears efficiently."
+    ],
+    "U01D": [
+      "近戰英雄，普攻、技能與流血效果都能吸血，並有多種減益。",
+      "A melee hero with lifesteal from attacks, abilities and bleed, plus several debuffs."
+    ],
+    "N06B": [
+      "靈活的盜匪，能非法增加收入、強化建築並偷取金幣。",
+      "A nimble bandit who boosts income illicitly, upgrades buildings and steals gold."
+    ],
+    "Nngs": [
+      "近戰刺客，靠擊殺敵方英雄來增強自己的技能威力。",
+      "A melee assassin who grows her ability power by killing enemy heroes."
+    ],
+    "Npbm": [
+      "結實的近戰英雄，強化路線很多，部分技能有獨立運作方式。",
+      "A sturdy melee hero with many upgrade paths; some abilities work independently."
+    ],
+    "E00S": [
+      "制裁與律法的化身。最強的近戰英雄之一，能把攻速拉到極限。",
+      "The embodiment of retribution and law - one of the strongest melee heroes, able to reach extreme attack speed."
+    ],
+    "Hmgd": [
+      "強力的近戰單挑者。沒有輔助道具時對群戰無力，但單體極強。",
+      "A powerful melee duellist. Helpless against groups without support items, but devastating one-on-one."
+    ],
+    "E00A": [
+      "遠程法師，完全依賴召喚出來的部隊作戰。",
+      "A ranged mage who relies entirely on summoned troops."
+    ],
+    "H00O": [
+      "圍繞防禦塔與兵營運作的英雄。",
+      "A hero built around guard towers and barracks."
+    ],
+    "H00Q": [
+      "遠程英雄，用組合技能打出高額魔法傷害。",
+      "A ranged hero who deals high magic damage through ability combos."
+    ],
+    "H00X": [
+      "遠程英雄，單體治療能力極強，還能改造道具。",
+      "A ranged hero with very strong single-target healing who can also transmute items."
+    ],
+    "H012": [
+      "遠程英雄，主要靠魔法傷害，能給自己或隊友套上秘法護盾。",
+      "A ranged hero built on magic damage, able to shield himself or allies."
+    ],
+    "H01E": [
+      "遠程英雄，具備範圍治療，並能削弱敵方部隊。",
+      "A ranged hero with area healing who can weaken enemy formations."
+    ],
+    "N01K": [
+      "近戰英雄，用地雷與臨時砲塔控場，還能修理建築。",
+      "A melee hero who controls the field with mines and temporary towers, and can repair buildings."
+    ],
+    "E00O": [
+      "全能法師，能輸出、控場、治療隊友並召喚援軍。",
+      "An all-round mage who deals damage, disables enemies, heals allies and summons help."
+    ],
+    "Hamg": [
+      "戰鬥法師，只有攻擊性法術，專精於「點燃」狀態。",
+      "A battle mage with purely offensive spells, specialising in the Ignite status."
+    ],
+    "N03R": [
+      "強力法師，但只能攜帶 4 件道具。可召喚火靈，另有獨立資源。",
+      "A strong mage limited to 4 items. Summons a fire spirit and runs on a separate resource."
+    ],
+    "N03S": [
+      "無情的法師，對敵方集群造成巨量傷害，但非常吃法力。",
+      "A merciless mage who devastates enemy clusters but is extremely mana-hungry."
+    ],
+    "U011": [
+      "近戰法師，能用自己的法力吸收傷害。",
+      "A melee mage who absorbs damage with his own mana."
+    ],
+    "H02Y": [
+      "特殊的輔助英雄，不直接參戰，專門強化隊友。",
+      "A unique support hero who never fights directly, existing to buff allies."
+    ],
+    "H03Z": [
+      "強力法師，用組合技能打出巨量傷害。",
+      "A powerful mage who deals enormous damage through ability combos."
+    ],
+    "Naka": [
+      "能提升友方建築防禦並為其套上魔法屏障，具備獨特機制。",
+      "Raises the armour of friendly buildings and shields them with a magic barrier."
+    ],
+    "H01Y": [
+      "最強的戰鬥法師，技能組合複雜而全面。",
+      "The strongest battle mage, with complex and comprehensive abilities."
+    ],
+    "Nalc": [
+      "強大的遠程法師，擁有自己的累積型資源來強化技能。",
+      "A mighty ranged mage with his own accumulating resource that empowers his abilities."
+    ],
+    "H00P": [
+      "高效的戰士，能暈眩單體並造成範圍傷害，還能複製神器。",
+      "An effective fighter who stuns single targets, deals area damage, and can duplicate an artifact."
+    ],
+    "H00Z": [
+      "近戰英雄，積極治療隊友可以累積增益。",
+      "A melee hero who stacks bonuses by actively healing allies."
+    ],
+    "H01C": [
+      "攻擊距離極遠，能造成小範圍傷害，但行動遲緩。",
+      "Extremely long attack range with small-area damage, but slow to move."
+    ],
+    "H01D": [
+      "近戰英雄，能定期召喚「聯盟」部隊，技能圍繞召喚設計。",
+      "A melee hero who regularly summons Alliance troops; his abilities revolve around them."
+    ],
+    "Hapm": [
+      "近戰英雄，可走多種路線。裝備類乘數對他影響特別大。",
+      "A melee hero with several viable roles - modifier items affect him unusually strongly."
+    ],
+    "N017": [
+      "堅韌的近戰英雄，能削弱敵人，但自己也容易吃到負面效果。",
+      "A tough melee hero who weakens enemies but is himself vulnerable to debuffs."
+    ],
+    "N01V": [
+      "獨立性強的近戰英雄，不需要隊友照顧也能撐住。",
+      "A self-sufficient melee hero who can hold his own without help."
+    ],
+    "N027": [
+      "兇猛的近戰戰士，靠生產糧食來累積生命值上限。",
+      "A fearsome melee warrior who grows his health pool by producing food."
+    ],
+    "H01H": [
+      "圍繞防禦塔運作的英雄，可以躲進碉堡。",
+      "A hero built around guard towers who can hide inside a bunker."
+    ],
+    "H025": [
+      "近戰英雄，受到的狀態傷害較低，並具備多種手段。",
+      "A melee hero who takes reduced damage from statuses and has many tools."
+    ],
+    "N02K": [
+      "背包格數受限，但靠防禦類型獲得極高生存力。",
+      "Limited inventory, but extremely durable thanks to his armour type."
+    ],
+    "O01M": [
+      "極為堅固的坦克，專門吸收大量傷害；死亡會受到懲罰。",
+      "An extremely tough tank built to soak damage, but penalised heavily on death."
+    ],
+    "O022": [
+      "莽撞的近戰英雄，在戰鬥狂熱中能打出大量傷害。",
+      "A reckless melee hero who deals heavy damage once his battle frenzy builds."
+    ],
+    "H02L": [
+      "英勇的戰士，能擋下敵軍推進、突入後排並保護隊友。",
+      "A valiant warrior who holds back the enemy advance, dives the back line and protects allies."
+    ],
+    "Hmkg": [
+      "機動性高的近戰英雄，能衝進戰場中心並承受大量傷害。",
+      "A mobile melee hero who charges into the thick of battle and absorbs a lot of damage."
+    ],
+    "Ocbh": [
+      "強力的近戰英雄，能累積力量來釋放強大技能。",
+      "A powerful melee hero who accumulates strength to unleash mighty abilities."
+    ],
+    "H01F": [
+      "戰鬥力偏低，但能治療隊友並提升隊友的技能強度。",
+      "Low combat potential, but heals allies and raises their spell power."
+    ],
+    "Nbrn": [
+      "遠程英雄，能對單體與集群穩定輸出魔法傷害，並可持續累積敏捷。",
+      "A ranged hero with steady magic damage against both single targets and packs, who accumulates Agility over time."
+    ],
+    "Ekee": [
+      "沒有普通攻擊的法師，靠屏障控場並殲滅大量敵人，非常吃法力。",
+      "A sorceress with no attack at all, controlling the field with barriers and wiping large packs - very mana-hungry."
+    ],
+    "Nsjs": [
+      "結實的遠程英雄，防禦類型為「強化」，側翼砲塔會自動射擊前方敵人，可累積點燃強化。",
+      "A sturdy ranged hero with Fortified armour and side turrets that fire on their own, stacking burn amplification."
+    ],
+    "H03I": [
+      "結實的遠程英雄，回復能力優秀，每次升級都有額外加成；滿等之後仍能繼續成長。",
+      "A sturdy ranged hero with strong regeneration and extra bonuses per level - and it keeps growing past max level."
+    ]
+  }
+}

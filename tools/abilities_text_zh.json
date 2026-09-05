@@ -1,0 +1,1285 @@
+{
+ "_說明": [
+  "英雄技能說明的人工翻譯（俄文 -> 中文 / 英文）。",
+  "俄文原文由 map_heroes.py 從 UD_v3.81 地圖的 war3map.w3a 讀出（aub1 欄位優先）。",
+  "格式：技能ID -> [中文, 英文]。原文的換行結構、數字與公式一律保留。"
+ ],
+ "text": {
+  "A00Y": [
+   "向指定敵人投擲鎚子，造成傷害並使目標短暫暈眩。\n\n傷害：100 + 75% 技能強度\n暈眩（一般部隊）：4 秒\n暈眩（英雄）：1.5 秒\n\n冷卻：11 秒",
+   "Hurls a hammer at the target enemy, dealing damage and stunning the target for a short time.\n\nDamage: 100 + 75% spell power\nStun (normal units): 4 sec.\nStun (heroes): 1.5 sec.\n\nCooldown: 11 sec."
+  ],
+  "A00Z": [
+   "英雄向地面重擊 3 次，造成範圍傷害並點燃附近的敵人。此技能需要持續引導。\n\n每次打擊的傷害：40 + 20% 技能強度\n每次打擊的點燃：50% 機率，最終傷害為每次打擊傷害的 60%\n\n冷卻：18 秒。",
+   "The hero strikes the ground 3 times, dealing area damage and setting nearby enemies on fire. The ability must be channelled.\n\nDamage per strike: 40 + 20% spell power\nBurn per strike: 50% chance, final damage equal to 60% of the damage per strike\n\nCooldown: 18 sec."
+  ],
+  "A010": [
+   "當玩家的經驗點數足夠時，你可以選擇一項天賦，將英雄大幅強化至新的強度等級。",
+   "With a sufficient amount of player experience points you can choose a talent that will significantly strengthen the hero to a new power rank."
+  ],
+  "A011": [
+   "為英雄提供強力的防禦強化，持續 60 秒。\n\n護甲加成：10 點\n生命值加成：1000 點\n額外效果：獲得完全的魔法防護與所有負面狀態防護，但易受中毒影響\n\n冷卻：120 秒",
+   "Grants the hero a powerful defensive buff for 60 sec.\n\nBonus armour: 10\nBonus health: 1000\nAdditionally: grants full protection from magic and from all negative statuses, vulnerable to poisoning\n\nCooldown: 120 sec."
+  ],
+  "A013": [
+   "當玩家經驗點數足夠時，你可以選擇一項天賦，將英雄大幅強化至新的力量位階。",
+   "With enough player experience points you can choose a talent that will significantly strengthen the hero up to a new power rank."
+  ],
+  "A016": [
+   "以不穩定的充能衝擊敵人，造成傷害並施加負面狀態。\n\n傷害：120 +（50% 技能強度）點\n負面狀態：100% 機率施加易傷，30% 機率施加電擊\n\n冷卻：15 秒",
+   "Strikes an enemy with an unstable charge that deals damage and applies negative statuses.\n\nDamage: 120 + (50% spell power)\nNegative statuses: 100% chance to apply Vulnerability, 30% chance to apply Shock\n\nCooldown: 15 sec."
+  ],
+  "A017": [
+   "射出爆炸性彈藥，對範圍造成傷害，並以提高的機率點燃敵人。\n\n傷害：60 + （X5 狩獵點數）點\n點燃：125% 機率，100% 傷害\n\n冷卻：16 秒",
+   "Fires an explosive projectile that deals area damage and applies Burn to enemies with an increased chance.\n\nDamage: 60 + (X5 hunt points)\nBurn: 125% chance, 100% damage\n\nCooldown: 16 sec."
+  ],
+  "A018": [
+   "在靜止狀態下連續攻擊會造成額外傷害。若英雄開始移動，加成便會重置。\n\n每次跳動的加成成長：+10 點\n最大加成：100 + （X5 狩獵點數）點",
+   "Consecutive attacks made while standing still deal additional damage. The bonus is reset if the hero starts moving.\n\nBonus growth per tick: +10\nMaximum bonus: 100 + (X5 hunt points)"
+  ],
+  "A019": [
+   "英雄的攻擊開始波及主要目標附近的敵人（範圍 200）。主要目標同樣會受到本技能的傷害。\n\n傷害：10 + （X1.25 狩獵點數）點\n持續時間：16 秒\n\n冷卻：26 秒",
+   "The hero's attacks begin to hit enemies near the main target (area 200). The main target also takes damage from the ability.\n\nDamage: 10 + (X1.25 hunt points)\nDuration: 16 sec.\n\nCooldown: 26 sec."
+  ],
+  "A01A": [
+   "英雄每第 5 次攻擊會對敵人造成額外的魔法傷害。\n\n傷害：30 + （X4 狩獵點數）點",
+   "Every 5th attack of the hero deals additional magic damage to the enemy.\n\nDamage: 30 + (X4 hunt points)"
+  ],
+  "A01B": [
+   "對英雄周圍的敵人造成傷害並使其減速。此技能的傷害會隨著失去的生命值而提高。\n\n傷害：50 + （50% 技能強度）\n減速強度：-50% 移動速度，-50% 攻擊速度\n減速時間（部隊）：5 秒。\n減速時間（英雄）：3 秒。\n\n冷卻：9 秒。",
+   "Deals damage to enemies around the hero and slows them. The ability's damage can increase with missing health.\n\nDamage: 50 + (50% spell power)\nSlow power: -50% movement speed, -50% attack speed\nSlow duration (units): 5 sec.\nSlow duration (heroes): 3 sec.\n\nCooldown: 9 sec."
+  ],
+  "A01C": [
+   "提升指定目標的攻擊力。若目標為英雄，則額外降低該目標的裝備技能冷卻。一般部隊獲得 150% 的攻擊力加成。\n\n攻擊力加成：15 + （12% 技能強度）點\n裝備技能冷卻（英雄）：-15%\n攻擊力加成（部隊）：\n持續時間：15 秒。\n\n冷卻：15 秒。",
+   "Increases the attack power of the chosen target. If the target is a hero, it additionally reduces the target's modifier cooldown. Regular units receive 150% of the attack bonus.\n\nAttack bonus: 15 + (12% spell power)\nModifier cooldown (heroes): -15%\nAttack bonus (units): \nDuration: 15 sec.\n\nCooldown: 15 sec."
+  ],
+  "A01D": [
+   "莫爾格開始蓄積「惡魔之力」，這股力量會在使用英雄其他技能時消耗。技能持續期間，英雄會回復自身生命值。\n\n惡魔之力蓄積速度：3 +（20% 智力）+（30% MP regen）點／秒\n惡魔之力上限：40 +（10*英雄等級）+（10% 技能強度）點\n生命值回復：每秒 1%\n技能最長維持時間：30 秒\n\n冷卻：10 秒\n\n額外加成資訊請見指令「-d」。",
+   "Mo'arg begins to accumulate \"demonic power\", which is consumed when the hero uses his other abilities. While the ability is active, the hero restores his own health.\n\nDemonic power accumulation rate: 3 + (20% Intelligence) + (30% MP regen) per sec.\nDemonic power limit: 40 + (10*hero level) + (10% spell power)\nHealth restoration: 1% per sec.\nMaximum channel time: 30 sec.\n\nCooldown: 10 sec.\n\nInformation about additional bonuses in the \"-d\" command."
+  ],
+  "A01E": [
+   "暫時提升 700 點範圍內友軍的護甲，並少量治療部隊。處於「鼓舞」技能效果下的單位可獲得 600% 的治療量。\n\n護甲加成：4 點\n加成持續時間：12 秒。\n治療：20 + （10% 技能強度）點\n\n冷卻：24 秒。",
+   "Temporarily increases the armour of allies within 700 and slightly heals units. Units under the effect of \"Inspiration\" receive 600% healing.\n\nArmour bonus: 4\nBonus duration: 12 sec.\nHealing: 20 + (10% spell power)\n\nCooldown: 24 sec."
+  ],
+  "A01H": [
+   "當玩家的經驗值達到足夠數量時，你可以選擇一項天賦，大幅強化英雄，使其提升至新的力量階級。",
+   "With a sufficient amount of player experience points you can choose a talent that will significantly strengthen the hero to a new power rank."
+  ],
+  "A01P": [
+   "在指定地點設置一座小型工廠，持續 40 秒，每 2 秒生產一隻機械地精。額外在工廠旁生成 3 隻機械地精。\n\n小型工廠耐久度：500 + 英雄最大生命值的 50%\n小型工廠護甲：5 點。\n地精耐久度：125 + 英雄最大生命值的 20%\n地精攻擊力：18 + （10% 技能強度）點。\n地精護甲：2 點。\n\n冷卻：100 秒。",
+   "Places a mini-factory at the chosen location for 40 sec. that produces mechanical goblins every 2 sec. It additionally creates 3 mechanical goblins next to the factory.\n\nMini-factory durability: 500 + 50% of the hero's max health\nMini-factory armour: 5\nGoblin durability: 125 + 20% of the hero's max health\nGoblin attack power: 18 + (10% spell power)\nGoblin armour: 2\n\nCooldown: 100 sec."
+  ],
+  "A01Q": [
+   "英雄召喚火焰之靈，持續 60 秒。火焰之靈可造成範圍傷害，並擁有數個受技能強度影響的技能。\n\n火焰之靈生命值：450 + 25% 英雄最大生命值 點\n火焰之靈攻擊力：34 + （10% 技能強度）點\n火焰之靈護甲：2 點\n持有物品「扭曲權杖」時：火焰之靈攻擊速度 +30%\n\n冷卻：60 秒",
+   "The hero summons a fire spirit for 60 sec. The spirit can deal area damage and has several abilities that scale with spell power.\n\nSpirit health: 450 + 25% of the hero's max HP\nSpirit attack power: 34 + (10% spell power)\nSpirit armour: 2\nWith the item \"Scepter of Distortion\": +30% spirit attack speed\n\nCooldown: 60 sec."
+  ],
+  "A01U": [
+   "朝指定方向衝刺，碰撞時對敵人造成傷害。敵方英雄受到的傷害提高 100%。當「閃耀護盾」技能效果啟動時，碰撞會在英雄兩側產生兩道力量波，造成 75% 的傷害。\n\n傷害：100 + （40% 技能強度）點\n\n冷卻：10 秒",
+   "Dashes in the chosen direction and deals damage to enemies on collision. Enemy heroes take 100% more damage. While the \"Sparkling Shield\" ability is active, the collision creates two force waves on either side of the hero, dealing 75% of the damage.\n\nDamage: 100 + (40% spell power)\n\nCooldown: 10 sec."
+  ],
+  "A01V": [
+   "攻擊英雄的敵人有 10% 機率獲得灼燒印記效果，持續 8 秒。此效果會提高該敵人受到英雄傷害的量。若敵人在印記效果下死亡，英雄會回復生命值。\n\n敵人受到英雄的傷害提高：+25%\n帶印記的敵人死亡時回復生命值：（65% 力量）點",
+   "Enemies that attack the hero have a 10% chance to receive the searing mark effect for 8 sec. This effect increases the damage that enemy takes from the hero. If the enemy dies while under the mark, the hero restores health.\n\nEnemy takes more damage from the hero: +25%\nHealth restored when a marked enemy dies: (65% Strength)"
+  ],
+  "A01W": [
+   "英雄對受到「灼燒印記」影響的敵人造成更多傷害，並在攻擊時有機率引爆敵人身上的印記，觸發生命回復效果並造成範圍傷害。此外，技能持續期間會提高對敵人附加印記的機率。\n\n對帶有印記的敵人造成額外傷害：+25%\n攻擊時引爆印記的機率：33%\n引爆傷害：50 + （25% 技能強度）點\n附加印記機率提升：10% > 25%\n技能持續時間：22 秒\n\n冷卻：",
+   "The hero deals more damage to enemies under the effect of \"Searing Mark\" and has a chance on attack to detonate the mark on an enemy, activating a health restoration effect and dealing area damage. While the ability is active it also increases the chance to apply the mark to enemies.\n\nAdditional damage to marked enemies: +25%\nChance to detonate the mark on attack: 33%\nDetonation damage: 50 + (25% spell power)\nMark application chance increase: 10% > 25%\nAbility duration: 22 sec.\n\nCooldown:"
+  ],
+  "A025": [
+   "英雄的技能有小機率對敵人施加「魅惑」狀態。魅惑會受到敵人身上詛咒抗性的影響。\n\n魅惑施加機率：40%\n魅惑持續時間：5 秒\n魅惑效果：女術士的技能對帶有「魅惑」狀態的敵人造成傷害時，會移除該狀態，並使技能傷害提高 50%",
+   "The hero's abilities have a small chance to apply the \"Charm\" status to enemies. Charm is subject to enemies' curse resistance.\n\nCharm application chance: 40%\nCharm duration: 5 sec.\nCharm effect: when the Sorceress's abilities damage an enemy with the \"Charm\" status, the status is removed and the ability deals 50% more damage"
+  ],
+  "A027": [
+   "產生一道魔法閃光，對小範圍內的敵人造成傷害。\n\n傷害：50 +（25% 技能強度）點\n冷卻：3 秒",
+   "Creates a magical flash that deals damage to enemies in a small area.\n\nDamage: 50 + (25% spell power)\nCooldown: 3 sec."
+  ],
+  "A028": [
+   "英雄標記指定的區域，3 秒後該處會發生強力的魔法爆炸，對敵人造成傷害。\n\n傷害：50 + 100% 技能強度 + 200% 智力 點\n冷卻：42 秒",
+   "The hero marks the target area, where after 3 seconds a powerful magical explosion occurs, dealing damage to enemies.\n\nDamage: 50 + 100% spell power + 200% Intelligence\nCooldown: 42 sec."
+  ],
+  "A029": [
+   "女術士獲得強大的強化效果，使所有造成的傷害提升 25%，技能冷卻縮短 50%，並使施放技能的法力消耗降低 50%。使用時不會重置冷卻。\n\n持續時間：10 +（2% 技能強度）秒",
+   "The Sorceress gains a powerful empowerment that increases all damage dealt by 25%, reduces ability cooldowns by 50% and reduces their mana cost by 50%. Does not reset cooldowns when used.\n\nDuration: 10 + (2% spell power) sec."
+  ],
+  "A02C": [
+   "女祭司的攻擊對目標造成額外的魔法傷害，並使目標受到本技能的傷害提高 10%。\n\n傷害：（100% 敏捷）點\n\n冷卻：5 秒",
+   "The priestess's attack deals additional magic damage to the target and increases the damage the target takes from this ability by 10%.\n\nDamage: (100% Agility)\n\nCooldown: 5 sec."
+  ],
+  "A02J": [
+   "向指定敵人發射一道火焰投射物洪流。每一發投射物在命中時造成傷害，並有少許機率點燃敵人。\n\n投射物傷害：12 +（3% 技能強度）點\n投射物的點燃效果：50% 機率，100% 傷害\n投射物數量：20 發\n\n冷卻：20 秒",
+   "Directs a stream of fire projectiles at the target enemy. Each projectile deals damage on impact and has a small chance to set the enemy on fire.\n\nProjectile damage: 12 + (3% spell power)\nProjectile Burn effect: 50% chance, 100% damage\nNumber of projectiles: 20\n\nCooldown: 20 sec."
+  ],
+  "A02L": [
+   "當玩家經驗點數足夠時，你可以選擇一項天賦，將英雄大幅強化至新的力量位階。",
+   "With enough player experience points you can choose a talent that will significantly strengthen the hero up to a new power rank."
+  ],
+  "A02N": [
+   "以瘟疫投射物轟擊指定區域，每一發都會造成範圍傷害並施加「疾病」狀態。\n\n投射物傷害：20 +（10% 技能強度）點；50% 機率施加 200% 傷害的疾病\n投射物數量：發射 3 次 - 6/10/14 發\n\n冷卻：15 秒",
+   "Strikes the target area with plague projectiles, each of which deals area damage and applies the \"Disease\" status.\n\nProjectile damage: 20 + (10% spell power); 50% chance to apply Disease with 200% damage\nNumber of projectiles: fires 3 times - 6/10/14 projectiles\n\nCooldown: 15 sec."
+  ],
+  "A02O": [
+   "指定目標獲得持續治療。在 300 點以內的距離，目標可獲得完整治療。英雄離目標越遠，治療越弱，在 1500 距離時最低為 15%。持續時間 - 10 秒。\n\n完整治療量：400 +（150% 技能強度）點\n\n冷卻：22 秒",
+   "The target receives continuous healing. At a distance of 300 or less the target receives full healing. The farther the hero is from the target, the weaker the healing, down to 15% at a distance of 1500. Duration - 10 sec.\n\nFull healing amount: 400 + (150% spell power)\n\nCooldown: 22 sec."
+  ],
+  "A02R": [
+   "此靈體立即為自身與所有友方英雄回復生命值，並清除負面狀態。\n\n治療：35% 生命值\n\n冷卻：100 秒",
+   "The spirit instantly restores health to itself and to all allied heroes, and also cleanses negative statuses.\n\nHealing: 35% of health\n\nCooldown: 100 sec."
+  ],
+  "A02S": [
+   "對小範圍內的敵人造成少量傷害。第一次爆炸有 90% 機率產生再次爆炸，每觸發一次該機率降低 10%。\n\n傷害：40 +（20% 技能強度）點\n\n冷卻：3 秒",
+   "Deals small damage to enemies in a small area. The first explosion has a 90% chance to create a repeat explosion; with each tick this chance decreases by 10%.\n\nDamage: 40 + (20% spell power)\n\nCooldown: 3 sec."
+  ],
+  "A02T": [
+   "英雄失去當前生命值的 10%，並依據失去的生命值為友軍目標回復生命值與法力值。\n\n回復效率：110%",
+   "The hero loses 10% of his current health and restores health and mana to an allied target depending on the health lost.\n\nRestoration efficiency: 110%"
+  ],
+  "A02U": [
+   "消耗所有已累積的「神聖職責」層數，提升聖騎士的護甲、攻擊力與攻擊速度。使用時英雄會失去一半的「神聖職責」層數，加成的層數計算在扣除之前進行。在層數達到上限時使用此技能，會使層數上限提高 1。\n\n攻擊力提升：+30（每層 +12）\n攻擊速度提升：+15%（每層 +5%）\n護甲提升：+10（每層 +3）\n持續時間：25 秒\n\n冷卻：70 秒",
+   "Uses all accumulated \"Holy Duty\" stacks and increases the paladin's armour, attack power and attack speed. On use the hero loses half of the \"Holy Duty\" stacks; the stacks are counted for the bonuses before they are deducted. Using the ability at the maximum stack count raises the stack limit by 1.\n\nAttack power increase: +30 (+12 per stack)\nAttack speed increase: +15% (+5% per stack)\nArmour increase: +10 (+3 per stack)\nDuration: 25 sec.\n\nCooldown: 70 sec."
+  ],
+  "A02W": [
+   "立即治療指定的友方單位，或對敵方不死族造成傷害。\n\n治療強度：200 +（75% 技能強度）點\n對不死族的傷害：治療量的 60%；技能強度達 300+ 時，傷害提升至 90%。\n\n冷卻：13 秒",
+   "Instantly heals the target friendly unit or deals damage to enemy undead.\n\nHealing power: 200 + (75% spell power)\nDamage to undead: 60% of the healing; at 300+ spell power the damage increases to 90%.\n\nCooldown: 13 sec."
+  ],
+  "A02Y": [
+   "為英雄與附近的友方單位回復生命值。\n\n治療強度：60 + （35% 技能強度）點\n作用範圍：500 點\n\n冷卻：20 秒",
+   "Restores health to the hero and nearby friendly units.\n\nHealing power: 60 + (35% spell power)\nArea: 500\n\nCooldown: 20 sec."
+  ],
+  "A02Z": [
+   "提高「神聖職責」的層數上限。「恩典」技能可提升目標的攻擊速度，持續 6 秒。「傷口癒合」技能會額外以百分比治療目標。「光之解放」技能對友方英雄回復更多生命值。\n\n「神聖職責」層數上限：+5\n「恩典」強化：+20% 攻擊速度\n「傷口癒合」強化：4% 最大生命值治療\n「光之解放」強化：英雄治療 +5% 最大生命值",
+   "Increases the stack limit of \"Holy Duty\". The \"Grace\" ability increases the target's attack speed for 6 sec. The \"Wound Healing\" ability additionally heals targets by a percentage. The \"Release of Light\" ability heals allied heroes for more health.\n\n\"Holy Duty\" stack limit: +5\n\"Grace\" bonus: +20% attack speed\n\"Wound Healing\" bonus: 4% Max HP healing\n\"Release of Light\" bonus: +5% Max HP healing for heroes"
+  ],
+  "A030": [
+   "英雄的技能可透過造成的治療累積「神聖職責」層數。這些層數會提升英雄技能的治療強度，並用於發動聖騎士的強力技能。你可以透過指令「-i」查看層數資訊，也會在每次施放英雄技能時顯示。\n\n層數累積：每 350 點治療累積 1 層\n治療強度：每 1 層 +1%。\n初始層數上限：15",
+   "The hero's abilities can accumulate \"Holy Duty\" stacks for the healing performed. These stacks increase the healing power of the hero's abilities and are used to unleash the paladin's powerful abilities. You can check the number of stacks with the \"-i\" command, and also every time the hero's abilities are used.\n\nStack gain: 1 stack per 350 healing\nHealing power: +1% per stack.\nStarting stack limit: 15"
+  ],
+  "A031": [
+   "對敵人造成傷害並施加易燃效果。\n\n傷害：（200% int）點\n易燃：120% 機率\n\n冷卻：15 秒",
+   "Deals damage to enemies and applies the Flammable effect.\n\nDamage: (200% int)\nFlammable: 120% chance\n\nCooldown: 15 sec."
+  ],
+  "A032": [
+   "作用範圍內所有敵方單位失去施放法術的能力，並受到極強的減速。\n\n減速效果：-80% 移動速度與攻擊速度\n作用範圍：400 點。\n持續時間：15 秒（英雄 5 秒）。\n\n冷卻：80 秒。",
+   "All enemy units in the area lose the ability to cast spells and receive a very strong slow.\n\nSlow effect: -80% movement speed and attack speed\nArea: 400\nDuration: 15 sec. (heroes 5 sec.)\n\nCooldown: 80 sec."
+  ],
+  "A033": [
+   "短時間內提升英雄的敏捷。\n\n敏捷加成：+100%\n持續時間：15 秒。\n\n冷卻：30 秒。",
+   "Increases the hero's Agility for a short time.\n\nAgility bonus: +100%\nDuration: 15 sec.\n\nCooldown: 30 sec."
+  ],
+  "A034": [
+   "繼承裝備技能的加成。\n\n英雄的攻擊會呈扇形射出箭矢，每支箭矢對一名敵人造成傷害並施加冰凍效果。\n\n箭矢數量：3 支\n每支箭矢的傷害：24 點\n冰凍效果：50% 機率\n\n冷卻：8 秒。",
+   "Inherits bonuses for modifiers.\n\nThe hero's attacks fire arrows in a fan, each of which deals damage to one enemy and applies a Freeze effect.\n\nNumber of arrows: 3\nDamage per arrow: 24\nFreeze effect: 50% chance\n\nCooldown: 8 sec."
+  ],
+  "A035": [
+   "降低指定目標的護甲數值。\n\n護甲降低：3 + （2% 技能強度）點\n持續時間（部隊）：12 秒。\n持續時間（英雄）：6 秒。\n\n冷卻：13 秒。",
+   "Reduces the armour value of the chosen target.\n\nArmour reduction: 3 + (2% spell power)\nDuration (units): 12 sec.\nDuration (heroes): 6 sec.\n\nCooldown: 13 sec."
+  ],
+  "A037": [
+   "移除指定範圍內敵人身上的所有正面效果，造成傷害，並有小機率對敵人施加虛弱。\n\n作用範圍：200 點\n造成的傷害：20 + （75% 技能強度）點\n附加效果：30% 機率施加虛弱，30% 機率暈眩 1 秒。\n\n冷卻：20 秒。",
+   "Removes all positive effects from enemies in the chosen area, deals damage and has a small chance to apply Weakness to enemies.\n\nArea: 200\nDamage dealt: 20 + (75% spell power)\nAdditional effects: 30% chance to apply Weakness, 30% chance to stun for 1 sec.\n\nCooldown: 20 sec."
+  ],
+  "A038": [
+   "英雄進入隱形狀態並開始回復生命值。\n\n生命值回復：每秒 3%\n持續時間：10 秒\n\n冷卻：20 秒",
+   "The hero becomes invisible and begins to regenerate health.\n\nHealth regeneration: 3% per sec.\nDuration: 10 sec.\n\nCooldown: 20 sec."
+  ],
+  "A039": [
+   "對指定的敵人造成傷害。處於「流血」狀態的敵人，以及生命值較低的敵人，會受到更多傷害。\n\n傷害：100 +（50% 技能強度）點\n傷害提升：對流血中的目標 +50%；目標每缺少 1% 生命值 +2%\n\n冷卻：14 秒",
+   "Deals damage to the target enemy. Enemies under the \"Bleed\" status and enemies with low health take more damage.\n\nDamage: 100 + (50% spell power)\nDamage increase: +50% against bleeding targets; +2% for each 1% of the target's missing health\n\nCooldown: 14 sec."
+  ],
+  "A03A": [
+   "英雄開始瘋狂攻擊指定的敵人。技能持續期間無法對英雄下達命令，目標則會被暈眩。每一次攻擊都有小機率附加流血。\n\n總傷害：200 +（100% 技能強度）點\n每次攻擊的流血：20% 機率，100% 傷害\n持續時間：3 秒\n\n冷卻：18 秒",
+   "The hero begins to attack the target enemy furiously. While the ability is active the hero cannot be given orders, and the target is stunned. Each hit has a small chance to apply Bleed.\n\nTotal damage: 200 + (100% spell power)\nBleed from each hit: 20% chance, 100% damage\nDuration: 3 sec.\n\nCooldown: 18 sec."
+  ],
+  "A03C": [
+   "英雄的攻擊對生命值 50% 以上的敵人可能造成提高的物理傷害。可對目標施加流血。\n\n額外傷害：25 + （10% 技能強度）+ （25% 敏捷）點\n流血效果：100% 機率，150% 傷害\n\n效果冷卻：0.5 秒",
+   "The hero's attack can deal increased physical damage against an enemy at 50% health or above. Can apply Bleed to the target.\n\nBonus damage: 25 + (10% spell power) + (25% Agility)\nBleed effect: 100% chance, 150% damage\n\nEffect cooldown: 0.5 sec."
+  ],
+  "A03D": [
+   "提升英雄的攻擊速度與移動速度，並使英雄的攻擊與技能獲得吸血。\n\n移動速度提升：20%\n攻擊速度提升：30%\n攻擊吸血：30%\n技能吸血：20%\n持續時間：15 秒\n\n冷卻：28 秒",
+   "Increases the hero's attack speed and movement speed, and grants lifesteal from the hero's attacks and abilities.\n\nMovement speed increase: 20%\nAttack speed increase: 30%\nLifesteal from attacks: 30%\nLifesteal from abilities: 20%\nDuration: 15 sec.\n\nCooldown: 28 sec."
+  ],
+  "A03F": [
+   "英雄朝指定方向引發一連串接續的爆破，造成範圍傷害。最後一次爆破造成更高的傷害、更大的作用範圍，並施加點燃效果。\n\n爆破傷害：30 +（12% 技能強度）點\n強化爆破傷害：50 +（20% 技能強度）點\n強化爆破的點燃：75% 機率，200% 傷害\n\n冷卻：14 秒",
+   "The hero launches consecutive detonations in the target direction, dealing area damage. The last detonation deals increased damage over an increased area and applies the Burn effect.\n\nDetonation damage: 30 + (12% spell power)\nEmpowered detonation damage: 50 + (20% spell power)\nBurn from the empowered detonation: 75% chance, 200% damage\n\nCooldown: 14 sec."
+  ],
+  "A03I": [
+   "召喚出的部隊在存活的前 10 秒獲得攻擊速度加成。\n\n攻擊速度加成：40%",
+   "The summoned squad gains an attack speed bonus during the first 10 sec. of its life.\n\nAttack speed bonus: 40%"
+  ],
+  "A03O": [
+   "在指定位置生成一個無規則移動的火焰旋風。旋風會朝周圍區域射出火焰彈，造成小範圍傷害。此外旋風也會對自身附近的敵人造成額外傷害。旋風與火焰彈都可能點燃敵人。\n\n旋風傷害：30 + （15% 技能強度）點/秒\n火焰彈傷害：60 + （30% 技能強度）點\n旋風與火焰彈的點燃效果：60% 機率，250% 傷害\n技能持續時間：12 秒\n\n冷卻：90 秒",
+   "Creates a chaotically moving fire whirl at the target location. The whirl launches fire blasts into the area around it, dealing damage in a small area. The whirl also deals additional damage to enemies next to it. Both the whirl and the blasts can burn enemies.\n\nWhirl damage: 30 + (15% spell power) per sec.\nFire blast damage: 60 + (30% spell power)\nBurn effect from the whirl and blasts: 60% chance, 250% damage\nAbility duration: 12 sec.\n\nCooldown: 90 sec."
+  ],
+  "A03P": [
+   "英雄暫時提升自身從「成長」、物品以及自身力量獲得的生命值回復。技能持續期間，疾病造成的傷害也會提升。\n\n生命值回復提升：+75%\n疾病傷害提升：+30%\n持續時間：10 秒\n\n冷卻：20 秒",
+   "The hero temporarily increases his health regeneration gained from \"Growth\", from items and from his own Strength. While the ability is active, damage from Disease is also increased.\n\nHealth regeneration increase: +75%\nDisease damage increase: +30%\nDuration: 10 sec.\n\nCooldown: 20 sec."
+  ],
+  "A03V": [
+   "選擇自己的據點或建築，將其轉移給其他玩家，或在不損失地基的情況下摧毀它。可從任意距離施放。",
+   "Select your own point or building to transfer it to another player or to destroy it without losing the foundation. Can be cast from any distance."
+  ],
+  "A04G": [
+   "在指定地點設置一座守衛塔，持續 80 秒。\n\n塔的耐久度：100 + 英雄最大生命值的 30%\n塔的攻擊力：15 + （10% 技能強度）點\n塔的護甲：1 點\n\n冷卻：30 秒。",
+   "Places a watch tower at the chosen location for 80 sec.\n\nTower durability: 100 + 30% of the hero's max health\nTower attack power: 15 + (10% spell power)\nTower armour: 1\n\nCooldown: 30 sec."
+  ],
+  "A04H": [
+   "立即在指定地點建立一個基礎據點。\n\n冷卻：300 秒",
+   "Instantly creates a base point at the target location.\n\nCooldown: 300 sec."
+  ],
+  "A04J": [
+   "立即為指定的建築或機械回復生命值。\n\n治療強度：125 + （100% 技能強度）點\n\n冷卻：30 秒。",
+   "Instantly restores health to the chosen building or mechanism.\n\nHealing power: 125 + (100% spell power)\n\nCooldown: 30 sec."
+  ],
+  "A04K": [
+   "提升指定建築的攻擊速度。持續時間 - 20 秒（特別強大的建築為 10 秒）\n\n攻擊速度加成：40%\n\n冷卻：20 秒。",
+   "Increases the attack speed of the chosen building. Duration - 20 sec. (10 sec. for especially strong buildings)\n\nAttack speed bonus: 40%\n\nCooldown: 20 sec."
+  ],
+  "A04L": [
+   "對指定目標發動強力一擊，造成範圍傷害並暈眩被擊中的目標。\n\n對目標的傷害：120 +（115% 惡魔之力）點\n對目標周圍敵人的傷害：主傷害公式的 50%\n目標暈眩（部隊）：4 秒\n目標暈眩（英雄）：2 秒\n\n冷卻：18 秒\n\n額外加成資訊請見指令「-q」。",
+   "Delivers a powerful blow to the target, dealing area damage and stunning the struck target.\n\nDamage to target: 120 + (115% demonic power)\nDamage to enemies near the target: 50% of the main damage formula\nTarget stun (troops): 4 sec.\nTarget stun (heroes): 2 sec.\n\nCooldown: 18 sec.\n\nInformation about additional bonuses in the \"-q\" command."
+  ],
+  "A04N": [
+   "當玩家的經驗點數足夠時，你可以選擇一項天賦，使英雄大幅強化至新的力量等階。",
+   "With enough player experience points, you can choose a talent that will significantly strengthen the hero to a new power rank."
+  ],
+  "A04O": [
+   "英雄創造 2 個幻象分身。\n\n分身造成傷害：30%\n分身受到傷害：180%\n持續時間：30 秒\n\n冷卻：30 秒",
+   "The hero creates 2 illusory duplicates.\n\nDuplicates deal damage: 30%\nDuplicates take damage: 180%\nDuration: 30 sec.\n\nCooldown: 30 sec."
+  ],
+  "A04P": [
+   "對指定友軍施加護盾，並逐漸回復其法力值。\n\n一般傷害防護：+15%\n狀態傷害防護：+15%\n法力值回復：每秒 1%\n持續時間：10 秒（目標每一等級 +1 秒）\n\n冷卻：20 秒",
+   "Places a shield on the target ally and gradually restores their mana.\n\nProtection from normal damage: +15%\nProtection from status damage: +15%\nMana restoration: 1% per sec.\nDuration: 10 sec. (+1 sec. per level of the target)\n\nCooldown: 20 sec."
+  ],
+  "A04S": [
+   "以魔法能量團轟擊指定區域，每一團都會造成範圍傷害。\n\n每團能量的傷害：30 +（15% 技能強度）點\n能量團數量：8 個（英雄每 500 點當前法力值 +1）\n\n冷卻：13 秒",
+   "Strikes the target area with magical clots, each of which deals area damage.\n\nDamage of each clot: 30 + (15% spell power)\nNumber of clots: 8 (+1 for every 500 of the hero's current mana)\n\nCooldown: 13 sec."
+  ],
+  "A04T": [
+   "英雄暫時獲得敏捷加成與強力的魔法抗性。\n\n敏捷加成：+100%\n魔法抗性：70%\n持續時間：20 秒\n\n冷卻：80 秒",
+   "The hero temporarily gains an Agility bonus and strong magic resistance.\n\nAgility bonus: +100%\nMagic resistance: 70%\nDuration: 20 sec.\n\nCooldown: 80 sec."
+  ],
+  "A04V": [
+   "英雄的攻擊有機率造成提高的傷害。\n\n機率：20%\n傷害：150%",
+   "The hero's attacks have a chance to deal increased damage.\n\nChance: 20%\nDamage: 150%"
+  ],
+  "A04W": [
+   "每次擊殺會為英雄回復 1% 的已失去生命值。",
+   "Kills restore 1% of the hero's missing health."
+  ],
+  "A04X": [
+   "獲得強化，期間攻擊會造成額外的範圍傷害，並有小機率點燃敵人。\n\n範圍傷害：20 +（8% 技能強度）點\n點燃效果：20% 機率，60% 傷害\n持續時間：12 秒\n\n冷卻：20 秒",
+   "Gains an empowerment during which attacks deal additional area damage and Burn enemies with a small chance.\n\nArea damage: 20 + (8% spell power)\nBurn effect: 20% chance, 60% damage\nDuration: 12 sec.\n\nCooldown: 20 sec."
+  ],
+  "A04Y": [
+   "以醉人的酒氣籠罩敵人，降低其移動速度。受影響的敵人攻擊時可能落空。\n\n移動速度降低：30%\n落空機率：20%\n作用範圍：200 點\n持續時間：12 秒（英雄 5 秒）\n\n冷卻：12 秒",
+   "Envelops enemies in intoxicating fumes, reducing their movement speed. Affected enemies may miss with their attacks.\n\nMovement speed reduction: 30%\nMiss chance: 20%\nArea: 200\nDuration: 12 sec. (heroes 5 sec.)\n\nCooldown: 12 sec."
+  ],
+  "A04Z": [
+   "「小酌一杯」與「烈性藥湯」會為釀酒師施加「醉意」狀態。在此效果下，英雄的戰鬥效率降低，但受到的傷害也會減少。\n\n醉意持續時間：4 秒\n攻擊速度降低：-20%\n移動速度降低：-20%\n受到傷害降低：20%",
+   "The abilities \"Have a Drink\" and \"Potent Brew\" apply the \"Drunkenness\" status to the Brewmaster. Under this effect the hero fights less effectively but takes less damage.\n\nDrunkenness duration: 4 sec.\nAttack speed reduction: -20%\nMovement speed reduction: -20%\nIncoming damage reduction: 20%"
+  ],
+  "A050": [
+   "英雄飲下藥酒，立即回復自身生命值。若施放技能當下英雄的生命值低於 35%，釀酒師可獲得 +1 點力量。\n\n治療強度：150 +（100% 技能強度）點\n\n冷卻：20 秒",
+   "The hero drinks a brew, instantly restoring his own health. If the hero's health is below 35% at the moment the ability is used, the Brewmaster gains +1 Strength.\n\nHealing power: 150 + (100% spell power)\n\nCooldown: 20 sec."
+  ],
+  "A051": [
+   "英雄提升自身力量，免疫物理傷害，並加快「挑釁者」技能的冷卻速度。\n\n力量提升：永久 +2 點\n「挑釁者」冷卻加速：+100%\n持續時間：12 秒\n\n冷卻：60 秒",
+   "The hero increases his Strength, becomes immune to physical damage and speeds up the cooldown of the \"Bully\" ability.\n\nStrength increase: +2 permanently\n\"Bully\" cooldown acceleration: +100%\nDuration: 12 sec.\n\nCooldown: 60 sec."
+  ],
+  "A054": [
+   "英雄的攻擊會對周圍敵人造成額外傷害。可能將敵人暈眩。\n\n傷害：40 +（40% 力量）點\n暈眩：25% 機率，1 秒\n若敵人身上有「酒氣」效果：傷害提高 50%，暈眩機率提升至 75%\n\n冷卻：6 秒",
+   "The hero's attack is accompanied by additional damage to surrounding enemies. Can stun enemies.\n\nDamage: 40 + (40% Strength)\nStun: 25% chance, 1 sec.\nIf the enemy has the \"Wine Fumes\" effect: 50% more damage, stun chance increased to 75%\n\nCooldown: 6 sec."
+  ],
+  "A05M": [
+   "英雄死亡後會在自身腳下留下火焰銘文，烈焰領主將於 25 秒後在該處以全滿的生命值與法力值復活。復活時灼燒周圍的敵人，造成大量傷害。\n\n造成傷害：（105% 技能強度）+ （35% 最大法力值）點",
+   "After death the hero creates fiery inscriptions beneath himself, on which the Lord of Flame resurrects after 25 sec. with full health and mana. On resurrection he scorches the enemies around him, dealing a large amount of damage.\n\nDamage dealt: (105% spell power) + (35% max mana)"
+  ],
+  "A05Q": [
+   "英雄的攻擊造成範圍傷害（範圍 200）。此外，每提升一級，英雄的攻擊力額外提升 15 點。",
+   "The hero's attacks deal area damage (200 area). Also, with each level gained the hero's attack is additionally increased by 15."
+  ],
+  "A05S": [
+   "英雄開始砲擊指定區域。此技能無法被中斷，弩砲會持續射擊直到最後一發彈藥或自身死亡為止。\n\n每發彈藥的傷害：75 + 25% 技能強度\n彈藥數量：40 + 7% 技能強度\n施放距離：2000\n\n冷卻：80 秒",
+   "The hero begins to bombard the chosen area. The ability cannot be interrupted; the ballista fires until its last projectile or until its own death.\n\nDamage per projectile: 75 + 25% spell power\nNumber of projectiles: 40 + 7% spell power\nCast range: 2000\n\nCooldown: 80 sec."
+  ],
+  "A05T": [
+   "在指定地點製造一隻螢火蟲，提高附近友軍的護甲。\n\n護甲加成：4 點\n作用範圍：500 點\n持續時間：20 秒\n\n冷卻：40 秒",
+   "Creates a firefly at the chosen location that increases the armour of nearby allies.\n\nArmour bonus: 4\nArea: 500\nDuration: 20 sec.\n\nCooldown: 40 sec."
+  ],
+  "A05V": [
+   "英雄受到遠程攻擊的傷害降低。\n\n傷害降低：12 點\n可能的最低傷害：0 點",
+   "The hero takes less damage from ranged attacks.\n\nDamage reduction: 12\nMinimum possible damage: 0"
+  ],
+  "A05W": [
+   "在指定地點製造一隻幽靈貓頭鷹，降低附近敵人的護甲。\n\n護甲降低：4 點\n作用範圍：500 點\n持續時間：20 秒\n\n冷卻：40 秒",
+   "Creates a spectral owl at the chosen location that reduces the armour of nearby enemies.\n\nArmour reduction: 4\nArea: 500\nDuration: 20 sec.\n\nCooldown: 40 sec."
+  ],
+  "A05Y": [
+   "英雄召喚一支戰鬥部隊，持續 45 秒。\n\n部隊的強度取決於英雄等級與技能強度。每 100 點技能強度會額外召喚一個單位。",
+   "The hero summons a combat squad for 45 sec.\n\nThe squad's strength depends on the hero's level and spell power. For every 100 spell power an additional unit is summoned."
+  ],
+  "A05Z": [
+   "元帥將自己所有的部隊（僅限聯盟）傳送到自己身邊，並暫時提升自己與被傳送戰士的護甲，持續 12 秒。\n\n護甲提升：4 點",
+   "The marshal teleports all of his troops (Alliance only) to himself and temporarily increases the armour of himself and the teleported warriors for 12 sec.\n\nArmour increase: 4"
+  ],
+  "A061": [
+   "提高附近友方部隊的攻擊力，持續 30 秒。具有「技能強度」屬性時，還會額外治療單位。\n\n攻擊力提升：20%\n治療強度：75% 技能強度",
+   "Increases the attack power of nearby allied troops for 30 sec. With the \"spell power\" stat it additionally heals units.\n\nAttack power increase: 20%\nHealing power: 75% spell power"
+  ],
+  "A062": [
+   "下一支召喚的部隊（在使用此技能之後）將永久存在。\n\n冷卻：140 秒",
+   "The next summoned squad (after this ability is used) remains permanently.\n\nCooldown: 140 sec."
+  ],
+  "A063": [
+   "每秒回復附近友軍 1% 的生命值。光環作用範圍為 400。對英雄本身無效。",
+   "Restores 1% health to nearby allies every second. The aura area is 400. Does not affect the hero himself."
+  ],
+  "A064": [
+   "造成傷害的狀態在英雄身上的持續時間減少 50%。",
+   "Damaging status effects last 50% less time on the hero."
+  ],
+  "A065": [
+   "英雄標記一片區域，2 秒後將有強大的光流落下，對敵人造成傷害並治療友軍。對建築與機械無效。\n\n\n對敵人的傷害：200 + （100% 技能強度）點\n治療友軍：150 + （75% 技能強度）點\n\n冷卻：60 秒",
+   "The hero marks an area where, after 2 sec., a powerful stream of light strikes, dealing damage to enemies and healing allies. Does not affect buildings and mechanical units.\n\n\nDamage to enemies: 200 + (100% spell power)\nHealing to allies: 150 + (75% spell power)\n\nCooldown: 60 sec."
+  ],
+  "A066": [
+   "指定範圍內出現閃耀的光芒，治療友軍並對敵人造成傷害。對建築與機械無效。\n\n對敵人的傷害：12 +（8% 技能強度）點/秒\n對友軍的治療：12 +（8% 技能強度）點/秒\n效果持續時間：9 秒\n\n冷卻：31 秒",
+   "Flashes of light appear in the target area, healing allies and dealing damage to enemies. Does not affect buildings and mechanical units.\n\nDamage to enemies: 12 + (8% spell power) per sec.\nHealing to allies: 12 + (8% spell power) per sec.\nEffect duration: 9 sec.\n\nCooldown: 31 sec."
+  ],
+  "A067": [
+   "指定的敵方戰士會被火焰包圍，每秒受到傷害。同時失去施放法術的能力，並且造成的傷害降低。\n\n傷害：14 +（6% 技能強度）點/秒\n目標造成傷害的降低：12%\n持續時間：16 秒（英雄 8 秒）\n\n冷卻：22 秒",
+   "The target enemy warrior is engulfed in flames that deal damage every second. It also loses the ability to cast spells and deals less damage.\n\nDamage: 14 + (6% spell power) per sec.\nTarget's damage reduction: 12%\nDuration: 16 sec. (heroes 8 sec.)\n\nCooldown: 22 sec."
+  ],
+  "A068": [
+   "指定範圍內的敵人受到傷害，並且開始在攻擊時失手。對建築與機械無效。\n\n傷害：30 +（15% 技能強度）點\n失手機率：20%\n效果持續時間：20 秒（英雄 10 秒）\n\n冷卻：25 秒",
+   "Enemies in the target area take damage and begin to miss with their attacks. Does not affect buildings and mechanical units.\n\nDamage: 30 + (15% spell power)\nMiss chance: 20%\nEffect duration: 20 sec. (heroes 10 sec.)\n\nCooldown: 25 sec."
+  ],
+  "A06K": [
+   "攻擊生命值低於 50% 的敵人時，可獲得短暫的攻擊力與護甲加成。這兩項加成彼此獨立生效。\n\n攻擊力加成：+3 點\n護甲加成：+1 點\n加成持續時間：5 + （2% 技能強度）秒。\n技能強度 200 以上：100% 機率對敵人施加「易燃」狀態\n\n冷卻：1 秒。",
+   "Attacks against enemies with less than 50% health grant a brief bonus to attack power and armour. These bonuses work independently of each other.\n\nAttack bonus: +3\nArmour bonus: +1\nBonus duration: 5 + (2% spell power) sec.\nSpell power 200+: 100% chance to apply the \"Flammable\" status to the enemy\n\nCooldown: 1 sec."
+  ],
+  "A06N": [
+   "在指定地點創造一顆火焰法球。法球會週期性地對附近隨機一名敵人造成傷害。此外法球還會額外灼燒身邊的敵人，造成 50% 傷害。\n\n傷害：30 +（30% 惡魔之力）點\n傷害觸發間隔：0.4 秒\n持續時間：11 秒\n\n冷卻：30 秒\n\n額外加成資訊請見指令「-е」。",
+   "Creates a fire orb at the target point. The orb periodically deals damage to a random nearby enemy. The orb also additionally scorches enemies next to it, dealing 50% damage.\n\nDamage: 30 + (30% demonic power)\nDamage interval: 0.4 sec.\nDuration: 11 sec.\n\nCooldown: 30 sec.\n\nInformation about additional bonuses in the \"-е\" command."
+  ],
+  "A06Q": [
+   "機械師能以極高的速度修理機械與建築。",
+   "The mechanic can repair vehicles and buildings at great speed."
+  ],
+  "A06Z": [
+   "英雄在指定範圍內佈下 11 顆地雷，敵人靠近時引爆。作用範圍 - 200。地雷持續時間 - 300 秒。\n\n地雷傷害：40 +（20% 技能強度）點\n\n冷卻：18 秒",
+   "The hero places 11 mines in the target area that explode when an enemy approaches. Area - 200. Mine duration - 300 sec.\n\nMine damage: 40 + (20% spell power)\n\nCooldown: 18 sec."
+  ],
+  "A070": [
+   "英雄施放技能時，會以火箭攻擊 3 名隨機敵人。\n\n每枚火箭的傷害：50 +（25% 技能強度）點\n\n冷卻：10 秒；每 150 點技能強度減少 1 秒，最低至 5 秒",
+   "The hero strikes 3 random enemies with rockets when casting abilities.\n\nDamage of each rocket: 50 + (25% spell power)\n\nCooldown: 10 sec.; -1 sec. for every 150 spell power, down to 5 sec."
+  ],
+  "A072": [
+   "在指定位置設置一座砲塔，持續 40 秒。砲塔可以造成範圍傷害。\n\n砲塔耐久度：150 + 英雄最大生命值的 45%\n砲塔攻擊力：30 +（15% 技能強度）點\n砲塔護甲：2 點\n擁有道具「魔法齒輪」時：砲塔攻擊速度 +20%\n\n冷卻：40 秒",
+   "Places a cannon tower at the target location for 40 sec. The cannon tower can deal area damage.\n\nTower durability: 150 + 45% of the hero's max health\nTower attack power: 30 + (15% spell power)\nTower armour: 2\nWith the item \"Magic Gear\": +20% tower attack speed\n\nCooldown: 40 sec."
+  ],
+  "A077": [
+   "立即在指定地點建立一個生產據點。\n\n冷卻：300 秒。",
+   "Instantly creates a production point at the target location.\n\nCooldown: 300 sec."
+  ],
+  "A07H": [
+   "重置「星光閃耀」的冷卻，並強化下一次「閃耀」，移除其範圍傷害，但大幅提升單體傷害。\n\n「星光閃耀」的懲罰：不造成範圍傷害\n單體傷害提升：+60%\n附加條件：處於「易傷」效果下的目標會受到「星光閃耀」的純粹傷害\n\n冷卻：3 秒",
+   "Refreshes the \"Starlight Flare\" ability and empowers the next pulse of the \"flare\", removing its area damage but greatly increasing its single-target damage.\n\n\"Starlight Flare\" penalty: deals no area damage\nSingle-target damage increase: +60%\nAdditional condition: a target under Vulnerability takes pure damage from \"Starlight Flare\"\n\nCooldown: 3 sec."
+  ],
+  "A07L": [
+   "英雄發出震懾人心的咆哮，降低附近敵人的護甲與攻擊力。\n\n護甲降低：3 點\n攻擊力降低：15%\n持續時間：30 秒（英雄 15 秒）\n技能強度 200 以上：英雄攻擊速度 +75%，持續 8 秒。\n\n冷卻：25 秒。",
+   "The hero lets out a terrifying roar that reduces the armour and attack power of nearby enemies.\n\nArmour reduction: 3\nAttack power reduction: 15%\nDuration: 30 sec. (heroes 15 sec.)\nAt 200+ spell power: +75% hero attack speed for 8 sec.\n\nCooldown: 25 sec."
+  ],
+  "A07U": [
+   "生命值低於 50% 時，英雄的攻擊獲得濺射效果，並提升傷害防護。\n\n濺射效果強度：350 點範圍內 35%\n傷害防護提升：+20%\n技能強度 200 以上：攻擊速度 +25%",
+   "While health is below 50% the hero's attacks gain a splash effect and damage protection is increased.\n\nSplash effect power: 35% within 350 area\nDamage protection increase: +20%\nSpell power 200 and above: +25% attack speed"
+  ],
+  "A07Z": [
+   "藥水對英雄的效果提高 30%。",
+   "Potions are 30% more effective on the hero."
+  ],
+  "A080": [
+   "蠻族戰士的攻擊對非英雄且非建築的普通敵人造成的傷害提高 75%。",
+   "The Barbarian's attacks deal 75% more damage to ordinary enemies that are not heroes or buildings."
+  ],
+  "A081": [
+   "擊殺敵人可暫時提升英雄的力量。\n\n力量加成：2 點\n力量加成（技能強度 300 以上）：3 點\n加成時間：5 秒。",
+   "Killing enemies temporarily increases the hero's Strength.\n\nStrength bonus: 2\nStrength bonus (300+ spell power): 3\nBonus duration: 5 sec."
+  ],
+  "A082": [
+   "英雄開始回復自身的生命值，但在技能持續期間，其攻擊速度與移動速度會降低。\n\n治療強度：200 + （100% 技能強度）\n攻擊速度與移動速度減緩：-40%\n持續時間：10 秒。\n\n冷卻：28 秒。",
+   "The hero begins to restore his own health, but his attack speed and movement speed are reduced for the duration of the ability.\n\nHealing power: 200 + (100% spell power)\nAttack and movement speed slow: -40%\nDuration: 10 sec.\n\nCooldown: 28 sec."
+  ],
+  "A084": [
+   "英雄最多可攻擊 4 個目標。",
+   "The hero can attack up to 4 targets."
+  ],
+  "A085": [
+   "暫時提升指定英雄的技能強度。效果結束後，技能的目標會永久獲得少量技能強度。\n\n技能強度加成：100 點\n技能強度永久增加：5 點\n持續時間：0 秒\n\n冷卻：25 秒",
+   "Temporarily increases the target hero's spell power. When the effect ends, the target of the ability permanently gains a small amount of spell power.\n\nSpell power bonus: 100\nPermanent spell power gain: 5\nDuration: 0 sec.\n\nCooldown: 25 sec."
+  ],
+  "A087": [
+   "散發一個全域光環，提升友軍部隊與英雄的生命值回復。\n\n生命值回復加成：+2 點／秒",
+   "Spreads a global aura that increases health regeneration for allied troops and heroes.\n\nHealth regeneration bonus: +2 per sec."
+  ],
+  "A088": [
+   "使用技能時，英雄會額外對自身周圍 800 範圍內的 5 名隨機敵人造成傷害。\n\n造成的傷害：30 + （30% 技能強度）點",
+   "When using abilities, the hero additionally deals damage to 5 random enemies within an area of 800 around himself.\n\nDamage dealt: 30 + (30% spell power)"
+  ],
+  "A089": [
+   "英雄對當前生命值百分比低於自身當前生命值百分比的敵人造成 20% 額外傷害。",
+   "The hero deals 20% more damage to enemies whose current health percentage is lower than the hero's current health percentage."
+  ],
+  "A08A": [
+   "英雄每 3.5 秒獲得一層充能，攻擊時消耗充能對被攻擊的目標造成額外傷害並附帶流血效果，同時為狼回復生命值。充能可無上限累積。技能強度 200 以上時，充能造成的傷害會變為純粹傷害。\n\n傷害：30 + （5% 技能強度）點\n流血效果：75% 機率，150% 傷害\n生命值回復：8 + （2% 技能強度）點",
+   "Every 3.5 sec. the hero gains a charge, which is spent on attack to deal extra damage to the attacked target with a Bleed effect and to restore health to the wolf. Charges stack without limit. At 200+ spell power the damage from charges becomes pure.\n\nDamage: 30 + (5% spell power)\nBleed effect: 75% chance, 150% damage\nHealth restored: 8 + (2% spell power)"
+  ],
+  "A08B": [
+   "以毒藥毒害敵人，每秒造成傷害，並降低其移動速度與攻擊速度。毒藥持續時間 - 4 秒（英雄 2 秒）\n\n每秒傷害：6 點\n移動速度減速：20%。\n攻擊速度減速：12%。",
+   "Poisons the enemy, dealing damage per second and reducing their movement speed and attack speed. Poison duration - 4 sec. (heroes 2 sec.)\n\nDamage per second: 6\nMovement speed slow: 20%.\nAttack speed slow: 12%."
+  ],
+  "A08D": [
+   "當玩家經驗點數足夠時，你可以選擇一項天賦，將英雄大幅強化至新的力量階級。",
+   "With a sufficient amount of player experience points you can choose a talent that will significantly strengthen the hero up to a new power rank."
+  ],
+  "A08E": [
+   "啟動後提升英雄的攻擊速度，並賦予暫時的多重射擊。持續時間 - 6 秒。\n\n攻擊速度加成：20%\n多重射擊：3 個目標\n持續時間：6 秒\n\n冷卻：20 秒",
+   "When activated, increases the hero's attack speed and grants temporary multishot. Duration - 6 sec.\n\nAttack speed bonus: 20%\nMultishot: 3 targets\nDuration: 6 sec.\n\nCooldown: 20 sec."
+  ],
+  "A08G": [
+   "盜賊打開一個裝著未知驚喜的小盒子。\n\n可以獲得的道具：\n- 「特殊（lv.4）」(40%)\n- 「儀式」(25%)\n- 隨機節慶類別的道具 (15%)\n- 「扭曲」(10%)\n- 「特殊（lv.5）」(10%)\n\n戰利品箱價格：750 金幣\n\n冷卻：120 秒。",
+   "The rogue opens a small box with an unknown surprise.\n\nYou can obtain items:\n- \"Special (lvl 4)\" (40%)\n- \"Ritual\" (25%)\n- An item of a random holiday category (15%)\n- \"Distorted\" (10%)\n- \"Special (lvl 5)\" (10%)\n\nLootbox cost: 750 gold\n\nCooldown: 120 sec."
+  ],
+  "A08H": [
+   "生命值高於 50% 時，英雄的攻擊有機率造成提高的傷害。\n\n爆擊機率：20%\n爆擊傷害：x4",
+   "While health is above 50% the hero's attacks have a chance to deal increased damage.\n\nCritical strike chance: 20%\nCritical strike damage: x4"
+  ],
+  "A08L": [
+   "生命值在 50% 以上時，「深度創傷」造成 150% 傷害；生命值在 75% 以上時，「深度創傷」每次累積 2 層充能。",
+   "At 50% health or above, \"Deep Wounds\" deals 150% damage; at 75% health or above, \"Deep Wounds\" accumulates 2 charges at a time."
+  ],
+  "A08M": [
+   "提高英雄的移動速度並開始逐漸回復生命值。移動中的英雄可回復更多生命值。\n\n移動速度加成：15%\n生命值回復：18 + （5% 技能強度）點/秒\n移動中的治療強化：在競技場上每 100 點移動速度使治療 +30%\n持續時間：8 秒\n\n冷卻：17 秒",
+   "Increases the hero's movement speed and begins to gradually restore health. While moving, the hero restores more health.\n\nMovement speed bonus: 15%\nHealth restoration: 18 + (5% spell power) per sec.\nHealing bonus while moving: +30% healing per every 100 movement speed on the arena\nDuration: 8 sec.\n\nCooldown: 17 sec."
+  ],
+  "A08P": [
+   "英雄可以吞食 0-1 等級的敵人來治療自身，並為「深度創傷」技能取得額外充能。對更強大的目標使用此技能時，狼會造成傷害並取得較少的額外充能。\n\n治療強度：100 + （75% 技能強度）點\n對強大敵人的傷害：75 + （60% 技能強度）點\n額外充能：1\n吞食目標時的額外充能：3\n\n冷卻：15 秒。",
+   "The hero can devour an enemy of level 0-1 to heal himself and gain bonus charges for the \"Deep Wounds\" ability. When the ability is used against stronger targets, the wolf deals damage and gains fewer bonus charges.\n\nHealing power: 100 + (75% spell power)\nDamage against strong enemies: 75 + (60% spell power)\nBonus charges: 1\nBonus charges when the target is devoured: 3\n\nCooldown: 15 sec."
+  ],
+  "A08Q": [
+   "指定目標會從除了負面狀態以外的任何來源受到更多傷害。\n\n對目標的額外傷害：20%\n持續時間：9 秒\n\n冷卻：18 秒",
+   "The target takes more damage from any source except negative statuses.\n\nAdditional damage to the target: 20%\nDuration: 9 sec.\n\nCooldown: 18 sec."
+  ],
+  "A08T": [
+   "3 顆火焰法球開始環繞英雄旋轉，點燃敵人。法球起初只造成 25% 傷害，隨著遠離英雄逐漸提升自身傷害，直到進入軌道為止。\n\n點燃：100% 機率；50 + （25% 技能強度）點傷害\n法球持續時間：6 秒\n\n冷卻：20 秒",
+   "3 fire spheres begin to circle around the hero, applying Burn to enemies. The spheres initially deal 25% damage and gradually increase their damage as they move away from the hero, until they reach orbit.\n\nBurn: 100% chance; 50 + (25% spell power) damage\nSphere duration: 6 sec.\n\nCooldown: 20 sec."
+  ],
+  "A08V": [
+   "對近戰範圍內的敵人施展致命招式，造成大量傷害並同時施加多種狀態。也會波及目標周圍的敵人。\n\n對普通士兵使用：對目標造成 600 +（350% 力量與敏捷）點傷害；其中 30% 的傷害會作用於目標周圍的區域\n狀態施加：200% 機率施加易燃、虛弱、詛咒、易傷；附近的敵人有 30% 機率被施加虛弱\n\n冷卻：80 秒",
+   "Performs a deadly technique against an enemy in melee range, dealing a large amount of damage and applying several statuses at once. Also hits enemies near the target.\n\nUse against regular troops: 600 + (350% Strength and Agility) damage to the target; 30% of the damage is dealt in an area around the target\nStatus application: 200% chance to apply Flammable, Weakness, Curse and Vulnerability; nearby enemies are weakened with a 30% chance\n\nCooldown: 80 sec."
+  ],
+  "A08W": [
+   "繼承裝備技能的加成。\n\n英雄的攻擊有機會造成額外的範圍傷害，並以較高的機率對敵人施加易燃。\n\n範圍傷害：20 +（40% 力量與敏捷）+（15% 技能強度）點\n「易燃」狀態：以 120% 機率施加於敵人\n\n冷卻：10 秒",
+   "Inherits modifier bonuses.\n\nThe hero's attack can deal additional area damage and apply Flammable to enemies with an increased chance.\n\nArea damage: 20 + (40% Strength and Agility) + (15% spell power)\n\"Flammable\" status: applied to enemies with a 120% chance\n\nCooldown: 10 sec."
+  ],
+  "A08Y": [
+   "繼承裝備技能的加成。\n\n每第 7 次攻擊會朝被攻擊的敵人方向產生一道點燃的火焰波。\n\n火焰波傷害：40 + （18% 技能強度）點\n火焰波點燃：100% 機率，100% 傷害",
+   "Inherits modifier bonuses.\n\nEvery 7th attack creates a burning wave of fire in the direction of the attacked enemy.\n\nWave damage: 40 + (18% spell power)\nWave Burn: 100% chance, 100% damage"
+  ],
+  "A090": [
+   "當玩家的經驗點數足夠時，你可以選擇一項天賦，使英雄大幅強化至新的力量等階。",
+   "With enough player experience points, you can choose a talent that will significantly strengthen the hero to a new power rank."
+  ],
+  "A097": [
+   "向敵人發射一枚秘法投射物，造成傷害並暈眩目標。\n\n傷害：100 +（40% 技能強度）+（英雄當前法力值的 15%）點\n暈眩：100% 機率，1 秒\n\n冷卻：10 秒",
+   "Sends an arcane projectile at an enemy, dealing damage and stunning the target.\n\nDamage: 100 + (40% spell power) + (15% of the hero's current mana)\nStun: 100% chance, 1 sec.\n\nCooldown: 10 sec."
+  ],
+  "A099": [
+   "想要又大又壯，真正的戰爭首領就得多吃！對自己的養豬場、普通農場或珊瑚池使用此技能，讓英雄完全回復生命值並提升生命值上限。\n\n生命值上限加成：目前人口上限的 +150%\n\n冷卻：90 秒",
+   "To be big and strong, a true Warboss has to eat a lot! Use the ability on your own pig farm, an ordinary farm or a coral pool so that the hero fully restores health and increases maximum health.\n\nMaximum health bonus: +150% of the current food limit\n\nCooldown: 90 sec."
+  ],
+  "A09A": [
+   "繼承裝備技能的加成。\n\n戰爭首領的攻擊會對附近 4 名隨機敵人造成物理傷害。\n\n傷害：（8% 英雄最大生命值）點\n\n冷卻：6 秒。",
+   "Inherits modifier bonuses.\n\nThe Warboss's attacks deal physical damage to 4 random nearby enemies.\n\nDamage: (8% of the hero's maximum health)\n\nCooldown: 6 sec."
+  ],
+  "A09B": [
+   "英雄周圍的敵人受到傷害並暈眩 5 秒（英雄 2 秒）。\n\n傷害：50 +（10% 英雄最大生命值）點\n\n冷卻：9 秒",
+   "Enemies around the hero take damage and are stunned for 5 sec. (heroes for 2 sec.).\n\nDamage: 50 + (10% hero maximum health)\n\nCooldown: 9 sec."
+  ],
+  "A09C": [
+   "在短時間內獲得攻擊速度與攻擊力的加成。\n\n攻擊速度提升：40%\n攻擊力提升：（英雄最大生命值的 5%）點\n持續時間：6 秒\n\n冷卻：20 秒",
+   "Grants a bonus to attack speed and attack power for a short time.\n\nAttack speed increase: 40%\nAttack power increase: (5% of the hero's maximum health)\nDuration: 6 sec.\n\nCooldown: 20 sec."
+  ],
+  "A09D": [
+   "繼承裝備技能的加成。\n\n英雄的攻擊對生命值低於 50% 的敵人可造成提升的物理傷害，並回復少量生命值。\n\n加成傷害：30 點\n生命值回復：20 點\n\n冷卻：3 秒",
+   "Inherits modifier bonuses.\n\nThe hero's attack can deal increased physical damage against an enemy whose health is below 50%, and also restore a small amount of health.\n\nBonus damage: 30\nHealth restored: 20\n\nCooldown: 3 sec."
+  ],
+  "A09G": [
+   "你從「檔案管理員」建築中獲得高等級道具的機率更高。",
+   "You have a higher chance to receive high-level items from the \"Archivist\" building."
+  ],
+  "A09I": [
+   "削弱指定的敵人，降低其移動速度與攻擊速度。若敵人在技能持續期間死亡，擊殺者將獲得額外的獎勵。\n\n目標減速：移動速度 20%；攻擊速度 10%\n擊殺獎勵：12 +（10% 技能強度）+（敵人等級 * 2）點\n效果持續時間：12 秒（英雄 6 秒）\n\n冷卻：20 秒",
+   "Weakens the target enemy, reducing its movement and attack speed. If the enemy dies while the ability is active, the killer receives an additional reward.\n\nTarget slow: 20% movement speed; 10% attack speed\nKill reward: 12 + (10% spell power) + (enemy level * 2)\nEffect duration: 12 sec. (heroes 6 sec.)\n\nCooldown: 20 sec."
+  ],
+  "A09J": [
+   "你每場遊戲可以將一件「聖物」類別的道具轉變為對應的「完美」類別道具，限 1 次。\n\n你每場遊戲可以複製任意一件「神器」類別的道具，限 1 次。\n\n在升級聖物並複製神器之後，此技能會被移除。",
+   "Once per game you can turn an item of the \"Relic\" category into the corresponding item of the \"Perfect\" category.\n\nOnce per game you can duplicate any item of the \"Artifact\" category.\n\nAfter the relic has been upgraded and the artifact duplicated, the ability is removed."
+  ],
+  "A09L": [
+   "當玩家的經驗點數足夠時，你可以選擇一項天賦，將英雄大幅強化至新的強度等級。",
+   "With a sufficient amount of player experience points you can choose a talent that will significantly strengthen the hero to a new power rank."
+  ],
+  "A09M": [
+   "英雄召喚一隊骷髏。\n\n骷髏數量：4（每 100 點技能強度 +1）個\n骷髏生命值：125 + （10% 英雄生命值）點\n骷髏攻擊力：9 + （30% 智力）點\n骷髏護甲：2 點\n骷髏存活時間：40 秒\n\n冷卻：15 秒",
+   "The hero summons a squad of skeletons.\n\nNumber of skeletons: 4 (+1 per every 100 spell power)\nSkeleton health: 125 + (10% of the hero's health)\nSkeleton attack power: 9 + (30% Intelligence)\nSkeleton armour: 2\nSkeleton lifetime: 40 sec.\n\nCooldown: 15 sec."
+  ],
+  "A09N": [
+   "英雄召喚一名骷髏法師，牠能夠召喚骷髏、引爆骷髏並燒盡敵人的法力值。\n\n骷髏法師生命值：英雄 max HP 的 100%\n骷髏攻擊力：英雄智力的 125%\n骷髏護甲：5 點\n骷髏存活時間：60 秒\n\n冷卻：70 秒",
+   "The hero summons a skeleton mage capable of summoning skeletons, detonating skeletons and burning enemies' mana.\n\nSkeleton mage health: 100% of the hero's max HP\nSkeleton attack power: 125% of the hero's Intelligence\nSkeleton armour: 5\nSkeleton lifetime: 60 sec.\n\nCooldown: 70 sec."
+  ],
+  "A09R": [
+   "清除骷髏身上的負面效果，並給予其攻擊速度加成，持續 10 秒。\n\n攻擊速度加成：40%\n\n冷卻：28 秒",
+   "Cleanses skeletons of negative effects and grants them an attack speed bonus for 10 sec.\n\nAttack speed bonus: 40%\n\nCooldown: 28 sec."
+  ],
+  "A09T": [
+   "以隨機的數量為指定建築或機械回復生命值。\n\n治療強度：從 50 +（45% 技能強度）點 到 175 +（135% 技能強度）點 之間的隨機值\n\n冷卻：25 秒",
+   "Restores a random amount of health to the target building or mechanical unit.\n\nHealing power: a random value from 50 + (45% spell power) to 175 + (135% spell power)\n\nCooldown: 25 sec."
+  ],
+  "A09V": [
+   "強化下一次使用的「召喚亡者」或「創造法師」技能。\n\n存活時間加成：15 秒（骷髏法師為 125% 效果）\n攻擊力加成：8 點（骷髏法師為 150% 效果）\n生命值加成：100 點（骷髏法師為 150% 效果）\n每 100 點技能強度的效果：存活時間 +5 秒、攻擊力 +5、生命值 +50 點\n\n冷卻：25 秒",
+   "Empowers the next use of the \"Raise Dead\" or \"Create Mage\" ability.\n\nLifetime bonus: 15 sec. (125% effect for the skeleton mage)\nAttack power bonus: 8 (150% effect for the skeleton mage)\nHealth bonus: 100 (150% effect for the skeleton mage)\nEffect per every 100 spell power: +5 sec. lifetime, +5 attack, +50 health\n\nCooldown: 25 sec."
+  ],
+  "A09Y": [
+   "當玩家的經驗值達到足夠數量時，你可以選擇一項天賦，大幅強化英雄，使其提升至新的力量階級。",
+   "With a sufficient amount of player experience points you can choose a talent that will significantly strengthen the hero to a new power rank."
+  ],
+  "A0A6": [
+   "指定建築變為完全隱形。\n\n持續時間：6 秒\n\n冷卻：20 秒",
+   "The target building becomes completely invisible.\n\nDuration: 6 sec.\n\nCooldown: 20 sec."
+  ],
+  "A0AB": [
+   "女武神的攻擊會對目標與目標周圍的敵人造成額外物理傷害。若此技能擊殺目標，英雄有 50% 機率使自身敏捷提升 1 點。\n\n傷害：對目標（120% 敏捷）點；附近的敵人受到 50% 的傷害\n\n冷卻：5 秒",
+   "The Valkyrie's attack deals additional physical damage to the target and to enemies around the target. If the ability kills the target, the hero has a 50% chance to increase her Agility by 1.\n\nDamage: (120% Agility) to the target; 50% of the damage is dealt to nearby enemies\n\nCooldown: 5 sec."
+  ],
+  "A0AF": [
+   "擊殺敵人時有小機率生成觸手，攻擊附近的敵人。\n\n觸手出現機率：20%\n觸手生命值：100 +（10% 英雄最大生命值）\n觸手攻擊力：10 +（30% 英雄敏捷）\n觸手存活時間：40 秒\n擊殺處於「切口」效果下的敵人：觸手的出現機率、生命值、攻擊力與存活時間 +50%",
+   "Kills of enemies have a small chance to create tentacles that attack nearby enemies.\n\nTentacle spawn chance: 20%\nTentacle health: 100 + (10% hero max HP)\nTentacle attack power: 10 + (30% hero Agility)\nTentacle lifetime: 40 sec.\nKilling an enemy under \"Incision\": +50% to the tentacle's spawn chance, health, attack power and lifetime"
+  ],
+  "A0AH": [
+   "英雄瞬間移動至指定地點，並造成範圍傷害。此技能會摧毀作用範圍內的觸手，同時為英雄回復生命值。\n\n傷害：100 + （150% 敏捷）+ （50% 技能強度）點\n觸手回復的生命值：每個觸手 10%\n「切口」效果：受擊目標受到的傷害提高 50%，並以 100% 機率獲得詛咒\n\n冷卻：60 秒。",
+   "The hero instantly teleports to the target location, dealing damage in an area. The ability destroys tentacles within its area of effect, restoring health to the hero in the process.\n\nDamage: 100 + (150% Agility) + (50% spell power)\nHealth restored from tentacles: 10% per tentacle\n\"Incision\" effect: affected targets take 50% more damage and receive Curse with 100% chance\n\nCooldown: 60 sec."
+  ],
+  "A0AK": [
+   "對指定目標與其附近的敵人造成傷害。可能附加流血。處於「切口」效果下的敵人會受到強化的流血。\n\n傷害：60 +（20% 技能強度）點\n流血效果：75% 機率，150% 傷害\n「切口」下的流血效果：100% 機率，225% 傷害\n\n冷卻：9 秒",
+   "Deals damage to the target and to nearby enemies. Can apply Bleed. Enemies under \"Incision\" receive an empowered Bleed.\n\nDamage: 60 + (20% spell power)\nBleed effect: 75% chance, 150% damage\nBleed effect under \"Incision\": 100% chance, 225% damage\n\nCooldown: 9 sec."
+  ],
+  "A0AL": [
+   "「星光閃耀」技能有機率召喚一顆流星，造成額外的範圍傷害並永久降低被擊中敵人的護甲。\n\n一般星光閃耀：50% 機率，星光閃耀傷害的 75%，範圍 250 點，護甲降低 2 點\n處於「貫穿之光」效果下：100% 機率，星光閃耀傷害的 50%，範圍 150 點，護甲降低 5 點\n處於「散射之光」效果下：50% 機率，星光閃耀傷害的 75%，範圍等同於提升後的星光閃耀範圍，護甲降低 2 點",
+   "The \"Star Glimmer\" ability has a chance to call down a falling star that deals additional area damage and permanently reduces the armour of the enemies hit.\n\nNormal Star Glimmer: 50% chance, 75% of Star Glimmer damage, 250 area, 2 armour reduction\nUnder \"Piercing Light\": 100% chance, 50% of Star Glimmer damage, 150 area, 5 armour reduction\nUnder \"Scattered Light\": 50% chance, 75% of Star Glimmer damage, area equal to the increased Star Glimmer area, 2 armour reduction"
+  ],
+  "A0AM": [
+   "向指定敵人降下一隻海之靈，造成傷害並跳往鄰近的目標。海之靈造成傷害時會為英雄回復生命值，每次彈跳都會在技能持續期間提升自身的傷害。\n\n傷害：40 +（25% 技能強度）點\n治療：造成傷害的 40%\n每次彈跳的傷害提升：+10%\n最大目標數量：8\n「切口」效果：處於「切口」狀態的敵人會被優先選為目標，並以 100% 機率獲得「冰凍」狀態\n\n冷卻：20 秒",
+   "Sends a sea spirit at the target enemy that deals damage and jumps to nearby targets. When the spirit deals damage it restores health to the hero, and with each bounce it increases its own damage for the duration of the ability.\n\nDamage: 40 + (25% spell power)\nHealing: 40% of the damage dealt\nDamage increase per bounce: +10%\nMaximum targets: 8\n\"Incision\" effect: enemies under the \"Incision\" status are prioritised and receive the \"Freeze\" status with 100% chance\n\nCooldown: 20 sec."
+  ],
+  "A0B0": [
+   "在指定地點創造一顆法球，對附近隨機的敵人造成傷害。對建築無效。可獲得雙倍的穿透效果。\n\n傷害：12 +（7% 技能強度）點\n傷害觸發間隔：每 0.25 秒\n法球存在時間：7 秒\n\n冷卻：9 秒",
+   "Creates an orb at the target point that deals damage to random nearby enemies. Does not affect buildings. Inherits a doubled effect from penetration.\n\nDamage: 12 + (7% spell power)\nDamage interval: every 0.25 sec.\nOrb lifetime: 7 sec.\n\nCooldown: 9 sec."
+  ],
+  "A0B2": [
+   "英雄形成自身的暗影，其與本體幾乎完全相同。暗影無敵，繼承英雄的等級與屬性，並可使用英雄的基礎技能。暗影不會繼承英雄的裝備，但可以繼承來自裝備與其他技能的屬性加成。\n\n暗影存在時間：25 秒。\n\n冷卻：80 秒。",
+   "The hero forms his own shadow, which is practically identical to its master. The shadow is invulnerable, inherits the hero's level and attributes and can use the hero's basic abilities. The shadow does not inherit the hero's items, but it can inherit bonus attributes from items and other abilities.\n\nShadow lifetime: 25 sec.\n\nCooldown: 80 sec."
+  ],
+  "A0B3": [
+   "提升英雄的攻擊速度與移動速度，並在使用期間逐漸消耗法力值。技能持續期間，創造暗影的機率也會提升。持續時間 - 10 秒。\n\n移動速度提升：20%\n攻擊速度提升：40%\n暗影創造機率提升：+5%\n法力消耗：7 點／秒\n\n冷卻：22 秒",
+   "Increases the hero's attack speed and movement speed, and gradually consumes mana while in use. The chance to create a shadow is also increased while the ability is active. Duration - 10 sec.\n\nMovement speed increase: 20%\nAttack speed increase: 40%\nShadow creation chance increase: +5%\nMana cost: 7 per sec.\n\nCooldown: 22 sec."
+  ],
+  "A0B4": [
+   "延長英雄所創造之暗影的存活時間，並提升其攻擊速度。不會強化英雄的暗影分身。\n\n存活時間延長：+30%\n攻擊速度提升：10%",
+   "Extends the lifetime of the shadows created by the hero and increases their attack speed. Does not empower the hero's shadow clone.\n\nLifetime extension: +30%\nAttack speed increase: 10%"
+  ],
+  "A0B7": [
+   "若英雄在 4 秒內未受到傷害，機械戰體會開始以每秒 1% 的速度回復自身生命值。當生命值達到 100% 時，此技能會以相同速度回復法力值。\n\n維修艙不會因狀態造成的傷害而停止運作。",
+   "If the hero takes no damage for 4 sec., the Mechatron begins to restore its health at a rate of 1% per sec. If health is at 100%, the ability restores mana at the same rate.\n\nThe Repair Bay does not stop working from status damage."
+  ],
+  "A0B8": [
+   "「War Machine」級的機械戰體自 3.0 版起，配備了名為「白銀屏障」的先進敵火吸收技術。此屏障會完全吸收受到的傷害，隨後釋放累積的能量，將吸收到的傷害分攤給英雄周圍的敵人。並賦予狀態免疫。\n\n持續時間：12 秒\n\n冷卻：55 秒",
+   "Mechatrons of the \"War Machine\" class, starting from version 3.0, carry an advanced enemy-fire absorption technology called \"Argent Barrier\". This barrier fully absorbs incoming damage and then disperses the accumulated energy, distributing the absorbed damage among the enemies around the hero. Grants immunity to statuses.\n\nDuration: 12 sec.\n\nCooldown: 55 sec."
+  ],
+  "A0BA": [
+   "以英雄位置為中心 500 的廣大範圍內，敵人會受到傷害、失去正面效果，並被減速 7 秒（英雄 4 秒）。\n\n傷害：20 +（15% 技能強度）點\n\n冷卻：9 秒",
+   "Enemies in a wide 500 area from the hero's position take damage, lose their positive effects and are slowed for 7 sec. (heroes for 4 sec.).\n\nDamage: 20 + (15% spell power)\n\nCooldown: 9 sec."
+  ],
+  "A0BB": [
+   "機械戰體以電磁脈衝打擊指定區域內的敵人，造成傷害並以高機率施加電擊效果。\n\n傷害：60 +（40% 技能強度）點\n附加效果：75% 機率對敵人施加電擊\n\n冷卻：10 秒",
+   "Mekhatron strikes enemies in the target area with an electric impulse, dealing damage to them and applying Shock with a high chance.\n\nDamage: 60 + (40% spell power)\nAdditional effect: 75% chance to apply Shock to the enemy\n\nCooldown: 10 sec."
+  ],
+  "A0BD": [
+   "重置「星光閃耀」的冷卻，並強化下一次「閃耀」，降低對主要目標的傷害並提升範圍傷害。\n\n「星光閃耀」的懲罰：主要目標受到與範圍傷害相同的傷害\n範圍傷害提升：+30%\n作用範圍提升：+15%\n額外範圍效果：20% 機率對敵人施加「易傷」狀態\n\n冷卻：3 秒",
+   "Refreshes the \"Starlight Flare\" ability and empowers the next pulse of the \"flare\", reducing the damage to the primary target and increasing the area damage.\n\n\"Starlight Flare\" penalty: the primary target takes damage equal to the area damage\nArea damage increase: +30%\nArea increase: +15%\nAdditional area effect: 20% chance to apply the Vulnerability status to enemies\n\nCooldown: 3 sec."
+  ],
+  "A0BE": [
+   "英雄的技能會在隨機延遲後額外以閃電打擊敵人。處於電擊狀態下的敵人會受到更多傷害。\n\n電流傷害：20 +（10% 技能強度）點\n對電擊狀態敵人的傷害提升：+100%\n傷害延遲：0.5 - 3 秒",
+   "The hero's abilities additionally strike the enemy with lightning after a random delay. Enemies under Shock take more damage.\n\nCurrent damage: 20 + (10% spell power)\nDamage bonus against enemies under Shock: +100%\nDamage delay: 0.5 - 3 sec."
+  ],
+  "A0BQ": [
+   "英雄以及地圖上你所有的部隊與友軍獲得 1% 法力值回復。",
+   "The hero and all your units and allies on the map gain 1% mana regeneration."
+  ],
+  "A0BX": [
+   "擊殺敵人會引發爆炸，對死亡目標附近的敵人造成傷害。\n\n爆炸傷害：（30% 敏捷）+（10% 技能強度）點",
+   "Killing enemies causes explosions that deal damage to enemies near the dying target.\n\nExplosion damage: (30% Agility) + (10% spell power)"
+  ],
+  "A0BY": [
+   "英雄在 7 秒內逐漸獲得額外敏捷，之後最大的敏捷加成會維持 6 秒。\n\n額外敏捷：14 + （10% 技能強度）點\n\n冷卻：27 秒。",
+   "Over 7 sec. the hero gradually gains bonus Agility, after which the maximum Agility bonus is kept for 6 sec.\n\nBonus Agility: 14 + (10% spell power)\n\nCooldown: 27 sec."
+  ],
+  "A0BZ": [
+   "使指定範圍內的敵人陷入混亂，令其不由自主地移動，同時造成傷害。此技能無法動搖敵方英雄的意志，但對他們造成的傷害提高 150%。\n\n傷害：40 + （25% 技能強度）點\n效果持續時間：5 秒。\n\n冷卻：27 秒。",
+   "Confuses enemies in the chosen area, making them move involuntarily. It also deals damage. The ability cannot break the will of enemy heroes, but deals 150% more damage to them.\n\nDamage: 40 + (25% spell power)\nEffect duration: 5 sec.\n\nCooldown: 27 sec."
+  ],
+  "A0C0": [
+   "英雄的攻擊開始能夠命中多個目標，但英雄本身受到的傷害也會增加。\n\n多重射擊：3 個目標\n懲罰：受到的傷害 +15%",
+   "The hero's attacks begin to strike several targets, but the hero will take more damage.\n\nMultishot: 3 targets\nPenalty: +15% damage taken"
+  ],
+  "A0C1": [
+   "黑暗獵手死亡後會出現復仇之魂，快速攻擊附近的敵人。此靈魂一次最多可命中 3 個目標。\n\n靈魂的攻擊力：25 + （250% 穿透）點\n靈魂的存在時間：12 + （2% 技能強度）秒。",
+   "After the Dark Huntress dies, a vengeful spirit appears that rapidly attacks nearby enemies. The spirit can strike up to 3 targets at a time.\n\nSpirit attack power: 25 + (250% penetration)\nSpirit lifetime: 12 + (2% spell power) sec."
+  ],
+  "A0C3": [
+   "英雄躲進碉堡，碉堡可以射擊附近的敵人。碉堡的持續時間無限制，英雄可以自行離開碉堡，或在碉堡被摧毀時離開。\n\n碉堡的生命值：400 + 35% 英雄最大生命值\n碉堡的攻擊力：30 + （10% 技能強度）點\n碉堡的護甲：2 點\n\n冷卻：60 秒。",
+   "The hero hides in a bunker that can shoot at nearby enemies. The bunker's duration is unlimited; the hero can leave the bunker on his own or when it is destroyed.\n\nBunker health: 400 + 35% of the hero's max HP\nBunker attack power: 30 + (10% spell power)\nBunker armour: 2\n\nCooldown: 60 sec."
+  ],
+  "A0C6": [
+   "提升指定建築的護甲，並緩慢回復其耐久度。持續時間 - 20 秒（特別強大的建築為 10 秒）\n\n護甲加成：5 點\n建築耐久度回復：每秒 1%\n\n冷卻：20 秒。",
+   "Increases the armour of the chosen building and slowly restores its durability. Duration - 20 sec. (10 sec. for especially strong buildings)\n\nArmour bonus: 5\nBuilding durability restored: 1% per sec.\n\nCooldown: 20 sec."
+  ],
+  "A0C8": [
+   "建造或升級建築會返還少量金幣。\n\n金幣返還：20 點",
+   "Constructing or upgrading buildings returns a small amount of gold.\n\nGold returned: 20"
+  ],
+  "A0CB": [
+   "當玩家的經驗點數足夠時，你可以選擇一項天賦，使英雄大幅強化並提升至新的力量位階。",
+   "With a sufficient amount of player experience points you can choose a talent that significantly strengthens the hero up to a new power rank."
+  ],
+  "A0CC": [
+   "在指定位置立即建造一個支援據點。\n\n冷卻：300 秒",
+   "Instantly creates a support point at the target location.\n\nCooldown: 300 sec."
+  ],
+  "A0CT": [
+   "引爆生效中的「虛空充能」，造成範圍傷害。內圈範圍造成全額傷害，外圈範圍造成 50% 傷害。\n\n全額傷害：50% 英雄當前法力值 + 100% 技能強度\n內圈範圍：225 點\n外圈範圍：450 點\n\n冷卻：10 秒。",
+   "Detonates the active \"Void Charge\", dealing area damage. The inner area takes full damage, the outer area takes 50% damage.\n\nFull damage: 50% of the hero's current mana + 100% spell power\nInner area: 225\nOuter area: 450\n\nCooldown: 10 sec."
+  ],
+  "A0CW": [
+   "在與敵人開戰之前，請務必選擇一項額外技能。",
+   "Be sure to choose an additional ability before you start fighting the enemy."
+  ],
+  "A0D9": [
+   "英雄變得完全隱形，並可以毫無顧忌地攻擊敵人。使用此技能會為「深度創傷」技能增加額外充能。\n\n持續時間：5 秒。\n額外充能：3\n\n冷卻：10 秒。",
+   "The hero becomes completely invisible and can attack enemies with impunity. Using the ability adds bonus charges for the \"Deep Wounds\" ability.\n\nDuration: 5 sec.\nBonus charges: 3\n\nCooldown: 10 sec."
+  ],
+  "A0DQ": [
+   "從敵方英雄的物品欄中偷取一件隨機道具。\n\n冷卻：55 秒。",
+   "Steals a random item from an enemy hero's inventory.\n\nCooldown: 55 sec."
+  ],
+  "A0DR": [
+   "英雄有 60% 機率格擋敵人的攻擊。\n\n傷害降低：14 點\n最低可能傷害：2 點",
+   "The hero blocks enemy attacks with a 60% chance.\n\nDamage reduction: 14\nMinimum possible damage: 2"
+  ],
+  "A0DU": [
+   "向敵人投擲酸液炸彈，對範圍內的敵人造成傷害並降低其護甲。造成持續傷害。持續時間 - 15 秒（英雄 7 秒）\n\n持續傷害：12 點/秒\n護甲降低：3 (+1) 點\n\n冷卻：15 秒",
+   "Throws an acid bomb at an enemy, striking enemies in an area and reducing their armour. Deals periodic damage. Duration - 15 sec. (heroes 7 sec.)\n\nPeriodic damage: 12 per sec.\nArmour reduction: 3 (+1)\n\nCooldown: 15 sec."
+  ],
+  "A0DV": [
+   "以近戰方式對敵人造成傷害。敵人每有 1% 生命值，此技能的傷害就提高 2%。敵人每缺少 1% 生命值，盜賊就有 1% 機率獲得金幣。\n\n傷害：60 + （30% 技能強度）點\n成功打擊時奪得的金幣：10 + （5% 技能強度）點\n\n冷卻：9 秒。",
+   "Deals damage to an enemy in melee. For each 1% of the enemy's health, the ability's damage grows by 2%. For each 1% of the enemy's missing health, the Rogue has a 1% chance to gain gold.\n\nDamage: 60 + (30% spell power)\nGold gained on a successful strike: 10 + (5% spell power)\n\nCooldown: 9 sec."
+  ],
+  "A0DW": [
+   "對指定目標與其附近的敵人造成少量傷害。所有被命中的目標會獲得「切口」狀態，此狀態會強化儀式師其他技能的效果。\n\n傷害：（50% 敏捷）+（25% 技能強度）點\n「切口」持續時間：10 秒\n\n冷卻：5 秒",
+   "Deals a small amount of damage to the target and to nearby enemies. All affected targets receive the \"Incision\" status, which empowers the effects of the Ritualist's other abilities.\n\nDamage: (50% Agility) + (25% spell power)\n\"Incision\" duration: 10 sec.\n\nCooldown: 5 sec."
+  ],
+  "A0DY": [
+   "以光之洪流轟擊指定區域，持續 6 秒。技能作用期間，作用範圍會逐漸擴大。\n\n傷害：20 + （20% 技能強度）點/秒。\n對處於「詛咒審判」效果下敵人的效果：技能每次跳動有 25% 機率對敵人施加點燃，傷害為 200%\n\n冷卻：10 秒。",
+   "Strikes the chosen area with a stream of light for 6 sec. The area of effect grows while the ability is active.\n\nDamage: 20 + (20% spell power) per sec.\nEffect against enemies affected by \"Anathema\": each tick of the ability has a 25% chance to apply Burn to the enemy with 200% damage\n\nCooldown: 10 sec."
+  ],
+  "A0DZ": [
+   "在自身周圍生成一個大型力場，場內的英雄與友軍攻擊造成的傷害提高，並獲得狀態傷害加成。\n\n攻擊力提升：+50%\n狀態傷害加成：+50%\n\n冷卻：80 秒。",
+   "Creates a large field around himself, inside which the hero and his allies deal more damage with attacks and receive a bonus to damage from statuses.\n\nAttack power increase: +50%\nBonus to damage from statuses: +50%\n\nCooldown: 80 sec."
+  ],
+  "A0E0": [
+   "造成傷害，並對目標與附近的敵人施加「詛咒審判」狀態。\n\n傷害：70 + （30% 技能強度）點；目標附近的敵人受到 50% 傷害\n目標周圍的作用範圍：100 點\n「詛咒審判」狀態：100% 機率（目標附近的敵人為 50% 機率），+15% 受到的傷害，-15% 造成的傷害，+20% 受到的狀態傷害\n「詛咒審判」持續時間：8 秒。\n\n冷卻：8 秒。",
+   "Deals damage and applies the \"Anathema\" status to the target and nearby enemies.\n\nDamage: 70 + (30% spell power); enemies near the target take 50% damage\nArea around the target: 100\n\"Anathema\" status: 100% chance (50% chance for enemies near the target), +15% damage taken, -15% damage dealt, +20% status damage taken\n\"Anathema\" duration: 8 sec.\n\nCooldown: 8 sec."
+  ],
+  "A0E3": [
+   "產生 8 枚火焰彈，經過短暫準備後隨機擊中英雄周圍 500 範圍內的敵人並使其點燃。若火焰彈找不到敵人，則為英雄回復相當於其所造成傷害 80% 的生命值。火焰彈會優先攻擊處於「詛咒審判」效果下的敵人。\n\n每枚火焰彈的傷害：30 + （15% 技能強度）點；100% 機率施加點燃，傷害為 100%\n\n冷卻：18 秒。",
+   "Creates 8 fire missiles that, after a short delay, strike random enemies within 500 around the hero and set them on fire. If a missile finds no enemies, it restores health to the hero equal to 80% of the damage it would deal. The missiles prioritise enemies affected by \"Anathema\".\n\nDamage of each missile: 30 + (15% spell power); 100% chance to apply Burn with 100% damage\n\nCooldown: 18 sec."
+  ],
+  "A0EQ": [
+   "向前進行一次短距離衝刺，對身旁的敵人造成傷害。傷害會造成 2 次。\n\n傷害：60 + （25% 技能強度）點\n\n冷卻：10 秒",
+   "Performs a short dash forward, dealing damage to enemies nearby. The damage is dealt 2 times.\n\nDamage: 60 + (25% spell power)\n\nCooldown: 10 sec."
+  ],
+  "A0ER": [
+   "英雄的攻擊獲得濺射效果。同時強化「衝勁」技能，使其在「黑暗強化」啟動期間對敵方英雄造成更多傷害。\n\n攻擊加成：對 175 點範圍造成 25% 濺射效果\n「衝勁」技能對敵方英雄的傷害：+40%\n持續時間：20 秒\n\n冷卻：35 秒",
+   "The hero's attacks gain a splash effect. Also empowers the \"Rush\" ability, allowing it to deal more damage to enemy heroes while \"Dark Empowerment\" is active.\n\nAttack bonus: 25% splash effect over a 175 area\n\"Rush\" damage against enemy heroes: +40%\nDuration: 20 sec.\n\nCooldown: 35 sec."
+  ],
+  "A0ES": [
+   "英雄以魔法護盾保護自己，部分吸收受到的傷害。\n\n每點法力值可抵擋傷害：3 點\n傷害吸收：50%",
+   "The hero protects himself with a magic shield that partially absorbs incoming damage.\n\nDamage blocked per point of mana: 3\nDamage absorption: 50%"
+  ],
+  "A0EW": [
+   "球狀閃電開始在英雄身邊接連出現，攻擊英雄周圍的區域。技能持續期間，英雄可自由執行其他命令。\n\n球狀閃電數量：28 顆\n球狀閃電傷害：75 + (8% max MP)\n\n冷卻：70 秒",
+   "Ball lightnings begin to appear one after another near the hero, striking the area around him. While the ability is active the hero can freely carry out other orders.\n\nNumber of ball lightnings: 28\nBall lightning damage: 75 + (8% max MP)\n\nCooldown: 70 sec."
+  ],
+  "A0EX": [
+   "英雄朝指定方向發射一顆逐漸加速的風暴法球，對敵人造成傷害。\n\n傷害：每次觸發 16 +（8% 技能強度）點\n觸發間隔：0.21 秒\n法球飛行時間：5 秒\n\n冷卻：16 秒",
+   "The hero sends a storm orb in the target direction with gradual acceleration, dealing damage to enemies.\n\nDamage: 16 + (8% spell power) per tick\nTick interval: 0.21 sec.\nOrb flight time: 5 sec.\n\nCooldown: 16 sec."
+  ],
+  "A0EZ": [
+   "英雄將風暴法球召回自身，使其加速效果增強 50%。當法球回到獅鷲身邊時會發生爆炸，對周圍敵人造成傷害。\n\n造成傷害：（125% 智力 + 50% 技能強度）點\n若爆炸當下「魔法護盾」技能處於啟動狀態：爆炸傷害依「魔法護盾」技能的每一等級提升 10%\n\n冷卻：5 秒",
+   "The hero returns the storm orb to himself, strengthening its acceleration effect by 50%. When the orb reaches the gryphon, an explosion occurs that deals damage to surrounding enemies.\n\nDamage dealt: (125% Intelligence + 50% spell power)\nIf the \"Magic Shield\" ability is active at the moment of the explosion: explosion damage is increased by 10% per level of the \"Magic Shield\" ability\n\nCooldown: 5 sec."
+  ],
+  "A0F1": [
+   "英雄獲得一個暫時性光環，降低附近敵人的攻擊速度與移動速度，並燒灼其法力值。光環持續 10 秒。\n\n移動速度降低：30%\n攻擊速度降低：20%\n法力燒灼：12 點／秒\n\n冷卻：25 秒",
+   "The hero gains a temporary aura that reduces the attack speed and movement speed of nearby enemies and also burns their mana. The aura lasts 10 sec.\n\nMovement speed reduction: 30%\nAttack speed reduction: 20%\nMana burn: 12 per sec.\n\nCooldown: 25 sec."
+  ],
+  "A0F4": [
+   "英雄造成的擊殺可能生成 3 團黑暗能量，擊中附近的隨機敵人。\n\n能量團的傷害：50 + （75% 技能強度）點。\n冷卻：4 秒。",
+   "Kills made by the hero can create 3 dark clusters that strike random nearby enemies.\n\nDamage of a cluster: 50 + (75% spell power)\nCooldown: 4 sec."
+  ],
+  "A0FB": [
+   "開啟英雄的額外技能列表。",
+   "Opens the list of the hero's additional abilities."
+  ],
+  "A0FU": [
+   "英雄在 10 秒內復活，但每次復活都會損失 3 點力量。",
+   "The hero revives in 10 sec., but loses 3 Strength with each resurrection."
+  ],
+  "A0FV": [
+   "產生多次爆裂，以裂縫的形式自英雄向外擴散，主要朝向英雄面對的方向。\n\n每次爆裂的傷害：30 + （35% 力量）點\n\n冷卻：18 秒。",
+   "Creates multiple detonations that spread out from the hero as fissures, primarily in the direction the hero is facing.\n\nDamage of each detonation: 30 + (35% Strength)\n\nCooldown: 18 sec."
+  ],
+  "A0G0": [
+   "英雄清除自身的負面效果，並獲得對一般傷害、狀態、穿透與反傷的防護。\n\n受到的傷害降低：20%\n持續時間：10 秒。\n\n冷卻：20 秒。",
+   "The hero is cleansed of negative effects and gains protection from normal damage, from statuses, from penetration and from thorns.\n\nDamage taken reduction: 20%\nDuration: 10 sec.\n\nCooldown: 20 sec."
+  ],
+  "A0G2": [
+   "英雄有小機率完全格擋所受到的物理傷害。此外，英雄死亡時你有機率不損失力量。\n\n格擋機率：8%\n保留力量的機率：8%",
+   "The hero has a small chance to completely block incoming physical damage. You also gain a chance not to lose Strength when the hero dies.\n\nBlock chance: 8%\nChance to keep Strength: 8%"
+  ],
+  "A0G6": [
+   "符文守護者散發一道光環，保護附近的友軍英雄。受保護的英雄所受到的部分傷害會被轉移到符文守護者身上。對自身無效。\n\n友軍英雄的傷害防護：30%\n英雄受到的傷害：光環所擋下傷害的 50%\n\n當啟用「相同英雄」設定時，英雄不會受到傷害，但光環對友軍的效果會減弱兩倍。多個符文守護者的光環不會疊加。",
+   "The Rune Defender emits an aura that protects nearby allied heroes. Part of the damage taken by the protected heroes is redirected to the Rune Defender. Does not affect himself.\n\nDamage protection for allied heroes: 30%\nDamage the hero takes: 50% of the damage blocked by the aura\n\nWith the \"Identical heroes\" setting enabled the hero will not take damage, but the aura's effect for allies is weakened twofold. The aura does not stack from several Rune Defenders."
+  ],
+  "A0GP": [
+   "英雄快速攻擊敵人並返回原本的位置。對同一名敵人的重複攻擊造成的傷害較低。\n\n每次攻擊傷害：40 + （20% 技能強度） + （400% 穿透）點\n目標數量：6 個\n\n冷卻：12 秒",
+   "The hero rapidly attacks enemies and returns to the starting position. Repeated strikes on the same enemy deal less damage.\n\nDamage per strike: 40 + (20% spell power) + (400% penetration)\nTargets: 6\n\nCooldown: 12 sec."
+  ],
+  "A0GR": [
+   "以攻擊擊殺敵人可為英雄帶來暫時的敏捷，以英雄技能擊殺敵人則可提升技能強度。\n\n擊殺獲得的額外敏捷：+2 點\n敏捷加成持續時間：5 秒\n以技能擊殺提升的技能強度：+8 點\n技能強度加成持續時間：10 秒",
+   "Killing enemies with attacks grants the hero temporary Agility, and killing enemies with the hero's abilities increases spell power.\n\nBonus Agility per kill: +2\nAgility bonus duration: 5 sec.\nSpell power increase per kill with abilities: +8\nSpell power bonus duration: 10 sec."
+  ],
+  "A0GS": [
+   "英雄獲得魔法免疫，並開始對周圍的敵人造成持續傷害，作用範圍逐漸擴大。技能持續期間降低受到的傷害。\n\n每秒傷害：75 +（30% 技能強度）+（300% 穿透）點\n持續時間：8 秒\n作用範圍：200 >>> 500\n傷害減免：+40%\n\n冷卻：100 秒",
+   "The hero gains magic immunity and begins dealing continuous damage to enemies around, gradually increasing the area of effect. Reduces damage taken while the ability is active.\n\nDamage per second: 75 + (30% spell power) + (300% penetration)\nDuration: 8 sec.\nArea: 200 >>> 500\nDamage reduction: +40%\n\nCooldown: 100 sec."
+  ],
+  "A0GT": [
+   "英雄的攻擊與技能獲得造成暴擊傷害的機率。\n\n暴擊機率：25%\n傷害倍率：x1.5\n持續時間：15 秒\n\n冷卻：20 秒",
+   "The hero's attacks and abilities gain a chance to deal critical damage.\n\nCritical damage chance: 25%\nDamage multiplier: x1.5\nDuration: 15 sec.\n\nCooldown: 20 sec."
+  ],
+  "A0GX": [
+   "在選定的區域內生成火焰地帶，造成週期性傷害並點燃敵人。技能強度達 300 以上時，火焰地帶還會額外使敵人的移動速度降低 50%。\n\n週期性傷害：20 + （8% 技能強度）點/秒\n傷害觸發間隔：0.5 秒\n點燃效果：每次觸發 15% 機率；75% 傷害\n持續時間：18 + （2% 技能強度）秒\n\n冷卻：18 秒",
+   "Creates fiery patches within the selected area that deal periodic damage and apply Burn to enemies. At 300+ spell power the fiery patches additionally slow enemy movement speed by 50%.\n\nPeriodic damage: 20 + (8% spell power) per sec.\nDamage tick interval: 0.5 sec.\nBurn effect: 15% chance on each tick; 75% damage\nDuration: 18 + (2% spell power) sec.\n\nCooldown: 18 sec."
+  ],
+  "A0GZ": [
+   "英雄的攻擊可能消耗法力並引爆敵人，對小範圍造成傷害並施加易燃效果。\n\n引爆傷害：50 + （20% 技能強度）點\n對敵人施加易燃的機率：60%\n法力消耗：30 點\n\n冷卻：6 秒",
+   "The hero's attacks can consume mana and detonate the enemy, dealing damage in a small area and applying Flammable.\n\nDetonation damage: 50 + (20% spell power)\nChance to apply Flammable to the enemy: 60%\nMana cost: 30\n\nCooldown: 6 sec."
+  ],
+  "A0H1": [
+   "朝敵人降下一顆隕石，造成巨量的範圍傷害並點燃被命中的目標。\n\n傷害：350 + （125% 技能強度）點\n點燃效果：75% 機率；50% 傷害\n\n冷卻：120 秒",
+   "Calls down a meteorite onto enemies, dealing enormous area damage and Burning the targets hit.\n\nDamage: 350 + (125% spell power)\nBurn effect: 75% chance; 50% damage\n\nCooldown: 120 sec."
+  ],
+  "A0H3": [
+   "以閃電擊中指定區域，對敵人造成傷害。\n\n傷害：80 +（35% 技能強度）點\n\n冷卻：15 秒",
+   "Strikes the target area with lightning, dealing damage to enemies.\n\nDamage: 80 + (35% spell power)\n\nCooldown: 15 sec."
+  ],
+  "A0H4": [
+   "在近距離引爆指定區域。若爆炸擊中了敵人，就會在更遠的距離產生新的爆炸，而新的爆炸還能再引發下一次爆炸。每一次新的爆炸傷害提高 10%。\n\n爆炸傷害：60 +（18% 技能強度）點\n\n冷卻：22 秒",
+   "Detonates the target area at close range. If the explosion hits an enemy, a new explosion appears at a greater distance, which is able to spawn another explosion. Each new explosion deals 10% more damage.\n\nExplosion damage: 60 + (18% spell power)\n\nCooldown: 22 sec."
+  ],
+  "A0HC": [
+   "在 8 秒內，暴風使者的攻擊速度提升 75%，並在攻擊時獲得造成範圍傷害的小機率。\n\n觸發機率：30%\n傷害：（150% 智力）+ （20% 技能強度）點\n\n冷卻：28 秒。",
+   "For 8 sec. the Stormbringer increases his attack speed by 75% and gains a small chance to deal area damage on attack.\n\nProc chance: 30%\nDamage: (150% INTELLIGENCE) + (20% spell power)\n\nCooldown: 28 sec."
+  ],
+  "A0HJ": [
+   "當玩家的經驗點數足夠時，你可以選擇一項天賦，將英雄大幅強化至新的強度等級。",
+   "With a sufficient amount of player experience points you can choose a talent that will significantly strengthen the hero to a new power rank."
+  ],
+  "A0HR": [
+   "擊殺敵人可讓英雄獲得狩獵點數。每次獲得加成後，擊殺的需求都會提高。指令「-i」會顯示已累積的狩獵點數。\n\n擊殺獲得的狩獵經驗（部隊）：10 * （敵人等級）^1.5\n擊殺獲得的狩獵經驗（英雄）：25 * （英雄等級）^1.5\n獲得狩獵點數所需的狩獵經驗：25 (+75)\n\n每層加成：攻擊力 +1，狩獵點數 +1",
+   "The hero can gain hunt points for killing enemies. After each bonus gained, the kill requirements grow. The \"-i\" command displays the accumulated hunt points.\n\nHunt experience gained for kills (troops): 10 * (enemy level)^1.5\nHunt experience gained for kills (heroes): 25 * (hero level)^1.5\nHunt experience required to gain hunt points: 25 (+75)\n\nBonus per stack: +1 attack power, +1 hunt point"
+  ],
+  "A0HT": [
+   "英雄在指定地點生成一個吸收法球，並於 10 秒後爆炸。法球會依據其內部的敵人累積自身的傷害。\n\n初始傷害：200 + （75% 技能強度）點\n傷害累積（每個敵方單位）：每秒 +0.5% 初始傷害\n傷害累積（每個敵方英雄）：每秒 +2.5% 初始傷害\n\n冷卻：60 秒。",
+   "The hero creates an absorption sphere at the target location that explodes after 10 sec. The sphere accumulates its damage depending on the enemies inside it.\n\nInitial damage: 200 + (75% spell power)\nDamage accumulation (per enemy unit): +0.5% of the initial damage per sec.\nDamage accumulation (per enemy hero): +2.5% of the initial damage per sec.\n\nCooldown: 60 sec."
+  ],
+  "A0HU": [
+   "英雄的攻擊會引發分岔的閃電，擊中數名敵人。\n\n傷害：70 +（15% 技能強度）點\n目標數量：3 個\n技能強度 200+：回復 2% MP\n技能強度 400+：閃電最多擊中 4 個目標\n技能強度 600+：回復 2% HP\n技能強度 800+：閃電最多擊中 5 個目標\n\n冷卻：10 秒",
+   "The hero's attack calls forth a forking lightning bolt that strikes several enemies.\n\nDamage: 70 + (15% spell power)\nTargets: 3\n200+ spell power: restores 2% MP\n400+ spell power: lightning strikes up to 4 targets\n600+ spell power: restores 2% HP\n800+ spell power: lightning strikes up to 5 targets\n\nCooldown: 10 sec."
+  ],
+  "A0I2": [
+   "當玩家經驗點數足夠時，你可以選擇一項天賦，將英雄大幅強化至新的力量階級。",
+   "With a sufficient amount of player experience points you can choose a talent that will significantly strengthen the hero up to a new power rank."
+  ],
+  "A0IG": [
+   "英雄可以使用「軍團遺產」套裝的加成。要獲得套裝加成，英雄的物品欄中必須擁有下列道具：\n\n- 「聖物」類別的道具\n- 帝王之劍（扭曲）\n- 雄獅鎧甲（扭曲）\n- 干將（扭曲）\n- 榮譽頭盔（扭曲）\n- 碎界（折射）\n- 庇護者（折射）\n- 帝王鎧甲（神器 lv.4）\n- 泰坦神拳（神器 lv.5）\n- 王國宙斯盾（神器 lv.5）\n\n可透過文字指令「-с5」查看套裝加成。",
+   "The hero can use the bonuses of the \"Legion Legacy\" set. To receive the bonuses, the hero's inventory must contain the items from this list:\n\n- items of the \"Relic\" class\n- Emperor's Sword (Distorted)\n- Lion Cuirass (Distorted)\n- Kladenets Sword (Distorted)\n- Helm of Honour (Distorted)\n- Collapse (Refracted)\n- Defender (Refracted)\n- Emperor's Armour (Artifact lvl 4)\n- Titan's Fist (Artifact lvl 5)\n- Aegis of Kings (Artifact lvl 5)\n\nThe set bonuses can be viewed with the text command \"-с5\"."
+  ],
+  "A0IH": [
+   "用盾牌撞擊指定目標並造成範圍傷害，將敵人從自身推開。被命中的敵人會短時間減速。\n\n對目標的傷害：100 +（50% 技能強度）點\n對目標附近敵人的傷害：主要傷害公式的 60%\n敵人減速：移動速度 -60%，持續 4 秒\n\n冷卻：12 秒",
+   "Strikes the target with a shield and deals area damage, knocking enemies away from the hero. Affected enemies are slowed for a short time.\n\nDamage to the target: 100 + (50% spell power)\nDamage to enemies near the target: 60% of the main damage formula\nEnemy slow: -60% movement speed for 4 sec.\n\nCooldown: 12 sec."
+  ],
+  "A0II": [
+   "英雄獲得對 0-1 級單位的防護，並對這些單位造成更多傷害。\n\n對 0-1 級單位的防護：+8%\n對 0-1 級單位的傷害：+12%",
+   "The hero gains protection from level 0-1 units and deals more damage to those same units.\n\nProtection from level 0-1 units: +8%\nDamage to level 0-1 units: +12%"
+  ],
+  "A0IJ": [
+   "指定範圍內的敵人受到傷害並被拉向英雄。施放後英雄會獲得暫時的裝備技能威力加成。\n\n傷害：60 +（40% 技能強度）點\n裝備技能威力加成：+15%，持續 6 秒\n\n冷卻：15 秒",
+   "Enemies in the target area take damage and are pulled toward the hero. After casting, the hero gains a temporary modifier power bonus.\n\nDamage: 60 + (40% spell power)\nModifier power bonus: +15% for 6 sec.\n\nCooldown: 15 sec."
+  ],
+  "A0IK": [
+   "召喚 6 名無敵的弓箭手前來支援，他們會出現在英雄身後，並朝指定方向開始射擊。\n\n箭矢傷害：50 + （20% 技能強度）點。\n每名弓箭手的攻擊速度：在 0.5 秒到 1 秒之間變化。\n弓箭手存活時間：10 + （4% 力量）秒。\n\n冷卻：70 秒。",
+   "Summons 6 invulnerable archers to your aid; they appear behind the hero and start firing projectiles in the chosen direction.\n\nProjectile damage: 50 + (20% spell power)\nAttack speed of each archer: varies from 0.5 sec. to 1 sec.\nArcher lifetime: 10 + (4% Strength) sec.\n\nCooldown: 70 sec."
+  ],
+  "A0IT": [
+   "創造一片異常力場，力場內的隨機敵人會受到傷害。持續時間 - 9 秒。\n\n造成傷害：20 +（10% 技能強度）點\n觸發間隔：每 0.75 秒 3 名隨機敵人\n\n冷卻：22 秒",
+   "Creates an anomalous field in which random enemies take damage. Duration - 9 sec.\n\nDamage dealt: 20 + (10% spell power)\nInterval: 3 random enemies every 0.75 sec.\n\nCooldown: 22 sec."
+  ],
+  "A0IU": [
+   "英雄在身前生成不斷擴散的爆炸區域，在短暫延遲後造成傷害。\n\n傷害：250 + （100% 技能強度）點\n\n冷卻：60 秒。",
+   "The hero creates spreading explosive areas in front of himself that deal damage after a short delay.\n\nDamage: 250 + (100% spell power)\n\nCooldown: 60 sec."
+  ],
+  "A0IV": [
+   "當玩家的經驗點數足夠時，你可以選擇一項天賦，將英雄大幅強化至新的強度等級。",
+   "With a sufficient amount of player experience points you can choose a talent that will significantly strengthen the hero to a new power rank."
+  ],
+  "A0J2": [
+   "英雄會週期性陷入狂怒，期間攻擊速度以及對非英雄敵人的傷害都會提升。狂怒期間，狂徒受到的傷害也會提高。\n\n攻擊速度加成：30%\n對非英雄的傷害加成：20%\n受到的傷害：15%\n持續時間：6 秒。\n\n冷卻：8 秒。",
+   "Periodically the hero falls into a fit of rage, during which his attack speed and his damage against non-hero enemies are increased. During these fits the damage taken by the Cutthroat is also increased.\n\nAttack speed bonus: 30%\nDamage bonus against non-heroes: 20%\nDamage taken: 15%\nDuration: 6 sec.\n\nCooldown: 8 sec."
+  ],
+  "A0JA": [
+   "當玩家的經驗值達到足夠數量時，你可以選擇一項天賦，大幅強化英雄，使其提升至新的力量階級。",
+   "With a sufficient amount of player experience points you can choose a talent that will significantly strengthen the hero to a new power rank."
+  ],
+  "A0JI": [
+   "當玩家的經驗點數足夠時，你可以選擇一項天賦，使英雄大幅強化至新的力量等階。",
+   "With enough player experience points, you can choose a talent that will significantly strengthen the hero to a new power rank."
+  ],
+  "A0JP": [
+   "女祭司受到遠程單位的傷害減少 25%。",
+   "The priestess takes 25% less damage from ranged units."
+  ],
+  "A0JQ": [
+   "女祭司在 12 秒內提升自身的攻擊速度與移動速度，並散發一道光環（範圍 400），提高友方部隊的攻擊力。\n\n移動速度提升：10%\n攻擊速度提升：20%\n攻擊力提升（光環）：20%\n\n冷卻：26 秒",
+   "For 12 sec. the priestess increases her attack and movement speed, and also emits an aura (area 400) that increases the attack power of allied troops.\n\nMovement speed increase: 10%\nAttack speed increase: 20%\nAttack power increase (aura): 20%\n\nCooldown: 26 sec."
+  ],
+  "A0JS": [
+   "以充能之箭擊中敵人，暈眩目標並對範圍造成額外傷害。\n\n主要目標傷害：70 + （40% 技能強度）點\n範圍傷害：主要傷害的 60%\n暈眩（一般部隊）：3.6 秒\n暈眩（英雄）：1.2 秒\n技能強度 250 以上：永久降低被擊中敵人 3 點護甲\n\n冷卻：10 秒",
+   "Strikes an enemy with a charged arrow, stunning the target and dealing additional area damage.\n\nDamage to the main target: 70 + (40% spell power)\nArea damage: 60% of the main damage\nStun (regular troops): 3.6 sec.\nStun (heroes): 1.2 sec.\n250+ spell power: permanently reduces the armour of struck enemies by 3\n\nCooldown: 10 sec."
+  ],
+  "A0JU": [
+   "女祭司標記指定區域，區域內每次觸發時會有 3 名隨機敵人受到墜落之星的傷害。每顆星會使敵人受到「月光閃爍」技能的傷害提高 5%。\n\n星辰傷害：30 + （10% 技能強度） + （50% 敏捷）點\n觸發間隔：0.4 秒\n持續時間：16 秒\n\n冷卻：80 秒",
+   "The priestess marks the target area; each tick 3 random enemies inside it take damage from falling stars. Each star increases the damage the enemy takes from the \"Moon Glimmer\" ability by 5%.\n\nStar damage: 30 + (10% spell power) + (50% Agility)\nTick interval: 0.4 sec.\nDuration: 16 sec.\n\nCooldown: 80 sec."
+  ],
+  "A0JW": [
+   "英雄開始持續維持法術，期間英雄周圍 2000 半徑內的隨機敵人會在每次觸發時受到傷害。\n\n傷害：20 + （10% 技能強度） + （30% 全部屬性）\n觸發間隔：0.5 秒\n每次觸發的敵人數量：8 名\n持續時間：20 秒\n\n冷卻：120 秒",
+   "The hero begins channelling a spell during which random enemies within a radius of 2000 around the hero take damage every tick.\n\nDamage: 20 + (10% spell power) + (30% of all attributes)\nInterval: 0.5 sec.\nEnemies per tick: 8\nDuration: 20 sec.\n\nCooldown: 120 sec."
+  ],
+  "A0K3": [
+   "永久提升友方英雄的智力，並賦予其持續 10 秒的法力回復光環。\n\n智力提升：+1 點\n光環效果：+3 MP regen\n光環作用範圍：400\n\n冷卻：30 秒",
+   "Permanently increases an allied hero's Intelligence and grants a mana regeneration aura for 10 sec.\n\nIntelligence increase: +1\nAura effect: +3 MP regen\nAura area: 400\n\nCooldown: 30 sec."
+  ],
+  "A0K5": [
+   "暈眩自身周圍的敵人並對其造成傷害。\n\n傷害：全部屬性的 20% +（50% 技能強度）\n暈眩：4 秒\n暈眩（英雄）：2 秒\n\n冷卻：9 秒",
+   "Stuns enemies around you and deals damage to them.\n\nDamage: 20% of all attributes + (50% spell power)\nStun: 4 sec.\nStun (heroes): 2 sec.\n\nCooldown: 9 sec."
+  ],
+  "A0K7": [
+   "半徑 400 點內的敵人會被減速並獲得點燃效果。\n\n點燃機率：125%\n點燃傷害：80 +（110% 惡魔之力）點／秒\n攻擊速度減速：20%\n移動速度減速：30%\n減速持續時間（部隊）：6 秒\n減速持續時間（英雄）：3 秒\n\n冷卻：15 秒\n\n額外加成資訊請見指令「-w」。",
+   "Enemies within a 400 radius are slowed and receive the Burn effect.\n\nBurn chance: 125%\nBurn damage: 80 + (110% demonic power) per sec.\nAttack speed slow: 20%\nMovement speed slow: 30%\nSlow duration (troops): 6 sec.\nSlow duration (heroes): 3 sec.\n\nCooldown: 15 sec.\n\nInformation about additional bonuses in the \"-w\" command."
+  ],
+  "A0K8": [
+   "提升友方英雄的攻擊速度，並使其能夠在每次擊殺時回復 1% 生命值。\n\n攻擊速度提升：50%\n持續時間：12 秒\n\n冷卻：19 秒",
+   "Increases an allied hero's attack speed and gives them the ability to restore 1% health per kill.\n\nAttack speed increase: 50%\nDuration: 12 sec.\n\nCooldown: 19 sec."
+  ],
+  "A0K9": [
+   "開啟英雄的額外技能列表。",
+   "Opens the list of the hero's additional abilities."
+  ],
+  "A0KP": [
+   "當玩家的經驗點數足夠時，你可以選擇一項天賦，將英雄大幅強化至新的強度等級。",
+   "With a sufficient amount of player experience points you can choose a talent that will significantly strengthen the hero to a new power rank."
+  ],
+  "A0KU": [
+   "朝指定方向發射一顆黑暗能量球。能量球會對附近的敵人造成週期性傷害。可透過「虛空引爆」引爆能量球。\n\n週期性傷害：40 + （15% 技能強度） + （10% 當前法力值）點/秒。\n\n冷卻：14 秒。",
+   "Launches a sphere of dark energy in the chosen direction. The sphere deals periodic damage to nearby enemies. The sphere can be detonated with \"Void Detonation\".\n\nPeriodic damage: 40 + (15% spell power) + (10% current mana) per sec.\n\nCooldown: 14 sec."
+  ],
+  "A0KV": [
+   "產生一道能量屏障，將敵人從自身推開。敵人首次撞上屏障時可能會被暈眩。\n\n首次撞擊的暈眩：100% 機率，3 秒。\n屏障持續時間：6 秒。\n\n冷卻：20 秒。",
+   "Creates an energy barrier that pushes enemies away from you. Enemies can be stunned if they collide with the barrier for the first time.\n\nStun on first collision: 100% chance, 3 sec.\nBarrier duration: 6 sec.\n\nCooldown: 20 sec."
+  ],
+  "A0KY": [
+   "在英雄所在位置與指定地點之間建立傳送門。傳送門雙向運作，可讓你的部隊與友軍部隊通過。單位傳送之後會獲得強化，並在強化時間結束前無法再次傳送。建立傳送門時，英雄獲得 2 秒的傳送免疫。\n\n單位強化：+25% 攻擊速度與移動速度，受到負面狀態的機率降低 30%，50% 反傷防護，+25% 對英雄防護\n強化持續時間：20 秒。\n施放距離：無限制\n持續時間：10 秒。\n\n冷卻：30 秒。",
+   "Creates a portal from the hero's position to the chosen point. The portal works in both directions and lets your units and allied units through. After teleporting, units gain a buff and cannot teleport again until the buff expires. On creation the hero gains immunity to teleportation for 2 sec.\n\nUnit buff: +25% attack speed and movement speed, 30% lower chance to receive a negative status, 50% protection from thorns, +25% protection from heroes\nBuff duration: 20 sec.\nCast range: unlimited\nDuration: 10 sec.\n\nCooldown: 30 sec."
+  ],
+  "A0L0": [
+   "將星辰分解成大量光團，對作用範圍內的敵人造成傷害。每次傷害跳動都會吸收英雄的法力值以造成更高的傷害。\n\n傷害：30 + （5% 技能強度）點。\n每次跳動的額外傷害：英雄當前法力值的 3%，造成傷害後消耗當前法力值的 1.5%\n跳動間隔：0.15 秒。\n持續時間：10 秒。\n\n冷卻：80 秒。",
+   "Splits a star into many clusters of light that deal damage to enemies in the area. Each damage tick absorbs the hero's mana to deal increased damage.\n\nDamage: 30 + (5% spell power)\nExtra damage per tick: 3% of the hero's current mana; after the damage is dealt, 1.5% of current mana is consumed\nTick interval: 0.15 sec.\nDuration: 10 sec.\n\nCooldown: 80 sec."
+  ],
+  "A0M1": [
+   "朝指定方向釋放一道疾速龍捲風，對敵人造成傷害並短暫降低其移動速度。\n\n傷害：20 +（10% 技能強度）點\n傷害觸發間隔：0.10 秒\n移動速度減速：75%\n\n冷卻：10 秒",
+   "Launches a swift tornado in the target direction that deals damage to enemies and briefly slows their movement speed.\n\nDamage: 20 + (10% spell power)\nDamage interval: 0.10 sec.\nMovement speed slow: 75%\n\nCooldown: 10 sec."
+  ],
+  "A0M2": [
+   "指定區域內的敵人會被樹根纏繞並受到傷害。被擊中的目標在 6 秒內無法攻擊（英雄 3 秒）。\n\n傷害：12 +（9% 技能強度）點／秒\n作用範圍：200 點\n\n冷卻：17 秒",
+   "Enemies in the target area are entangled by roots that deal damage. Affected targets cannot attack for 6 sec. (heroes 3 sec.).\n\nDamage: 12 + (9% spell power) per sec.\nArea: 200\n\nCooldown: 17 sec."
+  ],
+  "A0M4": [
+   "在 6 秒內回復指定目標的生命值與法力值。\n\n總治療量：325 +（125% 技能強度）點\n總法力回復量：80 +（20% 技能強度）點\n\n冷卻：18 秒",
+   "Restores the target's health and mana over 6 sec.\n\nTotal healing amount: 325 + (125% spell power)\nTotal mana restored: 80 + (20% spell power)\n\nCooldown: 18 sec."
+  ],
+  "A0M5": [
+   "消耗 20 層「神聖職責」。\n\n釋放強大的光之波動，對英雄周圍的敵人造成傷害，並治療聖騎士附近的友方英雄以及英雄自身。不會繼承「神聖職責」技能的效果。\n\n傷害：350 + （125% 技能強度） + （剩餘層數 * 12.5）點\n友方英雄治療：15% 最大生命值",
+   "Consumes 20 stacks of \"Holy Duty\".\n\nEmits a powerful wave of light that damages enemies around the hero and heals allied heroes near the paladin as well as the hero himself. Does not inherit the effects of the \"Holy Duty\" ability.\n\nDamage: 350 + (125% spell power) + (remaining stacks * 12.5)\nHealing for allied heroes: 15% Max HP"
+  ],
+  "A0M6": [
+   "德魯伊召喚一名森林守衛，持續 60 秒。召喚出的守衛擁有微弱的魔法抗性與減速敵人的光環，並且可以使用「大地重擊」技能。\n\n守衛生命值：800 + 英雄 50% max HP 點\n守衛攻擊力：70 + （20% 技能強度）點\n守衛護甲：5 點\n持有「扭曲權杖」道具時：守衛攻擊速度 +30%\n\n冷卻：100 秒",
+   "The druid summons a forest guardian for 60 sec. The summoned guardian has weak magic resistance and an aura that slows enemies, and can also use the \"Ground Slam\" ability.\n\nGuardian health: 800 + 50% of the hero's max HP\nGuardian attack power: 70 + (20% spell power)\nGuardian armour: 5\nWith the item \"Scepter of Distortion\": +30% guardian attack speed\n\nCooldown: 100 sec."
+  ],
+  "A0MA": [
+   "在與敵人開戰之前，請務必選擇一項額外技能。",
+   "Be sure to choose an additional ability before you start fighting the enemy."
+  ],
+  "A0MK": [
+   "當玩家經驗點數足夠時，你可以選擇一項天賦，將英雄大幅強化至新的力量階級。",
+   "With a sufficient amount of player experience points you can choose a talent that will significantly strengthen the hero up to a new power rank."
+  ],
+  "A0MR": [
+   "技能會逐漸吸收惡魔之力，並產生一顆火球，當英雄的惡魔之力耗盡時便會發射出去。吸收力量的速度為「力量蓄積」技能累積力量速度的 135%。火球可以點燃敵人。\n\n傷害：175 +（600% 已吸收力量）點\n點燃：50% 機率；50% 傷害\n火球大小（作用範圍）：150 +（80% 已吸收力量）點\n飛行距離：600 +（175% 已吸收力量）點\n\n冷卻：100 秒",
+   "The ability gradually absorbs demonic power and creates a fireball that is launched when the hero's demonic power reserve runs out. The absorption rate equals 135% of the power accumulation rate of the \"Power Accumulation\" ability. The ball can burn enemies.\n\nDamage: 175 + (600% absorbed power)\nBurn: 50% chance; 50% damage\nBall size (area): 150 + (80% absorbed power)\nFlight range: 600 + (175% absorbed power)\n\nCooldown: 100 sec."
+  ],
+  "A0NQ": [
+   "以近戰方式對目標施以重擊，將其擊退並暈眩數秒。\n\n傷害：125 + 85% 技能強度\n暈眩（一般部隊）：5 秒。\n暈眩（英雄）：1.8 秒。\n\n冷卻：11 秒。",
+   "Delivers a powerful melee blow to the target, knocking it back and stunning it for several seconds.\n\nDamage: 125 + 85% spell power\nStun (regular units): 5 sec.\nStun (heroes): 1.8 sec.\n\nCooldown: 11 sec."
+  ],
+  "A0NU": [
+   "攻擊英雄的敵人有 10% 機率獲得持續 10 秒的恐懼效果。此效果會降低攻擊速度，並使該單位更容易受到基爾羅格的傷害。\n\n攻擊速度降低：-20%\n敵人受到英雄技能的傷害提升：+30%\n英雄的攻擊對生命值低於 40% 的敵人造成額外傷害：（100% 力量）點；冷卻 1 秒",
+   "Enemies attacking the hero have a 10% chance to receive a Fear effect for 10 sec. This effect reduces attack speed and makes the unit more vulnerable to Kilrogg.\n\nAttack speed reduction: -20%\nEnemy takes more damage from the hero's abilities: +30%\nThe hero's attacks deal extra damage to an enemy below 40% health: (100% Strength); cooldown 1 sec."
+  ],
+  "A0NW": [
+   "毀滅之焰包覆英雄，對周圍的敵人以及英雄自身造成傷害。每次使用後技能傷害都會提升，此累積效果會在英雄死亡後重置。\n\n傷害：18 + （10% 技能強度）點/秒。\n對英雄自身的傷害：技能主要傷害的 80%\n持續時間：10 秒。\n每次使用的傷害加成：+8%\n\n冷卻：18 秒。",
+   "The hero is engulfed in ruinous flame that damages both the enemies around him and the hero himself. Each use increases the ability's damage; this stacking effect is reset when the hero dies.\n\nDamage: 18 + (10% spell power) per sec.\nDamage to the hero: 80% of the ability's main damage\nDuration: 10 sec.\nDamage bonus per use: +8%\n\nCooldown: 18 sec."
+  ],
+  "A0NX": [
+   "擊殺敵人可提升英雄的生命值回復。這些效果可以疊加，但不會延長彼此的持續時間。\n\n回復加成：4 + （被擊殺敵人的等級）點\n加成持續時間：5 秒。",
+   "Killing an enemy increases the hero's health regeneration. These effects stack but do not extend each other's duration.\n\nRegeneration bonus: 4 + (level of the killed enemy)\nBonus duration: 5 sec."
+  ],
+  "A0NY": [
+   "英雄暈眩自身周圍大範圍內的敵人，並暫時提升自己的攻擊力、獲得濺射效果，同時每次攻擊都會損失自身的生命值。\n\n暈眩：8 秒\n暈眩（英雄）：4 秒\n攻擊力提升：+80%\n濺射效果：對 400 點範圍內的敵人造成 30% 傷害\n每次攻擊損失的生命值：當前生命值的 4%\n加成持續時間：12 秒\n\n冷卻：80 秒",
+   "The hero stuns enemies in a large area around himself, temporarily increasing his attack power, gaining a splash effect and losing health with every attack.\n\nStun: 8 sec.\nStun (heroes): 4 sec.\nAttack increase: +80%\nSplash effect: 30% damage to enemies in a 400 area\nHealth loss per attack: 4% of current health\nBonus duration: 12 sec.\n\nCooldown: 80 sec."
+  ],
+  "A0O1": [
+   "英雄所控制的骷髏死亡時會回復 0.5% 的生命值與法力值，並有 50% 機率對擊殺它的敵人造成相當於英雄智力 100% 的傷害。",
+   "The death of skeletons controlled by the hero restores 0.5% health and mana, and with a 50% chance deals damage equal to 100% of the hero's Intelligence to the enemy that killed it."
+  ],
+  "A0OA": [
+   "對英雄周圍的敵人造成傷害。站在執法官極近處的敵人受到的傷害提高 50%。同時以所造成傷害的 75% 燒灼敵人的法力值。\n\n傷害：80 + （40% 技能強度）點\n\n冷卻：13 秒",
+   "Deals damage to enemies around the hero. Enemies standing very close to the lictor take 50% more damage. Also drains enemy mana equal to 75% of the damage dealt.\n\nDamage: 80 + (40% spell power)\n\nCooldown: 13 sec."
+  ],
+  "A0OB": [
+   "白銀執法官的技能具有吸血效果，並有 20% 機率造成致命一擊（170% 傷害）。擊殺敵方英雄可提升暴擊傷害。指令「-i」可顯示技能當前的暴擊傷害。\n\n技能吸血：10%\n擊殺英雄時的暴擊傷害提升：+30%",
+   "The Silver Lictor has lifesteal from its abilities and a 20% chance to deal a critical strike (170% damage). Kills of enemy heroes increase the critical damage. The \"-i\" command shows the ability's current critical damage.\n\nAbility lifesteal: 10%\nCritical damage increase per hero kill: +30%"
+  ],
+  "A0OE": [
+   "被動技能。英雄的攻擊可能對附近數名敵人造成額外的魔法傷害。\n\n傷害：40 + （20% 技能強度）點\n目標數量：3 個（技能強度 500 以上為 5 個）\n\n冷卻：6 秒",
+   "Passive ability. The hero's attacks can deal additional magic damage to several nearby enemies.\n\nDamage: 40 + (20% spell power)\nTargets: 3 (5 at 500 spell power and above)\n\nCooldown: 6 sec."
+  ],
+  "A0OF": [
+   "英雄在自身腳下創造一片魔法領域，領域內所有當前生命值高於英雄的敵人都會受到傷害。\n\n每次跳動的傷害：50 + （20% 技能強度）點。\n跳動間隔：0.5 秒。\n持續時間：11 秒。\n\n冷卻：80 秒。",
+   "The hero creates a magic field beneath itself; inside it, all enemies with a current health pool larger than the hero's take damage.\n\nDamage per tick: 50 + (20% spell power)\nTick interval: 0.5 sec.\nDuration: 11 sec.\n\nCooldown: 80 sec."
+  ],
+  "A0OJ": [
+   "當玩家的經驗點數足夠時，你可以選擇一項天賦，將英雄大幅強化至新的強度等級。",
+   "With a sufficient amount of player experience points you can choose a talent that will significantly strengthen the hero to a new power rank."
+  ],
+  "A0OM": [
+   "九頭蛇的攻擊會週期性額外產生 3 發彈體，每發打擊一名隨機敵人，造成傷害並施加疾病。\n\n傷害：50 + （25% 技能強度）；100% 疾病機率，100% 傷害\n若「刺激」效果啟動中：冷卻加速 200%\n\n冷卻：10 秒",
+   "The hydra's attack periodically creates 3 more projectiles, each of which strikes a random enemy, dealing damage and applying Disease.\n\nDamage: 50 + (25% spell power); 100% Disease chance, 100% damage\nIf the \"Stimulation\" effect is active: cooldown accelerated by 200%\n\nCooldown: 10 sec."
+  ],
+  "A0P5": [
+   "當玩家經驗點數足夠時，你可以選擇一項天賦，將英雄大幅強化至新的力量階級。",
+   "With a sufficient amount of player experience points you can choose a talent that will significantly strengthen the hero up to a new power rank."
+  ],
+  "A0P7": [
+   "擊中指定的敵人以及其附近的敵人，造成傷害並施加流血。\n\n主要傷害：30 + （15% 技能強度）點\n流血：125% 機率，400% 傷害\n\n冷卻：4 秒",
+   "Strikes the chosen enemy and enemies near it, dealing damage and applying Bleed.\n\nMain damage: 30 + (15% spell power)\nBleed: 125% chance, 400% damage\n\nCooldown: 4 sec."
+  ],
+  "A0P9": [
+   "攻擊、技能與流血效果具有 10% 吸血。\n\n任務：擊殺 100 名敵人。完成任務後，吸血效果將提升至 15%。\n\n使用指令「-i」可追蹤進度。",
+   "Attacks, abilities and Bleed effects have 10% lifesteal.\n\nQuest: Kill 100 enemies. After completing the quest, the lifesteal effect is increased to 15%.\n\nUse the \"-i\" command to track progress."
+  ],
+  "A0PA": [
+   "散發一道光環，降低英雄附近敵人的護甲。\n\n護甲降低：3 點\n作用範圍：200 點",
+   "Emits an aura that reduces the armour of enemies near the hero.\n\nArmour reduction: 3\nArea: 200"
+  ],
+  "A0PB": [
+   "對指定的敵人降下強力詛咒，持續造成高額週期傷害。若目標在「判決」效果下死亡，英雄的攻擊力會提升等同於死亡目標等級的數值。英雄必須存活才能獲得此攻擊力。\n\n傷害：110 + （40% 技能強度）點/秒\n持續時間：8 秒\n\n冷卻：70 秒",
+   "Casts a powerful curse on the target enemy that deals high periodic damage. If a target under \"Verdict\" dies, the hero's attack increases by an amount equal to the level of the dead target. The hero must be alive to gain the attack.\n\nDamage: 110 + (40% spell power) per sec.\nDuration: 8 sec.\n\nCooldown: 70 sec."
+  ],
+  "A0PD": [
+   "對英雄周圍的敵人造成傷害，每擊中一名敵人便提升技能強度，並提高移動速度。\n\n傷害：40 + （25% 技能強度）點\n技能強度加成：每名敵人 +8 點\n移動速度加成：30%\n持續時間：8 秒\n\n冷卻：11 秒",
+   "Deals damage to enemies around the hero, increases spell power for each enemy hit and increases movement speed.\n\nDamage: 40 + (25% spell power)\nSpell power bonus: +8 per enemy\nMovement speed bonus: 30%\nDuration: 8 sec.\n\nCooldown: 11 sec."
+  ],
+  "A0PE": [
+   "任務：擊殺一名敵方英雄。完成任務後，「撕裂」技能將無視流血抗性。",
+   "Quest: Kill an enemy hero. After completing the quest, the \"Rupture\" ability will ignore Bleed resistance."
+  ],
+  "A0PF": [
+   "扭曲指定區域的重力，對敵人造成傷害並將他們拉向爆炸中心。被拉扯後，敵人會減速 30% 並失去護甲，持續 5 秒。技能強度達到 400 以上時，拉扯的力道更強，負面效果的持續時間延長 2 秒。\n\n傷害：90 +（35% 技能強度）點\n護甲降低：3 點\n\n冷卻：15 秒",
+   "Distorts gravity in the target zone, dealing damage to enemies and pulling them toward the centre of the blast. After the pull, enemies are slowed by 30% and lose armour for 5 sec. At 400+ spell power the pull is stronger and the negative effects last 2 sec. longer.\n\nDamage: 90 + (35% spell power)\nArmour reduction: 3\n\nCooldown: 15 sec."
+  ],
+  "A0PI": [
+   "開啟英雄的額外技能列表。",
+   "Opens the list of the hero's additional abilities."
+  ],
+  "A0PM": [
+   "開始持續施法，期間會從中心向外圍、再由外圍返回中心產生一連串爆破。之後的每一次爆破都會多造成 25% 傷害。技能強度達到 1000 以上時，額外對範圍內的隨機敵人施加「接地」技能的效果。\n\n傷害：50 +（18% 技能強度）+（60% 智力）點\n\n冷卻：42 秒",
+   "Channels a spell during which a series of detonations travels from the centre to the edge and back. Each subsequent detonation deals 25% more damage. At 1000+ spell power it additionally applies the effect of the \"Grounding\" ability to random enemies in the area.\n\nDamage: 50 + (18% spell power) + (60% Intelligence)\n\nCooldown: 42 sec."
+  ],
+  "A0PO": [
+   "清除自身的負面效果，並對周圍 600 範圍內的敵人造成傷害。同時移除被命中敵人的所有效果並使其減速。每命中一名敵人都會回復少量生命值。智力達到 200 以上時，此技能造成純粹傷害。\n\n造成傷害：（90% 智力）點\n生命值回復：6 點\n\n冷卻：20 秒",
+   "Cleanses negative effects from yourself and deals damage to enemies around you within 600 range. Also removes all effects from the enemies hit and slows them. Restores a small amount of health for each enemy hit. At 200+ Intelligence the ability deals pure damage.\n\nDamage dealt: (90% Intelligence)\nHealth restored: 6\n\nCooldown: 20 sec."
+  ],
+  "A0PR": [
+   "英雄在 5 秒內逐步提升自身的智力與技能強度，之後再將最大加成維持 6 秒。若你未能在加成結束前施放「額外技能」欄位中的「魔法迸發」，英雄將失去 3 點自身屬性。\n\n智力累積：（5% 技能強度）點/秒\n技能強度累積：（20% 智力）點/秒\n\n冷卻：150 秒\n\n技能持續期間，英雄無法拾取具有「倍增」效果的物品。",
+   "Over 5 sec. the hero gradually increases his Intelligence and spell power, then holds the maximum bonus for another 6 sec. If you do not manage to cast \"Magic Discharge\" in the \"Extra Abilities\" section before the bonus ends, the hero loses 3 points of his attributes.\n\nIntelligence gain: (5% spell power) per sec.\nSpell power gain: (20% Intelligence) per sec.\n\nCooldown: 150 sec.\n\nThe hero cannot pick up items with the \"Multiplier\" effect while the ability is active."
+  ],
+  "A0QL": [
+   "當玩家的經驗值達到足夠數量時，你可以選擇一項天賦，大幅強化英雄，使其提升至新的力量階級。",
+   "With a sufficient amount of player experience points you can choose a talent that will significantly strengthen the hero to a new power rank."
+  ],
+  "A0R6": [
+   "當玩家經驗點數足夠時，你可以選擇一項天賦，將英雄大幅強化至新的力量階級。",
+   "With a sufficient amount of player experience points you can choose a talent that will significantly strengthen the hero up to a new power rank."
+  ],
+  "A0RP": [
+   "女獵手對敵方英雄造成的傷害提高 15%。擊殺敵方英雄可使此加成再提高 2%，並額外提升 2 點攻擊力。輸入指令「-i」可顯示已累積的加成。",
+   "The Huntress deals 15% more damage to enemy heroes. Killing an enemy hero increases this bonus by 2% and additionally increases attack power by 2. The command \"-i\" displays the accumulated bonus."
+  ],
+  "A0RV": [
+   "當玩家經驗點數足夠時，你可以選擇一項天賦，將英雄大幅強化至新的力量位階。",
+   "With enough player experience points you can choose a talent that will significantly strengthen the hero up to a new power rank."
+  ],
+  "A0T1": [
+   "英雄以網捕捉敵人，使其無法移動。受「捕獵者」影響的敵人受到英雄的傷害提高。效果不可疊加。\n\n對被捕捉目標的額外傷害：+25%\n持續時間：9 秒\n持續時間（英雄）：4 秒\n\n冷卻：20 秒",
+   "The hero catches an enemy in a net, depriving it of the ability to move. Enemies affected by \"Trapper\" take more damage from the hero. The effect does not stack.\n\nBonus damage to the caught target: +25%\nDuration: 9 sec.\nDuration (heroes): 4 sec.\n\nCooldown: 20 sec."
+  ],
+  "A0T2": [
+   "被動效果：\n\n英雄對近戰敵人造成反傷。\n\n反傷：12 + （5% 技能強度）點\n\n啟動時：\n\n提高此技能的反傷，並使攻擊獲得吸血效果。\n\n反傷提升：+60%\n吸血效果：26%\n持續時間：6 秒。\n\n冷卻：19 秒。",
+   "Passive effect:\n\nThe hero deals thorns damage to melee enemies.\n\nThorns: 12 + (5% spell power)\n\nOn activation:\n\nIncreases the thorns damage of the ability and grants lifesteal from attacks.\n\nThorns increase: +60%\nLifesteal: 26%\nDuration: 6 sec.\n\nCooldown: 19 sec."
+  ],
+  "A0T4": [
+   "連續擊殺會為英雄帶來加成。加成會依序觸發，在最後一項加成之後計數會重置，擊殺累積從零重新開始。\n\n擊殺 6 名敵人：回復 8% 生命值\n擊殺 12 名敵人：攻擊力 +1 點\n擊殺 18 名敵人：敏捷 +1 點",
+   "A series of kills grants the hero bonuses. The bonuses trigger in order; after the last bonus the counter resets and kill accumulation starts from zero.\n\nKill 6 enemies: restores 8% health\nKill 12 enemies: +1 attack power\nKill 18 enemies: +1 Agility"
+  ],
+  "A0T5": [
+   "向指定的敵人投擲斧頭，造成傷害並降低目標的護甲、攻擊速度與移動速度。\n\n傷害：50 + （65% 技能強度）點\n護甲降低：2 點\n攻擊速度降低：15%\n移動速度降低：30%\n持續時間：25 秒（英雄 10 秒）\n\n冷卻：10 秒。",
+   "Throws an axe at the chosen enemy, dealing damage and reducing the target's armour, attack speed and movement speed.\n\nDamage: 50 + (65% spell power)\nArmour reduction: 2\nAttack speed reduction: 15%\nMovement speed reduction: 30%\nDuration: 25 sec. (heroes 10 sec.)\n\nCooldown: 10 sec."
+  ],
+  "A0TA": [
+   "當玩家的經驗點數足夠時，你可以選擇一項天賦，使英雄大幅強化至新的力量等階。",
+   "With enough player experience points, you can choose a talent that will significantly strengthen the hero to a new power rank."
+  ],
+  "A0TC": [
+   "將「唯一」類別的物品轉變為「扭曲」類別的物品。也可用於更換目前的扭曲物品。\n\n冷卻：120 秒",
+   "Transforms an item of the \"Unique\" class into an item of the \"Distorted\" class. Can also be used to replace the current distorted item.\n\nCooldown: 120 sec."
+  ],
+  "A0U3": [
+   "當玩家的經驗點數足夠時，你可以選擇一項天賦，使英雄大幅強化並提升至新的力量位階。",
+   "With a sufficient amount of player experience points you can choose a talent that significantly strengthens the hero up to a new power rank."
+  ],
+  "A0UJ": [
+   "建立一個區域，區域內的敵人會受到少量傷害。該區域會定期對隨機敵人施加負面效果。\n\n傷害：12 +（6% 技能強度）點/秒\n區域持續時間：8 秒\n對敵人的負面效果：移動速度降低 20%；受到英雄技能的傷害 +15 +（10% 智力）%\n負面效果持續時間：12 秒（英雄 6 秒）\n\n冷卻：18 秒",
+   "Creates a zone in which enemies take a small amount of damage. The created zone periodically applies a negative effect to a random enemy.\n\nDamage: 12 + (6% spell power) per sec.\nZone duration: 8 sec.\nNegative effect on the enemy: 20% movement speed reduction; +15 + (10% Intelligence)% damage taken from the hero's abilities\nNegative effect duration: 12 sec. (heroes 6 sec.)\n\nCooldown: 18 sec."
+  ],
+  "A0UK": [
+   "指定目標會持續受到爆炸傷害，直到技能結束或目標死亡為止。此技能對目標附近的敵人造成 100% 傷害。\n\n傷害：20 +（6% 技能強度）+（10% max MP）點/秒\n持續時間：8 秒\n\n冷卻：20 秒",
+   "The target repeatedly takes damage from explosions until the ability ends or the target dies. The ability deals 100% of the damage to enemies near the target.\n\nDamage: 20 + (6% spell power) + (10% max MP) per sec.\nDuration: 8 sec.\n\nCooldown: 20 sec."
+  ],
+  "A0UL": [
+   "將一道集中的魔法洪流射向指定目標，造成範圍傷害。\n\n傷害：120 +（40% 技能強度）+（90% int）點\n主要目標受到 100% 傷害，目標附近的敵人受到 50% 傷害\n\n冷卻：17 秒",
+   "Directs a concentrated stream of magic into the target, which deals area damage.\n\nDamage: 120 + (40% spell power) + (90% int)\n100% damage to the primary target, 50% damage to enemies near the target\n\nCooldown: 17 sec."
+  ],
+  "A0UM": [
+   "朝指定方向發射一連串彈體。每個彈體在撞上敵人或障礙物時會爆炸，造成小範圍傷害並點燃敵人。彈體會出現在英雄身後。\n\n彈體傷害：50 + （25% int）點\n點燃效果：50% 機率；持續傷害為技能傷害的 20%\n彈體數量：25 + （1% max MP）個\n\n冷卻：50 秒",
+   "Launches a stream of projectiles in the chosen direction. Each projectile explodes on contact with an enemy or an obstacle, dealing damage in a small area and burning enemies. The projectiles appear behind the hero.\n\nProjectile damage: 50 + (25% int)\nBurn effect: 50% chance; periodic damage equal to 20% of the ability's damage\nNumber of projectiles: 25 + (1% max MP)\n\nCooldown: 50 sec."
+  ],
+  "A0UN": [
+   "刷新指定區域內敵人身上「壓制」與「火花」技能負面效果的持續時間，並依受影響的敵人數量提升法力值上限。\n\n法力值上限提升：每名受影響的敵人 +5 點\n\n冷卻：20 秒",
+   "Refreshes the negative effects of the \"Suppression\" and \"Sparks\" abilities on enemies in the target area and increases the mana pool for each enemy affected.\n\nMana pool increase: +5 per enemy affected\n\nCooldown: 20 sec."
+  ],
+  "A0V7": [
+   "當玩家的經驗點數足夠時，你可以選擇一項天賦，使英雄大幅強化並提升至新的力量位階。",
+   "With a sufficient amount of player experience points you can choose a talent that significantly strengthens the hero up to a new power rank."
+  ],
+  "A0VP": [
+   "奧瑞利安·索爾製造一個黑洞，緩慢將敵人拉向其中心，並在作用範圍內造成傷害。生命值在 10% 及以下的敵人受到黑洞 300% 的傷害。\n\n傷害：30 + （15% 星辰物質）點/秒\n持續時間：12 秒\n\n冷卻：25 秒\n\n星辰物質可提升作用範圍與吸引力度。",
+   "Aurelion Sol creates a black hole that slowly pulls enemies toward its centre and deals damage within the area. Enemies at 10% health or below take 300% damage from the black hole.\n\nDamage: 30 + (15% star matter) per sec.\nDuration: 12 sec.\n\nCooldown: 25 sec.\n\nStar matter increases the area and the strength of the pull."
+  ],
+  "A0VQ": [
+   "被動效果：\n\n英雄的技能會因擁有「星辰物質」而變強。目前的星辰物質數量可透過指令「-i」查詢。\n\n星辰物質累積：以英雄技能擊殺敵人可增加（敵人等級 * 0.20）點星辰物質。擊殺敵方英雄可獲得 8 點星辰物質\n\n啟動時：\n\n英雄暫時獲得「星辰物質」。\n\n星辰物質：100 + （X8 英雄等級） + （140% 技能強度）\n持續時間：4 秒後英雄會逐漸失去額外的星辰物質\n\n冷卻：20 秒",
+   "Passive effect:\n\nThe hero's abilities become stronger with \"star matter\". The current amount of star matter can be checked with the \"-i\" command.\n\nStar matter accumulation: killing enemies with the hero's abilities increases star matter by (enemy level * 0.20). Killing an enemy hero grants 8 star matter\n\nOn activation:\n\nThe hero temporarily gains \"star matter\".\n\nStar matter: 100 + (X8 hero level) + (140% spell power)\nDuration: after 4 sec. the hero gradually loses the bonus star matter\n\nCooldown: 20 sec."
+  ],
+  "A0VS": [
+   "英雄開始朝指定方向噴射火焰，對被波及的敵人造成傷害。\n\n傷害：火焰內每顆彈體 8 + （4% 星辰物質）點\n維持的法力消耗：14 點/秒，維持 8 秒後消耗每秒增加 20%\n最大持續時間：無限制\n\n冷卻：20 秒\n\n星辰物質可提升火焰的飛行距離。",
+   "The hero begins to emit flame in the chosen direction, damaging enemies caught in it.\n\nDamage: 8 + (4% star matter) per projectile inside the flame\nMana upkeep: 14 per sec., after 8 sec. of upkeep the cost grows by 20% each sec.\nMaximum duration: unlimited\n\nCooldown: 20 sec.\n\nStar matter increases the flight range of the fires."
+  ],
+  "A0VT": [
+   "英雄向指定地點衝刺，飛行過程中回復生命值並散布魔法火焰，依「烈日吐息」技能的公式造成 X6 傷害。\n\n治療：每 100 點距離 10 + （5% 星辰物質）點\n施放距離：1000 點\n\n冷卻：15 秒\n\n星辰物質可提升飛行過程中散發的火焰數量。",
+   "The hero dashes to the chosen point, restoring health during the flight and spreading magical fires that deal X6 damage by the formula of the \"Breath of the Sun\" ability.\n\nHealing: 10 + (5% star matter) per every 100 units of distance\nCast range: 1000\n\nCooldown: 15 sec.\n\nStar matter increases the number of fires emitted during the flight."
+  ],
+  "A0VU": [
+   "奧瑞利安．索爾朝指定區域降下一顆星辰，對敵人造成極大傷害並短暫暈眩敵人。\n\n傷害：300 + （100% 星辰物質）點\n暈眩（英雄）：4 秒\n暈眩（單位）：6 秒\n\n冷卻：120 秒\n\n星辰物質會產生衝擊波，對被波及的敵人造成此技能傷害的 10%。衝擊波概略分為「波次」，每產生一個波次需要 125 點星辰物質。",
+   "Aurelion Sol calls down a star onto the chosen area, dealing colossal damage to enemies and stunning them for a short time.\n\nDamage: 300 + (100% star matter)\nStun (heroes): 4 sec.\nStun (units): 6 sec.\n\nCooldown: 120 sec.\n\nStar matter creates a shockwave that deals 10% of the ability's damage to the enemies it hits. The shockwave is nominally divided into \"pulses\"; each pulse requires 125 star matter to appear."
+  ],
+  "A0WP": [
+   "開始持續施法，期間指定範圍內的敵人會被減速並受到傷害。\n\n傷害：30 +（15% 技能強度）點/秒\n敵人減速：-30% 移動速度，-15% 攻擊速度\n持續時間：7 秒\n\n冷卻：25 秒",
+   "Channels a spell during which enemies in the target area are slowed and take damage.\n\nDamage: 30 + (15% spell power) per sec.\nEnemy slow: -30% movement speed, -15% attack speed\nDuration: 7 sec.\n\nCooldown: 25 sec."
+  ],
+  "A0WR": [
+   "朝指定方向發射 3 顆巨石，每顆巨石在撞上敵人或障礙物時造成範圍傷害。\n\n傷害：50 +（25% 技能強度）點\n\n冷卻：13 秒",
+   "Launches 3 stone boulders in the target direction, each of which deals area damage when it collides with an enemy or an obstacle.\n\nDamage: 50 + (25% spell power)\n\nCooldown: 13 sec."
+  ],
+  "A0WS": [
+   "在指定建築上建立一道屏障，吸收所有進入的傷害。\n\n屏障強度：100 +（200% 智力）+（50% 技能強度）點\n屏障持續時間：無限制\n\n冷卻：20 秒",
+   "Creates a barrier on the target building that absorbs all incoming damage.\n\nBarrier strength: 100 + (200% Intelligence) + (50% spell power)\nBarrier duration: unlimited\n\nCooldown: 20 sec."
+  ],
+  "A0WT": [
+   "朝指定方向撕裂大地，生成持續 9-18 秒的岩漿團，對附近的敵人造成傷害。每次傷害跳動都有機率對敵人施加點燃效果。\n\n岩漿團出現時的傷害：60 + （60% 智力）點。\n岩漿團的持續傷害：20 + （20% 智力）點/秒。\n點燃效果：20% 機率；持續傷害為所造成傷害的 25%\n\n冷卻：90 秒。",
+   "Splits the earth in the chosen direction, creating magma clusters for 9-18 sec. that deal damage to nearby enemies. Each damage tick has a chance to apply a Burn effect to enemies.\n\nDamage when a cluster appears: 60 + (60% Intelligence)\nPeriodic damage of a cluster: 20 + (20% Intelligence) per sec.\nBurn effect: 20% chance; periodic damage 25% of the damage dealt\n\nCooldown: 90 sec."
+  ],
+  "A0X6": [
+   "英雄的攻擊會對敵人施加詛咒。被詛咒的目標會受到取決於其生命值的混合傷害。\n\n詛咒傷害（點/秒）：敵人目前生命值的 2%\n詛咒持續時間：5 秒",
+   "The hero's attacks apply Curse to enemies. Cursed targets take mixed damage that depends on their health pool.\n\nCurse damage (per sec.): 2% of the enemy's current health\nCurse duration: 5 sec."
+  ],
+  "A0X7": [
+   "瞬間移動到指定敵人的身後並造成傷害。擊殺目標時會重置技能與裝備的冷卻。\n\n傷害：200 + （900% 穿透）+ （90% 技能強度）點\n\n冷卻：50 秒。",
+   "Instantly teleports behind the target enemy and deals damage. Resets the cooldown of abilities and items when the target is killed.\n\nDamage: 200 + (900% penetration) + (90% spell power)\n\nCooldown: 50 sec."
+  ],
+  "A0X9": [
+   "造成傷害可為英雄帶來加成：\n\n對任何敵人每造成 100 點傷害：攻擊力 +1 點，穿透 +0.35；下一次強化所需的傷害 +35 點\n\n受到傷害可為英雄帶來加成：\n\n每受到敵人 200 點傷害：生命值上限 +15 點，生命回復 +0.50；下一次強化所需的傷害 +30 點",
+   "Dealing damage grants the hero bonuses:\n\nFor every 100 damage dealt to any enemies: +1 attack power, +0.35 penetration; +35 to the damage required for the next upgrade\n\nTaking damage grants the hero bonuses:\n\nFor every 200 damage taken from enemies: +15 maximum health, +0.50 health regeneration; +30 to the damage required for the next upgrade"
+  ],
+  "A0XO": [
+   "向指定區域發射一枚火箭，造成傷害並以 100% 機率暈眩敵人。具有點燃效果。\n\n傷害：80 +（30% 技能強度）\n點燃效果：50% 機率，100% 傷害\n暈眩：3 秒（英雄 2 秒）\n英雄 25 級：每 8 秒一次，攻擊會發射一枚火箭，造成 50% 傷害並暈眩 2 秒（英雄 1 秒）\n\n冷卻：18 秒",
+   "Launches a rocket at the target area that deals damage and also stuns enemies with a 100% chance. Has a Burn effect.\n\nDamage: 80 + (30% spell power)\nBurn effect: 50% chance, 100% damage\nStun: 3 sec. (heroes 2 sec.)\nHero level 25: once every 8 sec. an attack fires a rocket with 50% damage and a 2 sec. stun (heroes 1 sec.)\n\nCooldown: 18 sec."
+  ],
+  "A0XP": [
+   "依序治療友軍單位。每多一個目標，治療強度就降低 15%。\n\n治療：200 +（75% 技能強度）點\n目標數量：8 個\n\n冷卻：9 秒",
+   "Heals allied units in sequence. With each subsequent target the healing power decreases by 15%.\n\nHealing: 200 + (75% spell power)\nTargets: 8\n\nCooldown: 9 sec."
+  ],
+  "A0XQ": [
+   "朝指定地點加速衝刺，對路徑上的敵人造成傷害並將其推開。坦克會一路移動到技能指定的地點。\n\n傷害：100 +（100% 力量）\n\n冷卻：20 秒",
+   "Accelerates toward the target point, dealing damage to and pushing away enemies in its path. The tank moves to the point specified by the ability.\n\nDamage: 100 + (100% Strength)\n\nCooldown: 20 sec."
+  ],
+  "A0XR": [
+   "坦克上裝設了側翼砲塔，會掃描英雄兩側的區域並向敵人開火。砲塔的射速與其掃描頻率相關聯。每座砲塔的掃描各自獨立進行。\n\n掃描頻率：每 1-2 秒\n砲塔砲彈傷害：（90% 力量）點\n\n「魔法齒輪」道具加成：砲塔攻擊速度 +100%\n\n每達成 100 次擊殺，點燃傷害會額外乘上 2%。層數之間不會互相相乘。",
+   "Side turrets are mounted on the tank; they scan the areas to the sides of the hero and fire projectiles at enemies. The turrets' rate of fire is tied to their scanning frequency. Scanning happens separately for each turret.\n\nScanning frequency: every 1-2 sec.\nTurret projectile damage: (90% Strength)\n\n\"Magic Gear\" item bonus: +100% turret attack speed\n\nFor every 100 kills, burn damage is additionally multiplied by 2%. Stacks do not multiply with each other."
+  ],
+  "A0XS": [
+   "向指定區域發射 3 波砲彈。每一枚砲彈都會造成範圍傷害並點燃敵人。\n\n砲彈傷害：35 +（35% 技能強度）點\n點燃：50% 機率；50% 傷害\n施放距離：無限制\n\n冷卻：90 秒",
+   "Fires 3 volleys of projectiles at the target area. Each projectile deals area damage and burns enemies.\n\nProjectile damage: 35 + (35% spell power)\nBurn: 50% chance; 50% damage\nCast range: unlimited\n\nCooldown: 90 sec."
+  ],
+  "A0XT": [
+   "砲塔的投射物有機率點燃敵人。\n\n點燃（砲塔投射物）：40% 機率；傷害等於英雄力量的 60%",
+   "Turret projectiles can set enemies on fire.\n\nBurn (turret projectiles): 40% chance; damage equals 60% of the hero's Strength"
+  ],
+  "A0Y5": [
+   "物品中的倍增效果對此英雄產生雙倍效果。",
+   "Multipliers in items have a double effect on the hero."
+  ],
+  "A0YJ": [
+   "當玩家的經驗點數足夠時，你可以選擇一項天賦，將英雄大幅強化至新的強度等級。",
+   "With a sufficient amount of player experience points you can choose a talent that will significantly strengthen the hero to a new power rank."
+  ],
+  "A0YO": [
+   "當玩家的經驗點數足夠時，你可以選擇一項天賦，使英雄大幅強化至新的力量等階。",
+   "With enough player experience points, you can choose a talent that will significantly strengthen the hero to a new power rank."
+  ],
+  "A0YT": [
+   "繼承所選敵方英雄的一項技能。\n\n使用「-clear skill」指令可以重新選擇敵方英雄。",
+   "Inherits an ability of the chosen enemy hero.\n\nWith the \"-clear skill\" command you can re-select the enemy hero."
+  ],
+  "A0ZM": [
+   "由英雄或暗影完成的擊殺，有機率創造出被殺敵人的暗影，為英雄而戰。\n\n啟動技能可在創造無敵暗影與可受傷暗影兩種模式之間切換。\n\n暗影出現機率：30%\n暗影存在時間：10 秒／7.5 秒\n暗影特性：無敵／75% 生命值上限",
+   "Kills made by the hero or by his shadows can create shadows of the slain enemies that fight on the hero's side.\n\nActivating the ability toggles between creating invulnerable and vulnerable shadows.\n\nShadow appearance chance: 30%\nShadow lifetime: 10 sec./7.5 sec.\nShadow characteristics: invulnerability/75% health pool"
+  ],
+  "A0ZN": [
+   "九頭蛇每提升一級都會成長，並獲得 +50 生命值上限、+2 生命回復與 +5 攻擊力。",
+   "With each level gained, the hydra grows and receives +50 maximum health, +2 health regeneration and +5 attack power."
+  ],
+  "A0ZO": [
+   "你可以將屬於植物、食物或生物的物品移動到第二背包（F2）。如此一來第二背包中可以擁有 1 件物品。",
+   "You can move an item that is a plant, food or organism into the second inventory (F2). In this way you can have 1 item in the second inventory."
+  ],
+  "A103": [
+   "當玩家的經驗點數足夠時，你可以選擇一項天賦，將英雄大幅強化至新的強度等級。",
+   "With a sufficient amount of player experience points you can choose a talent that will significantly strengthen the hero to a new power rank."
+  ],
+  "A107": [
+   "當玩家經驗點數足夠時，你可以選擇一項天賦，將英雄大幅強化至新的力量階級。",
+   "With a sufficient amount of player experience points you can choose a talent that will significantly strengthen the hero up to a new power rank."
+  ],
+  "A10I": [
+   "當玩家的經驗值達到足夠數量時，你可以選擇一項天賦，大幅強化英雄，使其提升至新的力量階級。",
+   "With a sufficient amount of player experience points you can choose a talent that will significantly strengthen the hero to a new power rank."
+  ],
+  "AEbl": [
+   "將英雄傳送一段短距離。傳送後英雄暫時提升自身的護甲與攻擊力。\n\n施放距離：600 點\n攻擊力加成：+30%\n護甲加成：+4\n加成持續時間：8 秒\n\n冷卻：16 秒",
+   "Teleports the hero a short distance. After the teleport the hero temporarily increases his armour and attack power.\n\nCast range: 600\nAttack power bonus: +30%\nArmour bonus: +4\nBonus duration: 8 sec.\n\nCooldown: 16 sec."
+  ],
+  "AHad": [
+   "提升英雄附近建築的護甲。\n\n護甲加成：3 點\n光環作用範圍：800",
+   "Increases the armour of buildings located near the hero.\n\nArmour bonus: 3\nAura area: 800"
+  ],
+  "AHfs": [
+   "在指定區域引發爆炸，對被波及的敵人造成傷害。爆炸會留下一灘火焰，造成較低的傷害。\n\n爆炸傷害：45 +（20% 技能強度）點/秒\n爆炸持續時間：2.6 秒\n火焰傷害：10 +（5% 技能強度）點/秒\n火焰持續時間：8 秒\n\n冷卻：13 秒",
+   "Causes an explosion in the target area, dealing damage to the enemies caught in it. The explosion leaves behind a pool of fire that deals lesser damage.\n\nExplosion damage: 45 + (20% spell power) per sec.\nExplosion duration: 2.6 sec.\nFire pool damage: 10 + (5% spell power) per sec.\nFire pool duration: 8 sec.\n\nCooldown: 13 sec."
+  ],
+  "AIbk": [
+   "將英雄傳送一小段距離。\n\n冷卻：30 秒。",
+   "Teleports the hero a short distance.\n\nCooldown: 30 sec."
+  ],
+  "ANbl": [
+   "將英雄傳送一小段距離。傳送後英雄獲得穿透加成。\n\n施放距離：700 點\n穿透加成：20 +（10% 技能強度）點\n加成持續時間：10 秒\n\n冷卻：16 秒",
+   "Teleports the hero a short distance. After teleporting, the hero gains bonus penetration.\n\nCast range: 700\nPenetration bonus: 20 + (10% spell power)\nBonus duration: 10 sec.\n\nCooldown: 16 sec."
+  ],
+  "AOwk": [
+   "英雄進入隱形並獲得移動速度加成。從隱形中發動的攻擊會對敵人造成額外魔法傷害，並為英雄回復生命值。\n\n隱形攻擊傷害：100 +（400% 穿透）+（40% 技能強度）點\n魔法吸血：33%\n移動速度加成：10%\n持續時間：11 秒\n\n冷卻：11 秒",
+   "The hero becomes invisible and gains bonus movement speed. A strike from invisibility deals additional magic damage to the enemy and restores health to the hero.\n\nDamage of the strike from invisibility: 100 + (400% penetration) + (40% spell power)\nMagic lifesteal: 33%\nMovement speed bonus: 10%\nDuration: 11 sec.\n\nCooldown: 11 sec."
+  ],
+  "Absk": [
+   "英雄以屏障護體，降低所受的傷害。屏障結束後，英雄附近的隨機敵人會受到傷害，英雄本身則獲得暫時的攻擊力與生命回復加成。\n\n屏障降低所受傷害：20%\n屏障持續時間：5 秒\n屏障結束後造成的傷害：對英雄附近 7 名隨機敵人造成 70 + （25% 技能強度）點\n屏障結束後的加成：攻擊力 +20 + （10% 技能強度），生命回復 +4 + （3% 技能強度）點\n加成持續時間：8 秒\n\n冷卻：24 秒",
+   "The hero shields herself with a barrier that reduces incoming damage. After the barrier ends, random enemies near the hero take damage, and the hero herself gains a temporary bonus to attack power and health regeneration.\n\nIncoming damage reduction from the barrier: 20%\nBarrier duration: 5 sec.\nDamage after the barrier: 70 + (25% spell power) to 7 random enemies near the hero\nBonus after the barrier: +20 + (10% spell power) attack power, +4 + (3% spell power) health regeneration\nBonus duration: 8 sec.\n\nCooldown: 24 sec."
+  ],
+  "Amgl": [
+   "當英雄受到攻擊時，護盾會充滿灼熱之光，週期性對附近的敵人造成傷害。\n\n傷害：16 + （5% 技能強度）點/秒\n效果持續時間：10 秒\n\n效果冷卻：效果結束後 10 秒",
+   "When the hero is attacked, the shield fills with searing light that periodically damages nearby enemies.\n\nDamage: 16 + (5% spell power) per sec.\nEffect duration: 10 sec.\n\nEffect cooldown: 10 sec. after the effect ends"
+  ],
+  "Amgr": [
+   "英雄的攻擊會削弱敵人，降低其造成的傷害並提高其受到的傷害。此效果可以疊加，但不會刷新持續時間。\n\n造成傷害降低：8%\n受到傷害提高：8%\n持續時間：6 秒\n\n冷卻：3.5 秒",
+   "The hero's attacks weaken the enemy, reducing the damage it deals and increasing the damage it takes. This effect can stack, but without refreshing the duration.\n\nDealt damage reduction: 8%\nIncoming damage increase: 8%\nDuration: 6 sec.\n\nCooldown: 3.5 sec."
+  ],
+  "Awrh": [
+   "對周圍的敵人造成傷害並將其暈眩。當「刺激」效果啟動時，額外對被擊中的目標施加疾病。\n\n傷害：50 +（35% 技能強度）點\n暈眩時間：5 秒（英雄 2 秒）\n若「刺激」效果啟動中：以 50% 機率對敵人施加 200% 傷害的疾病\n\n冷卻：212 秒",
+   "Deals damage to surrounding enemies and stuns them. While the \"Stimulation\" effect is active, additionally applies Disease to the struck targets.\n\nDamage: 50 + (35% spell power)\nStun duration: 5 sec. (2 sec. heroes)\nIf the \"Stimulation\" effect is active: enemies are affected by a 50% chance of Disease with 200% damage\n\nCooldown: 212 sec."
+  ]
+ }
+}
