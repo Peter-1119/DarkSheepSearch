@@ -528,6 +528,36 @@ endif
 
 ---
 
+## 以「單位型號」內聯的實作
+
+這幾段不是靠技能 ID 分派的，而是直接用單位型號 `Nngs` 寫在共用函式的條件式裡
+（常見於寫進傷害管線的被動）。照技能抽取抓不到，所以單獨列出來。
+
+`Trig_HeroTakeDamage_Actions`　war3map.j:20082
+```jass
+if a_type=='Nngs' or a_type=='Nplh' then
+if IsUnitType(d,UNIT_TYPE_HERO)and IsUnitEnemy(d,GetOwningPlayer(a))then
+set r=dmg*DefCof+life
+call SaveReal(hash,GetHandleId(a),'ST03',LoadReal(hash,GetHandleId(a),'ST03')+r)
+set r=r+LoadReal(hash,GetHandleId(a),'ST01')
+set r2=LoadReal(hash,GetHandleId(a),'ST02')
+if r>=r2 then
+loop
+exitwhen r<r2
+call SetUnitBaseDamage(a,GetUnitBaseDamage(a)+1)
+call SetUnitLife(a,R2I((GetUnitState((a),UNIT_STATE_MAX_LIFE)))+15)
+set r=r-r2
+set r2=r2+10.
+call SaveReal(hash,GetHandleId(a),'ST02',r2)
+endloop
+endif
+call SaveReal(hash,GetHandleId(a),'ST01',r)
+endif
+endif
+```
+
+---
+
 ## 皮膚
 
 純外觀：黑暗主教（男）

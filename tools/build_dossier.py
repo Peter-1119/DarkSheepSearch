@@ -320,6 +320,36 @@ PIPE = [
 ]
 
 
+def inline_branches(idx, uid):
+    """以「單位型號」為條件內聯在共用函式裡的實作。
+
+    有些英雄的被動不是靠技能 ID 分派，而是直接寫在傷害管線裡：
+      if a_type=='Hmgd' then … / elseif d_type=='Hmgd' then …
+    亡者公主的「適應」整段就是這樣，照技能 ID 抽完全抓不到，
+    卷宗會誤標成「JASS 裡沒有對應實作」。
+    """
+    lines, strip, fn, fspan, path = idx
+    n = len(lines)
+    pat = "=='%s'" % uid
+    out = []
+    for i, t in enumerate(strip):
+        if pat not in t or not IFLINE.match(t):
+            continue
+        if fn[i] in NOISE_FN:
+            continue
+        p = path[i] or ()
+        if not p:
+            continue
+        lo = i
+        while lo > 0 and fn[lo - 1] == fn[i] and path[lo - 1][:len(p)] == p:
+            lo -= 1
+        hi = i + 1
+        while hi < n and fn[hi] == fn[i] and path[hi][:len(p)] == p:
+            hi += 1
+        out.append((lo, hi))
+    return merge(out)
+
+
 def attacks_trigger(idx, uid):
     """這隻有沒有掛在「攻擊時」的觸發器上。
 
@@ -520,6 +550,30 @@ def hero_doc(h, rec, idx, A, U, spans):
                              % (aid2, nm2, '`, `'.join(fl[:12])))
             L.append('')
 
+    # 上面按技能貼過的函式，後面兩節都要用來去重
+    shown = set()
+    for a in ablist:
+        for f2, _, _ in code_for(idx, a['id'], spans):
+            shown.add(f2)
+
+    inl = [r for r in inline_branches(idx, rec['id'])
+           if idx[2][r[0]] not in shown]
+    if inl:
+        L.append('---')
+        L.append('')
+        L.append('## 以「單位型號」內聯的實作')
+        L.append('')
+        L.append('這幾段不是靠技能 ID 分派的，而是直接用單位型號 `%s` '
+                 '寫在共用函式的條件式裡' % rec['id'])
+        L.append('（常見於寫進傷害管線的被動）。照技能抽取抓不到，所以單獨列出來。')
+        L.append('')
+        for lo, hi in inl[:6]:
+            L.append('`%s`　war3map.j:%d' % (idx[2][lo], lo + 1))
+            L.append('```jass')
+            L.extend([x for x in idx[0][lo:hi] if x.strip()][:120])
+            L.append('```')
+            L.append('')
+
     sk = [k for k in rec['skins'] if k.get('add') or k.get('rm')]
     if rec['skins']:
         L.append('---')
@@ -547,10 +601,6 @@ def hero_doc(h, rec, idx, A, U, spans):
     # 同編號但上面沒貼到的實作函式。英雄的實作散在 Trig_HeroSkills51_Actions、
     # HeroQ51_Move、HeroW51_Dmg2… 這一組裡，而有些（例如決定門檻的那支）
     # 不含任何技能 ID 字面量，前面的抽取抓不到。整份放一次，不要每個技能重複。
-    shown = set()
-    for a in ablist:
-        for f2, _, _ in code_for(idx, a['id'], spans):
-            shown.add(f2)
     sib = []
     for lo, hi in sorted(set(siblings(idx, [(i, i + 1) for i in range(len(idx[0]))
                                             if idx[2][i] in shown]))):

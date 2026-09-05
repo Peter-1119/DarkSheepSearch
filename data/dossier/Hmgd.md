@@ -268,6 +268,52 @@ endif
 
 ---
 
+## 以「單位型號」內聯的實作
+
+這幾段不是靠技能 ID 分派的，而是直接用單位型號 `Hmgd` 寫在共用函式的條件式裡
+（常見於寫進傷害管線的被動）。照技能抽取抓不到，所以單獨列出來。
+
+`Trig_HeroTakeDamage_Actions`　war3map.j:20135
+```jass
+if a_type=='Hmgd' then
+if IsUnitEnemy(d,GetOwningPlayer(a))then
+set r=dmg*DefCof+life
+set r=r+LoadReal(hash,GetHandleId(a),'ST01')
+set r2=LoadReal(hash,GetHandleId(a),'ST02')
+if r>=r2 then
+loop
+exitwhen r<r2
+call SetUnitBaseDamage(a,GetUnitBaseDamage(a)+1)
+call SaveReal(hash,GetHandleId(a),16,LoadReal(hash,GetHandleId(a),16)+0.35)
+set r=r-r2
+set r2=r2+35.
+call SaveReal(hash,GetHandleId(a),'ST02',r2)
+endloop
+endif
+call SaveReal(hash,GetHandleId(a),'ST01',r)
+endif
+elseif d_type=='Hmgd' then
+if IsUnitEnemy(a,GetOwningPlayer(d))then
+set r=dmg*DefCof
+set r=r+LoadReal(hash,GetHandleId(d),'ST03')
+set r2=LoadReal(hash,GetHandleId(d),'ST04')
+if r>=r2 then
+loop
+exitwhen r<r2
+call SetUnitLife(d,R2I((GetUnitState((d),UNIT_STATE_MAX_LIFE)))+15)
+call SetUnitLifeRegeneration(d,GetUnitLifeRegeneration(d)+0.50)
+set r=r-r2
+set r2=r2+30.
+call SaveReal(hash,GetHandleId(d),'ST04',r2)
+endloop
+endif
+call SaveReal(hash,GetHandleId(d),'ST03',r)
+endif
+endif
+```
+
+---
+
 ## 同一組的其他實作函式
 
 英雄的實作散在同編號的一組函式裡，上面按技能抽取時抓不到的補在這裡

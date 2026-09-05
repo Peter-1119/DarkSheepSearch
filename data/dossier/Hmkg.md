@@ -604,6 +604,21 @@ endif
 
 ---
 
+## 以「單位型號」內聯的實作
+
+這幾段不是靠技能 ID 分派的，而是直接用單位型號 `Hmkg` 寫在共用函式的條件式裡
+（常見於寫進傷害管線的被動）。照技能抽取抓不到，所以單獨列出來。
+
+`Trig_HeroKills43_Actions`　war3map.j:59900
+```jass
+if GetUnitTypeId(u2)=='Hmkg' then
+set r=I2R(GetHeroStr(u2,true))*0.65
+call SetUnitState(u2,UNIT_STATE_LIFE,GetUnitState(u2,UNIT_STATE_LIFE)+r)
+endif
+```
+
+---
+
 ## 同一組的其他實作函式
 
 英雄的實作散在同編號的一組函式裡，上面按技能抽取時抓不到的補在這裡

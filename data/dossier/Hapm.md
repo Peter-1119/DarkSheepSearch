@@ -682,6 +682,43 @@ endif
 
 ---
 
+## 以「單位型號」內聯的實作
+
+這幾段不是靠技能 ID 分派的，而是直接用單位型號 `Hapm` 寫在共用函式的條件式裡
+（常見於寫進傷害管線的被動）。照技能抽取抓不到，所以單獨列出來。
+
+`Trig_HeroLvlUp_Actions`　war3map.j:45509
+```jass
+elseif GetUnitTypeId(u)=='Hapm' then
+if GetUnitAbilityLevel(u,'A0Y3')==1 then
+call SetUnitBaseDamage(u,GetUnitBaseDamage(u)+10)
+call SetUnitLife(u,R2I((GetUnitState((u),UNIT_STATE_MAX_LIFE)))+100)
+call SaveReal(hash,u_Id,2,LoadReal(hash,u_Id,2)+1.)
+endif
+```
+
+`Trig_DieHero_Actions`　war3map.j:46501
+```jass
+if GetUnitTypeId(u)=='Hapm' and GetUnitAbilityLevel(u,'A01H')==1 then
+set ug=CreateGroup()
+call GroupAddGroup(udg_AllHeroes,ug)
+loop
+set u3=FirstOfGroup(ug)
+exitwhen u3==null
+if UnitAlive(u3)then
+call SetUnitState(u3,UNIT_STATE_LIFE,GetUnitState(u3,UNIT_STATE_LIFE)+(GetUnitState((u3),UNIT_STATE_MAX_LIFE))*0.50)
+call SetUnitState(u3,UNIT_STATE_MANA,GetUnitState(u3,UNIT_STATE_MANA)+(GetUnitState((u3),UNIT_STATE_MAX_MANA))*0.50)
+call DestroyEffect(AddSpecialEffectTarget("Abilities\\Spells\\Human\\Resurrect\\ResurrectTarget.mdl",u3,"origin"))
+set time=time-3.
+endif
+call GroupRemoveUnit(ug,u3)
+endloop
+call DestroyGroup(ug)
+endif
+```
+
+---
+
 ## 同一組的其他實作函式
 
 英雄的實作散在同編號的一組函式裡，上面按技能抽取時抓不到的補在這裡

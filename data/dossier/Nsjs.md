@@ -421,6 +421,29 @@ endif
 
 ---
 
+## 以「單位型號」內聯的實作
+
+這幾段不是靠技能 ID 分派的，而是直接用單位型號 `Nsjs` 寫在共用函式的條件式裡
+（常見於寫進傷害管線的被動）。照技能抽取抓不到，所以單獨列出來。
+
+`ResHero`　war3map.j:46352
+```jass
+if GetUnitTypeId(u)=='Nsjs' then
+set unit_global=u
+call TriggerExecute(gg_trg_HeroTurretsActivate55)
+endif
+```
+
+`Trig_DieHero_Actions`　war3map.j:46568
+```jass
+if GetUnitTypeId(u)=='Nsjs' then
+call PauseTimer(LoadTimerHandle(hash,GetHandleId(u),'TUR1'))
+call PauseTimer(LoadTimerHandle(hash,GetHandleId(u),'TUR2'))
+endif
+```
+
+---
+
 ## 同一組的其他實作函式
 
 英雄的實作散在同編號的一組函式裡，上面按技能抽取時抓不到的補在這裡

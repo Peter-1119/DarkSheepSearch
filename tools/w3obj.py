@@ -26,8 +26,22 @@ def _txt(raw):
     return raw.decode('utf-8', 'replace')
 
 
-def parse(data, has_level=False):
-    """回傳 {物件ID: {欄位代號: 值}}；自訂物件另存 _base = 衍生自哪個原始物件。"""
+def parse(data, has_level=None):
+    """回傳 {物件ID: {欄位代號: 值}}；自訂物件另存 _base = 衍生自哪個原始物件。
+
+    has_level 預設 None＝自動判斷。w3a/w3q/w3d 的每筆改動多了「等級 + 欄位指標」
+    兩個欄位，w3u/w3t 沒有；傳錯會在檔尾 struct.unpack 越界。
+    以前要呼叫端自己記得傳 True，已經有人踩坑，所以改成兩種都試、
+    取能完整讀完緩衝區的那一種。
+    """
+    if has_level is None:
+        last = None
+        for guess in (False, True):
+            try:
+                return parse(data, guess)
+            except Exception as e:
+                last = e
+        raise ValueError('w3obj: 兩種格式都解不開（%s）' % last)
     out = {}
     p = 0
     ver = struct.unpack_from('<i', data, p)[0]

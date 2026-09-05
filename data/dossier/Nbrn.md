@@ -455,6 +455,38 @@ set count=8
 
 ---
 
+## 以「單位型號」內聯的實作
+
+這幾段不是靠技能 ID 分派的，而是直接用單位型號 `Nbrn` 寫在共用函式的條件式裡
+（常見於寫進傷害管線的被動）。照技能抽取抓不到，所以單獨列出來。
+
+`Trig_HeroAttack36_Actions`　war3map.j:57746
+```jass
+if GetUnitTypeId(u)=='Nbrn' then
+call DestroyEffect(AddSpecialEffect("Abilities\\Spells\\Human\\Thunderclap\\ThunderClapCaster.mdl",x3,y3))
+set ug=CreateGroup()
+call GroupEnumUnitsInRange(ug,x3,y3,300.,null)
+loop
+set u4=FirstOfGroup(ug)
+exitwhen u4==null
+if UnitAlive(u4)and IsUnitEnemy(u4,pl)and u4 !=u3 then
+call UnitDamageTarget(u,u4,dmg*0.50,false,false,ATTACK_TYPE_NORMAL,DAMAGE_TYPE_MAGIC,WEAPON_TYPE_WHOKNOWS)
+endif
+call GroupRemoveUnit(ug,u4)
+endloop
+call DestroyGroup(ug)
+if not UnitAlive(u3)then
+set n=GetRandomInt(1,2)
+if n==1 then
+call DestroyEffect(AddSpecialEffectTarget("Abilities\\Spells\\Items\\AIsm\\AIsmTarget.mdl",u,"origin"))
+call SetHeroAgi(u,GetHeroAgi(u,false)+1,true)
+endif
+endif
+endif
+```
+
+---
+
 ## 同一組的其他實作函式
 
 英雄的實作散在同編號的一組函式裡，上面按技能抽取時抓不到的補在這裡
