@@ -14,7 +14,7 @@
 
 **傷害／效果走哪條管線**（決定哪些裝備對這隻有用）：
 
-- **直接傷害** —— 走 `Trig_HeroTakeDamage_Actions` → **吃 DefCof（key 3/5/6/9/40/41）也吃穿透**，而且事件數越多穿透越划算。
+- **技能直接傷害** —— 走 `Trig_HeroTakeDamage_Actions` → **吃 DefCof（key 3/5/6/9/40/41）也吃穿透**，而且傷害事件數越多，穿透越划算。
 - **召喚物** —— 召喚物**不繼承**主人的裝備觸發／狀態／傷害 +%，只吃主人技能公式裡明寫的屬性（通常是最大生命與技能強度）與原生光環。
 
 細節見 `data/dossier/_engine.md`。
@@ -531,6 +531,40 @@ endif
 ## 皮膚
 
 純外觀：黑暗主教（男）
+
+---
+
+## 同一組的其他實作函式
+
+英雄的實作散在同編號的一組函式裡，上面按技能抽取時抓不到的補在這裡
+（常見的是決定門檻、結算加成、清理 buff 的那幾支）。
+
+`HeroE47_EndDebuff`　war3map.j:61040
+```jass
+function HeroE47_EndDebuff takes nothing returns nothing
+local timer t=GetExpiredTimer()
+local integer Id=GetHandleId(t)
+local unit u=LoadUnitHandle(hash,Id,1)
+local real r=LoadReal(hash,Id,1)
+local real r2=LoadReal(hash,Id,2)
+call SaveTimerHandle(hash,GetHandleId(u),'Nngs',null)
+call SaveReal(hash,GetHandleId(u),6,LoadReal(hash,GetHandleId(u),6)+r)
+call SaveReal(hash,GetHandleId(u),4,LoadReal(hash,GetHandleId(u),4)+r2)
+call UnitRemoveAbility(u,'A0E8')
+call FlushChildHashtable(hash,Id)
+call PauseTimer(t)
+call DestroyTimer(t)
+set t=null
+set u=null
+endfunction
+```
+
+`Trig_HeroKills47_Conditions`　war3map.j:61141
+```jass
+function Trig_HeroKills47_Conditions takes nothing returns boolean
+return(GetUnitTypeId(GetKillingUnit())=='Nngs' or GetUnitTypeId(GetKillingUnit())=='Nplh')and IsUnitEnemy(GetDyingUnit(),GetOwningPlayer(GetKillingUnit()))
+endfunction
+```
 
 ---
 

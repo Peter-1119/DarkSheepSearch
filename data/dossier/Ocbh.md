@@ -15,9 +15,9 @@
 **傷害／效果走哪條管線**（決定哪些裝備對這隻有用）：
 
 - **狀態** —— 走 `Burn_Dmg` 那條，**外面包了 DisableTrigger** → 不吃 DefCof、不帶穿透、被狀態抗性擋。該買的是「狀態傷害 +%」「易燃」「機率倍率」。
-- **直接傷害** —— 走 `Trig_HeroTakeDamage_Actions` → **吃 DefCof（key 3/5/6/9/40/41）也吃穿透**，而且事件數越多穿透越划算。
+- **技能直接傷害** —— 走 `Trig_HeroTakeDamage_Actions` → **吃 DefCof（key 3/5/6/9/40/41）也吃穿透**，而且傷害事件數越多，穿透越划算。
 - **召喚物** —— 召喚物**不繼承**主人的裝備觸發／狀態／傷害 +%，只吃主人技能公式裡明寫的屬性（通常是最大生命與技能強度）與原生光環。
-- **治療／增益** —— 直接寫數值，不經傷害事件 —— 全地圖沒有「治療加成」這種屬性，只能靠技能公式裡的係數（多半是技能強度）。
+- **治療** —— 直接寫血量，不經傷害事件 —— 全地圖沒有「治療加成」這種屬性，只能靠技能公式裡的係數（多半是技能強度）。
 
 細節見 `data/dossier/_engine.md`。
 
@@ -1012,6 +1012,300 @@ endif
   - 生命 1 ／ 骰面 1 ／ 攻擊範圍 1200 ／ 技能 A0MS,A086,Aloc
   - 技能 `A0MS` (выжигающая сфера, жар)　`Eim1 = 0.009999999776482582`, `aare = [180.0, 240.0]`, `abuf = [None, 'Bpig']`, `adur = [None, 1.0]`, `ahdu = [None, 1.0]`, `alev = 2`, `atar = [None, 'ground,enemy,neutral,organic']`
   - 技能 `A086` (выжигающая сфера, атака)　`aare = 400.0`, `acdn = [0.4000000059604645, 0.30000001192092896, 0.20000000298023224]`, `adur = 0.009999999776482582`, `ahdu = 0.009999999776482582`, `aite = 1`, `alev = 3`, `amat = Abilities\Weapons\PhoenixMissile\Phoenix_Missile_mini.mdl`, `amsp = 800`, `atar = ground,air,enemy`, `pxf1 = 0.009999999776482582`, `pxf2 = 0.0`
+
+---
+
+## 同一組的其他實作函式
+
+英雄的實作散在同編號的一組函式裡，上面按技能抽取時抓不到的補在這裡
+（常見的是決定門檻、結算加成、清理 buff 的那幾支）。
+
+`Hero52W_Buff2`　war3map.j:63486
+```jass
+function Hero52W_Buff2 takes nothing returns nothing
+local timer t=GetExpiredTimer()
+local unit u=LoadUnitHandle(hash,GetHandleId(t),1)
+local integer bonus=LoadInteger(hash,GetHandleId(t),1)
+call SetUnitExtraArmor(u,GetUnitExtraArmor(u)-bonus)
+call PauseTimer(t)
+call FlushChildHashtable(hash,GetHandleId(t))
+call DestroyTimer(t)
+set u=null
+set t=null
+endfunction
+```
+
+`Hero52D`　war3map.j:63794
+```jass
+function Hero52D takes nothing returns nothing
+local timer t=GetExpiredTimer()
+local integer Id=GetHandleId(t)
+local unit u=LoadUnitHandle(hash,Id,1)
+local player pl=GetOwningPlayer(u)
+local integer n=GetPlayerId(pl)+1
+local integer count=LoadInteger(hash,Id,1)
+local real dmg
+local texttag text=LoadTextTagHandle(hash,GetHandleId(u),26)
+local force f=CreateForce()
+local unit u3
+local group ug
+local group ug2
+local integer check_1=LoadInteger(hash,Id,2)
+local integer check_3=LoadInteger(hash,Id,4)
+local real x=GetUnitX(u)
+local real y=GetUnitY(u)
+local real power=LoadReal(hash,GetHandleId(u),26)
+local real limit=40+10*I2R(GetHeroLevel(u))+udg_ItemBonusDMG[n]*0.10
+if LoadInteger(hash,GetHandleId(u),26)==1 then
+set power=power+(3.0+I2R(GetHeroInt(u,true))*0.20+GetUnitManaRegeneration(u)*0.30)*0.40
+call SetUnitState(u,UNIT_STATE_LIFE,GetUnitState(u,UNIT_STATE_LIFE)+(GetUnitState((u),UNIT_STATE_MAX_LIFE))*0.004)
+if UnitHasItemOfType(u,'shas')and UnitLifePercent(u)>=75.00 then
+set power=power+3.0
+endif
+if GetUnitAbilityLevel(u,'B02O')==1 then
+set power=power+0.9
+endif
+else
+set power=power+(3.0+I2R(GetHeroInt(u,true))*0.20+GetUnitManaRegeneration(u)*0.30)*0.20
+call SetUnitState(u,UNIT_STATE_LIFE,GetUnitState(u,UNIT_STATE_LIFE)+(GetUnitState((u),UNIT_STATE_MAX_LIFE))*0.002)
+if UnitHasItemOfType(u,'shas')and UnitLifePercent(u)>=75.00 then
+set power=power+1.5
+endif
+if GetUnitAbilityLevel(u,'B02O')==1 then
+set power=power+0.3
+endif
+endif
+if power>limit then
+set power=limit
+endif
+if power>=75 and check_1 !=1 then
+call SaveInteger(hash,Id,2,1)
+call SaveReal(hash,GetHandleId(u),4,LoadReal(hash,GetHandleId(u),4)+0.12)
+endif
+if power>=125 then
+set dmg=power*0.50
+set ug=CreateGroup()
+set ug2=CreateGroup()
+call GroupEnumUnitsInRange(ug,x,y,500,null)
+loop
+set u3=FirstOfGroup(ug)
+exitwhen u3==null
+if UnitAlive(u3)and IsUnitEnemy(u3,pl)then
+call GroupAddUnit(ug2,u3)
+endif
+call GroupRemoveUnit(ug,u3)
+endloop
+set ug2=GetRandomSubGroup(1,ug2)
+loop
+set u3=FirstOfGroup(ug2)
+exitwhen u3==null
+call UnitDamageTarget(u,u3,dmg,true,false,ATTACK_TYPE_NORMAL,DAMAGE_TYPE_MAGIC,WEAPON_TYPE_WHOKNOWS)
+call DestroyEffect(AddSpecialEffectTarget("Abilities\\Spells\\Other\\Incinerate\\FireLordDeathExplode.mdl",u3,"origin"))
+call GroupRemoveUnit(ug2,u3)
+endloop
+call DestroyGroup(ug)
+call DestroyGroup(ug2)
+endif
+if power>=200 and check_3 !=1 then
+call SaveInteger(hash,Id,4,1)
+call UnitAddAbility(u,'A02P')
+call UnitAddAbility(u,'A036')
+endif
+call SaveReal(hash,GetHandleId(u),26,power)
+call ForceAddPlayer(f,pl)
+call DestroyTextTag(text)
+set text=CreateTextTagUnitBJ("|cFFFF7D00"+I2S(R2I(power))+"/"+I2S(R2I(limit)),u,0,13.00,100,100,100,0)
+call ShowTextTagForceBJ(false,text,bj_FORCE_ALL_PLAYERS)
+call ShowTextTagForceBJ(true,text,f)
+call SaveTextTagHandle(hash,GetHandleId(u),26,text)
+set count=count-1
+if count==0 then
+call SaveInteger(hash,Id,1,count)
+else
+call SaveInteger(hash,Id,1,count)
+endif
+call SaveInteger(hash,Id,1,count)
+call DestroyForce(f)
+set f=null
+set t=null
+set u=null
+set pl=null
+set u3=null
+set ug=null
+set ug2=null
+set text=null
+endfunction
+```
+
+`Trig_Hero52SkillsStop_Actions`　war3map.j:63916
+```jass
+function Trig_Hero52SkillsStop_Actions takes nothing returns nothing
+local unit u=GetSpellAbilityUnit()
+local player pl=GetOwningPlayer(u)
+local integer n=GetPlayerId(pl)+1
+local integer Id
+local timer t
+local texttag text
+local force f=CreateForce()
+local real x=GetUnitX(u)
+local real y=GetUnitY(u)
+local real power
+local real limit
+local integer check_1
+local integer check_3
+set t=LoadTimerHandle(hash,GetHandleId(u),'A01D')
+set Id=GetHandleId(t)
+set check_1=LoadInteger(hash,Id,2)
+set check_3=LoadInteger(hash,Id,4)
+if check_1==1 then
+call SaveReal(hash,GetHandleId(u),4,LoadReal(hash,GetHandleId(u),4)-0.12)
+endif
+if check_3==1 then
+call UnitRemoveAbility(u,'A02P')
+call UnitRemoveAbility(u,'A036')
+endif
+call ForceAddPlayer(f,pl)
+set text=LoadTextTagHandle(hash,GetHandleId(u),26)
+call DestroyTextTag(text)
+set power=LoadReal(hash,GetHandleId(u),26)
+set limit=40+10*I2R(GetHeroLevel(u))+udg_ItemBonusDMG[n]*0.10
+set text=CreateTextTagUnitBJ("|cFFFF7D00"+I2S(R2I(power))+"/"+I2S(R2I(limit)),u,0,13.00,100,100,100,0)
+call ShowTextTagForceBJ(false,text,bj_FORCE_ALL_PLAYERS)
+call ShowTextTagForceBJ(true,text,f)
+call SetTextTagVelocityBJ(text,75.00,90.00)
+call SetTextTagSuspended(text,false)
+call SetTextTagPermanent(text,false)
+call SetTextTagLifespan(text,4.00)
+call SetTextTagFadepoint(text,3.00)
+call FlushChildHashtable(hash,Id)
+call PauseTimer(t)
+call DestroyTimer(t)
+call DestroyForce(f)
+set f=null
+set u=null
+set pl=null
+set t=null
+set text=null
+endfunction
+```
+
+`Hero52R`　war3map.j:63972
+```jass
+function Hero52R takes nothing returns nothing
+local timer t=GetExpiredTimer()
+local integer Id=GetHandleId(t)
+local unit u=LoadUnitHandle(hash,Id,1)
+local unit u2=LoadUnitHandle(hash,Id,2)
+local real used_power=LoadReal(hash,Id,2)
+local player pl=GetOwningPlayer(u)
+local integer n=GetPlayerId(pl)+1
+local real dmg
+local texttag text=LoadTextTagHandle(hash,GetHandleId(u),26)
+local force f=CreateForce()
+local unit u3
+local group ug
+local real x=GetUnitX(u)
+local real y=GetUnitY(u)
+local real power=LoadReal(hash,GetHandleId(u),26)
+local real limit=40+10*I2R(GetHeroLevel(u))+udg_ItemBonusDMG[n]*0.10
+if power>limit then
+set power=limit
+endif
+if power<(3.0+I2R(GetHeroInt(u,true))*0.20+GetUnitManaRegeneration(u)*0.30)*0.20 then
+set used_power=used_power+power
+set power=0
+else
+set used_power=used_power+(3.0+I2R(GetHeroInt(u,true))*0.20+GetUnitManaRegeneration(u)*0.30)*0.20
+set power=power-(3.0+I2R(GetHeroInt(u,true))*0.20+GetUnitManaRegeneration(u)*0.30)*0.20
+endif
+call SaveReal(hash,GetHandleId(u),26,power)
+call ForceAddPlayer(f,pl)
+call DestroyTextTag(text)
+set text=CreateTextTagUnitBJ("|cFFFF7D00"+I2S(R2I(power))+"/"+I2S(R2I(limit)),u,0,13.00,100,100,100,0)
+call ShowTextTagForceBJ(false,text,bj_FORCE_ALL_PLAYERS)
+call ShowTextTagForceBJ(true,text,f)
+call SaveTextTagHandle(hash,GetHandleId(u),26,text)
+set dmg=2.0+used_power*0.016
+call SetUnitScale(u2,dmg,dmg,dmg)
+call SaveReal(hash,Id,2,used_power)
+if power==0 then
+call IssueImmediateOrderById(u,Order_stop)
+endif
+call DestroyForce(f)
+call TimerStart(t,0.15,false,function Hero52R)
+set f=null
+set t=null
+set u=null
+set pl=null
+set u3=null
+set ug=null
+set text=null
+endfunction
+```
+
+`Hero52R_Move`　war3map.j:64052
+```jass
+function Hero52R_Move takes nothing returns nothing
+local timer t=GetExpiredTimer()
+local integer Id=GetHandleId(t)
+local unit u=LoadUnitHandle(hash,Id,1)
+local player pl=GetOwningPlayer(u)
+local integer n=GetPlayerId(pl)+1
+local unit u2=LoadUnitHandle(hash,Id,2)
+local unit u3
+local group CheckGroup
+local real x=GetUnitX(u2)
+local real y=GetUnitY(u2)
+local integer count=LoadInteger(hash,Id,1)
+local integer check=LoadInteger(hash,Id,2)
+local real power=LoadReal(hash,Id,1)
+local group ug
+local real dmg
+local real r=GetUnitFacing(u2)
+set x=PolarX(x,40,r)
+set y=PolarY(y,40,r)
+call SetUnitX(u2,x)
+call SetUnitY(u2,y)
+set check=check+1
+if check==3 then
+set check=0
+set CheckGroup=LoadGroupHandle(hash,Id,3)
+set dmg=175+power*6.00
+set ug=CreateGroup()
+call GroupEnumUnitsInRange(ug,x,y,150+power*0.80,null)
+loop
+set u3=FirstOfGroup(ug)
+exitwhen u3==null
+if IsUnitEnemy(u3,pl)and UnitAlive(u3)and IsUnitInGroup(u3,CheckGroup)==false then
+call UnitDamageTarget(u,u3,dmg,false,false,ATTACK_TYPE_NORMAL,DAMAGE_TYPE_MAGIC,null)
+call BurnUnit(u,u3,dmg*0.50,0.50)
+call GroupAddUnit(CheckGroup,u3)
+endif
+call GroupRemoveUnit(ug,u3)
+endloop
+call DestroyGroup(ug)
+endif
+call SaveInteger(hash,Id,2,check)
+call SaveGroupHandle(hash,Id,3,CheckGroup)
+set count=count-1
+if count==0 then
+call KillUnit(u2)
+call DestroyGroup(LoadGroupHandle(hash,Id,3))
+call PauseTimer(t)
+call DestroyTimer(t)
+call FlushChildHashtable(hash,Id)
+else
+call SaveInteger(hash,Id,1,count)
+endif
+set t=null
+set u=null
+set u2=null
+set pl=null
+set u3=null
+set ug=null
+set CheckGroup=null
+endfunction
+```
 
 ---
 

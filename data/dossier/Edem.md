@@ -15,8 +15,8 @@
 **傷害／效果走哪條管線**（決定哪些裝備對這隻有用）：
 
 - **狀態** —— 走 `Burn_Dmg` 那條，**外面包了 DisableTrigger** → 不吃 DefCof、不帶穿透、被狀態抗性擋。該買的是「狀態傷害 +%」「易燃」「機率倍率」。
-- **直接傷害** —— 走 `Trig_HeroTakeDamage_Actions` → **吃 DefCof（key 3/5/6/9/40/41）也吃穿透**，而且事件數越多穿透越划算。
-- **治療／增益** —— 直接寫數值，不經傷害事件 —— 全地圖沒有「治療加成」這種屬性，只能靠技能公式裡的係數（多半是技能強度）。
+- **技能直接傷害** —— 走 `Trig_HeroTakeDamage_Actions` → **吃 DefCof（key 3/5/6/9/40/41）也吃穿透**，而且傷害事件數越多，穿透越划算。
+- **屬性增益** —— 直接改屬性。注意有些是**永久**的（死亡不歸零），長局會滾雪球。
 
 細節見 `data/dossier/_engine.md`。
 
@@ -383,6 +383,263 @@ endif
 ## 皮膚
 
 純外觀：黑曜石獵手、赤紅刺客
+
+---
+
+## 同一組的其他實作函式
+
+英雄的實作散在同編號的一組函式裡，上面按技能抽取時抓不到的補在這裡
+（常見的是決定門檻、結算加成、清理 buff 的那幾支）。
+
+`Trig_CreateHero1_Actions`　war3map.j:34443
+```jass
+function Trig_CreateHero1_Actions takes nothing returns nothing
+local location p
+local unit u
+local integer i
+if udg_WaveFase==4 then
+set udg_EnemyHeroType[1]='U00B'
+set udg_EnemyHeroType[2]='U00J'
+elseif udg_WaveFase==5 then
+set udg_EnemyHeroType[1]='E001'
+set udg_EnemyHeroType[2]='H00M'
+elseif udg_WaveFase==6 then
+set udg_EnemyHeroType[1]='E009'
+set udg_EnemyHeroType[2]='H00W'
+elseif udg_WaveFase==7 then
+set udg_EnemyHeroType[1]='H01Q'
+set udg_EnemyHeroType[2]='N02R'
+elseif udg_WaveFase==8 then
+set udg_EnemyHeroType[1]='U00T'
+set udg_EnemyHeroType[2]='H01W'
+elseif udg_WaveFase==9 then
+set udg_EnemyHeroType[1]='H01Z'
+set udg_EnemyHeroType[2]='U00W'
+elseif udg_WaveFase==10 then
+set udg_EnemyHeroType[1]='U01B'
+set udg_EnemyHeroType[2]='H03B'
+elseif udg_WaveFase>=11 then
+set udg_EnemyHeroType[1]='U00H'
+set udg_EnemyHeroType[2]='U00K'
+endif
+set udg_EnemyHeroLvl=udg_EnemyHeroLvl+1
+set p=udg_SpawnPoints[GetRandomInt(1,2)]
+set u=CreateUnitAtLoc(AI[GetRandomInt(1,3)],udg_EnemyHeroType[GetRandomInt(1,2)],p,GetRandomReal(0.,360.))
+call SetHeroLevel(u,3+udg_EnemyHeroLvl,false)
+call PrepareEnemyHero(u)
+call GroupAddUnit(udg_AttackGroup,u)
+call IssuePointOrderByIdLoc(u,Order_attack,udg_DefPoint)
+if udg_WaveFase==1 then
+set i=1
+loop
+exitwhen i>8
+call SpawnEnemy('n00Q',p,udg_AttackGroup,0)
+set i=i+1
+endloop
+elseif udg_WaveFase==2 then
+set i=1
+loop
+exitwhen i>4
+call SpawnEnemy('n00T',p,udg_AttackGroup,0)
+set i=i+1
+endloop
+elseif udg_WaveFase==3 then
+set i=1
+loop
+exitwhen i>4
+call SpawnEnemy('n011',p,udg_AttackGroup,0)
+set i=i+1
+endloop
+call SpawnEnemy('n00V',p,udg_AttackGroup,0)
+call SpawnEnemy('n00V',p,udg_AttackGroup,0)
+elseif udg_WaveFase==4 then
+set i=1
+loop
+exitwhen i>4
+call SpawnEnemy('n011',p,udg_AttackGroup,0)
+call SpawnEnemy('n05Q',p,udg_AttackGroup,0)
+set i=i+1
+endloop
+elseif udg_WaveFase==5 then
+set i=1
+loop
+exitwhen i>4
+call SpawnEnemy('n011',p,udg_AttackGroup,0)
+call SpawnEnemy('n05Q',p,udg_AttackGroup,0)
+set i=i+1
+endloop
+call SpawnEnemy('n028',p,udg_AttackGroup,0)
+elseif udg_WaveFase>=6 then
+set i=1
+loop
+exitwhen i>4
+call SpawnEnemy('n011',p,udg_AttackGroup,0)
+call SpawnEnemy('n05Q',p,udg_AttackGroup,0)
+set i=i+1
+endloop
+call SpawnEnemy('n028',p,udg_AttackGroup,0)
+call SpawnEnemy('n02L',p,udg_AttackGroup,0)
+call SpawnEnemy('n02L',p,udg_AttackGroup,0)
+endif
+call DisplayTimedTextToForce(bj_FORCE_ALL_PLAYERS,30.,"|cFFE60000Появился вражеский герой!|r")
+set p=null
+set u=null
+endfunction
+```
+
+`Trig_CreateHero1_Hard_Actions`　war3map.j:34842
+```jass
+function Trig_CreateHero1_Hard_Actions takes nothing returns nothing
+local location p
+local unit u
+local integer i
+if udg_WaveFase==4 then
+set udg_EnemyHeroType[1]='H01Z'
+set udg_EnemyHeroType[2]='U00W'
+elseif udg_WaveFase==5 then
+set udg_EnemyHeroType[1]='U012'
+set udg_EnemyHeroType[2]='H028'
+elseif udg_WaveFase==6 then
+set udg_EnemyHeroType[1]='U01B'
+set udg_EnemyHeroType[2]='H03B'
+elseif udg_WaveFase==7 then
+set udg_EnemyHeroType[1]='H03P'
+set udg_EnemyHeroType[2]='N05A'
+elseif udg_WaveFase==8 then
+set udg_EnemyHeroType[1]='E00B'
+set udg_EnemyHeroType[2]='N05L'
+elseif udg_WaveFase==9 then
+set udg_EnemyHeroType[1]='U01K'
+set udg_EnemyHeroType[2]='Umal'
+elseif udg_WaveFase==10 then
+set udg_EnemyHeroType[1]='N04W'
+set udg_EnemyHeroType[2]='Uanb'
+elseif udg_WaveFase>=11 then
+set udg_EnemyHeroType[1]='Opgh'
+set udg_EnemyHeroType[2]='Uwar'
+endif
+set udg_EnemyHeroLvl=udg_EnemyHeroLvl+1
+set p=udg_SpawnPoints[GetRandomInt(1,2)]
+set u=CreateUnitAtLoc(AI[GetRandomInt(1,3)],udg_EnemyHeroType[GetRandomInt(1,2)],p,GetRandomReal(0.,360.))
+call SetHeroLevel(u,3+udg_EnemyHeroLvl,false)
+call PrepareEnemyHero(u)
+call GroupAddUnit(udg_AttackGroup,u)
+call IssuePointOrderByIdLoc(u,Order_attack,udg_DefPoint)
+if udg_WaveFase==1 then
+set i=1
+loop
+exitwhen i>16
+call SpawnEnemy('u00V',p,udg_AttackGroup,0)
+set i=i+1
+endloop
+elseif udg_WaveFase==2 then
+set i=1
+loop
+exitwhen i>22
+call SpawnEnemy('n02Y',p,udg_AttackGroup,0)
+set i=i+1
+endloop
+elseif udg_WaveFase==3 then
+set i=1
+loop
+exitwhen i>4
+call SpawnEnemy('n01X',p,udg_AttackGroup,0)
+set i=i+1
+endloop
+call SpawnEnemy('n02C',p,udg_AttackGroup,0)
+call SpawnEnemy('n02C',p,udg_AttackGroup,0)
+elseif udg_WaveFase==4 then
+set i=1
+loop
+exitwhen i>4
+call SpawnEnemy('n02N',p,udg_AttackGroup,0)
+set i=i+1
+endloop
+call SpawnEnemy('n02C',p,udg_AttackGroup,0)
+call SpawnEnemy('n02C',p,udg_AttackGroup,0)
+elseif udg_WaveFase==5 then
+set i=1
+loop
+exitwhen i>4
+call SpawnEnemy('n02N',p,udg_AttackGroup,0)
+set i=i+1
+endloop
+call SpawnEnemy('n02C',p,udg_AttackGroup,0)
+call SpawnEnemy('n02C',p,udg_AttackGroup,0)
+call SpawnEnemy('n025',p,udg_AttackGroup,0)
+call SpawnEnemy('n025',p,udg_AttackGroup,0)
+elseif udg_WaveFase>=6 then
+set i=1
+loop
+exitwhen i>4
+call SpawnEnemy('n02N',p,udg_AttackGroup,0)
+call SpawnEnemy('n02M',p,udg_AttackGroup,0)
+set i=i+1
+endloop
+call SpawnEnemy('n02C',p,udg_AttackGroup,0)
+call SpawnEnemy('n02C',p,udg_AttackGroup,0)
+call SpawnEnemy('n025',p,udg_AttackGroup,0)
+call SpawnEnemy('n025',p,udg_AttackGroup,0)
+endif
+call DisplayTimedTextToForce(bj_FORCE_ALL_PLAYERS,30.,"|cFFE60000Появился вражеский герой!|r")
+set p=null
+set u=null
+endfunction
+```
+
+`Trig_HeroQ1_Conditions`　war3map.j:46675
+```jass
+function Trig_HeroQ1_Conditions takes nothing returns boolean
+return GetUnitAbilityLevel(GetAttacker(),'B00C')>0 or GetUnitTypeId(GetAttacker())=='Eevi'
+endfunction
+```
+
+`Trig_HeroD1_Conditions`　war3map.j:46758
+```jass
+function Trig_HeroD1_Conditions takes nothing returns boolean
+return GetUnitTypeId(GetKillingUnit())=='Edem' or GetUnitTypeId(GetKillingUnit())=='Eevi' or GetUnitTypeId(GetKillingUnit())=='Emns'
+endfunction
+```
+
+`Trig_HeroD1_Actions`　war3map.j:46761
+```jass
+function Trig_HeroD1_Actions takes nothing returns nothing
+local unit u=GetKillingUnit()
+local player pl=GetOwningPlayer(u)
+local unit u2=GetDyingUnit()
+local real life_max=(GetUnitState((u),UNIT_STATE_MAX_LIFE))
+local real life=GetWidgetLife(u)
+local real heal
+local integer count
+set heal=(life_max-life)*0.01
+call SetUnitState(u,UNIT_STATE_LIFE,life+heal)
+if GetUnitAbilityLevel(u,'A0RY')==1 then
+if LoadReal(hash,GetHandleId(u),'A0RY')>=200. then
+call SaveReal(hash,GetHandleId(u),'A0RY',LoadReal(hash,GetHandleId(u),'A0RY')+0.50)
+else
+call SaveReal(hash,GetHandleId(u),'A0RY',LoadReal(hash,GetHandleId(u),'A0RY')+1.00)
+endif
+endif
+if GetUnitTypeId(u)=='Emns' and IsUnitEnemy(u2,pl)and IsUnitType(u2,UNIT_TYPE_HERO)then
+set count=LoadInteger(hash,GetHandleId(u),'Emns')
+if count<3 then
+call SetHeroAgi(u,GetHeroAgi(u,false)+5,true)
+elseif count<6 then
+call SetHeroAgi(u,GetHeroAgi(u,false)+4,true)
+elseif count<9 then
+call SetHeroAgi(u,GetHeroAgi(u,false)+3,true)
+elseif count<12 then
+call SetHeroAgi(u,GetHeroAgi(u,false)+2,true)
+else
+call SetHeroAgi(u,GetHeroAgi(u,false)+1,true)
+endif
+call SaveInteger(hash,GetHandleId(u),'Emns',count+1)
+endif
+set u=null
+set u2=null
+set pl=null
+endfunction
+```
 
 ---
 

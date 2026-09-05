@@ -114,6 +114,17 @@ def main():
         L.append('*（讀不到 war3mapMisc.txt，走魔獸預設值）*')
     L.append('')
 
+    # hash key 對照表 —— 兩位 agent 都說得從 Trig_HeroTakeDamage_Actions
+    # 與 Disease_Dmg 裡反推，直接列出來省一輪
+    import build_dossier
+    L += ['---', '', '## hash key 對照表', '',
+          '同一個數字在「施加者」與「受害者」身上是完全不同的東西，',
+          '而且實數槽與整數槽是**兩張不同的表**。', '',
+          '| key | 意義 |', '|---|---|']
+    for k in sorted(build_dossier.KEYS):
+        L.append('| **%d** | %s |' % (k, build_dossier.KEYS[k]))
+    L.append('')
+
     for title, fns in GROUPS:
         L.append('---')
         L.append('')

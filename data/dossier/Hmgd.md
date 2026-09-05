@@ -14,7 +14,8 @@
 
 **傷害／效果走哪條管線**（決定哪些裝備對這隻有用）：
 
-- **直接傷害** —— 走 `Trig_HeroTakeDamage_Actions` → **吃 DefCof（key 3/5/6/9/40/41）也吃穿透**，而且事件數越多穿透越划算。
+- **技能直接傷害** —— 走 `Trig_HeroTakeDamage_Actions` → **吃 DefCof（key 3/5/6/9/40/41）也吃穿透**，而且傷害事件數越多，穿透越划算。
+- **普攻** —— 有「攻擊時觸發」的機制 → 攻擊力／攻速／穿透有價值，但注意那類技能常有自己的內部冷卻，攻速超過內冷就沒用了。
 
 細節見 `data/dossier/_engine.md`。
 
@@ -263,6 +264,20 @@ set udg_CTButton[9]=DialogAddButton(udg_CTWindow[n],"|cFFFFDC00Удалить с
 set udg_CTButton[72]=DialogAddButton(udg_CTWindow[n],"|cFFFFDC00Отмена|r",0)
 call DialogDisplay(pl,udg_CTWindow[n],true)
 endif
+```
+
+---
+
+## 同一組的其他實作函式
+
+英雄的實作散在同編號的一組函式裡，上面按技能抽取時抓不到的補在這裡
+（常見的是決定門檻、結算加成、清理 buff 的那幾支）。
+
+`Trig_HeroAttack53_Conditions`　war3map.j:64262
+```jass
+function Trig_HeroAttack53_Conditions takes nothing returns boolean
+return GetUnitTypeId(GetAttacker())=='Hmgd' and IsUnitEnemy(GetTriggerUnit(),GetOwningPlayer(GetAttacker()))
+endfunction
 ```
 
 ---

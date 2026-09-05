@@ -15,9 +15,9 @@
 **傷害／效果走哪條管線**（決定哪些裝備對這隻有用）：
 
 - **狀態** —— 走 `Burn_Dmg` 那條，**外面包了 DisableTrigger** → 不吃 DefCof、不帶穿透、被狀態抗性擋。該買的是「狀態傷害 +%」「易燃」「機率倍率」。
-- **直接傷害** —— 走 `Trig_HeroTakeDamage_Actions` → **吃 DefCof（key 3/5/6/9/40/41）也吃穿透**，而且事件數越多穿透越划算。
+- **技能直接傷害** —— 走 `Trig_HeroTakeDamage_Actions` → **吃 DefCof（key 3/5/6/9/40/41）也吃穿透**，而且傷害事件數越多，穿透越划算。
 - **召喚物** —— 召喚物**不繼承**主人的裝備觸發／狀態／傷害 +%，只吃主人技能公式裡明寫的屬性（通常是最大生命與技能強度）與原生光環。
-- **治療／增益** —— 直接寫數值，不經傷害事件 —— 全地圖沒有「治療加成」這種屬性，只能靠技能公式裡的係數（多半是技能強度）。
+- **治療** —— 直接寫血量，不經傷害事件 —— 全地圖沒有「治療加成」這種屬性，只能靠技能公式裡的係數（多半是技能強度）。
 
 細節見 `data/dossier/_engine.md`。
 
@@ -655,6 +655,174 @@ endif
 ### `o038` Землетрясение（原型 `ocat`）
   - 技能 S00W,Aloc
   - 技能 `S00W` (землетрясение)　`Oae1 = [-0.30000001192092896, -0.3499999940395355, -0.4000000059604645, -0.44999998807907104, -0.5]`, `Oae2 = [-0.15000000596046448, -0.20000000298023224, -0.25, -0.30000001192092896, -0.3499999940395355]`, `aare = 270.0`, `abuf = B03S`, `alev = 5`, `atar = enemies`
+
+---
+
+## 同一組的其他實作函式
+
+英雄的實作散在同編號的一組函式裡，上面按技能抽取時抓不到的補在這裡
+（常見的是決定門檻、結算加成、清理 buff 的那幾支）。
+
+`Hero48R`　war3map.j:61344
+```jass
+function Hero48R takes nothing returns nothing
+local timer t=GetExpiredTimer()
+local integer Id=GetHandleId(t)
+local unit u=LoadUnitHandle(hash,Id,1)
+local unit u2
+local unit u3
+local real x=LoadReal(hash,Id,2)
+local real y=LoadReal(hash,Id,3)
+local player pl=GetOwningPlayer(u)
+local real angle=LoadReal(hash,Id,1)
+local real dmg=60.+I2R(GetHeroInt(u,true))*0.60
+local integer count=LoadInteger(hash,Id,1)
+local group ug
+local real dist
+local timer t2
+local integer Id2
+set count=count-1
+set x=PolarX(x,60,angle)
+set y=PolarY(y,60,angle)
+call SaveReal(hash,Id,2,x)
+call SaveReal(hash,Id,3,y)
+set dist=GetRandomReal(0.,125.)
+set angle=GetRandomReal(0.,360.)
+set x=PolarX(x,dist,angle)
+set y=PolarY(y,dist,angle)
+set ug=CreateGroup()
+call GroupEnumUnitsInRange(ug,x,y,150,null)
+loop
+set u3=FirstOfGroup(ug)
+exitwhen u3==null
+if UnitAlive(u3)and IsUnitEnemy(u3,pl)then
+call UnitDamageTarget(u,u3,dmg,false,false,ATTACK_TYPE_NORMAL,DAMAGE_TYPE_MAGIC,null)
+call BurnUnit(u,u3,dmg*0.25,0.20)
+endif
+call GroupRemoveUnit(ug,u3)
+endloop
+call DestroyGroup(ug)
+call DestroyEffect(AddSpecialEffect("Abilities\\Spells\\Other\\Volcano\\VolcanoDeath.mdl",x,y))
+set Id2=GetRandomInt(1,3)
+if Id2==1 then
+set Id2='o035'
+elseif Id2==2 then
+set Id2='o036'
+else
+set Id2='o037'
+endif
+set u2=CreateUnit(pl,Id2,x,y,GetRandomReal(0.,360.))
+call SetUnitX(u2,x)
+call SetUnitY(u2,y)
+set t2=CreateTimer()
+set Id2=GetHandleId(t2)
+call SaveUnitHandle(hash,Id2,1,u)
+call SaveUnitHandle(hash,Id2,2,u2)
+call SaveInteger(hash,Id2,1,GetRandomInt(18,36))
+call TimerStart(t2,0.50,true,function Hero48R_dmg)
+if count==0 then
+call PauseTimer(t)
+call DestroyTimer(t)
+call FlushChildHashtable(hash,Id)
+else
+call SaveInteger(hash,GetHandleId(t),1,count)
+endif
+set t=null
+set t2=null
+set u=null
+set u2=null
+set u3=null
+set pl=null
+set ug=null
+endfunction
+```
+
+`HeroW48_Dmg`　war3map.j:61528
+```jass
+function HeroW48_Dmg takes nothing returns nothing
+local timer t=GetExpiredTimer()
+local integer Id=GetHandleId(t)
+local real x=LoadReal(hash,Id,1)
+local real y=LoadReal(hash,Id,2)
+local real x2
+local real y2
+local real dist
+local real angle
+local unit u=LoadUnitHandle(hash,Id,1)
+local player pl=GetOwningPlayer(u)
+local integer n=GetPlayerId(pl)+1
+local unit u3
+local real dmg=(15.+15.*I2R(GetUnitAbilityLevel(u,'A0WP'))+udg_ItemBonusDMG[n]*0.15)*0.50
+local group ug=CreateGroup()
+call GroupEnumUnitsInRange(ug,x,y,275.,null)
+loop
+set u3=FirstOfGroup(ug)
+exitwhen u3==null
+if UnitAlive(u3)and IsUnitEnemy(u3,pl)then
+call UnitDamageTarget(u,u3,dmg,false,false,ATTACK_TYPE_NORMAL,DAMAGE_TYPE_MAGIC,null)
+endif
+call GroupRemoveUnit(ug,u3)
+endloop
+call DestroyGroup(ug)
+set n=1
+loop
+exitwhen n>4
+set dist=GetRandomReal(10.,270.)
+set angle=GetRandomReal(0.,360.)
+set x2=PolarX(x,dist,angle)
+set y2=PolarY(y,dist,angle)
+call DestroyEffect(AddSpecialEffect("Objects\\Spawnmodels\\Undead\\ImpaleTargetDust\\ImpaleTargetDust.mdl",x2,y2))
+set n=n+1
+endloop
+set t=null
+set u=null
+set pl=null
+set u3=null
+set ug=null
+endfunction
+```
+
+`Trig_HeroW48_Actions`　war3map.j:61569
+```jass
+function Trig_HeroW48_Actions takes nothing returns nothing
+local unit u=GetSpellAbilityUnit()
+local unit u2
+local timer t=CreateTimer()
+local integer Id=GetHandleId(t)
+local real x=GetSpellTargetX()
+local real y=GetSpellTargetY()
+call SaveUnitHandle(hash,Id,1,u)
+call SaveReal(hash,Id,1,x)
+call SaveReal(hash,Id,2,y)
+call TimerStart(t,0.50,true,function HeroW48_Dmg)
+call SaveTimerHandle(hash,GetHandleId(u),'A0WP',t)
+set u2=CreateUnit(GetOwningPlayer(u),'o038',x,y,270.)
+call SetUnitX(u2,x)
+call SetUnitY(u2,y)
+call SetUnitAbilityLevel(u2,'S00W',GetUnitAbilityLevel(u,'A0WP'))
+call SaveUnitHandle(hash,Id,3,u2)
+set u=null
+set u2=null
+set t=null
+endfunction
+```
+
+`Trig_HeroW48_Stop_Actions`　war3map.j:61598
+```jass
+function Trig_HeroW48_Stop_Actions takes nothing returns nothing
+local unit u=GetSpellAbilityUnit()
+local integer Id=GetHandleId(u)
+local timer t=LoadTimerHandle(hash,Id,'A0WP')
+local integer Id_t=GetHandleId(t)
+call RemoveUnit(LoadUnitHandle(hash,Id_t,3))
+call PauseTimer(t)
+call DestroyTimer(t)
+call RemoveSavedHandle(hash,Id,'A0WP')
+call FlushChildHashtable(hash,Id_t)
+set u=null
+set t=null
+endfunction
+```
 
 ---
 

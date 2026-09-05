@@ -102,6 +102,11 @@ NEG = re.compile(r"!=\s*'(A[A-Za-z0-9]{3})'")
 CALLED = re.compile(r'\b(?:function|call) ([A-Za-z0-9_]+)')
 HASHKEY = re.compile(r'(?:Save|Load)(?:Real|Integer)\(hash,[A-Za-z_0-9()]+,(\d+)[,)]')
 CREATE = re.compile(r"CreateUnit\([^,]+,'(.{4})'")
+# 英雄的實作函式有一致的命名慣例：Trig_HeroSkills51_Actions、HeroQ51_Move、
+# HeroW51_Dmg2、Trig_HeroR51_Actions… 中間的數字就是英雄編號。
+# 抓到其中一支就把同編號的全部收進來 —— 不然像魔法大師那樣，
+# 9 個技能有 4 個只抽到 _conditions，實作整段缺席。
+HERONUM = re.compile(r'Hero[A-Za-z_]*?(\d+)')
 
 
 def index_jass(jass):
@@ -225,6 +230,26 @@ def engine_calls(idx, aid, spans):
     return sorted(hit)
 
 
+def siblings(idx, rngs):
+    """同一個英雄編號的其他實作函式（Hero*51_* 那一組）。"""
+    lines, strip, fn, fspan, path = idx
+    nums = set()
+    for lo, hi in rngs:
+        m = HERONUM.search(fn[lo] or '')
+        if m:
+            nums.add(m.group(1))
+    if not nums:
+        return []
+    out = []
+    for name, sp in fspan.items():
+        if name in NOISE_FN or name in UTIL_FN or name in ENGINE_FN:
+            continue
+        m = HERONUM.search(name or '')
+        if m and m.group(1) in nums:
+            out.append(sp)
+    return out
+
+
 def code_for(idx, aid, spans):
     """回傳 [(函式名, 起行, [程式碼…])]，總行數受 MAXCODE 限制。"""
     lines, strip, fn, fspan, path = idx
@@ -270,25 +295,40 @@ def w3a_fields(a):
     return out
 
 
+# 傷害／效果走哪條管線。這一行決定了穿透、DefCof、狀態抗性三大類裝備
+# 對這隻有沒有用，所以寧可少標也不要標錯 —— 標錯會把配裝方向整個帶歪。
 PIPE = [
     ('狀態', re.compile(r'(BurnUnit|FrostUnit|BleedUnit|DiseaseUnit|ShockUnit'
-                       r'|FlammabilityUnit|CurseUnit|WeakUnit|VulnerabilityUnit'
-                       r'|CharmUnit|SliceUnit|AnathemaUnit)'),
+                        r'|FlammabilityUnit|CurseUnit|WeakUnit|VulnerabilityUnit'
+                        r'|CharmUnit|SliceUnit|AnathemaUnit)\('),
      '走 `Burn_Dmg` 那條，**外面包了 DisableTrigger** → 不吃 DefCof、不帶穿透、'
      '被狀態抗性擋。該買的是「狀態傷害 +%」「易燃」「機率倍率」。'),
-    ('直接傷害', re.compile(r'UnitDamageTarget'),
+    ('技能直接傷害', re.compile(r'UnitDamageTarget\('),
      '走 `Trig_HeroTakeDamage_Actions` → **吃 DefCof（key 3/5/6/9/40/41）'
-     '也吃穿透**，而且事件數越多穿透越划算。'),
-    ('召喚物', re.compile(r'CreateUnit'),
+     '也吃穿透**，而且傷害事件數越多，穿透越划算。'),
+    ('普攻', None,          # 另外判定：有沒有掛在 GetAttacker() 的觸發器上
+     '有「攻擊時觸發」的機制 → 攻擊力／攻速／穿透有價值，'
+     '但注意那類技能常有自己的內部冷卻，攻速超過內冷就沒用了。'),
+    ('召喚物', re.compile(r'CreateUnit\('),
      '召喚物**不繼承**主人的裝備觸發／狀態／傷害 +%，只吃主人技能公式裡'
      '明寫的屬性（通常是最大生命與技能強度）與原生光環。'),
-    ('治療／增益', re.compile(r'SetWidgetLife|UNIT_STATE_LIFE\s*,\s*GetUnit'
-                            r'|SetHeroStr|SetHeroAgi|SetHeroInt'),
-     '直接寫數值，不經傷害事件 —— 全地圖沒有「治療加成」這種屬性，'
+    ('治療', re.compile(r'SetWidgetLife\(|UNIT_STATE_LIFE\s*,\s*GetUnitState'),
+     '直接寫血量，不經傷害事件 —— 全地圖沒有「治療加成」這種屬性，'
      '只能靠技能公式裡的係數（多半是技能強度）。'),
-    ('普攻觸發', re.compile(r'EVENT_PLAYER_UNIT_ATTACKED'),
-     '掛在「攻擊起手」而不是命中，攻速有價值；但注意技能常有自己的內冷。'),
+    ('屬性增益', re.compile(r'SetHero(Str|Agi|Int)\('),
+     '直接改屬性。注意有些是**永久**的（死亡不歸零），長局會滾雪球。'),
 ]
+
+
+def attacks_trigger(idx, uid):
+    """這隻有沒有掛在「攻擊時」的觸發器上。
+
+    純普攻英雄的技能程式碼裡不會出現 EVENT_PLAYER_UNIT_ATTACKED
+    （那寫在 InitTrig 裡），只能反過來找 `GetUnitTypeId(GetAttacker())=='<ID>'`。
+    """
+    lines = idx[0]
+    pat = "GetAttacker())=='%s'" % uid
+    return any(pat in l for l in lines)
 
 
 def _f(d, k):
@@ -422,7 +462,13 @@ def hero_doc(h, rec, idx, A, U, spans):
     # 這隻的傷害走哪條管線 —— 這一句就決定了穿透、DefCof、狀態抗性
     # 三大類裝備對它有沒有用，放在最前面讓人先看到。
     blob = '\n'.join(allcode)
-    hit = [(nm, note) for nm, rx, note in PIPE if rx.search(blob)]
+    hit = []
+    for nm, rx, note in PIPE:
+        # rx 是 None 的那一條（普攻）另外判定：技能程式碼裡看不到攻擊事件，
+        # 要反過來找腳本有沒有 GetUnitTypeId(GetAttacker())=='<這隻的ID>'
+        ok = attacks_trigger(idx, rec['id']) if rx is None else bool(rx.search(blob))
+        if ok:
+            hit.append((nm, note))
     if hit:
         pl = ['**傷害／效果走哪條管線**（決定哪些裝備對這隻有用）：', '']
         for nm, note in hit:
@@ -496,6 +542,35 @@ def hero_doc(h, rec, idx, A, U, spans):
                     L.append('  - 失去 %s `%s`' % (x['n'][0], x['id']))
             for x in (k.get('add') or [])[len(k.get('rm') or []):]:
                 L.append('  - 額外獲得 %s `%s`' % (x['n'][0], x['id']))
+            L.append('')
+
+    # 同編號但上面沒貼到的實作函式。英雄的實作散在 Trig_HeroSkills51_Actions、
+    # HeroQ51_Move、HeroW51_Dmg2… 這一組裡，而有些（例如決定門檻的那支）
+    # 不含任何技能 ID 字面量，前面的抽取抓不到。整份放一次，不要每個技能重複。
+    shown = set()
+    for a in ablist:
+        for f2, _, _ in code_for(idx, a['id'], spans):
+            shown.add(f2)
+    sib = []
+    for lo, hi in sorted(set(siblings(idx, [(i, i + 1) for i in range(len(idx[0]))
+                                            if idx[2][i] in shown]))):
+        nm2 = idx[2][lo]
+        # InitTrig_* 只是把觸發器接上事件的 5 行樣板，沒有數值
+        if nm2 not in shown and not nm2.startswith('InitTrig_'):
+            sib.append((nm2, lo, [x for x in idx[0][lo:hi] if x.strip()]))
+    if sib:
+        L.append('---')
+        L.append('')
+        L.append('## 同一組的其他實作函式')
+        L.append('')
+        L.append('英雄的實作散在同編號的一組函式裡，上面按技能抽取時抓不到的補在這裡')
+        L.append('（常見的是決定門檻、結算加成、清理 buff 的那幾支）。')
+        L.append('')
+        for name, ln, body in sib[:20]:
+            L.append('`%s`　war3map.j:%d' % (name, ln + 1))
+            L.append('```jass')
+            L.extend(body[:200])
+            L.append('```')
             L.append('')
 
     if keys_seen:

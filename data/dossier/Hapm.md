@@ -14,8 +14,8 @@
 
 **傷害／效果走哪條管線**（決定哪些裝備對這隻有用）：
 
-- **直接傷害** —— 走 `Trig_HeroTakeDamage_Actions` → **吃 DefCof（key 3/5/6/9/40/41）也吃穿透**，而且事件數越多穿透越划算。
-- **治療／增益** —— 直接寫數值，不經傷害事件 —— 全地圖沒有「治療加成」這種屬性，只能靠技能公式裡的係數（多半是技能強度）。
+- **技能直接傷害** —— 走 `Trig_HeroTakeDamage_Actions` → **吃 DefCof（key 3/5/6/9/40/41）也吃穿透**，而且傷害事件數越多，穿透越划算。
+- **屬性增益** —— 直接改屬性。注意有些是**永久**的（死亡不歸零），長局會滾雪球。
 
 細節見 `data/dossier/_engine.md`。
 
@@ -678,6 +678,468 @@ call SaveInteger(hash,Id,29,LoadInteger(hash,Id,29)+1)
 call SaveReal(hash,Id,19,LoadReal(hash,Id,19)+0.20)
 call SaveInteger(hash,GetHandleId(pl),15,1)
 endif
+```
+
+---
+
+## 同一組的其他實作函式
+
+英雄的實作散在同編號的一組函式裡，上面按技能抽取時抓不到的補在這裡
+（常見的是決定門檻、結算加成、清理 buff 的那幾支）。
+
+`Trig_EnemyHeroesSkill2_Actions`　war3map.j:32335
+```jass
+function Trig_EnemyHeroesSkill2_Actions takes nothing returns nothing
+local unit u=GetSpellAbilityUnit()
+local real cof=1.00+LoadReal(hash,GetHandleId(u),18)*0.33
+local integer u_Id=GetUnitTypeId(u)
+local unit u2
+local unit u3
+local unit u4
+local player pl=GetOwningPlayer(u)
+local integer n=GetPlayerId(pl)+1
+local integer Skill=GetSpellAbilityId()
+local real x=GetUnitX(u)
+local real y=GetUnitY(u)
+local real x2
+local real y2
+local real x3
+local real y3
+local real r
+local real r2
+local location p
+local location p2
+local group ug
+local group ug2
+local integer L
+local integer Id
+local timer t
+local integer i
+local real aoe
+local real dmg
+if Skill=='A0FF' then
+set dmg=325.*cof
+set ug=CreateGroup()
+set ug2=CreateGroup()
+call GroupEnumUnitsInRange(ug,x,y,400.,null)
+loop
+set u3=FirstOfGroup(ug)
+exitwhen u3==null
+if UnitAlive(u3)and IsUnitEnemy(u3,pl)and not IsUnitType(u3,UNIT_TYPE_STRUCTURE)then
+call GroupAddUnit(ug2,u3)
+endif
+call GroupRemoveUnit(ug,u3)
+endloop
+set ug2=GetRandomSubGroup(5,ug2)
+loop
+set u3=FirstOfGroup(ug2)
+exitwhen u3==null
+call BleedUnit(u,u3,dmg,1.20)
+call DestroyEffect(AddSpecialEffectTarget("Objects\\Spawnmodels\\Orc\\OrcSmallDeathExplode\\OrcSmallDeathExplode.mdl",u3,"origin"))
+call GroupRemoveUnit(ug2,u3)
+endloop
+call DestroyGroup(ug)
+call DestroyGroup(ug2)
+endif
+if Skill=='A0OL' then
+set x=GetUnitX(GetSpellTargetUnit())
+set y=GetUnitY(GetSpellTargetUnit())
+set r=GetRandomReal(0,360)
+set L=1
+loop
+exitwhen L>3
+set x2=x+250*Cos((r+I2R(L)*120)*bj_DEGTORAD)
+set y2=y+250*Sin((r+I2R(L)*120)*bj_DEGTORAD)
+call Spellmarker(u,525*cof,125,2.50,x2,y2,"war3mapImported\\Flamestrike Dark Blood I.mdx")
+set L=L+1
+endloop
+endif
+if Skill=='A0FR' then
+if n>5 then
+set ug=CreateGroup()
+call GroupAddGroup(udg_AllHeroes,ug)
+loop
+set u2=FirstOfGroup(ug)
+exitwhen u2==null
+if UnitAlive(u2)then
+set x=GetUnitX(u2)
+set y=GetUnitY(u2)
+call Spellmarker(u,650*cof,145,1.60,x,y,"Abilities\\Spells\\Human\\Thunderclap\\ThunderClapCaster.mdl")
+set r=GetRandomReal(0,360)
+set x=x+250*Cos(r*bj_DEGTORAD)
+set y=y+250*Sin(r*bj_DEGTORAD)
+call Spellmarker(u,650*cof,145,1.60,x,y,"Abilities\\Spells\\Human\\Thunderclap\\ThunderClapCaster.mdl")
+if udg_Modifiers[5]==true and n>5 then
+set r=GetRandomReal(0,360)
+set x=x+250*Cos(r*bj_DEGTORAD)
+set y=y+250*Sin(r*bj_DEGTORAD)
+call Spellmarker(u,650*cof,145,1.60,x,y,"Abilities\\Spells\\Human\\Thunderclap\\ThunderClapCaster.mdl")
+endif
+endif
+call GroupRemoveUnit(ug,u2)
+endloop
+call DestroyGroup(ug)
+else
+set ug=CreateGroup()
+call GroupEnumUnitsOfPlayer(ug,Player(8),null)
+loop
+set u2=FirstOfGroup(ug)
+exitwhen u2==null
+if IsUnitType(u2,UNIT_TYPE_HERO)and UnitAlive(u2)then
+set x=GetUnitX(u2)
+set y=GetUnitY(u2)
+call Spellmarker(u,650*cof,145,1.60,x,y,"Abilities\\Spells\\Human\\Thunderclap\\ThunderClapCaster.mdl")
+set r=GetRandomReal(0,360)
+set x=x+250*Cos(r*bj_DEGTORAD)
+set y=y+250*Sin(r*bj_DEGTORAD)
+call Spellmarker(u,650*cof,145,1.60,x,y,"Abilities\\Spells\\Human\\Thunderclap\\ThunderClapCaster.mdl")
+endif
+call GroupRemoveUnit(ug,u2)
+endloop
+call DestroyGroup(ug)
+set ug=CreateGroup()
+call GroupEnumUnitsOfPlayer(ug,Player(10),null)
+loop
+set u2=FirstOfGroup(ug)
+exitwhen u2==null
+if IsUnitType(u2,UNIT_TYPE_HERO)and UnitAlive(u2)then
+set x=GetUnitX(u2)
+set y=GetUnitY(u2)
+call Spellmarker(u,650*cof,145,1.60,x,y,"Abilities\\Spells\\Human\\Thunderclap\\ThunderClapCaster.mdl")
+set r=GetRandomReal(0,360)
+set x=x+250*Cos(r*bj_DEGTORAD)
+set y=y+250*Sin(r*bj_DEGTORAD)
+call Spellmarker(u,650*cof,145,1.60,x,y,"Abilities\\Spells\\Human\\Thunderclap\\ThunderClapCaster.mdl")
+endif
+call GroupRemoveUnit(ug,u2)
+endloop
+call DestroyGroup(ug)
+set ug=CreateGroup()
+call GroupEnumUnitsOfPlayer(ug,Player(11),null)
+loop
+set u2=FirstOfGroup(ug)
+exitwhen u2==null
+if IsUnitType(u2,UNIT_TYPE_HERO)and UnitAlive(u2)then
+set x=GetUnitX(u2)
+set y=GetUnitY(u2)
+call Spellmarker(u,650*cof,145,1.60,x,y,"Abilities\\Spells\\Human\\Thunderclap\\ThunderClapCaster.mdl")
+set r=GetRandomReal(0,360)
+set x=x+250*Cos(r*bj_DEGTORAD)
+set y=y+250*Sin(r*bj_DEGTORAD)
+call Spellmarker(u,650*cof,145,1.60,x,y,"Abilities\\Spells\\Human\\Thunderclap\\ThunderClapCaster.mdl")
+endif
+call GroupRemoveUnit(ug,u2)
+endloop
+call DestroyGroup(ug)
+endif
+endif
+if Skill=='A0Z4' then
+set u2=GetSpellTargetUnit()
+set x3=GetUnitX(u2)
+set y3=GetUnitY(u2)
+set r=40.
+set L=1
+loop
+if udg_Modifiers[5]==true then
+exitwhen L>36
+else
+exitwhen L>18
+endif
+set L=L+1
+set r=r+40.
+set r2=GetRandomReal(0.,360.)
+set x2=PolarX(x3,r,r2)
+set y2=PolarY(y3,r,r2)
+set u2=CreateUnit(pl,'o00O',x,y,0.00)
+call SaveReal(hash,GetHandleId(u2),13,350.00*cof)
+call SaveUnitHandle(hash,GetHandleId(u2),13,u)
+call UnitApplyTimedLife(u2,'BTLF',4.50)
+call IssuePointOrderById(u2,Order_attackground,x2,y2)
+endloop
+if UnitLifePercent(u)<=33.00 then
+set L=1
+loop
+if udg_Modifiers[5]==true then
+exitwhen L>20
+else
+exitwhen L>10
+endif
+set L=L+1
+set r=r+90.00
+set r2=GetRandomReal(0.,360.)
+set x2=PolarX(x3,r,r2)
+set y2=PolarY(y3,r,r2)
+set u2=CreateUnit(pl,'o00O',x,y,0.00)
+call SaveReal(hash,GetHandleId(u2),13,350.00*cof)
+call SaveUnitHandle(hash,GetHandleId(u2),13,u)
+call UnitApplyTimedLife(u2,'BTLF',4.50)
+call IssuePointOrderById(u2,Order_attackground,x2,y2)
+endloop
+endif
+endif
+if Skill=='ACdc' then
+set u2=GetSpellTargetUnit()
+set x2=GetUnitX(u2)
+set y2=GetUnitY(u2)
+set ug=CreateGroup()
+call GroupEnumUnitsInRange(ug,x2,y2,300.,null)
+loop
+set u3=FirstOfGroup(ug)
+exitwhen u3==null
+if UnitAlive(u3)and IsUnitEnemy(u3,pl)and not IsUnitType(u3,UNIT_TYPE_UNDEAD)and u3 !=u2 then
+set u4=CreateUnit(pl,'o010',x,y,0.00)
+call UnitAddAbility(u4,'A05C')
+```
+
+`Trig_CreateHero2_Actions`　war3map.j:35139
+```jass
+function Trig_CreateHero2_Actions takes nothing returns nothing
+local location p
+local unit u
+local integer i
+local group ug
+if udg_WaveFase==4 then
+set udg_EnemyHeroType[1]='E001'
+set udg_EnemyHeroType[2]='H00M'
+elseif udg_WaveFase==5 then
+set udg_EnemyHeroType[1]='E009'
+set udg_EnemyHeroType[2]='H00W'
+elseif udg_WaveFase==6 then
+set udg_EnemyHeroType[1]='H01Q'
+set udg_EnemyHeroType[2]='N02R'
+elseif udg_WaveFase==7 then
+set udg_EnemyHeroType[1]='N035'
+set udg_EnemyHeroType[2]='E00U'
+elseif udg_WaveFase==8 then
+set udg_EnemyHeroType[1]='U01B'
+set udg_EnemyHeroType[2]='H03B'
+elseif udg_WaveFase==9 then
+set udg_EnemyHeroType[1]='U012'
+set udg_EnemyHeroType[2]='H028'
+elseif udg_WaveFase==10 then
+set udg_EnemyHeroType[1]='Nklj'
+set udg_EnemyHeroType[2]='H045'
+elseif udg_WaveFase>=11 then
+set udg_EnemyHeroType[1]='N020'
+set udg_EnemyHeroType[2]='U00K'
+endif
+set udg_EnemyHeroLvl=udg_EnemyHeroLvl+1
+set i=GetRandomInt(1,4)
+if i<3 then
+set ug=udg_AttackGroup2
+else
+set ug=udg_AttackGroup3
+endif
+set p=udg_SpawnPoints[i]
+set u=CreateUnitAtLoc(AI[GetRandomInt(1,3)],udg_EnemyHeroType[GetRandomInt(1,2)],p,GetRandomReal(0.,360.))
+call SetHeroLevel(u,3+udg_EnemyHeroLvl,false)
+call PrepareEnemyHero(u)
+call GroupAddUnit(ug,u)
+if i<3 then
+call IssuePointOrderByIdLoc(u,Order_attack,udg_DefPoint2)
+else
+call IssuePointOrderByIdLoc(u,Order_attack,udg_DefPoint3)
+endif
+if udg_WaveFase==1 then
+set i=1
+loop
+exitwhen i>4
+call SpawnEnemy('n01D',p,ug,0)
+set i=i+1
+endloop
+elseif udg_WaveFase==2 then
+set i=1
+loop
+exitwhen i>4
+call SpawnEnemy('u00L',p,ug,0)
+call SpawnEnemy('u00C',p,ug,0)
+set i=i+1
+endloop
+elseif udg_WaveFase==3 then
+set i=1
+loop
+exitwhen i>8
+call SpawnEnemy('n01E',p,ug,0)
+set i=i+1
+endloop
+call SpawnEnemy('u00I',p,ug,0)
+call SpawnEnemy('u00I',p,ug,0)
+elseif udg_WaveFase==4 then
+set i=1
+loop
+exitwhen i>8
+call SpawnEnemy('n03I',p,ug,0)
+set i=i+1
+endloop
+call SpawnEnemy('u00I',p,ug,0)
+call SpawnEnemy('u00I',p,ug,0)
+elseif udg_WaveFase==5 then
+set i=1
+loop
+exitwhen i>8
+call SpawnEnemy('n03I',p,ug,0)
+set i=i+1
+endloop
+call SpawnEnemy('u00I',p,ug,0)
+call SpawnEnemy('u00I',p,ug,0)
+call SpawnEnemy('u00M',p,ug,0)
+call SpawnEnemy('u00M',p,ug,0)
+elseif udg_WaveFase>=6 then
+set i=1
+loop
+exitwhen i>8
+call SpawnEnemy('n03I',p,ug,0)
+set i=i+1
+endloop
+call SpawnEnemy('u00I',p,ug,0)
+call SpawnEnemy('u00I',p,ug,0)
+call SpawnEnemy('n02U',p,ug,0)
+call SpawnEnemy('n02U',p,ug,0)
+endif
+call DisplayTimedTextToForce(bj_FORCE_ALL_PLAYERS,30.,"|cFFE60000Появился вражеский герой!|r")
+set p=null
+set u=null
+set ug=null
+endfunction
+```
+
+`Trig_CreateHero2_Hard_Actions`　war3map.j:35565
+```jass
+function Trig_CreateHero2_Hard_Actions takes nothing returns nothing
+local location p
+local unit u
+local integer i
+local group ug
+if udg_WaveFase==4 then
+set udg_EnemyHeroType[1]='U012'
+set udg_EnemyHeroType[2]='H028'
+elseif udg_WaveFase==5 then
+set udg_EnemyHeroType[1]='U01B'
+set udg_EnemyHeroType[2]='H03B'
+elseif udg_WaveFase==6 then
+set udg_EnemyHeroType[1]='H03P'
+set udg_EnemyHeroType[2]='N05A'
+elseif udg_WaveFase==7 then
+set udg_EnemyHeroType[1]='E00B'
+set udg_EnemyHeroType[2]='N05L'
+elseif udg_WaveFase==8 then
+set udg_EnemyHeroType[1]='Udea'
+set udg_EnemyHeroType[2]='Ulic'
+elseif udg_WaveFase==9 then
+set udg_EnemyHeroType[1]='Uanb'
+set udg_EnemyHeroType[2]='N04W'
+elseif udg_WaveFase==10 then
+set udg_EnemyHeroType[1]='Opgh'
+set udg_EnemyHeroType[2]='Uwar'
+elseif udg_WaveFase>=11 then
+set udg_EnemyHeroType[1]='N06H'
+set udg_EnemyHeroType[2]='U00N'
+endif
+set udg_EnemyHeroLvl=udg_EnemyHeroLvl+1
+set i=GetRandomInt(1,4)
+if i<3 then
+set ug=udg_AttackGroup2
+else
+set ug=udg_AttackGroup3
+endif
+set p=udg_SpawnPoints[i]
+set u=CreateUnitAtLoc(AI[GetRandomInt(1,3)],udg_EnemyHeroType[GetRandomInt(1,2)],p,GetRandomReal(0.,360.))
+call SetHeroLevel(u,3+udg_EnemyHeroLvl,false)
+call PrepareEnemyHero(u)
+call GroupAddUnit(ug,u)
+if i<3 then
+call IssuePointOrderByIdLoc(u,Order_attack,udg_DefPoint2)
+else
+call IssuePointOrderByIdLoc(u,Order_attack,udg_DefPoint3)
+endif
+if udg_WaveFase==1 then
+call SpawnEnemy('u00I',p,ug,0)
+call SpawnEnemy('u00I',p,ug,0)
+elseif udg_WaveFase==2 then
+set i=1
+loop
+exitwhen i>4
+call SpawnEnemy('n02M',p,ug,0)
+call SpawnEnemy('u00M',p,ug,0)
+set i=i+1
+endloop
+elseif udg_WaveFase==3 then
+set i=1
+loop
+exitwhen i>4
+call SpawnEnemy('n02M',p,ug,0)
+call SpawnEnemy('u00M',p,ug,0)
+set i=i+1
+endloop
+call SpawnEnemy('u00I',p,ug,0)
+call SpawnEnemy('u00I',p,ug,0)
+elseif udg_WaveFase==4 then
+set i=1
+loop
+exitwhen i>4
+call SpawnEnemy('n02M',p,ug,0)
+call SpawnEnemy('u00M',p,ug,0)
+set i=i+1
+endloop
+call SpawnEnemy('n01F',p,ug,0)
+call SpawnEnemy('n01F',p,ug,0)
+elseif udg_WaveFase==5 then
+set i=1
+loop
+exitwhen i>4
+call SpawnEnemy('n02M',p,ug,0)
+call SpawnEnemy('n02U',p,ug,0)
+set i=i+1
+endloop
+call SpawnEnemy('n01F',p,ug,0)
+call SpawnEnemy('n01F',p,ug,0)
+elseif udg_WaveFase>=6 then
+set i=1
+loop
+exitwhen i>4
+call SpawnEnemy('n02M',p,ug,0)
+call SpawnEnemy('n02U',p,ug,0)
+call SpawnEnemy('n02W',p,ug,0)
+set i=i+1
+endloop
+call SpawnEnemy('n01F',p,ug,0)
+call SpawnEnemy('n01F',p,ug,0)
+endif
+call DisplayTimedTextToForce(bj_FORCE_ALL_PLAYERS,30.,"|cFFE60000Появился вражеский герой!|r")
+set p=null
+set u=null
+set ug=null
+endfunction
+```
+
+`HeroR2_check`　war3map.j:46952
+```jass
+function HeroR2_check takes nothing returns nothing
+local timer t=GetExpiredTimer()
+local integer Id=GetHandleId(t)
+local unit u=LoadUnitHandle(hash,Id,1)
+local integer u_Id=GetHandleId(u)
+local integer n=GetPlayerId(GetOwningPlayer(u))+1
+if UnitAlive(u)then
+if UnitLifePercent(u)<50.00 then
+if GetUnitAbilityLevel(u,'A01G')!=1 then
+call UnitAddAbility(u,'A01G')
+call SaveReal(hash,u_Id,4,LoadReal(hash,u_Id,4)+0.20)
+if udg_ItemBonusDMG[n]>=200 and GetUnitAbilityLevel(u,'A0R5')!=1 then
+call UnitAddAbility(u,'A0R5')
+endif
+endif
+else
+if GetUnitAbilityLevel(u,'A01G')==1 then
+call UnitRemoveAbility(u,'A01G')
+call SaveReal(hash,u_Id,4,LoadReal(hash,u_Id,4)-0.20)
+call UnitRemoveAbility(u,'A0R5')
+endif
+endif
+endif
+set t=null
+set u=null
+endfunction
 ```
 
 ---

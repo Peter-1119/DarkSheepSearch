@@ -15,7 +15,7 @@
 **傷害／效果走哪條管線**（決定哪些裝備對這隻有用）：
 
 - **狀態** —— 走 `Burn_Dmg` 那條，**外面包了 DisableTrigger** → 不吃 DefCof、不帶穿透、被狀態抗性擋。該買的是「狀態傷害 +%」「易燃」「機率倍率」。
-- **直接傷害** —— 走 `Trig_HeroTakeDamage_Actions` → **吃 DefCof（key 3/5/6/9/40/41）也吃穿透**，而且事件數越多穿透越划算。
+- **技能直接傷害** —— 走 `Trig_HeroTakeDamage_Actions` → **吃 DefCof（key 3/5/6/9/40/41）也吃穿透**，而且傷害事件數越多，穿透越划算。
 - **召喚物** —— 召喚物**不繼承**主人的裝備觸發／狀態／傷害 +%，只吃主人技能公式裡明寫的屬性（通常是最大生命與技能強度）與原生光環。
 
 細節見 `data/dossier/_engine.md`。
@@ -417,6 +417,79 @@ set udg_CTButton[9]=DialogAddButton(udg_CTWindow[n],"|cFFFFDC00Удалить с
 set udg_CTButton[72]=DialogAddButton(udg_CTWindow[n],"|cFFFFDC00Отмена|r",0)
 call DialogDisplay(pl,udg_CTWindow[n],true)
 endif
+```
+
+---
+
+## 同一組的其他實作函式
+
+英雄的實作散在同編號的一組函式裡，上面按技能抽取時抓不到的補在這裡
+（常見的是決定門檻、結算加成、清理 buff 的那幾支）。
+
+`Trig_HeroTurretsActivate55_Actions`　war3map.j:64600
+```jass
+function Trig_HeroTurretsActivate55_Actions takes nothing returns nothing
+local unit u=unit_global
+local timer t
+local integer Id
+set t=LoadTimerHandle(hash,GetHandleId(u),'TUR1')
+if t !=null then
+set Id=GetHandleId(t)
+call PauseTimer(t)
+call FlushChildHashtable(hash,Id)
+call DestroyTimer(t)
+endif
+set t=LoadTimerHandle(hash,GetHandleId(u),'TUR2')
+if t !=null then
+set Id=GetHandleId(t)
+call PauseTimer(t)
+call FlushChildHashtable(hash,Id)
+call DestroyTimer(t)
+endif
+set t=CreateTimer()
+set Id=GetHandleId(t)
+call SaveUnitHandle(hash,Id,1,u)
+call SaveReal(hash,Id,1,45.)
+call TimerStart(t,GetRandomReal(1.,2.),false,function Turret55)
+call SaveTimerHandle(hash,GetHandleId(u),'TUR1',t)
+set t=CreateTimer()
+set Id=GetHandleId(t)
+call SaveUnitHandle(hash,Id,1,u)
+call SaveReal(hash,Id,1,-45.)
+call TimerStart(t,GetRandomReal(1.,2.),false,function Turret55)
+call SaveTimerHandle(hash,GetHandleId(u),'TUR2',t)
+set t=null
+set u=null
+endfunction
+```
+
+`Trig_HeroKills55_Conditions`　war3map.j:64637
+```jass
+function Trig_HeroKills55_Conditions takes nothing returns boolean
+return GetUnitTypeId(GetKillingUnit())=='Nsjs'
+endfunction
+```
+
+`Trig_HeroKills55_Actions`　war3map.j:64640
+```jass
+function Trig_HeroKills55_Actions takes nothing returns nothing
+local unit u=GetKillingUnit()
+local integer u_Id=GetHandleId(u)
+local unit u2=GetDyingUnit()
+local player pl=GetOwningPlayer(u)
+local integer count
+if IsUnitEnemy(u2,pl)then
+set count=LoadInteger(hash,u_Id,'TAL1')+1
+if count==100 then
+set count=0
+call SaveReal(hash,u_Id,27,LoadReal(hash,u_Id,27)+0.05)
+endif
+call SaveInteger(hash,u_Id,'TAL1',count)
+endif
+set u=null
+set u2=null
+set pl=null
+endfunction
 ```
 
 ---
