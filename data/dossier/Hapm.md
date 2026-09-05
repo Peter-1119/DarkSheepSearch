@@ -4,9 +4,9 @@
 
 | | 初始 | 每級 |
 |---|---|---|
-| 力量 | None | None |
-| 敏捷 | None | None |
-| 智力 | None | None |
+| 力量 | （未覆寫） | （未覆寫） |
+| 敏捷 | （未覆寫） | （未覆寫） |
+| 智力 | （未覆寫） | （未覆寫） |
 
 > 近戰英雄，可走多種路線。裝備類乘數對他影響特別大。
 
@@ -261,109 +261,6 @@ call SetUnitState(u2,UNIT_STATE_LIFE,r+(dmg*6))
 
 實作：
 
-`ClearUnit`　war3map.j:2647
-```jass
-function ClearUnit takes unit u returns nothing
-local timer t
-local integer u_Id=GetHandleId(u)
-call UnitRemoveBuffs(u,false,true)
-if GetUnitAbilityLevel(u,'B040')==1 then
-call SaveInteger(hash,u_Id,'burn',0)
-call UnitRemoveAbility(u,'A0Y6')
-call UnitRemoveAbility(u,'B040')
-set t=LoadTimerHandle(hash,u_Id,'burt')
-call FlushChildHashtable(hash,GetHandleId(t))
-call PauseTimer(t)
-call DestroyTimer(t)
-call RemoveSavedHandle(hash,u_Id,'burt')
-endif
-if GetUnitAbilityLevel(u,'B041')==1 then
-call SaveInteger(hash,u_Id,'bled',0)
-call UnitRemoveAbility(u,'A0Y7')
-call UnitRemoveAbility(u,'B041')
-set t=LoadTimerHandle(hash,u_Id,'blud')
-call FlushChildHashtable(hash,GetHandleId(t))
-call PauseTimer(t)
-call DestroyTimer(t)
-call RemoveSavedHandle(hash,u_Id,'blud')
-endif
-if GetUnitAbilityLevel(u,'B006')==1 then
-call SaveInteger(hash,u_Id,'dise',0)
-call UnitRemoveAbility(u,'A0FQ')
-call UnitRemoveAbility(u,'B006')
-set t=LoadTimerHandle(hash,u_Id,'disa')
-call FlushChildHashtable(hash,GetHandleId(t))
-call PauseTimer(t)
-call DestroyTimer(t)
-call RemoveSavedHandle(hash,u_Id,'blud')
-endif
-if GetUnitAbilityLevel(u,'B02V')==1 then
-call UnitRemoveAbility(u,'S00G')
-call UnitRemoveAbility(u,'B042')
-set t=LoadTimerHandle(hash,u_Id,'B02V')
-call FlushChildHashtable(hash,GetHandleId(t))
-call PauseTimer(t)
-call DestroyTimer(t)
-call RemoveSavedHandle(hash,u_Id,'B02V')
-endif
-if GetUnitAbilityLevel(u,'B042')==1 then
-call UnitRemoveAbility(u,'S00M')
-call UnitRemoveAbility(u,'B042')
-set t=LoadTimerHandle(hash,u_Id,'B042')
-call FlushChildHashtable(hash,GetHandleId(t))
-call PauseTimer(t)
-call DestroyTimer(t)
-call RemoveSavedHandle(hash,u_Id,'B042')
-endif
-if GetUnitAbilityLevel(u,'B043')==1 then
-call UnitRemoveAbility(u,'S00N')
-call UnitRemoveAbility(u,'B043')
-call SaveReal(hash,u_Id,49,LoadReal(hash,u_Id,49)+0.50)
-set t=LoadTimerHandle(hash,u_Id,'B043')
-call FlushChildHashtable(hash,GetHandleId(t))
-call PauseTimer(t)
-call DestroyTimer(t)
-call RemoveSavedHandle(hash,u_Id,'B043')
-endif
-if GetUnitAbilityLevel(u,'B044')==1 then
-call UnitRemoveAbility(u,'A0Y9')
-call UnitRemoveAbility(u,'B044')
-call SaveReal(hash,u_Id,4,LoadReal(hash,u_Id,4)+0.20)
-call SaveReal(hash,u_Id,50,LoadReal(hash,u_Id,50)+0.50)
-set t=LoadTimerHandle(hash,u_Id,'B044')
-call FlushChildHashtable(hash,GetHandleId(t))
-call PauseTimer(t)
-call DestroyTimer(t)
-call RemoveSavedHandle(hash,u_Id,'B044')
-endif
-if GetUnitAbilityLevel(u,'B045')==1 then
-call UnitRemoveAbility(u,'S014')
-call UnitRemoveAbility(u,'B045')
-set t=LoadTimerHandle(hash,u_Id,'B045')
-call FlushChildHashtable(hash,GetHandleId(t))
-call PauseTimer(t)
-call DestroyTimer(t)
-call RemoveSavedHandle(hash,u_Id,'B045')
-endif
-if GetUnitAbilityLevel(u,'B046')==1 then
-call UnitRemoveAbility(u,'S015')
-call UnitRemoveAbility(u,'B046')
-call SaveReal(hash,u_Id,4,LoadReal(hash,u_Id,4)+0.20)
-call SaveReal(hash,u_Id,6,LoadReal(hash,u_Id,6)+0.30)
-call SaveReal(hash,u_Id,47,LoadReal(hash,u_Id,47)+1.00)
-call SaveReal(hash,u_Id,48,LoadReal(hash,u_Id,48)+1.00)
-call SaveReal(hash,u_Id,49,LoadReal(hash,u_Id,49)+1.00)
-call SaveReal(hash,u_Id,50,LoadReal(hash,u_Id,50)+1.00)
-set t=LoadTimerHandle(hash,u_Id,'B046')
-call FlushChildHashtable(hash,GetHandleId(t))
-call PauseTimer(t)
-call DestroyTimer(t)
-call RemoveSavedHandle(hash,u_Id,'B046')
-endif
-set t=null
-endfunction
-```
-
 `Trig_HeroSkills2_Actions`　war3map.j:46879
 ```jass
 elseif Skill=='A01B' then
@@ -410,37 +307,6 @@ call SetTextTagFadepoint(text,2.00)
 
 實作：
 
-`SetUnitAttackSpeed`　war3map.j:3819
-```jass
-function SetUnitAttackSpeed takes unit u,integer a returns nothing
-local integer Id=GetHandleId(u)
-local integer p=8
-local integer i=0
-local integer r=a
-if r>400 then
-set r=400
-endif
-loop
-call UnitRemoveAbility(u,setAttribute___abilityAddAttackSpeed[i])
-exitwhen i==8
-set i=i+1
-endloop
-if r>0 then
-loop
-exitwhen r<=0
-if R2I(Pow(2,p))>r then
-set p=p-1
-elseif R2I(Pow(2,p))<=r then
-call UnitAddAbility(u,setAttribute___abilityAddAttackSpeed[p])
-set r=r-R2I(Pow(2,p))
-set p=p-1
-endif
-endloop
-call SaveInteger(hash,Id,36,a)
-endif
-endfunction
-```
-
 `SetUnitExtraDamage`　war3map.j:3928
 ```jass
 function SetUnitExtraDamage takes unit u,integer a returns nothing
@@ -484,198 +350,159 @@ endloop
 endif
 call SaveInteger(hash,Id,34,a)
 endfunction
-function SetUnitLife takes unit c,integer hp returns nothing
-local integer Id=GetHandleId(c)
-set hp=R2I(I2R(hp)-(GetUnitState((c),UNIT_STATE_MAX_LIFE)))
-call SaveInteger(hash,Id,37,hp)
-loop
-exitwhen hp==0
-if hp>0 then
-if hp>=2000 then
-call UnitAddAbility(c,'ah00')
-call SetUnitAbilityLevel(c,'ah00',10)
-call UnitRemoveAbility(c,'ah00')
-set hp=hp-2000
-elseif hp>=500 then
-call UnitAddAbility(c,'ah00')
-call SetUnitAbilityLevel(c,'ah00',9)
-call UnitRemoveAbility(c,'ah00')
-set hp=hp-500
-elseif hp>=200 then
-call UnitAddAbility(c,'ah00')
-call SetUnitAbilityLevel(c,'ah00',8)
-call UnitRemoveAbility(c,'ah00')
-set hp=hp-200
-elseif hp>=50 then
-call UnitAddAbility(c,'ah00')
-call SetUnitAbilityLevel(c,'ah00',7)
-call UnitRemoveAbility(c,'ah00')
-set hp=hp-50
-elseif hp>=20 then
-call UnitAddAbility(c,'ah00')
-call SetUnitAbilityLevel(c,'ah00',6)
-call UnitRemoveAbility(c,'ah00')
-set hp=hp-20
-elseif hp>=10 then
-call UnitAddAbility(c,'ah00')
-call SetUnitAbilityLevel(c,'ah00',5)
-call UnitRemoveAbility(c,'ah00')
-set hp=hp-10
-elseif hp>=5 then
-call UnitAddAbility(c,'ah00')
-call SetUnitAbilityLevel(c,'ah00',4)
-call UnitRemoveAbility(c,'ah00')
-set hp=hp-5
-elseif hp>=2 then
-call UnitAddAbility(c,'ah00')
-call SetUnitAbilityLevel(c,'ah00',3)
-call UnitRemoveAbility(c,'ah00')
-set hp=hp-2
-else
-call UnitAddAbility(c,'ah00')
-call SetUnitAbilityLevel(c,'ah00',2)
-call UnitRemoveAbility(c,'ah00')
-set hp=hp-1
+```
+
+`PercentStatsRefresh`　war3map.j:21797
+```jass
+if GetUnitAbilityLevel(u,'A0Y5')==1 then
+set i=LoadInteger(hash,I_Id,1)
+set MainStat=GetHeroStr(u,false)
+set i2=(MainStat-i)/2
+if i !=i2 then
+call SetHeroStr(u,MainStat-i+i2,true)
 endif
-elseif hp<0 then
-if hp<=-2000 then
-call UnitAddAbility(c,'ah00')
-call SetUnitAbilityLevel(c,'ah00',19)
-call UnitRemoveAbility(c,'ah00')
-set hp=hp+2000
-elseif hp<=-500 then
-call UnitAddAbility(c,'ah00')
-call SetUnitAbilityLevel(c,'ah00',18)
-call UnitRemoveAbility(c,'ah00')
-set hp=hp+500
-elseif hp<=-200 then
-call UnitAddAbility(c,'ah00')
-call SetUnitAbilityLevel(c,'ah00',17)
-call UnitRemoveAbility(c,'ah00')
-set hp=hp+200
-elseif hp<=-50 then
-call UnitAddAbility(c,'ah00')
-call SetUnitAbilityLevel(c,'ah00',16)
-call UnitRemoveAbility(c,'ah00')
-set hp=hp+50
-elseif hp<=-20 then
-call UnitAddAbility(c,'ah00')
-call SetUnitAbilityLevel(c,'ah00',15)
-call UnitRemoveAbility(c,'ah00')
-set hp=hp+20
-elseif hp<=-10 then
-call UnitAddAbility(c,'ah00')
-call SetUnitAbilityLevel(c,'ah00',14)
-call UnitRemoveAbility(c,'ah00')
-set hp=hp+10
-elseif hp<=-5 then
-call UnitAddAbility(c,'ah00')
-call SetUnitAbilityLevel(c,'ah00',13)
-call UnitRemoveAbility(c,'ah00')
-set hp=hp+5
-elseif hp<=-2 then
-call UnitAddAbility(c,'ah00')
-call SetUnitAbilityLevel(c,'ah00',12)
-call UnitRemoveAbility(c,'ah00')
-set hp=hp+2
-else
-call UnitAddAbility(c,'ah00')
-call SetUnitAbilityLevel(c,'ah00',11)
-call UnitRemoveAbility(c,'ah00')
-set hp=hp+1
+call SaveInteger(hash,I_Id,1,i2)
+set i=LoadInteger(hash,I_Id,2)
+set MainStat=GetHeroAgi(u,false)
+set i2=(MainStat-i)/2
+if i !=i2 then
+call SetHeroAgi(u,MainStat-i+i2,true)
 endif
+call SaveInteger(hash,I_Id,2,i2)
+set i=LoadInteger(hash,I_Id,3)
+set MainStat=GetHeroInt(u,false)
+set i2=(MainStat-i)/2
+if i !=i2 then
+call SetHeroInt(u,MainStat-i+i2,true)
 endif
-endloop
-set c=null
-endfunction
-function SetUnitMana takes unit c,integer mp returns nothing
-local integer Id=GetHandleId(c)
-set mp=R2I(I2R(mp)-(GetUnitState((c),UNIT_STATE_MAX_MANA)))
-call SaveInteger(hash,Id,38,mp)
-loop
-exitwhen mp==0
-if mp>0 then
-if mp>=500 then
-call UnitAddAbility(c,'am00')
-call SetUnitAbilityLevel(c,'am00',9)
-call UnitRemoveAbility(c,'am00')
-set mp=mp-500
-elseif mp>=200 then
-call UnitAddAbility(c,'am00')
-call SetUnitAbilityLevel(c,'am00',8)
-call UnitRemoveAbility(c,'am00')
-set mp=mp-200
-elseif mp>=50 then
-call UnitAddAbility(c,'am00')
-call SetUnitAbilityLevel(c,'am00',7)
-call UnitRemoveAbility(c,'am00')
-set mp=mp-50
-elseif mp>=20 then
-call UnitAddAbility(c,'am00')
-call SetUnitAbilityLevel(c,'am00',6)
-call UnitRemoveAbility(c,'am00')
-set mp=mp-20
-elseif mp>=10 then
-call UnitAddAbility(c,'am00')
-call SetUnitAbilityLevel(c,'am00',5)
-call UnitRemoveAbility(c,'am00')
-set mp=mp-10
-elseif mp>=5 then
-call UnitAddAbility(c,'am00')
-call SetUnitAbilityLevel(c,'am00',4)
-call UnitRemoveAbility(c,'am00')
-set mp=mp-5
-elseif mp>=2 then
-call UnitAddAbility(c,'am00')
-call SetUnitAbilityLevel(c,'am00',3)
-call UnitRemoveAbility(c,'am00')
-set mp=mp-2
-else
-call UnitAddAbility(c,'am00')
-call SetUnitAbilityLevel(c,'am00',2)
-call UnitRemoveAbility(c,'am00')
-set mp=mp-1
+call SaveInteger(hash,I_Id,3,i2)
+```
+
+`PercentStatsRefresh`　war3map.j:21843
+```jass
+if GetUnitAbilityLevel(u,'A0Y5')==1 then
+set i=LoadInteger(hash,I_Id,1)
+set MainStat=GetHeroStr(u,false)
+set i2=(MainStat-i)/3*2
+if i !=i2 then
+call SetHeroStr(u,MainStat-i+i2,true)
 endif
-elseif mp<0 then
-if mp<=-500 then
-call UnitAddAbility(c,'am00')
-call SetUnitAbilityLevel(c,'am00',17)
-call UnitRemoveAbility(c,'am00')
-set mp=mp+500
-elseif mp<=-200 then
-call UnitAddAbility(c,'am00')
-call SetUnitAbilityLevel(c,'am00',16)
-call UnitRemoveAbility(c,'am00')
-set mp=mp+200
-elseif mp<=-50 then
-call UnitAddAbility(c,'am00')
-call SetUnitAbilityLevel(c,'am00',15)
-call UnitRemoveAbility(c,'am00')
-set mp=mp+50
-elseif mp<=-20 then
-call UnitAddAbility(c,'am00')
-call SetUnitAbilityLevel(c,'am00',14)
-call UnitRemoveAbility(c,'am00')
-set mp=mp+20
-elseif mp<=-10 then
-call UnitAddAbility(c,'am00')
-call SetUnitAbilityLevel(c,'am00',13)
-call UnitRemoveAbility(c,'am00')
-set mp=mp+10
-elseif mp<=-5 then
-call UnitAddAbility(c,'am00')
-call SetUnitAbilityLevel(c,'am00',12)
-call UnitRemoveAbility(c,'am00')
-set mp=mp+5
-elseif mp<=-2 then
-call UnitAddAbility(c,'am00')
-call SetUnitAbilityLevel(c,'am00',11)
-call UnitRemoveAbility(c,'am00')
-set mp=mp+2
-else
-call UnitAddAbility(c,'am00')
-call SetUnitAbilityLevel(c,'am00',10)
-call UnitRemoveAbility(c,'am00')
+call SaveInteger(hash,I_Id,1,i2)
+set i=LoadInteger(hash,I_Id,2)
+set MainStat=GetHeroAgi(u,false)
+set i2=(MainStat-i)/3*2
+if i !=i2 then
+call SetHeroAgi(u,MainStat-i+i2,true)
+endif
+call SaveInteger(hash,I_Id,2,i2)
+set i=LoadInteger(hash,I_Id,3)
+set MainStat=GetHeroInt(u,false)
+set i2=(MainStat-i)/3*2
+if i !=i2 then
+call SetHeroInt(u,MainStat-i+i2,true)
+endif
+call SaveInteger(hash,I_Id,3,i2)
+```
+
+`PercentStatsRefresh`　war3map.j:21889
+```jass
+if GetUnitAbilityLevel(u,'A0Y5')==1 then
+set i=LoadInteger(hash,I_Id,1)
+set MainStat=R2I((GetUnitState((u),UNIT_STATE_MAX_LIFE)))
+set i2=(MainStat-i)/5*2
+if i !=i2 then
+call SetUnitLife(u,MainStat-i+i2)
+endif
+call SaveInteger(hash,I_Id,1,i2)
+set i=LoadInteger(hash,I_Id,2)
+set MainStat=R2I((GetUnitState((u),UNIT_STATE_MAX_MANA)))
+set i2=(MainStat-i)/5*2
+if i !=i2 then
+call SetUnitMana(u,MainStat-i+i2)
+endif
+call SaveInteger(hash,I_Id,2,i2)
+```
+
+`PercentStatsRefresh`　war3map.j:21921
+```jass
+if GetUnitAbilityLevel(u,'A0Y5')==1 then
+set i=LoadInteger(hash,I_Id,1)
+set MainStat=R2I((GetUnitState((u),UNIT_STATE_MAX_MANA)))
+set i2=(MainStat-i)
+if i !=i2 then
+call SetUnitMana(u,MainStat-i+i2)
+endif
+call SaveInteger(hash,I_Id,1,i2)
+```
+
+`PercentStatsRefresh`　war3map.j:21939
+```jass
+if GetUnitAbilityLevel(u,'A0Y5')==1 then
+set i=LoadInteger(hash,I_Id,1)
+set MainStat=GetHeroStr(u,false)
+set i2=(MainStat-i)/3*2
+if i !=i2 then
+call SetHeroStr(u,MainStat-i+i2,true)
+endif
+call SaveInteger(hash,I_Id,1,i2)
+```
+
+`PercentStatsRefresh`　war3map.j:21957
+```jass
+if GetUnitAbilityLevel(u,'A0Y5')==1 then
+set i=LoadInteger(hash,I_Id,1)
+set MainStat=GetUnitAttackSpeed(u)
+set i2=GetHeroStr(u,false)
+if i !=i2 then
+call SetUnitAttackSpeed(u,MainStat-i+i2)
+endif
+call SaveInteger(hash,I_Id,1,i2)
+```
+
+`PercentStatsRefresh`　war3map.j:21975
+```jass
+if GetUnitAbilityLevel(u,'A0Y5')==1 then
+set i=LoadInteger(hash,I_Id,1)
+set MainStat=GetHeroStr(u,false)
+set i2=GetHeroInt(u,false)*2
+if i !=i2 then
+call SetHeroStr(u,MainStat-i+i2,true)
+endif
+call SaveInteger(hash,I_Id,1,i2)
+```
+
+`PercentStatsRefresh`　war3map.j:21993
+```jass
+if GetUnitAbilityLevel(u,'A0Y5')==1 then
+set r=LoadReal(hash,I_Id,1)
+set r2=I2R(GetHeroStr(u,false))*0.30
+if r !=r2 then
+call SetUnitLifeRegeneration(u,GetUnitLifeRegeneration(u)-r+r2)
+endif
+call SaveReal(hash,I_Id,1,r2)
+```
+
+`PercentStatsRefresh`　war3map.j:22009
+```jass
+if GetUnitAbilityLevel(u,'A0Y5')==1 then
+set r=LoadReal(hash,I_Id,1)
+set r2=I2R(GetHeroInt(u,false))*0.10
+if r !=r2 then
+call SetUnitManaRegeneration(u,GetUnitManaRegeneration(u)-r+r2)
+endif
+call SaveReal(hash,I_Id,1,r2)
+```
+
+`PercentStatsRefresh`　war3map.j:22025
+```jass
+if GetUnitAbilityLevel(u,'A0Y5')==1 then
+set i=LoadInteger(hash,I_Id,1)
+set n=GetPlayerId(GetOwningPlayer(u))+1
+set i2=R2I(udg_ItemBonusDMG[n]*0.4)
+if i !=i2 then
+call SetUnitExtraDamage(u,GetUnitExtraDamage(u)-i+i2)
+endif
+call SaveInteger(hash,I_Id,1,i2)
 ```
 
 ## 轉移／移除據點 `A03V`
@@ -753,21 +580,88 @@ call SaveInteger(hash,GetHandleId(pl),15,1)
 endif
 ```
 
+## 挑釁者 `A0RH`　—　來自天賦「選擇天賦」
+
+俄文原名：Провокатор
+
+```
+強度等級：T2
+屬性加成／每級屬性成長加成：
++2 / +1
++1 / +0
++0 / +0
+
+使用後迫使附近的敵人攻擊英雄。
+
+被動效果：
+「雷霆一擊」會移除敵人身上的正面效果，並移除英雄身上的負面效果與狀態。
+
+英雄每次受到傷害時回復 1 點生命值。
+```
+
+物件欄位（原型 `ANcl`）：`Ncl1 = [0.5, 0.8999999761581421]`, `Ncl2 = 1`, `Ncl3 = 1`, `Ncl4 = [0.5, 0.8999999761581421]`, `Ncl5 = 0`, `Ncl6 = ['channel', 'acidbomb']`, `acap = `, `acdn = [1.0, 16.0]`, `aher = 0`, `alev = 1`, `amcs = [95, 110, 125, 140, 155, 170]`, `aran = 100.0`, `arqa = 15`, `atar = air,ground,debris,enemy,neutral,organic`
+
+實作：
+
+`Trig_HeroSkills2_Actions`　war3map.j:46838
+```jass
+if Skill=='A0RH' then
+call SetHeroStr(u,GetHeroStr(u,false)+2,true)
+call SetHeroAgi(u,GetHeroAgi(u,false)+1,true)
+call SaveInteger(hash,GetHandleId(u),'aSTR',1)
+call UnitRemoveAbility(u,'A0R6')
+call UnitAddAbility(u,'A0RI')
+call SaveInteger(hash,GetHandleId(pl),15,1)
+```
+
+## 國王的祝福 `A0Y2`　—　來自天賦「選擇天賦」
+
+俄文原名：Благословение короля
+
+```
+強度等級：T3
+屬性加成／每級屬性成長加成：
++3 / +1
++1 / +0
++3 / +1
+
+英雄每次提升等級時，生命值上限提高 100 點、攻擊力提高 10 點，但同時復活時間增加 1 秒。
+
+英雄獲得點燃抗性、流血抗性以及 +20% 反傷加成。
+```
+
+物件欄位（原型 `ANcl`）：`Ncl1 = [0.5, 0.8999999761581421]`, `Ncl2 = 1`, `Ncl3 = 1`, `Ncl4 = [0.5, 0.8999999761581421]`, `Ncl5 = 0`, `Ncl6 = ['channel', 'acolyteharvest']`, `acap = `, `acdn = [1.0, 16.0]`, `aher = 0`, `alev = 1`, `amcs = [95, 110, 125, 140, 155, 170]`, `aran = 100.0`, `arqa = 24`, `atar = air,ground,debris,enemy,neutral,organic`
+
+實作：
+
+`Trig_HeroSkills2_Actions`　war3map.j:46845
+```jass
+elseif Skill=='A0Y2' then
+call SetHeroStr(u,GetHeroStr(u,false)+3,true)
+call SetHeroAgi(u,GetHeroAgi(u,false)+1,true)
+call SetHeroInt(u,GetHeroInt(u,false)+3,true)
+call SaveInteger(hash,GetHandleId(u),'aSTR',1)
+call SaveInteger(hash,GetHandleId(u),'aINT',1)
+call UnitRemoveAbility(u,'A0R6')
+call UnitAddAbility(u,'A0Y3')
+set Id=GetHandleId(u)
+call SaveInteger(hash,Id,27,LoadInteger(hash,Id,27)+1)
+call SaveInteger(hash,Id,29,LoadInteger(hash,Id,29)+1)
+call SaveReal(hash,Id,19,LoadReal(hash,Id,19)+0.20)
+call SaveInteger(hash,GetHandleId(pl),15,1)
+endif
+```
+
 ---
 
 ## 這隻碰到的 hash key
 
-  - **1** — 裝備技能冷卻乘數
-  - **4** — 受到傷害 −%（被減的）
-  - **6** — 造成傷害 +%
-  - **19** — 反傷加成
-  - **27** — 點燃傷害 +%／（整數槽）抵抗點燃旗標
-  - **29** — 流血傷害 +%／（整數槽）抵抗流血旗標
-  - **37** — 生命上限增量（GetUnitLife 讀這個）
-  - **47** — 點燃抗性
-  - **48** — 冰凍抗性
-  - **49** — 流血抗性
-  - **50** — 疾病抗性
+  - **1** — 裝備技能冷卻乘數〔持有者〕StartModCooldown 讀，CD×它，下限 0.20
+  - **3** — 對英雄傷害 +%〔攻擊者〕Trig_HeroTakeDamage_Actions 的 DefCof
+  - **4** — 受到傷害 −%〔受害者〕DefCof 減去它 → 值越大越耐打；電擊會扣它
+  - **19** — 反傷加成〔被攻擊者〕
+  - **27** — 實數＝點燃傷害 +%〔施加者〕／整數＝抵抗點燃旗標〔受害者〕**兩者不同表**
+  - **29** — 實數＝流血傷害 +%〔施加者〕／整數＝抵抗流血旗標〔受害者〕（加成寫錯變數，實際無效 —— 見 地圖問題回報 A-4）
 
 ---
 

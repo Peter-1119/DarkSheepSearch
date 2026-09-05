@@ -4,9 +4,9 @@
 
 | | 初始 | 每級 |
 |---|---|---|
-| 力量 | 22 | None |
-| 敏捷 | 19 | 2.299999952316284 |
-| 智力 | 21 | 2.299999952316284 |
+| 力量 | 22 | （未覆寫） |
+| 敏捷 | 19 | 2.3 |
+| 智力 | 21 | 2.3 |
 
 > 機動性高的近戰英雄，能衝進戰場中心並承受大量傷害。
 
@@ -227,18 +227,6 @@ endif
 endloop
 endif
 call SaveInteger(hash,Id,34,a)
-endfunction
-```
-
-`SetUnitLifeRegeneration`　war3map.j:4167
-```jass
-function SetUnitLifeRegeneration takes unit u,real a returns nothing
-local integer Id=GetHandleId(u)
-if a>8191 then
-set a=8191
-endif
-call SaveReal(hash,Id,32,a)
-call GroupAddUnit(setAttribute___allUnits,u)
 endfunction
 ```
 
@@ -508,13 +496,24 @@ endif
 
 ---
 
+## 這隻召喚／製造的單位
+
+（技能程式碼裡的 `CreateUnit` 目標。數值取自 war3map.w3u，
+沒列出的欄位代表地圖沒覆寫、沿用原型。）
+
+### `o02K` Контрнаступление（原型 `ocat`）
+  - 骰面 1 ／ 射程 750 ／ 攻擊範圍 1200 ／ 技能 A01T,Aloc
+  - 技能 `A01T` Мультишот　`Efk1 = 0.0`, `Efk2 = 0.0`, `Efk3 = 5`, `aare = 850.0`, `acdn = 0.0`, `adur = 0.0`, `ahdu = 0.0`, `amac = 0.05000000074505806`, `amat = war3mapImported\Shot II Orange.mdx`, `amsp = 1200`, `atar = air,enemies,ward,structure,ground,item,debris`
+
+---
+
 ## 這隻碰到的 hash key
 
-  - **1** — 裝備技能冷卻乘數
-  - **3** — 對英雄傷害 +%
-  - **4** — 受到傷害 −%（被減的）
-  - **28** — 冰凍傷害 +%／（整數槽）抵抗冰凍旗標
-  - **29** — 流血傷害 +%／（整數槽）抵抗流血旗標
+  - **1** — 裝備技能冷卻乘數〔持有者〕StartModCooldown 讀，CD×它，下限 0.20
+  - **3** — 對英雄傷害 +%〔攻擊者〕Trig_HeroTakeDamage_Actions 的 DefCof
+  - **4** — 受到傷害 −%〔受害者〕DefCof 減去它 → 值越大越耐打；電擊會扣它
+  - **28** — 實數＝冰凍傷害 +%〔施加者〕／整數＝抵抗冰凍旗標〔受害者〕
+  - **29** — 實數＝流血傷害 +%〔施加者〕／整數＝抵抗流血旗標〔受害者〕（加成寫錯變數，實際無效 —— 見 地圖問題回報 A-4）
 
 ---
 

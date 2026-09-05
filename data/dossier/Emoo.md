@@ -4,9 +4,9 @@
 
 | | 初始 | 每級 |
 |---|---|---|
-| 力量 | 12 | 1.2999999523162842 |
+| 力量 | 12 | 1.3 |
 | 敏捷 | 24 | 3.5 |
-| 智力 | 20 | None |
+| 智力 | 20 | （未覆寫） |
 
 > 刺客型英雄，物理與魔法傷害兼具，泛用性高。
 
@@ -38,51 +38,6 @@
 物件欄位（原型 `AHtb`）：`Htb1 = 1.0`, `acdn = 10.0`, `adur = [3.5999999046325684, 4.0, 4.800000190734863, 5.200000286102295, 4.400000095367432]`, `ahdu = [1.2000000476837158, 1.4000000953674316, 1.6000001430511475, 1.8000001907348633, 2.000000238418579]`, `alev = 5`, `amac = 0.05000000074505806`, `amat = war3mapImported\Azul Arrow Defrosted.mdx`, `amcs = [65, 95, 105, 85]`, `amsp = 1200`
 
 實作：
-
-`SetUnitExtraArmor`　war3map.j:3846
-```jass
-function SetUnitExtraArmor takes unit u,integer a returns nothing
-local integer Id=GetHandleId(u)
-local integer p=10
-local integer i=0
-local integer r
-if a>2047 then
-set a=2047
-endif
-loop
-call UnitRemoveAbility(u,setAttribute___abilityAddArmor[i])
-call UnitRemoveAbility(u,setAttribute___abilityRemoveArmor[i])
-exitwhen i==10
-set i=i+1
-endloop
-if a>0 then
-set r=a
-loop
-exitwhen r<=0
-if R2I(Pow(2,p))>r then
-set p=p-1
-elseif R2I(Pow(2,p))<=r then
-call UnitAddAbility(u,setAttribute___abilityAddArmor[p])
-set r=r-R2I(Pow(2,p))
-set p=p-1
-endif
-endloop
-elseif a<0 then
-set r=-a
-loop
-exitwhen r<=0
-if R2I(Pow(2,p))>r then
-set p=p-1
-elseif R2I(Pow(2,p))<=r then
-call UnitAddAbility(u,setAttribute___abilityRemoveArmor[p])
-set r=r-R2I(Pow(2,p))
-set p=p-1
-endif
-endloop
-endif
-call SaveInteger(hash,Id,35,a)
-endfunction
-```
 
 `Hero36Q`　war3map.j:57537
 ```jass
@@ -305,26 +260,6 @@ call TimerStart(t,12,false,function RemoveBuff)
 
 實作：
 
-`EndCooldown`　war3map.j:2898
-```jass
-function EndCooldown takes nothing returns nothing
-local timer t=GetExpiredTimer()
-local integer Id=GetHandleId(t)
-local integer Key_1=LoadInteger(hash,Id,1)
-local integer Key_2=LoadInteger(hash,Id,2)
-local timerdialog td=LoadTimerDialogHandle(hash,Id,3)
-if td !=null then
-call DestroyTimerDialog(td)
-endif
-call SaveInteger(hash,Key_1,Key_2,0)
-call PauseTimer(t)
-call FlushChildHashtable(hash,Id)
-call DestroyTimer(t)
-set t=null
-set td=null
-endfunction
-```
-
 `Hero36R`　war3map.j:57577
 ```jass
 function Hero36R takes nothing returns nothing
@@ -462,6 +397,76 @@ endif
 
 *（JASS 裡沒有對應實作 —— 這是原生技能，效果看上面的物件欄位）*
 
+## 毀滅齊射 `A0VN`　—　來自皮膚「黑月騎士」
+
+俄文原名：Губительный залп
+
+```
+英雄的攻擊會射出一輪額外的箭矢，命中路徑上的敵人。
+
+每支箭矢的傷害：（40% 敏捷）點
+箭矢數量：8 +（2% 技能強度）支
+
+冷卻：6 秒
+```
+
+每級變動：
+  - 第 3 行：40 / 50 / 60 / 70 / 80
+
+物件欄位（原型 `Amgl`）：`aher = 1`, `alev = 5`
+
+實作：
+
+`ProjectilesSkill36`　war3map.j:57694
+```jass
+function ProjectilesSkill36 takes nothing returns nothing
+local timer t=GetExpiredTimer()
+local integer Id=GetHandleId(t)
+local unit u=LoadUnitHandle(hash,Id,1)
+local real x=LoadReal(hash,Id,1)
+local real y=LoadReal(hash,Id,2)
+local real angle=LoadReal(hash,Id,3)
+local integer count=LoadInteger(hash,Id,1)
+local real dmg=I2R(GetHeroAgi(u,true))*(0.30+0.10*I2R(GetUnitAbilityLevel(u,'A0VN')))
+if count>0 then
+set count=count-1
+call SaveInteger(hash,Id,1,count)
+set angle=angle+GetRandomReal(-20.,20.)
+call CreateProjectile(u,'o01Y',33.,1400.,x,y,angle,dmg,45.,45.,"none","Abilities\\Spells\\Other\\BlackArrow\\BlackArrowMissile.mdl")
+else
+call FlushChildHashtable(hash,Id)
+call PauseTimer(t)
+call DestroyTimer(t)
+endif
+set t=null
+set u=null
+endfunction
+```
+
+`Trig_HeroAttack36_Actions`　war3map.j:57767
+```jass
+elseif GetUnitAbilityLevel(u,'A0VN')>=1 and LoadInteger(hash,Id,'A0VN')==0 and IsUnitEnemy(u3,pl)then
+call SaveInteger(hash,Id,'A0VN',1)
+set t=CreateTimer()
+set Id=GetHandleId(t)
+call SaveInteger(hash,Id,1,GetHandleId(u))
+call SaveInteger(hash,Id,2,'A0VN')
+call TimerStart(t,5,false,function EndCooldown)
+set x=GetUnitX(u)
+set y=GetUnitY(u)
+set angle=AngleXY(x,y,x3,y3)
+set count=8+R2I(udg_ItemBonusDMG[GetPlayerId(pl)+1]*0.02)
+set t=CreateTimer()
+set Id=GetHandleId(t)
+call TimerStart(t,0.04,true,function ProjectilesSkill36)
+call SaveUnitHandle(hash,Id,1,u)
+call SaveInteger(hash,Id,1,count)
+call SaveReal(hash,Id,1,x)
+call SaveReal(hash,Id,2,y)
+call SaveReal(hash,Id,3,angle)
+endif
+```
+
 ---
 
 ## 皮膚
@@ -473,8 +478,8 @@ endif
 
 ## 這隻碰到的 hash key
 
-  - **1** — 裝備技能冷卻乘數
-  - **35** — 額外護甲
+  - **1** — 裝備技能冷卻乘數〔持有者〕StartModCooldown 讀，CD×它，下限 0.20
+  - **3** — 對英雄傷害 +%〔攻擊者〕Trig_HeroTakeDamage_Actions 的 DefCof
 
 ---
 

@@ -4,8 +4,8 @@
 
 | | 初始 | 每級 |
 |---|---|---|
-| 力量 | 34 | 5.0 |
-| 敏捷 | 14 | 2.0 |
+| 力量 | 34 | 5 |
+| 敏捷 | 14 | 2 |
 | 智力 | 26 | 3.5 |
 
 > 強力的近戰英雄，能累積力量來釋放強大技能。
@@ -415,63 +415,6 @@ set e=null
 endfunction
 ```
 
-`SetUnitExtraArmor`　war3map.j:3846
-```jass
-function SetUnitExtraArmor takes unit u,integer a returns nothing
-local integer Id=GetHandleId(u)
-local integer p=10
-local integer i=0
-local integer r
-if a>2047 then
-set a=2047
-endif
-loop
-call UnitRemoveAbility(u,setAttribute___abilityAddArmor[i])
-call UnitRemoveAbility(u,setAttribute___abilityRemoveArmor[i])
-exitwhen i==10
-set i=i+1
-endloop
-if a>0 then
-set r=a
-loop
-exitwhen r<=0
-if R2I(Pow(2,p))>r then
-set p=p-1
-elseif R2I(Pow(2,p))<=r then
-call UnitAddAbility(u,setAttribute___abilityAddArmor[p])
-set r=r-R2I(Pow(2,p))
-set p=p-1
-endif
-endloop
-elseif a<0 then
-set r=-a
-loop
-exitwhen r<=0
-if R2I(Pow(2,p))>r then
-set p=p-1
-elseif R2I(Pow(2,p))<=r then
-call UnitAddAbility(u,setAttribute___abilityRemoveArmor[p])
-set r=r-R2I(Pow(2,p))
-set p=p-1
-endif
-endloop
-endif
-call SaveInteger(hash,Id,35,a)
-endfunction
-```
-
-`SetUnitLifeRegeneration`　war3map.j:4167
-```jass
-function SetUnitLifeRegeneration takes unit u,real a returns nothing
-local integer Id=GetHandleId(u)
-if a>8191 then
-set a=8191
-endif
-call SaveReal(hash,Id,32,a)
-call GroupAddUnit(setAttribute___allUnits,u)
-endfunction
-```
-
 `Trig_UKills_Actions`　war3map.j:21143
 ```jass
 if GetUnitAbilityLevel(u,'A0K7')>=1 then
@@ -540,6 +483,50 @@ set t=CreateTimer()
 set Id=GetHandleId(t)
 call SetUnitLifeRegeneration(u,GetUnitLifeRegeneration(u)+power*0.30)
 call SaveUnitHandle(hash,Id,1,u)
+call SaveReal(hash,Id,1,power*0.30)
+call TimerStart(t,10,false,function Hero52W_Buff)
+endif
+if power>=100 then
+call DestroyEffect(AddSpecialEffect("war3mapImported\\NewDirtEXNofire.mdx",x,y))
+set dmg=I2R(GetHeroStr(u,true))*3.50
+set ug=CreateGroup()
+call GroupEnumUnitsInRange(ug,x,y,250,null)
+loop
+set u3=FirstOfGroup(ug)
+exitwhen u3==null
+if UnitAlive(u3)and IsUnitEnemy(u3,pl)then
+call UnitDamageTarget(u,u3,dmg,false,false,ATTACK_TYPE_NORMAL,DAMAGE_TYPE_MAGIC,WEAPON_TYPE_WHOKNOWS)
+endif
+call GroupRemoveUnit(ug,u3)
+endloop
+call DestroyGroup(ug)
+endif
+if power>=150 then
+set L=0
+set ug=CreateGroup()
+call GroupEnumUnitsInRange(ug,x,y,400,null)
+loop
+set u3=FirstOfGroup(ug)
+exitwhen u3==null
+if UnitAlive(u3)and IsUnitEnemy(u3,pl)then
+set L=L+2
+if power>=300 then
+call SetUnitExtraArmor(u3,GetUnitExtraArmor(u3)-5)
+endif
+endif
+call GroupRemoveUnit(ug,u3)
+endloop
+call DestroyGroup(ug)
+set t=CreateTimer()
+set Id=GetHandleId(t)
+call SetUnitExtraArmor(u,GetUnitExtraArmor(u)+L)
+call SaveUnitHandle(hash,Id,1,u)
+call SaveInteger(hash,Id,1,L)
+call TimerStart(t,10,false,function Hero52W_Buff2)
+endif
+if power>=300 then
+call SetUnitState(u,UNIT_STATE_LIFE,GetUnitState(u,UNIT_STATE_LIFE)+(GetUnitState((u),UNIT_STATE_MAX_LIFE))*0.10)
+endif
 ```
 
 ## 灼燒法球 `A06N`
@@ -689,37 +676,6 @@ call FrostUnit(damager,target,0.50)
 endif
 endif
 set t=null
-endfunction
-```
-
-`SetUnitAttackSpeed`　war3map.j:3819
-```jass
-function SetUnitAttackSpeed takes unit u,integer a returns nothing
-local integer Id=GetHandleId(u)
-local integer p=8
-local integer i=0
-local integer r=a
-if r>400 then
-set r=400
-endif
-loop
-call UnitRemoveAbility(u,setAttribute___abilityAddAttackSpeed[i])
-exitwhen i==8
-set i=i+1
-endloop
-if r>0 then
-loop
-exitwhen r<=0
-if R2I(Pow(2,p))>r then
-set p=p-1
-elseif R2I(Pow(2,p))<=r then
-call UnitAddAbility(u,setAttribute___abilityAddAttackSpeed[p])
-set r=r-R2I(Pow(2,p))
-set p=p-1
-endif
-endloop
-call SaveInteger(hash,Id,36,a)
-endif
 endfunction
 ```
 
@@ -1112,16 +1068,27 @@ endif
 
 ---
 
+## 這隻召喚／製造的單位
+
+（技能程式碼裡的 `CreateUnit` 目標。數值取自 war3map.w3u，
+沒列出的欄位代表地圖沒覆寫、沿用原型。）
+
+### `o02R` FireOrb（原型 `ocat`）
+  - 生命 1 ／ 骰面 1 ／ 攻擊範圍 1200 ／ 技能 A0MS,A086,Aloc
+  - 技能 `A0MS` (выжигающая сфера, жар)　`Eim1 = 0.009999999776482582`, `aare = [180.0, 240.0]`, `abuf = Bpig`, `adur = 1.0`, `ahdu = 1.0`, `alev = 2`, `atar = ground,enemy,neutral,organic`
+  - 技能 `A086` (выжигающая сфера, атака)　`aare = 400.0`, `acdn = [0.4000000059604645, 0.30000001192092896, 0.20000000298023224]`, `adur = 0.009999999776482582`, `ahdu = 0.009999999776482582`, `aite = 1`, `alev = 3`, `amat = Abilities\Weapons\PhoenixMissile\Phoenix_Missile_mini.mdl`, `amsp = 800`, `atar = ground,air,enemy`, `pxf1 = 0.009999999776482582`, `pxf2 = 0.0`
+
+---
+
 ## 這隻碰到的 hash key
 
-  - **1** — 裝備技能冷卻乘數
-  - **3** — 對英雄傷害 +%
-  - **4** — 受到傷害 −%（被減的）
-  - **27** — 點燃傷害 +%／（整數槽）抵抗點燃旗標
-  - **35** — 額外護甲
-  - **44** — （狀態免疫旗標）
-  - **46** — 易燃效果強化
-  - **47** — 點燃抗性
+  - **1** — 裝備技能冷卻乘數〔持有者〕StartModCooldown 讀，CD×它，下限 0.20
+  - **3** — 對英雄傷害 +%〔攻擊者〕Trig_HeroTakeDamage_Actions 的 DefCof
+  - **4** — 受到傷害 −%〔受害者〕DefCof 減去它 → 值越大越耐打；電擊會扣它
+  - **27** — 實數＝點燃傷害 +%〔施加者〕／整數＝抵抗點燃旗標〔受害者〕**兩者不同表**
+  - **44** — 狀態免疫旗標〔受害者〕>0 則所有狀態函式開頭直接 return，完全不判定
+  - **46** — 易燃效果強化〔施加者〕影響易燃的機率倍率與跳數加成
+  - **47** — 點燃抗性〔受害者〕係數減去它；電擊讓它 −1.00
 
 ---
 

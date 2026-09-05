@@ -4,9 +4,9 @@
 
 | | 初始 | 每級 |
 |---|---|---|
-| 力量 | 38 | 6.0 |
-| 敏捷 | 6 | 1.0 |
-| 智力 | 20 | 2.200000047683716 |
+| 力量 | 38 | 6 |
+| 敏捷 | 6 | 1 |
+| 智力 | 20 | 2.2 |
 
 > 結實的遠程英雄，防禦類型為「強化」，側翼砲塔會自動射擊前方敵人，可累積點燃強化。
 
@@ -133,23 +133,6 @@ call TimerStart(t,0.03,true,function HeroQ55_Dmg)
 物件欄位（原型 `ANcl`）：`Ncl1 = 1.0`, `Ncl2 = 2`, `Ncl3 = 1`, `Ncl4 = 1.0`, `Ncl5 = 0`, `Ncl6 = charm`, `acap = `, `acdn = 20.0`, `alev = 5`, `amcs = [90, 105, 120, 135, 150]`, `aran = 1200.0`, `atar = air,ground,debris,enemy,neutral,organic`
 
 實作：
-
-`KnockBackUnit`　war3map.j:2849
-```jass
-function KnockBackUnit takes unit knockbacked,real distance,real time,real degrees,real period returns nothing
-local integer amount=R2I(time/period)
-local real portion=distance/amount
-local timer t=CreateTimer()
-call SaveUnitHandle(hash,GetHandleId(t),0,knockbacked)
-call SaveInteger(hash,GetHandleId(t),1,amount)
-call SaveReal(hash,GetHandleId(t),2,portion)
-call SaveInteger(hash,GetHandleId(t),3,0)
-call SaveReal(hash,GetHandleId(t),4,degrees)
-call TimerStart(t,period,true,function KnockBackUnit_Timer)
-set t=null
-set knockbacked=null
-endfunction
-```
 
 `HeroW55_Dmg`　war3map.j:64433
 ```jass
@@ -550,13 +533,13 @@ endif
 
 ## 這隻碰到的 hash key
 
-  - **1** — 裝備技能冷卻乘數
-  - **3** — 對英雄傷害 +%
-  - **4** — 受到傷害 −%（被減的）
-  - **27** — 點燃傷害 +%／（整數槽）抵抗點燃旗標
-  - **44** — （狀態免疫旗標）
-  - **46** — 易燃效果強化
-  - **47** — 點燃抗性
+  - **1** — 裝備技能冷卻乘數〔持有者〕StartModCooldown 讀，CD×它，下限 0.20
+  - **3** — 對英雄傷害 +%〔攻擊者〕Trig_HeroTakeDamage_Actions 的 DefCof
+  - **4** — 受到傷害 −%〔受害者〕DefCof 減去它 → 值越大越耐打；電擊會扣它
+  - **27** — 實數＝點燃傷害 +%〔施加者〕／整數＝抵抗點燃旗標〔受害者〕**兩者不同表**
+  - **44** — 狀態免疫旗標〔受害者〕>0 則所有狀態函式開頭直接 return，完全不判定
+  - **46** — 易燃效果強化〔施加者〕影響易燃的機率倍率與跳數加成
+  - **47** — 點燃抗性〔受害者〕係數減去它；電擊讓它 −1.00
 
 ---
 

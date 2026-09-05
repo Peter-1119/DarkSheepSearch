@@ -4,8 +4,8 @@
 
 | | 初始 | 每級 |
 |---|---|---|
-| 力量 | None | 2.299999952316284 |
-| 敏捷 | 15 | 1.2000000476837158 |
+| 力量 | （未覆寫） | 2.3 |
+| 敏捷 | 15 | 1.2 |
 | 智力 | 28 | 3.5 |
 
 > 戰鬥法師，只有攻擊性法術，專精於「點燃」狀態。
@@ -137,37 +137,6 @@ call TimerStart(t,0.33,true,function HeroQ25_Start)
 物件欄位（原型 `ANcl`）：`Ncl1 = 1.0`, `Ncl2 = 1`, `Ncl3 = 1`, `Ncl4 = 1.0`, `Ncl5 = 0`, `Ncl6 = charm`, `acap = `, `acdn = 20.0`, `alev = 5`, `amcs = [100, 125, 150, 175, 200]`, `aran = 800.0`, `atar = ground,enemy,neutral,organic,air`
 
 實作：
-
-`CreateProjectile`　war3map.j:3071
-```jass
-function CreateProjectile takes unit u,integer dummy_Id,real speed,real dist,real x,real y,real angle,real dmg,real aoe,real size,string eff,string eff2 returns nothing
-local timer t=CreateTimer()
-local integer Id=GetHandleId(t)
-local unit u2
-local player pl=GetOwningPlayer(u)
-if eff !="none" then
-call DestroyEffect(AddSpecialEffect(eff,x,y))
-endif
-set u2=CreateUnit(pl,dummy_Id,x,y,angle)
-call SetUnitX(u2,x)
-call SetUnitY(u2,y)
-call SaveUnitHandle(hash,Id,1,u)
-call SaveUnitHandle(hash,Id,2,u2)
-call SaveReal(hash,Id,1,dmg)
-call SaveReal(hash,Id,2,aoe)
-call SaveInteger(hash,Id,2,-3)
-call SaveReal(hash,Id,3,speed)
-call SaveReal(hash,Id,4,dist)
-call SaveReal(hash,Id,5,angle)
-call SaveReal(hash,Id,6,0.)
-call SaveReal(hash,Id,7,size)
-call SaveStr(hash,Id,1,eff2)
-call TimerStart(t,0.03,true,function ProjectileMove)
-set t=null
-set u2=null
-set pl=null
-endfunction
-```
 
 `FireTorrent`　war3map.j:54209
 ```jass
@@ -493,17 +462,81 @@ call DialogDisplay(pl,udg_CTWindow[n],true)
 endif
 ```
 
+## 火焰浪潮 `A03G`　—　來自天賦「選擇天賦」
+
+俄文原名：Волны огня
+
+```
+強度等級：T3
+屬性加成／每級屬性成長加成：
++1 / +0
++0 / +0
++3 / +1
+
+「烈焰洪流」發射的投射物數量增加 100%，但會有些微散射。
+```
+
+物件欄位（原型 `ANcl`）：`Ncl1 = [0.5, 0.8999999761581421]`, `Ncl2 = 1`, `Ncl3 = 1`, `Ncl4 = [0.5, 0.8999999761581421]`, `Ncl5 = 0`, `Ncl6 = ['channel', 'acidbomb']`, `acap = `, `acdn = [1.0, 16.0]`, `aher = 0`, `alev = 1`, `amcs = [95, 110, 125, 140, 155, 170]`, `aran = 100.0`, `arqa = 24`, `atar = air,ground,debris,enemy,neutral,organic`
+
+實作：
+
+`Trig_HeroSkills25_Actions`　war3map.j:54262
+```jass
+if Skill=='A03G' then
+call SetHeroStr(u,GetHeroStr(u,false)+1,true)
+call SetHeroInt(u,GetHeroInt(u,false)+3,true)
+call SaveInteger(hash,GetHandleId(u),'aINT',1)
+call UnitRemoveAbility(u,'A02L')
+call UnitAddAbility(u,'A03H')
+call SaveInteger(hash,GetHandleId(pl),15,1)
+```
+
+## 人間煉獄 `A03J`　—　來自天賦「選擇天賦」
+
+俄文原名：Ад на земле
+
+```
+強度等級：T3+
+屬性加成／每級屬性成長加成：
++3 / +1
++2 / +0
++6 / +2
+
+你無視敵人的點燃抗性。
+
+點燃效果會立即造成全部傷害，而非逐漸燃燒。易燃所帶來的燃燒時間延長效果同樣會被計入。
+```
+
+物件欄位（原型 `ANcl`）：`Ncl1 = [0.5, 0.8999999761581421]`, `Ncl2 = 1`, `Ncl3 = 1`, `Ncl4 = [0.5, 0.8999999761581421]`, `Ncl5 = 0`, `Ncl6 = ['channel', 'acolyteharvest']`, `acap = `, `acdn = [1.0, 16.0]`, `aher = 0`, `alev = 1`, `amcs = [95, 110, 125, 140, 155, 170]`, `aran = 100.0`, `arqa = 32`, `atar = air,ground,debris,enemy,neutral,organic`
+
+實作：
+
+`Trig_HeroSkills25_Actions`　war3map.j:54269
+```jass
+elseif Skill=='A03J' then
+call SetHeroStr(u,GetHeroStr(u,false)+3,true)
+call SetHeroAgi(u,GetHeroAgi(u,false)+2,true)
+call SetHeroInt(u,GetHeroInt(u,false)+6,true)
+call SaveInteger(hash,GetHandleId(u),'aSTR',1)
+call SaveInteger(hash,GetHandleId(u),'aINT',2)
+call UnitRemoveAbility(u,'A02L')
+call UnitAddAbility(u,'A03M')
+call SaveInteger(hash,GetHandleId(u),'A03M',1)
+call SaveInteger(hash,GetHandleId(pl),15,1)
+endif
+```
+
 ---
 
 ## 這隻碰到的 hash key
 
-  - **1** — 裝備技能冷卻乘數
-  - **3** — 對英雄傷害 +%
-  - **4** — 受到傷害 −%（被減的）
-  - **5** — 對 0-1 級敵人傷害 +%
-  - **6** — 造成傷害 +%
-  - **27** — 點燃傷害 +%／（整數槽）抵抗點燃旗標
-  - **44** — （狀態免疫旗標）
+  - **1** — 裝備技能冷卻乘數〔持有者〕StartModCooldown 讀，CD×它，下限 0.20
+  - **3** — 對英雄傷害 +%〔攻擊者〕Trig_HeroTakeDamage_Actions 的 DefCof
+  - **4** — 受到傷害 −%〔受害者〕DefCof 減去它 → 值越大越耐打；電擊會扣它
+  - **5** — 對 0-1 級敵人傷害 +%〔攻擊者〕
+  - **6** — 造成傷害 +%〔攻擊者〕；電擊會扣它 → 目標輸出下降
+  - **27** — 實數＝點燃傷害 +%〔施加者〕／整數＝抵抗點燃旗標〔受害者〕**兩者不同表**
+  - **44** — 狀態免疫旗標〔受害者〕>0 則所有狀態函式開頭直接 return，完全不判定
 
 ---
 

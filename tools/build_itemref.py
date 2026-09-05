@@ -54,7 +54,7 @@ def main():
          '驗配裝用 `python tools/check_build.py --file <你的檔案>`，',
          '或直接 `python tools/check_build.py 星界耳環 純淨紫水晶 …`（接中文名或 ID）。', '',
          '---', '', '## 屬性排行榜', '',
-         '挑裝備最常問的問題：某個屬性最高的是誰。', '']
+         '挑裝備最常問的問題：某個屬性最高的是誰。各列前 12 名。', '']
 
     for k, lab in RANK:
         # 裝備技能冷卻是負值越好，排序要反過來
@@ -66,7 +66,7 @@ def main():
         pct = '%' if META.get(k, {}).get('pct') else ''
         top = ['%s %+g%s（%s%s）' % (D[i]['name'], val, pct, D[i]['group'],
                                     '，%d金' % D[i]['gold'] if D[i].get('gold') else '')
-               for val, i in rows[:6]]
+               for val, i in rows[:12]]
         L.append('- **%s**：%s' % (lab, ' ／ '.join(top)))
     L += ['', '---', '', '## 硬性規則', '',
           '- 6 個正常欄位（**幽魂之狼／烈焰領主／機械戰體只有 4 格**），',

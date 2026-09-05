@@ -4,9 +4,9 @@
 
 | | 初始 | 每級 |
 |---|---|---|
-| 力量 | None | 2.0 |
-| 敏捷 | None | 2.4000000953674316 |
-| 智力 | None | 1.5 |
+| 力量 | （未覆寫） | 2 |
+| 敏捷 | （未覆寫） | 2.4 |
+| 智力 | （未覆寫） | 1.5 |
 
 > 容易上手的近戰刺客。
 
@@ -493,6 +493,74 @@ call DialogDisplay(pl,udg_CTWindow[n],true)
 endif
 ```
 
+## 虛空之刃 `A0RX`　—　來自天賦「選擇天賦」
+
+俄文原名：Пустотные клинки
+
+```
+強度等級：T2
+屬性加成／每級屬性成長加成：
++1 / +0
++1 / +1
++1 / +0
+
+技能「燃燒之刃」失去點燃效果。擊殺敵人可使技能「燃燒之刃」的作用範圍提升 1 點。累積 200 次擊殺後，累積效果減弱為 0.5 點。
+```
+
+物件欄位（原型 `ANcl`）：`Ncl1 = [0.5, 0.8999999761581421]`, `Ncl2 = 1`, `Ncl3 = 1`, `Ncl4 = [0.5, 0.8999999761581421]`, `Ncl5 = 0`, `Ncl6 = ['channel', 'acidbomb']`, `acap = `, `acdn = [1.0, 16.0]`, `aher = 0`, `alev = 1`, `amcs = [95, 110, 125, 140, 155, 170]`, `aran = 100.0`, `arqa = 15`, `atar = air,ground,debris,enemy,neutral,organic`
+
+實作：
+
+`Trig_HeroSkills1_Actions`　war3map.j:46632
+```jass
+if Skill=='A0RX' then
+call SetHeroStr(u,GetHeroStr(u,false)+1,true)
+call SetHeroAgi(u,GetHeroAgi(u,false)+1,true)
+call SetHeroInt(u,GetHeroInt(u,false)+1,true)
+call SaveInteger(hash,GetHandleId(u),'aAGI',1)
+call UnitRemoveAbility(u,'A0RV')
+call UnitAddAbility(u,'A0RY')
+call SaveInteger(hash,GetHandleId(pl),15,1)
+```
+
+## 精湛劍術 `A0YG`　—　來自天賦「選擇天賦」
+
+俄文原名：Искусное фехтование
+
+```
+強度等級：T3
+屬性加成／每級屬性成長加成：
++2 / +1
++3 / +1
++1 / +0
+
+英雄獲得 15% 攻擊閃避與 -20% 裝備技能冷卻。
+
+技能「燃燒之刃」現在會額外以 30% 機率對敵人施加易傷。
+
+技能「著魔」在持續期間會將閃避提升至 30%，額外降低 20% 裝備技能冷卻，並增加 +40% 裝備技能威力。
+```
+
+物件欄位（原型 `ANcl`）：`Ncl1 = [0.5, 0.8999999761581421]`, `Ncl2 = 1`, `Ncl3 = 1`, `Ncl4 = [0.5, 0.8999999761581421]`, `Ncl5 = 0`, `Ncl6 = ['channel', 'faeriefireon']`, `acap = `, `acdn = [1.0, 16.0]`, `aher = 0`, `alev = 1`, `amcs = [95, 110, 125, 140, 155, 170]`, `aran = 100.0`, `arqa = 24`, `atar = air,ground,debris,enemy,neutral,organic`
+
+實作：
+
+`Trig_HeroSkills1_Actions`　war3map.j:46640
+```jass
+elseif Skill=='A0YG' then
+call SetHeroStr(u,GetHeroStr(u,false)+2,true)
+call SetHeroAgi(u,GetHeroAgi(u,false)+3,true)
+call SetHeroInt(u,GetHeroInt(u,false)+1,true)
+call SaveInteger(hash,GetHandleId(u),'aSTR',1)
+call SaveInteger(hash,GetHandleId(u),'aAGI',1)
+call UnitRemoveAbility(u,'A0RV')
+call UnitAddAbility(u,'A0YH')
+call SaveReal(hash,GetHandleId(u),1,LoadReal(hash,GetHandleId(u),1)-0.20)
+call UnitAddAbility(u,'A0S1')
+call SaveInteger(hash,GetHandleId(pl),15,1)
+endif
+```
+
 ---
 
 ## 皮膚
@@ -503,13 +571,13 @@ endif
 
 ## 這隻碰到的 hash key
 
-  - **1** — 裝備技能冷卻乘數
-  - **18** — 裝備技能威力
-  - **27** — 點燃傷害 +%／（整數槽）抵抗點燃旗標
-  - **29** — 流血傷害 +%／（整數槽）抵抗流血旗標
-  - **44** — （狀態免疫旗標）
-  - **46** — 易燃效果強化
-  - **47** — 點燃抗性
+  - **1** — 裝備技能冷卻乘數〔持有者〕StartModCooldown 讀，CD×它，下限 0.20
+  - **18** — 裝備技能威力〔持有者〕道具觸發用 cof = key18 + 1
+  - **27** — 實數＝點燃傷害 +%〔施加者〕／整數＝抵抗點燃旗標〔受害者〕**兩者不同表**
+  - **29** — 實數＝流血傷害 +%〔施加者〕／整數＝抵抗流血旗標〔受害者〕（加成寫錯變數，實際無效 —— 見 地圖問題回報 A-4）
+  - **44** — 狀態免疫旗標〔受害者〕>0 則所有狀態函式開頭直接 return，完全不判定
+  - **46** — 易燃效果強化〔施加者〕影響易燃的機率倍率與跳數加成
+  - **47** — 點燃抗性〔受害者〕係數減去它；電擊讓它 −1.00
 
 ---
 

@@ -4,9 +4,9 @@
 
 | | 初始 | 每級 |
 |---|---|---|
-| 力量 | None | None |
-| 敏捷 | 22 | 3.0 |
-| 智力 | 18 | 2.0 |
+| 力量 | （未覆寫） | （未覆寫） |
+| 敏捷 | 22 | 3 |
+| 智力 | 18 | 2 |
 
 > 結實的近戰英雄，強化路線很多，部分技能有獨立運作方式。
 
@@ -952,24 +952,6 @@ set t=null
 endfunction
 ```
 
-`StartModCooldown`　war3map.j:2914
-```jass
-function StartModCooldown takes integer u_Id,integer i_Id,real CD returns nothing
-local real CDCof=LoadReal(hash,u_Id,1)
-local timer t=CreateTimer()
-if CDCof<0.20 then
-set CDCof=0.20
-endif
-set CD=CD*CDCof
-call SaveReal(hash,u_Id,i_Id,1.)
-set t=CreateTimer()
-call SaveInteger(hash,GetHandleId(t),1,u_Id)
-call SaveInteger(hash,GetHandleId(t),2,i_Id)
-call TimerStart(t,CD,false,function EndModCooldown)
-set t=null
-endfunction
-```
-
 `Trig_HeroAttack45_Actions`　war3map.j:60539
 ```jass
 if LoadReal(hash,u_Id,'A08W')==0. then
@@ -999,16 +981,16 @@ endif
 
 ## 這隻碰到的 hash key
 
-  - **1** — 裝備技能冷卻乘數
-  - **3** — 對英雄傷害 +%
-  - **4** — 受到傷害 −%（被減的）
-  - **18** — 裝備技能威力
-  - **27** — 點燃傷害 +%／（整數槽）抵抗點燃旗標
-  - **44** — （狀態免疫旗標）
-  - **46** — 易燃效果強化
-  - **47** — 點燃抗性
-  - **49** — 流血抗性
-  - **50** — 疾病抗性
+  - **1** — 裝備技能冷卻乘數〔持有者〕StartModCooldown 讀，CD×它，下限 0.20
+  - **3** — 對英雄傷害 +%〔攻擊者〕Trig_HeroTakeDamage_Actions 的 DefCof
+  - **4** — 受到傷害 −%〔受害者〕DefCof 減去它 → 值越大越耐打；電擊會扣它
+  - **18** — 裝備技能威力〔持有者〕道具觸發用 cof = key18 + 1
+  - **27** — 實數＝點燃傷害 +%〔施加者〕／整數＝抵抗點燃旗標〔受害者〕**兩者不同表**
+  - **44** — 狀態免疫旗標〔受害者〕>0 則所有狀態函式開頭直接 return，完全不判定
+  - **46** — 易燃效果強化〔施加者〕影響易燃的機率倍率與跳數加成
+  - **47** — 點燃抗性〔受害者〕係數減去它；電擊讓它 −1.00
+  - **49** — 流血抗性〔受害者〕；電擊 −1.00
+  - **50** — 疾病抗性〔受害者〕；電擊 −1.00
 
 ---
 

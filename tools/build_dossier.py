@@ -35,22 +35,52 @@ MAXCODE = 260          # 每個技能最多附幾行程式碼，避免整份函�
 
 # 這些函式太巨大又什麼都提到，附上去只是雜訊
 NOISE_FN = {'Trig_HeroPick_Actions', 'Trig_i_Actions', 'Trig_NewInit_Actions',
-            'Trig_AllBossesSkillsActivate_Actions'}
+            'Trig_AllBossesSkillsActivate_Actions', 'InitCustomTriggers',
+            'Trig_CheckLvl_Actions', 'Trig_ClearUnusedLevels_Actions'}
 
-# hash key 的意義（跟 數值機制.md 一致）
+# 這些是「設定某個數值」的共用包裝，內容是位元展開的樣板（SetUnitLife 一支就
+# 104 行）。技能呼叫它們只代表「這裡改了生命/護甲/攻速」，把整份貼進卷宗
+# 會佔掉六成篇幅卻等於沒資訊。跟到它們就停，只在程式碼裡看得到呼叫那一行。
+UTIL_FN = {
+    'SetUnitLife', 'GetUnitLife', 'SetUnitMana', 'SetUnitExtraArmor',
+    'GetUnitExtraArmor', 'SetUnitAttackSpeed', 'GetUnitAttackSpeed',
+    'SetUnitLifeRegeneration', 'GetUnitLifeRegeneration',
+    'SetUnitManaRegeneration', 'GetUnitManaRegeneration',
+    'ClearUnit', 'StartCooldown', 'StartModCooldown', 'EndCooldown',
+    'DistanceNative', 'PolarX', 'PolarY', 'AngleXY', 'UnitLifePercent',
+    'GetRandomSubGroup', 'CreateProjectile', 'KnockBackUnit', 'KnockBackUnit2',
+}
+
+# hash key 的意義。方向很重要 —— 同一個 key 在「施加者」與「受害者」身上
+# 是完全不同的東西，先前就有天賦把「點燃抗性」寫進「點燃傷害 +%」的例子。
 KEYS = {
-    1: '裝備技能冷卻乘數', 3: '對英雄傷害 +%', 4: '受到傷害 −%（被減的）',
-    5: '對 0-1 級敵人傷害 +%', 6: '造成傷害 +%', 8: '對英雄減傷',
-    9: '對亡靈傷害 +%', 10: '金幣加成', 16: '穿透（每次傷害事件附加真傷）',
-    17: '反傷', 18: '裝備技能威力', 19: '反傷加成', 20: '（雜項）',
-    27: '點燃傷害 +%／（整數槽）抵抗點燃旗標',
-    28: '冰凍傷害 +%／（整數槽）抵抗冰凍旗標',
-    29: '流血傷害 +%／（整數槽）抵抗流血旗標',
-    35: '額外護甲', 37: '生命上限增量（GetUnitLife 讀這個）',
-    40: '對近戰傷害 +%', 41: '對遠程傷害 +%',
-    44: '（狀態免疫旗標）', 45: '疾病傷害 +%／（整數槽）抵抗疾病旗標',
-    46: '易燃效果強化', 47: '點燃抗性', 48: '冰凍抗性',
-    49: '流血抗性', 50: '疾病抗性',
+    1:  '裝備技能冷卻乘數〔持有者〕StartModCooldown 讀，CD×它，下限 0.20',
+    3:  '對英雄傷害 +%〔攻擊者〕Trig_HeroTakeDamage_Actions 的 DefCof',
+    4:  '受到傷害 −%〔受害者〕DefCof 減去它 → 值越大越耐打；電擊會扣它',
+    5:  '對 0-1 級敵人傷害 +%〔攻擊者〕',
+    6:  '造成傷害 +%〔攻擊者〕；電擊會扣它 → 目標輸出下降',
+    8:  '對英雄減傷〔受害者〕',
+    9:  '對亡靈傷害 +%〔攻擊者〕',
+    10: '金幣加成〔擊殺者〕Trig_gold_Actions 讀擊殺者 handle',
+    16: '穿透〔攻擊者〕每次傷害事件後**另外**打一段 CHAOS/UNIVERSAL，不吃減傷',
+    17: '反傷〔被攻擊者〕整數槽 ≥1 則免疫反傷',
+    18: '裝備技能威力〔持有者〕道具觸發用 cof = key18 + 1',
+    19: '反傷加成〔被攻擊者〕',
+    27: '實數＝點燃傷害 +%〔施加者〕／整數＝抵抗點燃旗標〔受害者〕**兩者不同表**',
+    28: '實數＝冰凍傷害 +%〔施加者〕／整數＝抵抗冰凍旗標〔受害者〕',
+    29: '實數＝流血傷害 +%〔施加者〕／整數＝抵抗流血旗標〔受害者〕'
+        '（加成寫錯變數，實際無效 —— 見 地圖問題回報 A-4）',
+    35: '額外護甲〔單位〕SetUnitExtraArmor 的儲存槽，可為負',
+    37: '生命上限增量〔單位〕只存「最後一次呼叫的差值」，不是總量',
+    44: '狀態免疫旗標〔受害者〕>0 則所有狀態函式開頭直接 return，完全不判定',
+    45: '實數＝疾病傷害 +%〔施加者〕／整數＝抵抗疾病旗標〔受害者〕'
+        '（加成同樣寫錯變數）',
+    46: '易燃效果強化〔施加者〕影響易燃的機率倍率與跳數加成',
+    47: '點燃抗性〔受害者〕係數減去它；電擊讓它 −1.00',
+    48: '冰凍抗性〔受害者〕；電擊 −1.00',
+    49: '流血抗性〔受害者〕；電擊 −1.00',
+    50: '疾病抗性〔受害者〕；電擊 −1.00',
+    52: '（全腳本沒有任何地方讀它 —— 死碼）',
 }
 
 CLR = re.compile(r'\|c[0-9A-Fa-f]{8}|\|r')
@@ -59,6 +89,7 @@ ABIL = re.compile(r"'(A[A-Za-z0-9]{3})'")
 NEG = re.compile(r"!=\s*'(A[A-Za-z0-9]{3})'")
 CALLED = re.compile(r'\b(?:function|call) ([A-Za-z0-9_]+)')
 HASHKEY = re.compile(r'(?:Save|Load)(?:Real|Integer)\(hash,[A-Za-z_0-9()]+,(\d+)[,)]')
+CREATE = re.compile(r"CreateUnit\([^,]+,'(.{4})'")
 
 
 def index_jass(jass):
@@ -141,7 +172,8 @@ def follow_callbacks(idx, rngs, depth=1):
                 if strip[i].startswith('function '):
                     continue
                 for name in CALLED.findall(strip[i]):
-                    if name in fspan and name not in seen and name not in NOISE_FN:
+                    if (name in fspan and name not in seen
+                            and name not in NOISE_FN and name not in UTIL_FN):
                         seen.add(name)
                         nxt.append(fspan[name])
         out += nxt
@@ -205,11 +237,12 @@ def w3a_fields(a):
     return out
 
 
-def tri(v, i=0):
-    return (v or ['', '', ''])[i]
+def _f(d, k):
+    v = d.get(k)
+    return v[0] if isinstance(v, list) else v
 
 
-def hero_doc(h, rec, idx, A, spans):
+def hero_doc(h, rec, idx, A, U, spans):
     """組出一隻英雄的 markdown。"""
     L = []
     n = rec['n']
@@ -229,8 +262,11 @@ def hero_doc(h, rec, idx, A, spans):
     L.append('')
     L.append('| | 初始 | 每級 |')
     L.append('|---|---|---|')
+    def _sv(v):
+        # None 代表地圖沒覆寫這個欄位、沿用原型的預設值，不是 0
+        return '（未覆寫）' if v is None else ('%g' % v if isinstance(v, float) else v)
     for k, lab in (('str', '力量'), ('agi', '敏捷'), ('int', '智力')):
-        L.append('| %s | %s | %s |' % (lab, st.get(k), st.get(k + '_lv')))
+        L.append('| %s | %s | %s |' % (lab, _sv(st.get(k)), _sv(st.get(k + '_lv'))))
     L.append('')
     if rec.get('d') and rec['d'][0]:
         L.append('> %s' % rec['d'][0].replace('\n', ' '))
@@ -243,8 +279,23 @@ def hero_doc(h, rec, idx, A, spans):
     L.append('---')
     L.append('')
 
-    keys_seen = set()
+    # 要抽程式碼的技能：本體技能 + 天賦選項 + 皮膚換上的技能。
+    # 少了後兩者的話，召喚師／有換技能皮膚的英雄會缺掉三分之一的內容。
+    ablist = list(rec['ab'])
+    seen_ab = {a['id'] for a in ablist}
     for a in rec['ab']:
+        for o in a.get('opts') or []:
+            if o['id'] not in seen_ab:
+                seen_ab.add(o['id'])
+                ablist.append(dict(o, _from='天賦「%s」' % a['n'][0]))
+    for k in rec['skins']:
+        for x in k.get('add') or []:
+            if x['id'] not in seen_ab:
+                seen_ab.add(x['id'])
+                ablist.append(dict(x, _from='皮膚「%s」' % k['n'][0]))
+
+    keys_seen, summons = set(), set()
+    for a in ablist:
         aid = a['id']
         tag = []
         if aid in sp:
@@ -253,6 +304,8 @@ def hero_doc(h, rec, idx, A, spans):
             tag.append('◈ 吃裝備技能威力')
         if aid in give:
             tag.append('⊕ 給裝備技能威力')
+        if a.get('_from'):
+            tag.insert(0, '來自' + a['_from'])
         L.append('## %s `%s`%s' % (a['n'][0], aid, '　—　' + '、'.join(tag) if tag else ''))
         L.append('')
         if a['n'][2] and a['n'][2] != a['n'][0]:
@@ -293,12 +346,57 @@ def hero_doc(h, rec, idx, A, spans):
                 L.append('```jass')
                 L.extend(body)
                 L.append('```')
-                for m in HASHKEY.finditer('\n'.join(body)):
+                joined = '\n'.join(body)
+                for m in HASHKEY.finditer(joined):
                     keys_seen.add(int(m.group(1)))
+                summons.update(CREATE.findall(joined))
         else:
             L.append('')
             L.append('*（JASS 裡沒有對應實作 —— 這是原生技能，效果看上面的物件欄位）*')
         L.append('')
+
+    # 召喚出來的單位。召喚師的一半戰力在這裡，而這些數值只在 w3u 裡，
+    # 光看技能程式碼看不到（守衛有沒有魔法減免、憎惡有沒有大地重擊…）。
+    summons.discard(rec['id'])
+    def _is_dummy(u2):
+        # 只有 Aloc（不可選取）又幾乎沒血的，是純特效載體，不是戰力
+        ab = str(_f(u2, 'uabi') or '')
+        return ab.strip() in ('Aloc', '') and (_f(u2, 'uhpm') or 0) <= 5
+    real = [u for u in sorted(summons) if u in U and not _is_dummy(U[u])]
+    if real:
+        L.append('---')
+        L.append('')
+        L.append('## 這隻召喚／製造的單位')
+        L.append('')
+        L.append('（技能程式碼裡的 `CreateUnit` 目標。數值取自 war3map.w3u，')
+        L.append('沒列出的欄位代表地圖沒覆寫、沿用原型。）')
+        L.append('')
+        for uid2 in real:
+            u2 = U[uid2]
+            nm = map_heroes.clean(_f(u2, 'unam') or '') or uid2
+            L.append('### `%s` %s（原型 `%s`）' % (uid2, nm, u2.get('_base')))
+            row = []
+            for k, lab in (('uhpm', '生命'), ('umpm', '法力'), ('udty', '防禦型'),
+                           ('udef', '護甲'), ('ua1b', '攻擊力'), ('ua1d', '骰子數'),
+                           ('ua1s', '骰面'), ('ua1c', '攻擊間隔'), ('ua1r', '射程'),
+                           ('ua1z', '攻擊範圍'), ('umvs', '移速'),
+                           ('uabi', '技能'), ('uhab', '英雄技能')):
+                v = _f(u2, k)
+                if v not in (None, '', 0):
+                    row.append('%s %s' % (lab, v))
+            if row:
+                L.append('  - ' + ' ／ '.join(row))
+            for aid2 in str(_f(u2, 'uabi') or '').split(','):
+                aid2 = aid2.strip()
+                a2 = A.get(aid2)
+                if not a2:
+                    continue
+                nm2 = map_heroes.clean(str(_f(a2, 'anam') or _f(a2, 'aret') or ''))
+                fl = w3a_fields(a2)
+                if nm2 or fl:
+                    L.append('  - 技能 `%s` %s　`%s`'
+                             % (aid2, nm2, '`, `'.join(fl[:12])))
+            L.append('')
 
     sk = [k for k in rec['skins'] if k.get('add') or k.get('rm')]
     if rec['skins']:
@@ -349,6 +447,7 @@ def main():
     m = MPQ(mp)
     jass = m.read('war3map.j').decode('utf-8', 'replace')
     A = w3obj.parse(m.read('war3map.w3a'), True)
+    U = w3obj.parse(m.read('war3map.w3u'))
     recs = {h['id']: h for h in json.load(
         io.open(os.path.join(ROOT, 'data', 'heroes.json'),
                 encoding='utf-8'))['heroes']}
@@ -363,7 +462,7 @@ def main():
     for uid, rec in recs.items():
         if want and uid not in want:
             continue
-        doc = hero_doc(H.get(uid, {}), rec, idx, A, spans)
+        doc = hero_doc(H.get(uid, {}), rec, idx, A, U, spans)
         p = os.path.join(OUT, uid + '.md')
         io.open(p, 'w', encoding='utf-8').write(doc)
         tot += len(doc.encode('utf-8'))

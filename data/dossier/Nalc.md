@@ -4,9 +4,9 @@
 
 | | 初始 | 每級 |
 |---|---|---|
-| 力量 | 19 | 2.200000047683716 |
-| 敏捷 | 16 | 2.0 |
-| 智力 | 31 | 4.0 |
+| 力量 | 19 | 2.2 |
+| 敏捷 | 16 | 2 |
+| 智力 | 31 | 4 |
 
 > 強大的遠程法師，擁有自己的累積型資源來強化技能。
 
@@ -494,23 +494,6 @@ endif
 
 實作：
 
-`KnockBackUnit`　war3map.j:2849
-```jass
-function KnockBackUnit takes unit knockbacked,real distance,real time,real degrees,real period returns nothing
-local integer amount=R2I(time/period)
-local real portion=distance/amount
-local timer t=CreateTimer()
-call SaveUnitHandle(hash,GetHandleId(t),0,knockbacked)
-call SaveInteger(hash,GetHandleId(t),1,amount)
-call SaveReal(hash,GetHandleId(t),2,portion)
-call SaveInteger(hash,GetHandleId(t),3,0)
-call SaveReal(hash,GetHandleId(t),4,degrees)
-call TimerStart(t,period,true,function KnockBackUnit_Timer)
-set t=null
-set knockbacked=null
-endfunction
-```
-
 `Hero50E`　war3map.j:61922
 ```jass
 function Hero50E takes nothing returns nothing
@@ -825,12 +808,22 @@ call TimerStart(t,0.04,true,function Hero50D)
 
 ---
 
+## 這隻召喚／製造的單位
+
+（技能程式碼裡的 `CreateUnit` 目標。數值取自 war3map.w3u，
+沒列出的欄位代表地圖沒覆寫、沿用原型。）
+
+### `h044` Падающая звезда（原型 `hpea`）
+  - 技能 Avul,Aloc
+
+---
+
 ## 這隻碰到的 hash key
 
-  - **1** — 裝備技能冷卻乘數
-  - **3** — 對英雄傷害 +%
-  - **4** — 受到傷害 −%（被減的）
-  - **5** — 對 0-1 級敵人傷害 +%
+  - **1** — 裝備技能冷卻乘數〔持有者〕StartModCooldown 讀，CD×它，下限 0.20
+  - **3** — 對英雄傷害 +%〔攻擊者〕Trig_HeroTakeDamage_Actions 的 DefCof
+  - **4** — 受到傷害 −%〔受害者〕DefCof 減去它 → 值越大越耐打；電擊會扣它
+  - **5** — 對 0-1 級敵人傷害 +%〔攻擊者〕
 
 ---
 

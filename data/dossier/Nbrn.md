@@ -4,9 +4,9 @@
 
 | | 初始 | 每級 |
 |---|---|---|
-| 力量 | 12 | 1.2999999523162842 |
-| 敏捷 | 24 | 4.0 |
-| 智力 | 20 | None |
+| 力量 | 12 | 1.3 |
+| 敏捷 | 24 | 4 |
+| 智力 | 20 | （未覆寫） |
 
 > 遠程英雄，能對單體與集群穩定輸出魔法傷害，並可持續累積敏捷。
 
@@ -143,26 +143,6 @@ call FrostUnit(damager,target,0.50)
 endif
 endif
 set t=null
-endfunction
-```
-
-`EndCooldown`　war3map.j:2898
-```jass
-function EndCooldown takes nothing returns nothing
-local timer t=GetExpiredTimer()
-local integer Id=GetHandleId(t)
-local integer Key_1=LoadInteger(hash,Id,1)
-local integer Key_2=LoadInteger(hash,Id,2)
-local timerdialog td=LoadTimerDialogHandle(hash,Id,3)
-if td !=null then
-call DestroyTimerDialog(td)
-endif
-call SaveInteger(hash,Key_1,Key_2,0)
-call PauseTimer(t)
-call FlushChildHashtable(hash,Id)
-call DestroyTimer(t)
-set t=null
-set td=null
 endfunction
 ```
 
@@ -499,10 +479,20 @@ set count=8
 
 ---
 
+## 這隻召喚／製造的單位
+
+（技能程式碼裡的 `CreateUnit` 目標。數值取自 war3map.w3u，
+沒列出的欄位代表地圖沒覆寫、沿用原型。）
+
+### `h044` Падающая звезда（原型 `hpea`）
+  - 技能 Avul,Aloc
+
+---
+
 ## 這隻碰到的 hash key
 
-  - **1** — 裝備技能冷卻乘數
-  - **44** — （狀態免疫旗標）
+  - **1** — 裝備技能冷卻乘數〔持有者〕StartModCooldown 讀，CD×它，下限 0.20
+  - **44** — 狀態免疫旗標〔受害者〕>0 則所有狀態函式開頭直接 return，完全不判定
 
 ---
 
