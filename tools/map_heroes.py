@@ -213,6 +213,79 @@ def _abil_name(a):
     return ''
 
 
+# 說明裡「標籤：數值」的行
+_LABLINE = re.compile(r'^([^:：\n]{1,40})\s*[:：]\s*(.+)$')
+
+
+def _levels(a):
+    """抽出隨等級變動的數值。
+
+    aub1 本身就是每級一段完整說明，所以不必自己算成長公式 ——
+    直接比對各級同一行的數值，只留會變的那幾行。
+    回傳 [{'i': 行號, 'v': [各級數值]}]，行號對應說明文字的第幾行，
+    網站再用該行的標籤（已翻譯）當表頭。
+    """
+    v = a.get('aub1')
+    if not isinstance(v, list):
+        return None
+    # aub1 的段數不一定等於技能等級數 —— 有些技能（例如惡魔獵手的「著魔」，
+    # alev = 1）後面還留著改造前那個技能的舊說明。多出來的不是等級，要切掉。
+    lv = _first(a.get('alev'))
+    if isinstance(lv, int) and lv >= 1:
+        v = v[:lv]
+    if len(v) < 2:
+        return None
+    texts = [clean(x) for x in v]
+    if len([t for t in texts if t]) < 2 or len(set(texts)) <= 1:
+        return None
+    base = texts[0].split('\n')
+    rows = []
+    for li, line in enumerate(base):
+        m = _LABLINE.match(line.strip())
+        if not m:
+            continue
+        vals = []
+        for t in texts:
+            ls = t.split('\n')
+            mm = _LABLINE.match(ls[li].strip()) if li < len(ls) else None
+            vals.append(mm.group(2).strip() if mm else None)
+        if None in vals or len(set(vals)) <= 1:   # 缺行或各級相同 -> 不列
+            continue
+        # 各級數值多半只有開頭的數字在變，公式的其餘部分（含俄文單位）
+        # 完全相同。把共同的前後綴切掉，表格裡就只剩會變的那一段。
+        rows.append({'i': li, 'v': _trim_common(vals)})
+    return rows or None
+
+
+def _trim_common(vals):
+    """去掉各級數值的共同前綴與後綴，只留下真正變動的部分。
+
+    切點不能落在數字中間 —— 40 / 60 / 80 / 100 / 120 的結尾都是 0，
+    直接比對會把那個 0 當成共同後綴切掉，變成 4 / 6 / 8 / 10 / 12。
+    """
+    n = min(len(v) for v in vals)
+    pre = 0
+    while pre < n and len({v[pre] for v in vals}) == 1:
+        pre += 1
+    # 前綴結尾若卡在數字中間（前一個字和下一個字都是數字），往回退
+    while pre > 0 and vals[0][pre - 1].isdigit() and any(
+            len(v) > pre and v[pre].isdigit() for v in vals):
+        pre -= 1
+
+    suf = 0
+    while suf < n - pre and len({v[len(v) - 1 - suf] for v in vals}) == 1:
+        suf += 1
+    while suf > 0 and all(v[len(v) - suf].isdigit() for v in vals) and any(
+            v[len(v) - suf - 1].isdigit() for v in vals):
+        suf -= 1
+
+    out = [v[pre:len(v) - suf] if suf else v[pre:] for v in vals]
+    # 切完變空或全都一樣就放棄，寧可顯示完整字串
+    if not all(o.strip() for o in out) or len(set(out)) <= 1:
+        return vals
+    return out
+
+
 def _abil(A, aid, kind, depth=0, stock=None):
     a = A.get(aid, {})
     nm = _abil_name(a)
@@ -229,6 +302,7 @@ def _abil(A, aid, kind, depth=0, stock=None):
         'icon': (_first(a.get('aart')) or _first(a.get('arar')) or '').strip(),
         'hotkey': (_first(a.get('ahky')) or '').strip(),
         'levels': _first(a.get('alev')),
+        'perlv': _levels(a),          # 隨等級變動的數值
     }
     # 技能書（Aspb）—— 「選擇天賦」「選擇技能」「額外技能」都是這種。
     # 真正的選項清單在 spb1，每個英雄可選的天賦都不一樣。
@@ -241,6 +315,37 @@ def _abil(A, aid, kind, depth=0, stock=None):
     return rec
 
 
+def skins(jass, U):
+    """英雄皮膚。
+
+    RegisterSkin(玩家, 啟用技能, 皮膚單位, 預設開關) 註冊了 41 種皮膚，
+    但那裡沒說皮膚屬於哪個英雄。真正的對應在 Trig_HeroPick_Actions：
+    選到某個英雄時，若該皮膚已啟用就 ReplaceUnitBJ 換掉單位。
+    """
+    default = {}
+    for sk, hid, st in re.findall(
+            r"""RegisterSkin\([^,]+,'(.{4})','(.{4})',"(\w+)"\)""", jass):
+        default[hid] = st
+    lines = jass.split('\n')
+    body = _fn_body(lines, 'Trig_HeroPick_Actions')
+    out, cur = {}, None
+    for l in body:
+        t = l.strip()
+        m = re.search(r"GetUnitTypeId\(u\)=='(.{4})'", t)
+        if m:
+            cur = m.group(1)
+        m = re.search(r"ReplaceUnitBJ\(u,'(.{4})'", t)
+        if m and cur:
+            sid = m.group(1)
+            out.setdefault(cur, []).append({
+                'id': sid,
+                'name_ru': clean(U.get(sid, {}).get('unam') or '') or sid,
+                # 預設關閉的多半是稀有／限定，介面上要標出來
+                'on': default.get(sid, 'on') != 'off',
+            })
+    return out
+
+
 def load(map_path, jass_text=None):
     m = MPQ(map_path)
     if jass_text is None:
@@ -249,6 +354,7 @@ def load(map_path, jass_text=None):
     A = w3obj.parse(m.read('war3map.w3a'), True)
 
     stock = stock_names()                    # 原版技能名稱（沒裝遊戲就是空的）
+    skn = skins(jass_text, U)                # 英雄皮膚
     pool = roster(jass_text)                 # 主屬性與解鎖門檻
     picks = pick_list(jass_text)             # 權威名單
     for uid in pool:                         # 理論上是子集，保險起見補齊
@@ -293,6 +399,7 @@ def load(map_path, jass_text=None):
             'random': uid in pool,
             'icon': (icons.get(uid) or u.get('uico') or '').replace(bs + bs, bs),
             'stats': st,
+            'skins': skn.get(uid, []),
             'profile_ru': parse_profile(txt),
             'text_ru': txt,
             'abilities': abils,

@@ -92,6 +92,9 @@ def main():
     _tp = os.path.join(HERE, 'abilities_text_zh.json')
     TXT = json.load(io.open(_tp, encoding='utf-8'))['text']           if os.path.isfile(_tp) else {}
     # 天賦／技能書選項的翻譯（技能ID -> {n:[zh,en], t:[zh,en]}）
+    # 英雄專屬配裝（綁定英雄，往往也綁定天賦）
+    _bp = os.path.join(HERE, 'hero_builds.json')
+    HB = json.load(io.open(_bp, encoding='utf-8'))['builds']          if os.path.isfile(_bp) else {}
     _lp = os.path.join(HERE, 'talents_zh.json')
     TAL = json.load(io.open(_lp, encoding='utf-8'))['talents']           if os.path.isfile(_lp) else {}
 
@@ -115,6 +118,7 @@ def main():
 
     V = tr['vocab']
     names, descs = tr['names'], tr['desc']
+    SKIN = tr.get('skins', {})
     out = []
     for uid in sorted(H, key=lambda k: (H[k]['attr'] or 'zz', H[k]['unlock'] or 0,
                                         names.get(k, [''])[0])):
@@ -136,6 +140,11 @@ def main():
             'attr': h['attr'] or 'int',      # 只有樹人長者沒被列進三個屬性池
             'unlock': h['unlock'] or 0,
             'random': h['random'],           # False = 不在隨機池，只能手動挑
+            'builds': HB.get(uid, []),
+            'skins': [{'id': k['id'], 'on': k['on'],
+                       'n': (SKIN[k['name_ru']] + [k['name_ru']])
+                            if k['name_ru'] in SKIN else [k['name_ru']] * 3}
+                      for k in h['skins']],
             'author': p.get('author'),       # 玩家投稿英雄的作者
             'icon': 'images/heroes/h_%s.png' % uid,
             'proper': h['proper_ru'],
@@ -154,12 +163,14 @@ def main():
                 # 說明三語；未翻譯的用俄文原文墊著
                 't': tri_text(a),
                 'icon': 'images/heroes/a_%s.png' % a['id'],
+                **({'lvt': a['perlv']} if a.get('perlv') else {}),
                 # 技能書的選項（每個英雄可選的天賦都不一樣）
                 **({'opts': [{
                     'id': o['id'],
                     'n': tri_name(o),
                     't': tri_text(o),
                     'icon': 'images/heroes/a_%s.png' % o['id'],
+                    **({'lvt': o['perlv']} if o.get('perlv') else {}),
                 } for o in a['opts']]} if a.get('opts') else {}),
             } for a in h['abilities'] if a['name_ru']],
         }
@@ -197,6 +208,17 @@ def main():
     opts = [o for a in ab for o in a.get('opts', [])]
     print('  技能書 %d 個，內含天賦／選項 %d 個（不重複 %d 個）' % (
         sum(1 for a in ab if a.get('opts')), len(opts), len({o['id'] for o in opts})))
+    hb = [b for r in out for b in r['builds']]
+    print('  英雄專屬配裝：%d 套（%d 位英雄）' % (
+        len(hb), sum(1 for r in out if r['builds'])))
+    sk = [k for r in out for k in r['skins']]
+    print('  皮膚 %d 個（%d 位英雄，%d 個預設關閉）；未翻譯名稱 %d 個' % (
+        len(sk), sum(1 for r in out if r['skins']),
+        sum(1 for k in sk if not k['on']),
+        sum(1 for k in sk if k['n'][0] == k['n'][2])))
+    nlv = sum(1 for a in ab if a.get('lvt'))
+    print('  有等級數值表的技能：%d 個（共 %d 列數值）' % (
+        nlv, sum(len(a['lvt']) for a in ab if a.get('lvt'))))
     untr = sum(1 for a in ab if a['t'][2] and a['t'][0] == a['t'][2])
     print('  技能說明：%d 個有原文（%d 個沒有）；其中 %d 個尚未翻譯' % (
         len(ab) - notxt, notxt, untr))

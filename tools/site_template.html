@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>肥羊的聖誕禮物 · 裝備圖鑑</title>
+<title>UD 圖鑑 · 肥羊的聖誕禮物</title>
 <style>
 /* ============================================================ tokens */
 :root{
@@ -732,6 +732,23 @@ body[data-resizing="1"]{cursor:col-resize;user-select:none}
 .ha-m{color:#F7E15C;font-size:12px}
 .ha-t{margin:0 0 10px 34px;font-size:var(--fs-sub);line-height:1.7;color:var(--ink-2);
   white-space:pre-wrap;font-family:inherit}
+/* 技能升級數值表。面板很窄，所以整張表可以橫向捲動，不讓它撐開版面。 */
+.bd-tal{font-size:11px;color:var(--sc);margin:-2px 0 7px}
+.hsk{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:4px}
+.hsk-i{font-size:12px;padding:4px 10px;border-radius:99px;color:var(--ink-2);
+  background:var(--surface-2);border:1px solid var(--line)}
+.hsk-i.off{color:#F7E15C;border-color:color-mix(in srgb,#F7E15C 40%,var(--line))}
+.lvt-w{margin:0 0 10px 34px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.lvt{border-collapse:collapse;font-size:11.5px;white-space:nowrap}
+.lvt th,.lvt td{padding:3px 8px;border-bottom:1px solid var(--line)}
+.lvt thead th{color:var(--ink-3);font-weight:400;font-size:10.5px;
+  border-bottom:1px solid var(--line-2)}
+.lvt thead th:first-child{text-align:left}
+.lvt tbody th{text-align:left;font-weight:400;color:var(--ink-2);
+  position:sticky;left:0;background:var(--surface)}
+.lvt td{text-align:right;font-family:ui-monospace,monospace;color:var(--ink)}
+.lvt td:last-child{color:var(--accent)}
+
 /* 技能書的天賦選項 */
 .ho{margin:0 0 12px 34px;padding-left:10px;border-left:2px solid var(--line-2)}
 .ho-h{font-size:11px;color:var(--ink-3);margin-bottom:7px;display:flex;align-items:center}
@@ -1144,7 +1161,7 @@ body[data-resizing="1"]{cursor:col-resize;user-select:none}
 
   <header class="topbar">
     <div class="brand">
-      <b data-i="title">裝備圖鑑</b>
+      <b data-i="title">UD 圖鑑</b>
       <span class="sv" id="sv"></span>
       <span data-i="sub">肥羊的聖誕禮物 · Underground Defence</span>
     </div>
@@ -1233,7 +1250,7 @@ const LI = {zh:0, en:1, ru:2};
 
 /* ---------------------------------------------------------------- i18n */
 const UI = {
-  zh:{title:'裝備圖鑑', sub:'肥羊的聖誕禮物 · Underground Defence', ph:'搜尋裝備…',
+  zh:{title:'UD 圖鑑', sub:'肥羊的聖誕禮物 · Underground Defence', ph:'搜尋裝備…',
       density:'密度', d1:'寬鬆', d2:'緊湊', d3:'純圖', all:'全部裝備',
       tiers:'品質分類', legend:'圖例', sel:'已選取', matAny:'可作為素材', mat:'此裝備的素材', into:'可合成為',
       stats:'屬性', effects:'效果', recipe:'合成配方', usedin:'用於合成',
@@ -1286,9 +1303,10 @@ const UI = {
       hGrow:'屬性成長', hBase:'初始', hPer:'每級',
       hBuild:'該找什麼裝備', hSkills:'英雄技能', hInnate:'固有技能',
       hLv:'級', hNoText:'（沒有說明文字）',
-      hManual:'不在隨機池，只能手動挑', hBy:'投稿者', hPick:'可選項目',
+      hManual:'不在隨機池，只能手動挑', hBy:'投稿者', hPick:'可選項目', hLvHead:'等級', hSkin:'皮膚', hSkinOff:'預設未開放（稀有／限定）',
+      hBuilds:'推薦配裝', hNeedTalent:'需搭配天賦：',
       hBuildHint:'這些標籤是從該英雄的技能文字掃出來的機制，點一下就會帶你回裝備清單。',
-      hModYes:'◈ 這個英雄有技能會吃「裝備技能威力」（已對照地圖原始碼確認）。',
+      hModYes:'◈ 這招會吃「裝備技能威力」：傷害 ×（1 + 威力 × 0.33）。沒有 ◈ 的技能不吃 —— 228 個英雄技能裡只有 18 個會。',
       hSkillRu:'技能說明譯自地圖原文；數值、公式與換行結構均保留原樣。',
       ptAI:'AI 配裝', bdApply:'套用', bdWhy:'為什麼有效',
       bdSub:'%s 套推薦，已排除幾乎抽不到的裝備',
@@ -1308,7 +1326,7 @@ const UI = {
       chainL:'任務升級鏈', chainSplit:'聖物之後分兩條路：',
       qs1:'任務物品 1 階', qs2:'任務物品 2 階', qs3:'聖物',
       qs4:'折射卷軸 → 折射（4 件循環）', qs5:'鐵匠技能 → 完美'},
-  en:{title:'Item Codex', sub:"Fat Sheep's Christmas Gift · Underground Defence",
+  en:{title:'UD Codex', sub:"Fat Sheep's Christmas Gift · Underground Defence",
       ph:'Search items…', density:'Density', d1:'Roomy', d2:'Compact', d3:'Icons',
       all:'All items', tiers:'Tiers', legend:'Legend', sel:'Selected',
       matAny:'Used in a recipe', mat:'Component of this item',
@@ -1365,9 +1383,10 @@ const UI = {
       hGrow:'Attribute growth', hBase:'Base', hPer:'Per level',
       hBuild:'What to build', hSkills:'Hero abilities', hInnate:'Innate abilities',
       hLv:'lv', hNoText:'(no description)',
-      hManual:'Not in the random pool - pick manually', hBy:'Contributed by', hPick:'Choices',
+      hManual:'Not in the random pool - pick manually', hBy:'Contributed by', hPick:'Choices', hLvHead:'Level', hSkin:'Skins', hSkinOff:'Locked by default (rare / limited)',
+      hBuilds:'Recommended builds', hNeedTalent:'Requires talent: ',
       hBuildHint:'These tags are the mechanics found in this hero\'s ability text - click one to jump back to the items.',
-      hModYes:'\u25C8 This hero has abilities that scale with Modifier power (confirmed in the map script).',
+      hModYes:'◈ This ability scales with Modifier power: damage x (1 + power x 0.33). Abilities without the mark do not - only 18 of 228 hero abilities do.',
       hSkillRu:'Ability text translated from the map source; numbers, formulas and line breaks preserved.',
       ptAI:'AI builds', bdApply:'Apply', bdWhy:'Why it works',
       bdSub:'%s builds, ultra-rare items excluded',
@@ -1390,7 +1409,7 @@ const UI = {
       qs1:'Quest item, stage 1', qs2:'Quest item, stage 2', qs3:'Relic',
       qs4:'Scroll of Refraction → Refracted (4-item cycle)',
       qs5:'Blacksmith skill → Perfected'},
-  ru:{title:'Кодекс предметов', sub:'Underground Defence', ph:'Поиск предметов…',
+  ru:{title:'Справочник UD', sub:'Underground Defence', ph:'Поиск предметов…',
       density:'Плотность', d1:'Свободно', d2:'Плотно', d3:'Иконки',
       all:'Все предметы', tiers:'Классы', legend:'Легенда', sel:'Выбрано',
       matAny:'Используется в крафте', mat:'Компонент этого предмета',
@@ -1449,9 +1468,10 @@ const UI = {
       hGrow:'Рост характеристик', hBase:'База', hPer:'За уровень',
       hBuild:'Что собирать', hSkills:'Умения героя', hInnate:'Врождённые умения',
       hLv:'ур', hNoText:'(нет описания)',
-      hManual:'Нет в случайном пуле - только вручную', hBy:'Автор', hPick:'Варианты',
+      hManual:'Нет в случайном пуле - только вручную', hBy:'Автор', hPick:'Варианты', hLvHead:'Ур.', hSkin:'Облики', hSkinOff:'По умолчанию закрыт (редкий)',
+      hBuilds:'Сборки для героя', hNeedTalent:'Нужен талант: ',
       hBuildHint:'Эти метки найдены в тексте умений героя - нажмите, чтобы вернуться к предметам.',
-      hModYes:'\u25C8 У этого героя есть умения, зависящие от силы модификаторов (проверено по скрипту карты).',
+      hModYes:'◈ Это умение зависит от силы модификаторов: урон x (1 + сила x 0.33). Умения без метки - нет, таких всего 18 из 228.',
       hSkillRu:'Описания умений - оригинальный текст карты.',
       ptAI:'Сборки ИИ', bdApply:'Применить', bdWhy:'Почему это работает',
       bdSub:'%s сборок, без сверхредких предметов',
@@ -1813,12 +1833,66 @@ function openHero(id){
     ${h.mod && h.mod.length ? `<div class="hnote mod">${esc(t('hModYes'))}</div>` : ''}
     <div class="sg-note">${esc(t('hBuildHint'))}</div>
 
+    ${heroBuilds(h, L)}
+    ${skinBlock(h, L)}
     ${abilBlock(h, 'hero', t('hSkills'))}
     ${abilBlock(h, 'innate', t('hInnate'))}
     <div class="sg-note">${esc(t('hSkillRu'))}</div>`;
   pbody.scrollTop = 0;
   $('#pclose').onclick = closeItem;
   if (isMobile()){ setDrawer(false); setScrim(); }
+}
+
+/* 這個英雄專屬的推薦配裝。跟「AI 配裝」分頁的通用配裝不同 ——
+   這裡的配裝往往綁定特定天賦，換天賦整套邏輯就不成立，所以標出來。 */
+function talentName(h, aid, L){
+  for (const a of h.ab)
+    for (const o of (a.opts || []))
+      if (o.id === aid) return o.n[L];
+  return '';
+}
+
+/* 配裝可能來自「AI 配裝」分頁，也可能來自某個英雄的專屬配裝，兩邊都要找。 */
+function findBuild(id){
+  const g = (DATA.builds || []).find(x => x.id === id);
+  if (g) return g;
+  for (const h of HEROES){
+    const b = (h.builds || []).find(x => x.id === id);
+    if (b) return b;
+  }
+  return null;
+}
+
+function heroBuilds(h, L){
+  if (!h.builds || !h.builds.length) return '';
+  const pic = i => ITEMS[i] ? `<button class="bd-i" data-goto="${i}"
+      style="--c2:${ITEMS[i].k || '#39415a'}"
+      title="${esc(nm(i))}　${esc(ITEMS[i].c[L])}">${thumb(i)}</button>` : '';
+  return `<h5>${esc(t('hBuilds'))}<span class="cnt">${h.builds.length}</span></h5>
+    ${h.builds.map(b => {
+      const bs = Object.keys(b.bonus || {}).map(k => b.bonus[k]).filter(x => ITEMS[x]);
+      const tal = b.talent ? talentName(h, b.talent, L) : '';
+      return `<div class="bd" style="--sc:${b.c}">
+        <div class="bd-h"><b>${esc(b.n[L])}</b>
+          <button class="bd-go" data-apply="${b.id}">${esc(t('bdApply'))}</button></div>
+        ${tal ? `<div class="bd-tal">${esc(t('hNeedTalent'))}${esc(tal)}</div>` : ''}
+        <div class="bd-key">${esc(b.key[L])}</div>
+        <div class="bd-row">${b.items.map(pic).join('')}
+          ${bs.length ? `<span class="bd-sep"></span>${bs.map(pic).join('')}` : ''}</div>
+        <details class="bd-why"><summary>${esc(t('bdWhy'))}</summary>
+          <p>${esc(b.why[L])}</p></details>
+      </div>`;
+    }).join('')}`;
+}
+
+/* 英雄皮膚。只換外觀不影響數值，所以獨立成一小區，不混進技能。
+   預設關閉的多半是稀有／限定，標出來讓人知道不是每個帳號都有。 */
+function skinBlock(h, L){
+  if (!h.skins || !h.skins.length) return '';
+  return `<h5>${esc(t('hSkin'))}<span class="cnt">${h.skins.length}</span></h5>
+    <div class="hsk">${h.skins.map(s => `<span class="hsk-i${s.on ? '' : ' off'}"
+      ${s.on ? '' : `title="${esc(t('hSkinOff'))}"`}>${esc(s.n[L])}${
+      s.on ? '' : ' ✦'}</span>`).join('')}</div>`;
 }
 
 /* 技能分兩區：QWER 可升級的，與固有的（被動／專屬機制／選擇天賦的入口）。
@@ -1838,8 +1912,28 @@ function abilBlock(h, kind, label){
         ${h.mod.includes(a.id) ? `<span class="ha-m" title="${esc(t('hModYes'))}">◈</span>` : ''}
         <span class="cv">${CHEV}</span></span></summary>
       <pre class="ha-t">${esc((a.t && a.t[L]) || t('hNoText'))}</pre>
+      ${lvTable(a, L)}
       ${optList(a, L)}
     </details>`).join('')}`;
+}
+
+/* 技能升級數值。地圖的說明本身就是每級一段完整文字，所以這裡不是推算
+   成長公式，而是把各級同一行的數值直接排出來 —— 只列會變的那幾行，
+   不變的留在上面的說明裡，避免同一件事講兩次。 */
+function lvTable(a, L){
+  if (!a.lvt || !a.lvt.length) return '';
+  const lines = ((a.t && a.t[L]) || '').split('\n');
+  const n = a.lvt[0].v.length;
+  const head = Array.from({length: n}, (_, i) => `<th>${i + 1}</th>`).join('');
+  const rows = a.lvt.map(r => {
+    const raw = lines[r.i] || '';
+    const lab = raw.split(/[:：]/)[0].trim() || '—';
+    return `<tr><th>${esc(lab)}</th>${
+      r.v.map(x => `<td>${esc(x)}</td>`).join('')}</tr>`;
+  }).join('');
+  return `<div class="lvt-w"><table class="lvt">
+    <thead><tr><th>${esc(t('hLvHead'))}</th>${head}</tr></thead>
+    <tbody>${rows}</tbody></table></div>`;
 }
 
 /* 技能書（選擇天賦／選擇技能／額外技能）的選項。
@@ -2843,13 +2937,15 @@ $('#load').addEventListener('click', e => {
 
 pbody.addEventListener('click', e => {
   const ap = e.target.closest('[data-apply]'); if (!ap) return;
-  const b = (DATA.builds || []).find(x => x.id === ap.dataset.apply);
+  const b = findBuild(ap.dataset.apply);
   if (!b) return;
+  S.mode = 'build'; localStorage.setItem('ud.mode', S.mode);
+  applyMode();
   S.load = b.items.filter(i => ITEMS[i]).slice(0, MAXSLOT);
   S.bonus = {};
   for (const k of Object.keys(b.bonus || {}))
     if (ITEMS[b.bonus[k]]) S.bonus[k] = b.bonus[k];
-  loadSave(); bonusSave(); renderLoad();
+  loadSave(); bonusSave(); renderLoad(); renderGrid();
   showSummary();                       /* 套用後直接看總計，馬上知道拿到什麼 */
 });
 

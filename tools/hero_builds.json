@@ -1,0 +1,54 @@
+{
+  "_說明": [
+    "英雄專屬配裝。跟 builds.json（通用 AI 配裝）分開，因為這裡的配裝綁定",
+    "特定英雄，而且往往綁定特定天賦 —— 換天賦整套邏輯就不一樣。",
+    "",
+    "格式：英雄ID -> 配裝陣列。",
+    "  talent  綁定的天賦技能 ID（會在畫面上標出天賦名稱），沒有就留空",
+    "  items   6 個正常欄位；bonus.s1/s2 = 吸收器（特殊 lv.1）／祕密寶盒（特殊 lv.2）",
+    "  n/key/why 三語：名稱／一句話重點／為什麼有效",
+    "",
+    "取得難度篩選與通用配裝一致：排除新年／復活節／萬聖節／儀式（要盜賊）、",
+    "完美（要鐵匠）、特殊 lv.5++。"
+  ],
+  "builds": {
+    "Hamg": [
+      {
+        "id": "hamg-proc",
+        "c": "#FF7043",
+        "talent": "A03J",
+        "n": ["瞬燃機率流", "Instant-Burn Proc Rate", "Мгновенный поджог: шанс"],
+        "key": [
+          "立即點燃讓每次判定都是完整傷害，所以把「機率」拉滿比堆傷害更划算",
+          "Instant burn makes every roll a full hit, so raising the chance beats raising the damage",
+          "Мгновенный поджог превращает каждую проверку в полный урон, поэтому шанс важнее урона"
+        ],
+        "why": [
+          "「人間煉獄」把點燃從 16 跳的持續傷害改成一次結算，這徹底改變了配裝方向。烈焰旋風每 0.30 秒判定一次、持續 12 秒，等於約 40 次獨立判定；把機率從 60% 拉到 90%，就等於多 50% 的傷害 —— 比任何一件「+15% 點燃傷害」都強。幸運馬蹄鐵的「施加狀態機率 ×1.5」因此成為這套的核心，實測一輪總傷害比堆點燃加成的版本高 8%，而且在易燃斷檔時差距拉到 43%。技能強度是唯一的傷害根源：所有技能都是「基礎 + 技能強度 × 係數」，而點燃總傷害又是那個數字的倍數，所以它同時放大直傷與點燃。星界耳環單件 +800 是全遊戲最高。電擊則是唯一能給 +1.00 係數的東西（把目標點燃抗性扣 1.00），而且沒有任何裝備能擋。注意拜火者沒有任何技能吃「裝備技能威力」，那個屬性對它只有道具觸發有用；另外火柱完全不施加點燃，它是純魔法傷害。",
+          "Hell on Earth converts burn from a 16-tick damage-over-time into a single instant hit, which changes the whole build direction. Fire Vortex rolls every 0.30 s for 12 s - about 40 independent rolls - so lifting the chance from 60% to 90% is worth 50% more damage, more than any single \"+15% burn damage\" item. Lucky Horseshoe's x1.5 status chance is therefore the core of this build: measured over a full rotation it beats the burn-damage version by 8%, and by 43% whenever Flammable is not up. Spell power is the only real damage source - every ability is base + spell power x ratio, and burn totals are a multiple of that number, so it scales direct damage and burn at once. Astral Earring alone gives +800, the highest in the game. Shock is the only source of a flat +1.00 to the coefficient (it subtracts 1.00 from the target's burn resistance) and nothing in the game resists it. Note that none of this hero's abilities scale with Modifier power, and that Pillar of Flame applies no burn at all - it is pure magic damage.",
+          "«Ад на земле» превращает поджог из урона по времени (16 тиков) в мгновенный удар, и это меняет всю логику сборки. «Огненный вихрь» проверяет шанс каждые 0.30 сек. в течение 12 сек. - около 40 независимых проверок, поэтому поднять шанс с 60% до 90% выгоднее, чем любой предмет на +15% урона от поджога. «Счастливая подкова» (x1.5 к шансу статусов) - ядро сборки. Сила умений - единственный источник урона: все умения считаются как база + сила умений x коэффициент. Шок - единственный источник +1.00 к коэффициенту, и его никто не резистит."
+        ],
+        "items": ["I00E", "sor5", "kpin", "I067", "I0AM", "I09G"],
+        "bonus": {"s1": "oli2", "s2": "I0AV"}
+      },
+      {
+        "id": "hamg-tanky",
+        "c": "#C98A5B",
+        "talent": "A03J",
+        "n": ["瞬燃穩健版", "Instant Burn, Durable", "Мгновенный поджог: живучесть"],
+        "key": [
+          "同樣的機率流骨架，用 400 技能強度換 1000 生命與反傷",
+          "The same proc-rate core, trading 400 spell power for 1000 health and reflect",
+          "Тот же каркас, но 400 силы умений меняются на 1000 здоровья и отражение"
+        ],
+        "why": [
+          "拜火者是純輸出法師，被近身就死，而機率流那套完全沒有生存裝。這版把純淨紫水晶（+400 技能強度、沒有其他屬性）換成苦難面具：+1000 生命、+500 法力、+5 全屬性，而且會把受到傷害的 20% 反彈給敵方英雄 —— 那個反彈算的是原始傷害、不受你的減傷影響，也不被對方減免，等於在補生存的同時補了一份被動輸出。代價是一輪總傷害約掉 22%（33250 -> 26086）。打高傷 BOSS 或容易被集火的場面用這版；能安全站樁時用機率流。",
+          "This hero is a pure caster with no defences - the proc-rate build carries none at all. This version swaps Pure Amethyst (+400 spell power and nothing else) for the Mask of Suffering: +1000 health, +500 mana, +5 to all stats, and it reflects 20% of damage taken back at enemy heroes. That reflect is calculated from the raw incoming damage, so your own reduction does not shrink it and the target's reduction does not either - it adds passive damage while adding survivability. The cost is roughly 22% of a full rotation (33250 -> 26086). Use this against hard-hitting bosses or when you get focused; use the proc-rate build when you can stand still safely.",
+          "Огнепоклонник - чистый маг без защиты, а в сборке на шанс её нет совсем. Здесь «Чистый аметист» (+400 силы умений и больше ничего) меняется на «Маску страданий»: +1000 здоровья, +500 маны, +5 ко всем характеристикам и отражение 20% полученного урона во вражеских героев. Отражение считается от исходного урона, поэтому ни ваша защита, ни защита цели его не уменьшают. Цена - около 22% общего урона за ротацию."
+        ],
+        "items": ["I00E", "I068", "kpin", "I067", "I0AM", "I09G"],
+        "bonus": {"s1": "oli2", "s2": "I0AV"}
+      }
+    ]
+  }
+}
