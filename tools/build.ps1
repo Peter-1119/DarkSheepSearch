@@ -24,6 +24,8 @@ $steps = @(
     @{ f = 'build_site_data.py'; d = '三語資料              -> data/site.json' }
     @{ f = 'build_site.py';      d = '產生網站              -> index.html' }
     @{ f = 'build_md2.py';       d = '產生攻略              -> 裝備合成攻略.md' }
+    @{ f = 'build_dossier.py';   d = '英雄卷宗              -> data/dossier/*.md' }
+    @{ f = 'build_itemref.py';   d = '道具速查              -> data/dossier/_items.md' }
 )
 
 $n = 0

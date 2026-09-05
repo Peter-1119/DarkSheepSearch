@@ -5,58 +5,56 @@
 
 ---
 
-## 1. 先讀什麼
+## 1. 先讀什麼：你的英雄卷宗
+
+**`data/dossier/<英雄ID>.md`** —— 這一份就夠開工了。裡面已經備好：
+
+- 屬性、背包格數、定位、是否在隨機池／是否帳號鎖定
+- 每個技能的三語名稱、中文說明、每級數值表、天賦選項
+- **實作那個技能的 JASS 原始碼**（含函式名與行號）
+- 原生技能的物件欄位（暴擊機率、光環數值那些不在腳本裡的東西）
+- 皮膚換掉哪些技能
+- 這隻碰到的 hash key 及其意義
+
+再加一份 **`data/dossier/_items.md`** —— 取得範圍內的 369 件道具，
+含屬性排行榜（「技能強度最高的是誰」這種問題直接查）與硬性規則。
 
 ```bash
 cd "D:/Notebook Program Scripts/Python_Scripts/DarkSheep"
-
-# 英雄與技能（三語、含每級數值表、天賦選項）
-python -c "
-import json,io,sys; sys.stdout.reconfigure(encoding='utf-8')
-hs={h['id']:h for h in json.load(io.open('data/heroes.json',encoding='utf-8'))['heroes']}
-h=hs['H01E']                      # <- 換成你的英雄 ID
-print(h['n'], h['attr'], h['st'], h['roles'], 'mod:', h['mod'], 'sp:', h['sp'])
-for a in h['ab']:
-    print('='*60); print(a['id'], a['n'][0]); print(a['t'][0])
-    if a.get('lvt'): print(' 等級表', a['lvt'])
-    for o in a.get('opts',[]): print('  天賦', o['id'], o['n'][0], '::', (o['t'][0] or '')[:300])
-"
-
-# 道具（用 ID 或中文名都可以）
-python tools/check_build.py 星界耳環 純淨紫水晶 大法師長袍 薩弗拉斯 零時迷子 熾熱核心 --s1 附魔護符 --s2 太陽之書
+# 你的英雄卷宗（約 20 KB）
+cat data/dossier/H01E.md          # <- 換成你的英雄 ID
+# 道具速查
+cat data/dossier/_items.md
+# 驗配裝
+python tools/check_build.py --file <你的檔案>
 ```
 
-`h['mod']` = 這隻英雄真正吃「裝備技能威力」的技能（全地圖只有 8 個技能吃，
-6 位英雄有）。`h['sp']` = 吃「技能強度」的技能。兩者都是從程式碼判定的，
-不是從說明文字抓的。
+卷宗由 `tools/build_dossier.py` 從地圖檔直接產生，跟地圖同步。
 
-## 2. 一定要看原始碼
+## 2. 什麼時候才需要自己去翻 war3map.j
 
-技能說明的數字常常不完整或過期。真正的公式在 `war3map.j` 裡：
+**多數情況不需要。** 卷宗已經把「這個技能 ID 出現的分支 + 它呼叫的回呼」抽出來了。
+
+只有這幾種情況才值得自己解 JASS（解到你自己的暫存目錄，不要寫進 repo）：
+
+- 卷宗某個技能標著「JASS 裡沒有對應實作」，而你需要確認它到底有沒有被別處引用
+- 你要追**道具**的行為（卷宗只涵蓋英雄技能；道具邏輯在
+  `Trig_ItemAttacksFromHero_Actions` / `Trig_UseSkillsEndcast_Actions` /
+  `Trig_ItemKills_Actions` 這幾支裡）
+- 你要確認召喚物繼承了什麼（grep 召喚物的 unit ID）
+- 你懷疑卷宗的程式碼被 `MAXCODE` 截斷了（每個技能最多 260 行）
 
 ```bash
-# 解出腳本（放到自己的暫存目錄）
 python -c "
 import sys,io,json; sys.path.insert(0,'tools'); import mpq
 V=json.load(io.open('tools/version.json',encoding='utf-8'))
 io.open('war3map.j','w',encoding='utf-8').write(
     mpq.MPQ(V['map_file']).read('war3map.j').decode('utf-8','replace'))"
-
-# 技能通常在 Trig_HeroSkillsNN_Actions 裡用 if Skill=='技能ID' 分派，
-# 傷害常常再丟給計時器回呼（TimerStart(...,function XXX)），要一路跟過去
-grep -n "'A0OA'" war3map.j
 ```
 
-`udg_ItemBonusDMG[n]` 就是**技能強度**。
+那份檔案有 66226 行、2.1 MB —— **不要整份讀**，只 grep 你要的東西。
+`udg_ItemBonusDMG[玩家編號]` 是**技能強度**，
 `LoadReal(hash,<單位>,18)` 是**裝備技能威力**。
-
-已知的幾個坑：
-
-- 技能常常沒有等級成長（例如白銀執法官的均衡者之眼固定 `50 + 技能強度×0.20`）
-- 有些技能的傷害寫在 `Foo_Conditions` 對應的 `Foo_Actions` 裡，grep 技能 ID
-  只會找到條件式那一行
-- 「原生技能」（暴擊 `ACct`、光環 `ACac`、分裂 `AOcl` 之類）不在腳本裡，
-  要去 `war3map.w3a` 的欄位看（`Ocr1` 機率、`Ocr2` 倍率、`Cac1` 光環數值…）
 
 ## 3. 已驗證的核心機制
 
