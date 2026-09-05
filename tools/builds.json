@@ -1,0 +1,159 @@
+{
+  "_說明": [
+    "推薦配裝。機制已對照 UD_v3.81 地圖原始碼（war3map.j）與物件資料逐條驗證。",
+    "",
+    "取得難度篩選（實務考量，非遊戲硬性規則）：",
+    "  排除 新年 / 復活節 / 萬聖節 / 儀式 —— 這些實務上要有「盜賊」才拿得到。",
+    "  排除 完美 —— 要有「鐵匠」才做得出來。",
+    "  排除 特殊 lv.5++ —— 幾乎抽不到。",
+    "  每套最多 1~2 件 特殊 lv.5+。",
+    "遊戲硬性規則：同一件神器最多 1 個（鐵匠可複製 1 件）。",
+    "",
+    "items = 6 個正常欄位；bonus.s1 = 吸收器（特殊 lv.1）、bonus.s2 = 祕密寶盒（特殊 lv.2）。",
+    "",
+    "重要前提（詳見 數值機制.md）：",
+    "  1. 所有百分比修正都是加法，沒有乘法疊乘；唯一的兩層結構是「技能強度 × 裝備技能威力」。",
+    "  2. 地圖 bug：Bleed_Dmg / Disease_Dmg 把加成寫進 dmg_cof 而傷害用 cof，",
+    "     導致「流血傷害 +X%」「疾病傷害 +X%」對自己的第一段狀態無效；只有點燃傷害正常。",
+    "  3. 電擊與詛咒走「抗性」那一側，不受該 bug 影響。",
+    "  4. 易燃讓點燃跳數 16→32，總傷害翻倍（遊戲說明寫 +50%，實際 +100%）。"
+  ],
+  "list": [
+    {
+      "id": "flash",
+      "c": "#FF7043",
+      "n": ["易燃引信", "Flashpoint", "Точка воспламенения"],
+      "key": [
+        "點燃是唯一沒壞的狀態加成，而易燃讓點燃總傷害直接翻倍",
+        "Burn is the only status bonus that actually works, and Flammable doubles its total damage",
+        "Поджог - единственный рабочий бонус к статусам, а горючесть удваивает его суммарный урон"
+      ],
+      "why": [
+        "三件事疊在一起。第一，「流血傷害／疾病傷害 +X%」因為地圖把加成寫錯變數而失效，只有「點燃傷害 +X%」正常，這套把它堆到 +80%。第二，易燃讓點燃跳數從 16 變 32，總傷害直接翻倍（遊戲說明寫 +50%，程式碼實際是 +100%）。第三，熾熱核心與熔岩球都是在同一次觸發裡「先易燃、後點燃」，順序天生正確，兩件一起等於易燃幾乎全時段掛著。紅寶石權杖再把「點燃判定失敗」轉成 35% 機率的易燃，失手也在為下一次鋪路。裝甲護手是高頻引信（每 4 秒 75%），而且它的傷害吃滿裝備技能威力。",
+        "Three things stack. First, the \"+X% bleed/disease damage\" stats are wired to the wrong variable in the map and do nothing - only \"+X% burn damage\" works, and this build stacks it to +80%. Second, Flammable raises burn from 16 ticks to 32, doubling total damage (the in-game text says +50%; the code does +100%). Third, Molten Core and Lava Orb both apply Flammable and then Burn within the same proc, so the ordering is right for free and running both keeps Flammable up almost permanently. The Ruby Sceptre turns a failed burn roll into a 35% chance of Flammable, so even a miss sets up the next hit. Armored Gauntlet is the high-frequency igniter (75% every 4 s) and its damage scales fully with modifier power.",
+        "Складываются три вещи. Во-первых, «+X% урона от кровотечения/болезни» записаны не в ту переменную и не работают - действует только «+X% урона от поджога», здесь его +80%. Во-вторых, горючесть поднимает число тиков поджога с 16 до 32, удваивая суммарный урон (в описании +50%, в коде +100%). В-третьих, «Раскалённое ядро» и «Лавовый шар» в одном срабатывании накладывают сначала горючесть, потом поджог - двух предметов хватает, чтобы горючесть висела почти постоянно."
+      ],
+      "items": ["I06A", "I067", "I04G", "silk", "I01M", "I0AJ"],
+      "bonus": {"s1": "oli2", "s2": "I0AV"}
+    },
+    {
+      "id": "bleedflag",
+      "c": "#E05C7A",
+      "n": ["血旗", "Bleed as a Flag", "Кровотечение как метка"],
+      "key": [
+        "流血的傷害加成是壞的 —— 所以不要用它當傷害，要用它當「條件」",
+        "Bleed's damage bonus is broken - so don't use bleed for damage, use it as a condition",
+        "Бонус к урону от кровотечения не работает - используйте кровотечение как условие, а не как урон"
+      ],
+      "why": [
+        "出發點是一個反直覺的結論：既然「流血傷害 +X%」失效，堆流血傷害就是浪費格子。但流血本身仍會正常掛上，所以它可以當成免費的狀態旗標。血之護腕就是為此存在的 —— 目標處於流血時，它的攻擊傷害提升 150%，而那是非狀態傷害，走另一條管線，完全不受 bug 影響。災妄之星每 3 秒 100% 上流血、失重毒刺 80%、巫師之災依目標法力比例施加，旗標幾乎永遠亮著。虛弱同理：它讓流血傷害 +50% 是走「抗性」那一側，沒壞；黑暗手套則對被你虛弱的目標直接打出 100% 敏捷。整套攻速 +77%、吸血 25%，續戰能力也夠。",
+        "This starts from a counter-intuitive conclusion: since \"+X% bleed damage\" is broken, stacking bleed damage wastes slots. But bleed still *applies* normally, so it works as a free status flag. Blood Bracer exists for exactly this - while the target bleeds its attacks deal +150%, and that is non-status damage on a different pipeline, untouched by the bug. Star of Calamity applies bleed at 100% every 3 s, Weightless Sting at 80%, and Wizard's Bane scales its chance off the target's mana, so the flag is almost always lit. Weakness works the same way: its +50% bleed damage goes through the resistance side and is not broken, and Dark Gloves deal 100% of Agility to anything you have Weakened. With +77% attack speed and 25% lifesteal the build also sustains.",
+        "Идея контринтуитивная: раз «+X% урона от кровотечения» не работает, набирать его бессмысленно. Но само кровотечение накладывается нормально, значит его можно использовать как метку. «Кровавый наруч» именно для этого: пока цель кровоточит, его атаки бьют на +150%, а это урон не от статусов - другой конвейер, баг его не затрагивает. «Звезда бедствия» даёт 100% кровотечения каждые 3 сек., «Невесомое жало» - 80%."
+      ],
+      "items": ["I085", "grsl", "I092", "I044", "infs", "hlst"],
+      "bonus": {"s1": "vddl", "s2": "I05Z"}
+    },
+    {
+      "id": "pierce",
+      "c": "#9BB3C9",
+      "n": ["穿透直擊", "Straight Through", "Пробитие насквозь"],
+      "key": [
+        "穿透是獨立一包傷害，完全不經過減傷係數 —— 對高減傷的目標無視一切",
+        "Penetration is a separate damage packet that never touches the reduction coefficient",
+        "Пробитие - отдельный пакет урона, который вообще не проходит через коэффициент защиты"
+      ],
+      "why": [
+        "受傷結算會把雙方所有百分比加減成一個係數再乘一次，但穿透是在那之後「另外打一包」，所以不吃任何減傷、也不吃任何加成。對付堆滿減傷（上限 80%）的目標，這是唯一穩定的解。這套穿透合計 110 點，是全遊戲能堆到的極限之一。冰凍會讓目標受到的穿透 ×1.5，若目標是英雄而你又帶著復仇之手可到 ×2.0 —— 等效 220 點，每次攻擊都吃得到。寒冷之刃每 2 秒 50% 上冰凍負責維持，附魔之爪直接無視冰凍抗性。耶夢加得之戒的 -50% 攻擊速度看起來很重，但穿透是每次命中都結算的固定值，配合冰凍的倍率仍然划算；真的受不了可以換成毀滅之錘以外的攻速件。",
+        "Damage resolution folds every percentage from both sides into one coefficient and multiplies once - but Penetration is dealt afterwards as its own packet, so no reduction and no bonus touches it. Against a target stacked to the 80% reduction cap this is the only reliable answer. The build totals 110 Penetration, close to the ceiling. Freeze multiplies incoming Penetration by 1.5, and against a hero while you carry the Hand of Vengeance it reaches x2.0 - an effective 220 on every attack. Frost Blade keeps Freeze up (50% every 2 s) and Enchanted Claw ignores freeze resistance outright. Ring of Jormungandr's -50% attack speed looks brutal, but Penetration is a flat amount settled on every hit, so the freeze multiplier still pays for it.",
+        "При расчёте урона все проценты обеих сторон складываются в один коэффициент, но пробитие наносится после этого отдельным пакетом - его не трогают ни снижения, ни бонусы. Против цели у потолка в 80% снижения это единственный надёжный ответ. В сборке 110 пробития; заморозка умножает его на 1.5, а против героя с «Рукой возмездия» - до x2.0, то есть эффективные 220 при каждой атаке."
+      ],
+      "items": ["I01P", "ankh", "fgfh", "I00R", "I07G", "pnvu"],
+      "bonus": {"s1": "gvsm", "s2": "I01S"}
+    },
+    {
+      "id": "alpha",
+      "c": "#54C6EC",
+      "n": ["開場斬首", "Alpha Strike", "Первый удар"],
+      "key": [
+        "把三個「條件式」倍率疊在同一個瞬間：滿血 + 冰凍的第一下",
+        "Stack three conditional multipliers on the same instant: a full-health, frozen target's first hit",
+        "Три условных множителя в один момент: первый удар по замороженной цели на полном здоровье"
+      ],
+      "why": [
+        "這套的數值表看起來很普通，因為力量全部藏在「條件加成」裡，不會顯示在總計。銀器對生命值 75% 以上的敵人給 +100% 非狀態傷害 —— 而且目標冰凍時門檻放寬到 50%，等於冰凍把有效窗口整整拉大一倍。附魔之爪對冰凍目標再 +20%，碎界對近戰 +15%，均衡者讓近戰英雄對近戰目標 +50%。因為地圖是加法制，這些全部相加：對一個冰凍的滿血近戰目標約 +185%，也就是 2.85 倍。爆裂之刃的 30% 機率雙倍傷害是這套唯一真正的乘法，期望值再 ×1.3。適合開場秒殺關鍵目標，不適合長時間纏鬥。",
+        "The stat sheet looks unremarkable because all the power sits in conditional bonuses that never show in the totals. Silverware grants +100% non-status damage against enemies above 75% health - and while the target is Frozen that threshold drops to 50%, effectively doubling the window. Enchanted Claw adds +20% against frozen targets, Collapse +15% versus melee, and Equaliser gives a melee hero +50% against melee targets. Because the map adds rather than multiplies, these all sum: roughly +185% against a frozen, full-health melee target, i.e. 2.85x. Explosive Blade's 30% chance of double damage is the one genuine multiplier, worth another x1.3 on average. Built to delete a key target on the opening burst, not to grind.",
+        "Таблица характеристик выглядит скромно, потому что вся сила спрятана в условных бонусах. «Серебро» даёт +100% урона не от статусов по врагам выше 75% здоровья, а при заморозке порог падает до 50%. «Зачарованный коготь» добавляет +20% по замороженным, «Коллапс» +15% по ближнему бою, «Уравнитель» - +50% ближнему герою против ближних целей. Всё складывается: около +185% по замороженной цели на полном здоровье."
+      ],
+      "items": ["hlst", "I00A", "I07G", "I00R", "skul", "rej3"],
+      "bonus": {"s1": "gvsm", "s2": "I06Z"}
+    },
+    {
+      "id": "static",
+      "c": "#F7E15C",
+      "n": ["電擊壓制", "Static Lock", "Электрический захват"],
+      "key": [
+        "電擊一次做三件事：狀態傷害 +100%、目標受傷 +20%、目標輸出 −30%",
+        "Shock does three things at once: +100% status damage, +20% damage taken, -30% damage dealt",
+        "Шок делает три вещи сразу: +100% урона от статусов, +20% получаемого, -30% наносимого"
+      ],
+      "why": [
+        "大部分人只知道電擊放大狀態傷害，但原始碼裡 ShockUnit 一共動了六個欄位：四種狀態抗性各 −1.00（狀態傷害 +100%），還有目標的非狀態減傷 −0.20、造成傷害 −0.30。換句話說，掛上電擊等於同時讓對方更痛、更脆、更弱，而且全遊戲沒有任何一件裝備提供電擊抗性。雷霆之刃每 2 秒一次是全遊戲最高頻的電擊來源，風暴之錘再加 25% 機率（並算兩件風暴套裝），雷霆之主每 7 秒打 9 個目標把電擊鋪滿場面。碎界則把每一次電擊變成 125% 力量的魔法傷害，沒有冷卻。額外欄位的能量符文把電擊從 4 秒延長到 5 秒。注意：對英雄的電擊機率會砍半。",
+        "Most players only know Shock amplifies status damage, but ShockUnit touches six fields: all four status resistances at -1.00 (so +100% status damage), plus the target's non-status protection at -0.20 and its damage dealt at -0.30. Applying Shock makes the target hurt more, take more, and deal less at once - and no item in the game grants shock resistance. Thunder Blade fires every 2 s (the highest frequency in the game), Storm Hammer adds +25% chance and counts as two Storm set pieces, and Lord of Thunder hits 9 targets every 7 s to blanket a wave. Collapse turns every shock into 125% of your Strength as magic damage with no cooldown. Energy Rune in the bonus slot extends Shock from 4 s to 5 s. Note that shock chance is halved against heroes.",
+        "Обычно помнят только про усиление статусов, но ShockUnit меняет шесть полей: четыре сопротивления статусам по -1.00 (+100% урона), а также защиту цели не от статусов -0.20 и наносимый ею урон -0.30. И сопротивления шоку не даёт ни один предмет. «Клинок грома» срабатывает каждые 2 сек., «Штормовой молот» добавляет +25% шанса, «Коллапс» превращает каждый шок в 125% силы магическим уроном без перезарядки."
+      ],
+      "items": ["I0AM", "I0AL", "I096", "rej3", "anfg", "I01M"],
+      "bonus": {"s1": "oli2", "s2": "I01Q"}
+    },
+    {
+      "id": "drain",
+      "c": "#B48CE0",
+      "n": ["雙重削弱", "Double Debuff", "Двойное ослабление"],
+      "key": [
+        "電擊和詛咒各扣目標 20% 非狀態減傷，兩個一起 = 全隊對它的傷害 +40%",
+        "Shock and Curse each cut 20% of the target's non-status protection - together that is +40% for the whole team",
+        "Шок и проклятие снимают по 20% защиты цели - вместе это +40% урона от всей команды"
+      ],
+      "why": [
+        "這是一套輔助向的配裝，自己的輸出不高，但能讓整隊的傷害都變高。關鍵在原始碼裡的兩行：ShockUnit 和 CurseUnit 都會把目標的 key4（非狀態減傷）扣 0.20。因為地圖是加法制，兩個一起掛就是 −0.40，等於那個目標受到的所有普攻與技能傷害 +40%，而且是對所有人生效，不只對你。再加上電擊讓它的輸出 −30%，坦克也更好活。詛咒法杖是主動、100% 範圍施加，不像詛咒者之弩需要裝備技能威力達 100% 才會補詛咒；撕裂末日每 2 秒 100% 上易傷，把所有狀態的施加機率再拉高 50%。腐化之冠負責範圍 300 的持續詛咒與疾病，補滿覆蓋率。",
+        "A support-shaped build: your own damage is modest, but everyone else's goes up. The key is two lines in the source - both ShockUnit and CurseUnit subtract 0.20 from the target's key4 (non-status protection). Since the map adds rather than multiplies, running both means -0.40, i.e. that target takes +40% from *all* attacks and abilities, for the whole team and not just you. Shock also cuts its damage output by 30%, which keeps your front line alive. Curse Staff is an active with a flat 100% area application, so unlike Curser's Crossbow it needs no modifier-power threshold. Doom's Tear applies Vulnerability at 100% every 2 s, raising every status chance by another 50%. Crown of Corruption covers a 300 radius with rolling curse and disease.",
+        "Сборка поддержки: собственный урон умеренный, но команда бьёт сильнее. Ключ - две строки в коде: ShockUnit и CurseUnit снимают по 0.20 с key4 цели (защита не от статусов). Сложение даёт -0.40, то есть цель получает +40% от всех атак и умений - от всей команды. Шок ещё и режет её урон на 30%."
+      ],
+      "items": ["I0AM", "I07C", "prvt", "I09Y", "I0AL", "I0AB"],
+      "bonus": {"s1": "oli2", "s2": "I01L"}
+    },
+    {
+      "id": "thorn",
+      "c": "#57D98A",
+      "n": ["反傷風暴", "Thornstorm", "Шипованный шторм"],
+      "key": [
+        "反傷是獨立管線，不吃減傷；易傷再讓它 ×1.5",
+        "Thorns is its own pipeline, untouched by reduction; Vulnerability multiplies it by 1.5",
+        "Шипы - отдельный конвейер; уязвимость умножает их на 1.5"
+      ],
+      "why": [
+        "反傷完全不經過受傷結算的那個係數，所以對方堆多少減傷都沒用。公式是「反傷值 ×（1 + 反傷加成）」，這套實測 215 × 1.95 ≈ 419。接著易傷再乘 1.5 —— 那不是狀態機率的那一行，而是同一段說明裡常被漏看的另一行：身上有易傷的單位，受到的反傷 ×1.5。合計每次被攻擊回敬約 629。撕裂末日是這套的心臟：每 2 秒 100% 施加易傷，覆蓋率幾乎全時段。反傷完全不需要普攻、瞄準或走位，被打就會回擊，站著不動也在輸出。生命值 1225、護甲 41 讓它站得住。（若你有鐵匠做得出完美的復仇之盾，把英勇腰帶換掉可再多 +75% 反傷加成。）",
+        "Thorns never passes through the damage-reduction coefficient, so however much reduction the enemy stacks is irrelevant. The formula is thorns x (1 + thorns bonus); this build measures 215 x 1.95 = 419. Vulnerability then multiplies by 1.5 - not the status-chance line everyone quotes, but the other line in the same tooltip: a Vulnerable unit takes 1.5x thorns. That is roughly 629 returned per incoming hit. Doom's Tear is the heart of the build: Vulnerability at a flat 100% every 2 s, so uptime is nearly total. Thorns needs no attacks, aim or positioning - standing still is still damage, and 1225 health with 41 armour keeps you standing. (If you have a Blacksmith to craft the Perfected Shield of Vengeance, swapping out the Valour Belt adds another +75% thorns bonus.)",
+        "Ответный урон не проходит через коэффициент снижения, поэтому защита противника не важна. Формула: шипы x (1 + бонус); здесь 215 x 1.95 = 419. Уязвимость умножает ещё на 1.5 - это не строка про шанс статусов, а другая строка того же описания. Итого около 629 за каждый входящий удар. «Слеза рока» накладывает уязвимость каждые 2 сек. со 100% шансом."
+      ],
+      "items": ["I081", "pnvl", "I029", "fwss", "prvt", "I00M"],
+      "bonus": {"s1": "vddl", "s2": "I01S"}
+    },
+    {
+      "id": "arcane",
+      "c": "#7FD4C1",
+      "n": ["雙層魔法", "Two-Layer Arcana", "Двухслойная магия"],
+      "key": [
+        "全地圖唯一真正相乘的兩個數值：技能強度在括號內，裝備技能威力乘在括號外",
+        "The only genuinely multiplicative pair in the map: spell power inside the bracket, modifier power outside",
+        "Единственная по-настоящему умножающаяся пара: сила умений внутри скобок, сила модификаторов снаружи"
+      ],
+      "why": [
+        "地圖裡幾乎所有百分比都是加法，唯一的例外就是這兩個。技能的傷害公式長這樣：（基礎值 + 技能強度 × 該技能係數）×（1 + 裝備技能威力 × 0.33）—— 技能強度加進括號裡，裝備技能威力乘在括號外，所以兩者會互相放大。這套把兩邊都推到極限：技能強度 +1760、裝備技能威力 +220%，技能倍率 1.726。星界耳環單件就 +800 技能強度，是全遊戲最高（但「耳環」類只能帶 1 件）；幽魂匕首單件 +100% 裝備技能威力，也是最高。大法師權杖除了 +200 技能強度與 +25% 威力，本身還每 0.75 秒對 700 範圍內隨機敵人打 125 點 —— 那是掛在道具上的原版技能，由引擎執行，所以在觸發器程式碼裡看不到。注意技能只吃 33% 的裝備技能威力（裝備觸發才吃滿），但因為乘在整個括號外面，對高技能強度的角色收益極大。",
+        "Almost every percentage in the map adds; these two are the exception. A skill's damage is (base + spell power x that skill's ratio) x (1 + modifier power x 0.33) - spell power goes inside the bracket, modifier power multiplies the whole thing, so they amplify each other. This build pushes both to the limit: +1760 spell power and +220% modifier power, for a x1.726 skill multiplier. Astral Earring alone gives +800 spell power, the highest in the game (though only one Earring may be carried); Wraith Dagger alone gives +100% modifier power, also the highest. Beyond its +200 spell power and +25% modifier power, the Archmage Staff also fires 125 damage at a random enemy within 700 range every 0.75 s - that is a stock Warcraft ability attached to the item and run by the engine, which is why it never appears in the trigger code. Skills only take 33% of modifier power (item procs take all of it), but because it multiplies the entire bracket the payoff on a high-spell-power hero is enormous.",
+        "Почти все проценты в карте складываются; эти два - исключение. Урон умения считается как (база + сила умений x коэффициент умения) x (1 + сила модификаторов x 0.33). Сборка доводит обе величины до предела: +1760 силы умений и +220% силы модификаторов, множитель умений x1.726. «Астральная серьга» одна даёт +800 силы умений - максимум в игре. «Посох архимага» вдобавок бьёт на 125 каждые 0.75 сек. по случайному врагу в радиусе 700 - это стандартное умение движка, поэтому его нет в коде триггеров."
+      ],
+      "items": ["I00E", "sor5", "kpin", "fgrd", "I017", "I01M"],
+      "bonus": {"s1": "oli2", "s2": "I01L"}
+    }
+  ]
+}

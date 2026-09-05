@@ -647,6 +647,133 @@ body[data-resizing="1"]{cursor:col-resize;user-select:none}
 .st-g ul{margin:0;padding-left:16px}
 .st-g li{font-size:var(--fs-read);line-height:1.75;color:var(--ink-2);margin:4px 0}
 
+/* 英雄頁：卡片沿用裝備格子的視覺重量，但橫向排版好放名字與定位 */
+.hero-page .hsec{margin-bottom:22px}
+.hero-page .hsec > h2{
+  font-size:14px;color:var(--sc);margin:0 0 8px;display:flex;align-items:center;gap:8px;
+  padding-bottom:6px;border-bottom:1px solid var(--line);
+}
+.hero-page .hsec > h2 .n{
+  font:11px/1 ui-monospace,monospace;color:var(--ink-3);
+  background:var(--surface-2);border-radius:99px;padding:3px 7px;
+}
+.hulk{
+  grid-column:1/-1;font-size:11px;color:var(--ink-3);margin:10px 0 4px;
+  display:flex;align-items:center;gap:6px;
+}
+.hulk b{color:var(--ink-2);font-family:ui-monospace,monospace}
+.hulk::after{content:"";flex:1;height:1px;background:var(--line)}
+.hsec{display:grid;gap:7px;grid-template-columns:repeat(auto-fill,minmax(210px,1fr))}
+.hsec > h2, .hulk{grid-column:1/-1}
+.hc{
+  display:flex;align-items:center;gap:9px;padding:7px 9px;cursor:pointer;text-align:left;
+  border:1px solid var(--line);border-left:3px solid var(--sc);border-radius:10px;
+  background:var(--surface);transition:background var(--dur),transform var(--dur);
+}
+.hc:hover{background:var(--surface-2);transform:translateY(-1px)}
+.hc-i{width:40px;height:40px;border-radius:8px;flex:0 0 auto;object-fit:cover;
+  box-shadow:0 0 0 1.5px var(--line-2)}
+.hc-ph{width:40px;height:40px;border-radius:8px;flex:0 0 auto;display:grid;
+  place-items:center;background:#0c0f15;color:var(--ink-3);font-size:15px}
+.hc-b{min-width:0;flex:1;display:flex;flex-direction:column;gap:2px}
+.hc-b b{font-size:13px;color:var(--ink);white-space:nowrap;overflow:hidden;
+  text-overflow:ellipsis}
+.hc-r{font-size:11px;color:var(--ink-3);white-space:nowrap;overflow:hidden;
+  text-overflow:ellipsis}
+.hc-t{
+  flex:0 0 auto;font:10px/1 ui-monospace,monospace;color:var(--sc);
+  border:1px solid color-mix(in srgb,var(--sc) 45%,var(--line));
+  border-radius:99px;padding:3px 6px;
+}
+
+/* 英雄面板 */
+.hb{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}
+.hb span{font-size:11px;border-radius:99px;padding:3px 9px;border:1px solid var(--line);
+  color:var(--ink-2);background:var(--surface-2)}
+.hb-a{color:var(--sc)!important;border-color:color-mix(in srgb,var(--sc) 45%,var(--line))!important}
+.hb-m{color:#F7E15C!important;border-color:color-mix(in srgb,#F7E15C 40%,var(--line))!important}
+.hc-m{flex:0 0 auto;font-size:11px;opacity:.75}
+.hby{color:var(--ink-3);font-size:11px;margin-top:2px}
+.hdesc{margin:0 0 4px;font-size:var(--fs-read);line-height:1.75;color:var(--ink-2)}
+.htab{width:100%;border-collapse:collapse;font-size:var(--fs-sub)}
+.htab th,.htab td{padding:5px 8px;border-bottom:1px solid var(--line);text-align:left}
+.htab th{color:var(--ink-3);font-weight:400;font-size:11px}
+.htab .v{text-align:right;font-family:ui-monospace,monospace;color:var(--ink)}
+.htab .g{text-align:right;font-family:ui-monospace,monospace;color:var(--ink-3);width:56px}
+.hlinks{display:flex;flex-wrap:wrap;gap:6px}
+.hlink{
+  font-size:12px;padding:5px 10px;border-radius:8px;cursor:pointer;
+  background:var(--surface-2);border:1px solid var(--line);color:var(--ink-2);
+  transition:border-color var(--dur),color var(--dur);
+}
+.hlink:hover{border-color:var(--accent);color:var(--ink)}
+.hlink.s{--sc:var(--accent);color:var(--sc);
+  border-color:color-mix(in srgb,var(--sc) 45%,var(--line));
+  display:inline-flex;align-items:center;gap:5px}
+.hlink.s img{width:15px;height:15px;border-radius:4px}
+.hlink.s:hover{border-color:var(--sc)}
+.hnote{font-size:var(--fs-sub);line-height:1.6;border-radius:8px;padding:8px 10px;
+  margin-top:9px;border:1px solid var(--line)}
+.hnote.mod{color:#F7E15C;border-color:color-mix(in srgb,#F7E15C 40%,var(--line));
+  background:color-mix(in srgb,#F7E15C 8%,var(--surface))}
+/* 技能：跟狀態說明用同一種展開樣式 */
+#pbody h5 .cnt{margin-left:6px;font:11px/1 ui-monospace,monospace;color:var(--ink-3);
+  background:var(--surface-2);border-radius:99px;padding:3px 7px}
+.ha{border-bottom:1px solid var(--line)}
+.ha > summary{cursor:pointer;list-style:none;padding:7px 0}
+.ha > summary::-webkit-details-marker{display:none}
+.ha-hd{display:flex;align-items:center;gap:8px}
+.ha-hd img{width:26px;height:26px;border-radius:6px;flex:0 0 auto;
+  box-shadow:0 0 0 1px var(--line-2)}
+.ha-hd b{font-size:13px;color:var(--ink);flex:1;min-width:0}
+.ha-hd kbd{font:10px/1 ui-monospace,monospace;color:var(--ink-3);
+  border:1px solid var(--line-2);border-radius:4px;padding:3px 5px}
+.ha-lv{font:10px/1 ui-monospace,monospace;color:var(--ink-3)}
+.ha-m{color:#F7E15C;font-size:12px}
+.ha-t{margin:0 0 10px 34px;font-size:var(--fs-sub);line-height:1.7;color:var(--ink-2);
+  white-space:pre-wrap;font-family:inherit}
+/* 技能書的天賦選項 */
+.ho{margin:0 0 12px 34px;padding-left:10px;border-left:2px solid var(--line-2)}
+.ho-h{font-size:11px;color:var(--ink-3);margin-bottom:7px;display:flex;align-items:center}
+.ho-h .cnt{margin-left:6px}
+.ho-i{display:flex;gap:8px;margin-bottom:9px}
+.ho-i > img{width:24px;height:24px;border-radius:6px;flex:0 0 auto;
+  box-shadow:0 0 0 1px var(--line-2)}
+.ho-i > div{min-width:0;flex:1}
+.ho-i b{font-size:12.5px;color:var(--ink);display:block;margin-bottom:3px}
+.ho-i .ha-t{margin:0}
+
+/* AI 配裝卡：左側色帶延續套裝加成／狀態說明那套語言 */
+.bd{border:1px solid var(--line);border-left:3px solid var(--sc);border-radius:10px;
+  background:var(--surface);padding:11px 12px;margin-bottom:10px}
+.bd-h{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.bd-h b{font-size:14px;color:var(--sc);flex:1}
+.bd-go{
+  flex:0 0 auto;padding:5px 12px;border-radius:8px;cursor:pointer;font-size:12px;
+  background:color-mix(in srgb,var(--sc) 16%,var(--surface));
+  border:1px solid color-mix(in srgb,var(--sc) 50%,var(--line));color:var(--ink);
+  transition:background var(--dur),border-color var(--dur);
+}
+.bd-go:hover{background:color-mix(in srgb,var(--sc) 30%,var(--surface));border-color:var(--sc)}
+.bd-key{font-size:var(--fs-sub);color:var(--ink-2);line-height:1.6;margin-bottom:9px}
+.bd-row{display:flex;align-items:center;gap:5px;flex-wrap:wrap}
+.bd-i{width:38px;height:38px;border-radius:8px;overflow:hidden;flex:0 0 auto;cursor:pointer;
+  background:#0c0f15;box-shadow:0 0 0 1.5px var(--c2,#39415a);
+  transition:transform var(--dur)}
+.bd-i:hover{transform:translateY(-2px)}
+.bd-i img{width:100%;height:100%;object-fit:cover;display:block}
+.bd-i .ph{width:100%;height:100%;display:grid;place-items:center;
+  font:8px/1 ui-monospace,monospace;color:var(--ink-3)}
+/* 分隔線：右邊兩個是不佔格的額外欄位 */
+.bd-sep{width:1px;height:30px;background:var(--line-2);margin:0 4px;flex:0 0 auto}
+.bd-why{margin-top:9px}
+.bd-why > summary{cursor:pointer;font-size:var(--fs-sub);color:var(--ink-3);list-style:none}
+.bd-why > summary::-webkit-details-marker{display:none}
+.bd-why > summary::before{content:"\25B8 ";color:var(--sc)}
+.bd-why[open] > summary::before{content:"\25BE ";}
+.bd-why > summary:hover{color:var(--ink-2)}
+.bd-why p{margin:7px 0 0;font-size:var(--fs-read);line-height:1.75;color:var(--ink-2)}
+
 /* 用於合成：一個目標一張卡，卡的下半直接列出該配方的全部素材，
    手上這件打勾。這樣「還缺什麼」不必再點一層。 */
 .uses{display:flex;flex-direction:column;gap:8px}
@@ -744,6 +871,8 @@ body[data-resizing="1"]{cursor:col-resize;user-select:none}
   font-size:12px;color:var(--ink-2);box-shadow:var(--shadow);
   transition:opacity .4s,transform .4s;
 }
+/* 有些元素自己設了 display，會蓋過瀏覽器對 [hidden] 的預設值，所以統一強制 */
+[hidden]{display:none!important}
 .hint[hidden]{display:none}
 .hint.gone{opacity:0;transform:translate(-50%,8px)}
 .hint kbd{font:11px/16px ui-monospace,monospace;background:#1c212c;border:1px solid var(--line);
@@ -1039,6 +1168,7 @@ body[data-resizing="1"]{cursor:col-resize;user-select:none}
       <button data-v="browse" aria-pressed="true" data-i="mBrowse">瀏覽</button>
       <button data-v="build" aria-pressed="false" data-i="mBuild">配裝</button>
       <button data-v="status" aria-pressed="false" data-i="mStatus">狀態</button>
+      <button data-v="hero" aria-pressed="false" data-i="mHero">英雄</button>
     </div>
 
     <span class="tb-label" data-i="rankL">排行</span>
@@ -1146,7 +1276,25 @@ const UI = {
       sgStatus:'狀態效果', sgKw:'常見關鍵字', sgFilter:'快速篩選',
       sgRank:'依數值排行', sgActive:'主動技能',
       sgHint:'點關鍵字直接搜尋；有色點的是篩選條件，再點一次取消',
-      loTotal:'配裝總計', ptItem:'這件裝備', loSlotsN:'%s 件裝備', loFrom:'來自 %s', loRoll:'隨機抽一件', loArmed:'從下方挑一件放進這格',
+      loTotal:'配裝總計', ptItem:'這件裝備', loSlotsN:'%s 件裝備',
+      mHero:'英雄',
+      hpTitle:'英雄圖鑑', hpSub:'%s 位可選英雄，資料直接讀自地圖檔。',
+      hpNote:'可選名單、主屬性與解鎖門檻取自地圖的隨機英雄函式；'
+            +'強度等級與定位是地圖作者自己在英雄說明裡寫的。',
+      hAttr_str:'力量', hAttr_agi:'敏捷', hAttr_int:'智力',
+      hTier:'強度', hLate:'後期', hkUnlock:'解鎖', hkStart:'一開始',
+      hGrow:'屬性成長', hBase:'初始', hPer:'每級',
+      hBuild:'該找什麼裝備', hSkills:'英雄技能', hInnate:'固有技能',
+      hLv:'級', hNoText:'（沒有說明文字）',
+      hManual:'不在隨機池，只能手動挑', hBy:'投稿者', hPick:'可選項目',
+      hBuildHint:'這些標籤是從該英雄的技能文字掃出來的機制，點一下就會帶你回裝備清單。',
+      hModYes:'◈ 這個英雄有技能會吃「裝備技能威力」（已對照地圖原始碼確認）。',
+      hSkillRu:'技能說明譯自地圖原文；數值、公式與換行結構均保留原樣。',
+      ptAI:'AI 配裝', bdApply:'套用', bdWhy:'為什麼有效',
+      bdSub:'%s 套推薦，已排除幾乎抽不到的裝備',
+      bdNote:'機制已對照 UD_v3.81 地圖原始碼逐條驗證（數值來自 war3map.j，非實戰測試）。'
+            +'已排除特殊 lv.5++，每套最多 1 件特殊 lv.5+，並遵守「同一件神器最多 1 個」'
+            +'與「完美 4 選 1」。右邊分隔線後的兩件是不佔格的額外欄位。', loFrom:'來自 %s', loRoll:'隨機抽一件', loArmed:'從下方挑一件放進這格',
       loArtMax:'同一件神器最多 2 件', loSmith:'鐵匠複製',
       loDouble:'這件算作套裝的 2 件',
       loPerfectMax:'完美裝備只能帶 1 件',
@@ -1207,7 +1355,26 @@ const UI = {
       sgStatus:'Status effects', sgKw:'Common keywords', sgFilter:'Quick filters',
       sgRank:'Rank by stat', sgActive:'Active ability',
       sgHint:'Tap a keyword to search it; dotted ones are filters - tap again to clear',
-      loTotal:'Loadout totals', ptItem:'This item', loSlotsN:'%s items', loFrom:'From %s', loRoll:'Roll a random one', loArmed:'Pick an item below for this slot',
+      loTotal:'Loadout totals', ptItem:'This item', loSlotsN:'%s items',
+      mHero:'Heroes',
+      hpTitle:'Hero codex', hpSub:'%s playable heroes, read straight from the map file.',
+      hpNote:'The roster, primary attributes and unlock thresholds come from the map\'s '
+            +'random-hero functions; power rank and role are the map author\'s own notes.',
+      hAttr_str:'Strength', hAttr_agi:'Agility', hAttr_int:'Intelligence',
+      hTier:'Rank', hLate:'Late game', hkUnlock:'Unlock', hkStart:'From the start',
+      hGrow:'Attribute growth', hBase:'Base', hPer:'Per level',
+      hBuild:'What to build', hSkills:'Hero abilities', hInnate:'Innate abilities',
+      hLv:'lv', hNoText:'(no description)',
+      hManual:'Not in the random pool - pick manually', hBy:'Contributed by', hPick:'Choices',
+      hBuildHint:'These tags are the mechanics found in this hero\'s ability text - click one to jump back to the items.',
+      hModYes:'\u25C8 This hero has abilities that scale with Modifier power (confirmed in the map script).',
+      hSkillRu:'Ability text translated from the map source; numbers, formulas and line breaks preserved.',
+      ptAI:'AI builds', bdApply:'Apply', bdWhy:'Why it works',
+      bdSub:'%s builds, ultra-rare items excluded',
+      bdNote:'Mechanics verified line by line against the UD_v3.81 map script (war3map.j), not playtested. '
+            +'Special lv.5++ is excluded and each build uses at most one Special lv.5+, '
+            +'respecting the one-artifact-each and one-of-four-Perfected rules. '
+            +'The two items after the divider go in the slots that do not use bag space.', loFrom:'From %s', loRoll:'Roll a random one', loArmed:'Pick an item below for this slot',
       loArtMax:'An artifact can appear at most twice', loSmith:'Blacksmith copy',
       loDouble:'Counts as 2 set pieces',
       loPerfectMax:'Only one Perfected item can be carried',
@@ -1272,7 +1439,26 @@ const UI = {
       sgStatus:'Статусы', sgKw:'Частые слова', sgFilter:'Быстрые фильтры',
       sgRank:'Рейтинг по хар-ке', sgActive:'Активное умение',
       sgHint:'Нажмите слово, чтобы найти его; с точкой - это фильтры, нажмите ещё раз для сброса',
-      loTotal:'Итоги сборки', ptItem:'Этот предмет', loSlotsN:'предметов: %s', loFrom:'Из %s', loRoll:'Случайный предмет', loArmed:'Выберите предмет ниже для этого слота',
+      loTotal:'Итоги сборки', ptItem:'Этот предмет', loSlotsN:'предметов: %s',
+      mHero:'Герои',
+      hpTitle:'Справочник героев', hpSub:'%s игровых героев, данные прочитаны прямо из карты.',
+      hpNote:'Список, основная характеристика и пороги открытия взяты из функций случайного героя; '
+            +'ранг силы и роль - это заметки самого автора карты.',
+      hAttr_str:'Сила', hAttr_agi:'Ловкость', hAttr_int:'Разум',
+      hTier:'Ранг', hLate:'Поздняя игра', hkUnlock:'Открытие', hkStart:'Сразу',
+      hGrow:'Рост характеристик', hBase:'База', hPer:'За уровень',
+      hBuild:'Что собирать', hSkills:'Умения героя', hInnate:'Врождённые умения',
+      hLv:'ур', hNoText:'(нет описания)',
+      hManual:'Нет в случайном пуле - только вручную', hBy:'Автор', hPick:'Варианты',
+      hBuildHint:'Эти метки найдены в тексте умений героя - нажмите, чтобы вернуться к предметам.',
+      hModYes:'\u25C8 У этого героя есть умения, зависящие от силы модификаторов (проверено по скрипту карты).',
+      hSkillRu:'Описания умений - оригинальный текст карты.',
+      ptAI:'Сборки ИИ', bdApply:'Применить', bdWhy:'Почему это работает',
+      bdSub:'%s сборок, без сверхредких предметов',
+      bdNote:'Механики сверены со скриптом карты UD_v3.81 (war3map.j), но не проверены в бою. '
+            +'Особые 5++ исключены, не более одного особого 5+ на сборку, '
+            +'учтены правила «по одному артефакту» и «один Совершенный из четырёх». '
+            +'Два предмета после разделителя - слоты, не занимающие место в инвентаре.', loFrom:'Из %s', loRoll:'Случайный предмет', loArmed:'Выберите предмет ниже для этого слота',
       loArtMax:'Артефакт может встречаться не более двух раз', loSmith:'Копия кузнеца',
       loDouble:'Считается за 2 предмета комплекта',
       loPerfectMax:'Можно взять только один Совершенный предмет',
@@ -1521,6 +1707,155 @@ function renderRank(ids){
 
 /* 「狀態」模式的整頁內容：關係圖 → 抗性對照 → 系統規則 → 各狀態細節。
    由淺入深：先看結構，再看怎麼擋，最後才是逐條數字。 */
+const HEROES = DATA.heroes || [];
+const HERO = Object.fromEntries(HEROES.map(h => [h.id, h]));
+const ATTR_ORDER = ['str', 'agi', 'int'];
+/* 主屬性用跟屬性排行一致的顏色，讓兩個檢視看起來是同一套語言 */
+const ATTR_C = {str: '#f2795b', agi: '#57d98a', int: '#54c6ec'};
+
+/* 解鎖門檻：地圖用累積經驗值分四階開放英雄。 */
+function unlockLabel(v){
+  if (!v) return t('hkStart');
+  return v >= 1e6 ? (v / 1e6) + 'M' : (v / 1000) + 'K';
+}
+
+function heroCard(h){
+  const L = li();
+  const tier = h.tier ? `<span class="hc-t">${esc(h.tier[L])}</span>` : '';
+  return `<button class="hc" data-hero="${h.id}" style="--sc:${ATTR_C[h.attr]}">
+    <img class="hc-i" src="${h.icon}" alt="" loading="lazy"
+         onerror="this.replaceWith(Object.assign(document.createElement('span'),
+                  {className:'hc-ph',textContent:'${esc(h.n[L].slice(0,1))}'}))">
+    <span class="hc-b"><b>${esc(h.n[L])}</b>
+      <span class="hc-r">${h.roles.map(r => esc(r[L])).join('・')}</span></span>
+    ${h.random === false ? `<span class="hc-m" title="${esc(t('hManual'))}">✋</span>` : ''}
+    ${tier}</button>`;
+}
+
+function renderHeroPage(){
+  const L = li();
+  let html = `<div class="page hero-page"><header class="ph">
+      <h1>${esc(t('hpTitle'))}</h1>
+      <p>${esc(t('hpSub').replace('%s', HEROES.length))}</p></header>`;
+  for (const a of ATTR_ORDER){
+    const list = HEROES.filter(h => h.attr === a);
+    if (!list.length) continue;
+    html += `<section class="hsec" style="--sc:${ATTR_C[a]}">
+      <h2>${esc(t('hAttr_' + a))}<span class="n">${list.length}</span></h2>`;
+    let last = null;
+    for (const h of list){
+      if (h.unlock !== last){
+        last = h.unlock;
+        html += `<div class="hulk">${esc(t('hkUnlock'))}
+                 <b>${esc(unlockLabel(h.unlock))}</b></div>`;
+      }
+      html += heroCard(h);
+    }
+    html += '</section>';
+  }
+  html += `<div class="note">${esc(t('hpNote'))}</div></div>`;
+  main.innerHTML = html;
+}
+
+/* 英雄面板。重點不是把技能翻完，而是把「這個英雄該找什麼裝備」講清楚，
+   所以每個機制標籤都是可以點的入口，直接帶回裝備清單。 */
+function openHero(id){
+  const h = HERO[id]; if (!h) return;
+  const L = li();
+  S.hero = id;
+  panel.dataset.open = '1';
+  renderTabs();
+  phead.innerHTML = `
+    <button class="p-close" id="pclose" title="${esc(t('close'))}"
+            aria-label="${esc(t('close'))}">✕</button>
+    <div class="p-top">
+      <img class="p-img" src="${h.icon}" alt="">
+      <div class="p-name"><h1>${esc(h.n[L])}</h1>
+        <div class="alt">${esc(h.n[2])}${h.proper ? ' ・ ' + esc(h.proper) : ''}</div>
+        ${h.author ? `<div class="alt hby">${esc(t('hBy'))} ${esc(h.author)}</div>` : ''}
+      </div></div>
+    <div class="hb">
+      <span class="hb-a" style="--sc:${ATTR_C[h.attr]}">${esc(t('hAttr_' + h.attr))}</span>
+      ${h.tier ? `<span class="hb-t">${esc(t('hTier'))} ${esc(h.tier[L])}</span>` : ''}
+      ${h.late ? `<span class="hb-l">${esc(t('hLate'))} ${esc(h.late[L])}</span>` : ''}
+      <span class="hb-u">${esc(t('hkUnlock'))} ${esc(unlockLabel(h.unlock))}</span>
+      ${h.random === false ? `<span class="hb-m">✋ ${esc(t('hManual'))}</span>` : ''}
+    </div>`;
+
+  const st = h.st || {};
+  const row = (k, base, per) => base == null ? '' : `<tr><td>${esc(t('hAttr_' + k))}</td>
+      <td class="v">${base}</td><td class="g">${per ? '+' + (+per).toFixed(1) : ''}</td></tr>`;
+
+  const statBtn = k => {
+    const m = STAT(k); if (!m) return '';
+    return `<button class="hlink" data-hrank="${k}">${esc(m[S.lang] || m.zh)}</button>`;
+  };
+  const stBtn = k => {
+    const x = STATUS[k]; if (!x) return '';
+    return `<button class="hlink s" data-mq="${esc((x.q || [''])[0])}"
+      style="--sc:${x.c}">${x.icon ? `<img src="${x.icon}" alt="">` : ''}${
+      esc((x.n || [])[L] || k)}</button>`;
+  };
+  const wantStats = [h.attr].concat((h.sc && h.sc[0]) || []);
+  const wantSt = (h.sc && h.sc[1]) || [];
+
+  pbody.innerHTML = `
+    <p class="hdesc">${esc(h.d[L] || h.d[0])}</p>
+
+    <h5>${esc(t('hGrow'))}</h5>
+    <table class="htab"><thead><tr><th></th>
+      <th class="v">${esc(t('hBase'))}</th><th class="g">${esc(t('hPer'))}</th></tr></thead>
+      <tbody>${row('str', st.str, st.str_lv)}${row('agi', st.agi, st.agi_lv)}${
+        row('int', st.int, st.int_lv)}</tbody></table>
+
+    <h5>${esc(t('hBuild'))}</h5>
+    <div class="hlinks">${wantStats.map(statBtn).join('')}${wantSt.map(stBtn).join('')}</div>
+    ${h.mod && h.mod.length ? `<div class="hnote mod">${esc(t('hModYes'))}</div>` : ''}
+    <div class="sg-note">${esc(t('hBuildHint'))}</div>
+
+    ${abilBlock(h, 'hero', t('hSkills'))}
+    ${abilBlock(h, 'innate', t('hInnate'))}
+    <div class="sg-note">${esc(t('hSkillRu'))}</div>`;
+  pbody.scrollTop = 0;
+  $('#pclose').onclick = closeItem;
+  if (isMobile()){ setDrawer(false); setScrim(); }
+}
+
+/* 技能分兩區：QWER 可升級的，與固有的（被動／專屬機制／選擇天賦的入口）。
+   分開列是因為兩者的讀法不同 —— 前者要看等級成長，後者是一直生效的規則。 */
+function abilBlock(h, kind, label){
+  const L = li();
+  const list = h.ab.filter(a => (a.kind || 'hero') === kind);
+  if (!list.length) return '';
+  return `<h5>${esc(label)}<span class="cnt">${list.length}</span></h5>
+    ${list.map(a => `<details class="ha">
+      <summary><span class="ha-hd">
+        <img src="${a.icon}" alt="" loading="lazy"
+             onerror="this.style.visibility='hidden'">
+        <b>${esc(a.n[L])}</b>
+        ${a.k ? `<kbd>${esc(a.k)}</kbd>` : ''}
+        ${a.lv > 1 ? `<span class="ha-lv">${a.lv} ${esc(t('hLv'))}</span>` : ''}
+        ${h.mod.includes(a.id) ? `<span class="ha-m" title="${esc(t('hModYes'))}">◈</span>` : ''}
+        <span class="cv">${CHEV}</span></span></summary>
+      <pre class="ha-t">${esc((a.t && a.t[L]) || t('hNoText'))}</pre>
+      ${optList(a, L)}
+    </details>`).join('')}`;
+}
+
+/* 技能書（選擇天賦／選擇技能／額外技能）的選項。
+   每個英雄能選的天賦都不一樣，所以清單要跟著該英雄的技能書走，不能寫成共用表。 */
+function optList(a, L){
+  if (!a.opts || !a.opts.length) return '';
+  return `<div class="ho">
+    <div class="ho-h">${esc(t('hPick'))}<span class="cnt">${a.opts.length}</span></div>
+    ${a.opts.map(o => `<div class="ho-i">
+      <img src="${o.icon}" alt="" loading="lazy"
+           onerror="this.style.visibility='hidden'">
+      <div><b>${esc(o.n[L])}</b>
+        <pre class="ha-t">${esc(o.t[L] || t('hNoText'))}</pre></div>
+    </div>`).join('')}</div>`;
+}
+
 function renderStatusPage(){
   const L = li(), G = DATA.statusGraph || {};
   const chip = k => {
@@ -1573,6 +1908,7 @@ function renderStatusPage(){
 
 function renderGrid(){
   if (S.mode === 'status'){ renderStatusPage(); return; }
+  if (S.mode === 'hero'){ renderHeroPage(); return; }
   const ids = visible();
   if (S.rank && STAT(S.rank)){ renderRank(ids); return; }
   if (!ids.length){
@@ -2124,7 +2460,50 @@ function renderTabs(){
   if (box.hidden) return;
   const tab = (k, lab, on) => `<button data-ptab="${k}" aria-pressed="${S.ptab === k}"
       ${on ? '' : 'disabled'}>${esc(lab)}</button>`;
-  box.innerHTML = tab('sum', t('loTotal'), true) + tab('item', t('ptItem'), !!S.sel);
+  box.innerHTML = tab('sum', t('loTotal'), true) + tab('ai', t('ptAI'), true) +
+                  tab('item', t('ptItem'), !!S.sel);
+}
+
+/* AI 推薦配裝。四套都是從道具文字與狀態交互規則推導出來的，
+   而且資料進來前就驗證過遊戲規則（排除 5++、5+ 最多 1 件、神器不重複、完美 4 選 1），
+   所以按下「套用」不會產生一個實際上組不出來的配裝。 */
+function buildCard(b){
+  const L = li();
+  const pic = i => ITEMS[i] ? `<button class="bd-i" data-goto="${i}"
+      style="--c2:${ITEMS[i].k || '#39415a'}" title="${esc(nm(i))}　${esc(ITEMS[i].c[L])}">
+      ${thumb(i)}</button>` : '';
+  const bs = Object.keys(b.bonus || {}).map(k => b.bonus[k]).filter(x => ITEMS[x]);
+  return `<div class="bd" style="--sc:${b.c}">
+    <div class="bd-h">
+      <b>${esc(b.n[L])}</b>
+      <button class="bd-go" data-apply="${b.id}">${esc(t('bdApply'))}</button>
+    </div>
+    <div class="bd-key">${esc(b.key[L])}</div>
+    <div class="bd-row">${b.items.map(pic).join('')}
+      ${bs.length ? `<span class="bd-sep"></span>${bs.map(pic).join('')}` : ''}</div>
+    <details class="bd-why"><summary>${esc(t('bdWhy'))}</summary>
+      <p>${esc(b.why[L])}</p></details>
+  </div>`;
+}
+
+function showBuilds(){
+  S.ptab = 'ai';
+  const wasClosed = panel.dataset.open !== '1';
+  panel.dataset.open = '1';
+  renderTabs();
+  phead.innerHTML = `
+    <button class="p-close" id="pclose" title="${esc(t('close'))}"
+            aria-label="${esc(t('close'))}">✕</button>
+    <div class="p-top"><div class="p-name">
+      <h1>${esc(t('ptAI'))}</h1>
+      <div class="alt">${esc(t('bdSub').replace('%s', (DATA.builds||[]).length))}</div>
+    </div></div>`;
+  pbody.innerHTML = (DATA.builds || []).map(buildCard).join('') +
+    `<div class="note" style="margin-top:14px">${esc(t('bdNote'))}</div>`;
+  pbody.scrollTop = 0;
+  $('#pclose').onclick = closeItem;
+  if (!wasClosed){ panel.dataset.swap = '0'; void panel.offsetWidth; panel.dataset.swap = '1'; }
+  if (isMobile()){ setDrawer(false); setScrim(); }
 }
 
 function showSummary(){
@@ -2420,6 +2799,8 @@ main.addEventListener('click', e => {
     applyMode(); renderLoad(); renderRail(); renderGrid(); main.scrollTop = 0;
     return;
   }
+  const hc = e.target.closest('[data-hero]');
+  if (hc){ openHero(hc.dataset.hero); return; }
   const tile = e.target.closest('.tile,.rrow');
   if (!tile) return;
   const id = tile.dataset.id;
@@ -2460,10 +2841,23 @@ $('#load').addEventListener('click', e => {
   if (slot) openItem(S.load[+slot.dataset.slot], true);
 });
 
+pbody.addEventListener('click', e => {
+  const ap = e.target.closest('[data-apply]'); if (!ap) return;
+  const b = (DATA.builds || []).find(x => x.id === ap.dataset.apply);
+  if (!b) return;
+  S.load = b.items.filter(i => ITEMS[i]).slice(0, MAXSLOT);
+  S.bonus = {};
+  for (const k of Object.keys(b.bonus || {}))
+    if (ITEMS[b.bonus[k]]) S.bonus[k] = b.bonus[k];
+  loadSave(); bonusSave(); renderLoad();
+  showSummary();                       /* 套用後直接看總計，馬上知道拿到什麼 */
+});
+
 $('#ptabs').addEventListener('click', e => {
   const b = e.target.closest('[data-ptab]'); if (!b || b.disabled) return;
   S.ptab = b.dataset.ptab;
   if (S.ptab === 'sum') showSummary();
+  else if (S.ptab === 'ai') showBuilds();
   else if (S.sel) openItem(S.sel);
 });
 
@@ -2473,7 +2867,7 @@ $('#mode').addEventListener('click', e => {
   applyMode(); renderLoad();
   renderGrid(); main.scrollTop = 0;
   if (S.mode === 'build' && loadAll().length) showSummary();
-  else if (S.mode === 'status') closeItem();
+  else if (S.mode === 'status' || S.mode === 'hero') closeItem();
   else if (S.sel) openItem(S.sel);
 });
 function applyMode(){
@@ -2484,7 +2878,25 @@ function applyMode(){
 
 pbody.addEventListener('click', e => {
   const b = e.target.closest('[data-goto]');
-  if (b) openItem(b.dataset.goto, true);
+  if (b){ openItem(b.dataset.goto, true); return; }
+  /* 英雄面板上的機制標籤 = 回裝備清單的入口 */
+  const hr = e.target.closest('[data-hrank]');
+  if (hr){
+    S.mode = 'browse'; localStorage.setItem('ud.mode', S.mode);
+    S.rank = hr.dataset.hrank; localStorage.setItem('ud.rank', S.rank);
+    S.q = ''; $('#q').value = '';
+    S.tier = null; S.cat = null; S.set = null; S.act = null;
+    applyMode(); fillRank(); renderRail(); renderGrid(); main.scrollTop = 0;
+    return;
+  }
+  const mq = e.target.closest('[data-mq]');
+  if (mq){
+    S.mode = 'browse'; localStorage.setItem('ud.mode', S.mode);
+    S.rank = ''; localStorage.setItem('ud.rank', '');
+    S.q = mq.dataset.mq; $('#q').value = S.q;
+    S.tier = null; S.cat = null; S.set = null; S.act = null;
+    applyMode(); fillRank(); renderRail(); renderGrid(); main.scrollTop = 0;
+  }
 });
 phead.addEventListener('click', e => {
   const g = e.target.closest('[data-goto]');
