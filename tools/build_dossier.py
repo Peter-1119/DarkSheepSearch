@@ -51,6 +51,18 @@ UTIL_FN = {
     'GetRandomSubGroup', 'CreateProjectile', 'KnockBackUnit', 'KnockBackUnit2',
 }
 
+# 狀態的施加／結算是所有英雄共用的，完整版在 _engine.md。
+# 不排除的話會出事：它們的行號很小（1539、1693…），排序後排在前面，
+# 把 MAXCODE 預算吃光 —— 最古老的先知的大絕就整段被擠掉，只剩兩支
+# 跟她沒關係的狀態函式。這裡只留「有呼叫到」的一行指標。
+ENGINE_FN = {
+    'BurnUnit', 'FlammabilityUnit', 'FrostUnit', 'ShockUnit', 'BleedUnit',
+    'DiseaseUnit', 'CurseUnit', 'WeakUnit', 'VulnerabilityUnit', 'CharmUnit',
+    'SliceUnit', 'AnathemaUnit', 'Burn_Dmg', 'Bleed_Dmg', 'Disease_Dmg',
+    'RemoveShock', 'RemoveFlammability', 'RemoveFrost', 'ProjectileMove',
+    'Trig_HeroTakeDamage_Actions',
+}
+
 # hash key 的意義。方向很重要 —— 同一個 key 在「施加者」與「受害者」身上
 # 是完全不同的東西，先前就有天賦把「點燃抗性」寫進「點燃傷害 +%」的例子。
 KEYS = {
@@ -178,7 +190,8 @@ def follow_callbacks(idx, rngs, depth=3):
                     continue
                 for name in CALLED.findall(strip[i]):
                     if (name in fspan and name not in seen
-                            and name not in NOISE_FN and name not in UTIL_FN):
+                            and name not in NOISE_FN and name not in UTIL_FN
+                            and name not in ENGINE_FN):
                         seen.add(name)
                         nxt.append(fspan[name])
         out += nxt
@@ -198,6 +211,20 @@ def merge(rngs):
     return out
 
 
+def engine_calls(idx, aid, spans):
+    """這個技能呼叫了哪些共用引擎函式（完整版在 _engine.md）。"""
+    lines, strip, fn, fspan, path = idx
+    hit = set()
+    own = merge(spans.get(aid) or [])
+    # 也要看回呼裡的呼叫 —— 狀態多半是在計時器回呼裡施加的
+    for lo, hi in merge(follow_callbacks(idx, own)):
+        for i in range(lo, hi):
+            for nm in CALLED.findall(strip[i]):
+                if nm in ENGINE_FN:
+                    hit.add(nm)
+    return sorted(hit)
+
+
 def code_for(idx, aid, spans):
     """回傳 [(函式名, 起行, [程式碼…])]，總行數受 MAXCODE 限制。"""
     lines, strip, fn, fspan, path = idx
@@ -207,9 +234,10 @@ def code_for(idx, aid, spans):
     rngs = [r for r in rngs if fn[r[0]] not in NOISE_FN]
     if not rngs:
         return []
-    rngs = merge(follow_callbacks(idx, merge(rngs)))
+    own = merge(rngs)                       # 技能 ID 直接出現的那幾段
+    extra = [r for r in merge(follow_callbacks(idx, own)) if r not in own]
     out, used = [], 0
-    for lo, hi in rngs:
+    for lo, hi in own + extra:              # 自己的先貼，回呼排後面
         if used >= MAXCODE:
             break
         take = min(hi - lo, MAXCODE - used)
@@ -366,6 +394,11 @@ def hero_doc(h, rec, idx, A, U, spans):
             L.append('')
             L.append('物件欄位（原型 `%s`）：`%s`' % (obj.get('_base'), '`, `'.join(f)))
 
+        eng = engine_calls(idx, aid, spans)
+        if eng:
+            L.append('')
+            L.append('呼叫共用引擎函式：`%s` —— 完整內容見 `_engine.md`。'
+                     % '`, `'.join(eng))
         blocks = code_for(idx, aid, spans)
         if blocks:
             L.append('')

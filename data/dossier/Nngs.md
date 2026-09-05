@@ -103,21 +103,6 @@ set ug=null
 endfunction
 ```
 
-`Hero47Q_Buff`　war3map.j:60929
-```jass
-function Hero47Q_Buff takes nothing returns nothing
-local timer t=GetExpiredTimer()
-local integer Id=GetHandleId(t)
-local unit u=LoadUnitHandle(hash,Id,1)
-call SaveReal(hash,GetHandleId(u),4,LoadReal(hash,GetHandleId(u),4)-0.25)
-call PauseTimer(t)
-call DestroyTimer(t)
-call FlushChildHashtable(hash,Id)
-set t=null
-set u=null
-endfunction
-```
-
 `Trig_HeroSkills47_Actions`　war3map.j:60958
 ```jass
 if Skill=='A0EQ' then
@@ -161,6 +146,21 @@ call SaveReal(hash,Id,3,angle)
 call TimerStart(t,0.01,false,function Hero47Q)
 ```
 
+`Hero47Q_Buff`　war3map.j:60929
+```jass
+function Hero47Q_Buff takes nothing returns nothing
+local timer t=GetExpiredTimer()
+local integer Id=GetHandleId(t)
+local unit u=LoadUnitHandle(hash,Id,1)
+call SaveReal(hash,GetHandleId(u),4,LoadReal(hash,GetHandleId(u),4)-0.25)
+call PauseTimer(t)
+call DestroyTimer(t)
+call FlushChildHashtable(hash,Id)
+set t=null
+set u=null
+endfunction
+```
+
 ## 黑暗強化 `A0ER`　—　⊕ 給裝備技能威力
 
 俄文原名：Темное усиление
@@ -188,29 +188,6 @@ if GetUnitAbilityLevel(u,'B03H')>0 and IsUnitType(u3,UNIT_TYPE_HERO)then
 call UnitDamageTarget(u,u3,dmg*(1.00+0.20+0.20*I2R(GetUnitAbilityLevel(u,'A0ER'))),false,false,ATTACK_TYPE_NORMAL,DAMAGE_TYPE_MAGIC,null)
 ```
 
-`Hero47W`　war3map.j:60910
-```jass
-function Hero47W takes nothing returns nothing
-local timer t=GetExpiredTimer()
-local integer Id=GetHandleId(t)
-local unit u=LoadUnitHandle(hash,Id,1)
-local real x=LoadReal(hash,Id,1)
-local integer L=LoadInteger(hash,Id,2)
-if x>0 then
-call SetUnitLifeRegeneration(u,GetUnitLifeRegeneration(u)-x)
-endif
-call UnitRemoveAbility(u,'A0F3')
-if L==1 then
-call SaveReal(hash,GetHandleId(u),18,LoadReal(hash,GetHandleId(u),18)-0.50)
-endif
-call PauseTimer(t)
-call DestroyTimer(t)
-call FlushChildHashtable(hash,Id)
-set t=null
-set u=null
-endfunction
-```
-
 `Trig_HeroSkills47_Actions`　war3map.j:60997
 ```jass
 elseif Skill=='A0ER' then
@@ -236,6 +213,29 @@ call TimerStart(t,20,false,function Hero47W)
 endif
 ```
 
+`Hero47W`　war3map.j:60910
+```jass
+function Hero47W takes nothing returns nothing
+local timer t=GetExpiredTimer()
+local integer Id=GetHandleId(t)
+local unit u=LoadUnitHandle(hash,Id,1)
+local real x=LoadReal(hash,Id,1)
+local integer L=LoadInteger(hash,Id,2)
+if x>0 then
+call SetUnitLifeRegeneration(u,GetUnitLifeRegeneration(u)-x)
+endif
+call UnitRemoveAbility(u,'A0F3')
+if L==1 then
+call SaveReal(hash,GetHandleId(u),18,LoadReal(hash,GetHandleId(u),18)-0.50)
+endif
+call PauseTimer(t)
+call DestroyTimer(t)
+call FlushChildHashtable(hash,Id)
+set t=null
+set u=null
+endfunction
+```
+
 ## 受詛之刃 `Amgr`　—　吃技能強度
 
 俄文原名：Проклятое лезвие
@@ -258,37 +258,6 @@ endif
 物件欄位（原型 `None`）：`aher = 1`, `alev = 5`
 
 實作：
-
-`HeroE47_Cd`　war3map.j:61029
-```jass
-function HeroE47_Cd takes nothing returns nothing
-local timer t=GetExpiredTimer()
-local integer Id=GetHandleId(t)
-local unit u=LoadUnitHandle(hash,Id,1)
-call SaveInteger(hash,GetHandleId(u),20,0)
-call FlushChildHashtable(hash,Id)
-call PauseTimer(t)
-call DestroyTimer(t)
-set t=null
-set u=null
-endfunction
-function HeroE47_EndDebuff takes nothing returns nothing
-local timer t=GetExpiredTimer()
-local integer Id=GetHandleId(t)
-local unit u=LoadUnitHandle(hash,Id,1)
-local real r=LoadReal(hash,Id,1)
-local real r2=LoadReal(hash,Id,2)
-call SaveTimerHandle(hash,GetHandleId(u),'Nngs',null)
-call SaveReal(hash,GetHandleId(u),6,LoadReal(hash,GetHandleId(u),6)+r)
-call SaveReal(hash,GetHandleId(u),4,LoadReal(hash,GetHandleId(u),4)+r2)
-call UnitRemoveAbility(u,'A0E8')
-call FlushChildHashtable(hash,Id)
-call PauseTimer(t)
-call DestroyTimer(t)
-set t=null
-set u=null
-endfunction
-```
 
 `Trig_HeroAttack47_Actions`　war3map.j:61069
 ```jass
@@ -351,6 +320,37 @@ call UnitDamageTarget(u2,u,dmg,false,false,ATTACK_TYPE_NORMAL,DAMAGE_TYPE_MAGIC,
 call DestroyEffect(AddSpecialEffectTarget("war3mapImported\\SoulRitual.mdx",u,"origin"))
 endif
 endif
+```
+
+`HeroE47_Cd`　war3map.j:61029
+```jass
+function HeroE47_Cd takes nothing returns nothing
+local timer t=GetExpiredTimer()
+local integer Id=GetHandleId(t)
+local unit u=LoadUnitHandle(hash,Id,1)
+call SaveInteger(hash,GetHandleId(u),20,0)
+call FlushChildHashtable(hash,Id)
+call PauseTimer(t)
+call DestroyTimer(t)
+set t=null
+set u=null
+endfunction
+function HeroE47_EndDebuff takes nothing returns nothing
+local timer t=GetExpiredTimer()
+local integer Id=GetHandleId(t)
+local unit u=LoadUnitHandle(hash,Id,1)
+local real r=LoadReal(hash,Id,1)
+local real r2=LoadReal(hash,Id,2)
+call SaveTimerHandle(hash,GetHandleId(u),'Nngs',null)
+call SaveReal(hash,GetHandleId(u),6,LoadReal(hash,GetHandleId(u),6)+r)
+call SaveReal(hash,GetHandleId(u),4,LoadReal(hash,GetHandleId(u),4)+r2)
+call UnitRemoveAbility(u,'A0E8')
+call FlushChildHashtable(hash,Id)
+call PauseTimer(t)
+call DestroyTimer(t)
+set t=null
+set u=null
+endfunction
 ```
 
 ## 靈魂撕裂 `A0F4`　—　吃技能強度

@@ -43,6 +43,26 @@
 function Trig_HeroR2_Conditions takes nothing returns boolean
 return GetLearnedSkill()=='A07U'
 endfunction
+```
+
+`Trig_HeroR2_Actions`　war3map.j:46978
+```jass
+function Trig_HeroR2_Actions takes nothing returns nothing
+local timer t=CreateTimer()
+local integer Id=GetHandleId(t)
+local unit u=GetLearningUnit()
+call TimerStart(t,1.,true,function HeroR2_check)
+call SaveUnitHandle(hash,Id,1,u)
+set t=null
+set u=null
+endfunction
+```
+
+`Trig_HeroR2_Conditions`　war3map.j:46949
+```jass
+function Trig_HeroR2_Conditions takes nothing returns boolean
+return GetLearnedSkill()=='A07U'
+endfunction
 function HeroR2_check takes nothing returns nothing
 local timer t=GetExpiredTimer()
 local integer Id=GetHandleId(t)
@@ -155,51 +175,6 @@ endif
 
 實作：
 
-`SetUnitExtraDamage`　war3map.j:3928
-```jass
-function SetUnitExtraDamage takes unit u,integer a returns nothing
-local integer Id=GetHandleId(u)
-local integer p=14
-local integer index=0
-local integer r
-if a>8191 then
-set a=8191
-endif
-loop
-call UnitRemoveAbility(u,setAttribute___abilityAddDamage[index])
-call UnitRemoveAbility(u,setAttribute___abilityRemoveDamage[index])
-exitwhen index==14
-set index=index+1
-endloop
-if a>0 then
-set r=a
-loop
-exitwhen r<=0
-if R2I(Pow(2,p))>r then
-set p=p-1
-elseif R2I(Pow(2,p))<=r then
-call UnitAddAbility(u,setAttribute___abilityAddDamage[p])
-set r=r-R2I(Pow(2,p))
-set p=p-1
-endif
-endloop
-elseif a<0 then
-set r=-a
-loop
-exitwhen r<=0
-if R2I(Pow(2,p))>r then
-set p=p-1
-elseif R2I(Pow(2,p))<=r then
-call UnitAddAbility(u,setAttribute___abilityRemoveDamage[p])
-set r=r-R2I(Pow(2,p))
-set p=p-1
-endif
-endloop
-endif
-call SaveInteger(hash,Id,34,a)
-endfunction
-```
-
 `Hero2Q`　war3map.j:46808
 ```jass
 if count<=0 or not UnitAlive(u)then
@@ -243,6 +218,51 @@ call TimerStart(t,1.,true,function Hero2Q)
 ```jass
 if LoadInteger(hash,GetHandleId(u2),'A01C')>=1 then
 call SetUnitState(u2,UNIT_STATE_LIFE,r+(dmg*6))
+```
+
+`SetUnitExtraDamage`　war3map.j:3928
+```jass
+function SetUnitExtraDamage takes unit u,integer a returns nothing
+local integer Id=GetHandleId(u)
+local integer p=14
+local integer index=0
+local integer r
+if a>8191 then
+set a=8191
+endif
+loop
+call UnitRemoveAbility(u,setAttribute___abilityAddDamage[index])
+call UnitRemoveAbility(u,setAttribute___abilityRemoveDamage[index])
+exitwhen index==14
+set index=index+1
+endloop
+if a>0 then
+set r=a
+loop
+exitwhen r<=0
+if R2I(Pow(2,p))>r then
+set p=p-1
+elseif R2I(Pow(2,p))<=r then
+call UnitAddAbility(u,setAttribute___abilityAddDamage[p])
+set r=r-R2I(Pow(2,p))
+set p=p-1
+endif
+endloop
+elseif a<0 then
+set r=-a
+loop
+exitwhen r<=0
+if R2I(Pow(2,p))>r then
+set p=p-1
+elseif R2I(Pow(2,p))<=r then
+call UnitAddAbility(u,setAttribute___abilityRemoveDamage[p])
+set r=r-R2I(Pow(2,p))
+set p=p-1
+endif
+endloop
+endif
+call SaveInteger(hash,Id,34,a)
+endfunction
 ```
 
 ## 雷霆一擊 `A01B`　—　吃技能強度
@@ -314,51 +334,6 @@ call SetTextTagFadepoint(text,2.00)
 ```
 
 實作：
-
-`SetUnitExtraDamage`　war3map.j:3928
-```jass
-function SetUnitExtraDamage takes unit u,integer a returns nothing
-local integer Id=GetHandleId(u)
-local integer p=14
-local integer index=0
-local integer r
-if a>8191 then
-set a=8191
-endif
-loop
-call UnitRemoveAbility(u,setAttribute___abilityAddDamage[index])
-call UnitRemoveAbility(u,setAttribute___abilityRemoveDamage[index])
-exitwhen index==14
-set index=index+1
-endloop
-if a>0 then
-set r=a
-loop
-exitwhen r<=0
-if R2I(Pow(2,p))>r then
-set p=p-1
-elseif R2I(Pow(2,p))<=r then
-call UnitAddAbility(u,setAttribute___abilityAddDamage[p])
-set r=r-R2I(Pow(2,p))
-set p=p-1
-endif
-endloop
-elseif a<0 then
-set r=-a
-loop
-exitwhen r<=0
-if R2I(Pow(2,p))>r then
-set p=p-1
-elseif R2I(Pow(2,p))<=r then
-call UnitAddAbility(u,setAttribute___abilityRemoveDamage[p])
-set r=r-R2I(Pow(2,p))
-set p=p-1
-endif
-endloop
-endif
-call SaveInteger(hash,Id,34,a)
-endfunction
-```
 
 `PercentStatsRefresh`　war3map.j:21797
 ```jass
@@ -511,6 +486,51 @@ if i !=i2 then
 call SetUnitExtraDamage(u,GetUnitExtraDamage(u)-i+i2)
 endif
 call SaveInteger(hash,I_Id,1,i2)
+```
+
+`SetUnitExtraDamage`　war3map.j:3928
+```jass
+function SetUnitExtraDamage takes unit u,integer a returns nothing
+local integer Id=GetHandleId(u)
+local integer p=14
+local integer index=0
+local integer r
+if a>8191 then
+set a=8191
+endif
+loop
+call UnitRemoveAbility(u,setAttribute___abilityAddDamage[index])
+call UnitRemoveAbility(u,setAttribute___abilityRemoveDamage[index])
+exitwhen index==14
+set index=index+1
+endloop
+if a>0 then
+set r=a
+loop
+exitwhen r<=0
+if R2I(Pow(2,p))>r then
+set p=p-1
+elseif R2I(Pow(2,p))<=r then
+call UnitAddAbility(u,setAttribute___abilityAddDamage[p])
+set r=r-R2I(Pow(2,p))
+set p=p-1
+endif
+endloop
+elseif a<0 then
+set r=-a
+loop
+exitwhen r<=0
+if R2I(Pow(2,p))>r then
+set p=p-1
+elseif R2I(Pow(2,p))<=r then
+call UnitAddAbility(u,setAttribute___abilityRemoveDamage[p])
+set r=r-R2I(Pow(2,p))
+set p=p-1
+endif
+endloop
+endif
+call SaveInteger(hash,Id,34,a)
+endfunction
 ```
 
 ## 轉移／移除據點 `A03V`

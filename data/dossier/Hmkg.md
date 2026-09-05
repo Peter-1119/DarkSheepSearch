@@ -193,6 +193,67 @@ call SetUnitAnimation(u,"Stand Defend")
 
 實作：
 
+`Trig_HeroTakeDamage_Actions`　war3map.j:19805
+```jass
+if GetUnitAbilityLevel(d,'B03I')==1 then
+set DefCof=DefCof-(0.12+0.08*I2R(GetUnitAbilityLevel(d,'Absk')))
+endif
+```
+
+`Skill43W`　war3map.j:59515
+```jass
+function Skill43W takes nothing returns nothing
+local timer t=GetExpiredTimer()
+local integer Id=GetHandleId(t)
+local unit u=LoadUnitHandle(hash,Id,1)
+local player pl=GetOwningPlayer(u)
+local integer n=GetPlayerId(pl)+1
+local integer lvl=GetUnitAbilityLevel(u,'Absk')
+local real x=GetUnitX(u)
+local real y=GetUnitY(u)
+local unit u2
+local real dmg=35+35*I2R(lvl)+udg_ItemBonusDMG[n]*0.25
+local real regen=2+2*I2R(lvl)+udg_ItemBonusDMG[n]*0.03
+local integer atk=10+10*lvl+R2I(udg_ItemBonusDMG[n]*0.10)
+local effect e
+set u2=CreateUnit(pl,'o02K',x,y,0)
+call SaveReal(hash,GetHandleId(u2),13,dmg)
+call SaveUnitHandle(hash,GetHandleId(u2),13,u)
+call UnitApplyTimedLife(u2,'BTLF',1.5)
+call IssuePointOrderById(u2,Order_attack,x,y)
+call SaveReal(hash,GetHandleId(u),4,LoadReal(hash,GetHandleId(u),4)-LoadReal(hash,Id,1))
+call FlushChildHashtable(hash,Id)
+call DestroyTimer(t)
+set t=CreateTimer()
+set Id=GetHandleId(t)
+call TimerStart(t,8,false,function Skill43W2)
+call SaveUnitHandle(hash,Id,1,u)
+call SaveReal(hash,Id,1,regen)
+call SaveInteger(hash,Id,1,atk)
+set e=AddSpecialEffectTarget("war3mapImported\\Ember Sword FX 5.mdx",u,"weapon")
+call SaveEffectHandle(hash,Id,2,e)
+call SetUnitExtraDamage(u,GetUnitExtraDamage(u)+atk)
+call SetUnitLifeRegeneration(u,GetUnitLifeRegeneration(u)+regen)
+set t=null
+set u=null
+set u2=null
+set pl=null
+set e=null
+endfunction
+```
+
+`Trig_HeroSkills43_Actions`　war3map.j:59738
+```jass
+elseif Skill=='Absk' then
+set t=CreateTimer()
+set Id=GetHandleId(t)
+call TimerStart(t,5,false,function Skill43W)
+call SaveUnitHandle(hash,Id,1,u)
+set dmg=0.12+0.08*I2R(GetUnitAbilityLevel(u,Skill))
+call SaveReal(hash,GetHandleId(u),4,LoadReal(hash,GetHandleId(u),4)+dmg)
+call SaveReal(hash,Id,1,dmg)
+```
+
 `SetUnitExtraDamage`　war3map.j:3928
 ```jass
 function SetUnitExtraDamage takes unit u,integer a returns nothing
@@ -236,13 +297,6 @@ endloop
 endif
 call SaveInteger(hash,Id,34,a)
 endfunction
-```
-
-`Trig_HeroTakeDamage_Actions`　war3map.j:19805
-```jass
-if GetUnitAbilityLevel(d,'B03I')==1 then
-set DefCof=DefCof-(0.12+0.08*I2R(GetUnitAbilityLevel(d,'Absk')))
-endif
 ```
 
 `Skill43W2`　war3map.j:59499
@@ -303,18 +357,6 @@ set e=null
 endfunction
 ```
 
-`Trig_HeroSkills43_Actions`　war3map.j:59738
-```jass
-elseif Skill=='Absk' then
-set t=CreateTimer()
-set Id=GetHandleId(t)
-call TimerStart(t,5,false,function Skill43W)
-call SaveUnitHandle(hash,Id,1,u)
-set dmg=0.12+0.08*I2R(GetUnitAbilityLevel(u,Skill))
-call SaveReal(hash,GetHandleId(u),4,LoadReal(hash,GetHandleId(u),4)+dmg)
-call SaveReal(hash,Id,1,dmg)
-```
-
 ## 閃耀護盾 `Amgl`　—　吃技能強度
 
 俄文原名：Искрящийся щит
@@ -335,18 +377,8 @@ call SaveReal(hash,Id,1,dmg)
 
 實作：
 
-`Hero43E2`　war3map.j:59766
+`Hero43E`　war3map.j:59776
 ```jass
-function Hero43E2 takes nothing returns nothing
-local timer t=GetExpiredTimer()
-local integer Id=GetHandleId(t)
-local unit u=LoadUnitHandle(hash,Id,1)
-call SaveInteger(hash,GetHandleId(u),28,0)
-call DestroyTimer(t)
-call FlushChildHashtable(hash,Id)
-set t=null
-set u=null
-endfunction
 function Hero43E takes nothing returns nothing
 local timer t=GetExpiredTimer()
 local integer Id=GetHandleId(t)
@@ -409,6 +441,63 @@ endif
 endif
 ```
 
+`Hero43E2`　war3map.j:59766
+```jass
+function Hero43E2 takes nothing returns nothing
+local timer t=GetExpiredTimer()
+local integer Id=GetHandleId(t)
+local unit u=LoadUnitHandle(hash,Id,1)
+call SaveInteger(hash,GetHandleId(u),28,0)
+call DestroyTimer(t)
+call FlushChildHashtable(hash,Id)
+set t=null
+set u=null
+endfunction
+function Hero43E takes nothing returns nothing
+local timer t=GetExpiredTimer()
+local integer Id=GetHandleId(t)
+local unit u=LoadUnitHandle(hash,Id,1)
+local real x=GetUnitX(u)
+local real y=GetUnitY(u)
+local player pl=GetOwningPlayer(u)
+local integer n=GetPlayerId(pl)+1
+local integer count=LoadInteger(hash,Id,1)
+local group ug
+local unit u3
+local real dmg=8+8*I2R(GetUnitAbilityLevel(u,'Amgl'))+udg_ItemBonusDMG[n]*0.05
+local effect e
+set ug=CreateGroup()
+call GroupEnumUnitsInRange(ug,x,y,215,null)
+loop
+set u3=FirstOfGroup(ug)
+exitwhen u3==null
+if UnitAlive(u3)and IsUnitEnemy(u3,pl)then
+call UnitDamageTarget(u,u3,dmg,false,false,ATTACK_TYPE_NORMAL,DAMAGE_TYPE_MAGIC,null)
+endif
+call GroupRemoveUnit(ug,u3)
+endloop
+set count=count-1
+call SaveInteger(hash,Id,1,count)
+if count==0 then
+call SaveInteger(hash,GetHandleId(u),29,0)
+set e=LoadEffectHandle(hash,Id,2)
+call DestroyEffect(e)
+call DestroyTimer(t)
+call FlushChildHashtable(hash,Id)
+set t=CreateTimer()
+set Id=GetHandleId(t)
+call SaveUnitHandle(hash,Id,1,u)
+call TimerStart(t,10,false,function Hero43E2)
+endif
+set t=null
+set u=null
+set u3=null
+set ug=null
+set pl=null
+set e=null
+endfunction
+```
+
 ## 向聖光祈願 `A01W`　—　吃技能強度
 
 俄文原名：Обращение к Свету
@@ -429,6 +518,18 @@ endif
 
 實作：
 
+`Trig_HeroSkills43_Actions`　war3map.j:59746
+```jass
+elseif Skill=='A01W' then
+call UnitAddAbility(u,'A01Y')
+set t=CreateTimer()
+set Id=GetHandleId(t)
+call SaveUnitHandle(hash,Id,1,u)
+call SaveInteger(hash,Id,2,'A01Y')
+call TimerStart(t,22,true,function RemoveBuff)
+endif
+```
+
 `RemoveBuff`　war3map.j:2875
 ```jass
 function RemoveBuff takes nothing returns nothing
@@ -443,18 +544,6 @@ call FlushChildHashtable(hash,Id)
 set t=null
 set u=null
 endfunction
-```
-
-`Trig_HeroSkills43_Actions`　war3map.j:59746
-```jass
-elseif Skill=='A01W' then
-call UnitAddAbility(u,'A01Y')
-set t=CreateTimer()
-set Id=GetHandleId(t)
-call SaveUnitHandle(hash,Id,1,u)
-call SaveInteger(hash,Id,2,'A01Y')
-call TimerStart(t,22,true,function RemoveBuff)
-endif
 ```
 
 ## 灼燒印記 `A01V`

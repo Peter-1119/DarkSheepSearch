@@ -107,224 +107,9 @@ endif
 
 物件欄位（原型 `Amgl`）：`aher = 1`, `alev = 5`
 
+呼叫共用引擎函式：`VulnerabilityUnit` —— 完整內容見 `_engine.md`。
+
 實作：
-
-`RemoveFrost`　war3map.j:1527
-```jass
-function RemoveFrost takes nothing returns nothing
-local timer t=GetExpiredTimer()
-local unit u=LoadUnitHandle(hash,GetHandleId(t),1)
-call UnitRemoveAbility(u,'S00G')
-call UnitRemoveAbility(u,'B02V')
-call RemoveSavedHandle(hash,GetHandleId(u),'B02V')
-call PauseTimer(t)
-call FlushChildHashtable(hash,GetHandleId(t))
-call DestroyTimer(t)
-set t=null
-set u=null
-endfunction
-function FrostUnit takes unit damager,unit target,real chanse returns nothing
-local real dmg
-local real cof=1.0
-local timer t
-local integer t_Id=GetHandleId(target)
-local integer d_Id=GetHandleId(damager)
-local integer random
-local integer chanse_random
-if IsUnitType(target,UNIT_TYPE_STRUCTURE)or IsUnitType(target,UNIT_TYPE_MECHANICAL)or not UnitAlive(target)or LoadInteger(hash,t_Id,44)>0 then
-set t=null
-return
-endif
-if LoadInteger(hash,t_Id,28)>0 and LoadInteger(hash,GetHandleId(damager),'I07G')==0 then
-set chanse=chanse*0.25
-endif
-if GetUnitAbilityLevel(target,'B00W')>0 then
-set chanse=chanse*0.70
-endif
-if GetUnitAbilityLevel(target,'B045')==1 then
-set chanse=chanse*1.50
-endif
-if LoadInteger(hash,d_Id,'I09G')>=1 then
-set chanse=chanse*1.50
-endif
-set chanse_random=R2I(chanse*100)
-set random=GetRandomInt(1,100)
-if random<=chanse_random then
-if GetUnitAbilityLevel(damager,'A0AQ')==1 and GetUnitAbilityLevel(target,'B046')==1 then
-if IsUnitType(target,UNIT_TYPE_HERO)then
-set dmg=GetUnitState(target,UNIT_STATE_MAX_LIFE)*0.25
-else
-set dmg=GetUnitState(target,UNIT_STATE_MAX_LIFE)*0.05
-endif
-if LoadInteger(hash,d_Id,'I00R')>=1 then
-set dmg=dmg+150.
-endif
-call DestroyEffect(AddSpecialEffectTarget("Abilities\\Spells\\Other\\CrushingWave\\CrushingWaveDamage.mdl",target,"chest"))
-if LoadInteger(hash,d_Id,'I086')>=1 then
-if LoadInteger(hash,d_Id,48)>=1 then
-set cof=cof+0.50
-endif
-endif
-if GetUnitAbilityLevel(damager,'B01H')==1 then
-set cof=cof+0.50
-endif
-if LoadInteger(hash,t_Id,'I07A')>=1 then
-if UnitLifePercent(target)<=25.0 then
-set cof=cof-0.50
-endif
-endif
-if LoadInteger(hash,t_Id,'I048')>=1 then
-if UnitLifePercent(target)<=30.0 then
-set cof=cof-0.25
-endif
-endif
-if LoadInteger(hash,t_Id,'tbak')>=1 then
-if UnitLifePercent(damager)>=75.0 then
-set cof=cof-0.25
-endif
-endif
-if LoadInteger(hash,t_Id,'pman')>=1 then
-if UnitLifePercent(damager)>=75.0 then
-set cof=cof-0.18
-endif
-endif
-call DisableTrigger(gg_trg_HeroTakeDamage)
-set cof=cof-LoadReal(hash,t_Id,48)+LoadReal(hash,d_Id,28)
-if cof<0.20 then
-set cof=0.20
-endif
-call UnitDamageTarget(damager,target,dmg*cof,false,false,ATTACK_TYPE_NORMAL,DAMAGE_TYPE_NORMAL,null)
-if LoadInteger(hash,t_Id,'I068')>=1 then
-call UnitDamageTarget(target,damager,dmg*cof*0.20,false,false,ATTACK_TYPE_NORMAL,DAMAGE_TYPE_NORMAL,null)
-endif
-call EnableTrigger(gg_trg_HeroTakeDamage)
-endif
-if GetUnitAbilityLevel(target,'B02V')==1 then
-set cof=1.00
-if IsUnitType(target,UNIT_TYPE_HERO)then
-set dmg=GetUnitState(target,UNIT_STATE_MAX_LIFE)*0.25
-else
-set dmg=GetUnitState(target,UNIT_STATE_MAX_LIFE)*0.05
-endif
-if LoadInteger(hash,d_Id,'I00R')>=1 then
-set dmg=dmg+150.
-endif
-if GetPlayerTechCount(GetOwningPlayer(damager),'Rufb',true)==1 then
-if GetUnitTypeId(damager)=='n041' or GetUnitTypeId(damager)=='n06L' or GetUnitTypeId(damager)=='n06S' or GetUnitTypeId(damager)=='n06U' or GetUnitTypeId(damager)=='n06V' then
-set dmg=dmg+100.
-endif
-endif
-call DestroyEffect(AddSpecialEffectTarget("Abilities\\Spells\\Other\\CrushingWave\\CrushingWaveDamage.mdl",target,"chest"))
-if LoadInteger(hash,d_Id,'I086')>=1 then
-if LoadInteger(hash,d_Id,48)>=1 then
-set cof=cof+0.50
-endif
-endif
-if GetUnitAbilityLevel(damager,'B01H')==1 then
-set cof=cof+0.50
-endif
-if LoadInteger(hash,t_Id,'I07A')>=1 then
-if UnitLifePercent(target)<=25.0 then
-set cof=cof-0.50
-endif
-endif
-if LoadInteger(hash,t_Id,'I048')>=1 then
-if UnitLifePercent(target)<=30.0 then
-set cof=cof-0.25
-endif
-endif
-if LoadInteger(hash,t_Id,'tbak')>=1 then
-if UnitLifePercent(damager)>=75.0 then
-set cof=cof-0.25
-endif
-endif
-if LoadInteger(hash,t_Id,'pman')>=1 then
-if UnitLifePercent(damager)>=75.0 then
-set cof=cof-0.18
-endif
-endif
-call DisableTrigger(gg_trg_HeroTakeDamage)
-set cof=cof-LoadReal(hash,t_Id,48)+LoadReal(hash,d_Id,28)
-if cof<0.20 then
-set cof=0.20
-endif
-call UnitDamageTarget(damager,target,dmg*cof,false,false,ATTACK_TYPE_NORMAL,DAMAGE_TYPE_NORMAL,null)
-if LoadInteger(hash,t_Id,'I068')>=1 then
-call UnitDamageTarget(target,damager,dmg*cof*0.20,false,false,ATTACK_TYPE_NORMAL,DAMAGE_TYPE_NORMAL,null)
-endif
-call EnableTrigger(gg_trg_HeroTakeDamage)
-set t=LoadTimerHandle(hash,t_Id,'B02V')
-call TimerStart(t,0.,false,function RemoveFrost)
-else
-call UnitAddAbility(target,'S00G')
-set t=CreateTimer()
-call SaveUnitHandle(hash,GetHandleId(t),1,target)
-call SaveTimerHandle(hash,t_Id,'B02V',t)
-call TimerStart(t,6.,false,function RemoveFrost)
-endif
-endif
-set t=null
-endfunction
-```
-
-`RemoveVulnerability`　war3map.j:2507
-```jass
-function RemoveVulnerability takes nothing returns nothing
-local timer t=GetExpiredTimer()
-local unit u=LoadUnitHandle(hash,GetHandleId(t),1)
-call UnitRemoveAbility(u,'S014')
-call UnitRemoveAbility(u,'B045')
-call RemoveSavedHandle(hash,GetHandleId(u),'B045')
-call PauseTimer(t)
-call FlushChildHashtable(hash,GetHandleId(t))
-call DestroyTimer(t)
-set t=null
-set u=null
-endfunction
-function VulnerabilityUnit takes unit damager,unit target,real chanse returns nothing
-local timer t
-local integer t_Id=GetHandleId(target)
-local integer d_Id=GetHandleId(damager)
-local integer random
-local integer chanse_random
-if IsUnitType(target,UNIT_TYPE_STRUCTURE)or IsUnitType(target,UNIT_TYPE_MECHANICAL)or not UnitAlive(target)or LoadInteger(hash,GetHandleId(target),44)>0 then
-set chanse=0.
-endif
-if LoadInteger(hash,GetHandleId(target),30)>0 then
-if LoadInteger(hash,GetHandleId(target),30)>50 then
-set chanse=0.
-endif
-set chanse=chanse*0.25
-endif
-if GetUnitAbilityLevel(target,'B045')==1 then
-set chanse=chanse*1.50
-endif
-if LoadInteger(hash,d_Id,'I09G')>=1 then
-set chanse=chanse*1.50
-endif
-if GetUnitAbilityLevel(target,'B00W')>0 then
-set chanse=chanse*0.70
-endif
-set chanse_random=R2I(chanse*100)
-set random=GetRandomInt(1,100)
-if random<=chanse_random then
-if GetUnitAbilityLevel(target,'B045')==1 then
-set t=LoadTimerHandle(hash,GetHandleId(target),'B045')
-call TimerStart(t,8.,false,function RemoveVulnerability)
-else
-call UnitAddAbility(target,'S014')
-set t=CreateTimer()
-call SaveUnitHandle(hash,GetHandleId(t),1,target)
-call SaveTimerHandle(hash,GetHandleId(target),'B045',t)
-call TimerStart(t,8.,false,function RemoveVulnerability)
-endif
-if LoadInteger(hash,GetHandleId(damager),'I00Y')>=1 then
-call FrostUnit(damager,target,0.50)
-endif
-endif
-set t=null
-endfunction
-```
 
 `Trig_HeroSkills56_Actions`　war3map.j:64681
 ```jass
@@ -341,46 +126,6 @@ call DestroyTimer(t)
 call SaveInteger(hash,GetHandleId(u),'PASS',2)
 call SaveInteger(hash,GetHandleId(u),'A0AB',0)
 endif
-```
-
-`Hero56R`　war3map.j:64709
-```jass
-function Hero56R takes nothing returns nothing
-local timer t=GetExpiredTimer()
-local integer Id=GetHandleId(t)
-local unit u=LoadUnitHandle(hash,Id,2)
-local real x=GetUnitX(u)
-local real y=GetUnitY(u)
-local unit u3
-local unit hero=LoadUnitHandle(hash,Id,1)
-local player pl=GetOwningPlayer(hero)
-local real dmg=LoadReal(hash,Id,1)
-local real aoe=LoadReal(hash,Id,2)
-local integer check=LoadInteger(hash,Id,1)
-local integer armor=LoadInteger(hash,Id,2)
-local group ug=CreateGroup()
-call DestroyEffect(AddSpecialEffect("Abilities\\Spells\\Human\\Thunderclap\\ThunderClapCaster.mdl",x,y))
-call GroupEnumUnitsInRange(ug,x,y,aoe,null)
-loop
-set u3=FirstOfGroup(ug)
-exitwhen u3==null
-if UnitAlive(u3)and IsUnitEnemy(u3,pl)then
-call UnitDamageTarget(hero,u3,dmg,false,false,ATTACK_TYPE_NORMAL,DAMAGE_TYPE_MAGIC,WEAPON_TYPE_WHOKNOWS)
-call SetUnitExtraArmor(u3,GetUnitExtraArmor(u3)-armor)
-endif
-call GroupRemoveUnit(ug,u3)
-endloop
-call DestroyGroup(ug)
-call KillUnit(u)
-call PauseTimer(t)
-call DestroyTimer(t)
-set t=null
-set u=null
-set u3=null
-set ug=null
-set hero=null
-set pl=null
-endfunction
 ```
 
 `Trig_HeroAttack56_Actions`　war3map.j:64761
@@ -491,22 +236,6 @@ endif
 endif
 ```
 
-## 流星 `A0AL`
-
-俄文原名：Падающая звезда
-
-```
-「星光閃耀」技能有機率召喚一顆流星，造成額外的範圍傷害並永久降低被擊中敵人的護甲。
-
-一般星光閃耀：50% 機率，星光閃耀傷害的 75%，範圍 250 點，護甲降低 2 點
-處於「貫穿之光」效果下：100% 機率，星光閃耀傷害的 50%，範圍 150 點，護甲降低 5 點
-處於「散射之光」效果下：50% 機率，星光閃耀傷害的 75%，範圍等同於提升後的星光閃耀範圍，護甲降低 2 點
-```
-
-物件欄位（原型 `Amgl`）：`aher = 1`
-
-實作：
-
 `Hero56R`　war3map.j:64709
 ```jass
 function Hero56R takes nothing returns nothing
@@ -546,6 +275,22 @@ set hero=null
 set pl=null
 endfunction
 ```
+
+## 流星 `A0AL`
+
+俄文原名：Падающая звезда
+
+```
+「星光閃耀」技能有機率召喚一顆流星，造成額外的範圍傷害並永久降低被擊中敵人的護甲。
+
+一般星光閃耀：50% 機率，星光閃耀傷害的 75%，範圍 250 點，護甲降低 2 點
+處於「貫穿之光」效果下：100% 機率，星光閃耀傷害的 50%，範圍 150 點，護甲降低 5 點
+處於「散射之光」效果下：50% 機率，星光閃耀傷害的 75%，範圍等同於提升後的星光閃耀範圍，護甲降低 2 點
+```
+
+物件欄位（原型 `Amgl`）：`aher = 1`
+
+實作：
 
 `Trig_HeroAttack56_Actions`　war3map.j:64819
 ```jass
@@ -594,6 +339,46 @@ call SaveReal(hash,Id,2,aoe)
 endif
 endif
 endif
+```
+
+`Hero56R`　war3map.j:64709
+```jass
+function Hero56R takes nothing returns nothing
+local timer t=GetExpiredTimer()
+local integer Id=GetHandleId(t)
+local unit u=LoadUnitHandle(hash,Id,2)
+local real x=GetUnitX(u)
+local real y=GetUnitY(u)
+local unit u3
+local unit hero=LoadUnitHandle(hash,Id,1)
+local player pl=GetOwningPlayer(hero)
+local real dmg=LoadReal(hash,Id,1)
+local real aoe=LoadReal(hash,Id,2)
+local integer check=LoadInteger(hash,Id,1)
+local integer armor=LoadInteger(hash,Id,2)
+local group ug=CreateGroup()
+call DestroyEffect(AddSpecialEffect("Abilities\\Spells\\Human\\Thunderclap\\ThunderClapCaster.mdl",x,y))
+call GroupEnumUnitsInRange(ug,x,y,aoe,null)
+loop
+set u3=FirstOfGroup(ug)
+exitwhen u3==null
+if UnitAlive(u3)and IsUnitEnemy(u3,pl)then
+call UnitDamageTarget(hero,u3,dmg,false,false,ATTACK_TYPE_NORMAL,DAMAGE_TYPE_MAGIC,WEAPON_TYPE_WHOKNOWS)
+call SetUnitExtraArmor(u3,GetUnitExtraArmor(u3)-armor)
+endif
+call GroupRemoveUnit(ug,u3)
+endloop
+call DestroyGroup(ug)
+call KillUnit(u)
+call PauseTimer(t)
+call DestroyTimer(t)
+set t=null
+set u=null
+set u3=null
+set ug=null
+set hero=null
+set pl=null
+endfunction
 ```
 
 ## 轉移／移除據點 `A03V`
@@ -672,9 +457,6 @@ set count=8
 ## 這隻碰到的 hash key
 
   - **1** — 裝備技能冷卻乘數〔持有者〕StartModCooldown 讀，CD×它，下限 0.20
-  - **28** — 實數＝冰凍傷害 +%〔施加者〕／整數＝抵抗冰凍旗標〔受害者〕
-  - **44** — 狀態免疫旗標〔受害者〕>0 則所有狀態函式開頭直接 return，完全不判定
-  - **48** — 冰凍抗性〔受害者〕；電擊 −1.00
 
 ---
 

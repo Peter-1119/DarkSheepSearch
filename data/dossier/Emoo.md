@@ -126,6 +126,23 @@ call TimerStart(t,x,true,function Hero36Q)
 
 實作：
 
+`Trig_HeroSkills36_Actions`　war3map.j:57666
+```jass
+elseif Skill=='A0JU' then
+set x=GetSpellTargetX()
+set y=GetSpellTargetY()
+set t=CreateTimer()
+set Id=GetHandleId(t)
+set u3=CreateUnit(pl,'o01V',x,y,270)
+call SaveUnitHandle(hash,Id,1,u)
+call SaveUnitHandle(hash,Id,2,u3)
+call SaveReal(hash,Id,1,x)
+call SaveReal(hash,Id,2,y)
+call SaveInteger(hash,Id,1,40)
+call TimerStart(t,0.4,true,function Hero36R)
+endif
+```
+
 `Hero36R`　war3map.j:57577
 ```jass
 function Hero36R takes nothing returns nothing
@@ -182,23 +199,6 @@ set pl=null
 endfunction
 ```
 
-`Trig_HeroSkills36_Actions`　war3map.j:57666
-```jass
-elseif Skill=='A0JU' then
-set x=GetSpellTargetX()
-set y=GetSpellTargetY()
-set t=CreateTimer()
-set Id=GetHandleId(t)
-set u3=CreateUnit(pl,'o01V',x,y,270)
-call SaveUnitHandle(hash,Id,1,u)
-call SaveUnitHandle(hash,Id,2,u3)
-call SaveReal(hash,Id,1,x)
-call SaveReal(hash,Id,2,y)
-call SaveInteger(hash,Id,1,40)
-call TimerStart(t,0.4,true,function Hero36R)
-endif
-```
-
 ## 精準射擊光環 `A0JQ`
 
 俄文原名：Аура меткого выстрела
@@ -222,6 +222,18 @@ endif
 
 實作：
 
+`Trig_HeroSkills36_Actions`　war3map.j:57658
+```jass
+elseif Skill=='A0JQ' then
+call UnitAddAbility(u,'A0JR')
+call SetUnitAbilityLevel(u,'A0JR',GetUnitAbilityLevel(u,Skill))
+set t=CreateTimer()
+set Id=GetHandleId(t)
+call SaveUnitHandle(hash,Id,1,u)
+call SaveInteger(hash,Id,2,'A0JR')
+call TimerStart(t,12,false,function RemoveBuff)
+```
+
 `RemoveBuff`　war3map.j:2875
 ```jass
 function RemoveBuff takes nothing returns nothing
@@ -236,18 +248,6 @@ call FlushChildHashtable(hash,Id)
 set t=null
 set u=null
 endfunction
-```
-
-`Trig_HeroSkills36_Actions`　war3map.j:57658
-```jass
-elseif Skill=='A0JQ' then
-call UnitAddAbility(u,'A0JR')
-call SetUnitAbilityLevel(u,'A0JR',GetUnitAbilityLevel(u,Skill))
-set t=CreateTimer()
-set Id=GetHandleId(t)
-call SaveUnitHandle(hash,Id,1,u)
-call SaveInteger(hash,Id,2,'A0JR')
-call TimerStart(t,12,false,function RemoveBuff)
 ```
 
 ## 月光閃爍 `A02C`　—　吃技能強度

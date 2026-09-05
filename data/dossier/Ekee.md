@@ -42,45 +42,6 @@
 
 實作：
 
-`HeroA54_Boom`　war3map.j:64905
-```jass
-function HeroA54_Boom takes unit u,unit u2 returns nothing
-local real x=GetUnitX(u2)
-local real y=GetUnitY(u2)
-local player pl=GetOwningPlayer(u)
-local integer n=GetPlayerId(pl)+1
-local real dmg=GetUnitState(u,UNIT_STATE_MANA)*0.25+udg_ItemBonusDMG[n]*0.50
-local unit u3
-local group ug=CreateGroup()
-call GroupEnumUnitsInRange(ug,x,y,225.,null)
-loop
-set u3=FirstOfGroup(ug)
-exitwhen u3==null
-if UnitAlive(u3)and IsUnitEnemy(u3,pl)then
-call UnitDamageTarget(u,u3,dmg,false,false,ATTACK_TYPE_NORMAL,DAMAGE_TYPE_MAGIC,null)
-endif
-call GroupRemoveUnit(ug,u3)
-endloop
-call DestroyGroup(ug)
-set ug=CreateGroup()
-call GroupEnumUnitsInRange(ug,x,y,450.,null)
-loop
-set u3=FirstOfGroup(ug)
-exitwhen u3==null
-if UnitAlive(u3)and IsUnitEnemy(u3,pl)then
-call UnitDamageTarget(u,u3,dmg,false,false,ATTACK_TYPE_NORMAL,DAMAGE_TYPE_MAGIC,null)
-endif
-call GroupRemoveUnit(ug,u3)
-endloop
-call DestroyGroup(ug)
-call DestroyEffect(AddSpecialEffect("war3mapImported\\DarkNova.mdx",x,y))
-call KillUnit(u2)
-set pl=null
-set ug=null
-set u3=null
-endfunction
-```
-
 `HeroQ54`　war3map.j:65003
 ```jass
 function HeroQ54 takes nothing returns nothing
@@ -164,6 +125,45 @@ elseif Skill=='A0CT' then
 call HeroA54_Boom(u,LoadUnitHandle(hash,GetHandleId(u),'A0KU'))
 ```
 
+`HeroA54_Boom`　war3map.j:64905
+```jass
+function HeroA54_Boom takes unit u,unit u2 returns nothing
+local real x=GetUnitX(u2)
+local real y=GetUnitY(u2)
+local player pl=GetOwningPlayer(u)
+local integer n=GetPlayerId(pl)+1
+local real dmg=GetUnitState(u,UNIT_STATE_MANA)*0.25+udg_ItemBonusDMG[n]*0.50
+local unit u3
+local group ug=CreateGroup()
+call GroupEnumUnitsInRange(ug,x,y,225.,null)
+loop
+set u3=FirstOfGroup(ug)
+exitwhen u3==null
+if UnitAlive(u3)and IsUnitEnemy(u3,pl)then
+call UnitDamageTarget(u,u3,dmg,false,false,ATTACK_TYPE_NORMAL,DAMAGE_TYPE_MAGIC,null)
+endif
+call GroupRemoveUnit(ug,u3)
+endloop
+call DestroyGroup(ug)
+set ug=CreateGroup()
+call GroupEnumUnitsInRange(ug,x,y,450.,null)
+loop
+set u3=FirstOfGroup(ug)
+exitwhen u3==null
+if UnitAlive(u3)and IsUnitEnemy(u3,pl)then
+call UnitDamageTarget(u,u3,dmg,false,false,ATTACK_TYPE_NORMAL,DAMAGE_TYPE_MAGIC,null)
+endif
+call GroupRemoveUnit(ug,u3)
+endloop
+call DestroyGroup(ug)
+call DestroyEffect(AddSpecialEffect("war3mapImported\\DarkNova.mdx",x,y))
+call KillUnit(u2)
+set pl=null
+set ug=null
+set u3=null
+endfunction
+```
+
 ## 銀河 `A0KV`
 
 俄文原名：Млечный путь
@@ -183,6 +183,34 @@ call HeroA54_Boom(u,LoadUnitHandle(hash,GetHandleId(u),'A0KU'))
 物件欄位（原型 `ANcl`）：`Ncl1 = 1.0`, `Ncl2 = 2`, `Ncl3 = 1`, `Ncl4 = 1.0`, `Ncl5 = 0`, `Ncl6 = charm`, `acap = `, `acdn = 20.0`, `alev = 5`, `amcs = [100, 120, 140, 160, 180]`, `aran = 700.0`
 
 實作：
+
+`Trig_HeroSkills54_Actions`　war3map.j:65167
+```jass
+elseif Skill=='A0KV' then
+set x=GetUnitX(u)
+set y=GetUnitY(u)
+set x2=GetSpellTargetX()
+set y2=GetSpellTargetY()
+set angle=AngleXY(x,y,x2,y2)
+set u3=CreateUnit(pl,'o011',x2,y2,angle)
+call SetUnitX(u3,x2)
+call SetUnitY(u3,y2)
+set count=R2I((5.+1.*I2R(lvl))/0.15)
+set t=CreateTimer()
+set Id=GetHandleId(t)
+call SaveUnitHandle(hash,Id,1,u3)
+call SaveInteger(hash,Id,1,count)
+call SaveGroupHandle(hash,Id,2,CreateGroup())
+call TimerStart(t,0.15,true,function HeroW54)
+set i=1
+loop
+exitwhen i>6
+set dist=420.-I2R(i)*120.
+set TenkaX[i]=PolarX(x2,dist,angle+90.)
+set TenkaY[i]=PolarY(y2,dist,angle+90.)
+set i=i+1
+endloop
+```
 
 `RemoveDummy`　war3map.j:2746
 ```jass
@@ -285,34 +313,6 @@ set ug=null
 endfunction
 ```
 
-`Trig_HeroSkills54_Actions`　war3map.j:65167
-```jass
-elseif Skill=='A0KV' then
-set x=GetUnitX(u)
-set y=GetUnitY(u)
-set x2=GetSpellTargetX()
-set y2=GetSpellTargetY()
-set angle=AngleXY(x,y,x2,y2)
-set u3=CreateUnit(pl,'o011',x2,y2,angle)
-call SetUnitX(u3,x2)
-call SetUnitY(u3,y2)
-set count=R2I((5.+1.*I2R(lvl))/0.15)
-set t=CreateTimer()
-set Id=GetHandleId(t)
-call SaveUnitHandle(hash,Id,1,u3)
-call SaveInteger(hash,Id,1,count)
-call SaveGroupHandle(hash,Id,2,CreateGroup())
-call TimerStart(t,0.15,true,function HeroW54)
-set i=1
-loop
-exitwhen i>6
-set dist=420.-I2R(i)*120.
-set TenkaX[i]=PolarX(x2,dist,angle+90.)
-set TenkaY[i]=PolarY(y2,dist,angle+90.)
-set i=i+1
-endloop
-```
-
 ## 空間傳送門 `A0KY`
 
 俄文原名：Пространственный портал
@@ -345,37 +345,6 @@ call IssueImmediateOrder(u,"stop")
 call DisplayTimedTextToPlayer(pl,0,0,15,"|cFFFD0D05Heльзя пpимeнить в нeпpoxoдимyю зoнy!|r")
 endif
 endif
-```
-
-`RemovePortalBuff`　war3map.j:64878
-```jass
-function RemovePortalBuff takes nothing returns nothing
-local timer t=GetExpiredTimer()
-local unit u=LoadUnitHandle(hash,GetHandleId(t),1)
-call UnitRemoveAbility(u,'S00I')
-call UnitRemoveAbility(u,'B00W')
-call SaveReal(hash,GetHandleId(u),8,LoadReal(hash,GetHandleId(u),8)+0.25)
-call RemoveSavedHandle(hash,GetHandleId(u),'B00W')
-call PauseTimer(t)
-call FlushChildHashtable(hash,GetHandleId(t))
-call DestroyTimer(t)
-set t=null
-endfunction
-function PortalBuffUnit takes unit target returns nothing
-local timer t
-if GetUnitAbilityLevel(target,'B00W')==1 then
-set t=LoadTimerHandle(hash,GetHandleId(target),'B00W')
-call TimerStart(t,20.,false,function RemovePortalBuff)
-else
-call UnitAddAbility(target,'S00I')
-call SaveReal(hash,GetHandleId(target),8,LoadReal(hash,GetHandleId(target),8)+0.25)
-set t=CreateTimer()
-call SaveUnitHandle(hash,GetHandleId(t),1,target)
-call SaveTimerHandle(hash,GetHandleId(target),'B00W',t)
-call TimerStart(t,20.,false,function RemovePortalBuff)
-endif
-set t=null
-endfunction
 ```
 
 `HeroE54`　war3map.j:65078
@@ -441,6 +410,37 @@ call SaveUnitHandle(hash,Id,1,u)
 call TimerStart(t,2.,false,function HeroE54_HeroImmune)
 ```
 
+`RemovePortalBuff`　war3map.j:64878
+```jass
+function RemovePortalBuff takes nothing returns nothing
+local timer t=GetExpiredTimer()
+local unit u=LoadUnitHandle(hash,GetHandleId(t),1)
+call UnitRemoveAbility(u,'S00I')
+call UnitRemoveAbility(u,'B00W')
+call SaveReal(hash,GetHandleId(u),8,LoadReal(hash,GetHandleId(u),8)+0.25)
+call RemoveSavedHandle(hash,GetHandleId(u),'B00W')
+call PauseTimer(t)
+call FlushChildHashtable(hash,GetHandleId(t))
+call DestroyTimer(t)
+set t=null
+endfunction
+function PortalBuffUnit takes unit target returns nothing
+local timer t
+if GetUnitAbilityLevel(target,'B00W')==1 then
+set t=LoadTimerHandle(hash,GetHandleId(target),'B00W')
+call TimerStart(t,20.,false,function RemovePortalBuff)
+else
+call UnitAddAbility(target,'S00I')
+call SaveReal(hash,GetHandleId(target),8,LoadReal(hash,GetHandleId(target),8)+0.25)
+set t=CreateTimer()
+call SaveUnitHandle(hash,GetHandleId(t),1,target)
+call SaveTimerHandle(hash,GetHandleId(target),'B00W',t)
+call TimerStart(t,20.,false,function RemovePortalBuff)
+endif
+set t=null
+endfunction
+```
+
 ## 乳光 `A0L0`　—　吃技能強度
 
 俄文原名：Опалесценция
@@ -459,6 +459,39 @@ call TimerStart(t,2.,false,function HeroE54_HeroImmune)
 物件欄位（原型 `ANcl`）：`Ncl1 = 0.10000000149011612`, `Ncl2 = 2`, `Ncl3 = 3`, `Ncl4 = 0.10000000149011612`, `Ncl5 = 0`, `Ncl6 = wispharvest`, `aare = 400.0`, `acap = `, `acdn = 80.0`, `alev = 1`, `amcs = 500`, `aran = 900.0`, `atar = player,structure`
 
 實作：
+
+`Opalescence_Actions`　war3map.j:3690
+```jass
+function Opalescence_Actions takes nothing returns nothing
+local integer A=s__OpalescenceLib___OpalescenceS__allocate()
+set s__OpalescenceLib___OpalescenceS_t[A]=CreateTimer()
+set s__OpalescenceLib___OpalescenceS_caster[A]=GetTriggerUnit()
+set s__OpalescenceLib___OpalescenceS_p[A]=GetOwningPlayer(s__OpalescenceLib___OpalescenceS_caster[A])
+set s__OpalescenceLib___OpalescenceS_damage[A]=30.+udg_ItemBonusDMG[GetPlayerId(s__OpalescenceLib___OpalescenceS_p[A])+1]*0.05
+set s__OpalescenceLib___OpalescenceS_radius[A]=400.00
+set s__OpalescenceLib___OpalescenceS_time[A]=10.00
+set s__OpalescenceLib___OpalescenceS_timeThreshold[A]=0.70
+set s__OpalescenceLib___OpalescenceS_l[A]=s__vector_create(GetUnitX(s__OpalescenceLib___OpalescenceS_caster[A]),GetUnitY(s__OpalescenceLib___OpalescenceS_caster[A]),0.00)
+set s__vector_z[s__OpalescenceLib___OpalescenceS_l[A]]=OpalescenceLib___GetLocZ(s__vector_x[s__OpalescenceLib___OpalescenceS_l[A]],s__vector_y[s__OpalescenceLib___OpalescenceS_l[A]])
+set s__OpalescenceLib___OpalescenceS_endPos[A]=s__vector_create(GetSpellTargetX(),GetSpellTargetY(),0.00)
+set s__vector_z[s__OpalescenceLib___OpalescenceS_endPos[A]]=OpalescenceLib___GetLocZ(s__vector_x[s__OpalescenceLib___OpalescenceS_endPos[A]],s__vector_y[s__OpalescenceLib___OpalescenceS_endPos[A]])+300.00
+set s__OpalescenceLib___OpalescenceS_v[A]=s__vector_create(s__vector_x[s__OpalescenceLib___OpalescenceS_endPos[A]]-s__vector_x[s__OpalescenceLib___OpalescenceS_l[A]],s__vector_y[s__OpalescenceLib___OpalescenceS_endPos[A]]-s__vector_y[s__OpalescenceLib___OpalescenceS_l[A]],s__vector_z[s__OpalescenceLib___OpalescenceS_endPos[A]]-s__vector_z[s__OpalescenceLib___OpalescenceS_l[A]])
+set s__OpalescenceLib___OpalescenceS_speed[A]=s__vector_length(s__OpalescenceLib___OpalescenceS_v[A])*1.30*0.01
+call s__vector_normalize(s__OpalescenceLib___OpalescenceS_v[A])
+set s__OpalescenceLib___OpalescenceS_dummy[A]=CreateUnit(s__OpalescenceLib___OpalescenceS_p[A],OpalescenceLib___AbolishID,s__vector_x[s__OpalescenceLib___OpalescenceS_l[A]],s__vector_y[s__OpalescenceLib___OpalescenceS_l[A]],Atan2(s__vector_y[s__OpalescenceLib___OpalescenceS_v[A]],s__vector_x[s__OpalescenceLib___OpalescenceS_v[A]])*bj_RADTODEG)
+call SetUnitX(s__OpalescenceLib___OpalescenceS_dummy[A],s__vector_x[s__OpalescenceLib___OpalescenceS_l[A]])
+call SetUnitY(s__OpalescenceLib___OpalescenceS_dummy[A],s__vector_y[s__OpalescenceLib___OpalescenceS_l[A]])
+call SetUnitScale(s__OpalescenceLib___OpalescenceS_dummy[A],2.00,2.00,2.00)
+call UnitApplyTimedLife(s__OpalescenceLib___OpalescenceS_dummy[A],'BTLF',1.00)
+call SetUnitAnimation(s__OpalescenceLib___OpalescenceS_dummy[A],"birth")
+call QueueUnitAnimation(s__OpalescenceLib___OpalescenceS_dummy[A],"stand")
+call SaveInteger(hash,GetHandleId(s__OpalescenceLib___OpalescenceS_t[A]),0,A)
+call TimerStart(s__OpalescenceLib___OpalescenceS_t[A],0.01,true,function OpalescenceLib___OpalescenceDamage)
+endfunction
+function Opalescence_Conditions takes nothing returns boolean
+return GetSpellAbilityId()=='A0L0'
+endfunction
+```
 
 `s__vector_deallocate`　war3map.j:1323
 ```jass
@@ -830,6 +863,12 @@ endfunction
 
 實作：
 
+`Trig_HeroSkills54_Actions`　war3map.j:65165
+```jass
+elseif Skill=='A0CT' then
+call HeroA54_Boom(u,LoadUnitHandle(hash,GetHandleId(u),'A0KU'))
+```
+
 `HeroA54_Boom`　war3map.j:64905
 ```jass
 function HeroA54_Boom takes unit u,unit u2 returns nothing
@@ -867,12 +906,6 @@ set pl=null
 set ug=null
 set u3=null
 endfunction
-```
-
-`Trig_HeroSkills54_Actions`　war3map.j:65165
-```jass
-elseif Skill=='A0CT' then
-call HeroA54_Boom(u,LoadUnitHandle(hash,GetHandleId(u),'A0KU'))
 ```
 
 ## 知識傳承 `A0YT`

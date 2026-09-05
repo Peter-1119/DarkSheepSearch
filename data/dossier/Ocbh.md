@@ -41,434 +41,300 @@
 
 物件欄位（原型 `ANcl`）：`Ncl1 = [10.0, None, 1.0]`, `Ncl2 = [2, None, 1]`, `Ncl3 = [1, None]`, `Ncl4 = [1.899999976158142, None, 1.0]`, `Ncl5 = [None, 0]`, `Ncl6 = ['darkportal', None, 'channel']`, `acap = `, `acdn = [100.0, None, 17.0]`, `alev = 1`, `amcs = [225, None, 80, 90, 100, 110, 120]`, `aran = [600.0, None, 700.0]`, `atar = ['air,ground,friend,neutral,self', None]`
 
+呼叫共用引擎函式：`BurnUnit` —— 完整內容見 `_engine.md`。
+
 實作：
 
-`FrostUnit`　war3map.j:1539
+`Hero52SkillsStart2_conditions`　war3map.j:63969
 ```jass
-function FrostUnit takes unit damager,unit target,real chanse returns nothing
-local real dmg
-local real cof=1.0
-local timer t
-local integer t_Id=GetHandleId(target)
-local integer d_Id=GetHandleId(damager)
-local integer random
-local integer chanse_random
-if IsUnitType(target,UNIT_TYPE_STRUCTURE)or IsUnitType(target,UNIT_TYPE_MECHANICAL)or not UnitAlive(target)or LoadInteger(hash,t_Id,44)>0 then
-set t=null
-return
-endif
-if LoadInteger(hash,t_Id,28)>0 and LoadInteger(hash,GetHandleId(damager),'I07G')==0 then
-set chanse=chanse*0.25
-endif
-if GetUnitAbilityLevel(target,'B00W')>0 then
-set chanse=chanse*0.70
-endif
-if GetUnitAbilityLevel(target,'B045')==1 then
-set chanse=chanse*1.50
-endif
-if LoadInteger(hash,d_Id,'I09G')>=1 then
-set chanse=chanse*1.50
-endif
-set chanse_random=R2I(chanse*100)
-set random=GetRandomInt(1,100)
-if random<=chanse_random then
-if GetUnitAbilityLevel(damager,'A0AQ')==1 and GetUnitAbilityLevel(target,'B046')==1 then
-if IsUnitType(target,UNIT_TYPE_HERO)then
-set dmg=GetUnitState(target,UNIT_STATE_MAX_LIFE)*0.25
-else
-set dmg=GetUnitState(target,UNIT_STATE_MAX_LIFE)*0.05
-endif
-if LoadInteger(hash,d_Id,'I00R')>=1 then
-set dmg=dmg+150.
-endif
-call DestroyEffect(AddSpecialEffectTarget("Abilities\\Spells\\Other\\CrushingWave\\CrushingWaveDamage.mdl",target,"chest"))
-if LoadInteger(hash,d_Id,'I086')>=1 then
-if LoadInteger(hash,d_Id,48)>=1 then
-set cof=cof+0.50
-endif
-endif
-if GetUnitAbilityLevel(damager,'B01H')==1 then
-set cof=cof+0.50
-endif
-if LoadInteger(hash,t_Id,'I07A')>=1 then
-if UnitLifePercent(target)<=25.0 then
-set cof=cof-0.50
-endif
-endif
-if LoadInteger(hash,t_Id,'I048')>=1 then
-if UnitLifePercent(target)<=30.0 then
-set cof=cof-0.25
-endif
-endif
-if LoadInteger(hash,t_Id,'tbak')>=1 then
-if UnitLifePercent(damager)>=75.0 then
-set cof=cof-0.25
-endif
-endif
-if LoadInteger(hash,t_Id,'pman')>=1 then
-if UnitLifePercent(damager)>=75.0 then
-set cof=cof-0.18
-endif
-endif
-call DisableTrigger(gg_trg_HeroTakeDamage)
-set cof=cof-LoadReal(hash,t_Id,48)+LoadReal(hash,d_Id,28)
-if cof<0.20 then
-set cof=0.20
-endif
-call UnitDamageTarget(damager,target,dmg*cof,false,false,ATTACK_TYPE_NORMAL,DAMAGE_TYPE_NORMAL,null)
-if LoadInteger(hash,t_Id,'I068')>=1 then
-call UnitDamageTarget(target,damager,dmg*cof*0.20,false,false,ATTACK_TYPE_NORMAL,DAMAGE_TYPE_NORMAL,null)
-endif
-call EnableTrigger(gg_trg_HeroTakeDamage)
-endif
-if GetUnitAbilityLevel(target,'B02V')==1 then
-set cof=1.00
-if IsUnitType(target,UNIT_TYPE_HERO)then
-set dmg=GetUnitState(target,UNIT_STATE_MAX_LIFE)*0.25
-else
-set dmg=GetUnitState(target,UNIT_STATE_MAX_LIFE)*0.05
-endif
-if LoadInteger(hash,d_Id,'I00R')>=1 then
-set dmg=dmg+150.
-endif
-if GetPlayerTechCount(GetOwningPlayer(damager),'Rufb',true)==1 then
-if GetUnitTypeId(damager)=='n041' or GetUnitTypeId(damager)=='n06L' or GetUnitTypeId(damager)=='n06S' or GetUnitTypeId(damager)=='n06U' or GetUnitTypeId(damager)=='n06V' then
-set dmg=dmg+100.
-endif
-endif
-call DestroyEffect(AddSpecialEffectTarget("Abilities\\Spells\\Other\\CrushingWave\\CrushingWaveDamage.mdl",target,"chest"))
-if LoadInteger(hash,d_Id,'I086')>=1 then
-if LoadInteger(hash,d_Id,48)>=1 then
-set cof=cof+0.50
-endif
-endif
-if GetUnitAbilityLevel(damager,'B01H')==1 then
-set cof=cof+0.50
-endif
-if LoadInteger(hash,t_Id,'I07A')>=1 then
-if UnitLifePercent(target)<=25.0 then
-set cof=cof-0.50
-endif
-endif
-if LoadInteger(hash,t_Id,'I048')>=1 then
-if UnitLifePercent(target)<=30.0 then
-set cof=cof-0.25
-endif
-endif
-if LoadInteger(hash,t_Id,'tbak')>=1 then
-if UnitLifePercent(damager)>=75.0 then
-set cof=cof-0.25
-endif
-endif
-if LoadInteger(hash,t_Id,'pman')>=1 then
-if UnitLifePercent(damager)>=75.0 then
-set cof=cof-0.18
-endif
-endif
-call DisableTrigger(gg_trg_HeroTakeDamage)
-set cof=cof-LoadReal(hash,t_Id,48)+LoadReal(hash,d_Id,28)
-if cof<0.20 then
-set cof=0.20
-endif
-call UnitDamageTarget(damager,target,dmg*cof,false,false,ATTACK_TYPE_NORMAL,DAMAGE_TYPE_NORMAL,null)
-if LoadInteger(hash,t_Id,'I068')>=1 then
-call UnitDamageTarget(target,damager,dmg*cof*0.20,false,false,ATTACK_TYPE_NORMAL,DAMAGE_TYPE_NORMAL,null)
-endif
-call EnableTrigger(gg_trg_HeroTakeDamage)
-set t=LoadTimerHandle(hash,t_Id,'B02V')
-call TimerStart(t,0.,false,function RemoveFrost)
-else
-call UnitAddAbility(target,'S00G')
-set t=CreateTimer()
-call SaveUnitHandle(hash,GetHandleId(t),1,target)
-call SaveTimerHandle(hash,t_Id,'B02V',t)
-call TimerStart(t,6.,false,function RemoveFrost)
-endif
-endif
+function Hero52SkillsStart2_conditions takes nothing returns boolean
+return GetSpellAbilityId()=='A0MR'
+endfunction
+```
+
+`Trig_Hero52SkillsStart2_Actions`　war3map.j:64022
+```jass
+function Trig_Hero52SkillsStart2_Actions takes nothing returns nothing
+local unit u=GetSpellAbilityUnit()
+local player pl=GetOwningPlayer(u)
+local timer t=CreateTimer()
+local integer Id=GetHandleId(t)
+local real x=GetUnitX(u)
+local real y=GetUnitY(u)
+local real x2=GetSpellTargetX()
+local real y2=GetSpellTargetY()
+local real angle=AngleXY(x,y,x2,y2)
+set x2=PolarX(x,150,angle)
+set y2=PolarY(y,150,angle)
+call SaveUnitHandle(hash,Id,1,u)
+call SaveTextTagHandle(hash,GetHandleId(u),26,CreateTextTag())
+call SaveTimerHandle(hash,GetHandleId(u),'A0MR',t)
+call SaveUnitHandle(hash,Id,2,CreateUnit(pl,'o024',x2,y2,angle))
+call SaveReal(hash,Id,2,0)
+call TimerStart(t,0.15,false,function Hero52R)
+set u=null
+set pl=null
 set t=null
 endfunction
 ```
 
-`FlammabilityUnit`　war3map.j:1693
+`Hero52SkillsStop2_conditions`　war3map.j:64049
 ```jass
-function FlammabilityUnit takes unit damager,unit target,real chanse returns nothing
-local timer t
-local integer t_Id=GetHandleId(target)
-local integer d_Id=GetHandleId(damager)
-local integer random
-local integer chanse_random
-if IsUnitType(target,UNIT_TYPE_STRUCTURE)or IsUnitType(target,UNIT_TYPE_MECHANICAL)then
-set chanse=chanse*0.50
-elseif LoadInteger(hash,GetHandleId(target),'tkno')>=1 then
-elseif LoadInteger(hash,GetHandleId(target),27)>0 then
-set chanse=chanse*0.25
-elseif not UnitAlive(target)or LoadInteger(hash,GetHandleId(target),44)>0 then
-set chanse=0.
-endif
-if GetUnitAbilityLevel(target,'B00W')>0 then
-set chanse=chanse*0.70
-endif
-if GetUnitAbilityLevel(target,'B045')==1 then
-set chanse=chanse*1.50
-endif
-if LoadInteger(hash,d_Id,'I09G')>=1 then
-set chanse=chanse*1.50
-endif
-set chanse_random=R2I(chanse*100)
-set random=GetRandomInt(1,100)
-if random<=chanse_random then
-if GetUnitAbilityLevel(target,'B042')==1 then
-set t=LoadTimerHandle(hash,GetHandleId(target),'B042')
-call TimerStart(t,6.,false,function RemoveFlammability)
-else
-call UnitAddAbility(target,'S00M')
-set t=CreateTimer()
-call SaveUnitHandle(hash,GetHandleId(t),1,target)
-call SaveTimerHandle(hash,GetHandleId(target),'B042',t)
-call TimerStart(t,6.,false,function RemoveFlammability)
-endif
-if LoadInteger(hash,GetHandleId(damager),'I00Y')>=1 then
-call FrostUnit(damager,target,0.50)
-endif
-endif
-set t=null
+function Hero52SkillsStop2_conditions takes nothing returns boolean
+return GetSpellAbilityId()=='A0MR'
 endfunction
-function Burn_Dmg takes nothing returns nothing
+```
+
+`Trig_Hero52SkillsStop2_Actions`　war3map.j:64112
+```jass
+function Trig_Hero52SkillsStop2_Actions takes nothing returns nothing
+local unit u=GetSpellAbilityUnit()
+local unit u2
+local player pl=GetOwningPlayer(u)
+local integer n=GetPlayerId(pl)+1
+local integer Id
+local timer t
+local texttag text
+local force f=CreateForce()
+local real x=GetUnitX(u)
+local real y=GetUnitY(u)
+local real power
+local real limit
+local integer check_1
+local integer check_3
+set t=LoadTimerHandle(hash,GetHandleId(u),'A0MR')
+set Id=GetHandleId(t)
+call ForceAddPlayer(f,pl)
+set text=LoadTextTagHandle(hash,GetHandleId(u),26)
+call DestroyTextTag(text)
+set power=LoadReal(hash,GetHandleId(u),26)
+set limit=40+10*I2R(GetHeroLevel(u))+udg_ItemBonusDMG[n]*0.10
+set text=CreateTextTagUnitBJ("|cFFFF7D00"+I2S(R2I(power))+"/"+I2S(R2I(limit)),u,0,13.00,100,100,100,0)
+call ShowTextTagForceBJ(false,text,bj_FORCE_ALL_PLAYERS)
+call ShowTextTagForceBJ(true,text,f)
+call SetTextTagVelocityBJ(text,75.00,90.00)
+call SetTextTagSuspended(text,false)
+call SetTextTagPermanent(text,false)
+call SetTextTagLifespan(text,4.00)
+call SetTextTagFadepoint(text,3.00)
+set u2=LoadUnitHandle(hash,Id,2)
+set power=LoadReal(hash,Id,2)
+call FlushChildHashtable(hash,Id)
+call PauseTimer(t)
+call DestroyTimer(t)
+set t=CreateTimer()
+set Id=GetHandleId(t)
+call SaveUnitHandle(hash,Id,1,u)
+call SaveUnitHandle(hash,Id,2,u2)
+call SaveGroupHandle(hash,Id,3,CreateGroup())
+call SaveReal(hash,Id,1,power)
+call SaveInteger(hash,Id,1,15+R2I(power*1.75/40.0))
+call SaveInteger(hash,Id,2,2)
+call TimerStart(t,0.04,true,function Hero52R_Move)
+call DestroyForce(f)
+set f=null
+set u=null
+set pl=null
+set t=null
+set text=null
+endfunction
+```
+
+`Hero52SkillsStart2_conditions`　war3map.j:63969
+```jass
+function Hero52SkillsStart2_conditions takes nothing returns boolean
+return GetSpellAbilityId()=='A0MR'
+endfunction
+function Hero52R takes nothing returns nothing
 local timer t=GetExpiredTimer()
 local integer Id=GetHandleId(t)
-local unit u
-local integer u_Id
-local unit u2=LoadUnitHandle(hash,Id,0)
-local integer u2_Id=GetHandleId(u2)
-local integer count=LoadInteger(hash,u2_Id,'burn')
-local integer i=0
-local integer check=0
-local integer L
+local unit u=LoadUnitHandle(hash,Id,1)
+local unit u2=LoadUnitHandle(hash,Id,2)
+local real used_power=LoadReal(hash,Id,2)
+local player pl=GetOwningPlayer(u)
+local integer n=GetPlayerId(pl)+1
 local real dmg
-local real dmg_cof=1.0
-local real cof
-if not UnitAlive(u2)then
-call SaveInteger(hash,u2_Id,'burn',0)
-call UnitRemoveAbility(u2,'A0Y6')
-call UnitRemoveAbility(u2,'B040')
-call FlushChildHashtable(hash,Id)
-call PauseTimer(t)
-call DestroyTimer(t)
-call RemoveSavedHandle(hash,u2_Id,'burt')
-set u=null
-set u2=null
-set t=null
-return
+local texttag text=LoadTextTagHandle(hash,GetHandleId(u),26)
+local force f=CreateForce()
+local unit u3
+local group ug
+local real x=GetUnitX(u)
+local real y=GetUnitY(u)
+local real power=LoadReal(hash,GetHandleId(u),26)
+local real limit=40+10*I2R(GetHeroLevel(u))+udg_ItemBonusDMG[n]*0.10
+if power>limit then
+set power=limit
 endif
-if LoadInteger(hash,u2_Id,'I07A')>=1 then
-if UnitLifePercent(u2)<=25.0 then
-set dmg_cof=dmg_cof-0.50
-endif
-endif
-if LoadInteger(hash,u2_Id,'I048')>=1 then
-if UnitLifePercent(u2)<=30.0 then
-set dmg_cof=dmg_cof-0.25
-endif
-endif
-if LoadInteger(hash,u2_Id,'tbak')>=1 then
-if UnitLifePercent(u2)>=75.0 then
-set dmg_cof=dmg_cof-0.25
-endif
-endif
-if LoadInteger(hash,u2_Id,'pman')>=1 then
-if UnitLifePercent(u2)>=75.0 then
-set dmg_cof=dmg_cof-0.18
-endif
-endif
-set dmg_cof=dmg_cof-LoadReal(hash,u2_Id,47)
-call DisableTrigger(gg_trg_HeroTakeDamage)
-loop
-set i=i+1
-set L=LoadInteger(hash,Id,i)
-if L>0 then
-set u=LoadUnitHandle(hash,Id,i)
-set u_Id=GetHandleId(u)
-set dmg=LoadReal(hash,Id,i)
-set cof=dmg_cof
-if LoadInteger(hash,u_Id,'gvsm')>=1 or LoadInteger(hash,u_Id,'I00S')>=1 then
-if GetUnitAbilityLevel(u2,'B02V')==1 then
-set cof=cof+0.35
-endif
-endif
-if LoadInteger(hash,u_Id,'I086')>=1 then
-if LoadInteger(hash,u_Id,27)>=1 then
-set cof=cof+0.50
-endif
-endif
-if GetUnitAbilityLevel(u,'B01H')==1 then
-set cof=cof+0.50
-endif
-set cof=cof+LoadReal(hash,u_Id,27)
-if cof<0.20 then
-set cof=0.20
-endif
-call UnitDamageTarget(u,u2,dmg*cof,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_UNIVERSAL,WEAPON_TYPE_WHOKNOWS)
-if LoadInteger(hash,u2_Id,'I068')>=1 then
-call UnitDamageTarget(u2,u,dmg*cof*0.20,false,false,ATTACK_TYPE_NORMAL,DAMAGE_TYPE_NORMAL,null)
-endif
-set L=L-1
-if L>0 then
-set check=1
+if power<(3.0+I2R(GetHeroInt(u,true))*0.20+GetUnitManaRegeneration(u)*0.30)*0.20 then
+set used_power=used_power+power
+set power=0
 else
-call RemoveSavedHandle(hash,Id,i)
+set used_power=used_power+(3.0+I2R(GetHeroInt(u,true))*0.20+GetUnitManaRegeneration(u)*0.30)*0.20
+set power=power-(3.0+I2R(GetHeroInt(u,true))*0.20+GetUnitManaRegeneration(u)*0.30)*0.20
 endif
-call SaveInteger(hash,Id,i,L)
+call SaveReal(hash,GetHandleId(u),26,power)
+call ForceAddPlayer(f,pl)
+call DestroyTextTag(text)
+set text=CreateTextTagUnitBJ("|cFFFF7D00"+I2S(R2I(power))+"/"+I2S(R2I(limit)),u,0,13.00,100,100,100,0)
+call ShowTextTagForceBJ(false,text,bj_FORCE_ALL_PLAYERS)
+call ShowTextTagForceBJ(true,text,f)
+call SaveTextTagHandle(hash,GetHandleId(u),26,text)
+set dmg=2.0+used_power*0.016
+call SetUnitScale(u2,dmg,dmg,dmg)
+call SaveReal(hash,Id,2,used_power)
+if power==0 then
+call IssueImmediateOrderById(u,Order_stop)
 endif
-exitwhen i==count
-endloop
-call EnableTrigger(gg_trg_HeroTakeDamage)
-if check==0 then
-call SaveInteger(hash,u2_Id,'burn',0)
-call UnitRemoveAbility(u2,'A0Y6')
-call UnitRemoveAbility(u2,'B040')
-call FlushChildHashtable(hash,Id)
-call PauseTimer(t)
-call DestroyTimer(t)
-call RemoveSavedHandle(hash,u2_Id,'burt')
-endif
+call DestroyForce(f)
+call TimerStart(t,0.15,false,function Hero52R)
+set f=null
+set t=null
 set u=null
-set u2=null
+set pl=null
+set u3=null
+set ug=null
+set text=null
+endfunction
+function Trig_Hero52SkillsStart2_Actions takes nothing returns nothing
+local unit u=GetSpellAbilityUnit()
+local player pl=GetOwningPlayer(u)
+local timer t=CreateTimer()
+local integer Id=GetHandleId(t)
+local real x=GetUnitX(u)
+local real y=GetUnitY(u)
+local real x2=GetSpellTargetX()
+local real y2=GetSpellTargetY()
+local real angle=AngleXY(x,y,x2,y2)
+set x2=PolarX(x,150,angle)
+set y2=PolarY(y,150,angle)
+call SaveUnitHandle(hash,Id,1,u)
+call SaveTextTagHandle(hash,GetHandleId(u),26,CreateTextTag())
+call SaveTimerHandle(hash,GetHandleId(u),'A0MR',t)
+call SaveUnitHandle(hash,Id,2,CreateUnit(pl,'o024',x2,y2,angle))
+call SaveReal(hash,Id,2,0)
+call TimerStart(t,0.15,false,function Hero52R)
+set u=null
+set pl=null
 set t=null
 endfunction
-function BurnUnit takes unit damager,unit target,real dmg,real chanse returns nothing
-local timer t
-local integer Id
-local integer count
-local integer count2
-local integer i
-local integer i2
-local real cof
-local integer t_Id=GetHandleId(target)
-local integer d_Id=GetHandleId(damager)
-local effect e
-local integer random
-local integer chanse_random
-if IsUnitType(target,UNIT_TYPE_STRUCTURE)or IsUnitType(target,UNIT_TYPE_MECHANICAL)then
-set chanse=chanse*0.50
-elseif LoadInteger(hash,GetHandleId(target),'tkno')>=1 then
-elseif LoadInteger(hash,GetHandleId(target),27)>0 and LoadInteger(hash,GetHandleId(damager),'A03M')!=1 then
-if LoadInteger(hash,GetHandleId(target),27)>50 then
-set chanse=0.
+```
+
+`Hero52SkillsStop2_conditions`　war3map.j:64049
+```jass
+function Hero52SkillsStop2_conditions takes nothing returns boolean
+return GetSpellAbilityId()=='A0MR'
+endfunction
+function Hero52R_Move takes nothing returns nothing
+local timer t=GetExpiredTimer()
+local integer Id=GetHandleId(t)
+local unit u=LoadUnitHandle(hash,Id,1)
+local player pl=GetOwningPlayer(u)
+local integer n=GetPlayerId(pl)+1
+local unit u2=LoadUnitHandle(hash,Id,2)
+local unit u3
+local group CheckGroup
+local real x=GetUnitX(u2)
+local real y=GetUnitY(u2)
+local integer count=LoadInteger(hash,Id,1)
+local integer check=LoadInteger(hash,Id,2)
+local real power=LoadReal(hash,Id,1)
+local group ug
+local real dmg
+local real r=GetUnitFacing(u2)
+set x=PolarX(x,40,r)
+set y=PolarY(y,40,r)
+call SetUnitX(u2,x)
+call SetUnitY(u2,y)
+set check=check+1
+if check==3 then
+set check=0
+set CheckGroup=LoadGroupHandle(hash,Id,3)
+set dmg=175+power*6.00
+set ug=CreateGroup()
+call GroupEnumUnitsInRange(ug,x,y,150+power*0.80,null)
+loop
+set u3=FirstOfGroup(ug)
+exitwhen u3==null
+if IsUnitEnemy(u3,pl)and UnitAlive(u3)and IsUnitInGroup(u3,CheckGroup)==false then
+call UnitDamageTarget(u,u3,dmg,false,false,ATTACK_TYPE_NORMAL,DAMAGE_TYPE_MAGIC,null)
+call BurnUnit(u,u3,dmg*0.50,0.50)
+call GroupAddUnit(CheckGroup,u3)
 endif
-if GetUnitTypeId(damager)=='h01A' or GetUnitTypeId(damager)=='h01B' then
-if GetPlayerTechCount(GetOwningPlayer(damager),'Ropm',true)==1 then
-set chanse=chanse*1.75
+call GroupRemoveUnit(ug,u3)
+endloop
+call DestroyGroup(ug)
+endif
+call SaveInteger(hash,Id,2,check)
+call SaveGroupHandle(hash,Id,3,CheckGroup)
+set count=count-1
+if count==0 then
+call KillUnit(u2)
+call DestroyGroup(LoadGroupHandle(hash,Id,3))
+call PauseTimer(t)
+call DestroyTimer(t)
+call FlushChildHashtable(hash,Id)
 else
-set chanse=chanse*1.00
+call SaveInteger(hash,Id,1,count)
 endif
-else
-set chanse=chanse*0.25
-endif
-elseif not UnitAlive(target)or LoadInteger(hash,GetHandleId(target),44)>0 and LoadInteger(hash,GetHandleId(damager),'A03M')!=1 then
-set chanse=0.
-endif
-if GetUnitAbilityLevel(target,'B00W')>0 then
-set chanse=chanse*0.70
-endif
-if GetUnitAbilityLevel(target,'B042')==1 then
-set chanse=chanse*(1.00+(0.50*(1.00+LoadReal(hash,GetHandleId(damager),46))))
-endif
-if GetUnitAbilityLevel(target,'B045')==1 then
-set chanse=chanse*1.50
-endif
-if LoadInteger(hash,d_Id,'I09G')>=1 then
-set chanse=chanse*1.50
-endif
-set chanse_random=R2I(chanse*100)
-set random=GetRandomInt(1,100)
-if random<=chanse_random then
-if LoadInteger(hash,GetHandleId(damager),'A03M')==1 then
-set cof=1.0*(1.00+(0.50*(1.00+LoadReal(hash,GetHandleId(damager),46))))
-if LoadInteger(hash,t_Id,'I07A')>=1 then
-if UnitLifePercent(target)<=25.0 then
-set cof=cof-0.50
-endif
-endif
-if LoadInteger(hash,t_Id,'I048')>=1 then
-if UnitLifePercent(target)<=30.0 then
-set cof=cof-0.25
-endif
-endif
-if LoadInteger(hash,t_Id,'tbak')>=1 then
-if UnitLifePercent(target)>=75.0 then
-set cof=cof-0.25
-endif
-endif
-if LoadInteger(hash,t_Id,'pman')>=1 then
-if UnitLifePercent(target)>=75.0 then
-set cof=cof-0.18
-endif
-endif
-if LoadInteger(hash,d_Id,'gvsm')>=1 or LoadInteger(hash,d_Id,'I00S')>=1 then
-if GetUnitAbilityLevel(target,'B02V')==1 then
-set cof=cof+0.35
-endif
-endif
-if LoadInteger(hash,d_Id,'I086')>=1 then
-if LoadInteger(hash,d_Id,27)>=1 then
-set cof=cof+0.50
-endif
-endif
-if GetUnitAbilityLevel(damager,'B01H')==1 then
-set cof=cof+0.50
-endif
-call DisableTrigger(gg_trg_HeroTakeDamage)
-if cof<0.20 then
-set cof=0.20
-endif
-set cof=cof-LoadReal(hash,t_Id,47)+LoadReal(hash,d_Id,27)
-call UnitDamageTarget(damager,target,dmg*cof,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_UNIVERSAL,WEAPON_TYPE_WHOKNOWS)
-if LoadInteger(hash,t_Id,'I068')>=1 then
-call UnitDamageTarget(target,damager,dmg*cof*0.20,false,false,ATTACK_TYPE_NORMAL,DAMAGE_TYPE_NORMAL,null)
-endif
-call DestroyEffect(AddSpecialEffectTarget("war3mapImported\\AerialExplosionV3.mdx",target,"origin"))
-call EnableTrigger(gg_trg_HeroTakeDamage)
 set t=null
-set e=null
-return
-endif
-set dmg=dmg/16.
-set count=16
-if GetUnitAbilityLevel(target,'B042')==1 then
-set count=count+R2I(8.0*(1.00+(1.00+LoadReal(hash,GetHandleId(damager),46))))
-endif
-if GetUnitAbilityLevel(target,'A064')==1 then
-set count=count/2
-endif
-set count2=LoadInteger(hash,t_Id,'burn')
-if count2==0 then
+set u=null
+set u2=null
+set pl=null
+set u3=null
+set ug=null
+set CheckGroup=null
+endfunction
+function Trig_Hero52SkillsStop2_Actions takes nothing returns nothing
+local unit u=GetSpellAbilityUnit()
+local unit u2
+local player pl=GetOwningPlayer(u)
+local integer n=GetPlayerId(pl)+1
+local integer Id
+local timer t
+local texttag text
+local force f=CreateForce()
+local real x=GetUnitX(u)
+local real y=GetUnitY(u)
+local real power
+local real limit
+local integer check_1
+local integer check_3
+set t=LoadTimerHandle(hash,GetHandleId(u),'A0MR')
+set Id=GetHandleId(t)
+call ForceAddPlayer(f,pl)
+set text=LoadTextTagHandle(hash,GetHandleId(u),26)
+call DestroyTextTag(text)
+set power=LoadReal(hash,GetHandleId(u),26)
+set limit=40+10*I2R(GetHeroLevel(u))+udg_ItemBonusDMG[n]*0.10
+set text=CreateTextTagUnitBJ("|cFFFF7D00"+I2S(R2I(power))+"/"+I2S(R2I(limit)),u,0,13.00,100,100,100,0)
+call ShowTextTagForceBJ(false,text,bj_FORCE_ALL_PLAYERS)
+call ShowTextTagForceBJ(true,text,f)
+call SetTextTagVelocityBJ(text,75.00,90.00)
+call SetTextTagSuspended(text,false)
+call SetTextTagPermanent(text,false)
+call SetTextTagLifespan(text,4.00)
+call SetTextTagFadepoint(text,3.00)
+set u2=LoadUnitHandle(hash,Id,2)
+set power=LoadReal(hash,Id,2)
+call FlushChildHashtable(hash,Id)
+call PauseTimer(t)
+call DestroyTimer(t)
 set t=CreateTimer()
 set Id=GetHandleId(t)
-call SaveUnitHandle(hash,Id,0,target)
-call SaveUnitHandle(hash,Id,1,damager)
-call SaveInteger(hash,Id,1,count)
-call SaveReal(hash,Id,1,dmg)
-call UnitAddAbility(target,'A0Y6')
-call SaveInteger(hash,t_Id,'burn',1)
-call SaveTimerHandle(hash,t_Id,'burt',t)
-call TimerStart(t,0.25,true,function Burn_Dmg)
-else
-set t=LoadTimerHandle(hash,t_Id,'burt')
-set Id=GetHandleId(t)
-set i2=0
-set i=0
-loop
-set i=i+1
-if LoadInteger(hash,Id,i)==0 then
-call SaveUnitHandle(hash,Id,i,damager)
-call SaveInteger(hash,Id,i,count)
-call SaveReal(hash,Id,i,dmg)
-call SaveInteger(hash,t_Id,'burn',i)
-set i=count2
-set i2=1
-endif
-exitwhen i==count2
-endloop
+call SaveUnitHandle(hash,Id,1,u)
+call SaveUnitHandle(hash,Id,2,u2)
+call SaveGroupHandle(hash,Id,3,CreateGroup())
+call SaveReal(hash,Id,1,power)
+call SaveInteger(hash,Id,1,15+R2I(power*1.75/40.0))
+call SaveInteger(hash,Id,2,2)
+call TimerStart(t,0.04,true,function Hero52R_Move)
+call DestroyForce(f)
+set f=null
+set u=null
+set pl=null
+set t=null
+set text=null
+endfunction
 ```
 
 ## 點燃 `A0K7`
@@ -497,430 +363,122 @@ endloop
 
 物件欄位（原型 `AHtc`）：`Htc1 = 0.009999999776482582`, `Htc3 = [0.30000001192092896, 0.3799999952316284, 0.4599999785423279, 0.5399999618530273, 0.6199999451637268]`, `Htc4 = [0.20000000298023224, 0.25, 0.30000001192092896, 0.3500000238418579, 0.40000003576278687]`, `aare = 400.0`, `abuf = B03O`, `acdn = 15.0`, `adur = 6.0`, `alev = 5`, `amcs = [80, None, 100, 110, 120]`, `atar = ground,neutral,organic`
 
+呼叫共用引擎函式：`BurnUnit` —— 完整內容見 `_engine.md`。
+
 實作：
 
-`RemoveFrost`　war3map.j:1527
+`Trig_UKills_Actions`　war3map.j:21143
 ```jass
-function RemoveFrost takes nothing returns nothing
-local timer t=GetExpiredTimer()
-local unit u=LoadUnitHandle(hash,GetHandleId(t),1)
-call UnitRemoveAbility(u,'S00G')
-call UnitRemoveAbility(u,'B02V')
-call RemoveSavedHandle(hash,GetHandleId(u),'B02V')
-call PauseTimer(t)
-call FlushChildHashtable(hash,GetHandleId(t))
-call DestroyTimer(t)
-set t=null
-set u=null
-endfunction
-function FrostUnit takes unit damager,unit target,real chanse returns nothing
-local real dmg
-local real cof=1.0
-local timer t
-local integer t_Id=GetHandleId(target)
-local integer d_Id=GetHandleId(damager)
-local integer random
-local integer chanse_random
-if IsUnitType(target,UNIT_TYPE_STRUCTURE)or IsUnitType(target,UNIT_TYPE_MECHANICAL)or not UnitAlive(target)or LoadInteger(hash,t_Id,44)>0 then
-set t=null
-return
+if GetUnitAbilityLevel(u,'A0K7')>=1 then
+call SetUnitLifePercentBJ(u,UnitLifePercent(u)+1.00)
 endif
-if LoadInteger(hash,t_Id,28)>0 and LoadInteger(hash,GetHandleId(damager),'I07G')==0 then
-set chanse=chanse*0.25
-endif
-if GetUnitAbilityLevel(target,'B00W')>0 then
-set chanse=chanse*0.70
-endif
-if GetUnitAbilityLevel(target,'B045')==1 then
-set chanse=chanse*1.50
-endif
-if LoadInteger(hash,d_Id,'I09G')>=1 then
-set chanse=chanse*1.50
-endif
-set chanse_random=R2I(chanse*100)
-set random=GetRandomInt(1,100)
-if random<=chanse_random then
-if GetUnitAbilityLevel(damager,'A0AQ')==1 and GetUnitAbilityLevel(target,'B046')==1 then
-if IsUnitType(target,UNIT_TYPE_HERO)then
-set dmg=GetUnitState(target,UNIT_STATE_MAX_LIFE)*0.25
-else
-set dmg=GetUnitState(target,UNIT_STATE_MAX_LIFE)*0.05
-endif
-if LoadInteger(hash,d_Id,'I00R')>=1 then
-set dmg=dmg+150.
-endif
-call DestroyEffect(AddSpecialEffectTarget("Abilities\\Spells\\Other\\CrushingWave\\CrushingWaveDamage.mdl",target,"chest"))
-if LoadInteger(hash,d_Id,'I086')>=1 then
-if LoadInteger(hash,d_Id,48)>=1 then
-set cof=cof+0.50
-endif
-endif
-if GetUnitAbilityLevel(damager,'B01H')==1 then
-set cof=cof+0.50
-endif
-if LoadInteger(hash,t_Id,'I07A')>=1 then
-if UnitLifePercent(target)<=25.0 then
-set cof=cof-0.50
-endif
-endif
-if LoadInteger(hash,t_Id,'I048')>=1 then
-if UnitLifePercent(target)<=30.0 then
-set cof=cof-0.25
-endif
-endif
-if LoadInteger(hash,t_Id,'tbak')>=1 then
-if UnitLifePercent(damager)>=75.0 then
-set cof=cof-0.25
-endif
-endif
-if LoadInteger(hash,t_Id,'pman')>=1 then
-if UnitLifePercent(damager)>=75.0 then
-set cof=cof-0.18
-endif
-endif
-call DisableTrigger(gg_trg_HeroTakeDamage)
-set cof=cof-LoadReal(hash,t_Id,48)+LoadReal(hash,d_Id,28)
-if cof<0.20 then
-set cof=0.20
-endif
-call UnitDamageTarget(damager,target,dmg*cof,false,false,ATTACK_TYPE_NORMAL,DAMAGE_TYPE_NORMAL,null)
-if LoadInteger(hash,t_Id,'I068')>=1 then
-call UnitDamageTarget(target,damager,dmg*cof*0.20,false,false,ATTACK_TYPE_NORMAL,DAMAGE_TYPE_NORMAL,null)
-endif
-call EnableTrigger(gg_trg_HeroTakeDamage)
-endif
-if GetUnitAbilityLevel(target,'B02V')==1 then
-set cof=1.00
-if IsUnitType(target,UNIT_TYPE_HERO)then
-set dmg=GetUnitState(target,UNIT_STATE_MAX_LIFE)*0.25
-else
-set dmg=GetUnitState(target,UNIT_STATE_MAX_LIFE)*0.05
-endif
-if LoadInteger(hash,d_Id,'I00R')>=1 then
-set dmg=dmg+150.
-endif
-if GetPlayerTechCount(GetOwningPlayer(damager),'Rufb',true)==1 then
-if GetUnitTypeId(damager)=='n041' or GetUnitTypeId(damager)=='n06L' or GetUnitTypeId(damager)=='n06S' or GetUnitTypeId(damager)=='n06U' or GetUnitTypeId(damager)=='n06V' then
-set dmg=dmg+100.
-endif
-endif
-call DestroyEffect(AddSpecialEffectTarget("Abilities\\Spells\\Other\\CrushingWave\\CrushingWaveDamage.mdl",target,"chest"))
-if LoadInteger(hash,d_Id,'I086')>=1 then
-if LoadInteger(hash,d_Id,48)>=1 then
-set cof=cof+0.50
-endif
-endif
-if GetUnitAbilityLevel(damager,'B01H')==1 then
-set cof=cof+0.50
-endif
-if LoadInteger(hash,t_Id,'I07A')>=1 then
-if UnitLifePercent(target)<=25.0 then
-set cof=cof-0.50
-endif
-endif
-if LoadInteger(hash,t_Id,'I048')>=1 then
-if UnitLifePercent(target)<=30.0 then
-set cof=cof-0.25
-endif
-endif
-if LoadInteger(hash,t_Id,'tbak')>=1 then
-if UnitLifePercent(damager)>=75.0 then
-set cof=cof-0.25
-endif
-endif
-if LoadInteger(hash,t_Id,'pman')>=1 then
-if UnitLifePercent(damager)>=75.0 then
-set cof=cof-0.18
-endif
-endif
-call DisableTrigger(gg_trg_HeroTakeDamage)
-set cof=cof-LoadReal(hash,t_Id,48)+LoadReal(hash,d_Id,28)
-if cof<0.20 then
-set cof=0.20
-endif
-call UnitDamageTarget(damager,target,dmg*cof,false,false,ATTACK_TYPE_NORMAL,DAMAGE_TYPE_NORMAL,null)
-if LoadInteger(hash,t_Id,'I068')>=1 then
-call UnitDamageTarget(target,damager,dmg*cof*0.20,false,false,ATTACK_TYPE_NORMAL,DAMAGE_TYPE_NORMAL,null)
-endif
-call EnableTrigger(gg_trg_HeroTakeDamage)
-set t=LoadTimerHandle(hash,t_Id,'B02V')
-call TimerStart(t,0.,false,function RemoveFrost)
-else
-call UnitAddAbility(target,'S00G')
-set t=CreateTimer()
-call SaveUnitHandle(hash,GetHandleId(t),1,target)
-call SaveTimerHandle(hash,t_Id,'B02V',t)
-call TimerStart(t,6.,false,function RemoveFrost)
-endif
-endif
-set t=null
-endfunction
-function RemoveFlammability takes nothing returns nothing
-local timer t=GetExpiredTimer()
-local unit u=LoadUnitHandle(hash,GetHandleId(t),1)
-call UnitRemoveAbility(u,'S00M')
-call UnitRemoveAbility(u,'B042')
-call RemoveSavedHandle(hash,GetHandleId(u),'B042')
-call PauseTimer(t)
-call FlushChildHashtable(hash,GetHandleId(t))
-call DestroyTimer(t)
-set t=null
-set u=null
-endfunction
-function FlammabilityUnit takes unit damager,unit target,real chanse returns nothing
-local timer t
-local integer t_Id=GetHandleId(target)
-local integer d_Id=GetHandleId(damager)
-local integer random
-local integer chanse_random
-if IsUnitType(target,UNIT_TYPE_STRUCTURE)or IsUnitType(target,UNIT_TYPE_MECHANICAL)then
-set chanse=chanse*0.50
-elseif LoadInteger(hash,GetHandleId(target),'tkno')>=1 then
-elseif LoadInteger(hash,GetHandleId(target),27)>0 then
-set chanse=chanse*0.25
-elseif not UnitAlive(target)or LoadInteger(hash,GetHandleId(target),44)>0 then
-set chanse=0.
-endif
-if GetUnitAbilityLevel(target,'B00W')>0 then
-set chanse=chanse*0.70
-endif
-if GetUnitAbilityLevel(target,'B045')==1 then
-set chanse=chanse*1.50
-endif
-if LoadInteger(hash,d_Id,'I09G')>=1 then
-set chanse=chanse*1.50
-endif
-set chanse_random=R2I(chanse*100)
-set random=GetRandomInt(1,100)
-if random<=chanse_random then
-if GetUnitAbilityLevel(target,'B042')==1 then
-set t=LoadTimerHandle(hash,GetHandleId(target),'B042')
-call TimerStart(t,6.,false,function RemoveFlammability)
-else
-call UnitAddAbility(target,'S00M')
-set t=CreateTimer()
-call SaveUnitHandle(hash,GetHandleId(t),1,target)
-call SaveTimerHandle(hash,GetHandleId(target),'B042',t)
-call TimerStart(t,6.,false,function RemoveFlammability)
-endif
-if LoadInteger(hash,GetHandleId(damager),'I00Y')>=1 then
-call FrostUnit(damager,target,0.50)
-endif
-endif
-set t=null
-endfunction
-function Burn_Dmg takes nothing returns nothing
-local timer t=GetExpiredTimer()
-local integer Id=GetHandleId(t)
-local unit u
-local integer u_Id
-local unit u2=LoadUnitHandle(hash,Id,0)
-local integer u2_Id=GetHandleId(u2)
-local integer count=LoadInteger(hash,u2_Id,'burn')
-local integer i=0
-local integer check=0
-local integer L
-local real dmg
-local real dmg_cof=1.0
-local real cof
-if not UnitAlive(u2)then
-call SaveInteger(hash,u2_Id,'burn',0)
-call UnitRemoveAbility(u2,'A0Y6')
-call UnitRemoveAbility(u2,'B040')
-call FlushChildHashtable(hash,Id)
-call PauseTimer(t)
-call DestroyTimer(t)
-call RemoveSavedHandle(hash,u2_Id,'burt')
-set u=null
-set u2=null
-set t=null
-return
-endif
-if LoadInteger(hash,u2_Id,'I07A')>=1 then
-if UnitLifePercent(u2)<=25.0 then
-set dmg_cof=dmg_cof-0.50
-endif
-endif
-if LoadInteger(hash,u2_Id,'I048')>=1 then
-if UnitLifePercent(u2)<=30.0 then
-set dmg_cof=dmg_cof-0.25
-endif
-endif
-if LoadInteger(hash,u2_Id,'tbak')>=1 then
-if UnitLifePercent(u2)>=75.0 then
-set dmg_cof=dmg_cof-0.25
-endif
-endif
-if LoadInteger(hash,u2_Id,'pman')>=1 then
-if UnitLifePercent(u2)>=75.0 then
-set dmg_cof=dmg_cof-0.18
-endif
-endif
-set dmg_cof=dmg_cof-LoadReal(hash,u2_Id,47)
-call DisableTrigger(gg_trg_HeroTakeDamage)
+```
+
+`Trig_HeroSkills52_Actions`　war3map.j:63665
+```jass
+elseif Skill=='A0K7' then
+call SaveReal(hash,GetHandleId(u),26,0)
+set dmg=40.+40.*I2R(GetUnitAbilityLevel(u,Skill))+power*1.10
+set ug=CreateGroup()
+call GroupEnumUnitsInRange(ug,x,y,400,null)
+if power>=225 then
+call SaveReal(hash,GetHandleId(u),30,LoadReal(hash,GetHandleId(u),30)+3.)
 loop
-set i=i+1
-set L=LoadInteger(hash,Id,i)
-if L>0 then
-set u=LoadUnitHandle(hash,Id,i)
-set u_Id=GetHandleId(u)
-set dmg=LoadReal(hash,Id,i)
-set cof=dmg_cof
-if LoadInteger(hash,u_Id,'gvsm')>=1 or LoadInteger(hash,u_Id,'I00S')>=1 then
-if GetUnitAbilityLevel(u2,'B02V')==1 then
-set cof=cof+0.35
+set u3=FirstOfGroup(ug)
+exitwhen u3==null
+if UnitAlive(u3)and IsUnitEnemy(u3,pl)then
+call BurnUnit(u,u3,dmg,1.25)
 endif
-endif
-if LoadInteger(hash,u_Id,'I086')>=1 then
-if LoadInteger(hash,u_Id,27)>=1 then
-set cof=cof+0.50
-endif
-endif
-if GetUnitAbilityLevel(u,'B01H')==1 then
-set cof=cof+0.50
-endif
-set cof=cof+LoadReal(hash,u_Id,27)
-if cof<0.20 then
-set cof=0.20
-endif
-call UnitDamageTarget(u,u2,dmg*cof,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_UNIVERSAL,WEAPON_TYPE_WHOKNOWS)
-if LoadInteger(hash,u2_Id,'I068')>=1 then
-call UnitDamageTarget(u2,u,dmg*cof*0.20,false,false,ATTACK_TYPE_NORMAL,DAMAGE_TYPE_NORMAL,null)
-endif
-set L=L-1
-if L>0 then
-set check=1
-else
-call RemoveSavedHandle(hash,Id,i)
-endif
-call SaveInteger(hash,Id,i,L)
-endif
-exitwhen i==count
+call GroupRemoveUnit(ug,u3)
 endloop
-call EnableTrigger(gg_trg_HeroTakeDamage)
-if check==0 then
-call SaveInteger(hash,u2_Id,'burn',0)
-call UnitRemoveAbility(u2,'A0Y6')
-call UnitRemoveAbility(u2,'B040')
-call FlushChildHashtable(hash,Id)
-call PauseTimer(t)
-call DestroyTimer(t)
-call RemoveSavedHandle(hash,u2_Id,'burt')
-endif
-set u=null
-set u2=null
-set t=null
-endfunction
-function BurnUnit takes unit damager,unit target,real dmg,real chanse returns nothing
-local timer t
-local integer Id
-local integer count
-local integer count2
-local integer i
-local integer i2
-local real cof
-local integer t_Id=GetHandleId(target)
-local integer d_Id=GetHandleId(damager)
-local effect e
-local integer random
-local integer chanse_random
-if IsUnitType(target,UNIT_TYPE_STRUCTURE)or IsUnitType(target,UNIT_TYPE_MECHANICAL)then
-set chanse=chanse*0.50
-elseif LoadInteger(hash,GetHandleId(target),'tkno')>=1 then
-elseif LoadInteger(hash,GetHandleId(target),27)>0 and LoadInteger(hash,GetHandleId(damager),'A03M')!=1 then
-if LoadInteger(hash,GetHandleId(target),27)>50 then
-set chanse=0.
-endif
-if GetUnitTypeId(damager)=='h01A' or GetUnitTypeId(damager)=='h01B' then
-if GetPlayerTechCount(GetOwningPlayer(damager),'Ropm',true)==1 then
-set chanse=chanse*1.75
+call DestroyGroup(ug)
+call SaveReal(hash,GetHandleId(u),30,LoadReal(hash,GetHandleId(u),30)-3.)
 else
-set chanse=chanse*1.00
+loop
+set u3=FirstOfGroup(ug)
+exitwhen u3==null
+if UnitAlive(u3)and IsUnitEnemy(u3,pl)then
+call BurnUnit(u,u3,dmg,1.25)
 endif
-else
-set chanse=chanse*0.25
+call GroupRemoveUnit(ug,u3)
+endloop
+call DestroyGroup(ug)
 endif
-elseif not UnitAlive(target)or LoadInteger(hash,GetHandleId(target),44)>0 and LoadInteger(hash,GetHandleId(damager),'A03M')!=1 then
-set chanse=0.
-endif
-if GetUnitAbilityLevel(target,'B00W')>0 then
-set chanse=chanse*0.70
-endif
-if GetUnitAbilityLevel(target,'B042')==1 then
-set chanse=chanse*(1.00+(0.50*(1.00+LoadReal(hash,GetHandleId(damager),46))))
-endif
-if GetUnitAbilityLevel(target,'B045')==1 then
-set chanse=chanse*1.50
-endif
-if LoadInteger(hash,d_Id,'I09G')>=1 then
-set chanse=chanse*1.50
-endif
-set chanse_random=R2I(chanse*100)
-set random=GetRandomInt(1,100)
-if random<=chanse_random then
-if LoadInteger(hash,GetHandleId(damager),'A03M')==1 then
-set cof=1.0*(1.00+(0.50*(1.00+LoadReal(hash,GetHandleId(damager),46))))
-if LoadInteger(hash,t_Id,'I07A')>=1 then
-if UnitLifePercent(target)<=25.0 then
-set cof=cof-0.50
-endif
-endif
-if LoadInteger(hash,t_Id,'I048')>=1 then
-if UnitLifePercent(target)<=30.0 then
-set cof=cof-0.25
-endif
-endif
-if LoadInteger(hash,t_Id,'tbak')>=1 then
-if UnitLifePercent(target)>=75.0 then
-set cof=cof-0.25
-endif
-endif
-if LoadInteger(hash,t_Id,'pman')>=1 then
-if UnitLifePercent(target)>=75.0 then
-set cof=cof-0.18
-endif
-endif
-if LoadInteger(hash,d_Id,'gvsm')>=1 or LoadInteger(hash,d_Id,'I00S')>=1 then
-if GetUnitAbilityLevel(target,'B02V')==1 then
-set cof=cof+0.35
-endif
-endif
-if LoadInteger(hash,d_Id,'I086')>=1 then
-if LoadInteger(hash,d_Id,27)>=1 then
-set cof=cof+0.50
-endif
-endif
-if GetUnitAbilityLevel(damager,'B01H')==1 then
-set cof=cof+0.50
-endif
-call DisableTrigger(gg_trg_HeroTakeDamage)
-if cof<0.20 then
-set cof=0.20
-endif
-set cof=cof-LoadReal(hash,t_Id,47)+LoadReal(hash,d_Id,27)
-call UnitDamageTarget(damager,target,dmg*cof,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_UNIVERSAL,WEAPON_TYPE_WHOKNOWS)
-if LoadInteger(hash,t_Id,'I068')>=1 then
-call UnitDamageTarget(target,damager,dmg*cof*0.20,false,false,ATTACK_TYPE_NORMAL,DAMAGE_TYPE_NORMAL,null)
-endif
-call DestroyEffect(AddSpecialEffectTarget("war3mapImported\\AerialExplosionV3.mdx",target,"origin"))
-call EnableTrigger(gg_trg_HeroTakeDamage)
-set t=null
-set e=null
-return
-endif
-set dmg=dmg/16.
-set count=16
-if GetUnitAbilityLevel(target,'B042')==1 then
-set count=count+R2I(8.0*(1.00+(1.00+LoadReal(hash,GetHandleId(damager),46))))
-endif
-if GetUnitAbilityLevel(target,'A064')==1 then
-set count=count/2
-endif
-set count2=LoadInteger(hash,t_Id,'burn')
-if count2==0 then
+if power>=50 then
 set t=CreateTimer()
 set Id=GetHandleId(t)
-call SaveUnitHandle(hash,Id,0,target)
+call SetUnitLifeRegeneration(u,GetUnitLifeRegeneration(u)+power*0.30)
+call SaveUnitHandle(hash,Id,1,u)
+call SaveReal(hash,Id,1,power*0.30)
+call TimerStart(t,10,false,function Hero52W_Buff)
+endif
+if power>=100 then
+call DestroyEffect(AddSpecialEffect("war3mapImported\\NewDirtEXNofire.mdx",x,y))
+set dmg=I2R(GetHeroStr(u,true))*3.50
+set ug=CreateGroup()
+call GroupEnumUnitsInRange(ug,x,y,250,null)
+loop
+set u3=FirstOfGroup(ug)
+exitwhen u3==null
+if UnitAlive(u3)and IsUnitEnemy(u3,pl)then
+call UnitDamageTarget(u,u3,dmg,false,false,ATTACK_TYPE_NORMAL,DAMAGE_TYPE_MAGIC,WEAPON_TYPE_WHOKNOWS)
+endif
+call GroupRemoveUnit(ug,u3)
+endloop
+call DestroyGroup(ug)
+endif
+if power>=150 then
+set L=0
+set ug=CreateGroup()
+call GroupEnumUnitsInRange(ug,x,y,400,null)
+loop
+set u3=FirstOfGroup(ug)
+exitwhen u3==null
+if UnitAlive(u3)and IsUnitEnemy(u3,pl)then
+set L=L+2
+if power>=300 then
+call SetUnitExtraArmor(u3,GetUnitExtraArmor(u3)-5)
+endif
+endif
+call GroupRemoveUnit(ug,u3)
+endloop
+call DestroyGroup(ug)
+set t=CreateTimer()
+set Id=GetHandleId(t)
+call SetUnitExtraArmor(u,GetUnitExtraArmor(u)+L)
+call SaveUnitHandle(hash,Id,1,u)
+call SaveInteger(hash,Id,1,L)
+call TimerStart(t,10,false,function Hero52W_Buff2)
+endif
+if power>=300 then
+call SetUnitState(u,UNIT_STATE_LIFE,GetUnitState(u,UNIT_STATE_LIFE)+(GetUnitState((u),UNIT_STATE_MAX_LIFE))*0.10)
+endif
+```
+
+`Hero52W_Buff`　war3map.j:63475
+```jass
+function Hero52W_Buff takes nothing returns nothing
+local timer t=GetExpiredTimer()
+local unit u=LoadUnitHandle(hash,GetHandleId(t),1)
+local real bonus=LoadReal(hash,GetHandleId(t),1)
+call SetUnitLifeRegeneration(u,GetUnitLifeRegeneration(u)-bonus)
+call PauseTimer(t)
+call FlushChildHashtable(hash,GetHandleId(t))
+call DestroyTimer(t)
+set u=null
+set t=null
+endfunction
+function Hero52W_Buff2 takes nothing returns nothing
+local timer t=GetExpiredTimer()
+local unit u=LoadUnitHandle(hash,GetHandleId(t),1)
+local integer bonus=LoadInteger(hash,GetHandleId(t),1)
+call SetUnitExtraArmor(u,GetUnitExtraArmor(u)-bonus)
+call PauseTimer(t)
+call FlushChildHashtable(hash,GetHandleId(t))
+call DestroyTimer(t)
+set u=null
+set t=null
+endfunction
 ```
 
 ## 灼燒法球 `A06N`
@@ -945,20 +503,6 @@ call SaveUnitHandle(hash,Id,0,target)
 物件欄位（原型 `ANcl`）：`Ncl1 = 1.0`, `Ncl2 = 2`, `Ncl3 = 1`, `Ncl4 = 1.0`, `Ncl5 = 0`, `Ncl6 = charm`, `acdn = 30.0`, `alev = 5`, `amcs = [110, 130, 150, 170, 190]`, `atar = air,ground,debris,enemy,neutral,organic`
 
 實作：
-
-`Hero52E_Buff`　war3map.j:63497
-```jass
-function Hero52E_Buff takes nothing returns nothing
-local timer t=GetExpiredTimer()
-local unit u=LoadUnitHandle(hash,GetHandleId(t),1)
-call SaveInteger(hash,GetHandleId(u),26,0)
-call PauseTimer(t)
-call FlushChildHashtable(hash,GetHandleId(t))
-call DestroyTimer(t)
-set u=null
-set t=null
-endfunction
-```
 
 `Trig_HeroSkills52_Actions`　war3map.j:63742
 ```jass
@@ -1001,6 +545,20 @@ endif
 endif
 ```
 
+`Hero52E_Buff`　war3map.j:63497
+```jass
+function Hero52E_Buff takes nothing returns nothing
+local timer t=GetExpiredTimer()
+local unit u=LoadUnitHandle(hash,GetHandleId(t),1)
+call SaveInteger(hash,GetHandleId(u),26,0)
+call PauseTimer(t)
+call FlushChildHashtable(hash,GetHandleId(t))
+call DestroyTimer(t)
+set u=null
+set t=null
+endfunction
+```
+
 ## 粉碎打擊 `A04L`
 
 俄文原名：Сокрушительный удар
@@ -1025,278 +583,9 @@ endif
 
 物件欄位（原型 `ANcl`）：`Ncl1 = 0.9399999976158142`, `Ncl2 = 1`, `Ncl3 = 1`, `Ncl4 = 0.9399999976158142`, `Ncl5 = 0`, `Ncl6 = [None, 'channel']`, `acdn = 18.0`, `alev = 5`, `amcs = [90, 102, 114, 126, 138]`, `aran = 130.0`, `atar = air,enemies,ground,neutral,organic,item,debris`
 
+呼叫共用引擎函式：`FlammabilityUnit` —— 完整內容見 `_engine.md`。
+
 實作：
-
-`RemoveFrost`　war3map.j:1527
-```jass
-function RemoveFrost takes nothing returns nothing
-local timer t=GetExpiredTimer()
-local unit u=LoadUnitHandle(hash,GetHandleId(t),1)
-call UnitRemoveAbility(u,'S00G')
-call UnitRemoveAbility(u,'B02V')
-call RemoveSavedHandle(hash,GetHandleId(u),'B02V')
-call PauseTimer(t)
-call FlushChildHashtable(hash,GetHandleId(t))
-call DestroyTimer(t)
-set t=null
-set u=null
-endfunction
-function FrostUnit takes unit damager,unit target,real chanse returns nothing
-local real dmg
-local real cof=1.0
-local timer t
-local integer t_Id=GetHandleId(target)
-local integer d_Id=GetHandleId(damager)
-local integer random
-local integer chanse_random
-if IsUnitType(target,UNIT_TYPE_STRUCTURE)or IsUnitType(target,UNIT_TYPE_MECHANICAL)or not UnitAlive(target)or LoadInteger(hash,t_Id,44)>0 then
-set t=null
-return
-endif
-if LoadInteger(hash,t_Id,28)>0 and LoadInteger(hash,GetHandleId(damager),'I07G')==0 then
-set chanse=chanse*0.25
-endif
-if GetUnitAbilityLevel(target,'B00W')>0 then
-set chanse=chanse*0.70
-endif
-if GetUnitAbilityLevel(target,'B045')==1 then
-set chanse=chanse*1.50
-endif
-if LoadInteger(hash,d_Id,'I09G')>=1 then
-set chanse=chanse*1.50
-endif
-set chanse_random=R2I(chanse*100)
-set random=GetRandomInt(1,100)
-if random<=chanse_random then
-if GetUnitAbilityLevel(damager,'A0AQ')==1 and GetUnitAbilityLevel(target,'B046')==1 then
-if IsUnitType(target,UNIT_TYPE_HERO)then
-set dmg=GetUnitState(target,UNIT_STATE_MAX_LIFE)*0.25
-else
-set dmg=GetUnitState(target,UNIT_STATE_MAX_LIFE)*0.05
-endif
-if LoadInteger(hash,d_Id,'I00R')>=1 then
-set dmg=dmg+150.
-endif
-call DestroyEffect(AddSpecialEffectTarget("Abilities\\Spells\\Other\\CrushingWave\\CrushingWaveDamage.mdl",target,"chest"))
-if LoadInteger(hash,d_Id,'I086')>=1 then
-if LoadInteger(hash,d_Id,48)>=1 then
-set cof=cof+0.50
-endif
-endif
-if GetUnitAbilityLevel(damager,'B01H')==1 then
-set cof=cof+0.50
-endif
-if LoadInteger(hash,t_Id,'I07A')>=1 then
-if UnitLifePercent(target)<=25.0 then
-set cof=cof-0.50
-endif
-endif
-if LoadInteger(hash,t_Id,'I048')>=1 then
-if UnitLifePercent(target)<=30.0 then
-set cof=cof-0.25
-endif
-endif
-if LoadInteger(hash,t_Id,'tbak')>=1 then
-if UnitLifePercent(damager)>=75.0 then
-set cof=cof-0.25
-endif
-endif
-if LoadInteger(hash,t_Id,'pman')>=1 then
-if UnitLifePercent(damager)>=75.0 then
-set cof=cof-0.18
-endif
-endif
-call DisableTrigger(gg_trg_HeroTakeDamage)
-set cof=cof-LoadReal(hash,t_Id,48)+LoadReal(hash,d_Id,28)
-if cof<0.20 then
-set cof=0.20
-endif
-call UnitDamageTarget(damager,target,dmg*cof,false,false,ATTACK_TYPE_NORMAL,DAMAGE_TYPE_NORMAL,null)
-if LoadInteger(hash,t_Id,'I068')>=1 then
-call UnitDamageTarget(target,damager,dmg*cof*0.20,false,false,ATTACK_TYPE_NORMAL,DAMAGE_TYPE_NORMAL,null)
-endif
-call EnableTrigger(gg_trg_HeroTakeDamage)
-endif
-if GetUnitAbilityLevel(target,'B02V')==1 then
-set cof=1.00
-if IsUnitType(target,UNIT_TYPE_HERO)then
-set dmg=GetUnitState(target,UNIT_STATE_MAX_LIFE)*0.25
-else
-set dmg=GetUnitState(target,UNIT_STATE_MAX_LIFE)*0.05
-endif
-if LoadInteger(hash,d_Id,'I00R')>=1 then
-set dmg=dmg+150.
-endif
-if GetPlayerTechCount(GetOwningPlayer(damager),'Rufb',true)==1 then
-if GetUnitTypeId(damager)=='n041' or GetUnitTypeId(damager)=='n06L' or GetUnitTypeId(damager)=='n06S' or GetUnitTypeId(damager)=='n06U' or GetUnitTypeId(damager)=='n06V' then
-set dmg=dmg+100.
-endif
-endif
-call DestroyEffect(AddSpecialEffectTarget("Abilities\\Spells\\Other\\CrushingWave\\CrushingWaveDamage.mdl",target,"chest"))
-if LoadInteger(hash,d_Id,'I086')>=1 then
-if LoadInteger(hash,d_Id,48)>=1 then
-set cof=cof+0.50
-endif
-endif
-if GetUnitAbilityLevel(damager,'B01H')==1 then
-set cof=cof+0.50
-endif
-if LoadInteger(hash,t_Id,'I07A')>=1 then
-if UnitLifePercent(target)<=25.0 then
-set cof=cof-0.50
-endif
-endif
-if LoadInteger(hash,t_Id,'I048')>=1 then
-if UnitLifePercent(target)<=30.0 then
-set cof=cof-0.25
-endif
-endif
-if LoadInteger(hash,t_Id,'tbak')>=1 then
-if UnitLifePercent(damager)>=75.0 then
-set cof=cof-0.25
-endif
-endif
-if LoadInteger(hash,t_Id,'pman')>=1 then
-if UnitLifePercent(damager)>=75.0 then
-set cof=cof-0.18
-endif
-endif
-call DisableTrigger(gg_trg_HeroTakeDamage)
-set cof=cof-LoadReal(hash,t_Id,48)+LoadReal(hash,d_Id,28)
-if cof<0.20 then
-set cof=0.20
-endif
-call UnitDamageTarget(damager,target,dmg*cof,false,false,ATTACK_TYPE_NORMAL,DAMAGE_TYPE_NORMAL,null)
-if LoadInteger(hash,t_Id,'I068')>=1 then
-call UnitDamageTarget(target,damager,dmg*cof*0.20,false,false,ATTACK_TYPE_NORMAL,DAMAGE_TYPE_NORMAL,null)
-endif
-call EnableTrigger(gg_trg_HeroTakeDamage)
-set t=LoadTimerHandle(hash,t_Id,'B02V')
-call TimerStart(t,0.,false,function RemoveFrost)
-else
-call UnitAddAbility(target,'S00G')
-set t=CreateTimer()
-call SaveUnitHandle(hash,GetHandleId(t),1,target)
-call SaveTimerHandle(hash,t_Id,'B02V',t)
-call TimerStart(t,6.,false,function RemoveFrost)
-endif
-endif
-set t=null
-endfunction
-function RemoveFlammability takes nothing returns nothing
-local timer t=GetExpiredTimer()
-local unit u=LoadUnitHandle(hash,GetHandleId(t),1)
-call UnitRemoveAbility(u,'S00M')
-call UnitRemoveAbility(u,'B042')
-call RemoveSavedHandle(hash,GetHandleId(u),'B042')
-call PauseTimer(t)
-call FlushChildHashtable(hash,GetHandleId(t))
-call DestroyTimer(t)
-set t=null
-set u=null
-endfunction
-function FlammabilityUnit takes unit damager,unit target,real chanse returns nothing
-local timer t
-local integer t_Id=GetHandleId(target)
-local integer d_Id=GetHandleId(damager)
-local integer random
-local integer chanse_random
-if IsUnitType(target,UNIT_TYPE_STRUCTURE)or IsUnitType(target,UNIT_TYPE_MECHANICAL)then
-set chanse=chanse*0.50
-elseif LoadInteger(hash,GetHandleId(target),'tkno')>=1 then
-elseif LoadInteger(hash,GetHandleId(target),27)>0 then
-set chanse=chanse*0.25
-elseif not UnitAlive(target)or LoadInteger(hash,GetHandleId(target),44)>0 then
-set chanse=0.
-endif
-if GetUnitAbilityLevel(target,'B00W')>0 then
-set chanse=chanse*0.70
-endif
-if GetUnitAbilityLevel(target,'B045')==1 then
-set chanse=chanse*1.50
-endif
-if LoadInteger(hash,d_Id,'I09G')>=1 then
-set chanse=chanse*1.50
-endif
-set chanse_random=R2I(chanse*100)
-set random=GetRandomInt(1,100)
-if random<=chanse_random then
-if GetUnitAbilityLevel(target,'B042')==1 then
-set t=LoadTimerHandle(hash,GetHandleId(target),'B042')
-call TimerStart(t,6.,false,function RemoveFlammability)
-else
-call UnitAddAbility(target,'S00M')
-set t=CreateTimer()
-call SaveUnitHandle(hash,GetHandleId(t),1,target)
-call SaveTimerHandle(hash,GetHandleId(target),'B042',t)
-call TimerStart(t,6.,false,function RemoveFlammability)
-endif
-if LoadInteger(hash,GetHandleId(damager),'I00Y')>=1 then
-call FrostUnit(damager,target,0.50)
-endif
-endif
-set t=null
-endfunction
-```
-
-`Hero52Q_Buff`　war3map.j:63465
-```jass
-function Hero52Q_Buff takes nothing returns nothing
-local timer t=GetExpiredTimer()
-local unit u=LoadUnitHandle(hash,GetHandleId(t),1)
-call SetUnitAttackSpeed(u,GetUnitAttackSpeed(u)-80)
-call PauseTimer(t)
-call FlushChildHashtable(hash,GetHandleId(t))
-call DestroyTimer(t)
-set u=null
-set t=null
-endfunction
-```
-
-`Hero52Q_Dmg`　war3map.j:63507
-```jass
-function Hero52Q_Dmg takes nothing returns nothing
-local timer t=GetExpiredTimer()
-local unit u=LoadUnitHandle(hash,GetHandleId(t),1)
-local player pl=GetOwningPlayer(u)
-local real x=LoadReal(hash,GetHandleId(t),1)
-local real y=LoadReal(hash,GetHandleId(t),2)
-local real dmg=LoadReal(hash,GetHandleId(t),3)
-local unit u3
-local real x2
-local real y2
-local integer L
-local integer L2
-local group ug=CreateGroup()
-call GroupEnumUnitsInRange(ug,x,y,375,null)
-loop
-set u3=FirstOfGroup(ug)
-exitwhen u3==null
-if UnitAlive(u3)and IsUnitEnemy(u3,pl)then
-call UnitDamageTarget(u,u3,dmg*0.50,false,false,ATTACK_TYPE_NORMAL,DAMAGE_TYPE_MAGIC,WEAPON_TYPE_WHOKNOWS)
-endif
-call GroupRemoveUnit(ug,u3)
-endloop
-call DestroyGroup(ug)
-set L=1
-set L2=R2I(300)/20
-loop
-exitwhen L>L2
-set x2=PolarX(x,290,I2R(L*(360/L2)))
-set y2=PolarY(y,290,I2R(L*(360/L2)))
-call DestroyEffect(AddSpecialEffect("war3mapImported\\AerialExplosionV3.mdx",x2,y2))
-set L=L+1
-endloop
-call PauseTimer(t)
-call FlushChildHashtable(hash,GetHandleId(t))
-call DestroyTimer(t)
-set u=null
-set u3=null
-set ug=null
-set pl=null
-set t=null
-endfunction
-```
 
 `Trig_HeroSkills52_Actions`　war3map.j:63570
 ```jass
@@ -1397,6 +686,65 @@ call TimerStart(t,4,false,function Hero52Q_Dmg)
 endif
 ```
 
+`Hero52Q_Buff`　war3map.j:63465
+```jass
+function Hero52Q_Buff takes nothing returns nothing
+local timer t=GetExpiredTimer()
+local unit u=LoadUnitHandle(hash,GetHandleId(t),1)
+call SetUnitAttackSpeed(u,GetUnitAttackSpeed(u)-80)
+call PauseTimer(t)
+call FlushChildHashtable(hash,GetHandleId(t))
+call DestroyTimer(t)
+set u=null
+set t=null
+endfunction
+```
+
+`Hero52Q_Dmg`　war3map.j:63507
+```jass
+function Hero52Q_Dmg takes nothing returns nothing
+local timer t=GetExpiredTimer()
+local unit u=LoadUnitHandle(hash,GetHandleId(t),1)
+local player pl=GetOwningPlayer(u)
+local real x=LoadReal(hash,GetHandleId(t),1)
+local real y=LoadReal(hash,GetHandleId(t),2)
+local real dmg=LoadReal(hash,GetHandleId(t),3)
+local unit u3
+local real x2
+local real y2
+local integer L
+local integer L2
+local group ug=CreateGroup()
+call GroupEnumUnitsInRange(ug,x,y,375,null)
+loop
+set u3=FirstOfGroup(ug)
+exitwhen u3==null
+if UnitAlive(u3)and IsUnitEnemy(u3,pl)then
+call UnitDamageTarget(u,u3,dmg*0.50,false,false,ATTACK_TYPE_NORMAL,DAMAGE_TYPE_MAGIC,WEAPON_TYPE_WHOKNOWS)
+endif
+call GroupRemoveUnit(ug,u3)
+endloop
+call DestroyGroup(ug)
+set L=1
+set L2=R2I(300)/20
+loop
+exitwhen L>L2
+set x2=PolarX(x,290,I2R(L*(360/L2)))
+set y2=PolarY(y,290,I2R(L*(360/L2)))
+call DestroyEffect(AddSpecialEffect("war3mapImported\\AerialExplosionV3.mdx",x2,y2))
+set L=L+1
+endloop
+call PauseTimer(t)
+call FlushChildHashtable(hash,GetHandleId(t))
+call DestroyTimer(t)
+set u=null
+set u3=null
+set ug=null
+set pl=null
+set t=null
+endfunction
+```
+
 ## 力量蓄積 `A01D`　—　吃技能強度
 
 俄文原名：Накопление силы
@@ -1417,6 +765,88 @@ endif
 物件欄位（原型 `ANcl`）：`Ncl1 = [30.0, 0.8999999761581421]`, `Ncl2 = [None, 1]`, `Ncl3 = 1`, `Ncl4 = [2.0, 0.8999999761581421]`, `Ncl5 = 0`, `Ncl6 = ['absorb', 'channel']`, `acap = `, `acdn = [10.0, 16.0]`, `aher = 0`, `alev = 1`, `amcs = [35, 95, 110, 125, 140, 155, 170]`, `aran = 100.0`, `atar = air,ground,debris,enemy,neutral,organic`
 
 實作：
+
+`Hero52SkillsStart_conditions`　war3map.j:63791
+```jass
+function Hero52SkillsStart_conditions takes nothing returns boolean
+return GetSpellAbilityId()=='A01D'
+endfunction
+```
+
+`Trig_Hero52SkillsStart_Actions`　war3map.j:63892
+```jass
+function Trig_Hero52SkillsStart_Actions takes nothing returns nothing
+local unit u=GetSpellAbilityUnit()
+local player pl=GetOwningPlayer(u)
+local timer t=CreateTimer()
+local integer Id=GetHandleId(t)
+call SaveUnitHandle(hash,Id,1,u)
+call SaveInteger(hash,Id,1,300)
+call SaveInteger(hash,Id,2,0)
+call SaveInteger(hash,Id,4,0)
+call SaveTextTagHandle(hash,GetHandleId(u),26,CreateTextTag())
+call SaveTimerHandle(hash,GetHandleId(u),'A01D',t)
+call TimerStart(t,0.20,true,function Hero52D)
+set u=null
+set pl=null
+set t=null
+endfunction
+```
+
+`Hero52SkillsStop_conditions`　war3map.j:63913
+```jass
+function Hero52SkillsStop_conditions takes nothing returns boolean
+return GetSpellAbilityId()=='A01D'
+endfunction
+function Trig_Hero52SkillsStop_Actions takes nothing returns nothing
+local unit u=GetSpellAbilityUnit()
+local player pl=GetOwningPlayer(u)
+local integer n=GetPlayerId(pl)+1
+local integer Id
+local timer t
+local texttag text
+local force f=CreateForce()
+local real x=GetUnitX(u)
+local real y=GetUnitY(u)
+local real power
+local real limit
+local integer check_1
+local integer check_3
+set t=LoadTimerHandle(hash,GetHandleId(u),'A01D')
+set Id=GetHandleId(t)
+set check_1=LoadInteger(hash,Id,2)
+set check_3=LoadInteger(hash,Id,4)
+if check_1==1 then
+call SaveReal(hash,GetHandleId(u),4,LoadReal(hash,GetHandleId(u),4)-0.12)
+endif
+if check_3==1 then
+call UnitRemoveAbility(u,'A02P')
+call UnitRemoveAbility(u,'A036')
+endif
+call ForceAddPlayer(f,pl)
+set text=LoadTextTagHandle(hash,GetHandleId(u),26)
+call DestroyTextTag(text)
+set power=LoadReal(hash,GetHandleId(u),26)
+set limit=40+10*I2R(GetHeroLevel(u))+udg_ItemBonusDMG[n]*0.10
+set text=CreateTextTagUnitBJ("|cFFFF7D00"+I2S(R2I(power))+"/"+I2S(R2I(limit)),u,0,13.00,100,100,100,0)
+call ShowTextTagForceBJ(false,text,bj_FORCE_ALL_PLAYERS)
+call ShowTextTagForceBJ(true,text,f)
+call SetTextTagVelocityBJ(text,75.00,90.00)
+call SetTextTagSuspended(text,false)
+call SetTextTagPermanent(text,false)
+call SetTextTagLifespan(text,4.00)
+call SetTextTagFadepoint(text,3.00)
+call FlushChildHashtable(hash,Id)
+call PauseTimer(t)
+call DestroyTimer(t)
+call DestroyForce(f)
+set f=null
+set u=null
+set pl=null
+set t=null
+set text=null
+endfunction
+```
 
 `Hero52SkillsStart_conditions`　war3map.j:63791
 ```jass
@@ -1539,61 +969,6 @@ set t=null
 endfunction
 ```
 
-`Hero52SkillsStop_conditions`　war3map.j:63913
-```jass
-function Hero52SkillsStop_conditions takes nothing returns boolean
-return GetSpellAbilityId()=='A01D'
-endfunction
-function Trig_Hero52SkillsStop_Actions takes nothing returns nothing
-local unit u=GetSpellAbilityUnit()
-local player pl=GetOwningPlayer(u)
-local integer n=GetPlayerId(pl)+1
-local integer Id
-local timer t
-local texttag text
-local force f=CreateForce()
-local real x=GetUnitX(u)
-local real y=GetUnitY(u)
-local real power
-local real limit
-local integer check_1
-local integer check_3
-set t=LoadTimerHandle(hash,GetHandleId(u),'A01D')
-set Id=GetHandleId(t)
-set check_1=LoadInteger(hash,Id,2)
-set check_3=LoadInteger(hash,Id,4)
-if check_1==1 then
-call SaveReal(hash,GetHandleId(u),4,LoadReal(hash,GetHandleId(u),4)-0.12)
-endif
-if check_3==1 then
-call UnitRemoveAbility(u,'A02P')
-call UnitRemoveAbility(u,'A036')
-endif
-call ForceAddPlayer(f,pl)
-set text=LoadTextTagHandle(hash,GetHandleId(u),26)
-call DestroyTextTag(text)
-set power=LoadReal(hash,GetHandleId(u),26)
-set limit=40+10*I2R(GetHeroLevel(u))+udg_ItemBonusDMG[n]*0.10
-set text=CreateTextTagUnitBJ("|cFFFF7D00"+I2S(R2I(power))+"/"+I2S(R2I(limit)),u,0,13.00,100,100,100,0)
-call ShowTextTagForceBJ(false,text,bj_FORCE_ALL_PLAYERS)
-call ShowTextTagForceBJ(true,text,f)
-call SetTextTagVelocityBJ(text,75.00,90.00)
-call SetTextTagSuspended(text,false)
-call SetTextTagPermanent(text,false)
-call SetTextTagLifespan(text,4.00)
-call SetTextTagFadepoint(text,3.00)
-call FlushChildHashtable(hash,Id)
-call PauseTimer(t)
-call DestroyTimer(t)
-call DestroyForce(f)
-set f=null
-set u=null
-set pl=null
-set t=null
-set text=null
-endfunction
-```
-
 ## 轉移／移除據點 `A03V`
 
 俄文原名：Передать/удалить точку
@@ -1645,12 +1020,6 @@ endif
   - **1** — 裝備技能冷卻乘數〔持有者〕StartModCooldown 讀，CD×它，下限 0.20
   - **3** — 對英雄傷害 +%〔攻擊者〕Trig_HeroTakeDamage_Actions 的 DefCof
   - **4** — 受到傷害 −%〔受害者〕DefCof 減去它 → 值越大越耐打；電擊會扣它
-  - **27** — 實數＝點燃傷害 +%〔施加者〕／整數＝抵抗點燃旗標〔受害者〕**兩者不同表**
-  - **28** — 實數＝冰凍傷害 +%〔施加者〕／整數＝抵抗冰凍旗標〔受害者〕
-  - **44** — 狀態免疫旗標〔受害者〕>0 則所有狀態函式開頭直接 return，完全不判定
-  - **46** — 易燃效果強化〔施加者〕影響易燃的機率倍率與跳數加成
-  - **47** — 點燃抗性〔受害者〕係數減去它；電擊讓它 −1.00
-  - **48** — 冰凍抗性〔受害者〕；電擊 −1.00
 
 ---
 

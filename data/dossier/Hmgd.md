@@ -82,6 +82,20 @@ call SetTextTagFadepoint(text,2.00)
 
 實作：
 
+`Trig_HeroSkills53_Actions`　war3map.j:64217
+```jass
+if Skill=='ANbl' then
+set t=CreateTimer()
+set Id=GetHandleId(t)
+call SaveUnitHandle(hash,Id,1,u)
+call TimerStart(t,10.,false,function Hero53W_Buff)
+set dmg=10.+10.*I2R(lvl)+udg_ItemBonusDMG[n]*0.10
+call SaveReal(hash,GetHandleId(u),16,LoadReal(hash,GetHandleId(u),16)+dmg)
+call SaveReal(hash,Id,1,dmg)
+call SaveEffectHandle(hash,Id,2,AddSpecialEffectTarget("Radiance Royal.mdx",u,"origin"))
+call SetUnitAnimation(u,"stand")
+```
+
 `Hero53W_Buff`　war3map.j:64189
 ```jass
 function Hero53W_Buff takes nothing returns nothing
@@ -96,20 +110,6 @@ call DestroyTimer(t)
 set u=null
 set t=null
 endfunction
-```
-
-`Trig_HeroSkills53_Actions`　war3map.j:64217
-```jass
-if Skill=='ANbl' then
-set t=CreateTimer()
-set Id=GetHandleId(t)
-call SaveUnitHandle(hash,Id,1,u)
-call TimerStart(t,10.,false,function Hero53W_Buff)
-set dmg=10.+10.*I2R(lvl)+udg_ItemBonusDMG[n]*0.10
-call SaveReal(hash,GetHandleId(u),16,LoadReal(hash,GetHandleId(u),16)+dmg)
-call SaveReal(hash,Id,1,dmg)
-call SaveEffectHandle(hash,Id,2,AddSpecialEffectTarget("Radiance Royal.mdx",u,"origin"))
-call SetUnitAnimation(u,"stand")
 ```
 
 ## 亡者詛咒 `A0X6`

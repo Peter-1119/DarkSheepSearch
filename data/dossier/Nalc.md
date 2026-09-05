@@ -47,6 +47,157 @@
 
 實作：
 
+`HeroW50_Create`　war3map.j:62085
+```jass
+function HeroW50_Create takes nothing returns nothing
+local timer t=GetExpiredTimer()
+local timer t2
+local integer Id=GetHandleId(t)
+local integer L
+local unit u=LoadUnitHandle(hash,Id,1)
+local unit u2
+local real degrees=GetUnitFacing(u)
+local real angle
+local real dist
+local real x=GetUnitX(u)
+local real y=GetUnitY(u)
+local real x2
+local real y2
+local real dmg
+local real spd=LoadReal(hash,GetHandleId(u),'Nalc')
+local player pl=GetOwningPlayer(u)
+set dmg=(4.+4.*I2R(GetUnitAbilityLevel(u,'A0VS'))+spd*0.04)*6.0
+set angle=degrees+90.
+set u2=CreateUnit(pl,'o02T',x,y,angle)
+set t2=CreateTimer()
+call SaveUnitHandle(hash,GetHandleId(t2),1,u)
+call SaveUnitHandle(hash,GetHandleId(t2),2,u2)
+call SaveReal(hash,GetHandleId(t2),1,dmg)
+call SaveInteger(hash,GetHandleId(t2),2,0)
+call SaveInteger(hash,GetHandleId(t2),3,30)
+call SaveReal(hash,GetHandleId(t2),4,angle)
+call SaveReal(hash,GetHandleId(t2),5,GetRandomReal(-2.,2.))
+call TimerStart(t2,0.03,true,function HeroW50_Dmg)
+set angle=degrees-90.
+set u2=CreateUnit(pl,'o02T',x,y,angle)
+set t2=CreateTimer()
+call SaveUnitHandle(hash,GetHandleId(t2),1,u)
+call SaveUnitHandle(hash,GetHandleId(t2),2,u2)
+call SaveReal(hash,GetHandleId(t2),1,dmg)
+call SaveInteger(hash,GetHandleId(t2),2,0)
+call SaveInteger(hash,GetHandleId(t2),3,30)
+call SaveReal(hash,GetHandleId(t2),4,angle)
+call SaveReal(hash,GetHandleId(t2),5,GetRandomReal(-2.,2.))
+call TimerStart(t2,0.03,true,function HeroW50_Dmg)
+set u=null
+set u2=null
+set t=null
+set t2=null
+set pl=null
+endfunction
+```
+
+`HeroQ50_conditions`　war3map.j:62376
+```jass
+function HeroQ50_conditions takes nothing returns boolean
+return GetSpellAbilityId()=='A0VS' or GetSpellAbilityId()=='A0VT'
+endfunction
+```
+
+`HeroQ50_Create`　war3map.j:62465
+```jass
+function HeroQ50_Create takes nothing returns nothing
+local timer t=GetExpiredTimer()
+local timer t2
+local integer Id=GetHandleId(t)
+local integer L
+local unit u=LoadUnitHandle(hash,Id,1)
+local unit u2
+local real degrees=LoadReal(hash,Id,3)
+local real dist
+local real x=LoadReal(hash,Id,1)
+local real y=LoadReal(hash,Id,2)
+local real x2
+local real y2
+local real dmg
+local real spd=LoadReal(hash,GetHandleId(u),'Nalc')
+local player pl=GetOwningPlayer(u)
+local integer n=GetPlayerId(pl)+1
+local real count=LoadReal(hash,Id,4)
+set dmg=4.+4.*I2R(GetUnitAbilityLevel(u,'A0VS'))+spd*0.04
+set x2=PolarX(x,60.,degrees)
+set y2=PolarY(y,60.,degrees)
+set dist=GetRandomReal(-40.,40.)
+set x=PolarX(x2,dist,degrees+90.)
+set y=PolarY(y2,dist,degrees+90.)
+set u2=CreateUnit(pl,'o02T',x,y,degrees)
+set t2=CreateTimer()
+call SaveUnitHandle(hash,GetHandleId(t2),1,u)
+call SaveUnitHandle(hash,GetHandleId(t2),2,u2)
+call SaveReal(hash,GetHandleId(t2),1,dmg)
+call SaveInteger(hash,GetHandleId(t2),2,0)
+call SaveInteger(hash,GetHandleId(t2),3,30+R2I(spd*0.04))
+call SaveReal(hash,GetHandleId(t2),4,degrees)
+call TimerStart(t2,0.03,true,function HeroQ50_Dmg)
+call SaveReal(hash,Id,4,count+0.01)
+set dmg=(10+4*I2R(GetUnitAbilityLevel(u,'A0VS')))*0.05
+if count>1.60 then
+set dmg=dmg*(count-0.60)
+endif
+if GetUnitState(u,UNIT_STATE_MANA)<dmg then
+call PauseTimer(t)
+call DestroyTimer(t)
+call FlushChildHashtable(hash,Id)
+call RemoveSavedHandle(hash,GetHandleId(u),20)
+call IssueImmediateOrderById(u,Order_stop)
+else
+call SetUnitState(u,UNIT_STATE_MANA,GetUnitState(u,UNIT_STATE_MANA)-dmg)
+endif
+set u=null
+set u2=null
+set t=null
+set t2=null
+set pl=null
+endfunction
+```
+
+`Trig_HeroQ50_Actions`　war3map.j:62528
+```jass
+if GetSpellAbilityId()=='A0VS' then
+set x2=GetSpellTargetX()
+set y2=GetSpellTargetY()
+set Id_u=GetHandleId(u)
+set t=CreateTimer()
+set Id_t=GetHandleId(t)
+call SaveTimerHandle(hash,Id_u,'A0VS',t)
+call SaveUnitHandle(hash,Id_t,1,u)
+call SaveReal(hash,Id_t,1,x)
+call SaveReal(hash,Id_t,2,y)
+set x=bj_RADTODEG*Atan2(y2-y,x2-x)
+call SaveReal(hash,Id_t,3,x)
+call SaveReal(hash,Id_t,4,0.)
+call TimerStart(t,0.05,true,function HeroQ50_Create)
+```
+
+`Trig_HeroQ50_Stop_Conditions`　war3map.j:62559
+```jass
+function Trig_HeroQ50_Stop_Conditions takes nothing returns boolean
+return GetSpellAbilityId()=='A0VS'
+endfunction
+function Trig_HeroQ50_Stop_Actions takes nothing returns nothing
+local unit u=GetSpellAbilityUnit()
+local integer Id=GetHandleId(u)
+local timer t=LoadTimerHandle(hash,Id,'A0VS')
+local integer Id_t=GetHandleId(t)
+call FlushChildHashtable(hash,Id_t)
+call PauseTimer(t)
+call DestroyTimer(t)
+call RemoveSavedHandle(hash,Id,'A0VS')
+set u=null
+set t=null
+endfunction
+```
+
 `HeroW50_Dmg`　war3map.j:61996
 ```jass
 function HeroW50_Dmg takes nothing returns nothing
@@ -332,43 +483,6 @@ set pl=null
 endfunction
 ```
 
-`Trig_HeroQ50_Actions`　war3map.j:62528
-```jass
-if GetSpellAbilityId()=='A0VS' then
-set x2=GetSpellTargetX()
-set y2=GetSpellTargetY()
-set Id_u=GetHandleId(u)
-set t=CreateTimer()
-set Id_t=GetHandleId(t)
-call SaveTimerHandle(hash,Id_u,'A0VS',t)
-call SaveUnitHandle(hash,Id_t,1,u)
-call SaveReal(hash,Id_t,1,x)
-call SaveReal(hash,Id_t,2,y)
-set x=bj_RADTODEG*Atan2(y2-y,x2-x)
-call SaveReal(hash,Id_t,3,x)
-call SaveReal(hash,Id_t,4,0.)
-call TimerStart(t,0.05,true,function HeroQ50_Create)
-```
-
-`Trig_HeroQ50_Stop_Conditions`　war3map.j:62559
-```jass
-function Trig_HeroQ50_Stop_Conditions takes nothing returns boolean
-return GetSpellAbilityId()=='A0VS'
-endfunction
-function Trig_HeroQ50_Stop_Actions takes nothing returns nothing
-local unit u=GetSpellAbilityUnit()
-local integer Id=GetHandleId(u)
-local timer t=LoadTimerHandle(hash,Id,'A0VS')
-local integer Id_t=GetHandleId(t)
-call FlushChildHashtable(hash,Id_t)
-call PauseTimer(t)
-call DestroyTimer(t)
-call RemoveSavedHandle(hash,Id,'A0VS')
-set u=null
-set t=null
-endfunction
-```
-
 ## 宇宙飛行 `A0VT`
 
 俄文原名：Космический полёт
@@ -400,6 +514,91 @@ set y=GetSpellTargetY()
 if IsTerrainPathable(x,y,PATHING_TYPE_WALKABILITY)then
 call IssueImmediateOrder(u,"stop")
 call DisplayTimedTextToPlayer(pl,0,0,15,"|cFFFD0D05Heльзя пpимeнить в нeпpoxoдимyю зoнy!|r")
+endif
+endif
+```
+
+`Skill50W`　war3map.j:62131
+```jass
+function Skill50W takes nothing returns nothing
+local timer t=GetExpiredTimer()
+local timer t2
+local integer Id=GetHandleId(t)
+local unit u=LoadUnitHandle(hash,Id,1)
+local real x=GetUnitX(u)
+local real y=GetUnitY(u)
+local real x2=LoadReal(hash,Id,2)
+local real y2=LoadReal(hash,Id,3)
+local real degrees=LoadReal(hash,Id,1)
+local real heal=(5.+5.*I2R(GetUnitAbilityLevel(u,'A0VT'))+LoadReal(hash,GetHandleId(u),'Nalc')*0.05)*0.35
+set x=x+35.*Cos(degrees*bj_DEGTORAD)
+set y=y+35.*Sin(degrees*bj_DEGTORAD)
+call SetUnitState(u,UNIT_STATE_LIFE,GetUnitState(u,UNIT_STATE_LIFE)+heal)
+if DistanceNative(x,y,x2,y2)<=40. then
+call SetUnitX(u,x2)
+call SetUnitY(u,y2)
+set t2=LoadTimerHandle(hash,GetHandleId(u),'A0VT')
+call PauseTimer(t2)
+call FlushChildHashtable(hash,GetHandleId(t2))
+call DestroyTimer(t2)
+call RemoveSavedHandle(hash,GetHandleId(u),'A0VT')
+call PauseTimer(t)
+call FlushChildHashtable(hash,Id)
+call DestroyTimer(t)
+call PauseUnit(u,false)
+call SetUnitAnimation(u,"stand")
+call IssueImmediateOrderById(u,Order_stop)
+else
+call SetUnitX(u,x)
+call SetUnitY(u,y)
+endif
+set t=null
+set t2=null
+set u=null
+endfunction
+```
+
+`Trig_HeroSkills50_Actions`　war3map.j:62323
+```jass
+elseif Skill=='A0VT' then
+set x=GetUnitX(u)
+set y=GetUnitY(u)
+set x2=GetSpellTargetX()
+set y2=GetSpellTargetY()
+set x=bj_RADTODEG*Atan2(y2-y,x2-x)
+set t=CreateTimer()
+set Id=GetHandleId(t)
+call TimerStart(t,0.03,true,function Skill50W)
+call SaveUnitHandle(hash,Id,1,u)
+call SaveReal(hash,Id,1,x)
+call SaveReal(hash,Id,2,x2)
+call SaveReal(hash,Id,3,y2)
+call PauseUnit(u,true)
+call SetUnitFacing(u,x)
+call SetUnitAnimationByIndex(u,3)
+set t=CreateTimer()
+set Id=GetHandleId(t)
+call SaveTimerHandle(hash,GetHandleId(u),'A0VT',t)
+call SaveUnitHandle(hash,Id,1,u)
+set dmg=0.03*(1.+1./(LoadReal(hash,GetHandleId(u),'Nalc')*0.001+0.5))
+call TimerStart(t,dmg,true,function HeroW50_Create)
+```
+
+`HeroQ50_conditions`　war3map.j:62376
+```jass
+function HeroQ50_conditions takes nothing returns boolean
+return GetSpellAbilityId()=='A0VS' or GetSpellAbilityId()=='A0VT'
+endfunction
+```
+
+`Trig_HeroQ50_Actions`　war3map.j:62542
+```jass
+elseif GetSpellAbilityId()=='A0VT' then
+set x2=GetSpellTargetX()
+set y2=GetSpellTargetY()
+if IsTerrainPathable(x2,y2,PATHING_TYPE_WALKABILITY)==true then
+call IssueImmediateOrderById(u,Order_stop)
+call DisplayTimedTextToPlayer(pl,0,0,10,"|cFFFF4B39Невозможно применить в непроходимую зону!|r")
 endif
 endif
 ```
@@ -579,51 +778,6 @@ set u=null
 endfunction
 ```
 
-`Trig_HeroSkills50_Actions`　war3map.j:62323
-```jass
-elseif Skill=='A0VT' then
-set x=GetUnitX(u)
-set y=GetUnitY(u)
-set x2=GetSpellTargetX()
-set y2=GetSpellTargetY()
-set x=bj_RADTODEG*Atan2(y2-y,x2-x)
-set t=CreateTimer()
-set Id=GetHandleId(t)
-call TimerStart(t,0.03,true,function Skill50W)
-call SaveUnitHandle(hash,Id,1,u)
-call SaveReal(hash,Id,1,x)
-call SaveReal(hash,Id,2,x2)
-call SaveReal(hash,Id,3,y2)
-call PauseUnit(u,true)
-call SetUnitFacing(u,x)
-call SetUnitAnimationByIndex(u,3)
-set t=CreateTimer()
-set Id=GetHandleId(t)
-call SaveTimerHandle(hash,GetHandleId(u),'A0VT',t)
-call SaveUnitHandle(hash,Id,1,u)
-set dmg=0.03*(1.+1./(LoadReal(hash,GetHandleId(u),'Nalc')*0.001+0.5))
-call TimerStart(t,dmg,true,function HeroW50_Create)
-```
-
-`HeroQ50_conditions`　war3map.j:62376
-```jass
-function HeroQ50_conditions takes nothing returns boolean
-return GetSpellAbilityId()=='A0VS' or GetSpellAbilityId()=='A0VT'
-endfunction
-```
-
-`Trig_HeroQ50_Actions`　war3map.j:62542
-```jass
-elseif GetSpellAbilityId()=='A0VT' then
-set x2=GetSpellTargetX()
-set y2=GetSpellTargetY()
-if IsTerrainPathable(x2,y2,PATHING_TYPE_WALKABILITY)==true then
-call IssueImmediateOrderById(u,Order_stop)
-call DisplayTimedTextToPlayer(pl,0,0,10,"|cFFFF4B39Невозможно применить в непроходимую зону!|r")
-endif
-endif
-```
-
 ## 奇點 `A0VP`
 
 俄文原名：Сингулярность
@@ -758,6 +912,20 @@ call TimerStart(t,0.5,true,function Hero50E)
 物件欄位（原型 `ANcl`）：`Ncl1 = [2.799999952316284, None, 1.0]`, `Ncl2 = [2, None, 1]`, `Ncl3 = [3, None, 1]`, `Ncl4 = [2.799999952316284, None, 1.0]`, `Ncl5 = [0, None]`, `Ncl6 = ['dismount', None, 'channel']`, `aare = 300.0`, `acap = `, `acdn = [120.0, None, 17.0]`, `alev = 1`, `amcs = [300, None, 80, 90, 100, 110, 120]`, `aran = [1200.0, None, 700.0]`, `atar = ['air,ground,friend,neutral,self', None]`
 
 實作：
+
+`Trig_HeroSkills50_Actions`　war3map.j:62356
+```jass
+elseif Skill=='A0VU' then
+set x=GetSpellTargetX()
+set y=GetSpellTargetY()
+set u2=CreateUnit(pl,'h044',x,y,GetRandomReal(0,360))
+set t=CreateTimer()
+set Id=GetHandleId(t)
+call TimerStart(t,0.7,false,function Hero50R)
+call SaveUnitHandle(hash,Id,1,u2)
+call SaveUnitHandle(hash,Id,2,u)
+endif
+```
 
 `Hero50R_Wave`　war3map.j:62167
 ```jass
@@ -895,20 +1063,6 @@ set pl=null
 endfunction
 ```
 
-`Trig_HeroSkills50_Actions`　war3map.j:62356
-```jass
-elseif Skill=='A0VU' then
-set x=GetSpellTargetX()
-set y=GetSpellTargetY()
-set u2=CreateUnit(pl,'h044',x,y,GetRandomReal(0,360))
-set t=CreateTimer()
-set Id=GetHandleId(t)
-call TimerStart(t,0.7,false,function Hero50R)
-call SaveUnitHandle(hash,Id,1,u2)
-call SaveUnitHandle(hash,Id,2,u)
-endif
-```
-
 ## 轉移／移除據點 `A03V`
 
 俄文原名：Передать/удалить точку
@@ -966,6 +1120,19 @@ endif
 
 實作：
 
+`Trig_HeroSkills50_Actions`　war3map.j:62314
+```jass
+if Skill=='A0VQ' then
+set dmg=100.+I2R(GetHeroLevel(u))*8.+udg_ItemBonusDMG[n]*1.40
+call SaveReal(hash,GetHandleId(u),'Nalc',LoadReal(hash,GetHandleId(u),'Nalc')+dmg)
+set t=CreateTimer()
+call SaveUnitHandle(hash,GetHandleId(t),1,u)
+call SaveInteger(hash,GetHandleId(t),1,300)
+call SaveReal(hash,GetHandleId(t),1,dmg/200.)
+call SaveEffectHandle(hash,GetHandleId(t),2,AddSpecialEffectTarget("war3mapImported\\Radiance Psionic.mdx",u,"chest"))
+call TimerStart(t,0.04,true,function Hero50D)
+```
+
 `Hero50D`　war3map.j:61883
 ```jass
 function Hero50D takes nothing returns nothing
@@ -1007,19 +1174,6 @@ set pl=null
 set text=null
 set p=null
 endfunction
-```
-
-`Trig_HeroSkills50_Actions`　war3map.j:62314
-```jass
-if Skill=='A0VQ' then
-set dmg=100.+I2R(GetHeroLevel(u))*8.+udg_ItemBonusDMG[n]*1.40
-call SaveReal(hash,GetHandleId(u),'Nalc',LoadReal(hash,GetHandleId(u),'Nalc')+dmg)
-set t=CreateTimer()
-call SaveUnitHandle(hash,GetHandleId(t),1,u)
-call SaveInteger(hash,GetHandleId(t),1,300)
-call SaveReal(hash,GetHandleId(t),1,dmg/200.)
-call SaveEffectHandle(hash,GetHandleId(t),2,AddSpecialEffectTarget("war3mapImported\\Radiance Psionic.mdx",u,"chest"))
-call TimerStart(t,0.04,true,function Hero50D)
 ```
 
 ---
