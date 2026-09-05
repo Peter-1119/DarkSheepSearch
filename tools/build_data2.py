@@ -30,6 +30,10 @@ SRC_ICON = os.path.join(ROOT, 'data', 'icons')
 OUT_IMG = os.path.join(ROOT, 'images')
 os.makedirs(OUT_IMG, exist_ok=True)
 have = set(os.listdir(SRC_ICON))
+# data/icons_map 是 refresh_db.py 直接從地圖解碼出來的，顏色本來就正確；
+# data/icons 是舊的外部抽取器產物，JPEG 壓縮的那批 R/B 顛倒，還要再修一次。
+MAP_ICON = os.path.join(ROOT, 'data', 'icons_map')
+have_map = set(os.listdir(MAP_ICON)) if os.path.isdir(MAP_ICON) else set()
 import zipfile
 xz = zipfile.ZipFile(os.path.join(ROOT, 'synthesis.xlsx'))
 
@@ -56,13 +60,17 @@ def load_icon(path):
 
 
 def icon_for(r):
+    """回傳 (檔案路徑, 顏色是否已正確)。地圖來源優先。"""
     for f in (r.get('icon_png'), r.get('icon_file'), r.get('icon')):
-        if f:
-            b = os.path.basename(str(f).replace('\\', '/'))
-            b = re.sub(r'\.(blp|png)$', '.png', b, flags=re.I)
-            if b in have:
-                return os.path.join(SRC_ICON, b)
-    return None
+        if not f:
+            continue
+        b = os.path.basename(str(f).replace('\\', '/'))
+        b = re.sub(r'\.(blp|png)$', '.png', b, flags=re.I)
+        if b in have_map:
+            return os.path.join(MAP_ICON, b), True
+        if b in have:
+            return os.path.join(SRC_ICON, b), False
+    return None, False
 
 
 # ------------------------------------------------------------------ taxonomy
@@ -153,7 +161,7 @@ if os.path.isdir(LACK_DIR):
         else:
             print('  暫代圖對不上道具：%s' % _f)
 
-items, copied, noimg, fixed = {}, 0, [], 0
+items, copied, noimg, fixed, from_map = {}, 0, [], 0, 0
 for r in DB:
     i = r['id']
     cls_ru = r['fields'].get('Класс', '')
@@ -164,12 +172,16 @@ for r in DB:
         for (lab, ru), zh in zip(e['parts'], e['zh']):
             if zh and zh.strip() not in ('-', ''):
                 eff.append({'label': lab, 'zh': zh, 'ru': ru})
-    src = icon_for(r)
+    src, already_ok = icon_for(r)
     img = None
     if src:
-        load_icon(src).save(os.path.join(OUT_IMG, i + '.png'), 'PNG', optimize=True)
+        # 地圖來源的直接用；舊來源才走 R/B 修正，否則會被換兩次變色
+        im = Image.open(src).convert('RGBA') if already_ok else load_icon(src)
+        im.save(os.path.join(OUT_IMG, i + '.png'), 'PNG', optimize=True)
         img, copied = 'images/%s.png' % i, copied + 1
-        if needs_rb_swap(src):
+        if already_ok:
+            from_map += 1
+        elif needs_rb_swap(src):
             fixed += 1
     elif i in xlsx_img:
         open(os.path.join(OUT_IMG, i + '.png'), 'wb').write(
@@ -289,7 +301,7 @@ json.dump(data, open(os.path.join(ROOT, 'data', 'items.json'), 'w', encoding='ut
           ensure_ascii=False, indent=1)
 
 print('items:', len(items))
-print('icons from map:', copied, '(R/B corrected:', str(fixed) + ')',
+print('icons:', copied, '(直接來自地圖:', str(from_map) + ', 舊檔+R/B修正:', str(fixed) + ')',
       '| from xlsx:', sum(1 for v in items.values() if v['icon_src'] == 'xlsx'),
       '| temp（截圖暫代）:', sum(1 for v in items.values() if v['icon_src'] == 'temp'),
       '| none:', len(noimg))

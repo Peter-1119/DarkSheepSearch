@@ -1,19 +1,25 @@
 {
-  "site_version": "v1.8",
+  "site_version": "v2.0",
   "_site_version_說明": "網站版本。每次改完內容要發布時，自己把這裡 +1（v1.1、v1.2…），重跑 build.ps1 後推上去。網站左上角標題旁邊會顯示，用來確認 GitHub Pages 有沒有更新成功。",
 
   "author": "CC_lemon",
   "_author_說明": "網站作者，顯示在左下角的資料區塊。留空就不顯示。",
 
-  "map_version": "UD_v3.80",
+  "map_version": "UD_v3.81",
   "_map_version_說明": "地圖版本號。地圖改版時更新這裡。",
 
-  "data_date": "",
+  "map_file": "C:/Users/ccvs0/Documents/Warcraft III/Maps/Download/UD_v3_81_opt.w3x",
+  "_map_file_說明": [
+    "地圖檔位置。道具與英雄資料現在直接從這個 .w3x 讀出來，不用再手動匯出。",
+    "改版流程：把新地圖放好 -> 改這一行的路徑與上面的 map_version -> 跑 tools/build.ps1。"
+  ],
+
+  "data_date": "2026-09-05",
   "_data_date_說明": "資料擷取日期。留空則自動用 data/items_database.json 的檔案時間。",
 
   "_怎麼查地圖版本": [
-    "1. 地圖檔名通常就有，例如「UD_v3.80.w3x」",
+    "1. 地圖檔名通常就有，例如「UD_v3_81_opt.w3x」",
     "2. 遊戲載入畫面 / 按 F9 的任務說明常會寫版本",
-    "3. 問當初匯出 items_database.json 的人"
+    "3. 地圖 MPQ 標頭的地圖名稱也有，跑 python tools/mpq.py <地圖路徑> 就看得到"
   ]
 }

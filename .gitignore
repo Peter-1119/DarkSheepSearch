@@ -42,3 +42,6 @@ desktop.ini
 # 語法檢查的暫存檔
 tools/chk.js
 tools/check.js
+# 直接從 .w3x 解碼出來的圖示快取。跑 tools/refresh_db.py 會重建，
+# 實際輸出在 images/（有進版控），所以這裡不留。
+data/icons_map/
