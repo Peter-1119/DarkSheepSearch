@@ -156,11 +156,15 @@ def scaling(heroes, jass):
     # --- 每個技能的有效範圍（可能有多處，取聯集） ----------------------
     ABIL = re.compile(r"'(A[A-Za-z0-9]{3})'")
     NEG = re.compile(r"!=\s*'(A[A-Za-z0-9]{3})'")
+    # 技能 ID 也被拿來當雜湊表的 key 名稱（76 個 ID 有這種用法），例如
+    # LoadInteger(hash,GetHandleId(u),'A0IG')。那只是借用字串當欄位名，
+    # 不代表這段程式碼在實作那個技能 —— 不排掉會整支函式錯誤歸屬給它。
+    HKEY = re.compile(r"(?:Save|Load|Remove)\w*\(hash,[A-Za-z_0-9()]+,'(A[A-Za-z0-9]{3})'")
     spans = {}
     for i, l in enumerate(lines):
         if 'DisplayTimedTextToPlayer' in l:
             continue
-        skip = set(NEG.findall(l))
+        skip = set(NEG.findall(l)) | set(HKEY.findall(l))
         ids = [a for a in ABIL.findall(l) if a not in skip]
         if not ids:
             continue

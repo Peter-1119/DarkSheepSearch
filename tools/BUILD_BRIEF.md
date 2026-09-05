@@ -190,6 +190,19 @@ function SetUnitLife takes unit c,integer hp returns nothing
 `StartModCooldown(u_Id, 道具ID, CD)`，參數是**道具 ID** —— 那個屬性只作用在
 道具觸發的內部冷卻上。不用再為每隻英雄試一次。
 
+**技能不一定來自腳本。** 只 grep `war3map.j` 找不到 `UnitAddAbility` 就斷定
+「這個技能拿不到／是死碼」已經誤判過兩次 —— 很多技能是寫在物件資料的
+`uabi`（固有）或 `uhab`（可學）裡，單位一被創造就有。例如皇家守衛的
+`A0Y5` 聖物守衛就在 `Hapm.uabi` 裡。判斷來源要一併看 `war3map.w3u`：
+
+```bash
+python -c "
+import sys,io,json; sys.path.insert(0,'tools'); import mpq,w3obj
+V=json.load(io.open('tools/version.json',encoding='utf-8'))
+U=w3obj.parse(mpq.MPQ(V['map_file']).read('war3map.w3u'))
+u=U['Hapm']; print(u.get('uabi'), u.get('uhab'))"
+```
+
 **這些常數地圖沒有覆寫，走魔獸預設**（`war3mapMisc.txt` 只改了
 `AgiDefenseBase/-Bonus`、`AgiAttackSpeedBonus` 與八張護甲倍率表）：
 25 生命／點力量、15 法力／點智力、0.06 護甲減傷係數。
@@ -205,11 +218,18 @@ function SetUnitLife takes unit c,integer hp returns nothing
 - **乘算器最多 1 件** —— `TryTakeMultiplierSlot`（違反時遊戲會跳錯誤訊息並把
   裝備退回地上）：朱砂護符 ckng、優雅吊墜 tfar、大奶酪 oven、低語觸手 kysn、
   靈魂之石 jpnt、黑暗水晶 moon、守護者護肩 I0A8、耶夢加得之戒 I01P、
-  洪流項鍊 I00B。封閉心智頭盔 iwbr 走同一個處理器但**不佔格**。
+  洪流項鍊 I00B、**洞察之戒 I078**（走另一段程式碼但佔同一個 player key 13）。
+  封閉心智頭盔 iwbr 走同一個處理器但**不佔格**，可以跟真正的乘算器同時帶。
 - 每套最多 1 件 特殊 lv.5+
 
 **取得難度篩選**（實務考量，不是遊戲規則）：排除 新年／復活節／萬聖節／儀式
 （要盜賊）、完美（要鐵匠）、特殊 lv.5++（幾乎抽不到）。
+
+**例外：鐵匠 `H00P` 自己的配裝可以用「完美」道具**，因為那正是他做出來的 ——
+「無雙鐵匠 `A09J`」把四件聖物鍛成完美（瓊漿玉液→返老還童藥劑、
+不詳之盾→復仇之盾、信仰之錘→科技之錘、穿刺長矛→隕星長矛），一場一次。
+同一個技能的另一條分支可以複製一件神器（也是一場一次，原件不移除）。
+`check_build.py` 有這條例外，用 `--hero H00P` 或 `--file`（會自動依英雄判斷）。
 
 用 `python tools/check_build.py --file 你的檔案.json` 驗證，
 **每一套都要通過才算完成**。

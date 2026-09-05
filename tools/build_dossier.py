@@ -99,6 +99,10 @@ CLR = re.compile(r'\|c[0-9A-Fa-f]{8}|\|r')
 IFLINE = re.compile(r'(else)?if\b.*\bthen$')
 ABIL = re.compile(r"'(A[A-Za-z0-9]{3})'")
 NEG = re.compile(r"!=\s*'(A[A-Za-z0-9]{3})'")
+# 技能 ID 也被拿來當**雜湊表的 key 名稱**（76 個 ID 有這種用法），例如
+# LoadInteger(hash,GetHandleId(u),'A0IG')。那只是借用字串當欄位名，不代表
+# 這段程式碼在實作那個技能 —— 不排掉的話整支函式會被錯誤歸屬給它。
+HKEY = re.compile(r"(?:Save|Load|Remove)\w*\(hash,[A-Za-z_0-9()]+,'(A[A-Za-z0-9]{3})'")
 CALLED = re.compile(r'\b(?:function|call) ([A-Za-z0-9_]+)')
 HASHKEY = re.compile(r'(?:Save|Load)(?:Real|Integer)\(hash,[A-Za-z_0-9()]+,(\d+)[,)]')
 CREATE = re.compile(r"CreateUnit\([^,]+,'(.{4})'")

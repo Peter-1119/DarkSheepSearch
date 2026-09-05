@@ -28,6 +28,10 @@ NOSTACK = set(S.get('nostack') or [])
 META = {m['k']: m for m in S['stats']}
 
 BAN = {'新年', '復活節', '萬聖節', '儀式', '完美', '特殊（lv.5++）'}
+# 例外：「完美」是鐵匠用「無雙鐵匠 A09J」把聖物鍛成的，一場一次。
+# 對鐵匠自己的配裝來說那不是拿不到的東西，反而是他的核心價值，
+# 所以放行 —— 但只有他，別的英雄仍然要靠隊上有鐵匠才拿得到。
+BAN_EXEMPT = {'H00P': {'完美'}}
 # 乘算器欄位：war3map.j:24663 走 OnEquip_Multiplier 的那一串道具。
 # iwbr 也走同一個處理器，但 22197 那行把它排除在佔格判斷外，所以不算。
 # I078 洞察之戒走的是另一段程式（24678-24680），但佔的是同一個 player hash key 13，
@@ -69,15 +73,16 @@ def totals(ids):
     return tot
 
 
-def check(items, s1=None, s2=None, slots=6):
+def check(items, s1=None, s2=None, slots=6, hero=None):
     """回傳問題清單，空的代表合法。slots = 該英雄的背包格數（多數 6，3 隻只有 4）。"""
     bad = []
     extra = [x for x in (s1, s2) if x]
     all_ = list(items) + extra
+    ban = BAN - BAN_EXEMPT.get(hero or '', set())
     if len(items) != slots:
         bad.append('正常欄位有 %d 件，這隻英雄只有 %d 格' % (len(items), slots))
     for i in all_:
-        if D[i]['group'] in BAN:
+        if D[i]['group'] in ban:
             bad.append('%s 是「%s」，不在取得範圍內' % (D[i]['name'], D[i]['group']))
     g = [D[i]['group'] for i in all_]
     if g.count('特殊（lv.5+）') > 1:
@@ -104,11 +109,11 @@ def check(items, s1=None, s2=None, slots=6):
     return bad
 
 
-def report(tag, items, s1=None, s2=None, verbose=True, slots=6):
+def report(tag, items, s1=None, s2=None, verbose=True, slots=6, hero=None):
     items = [resolve(x) for x in items]
     s1 = resolve(s1) if s1 else None
     s2 = resolve(s2) if s2 else None
-    bad = check(items, s1, s2, slots)
+    bad = check(items, s1, s2, slots, hero)
     print('%s %s' % ('✔' if not bad else '✘', tag))
     for b in bad:
         print('    ! ' + b)
@@ -139,6 +144,7 @@ def main():
     ap.add_argument('--file', help='配裝 JSON（{"list":[…]} 或 {"builds":{英雄:[…]}}）')
     ap.add_argument('-q', '--quiet', action='store_true', help='只印總計，不列每件裝備')
     ap.add_argument('--slots', type=int, default=6, help='背包格數（預設 6）')
+    ap.add_argument('--hero', help='英雄 ID（決定格數與取得範圍的例外，例如鐵匠可用完美）')
     a = ap.parse_args()
 
     if a.file:
@@ -160,13 +166,14 @@ def main():
             bo = b.get('bonus') or {}
             # 配裝可以自己覆寫格數（例如只有換上 6 格皮膚才成立的那種）
             ok += report(tag, b['items'], bo.get('s1'), bo.get('s2'), not a.quiet,
-                         b.get('slots') or SLOTS.get(hero, 6))
+                         b.get('slots') or SLOTS.get(hero, 6), hero)
         print('=== %d / %d 套通過 ===' % (ok, len(rows)))
         sys.exit(0 if ok == len(rows) else 1)
 
     if not a.items:
         ap.error('請給 6 件道具，或用 --file')
-    report('（指定的配裝）', a.items, a.s1, a.s2, not a.quiet, a.slots)
+    report('（指定的配裝）', a.items, a.s1, a.s2, not a.quiet,
+           SLOTS.get(a.hero, a.slots), a.hero)
 
 
 if __name__ == '__main__':
