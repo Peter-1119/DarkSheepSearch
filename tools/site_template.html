@@ -758,6 +758,11 @@ body[data-resizing="1"]{cursor:col-resize;user-select:none}
 .hsw-old{display:flex;align-items:center;gap:6px;opacity:.55;text-decoration:line-through}
 .hsw-ar{color:#C99BE8;flex:none}
 .hsw-new{flex:1 1 200px;min-width:0}
+.hsw-st{border-collapse:collapse;font-size:12px;margin:2px 0 4px}
+.hsw-st th{font-weight:400;color:var(--ink-2);text-align:left;padding:1px 10px 3px 0}
+.hsw-st td{padding:1px 10px 1px 0;white-space:nowrap}
+.hsw-st tr.q td{opacity:.62}
+.hsw-q{color:var(--ink-2);cursor:help}
 .lvt-w{margin:0 0 10px 34px;overflow-x:auto;-webkit-overflow-scrolling:touch}
 .lvt{border-collapse:collapse;font-size:11.5px;white-space:nowrap}
 .lvt th,.lvt td{padding:3px 8px;border-bottom:1px solid var(--line)}
@@ -1327,6 +1332,10 @@ const UI = {
       hLock:'帳號鎖定：只有指定帳號選得到', hLockWho:'可用帳號', hBy:'投稿者', hPick:'可選項目', hLvHead:'等級', hSkin:'皮膚', hSkinOff:'預設未開放（稀有／限定）',
       hSkinSwap:'換 %s 招', hSkinTo:'改成', hSkinAdd:'額外獲得', hSkinDrop:'失去',
       hSkinNote:'這個皮膚不只換外觀，還會換掉技能',
+      hSkinStat:'這個皮膚改了基礎數值', hSkinStatTag:'改數值', hSkinStatSwap:'另外還改了基礎數值',
+      hSkinGuess:'本體沒有覆寫這個欄位、沿用原型，所以差多少無法從地圖資料確認',
+      hSkinN:'數值', hSkinBase:'本體', hSkinSkin:'皮膚',
+      hSF:{ustr:'力量',ustp:'力量／級',uagi:'敏捷',uagp:'敏捷／級',uint:'智力',uinp:'智力／級',ua1c:'攻擊間隔',ua1r:'攻擊距離',ua1t:'攻擊類型',ua1w:'武器類型',udty:'護甲類型',umvs:'移動速度',udef:'基礎護甲'},
       hBuilds:'推薦配裝', hNeedTalent:'需搭配天賦：',
       hBuildHint:'這些標籤是從該英雄的技能文字掃出來的機制，點一下就會帶你回裝備清單。',
       hModYes:'◈ 這招會吃「裝備技能威力」：傷害 ×（1 + 威力）。沒有 ◈ 的技能不吃 —— 228 個英雄技能裡只有 4 個會（判定方式是看該技能的程式碼有沒有讀 hash key 18）。',
@@ -1411,6 +1420,10 @@ const UI = {
       hLock:'Account-locked: only specific accounts can pick this hero', hLockWho:'Allowed accounts', hBy:'Contributed by', hPick:'Choices', hLvHead:'Level', hSkin:'Skins', hSkinOff:'Locked by default (rare / limited)',
       hSkinSwap:'%s changed', hSkinTo:'becomes', hSkinAdd:'Gains', hSkinDrop:'Loses',
       hSkinNote:'This skin is not cosmetic - it replaces abilities',
+      hSkinStat:'This skin changes base stats', hSkinStatTag:'stats differ', hSkinStatSwap:'It also changes base stats',
+      hSkinGuess:'The base hero does not override this field, so the exact difference cannot be confirmed from the map data',
+      hSkinN:'Stat', hSkinBase:'Base', hSkinSkin:'Skin',
+      hSF:{ustr:'Strength',ustp:'Str / level',uagi:'Agility',uagp:'Agi / level',uint:'Intelligence',uinp:'Int / level',ua1c:'Attack interval',ua1r:'Attack range',ua1t:'Attack type',ua1w:'Weapon type',udty:'Armour type',umvs:'Move speed',udef:'Base armour'},
       hBuilds:'Recommended builds', hNeedTalent:'Requires talent: ',
       hBuildHint:'These tags are the mechanics found in this hero\'s ability text - click one to jump back to the items.',
       hModYes:'◈ This ability scales with Modifier power: damage x (1 + power). Abilities without the mark do not - only 4 of 228 hero abilities do (decided by whether the code behind the ability reads hash key 18).',
@@ -1500,6 +1513,10 @@ const UI = {
       hLock:'Привязан к аккаунту: доступен только указанным игрокам', hLockWho:'Кому доступен', hBy:'Автор', hPick:'Варианты', hLvHead:'Ур.', hSkin:'Облики', hSkinOff:'По умолчанию закрыт (редкий)',
       hSkinSwap:'заменено: %s', hSkinTo:'становится', hSkinAdd:'Добавляет', hSkinDrop:'Убирает',
       hSkinNote:'Этот облик меняет не только внешность, но и умения',
+      hSkinStat:'Этот облик меняет базовые характеристики', hSkinStatTag:'иные характеристики', hSkinStatSwap:'Кроме того, меняет базовые характеристики',
+      hSkinGuess:'У基 героя это поле не переопределено, поэтому точную разницу по данным карты подтвердить нельзя',
+      hSkinN:'Параметр', hSkinBase:'Герой', hSkinSkin:'Облик',
+      hSF:{ustr:'Сила',ustp:'Сила / ур.',uagi:'Ловкость',uagp:'Ловк. / ур.',uint:'Разум',uinp:'Разум / ур.',ua1c:'Интервал атаки',ua1r:'Дальность',ua1t:'Тип атаки',ua1w:'Тип оружия',udty:'Тип защиты',umvs:'Скорость',udef:'Базовая защита'},
       hBuilds:'Сборки для героя', hNeedTalent:'Нужен талант: ',
       hBuildHint:'Эти метки найдены в тексте умений героя - нажмите, чтобы вернуться к предметам.',
       hModYes:'◈ Это умение зависит от силы модификаторов: урон x (1 + сила). Умений с такой зависимостью всего 4 из 228.',
@@ -1927,8 +1944,10 @@ function heroBuilds(h, L){
    把「本體技能 -> 皮膚技能」並排顯示，換上的技能可以展開看說明。 */
 function skinBlock(h, L){
   if (!h.skins || !h.skins.length) return '';
-  const plain = h.skins.filter(s => !s.add && !s.rm);
-  const swap  = h.skins.filter(s => s.add || s.rm);
+  /* 三類：純外觀 / 只改數值 / 換技能。中間那類以前被歸進「純外觀」，
+     但 41 個皮膚裡有 11 個技能完全沒換、卻改了攻擊間隔、射程或屬性成長。 */
+  const plain = h.skins.filter(s => !s.add && !s.rm && !(s.st && s.st.length));
+  const swap  = h.skins.filter(s => s.add || s.rm || (s.st && s.st.length));
   const chip = s => `<span class="hsk-i${s.on ? '' : ' off'}"
       ${s.on ? '' : `title="${esc(t('hSkinOff'))}"`}>${esc(s.n[L])}${
       s.on ? '' : ' ✦'}</span>`;
@@ -1943,10 +1962,25 @@ function skinBlock(h, L){
   const oldAb = a => `<span class="hsw-old">
       <img src="${a.icon}" alt="" loading="lazy"
            onerror="this.style.visibility='hidden'"><span>${esc(a.n[L])}</span></span>`;
+  /* 數值差異表。任一邊沒有覆寫（null）就代表沿用各自的原型，
+     兩個原型可能不同，所以那幾列標成推測，滑過去有說明。 */
+  const num = v => v === null || v === undefined ? '—'
+    : (typeof v === 'number' ? (Math.round(v * 100) / 100) : v);
+  const statTbl = s => {
+    if (!s.st || !s.st.length) return '';
+    return `<table class="hsw-st"><thead><tr>
+        <th>${esc(t('hSkinN'))}</th><th>${esc(t('hSkinBase'))}</th>
+        <th></th><th>${esc(t('hSkinSkin'))}</th></tr></thead><tbody>
+      ${s.st.map(x => `<tr${x.sure ? '' : ' class="q" title="' + esc(t('hSkinGuess')) + '"'}>
+        <td>${esc((t('hSF') || {})[x.f] || x.f)}</td>
+        <td>${esc(String(num(x.a)))}</td><td class="hsw-ar">→</td>
+        <td><b>${esc(String(num(x.b)))}</b>${x.sure ? '' : ' <span class="hsw-q">?</span>'}</td>
+      </tr>`).join('')}</tbody></table>`;
+  };
   const body = s => {
     const add = s.add || [], rm = s.rm || [];
     const n = Math.max(add.length, rm.length);
-    let out = `<p class="hsw-note">${esc(t('hSkinNote'))}</p>`;
+    let out = `<p class="hsw-note">${esc(t(n ? 'hSkinNote' : 'hSkinStat'))}</p>`;
     for (let i = 0; i < n; i++){
       if (add[i] && rm[i])
         out += `<div class="hsw-p">${oldAb(rm[i])}
@@ -1958,6 +1992,10 @@ function skinBlock(h, L){
       else
         out += `<div class="hsw-p"><span class="hsw-ar">－</span>${oldAb(rm[i])}</div>`;
     }
+    if (s.st && s.st.length){
+      if (n) out += `<p class="hsw-note">${esc(t('hSkinStatSwap'))}</p>`;
+      out += statTbl(s);
+    }
     return out;
   };
   return `<h5>${esc(t('hSkin'))}<span class="cnt">${h.skins.length}</span></h5>
@@ -1965,8 +2003,11 @@ function skinBlock(h, L){
     ${swap.map(s => `<details class="hsw">
       <summary><span class="ha-hd">
         <b>${esc(s.n[L])}</b>${s.on ? '' : ' <span class="hsk-i off">✦</span>'}
-        <span class="hsw-n">${esc(t('hSkinSwap').replace('%s',
-          Math.max((s.add || []).length, (s.rm || []).length)))}</span>
+        <span class="hsw-n">${(() => {
+          const nsw = Math.max((s.add || []).length, (s.rm || []).length);
+          return esc(nsw ? t('hSkinSwap').replace('%s', nsw)
+                         : t('hSkinStatTag'));
+        })()}</span>
         <span class="cv">${CHEV}</span></span></summary>
       <div class="hsw-b">${body(s)}</div></details>`).join('')}`;
 }

@@ -7,7 +7,7 @@
      這些不在地圖裡，要去 war3.mpq / War3x.mpq / War3Patch.mpq 找。
 補丁包優先，其次資料片，最後本體 —— 跟遊戲自己的載入順序一致。
 """
-import os, io, sys, re
+import os, io, sys, re, struct
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from mpq import MPQ
@@ -55,15 +55,59 @@ class IconSource(object):
         s.cache[path] = (None, None)
         return None, None
 
+    @staticmethod
+    def _blp1_shifted(d):
+        """BLP1 調色盤圖，且 mip0 的宣告偏移不是標準的 1180 時，自己解。
+
+        標準的調色盤 BLP1 是「156 位元組標頭 + 1024 位元組調色盤」，
+        所以第 0 層的資料從 1180 開始。但 Pillow（至少到 10.1）**不看
+        mipOffsets[0]**，一律從 1180 讀 —— 檔案若把資料放得比較前面，
+        整張圖就會被當成從錯的位元組開始，看起來像被水平捲動過
+        （右邊的內容跑到左邊）。
+
+        這張地圖的 2277 個 BLP 裡有 4 個是這樣，剛好是四把短刀
+        （BTNKnifes1~4，偏移 1100/1112/1136/1172），位移 16/4/44/8 欄。
+        照宣告的偏移讀就正常了 —— 邊框接縫會回到跟其他圖示一樣的位置。
+
+        回傳 PIL 影像；不是這種情況就回 None，交給 Pillow 走原本的路。
+        """
+        if len(d) < 156 or d[:4] != b'BLP1':
+            return None
+        content, alpha_bits = struct.unpack_from('<ii', d, 4)
+        if content != 1:                      # 0 = JPEG，Pillow 處理得好
+            return None
+        w, h = struct.unpack_from('<ii', d, 12)
+        off0, size0 = struct.unpack_from('<i', d, 28)[0], struct.unpack_from('<i', d, 92)[0]
+        if off0 == 156 + 1024:                # 標準位置，Pillow 沒問題
+            return None
+        if not (0 < w <= 4096 and 0 < h <= 4096) or off0 + w * h > len(d):
+            return None
+        pal = d[156:156 + 1024]
+        idx = d[off0:off0 + w * h]
+        im = Image.new('RGBA', (w, h))
+        px = im.load()
+        ap = None
+        if alpha_bits == 8 and off0 + 2 * w * h <= len(d):
+            ap = d[off0 + w * h:off0 + 2 * w * h]
+        for y in range(h):
+            row = y * w
+            for x in range(w):
+                c = idx[row + x] * 4
+                px[x, y] = (pal[c + 2], pal[c + 1], pal[c],
+                            ap[row + x] if ap else 255)
+        return im
+
     def png(s, path, size=64):
         d, where = s.raw(path)
         if not d:
             return None, None
-        try:
-            im = Image.open(io.BytesIO(d))
-            im.load()
-        except Exception:
-            return None, None
+        im = s._blp1_shifted(d)
+        if im is None:
+            try:
+                im = Image.open(io.BytesIO(d))
+                im.load()
+            except Exception:
+                return None, None
         im = im.convert('RGBA')
         if im.size != (size, size):
             im = im.resize((size, size), Image.LANCZOS)

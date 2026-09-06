@@ -306,6 +306,9 @@ def main():
                             if k['name_ru'] in SKIN else [k['name_ru']] * 3,
                        **({'add': [skin_ab(a) for a in k['add']]} if k['add'] else {}),
                        **({'rm': [skin_ab(a) for a in k['rm']]} if k['rm'] else {}),
+                       # 有三個皮膚技能完全沒換、卻改了攻擊間隔／射程／屬性成長，
+                       # 只看技能會把它們標成「純外觀」，所以數值差異也要帶出去。
+                       **({'st': k['st']} if k.get('st') else {}),
                        } for k in h['skins']],
             'author': p.get('author'),       # 玩家投稿英雄的作者
             'icon': 'images/heroes/h_%s.png' % uid,

@@ -332,6 +332,11 @@ def _trim_common(vals):
     return out
 
 
+# 皮膚會不會偷改的基礎欄位。順序＝介面上的顯示順序。
+STAT_FIELDS = ('ustr', 'ustp', 'uagi', 'uagp', 'uint', 'uinp',
+               'ua1c', 'ua1r', 'ua1t', 'ua1w', 'udty', 'umvs', 'udef')
+
+
 def _abil(A, aid, kind, depth=0, stock=None):
     a = A.get(aid, {})
     nm = _abil_name(a)
@@ -400,6 +405,11 @@ def skins(jass, U):
                 'abi': [a.strip() for a in
                         str(U.get(sid, {}).get('uabi') or '').split(',')
                         if a.strip()],
+                # 基礎數值也要比。有三個皮膚技能完全沒變、卻改了攻擊間隔、
+                # 射程、武器類型或屬性成長（海之獵手 1.7->1.8 秒且射程 400、
+                # 屠龍者 敏捷 28/3.2->30/3.5、黑暗聖堂武士 全屬性 +2~3）。
+                # 只比技能會把這些標成「純外觀」。
+                'raw': {f: U.get(sid, {}).get(f) for f in STAT_FIELDS},
             })
     return out
 
@@ -462,10 +472,23 @@ def load(map_path, jass_text=None):
                    + [a for a in abi if a not in base_abi])
             rm = ([a for a in base_hab if a not in hab]
                   + [a for a in base_abi if a not in abi])
+            # 數值差異。任一邊是 None 代表「沒覆寫、沿用各自的原型」——
+            # 兩者的原型可能不同，所以那種差異標成 sure=False，介面上要講清楚
+            # 這是推測而不是確定值。
+            st_diff = []
+            for f in STAT_FIELDS:
+                vb, vs = u.get(f), (k.get('raw') or {}).get(f)
+                vb = vb[0] if isinstance(vb, list) else vb
+                vs = vs[0] if isinstance(vs, list) else vs
+                if vb == vs:
+                    continue
+                st_diff.append({'f': f, 'a': vb, 'b': vs,
+                                'sure': vb is not None and vs is not None})
             sk_out.append({
                 'id': k['id'],
                 'name_ru': k['name_ru'],
                 'on': k['on'],
+                'st': st_diff,
                 # add 與 rm 成對出現時就是「替換」，介面上並排顯示比較好懂
                 'add': [_abil(A, a, 'hero', stock=stock) for a in add],
                 'rm': [_abil(A, a, 'hero', stock=stock) for a in rm],
