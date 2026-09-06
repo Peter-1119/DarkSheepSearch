@@ -392,6 +392,37 @@ def hero_doc(h, rec, idx, A, U, spans):
             '背包 **%d 格**' % rec.get('slots', 6),
             '解鎖 %s' % (rec['unlock'] or 0),
             '定位 %s' % '/'.join(r[0] for r in rec['roles']) if rec['roles'] else '']
+    # 近戰還是遠程、什麼護甲類型 —— 這兩件事決定一整類裝備能不能用
+    # （近戰濺射、近戰 AoE、「對近戰目標 +%」全都只對近戰英雄有效），
+    # 而且護甲類型換算差很多（中甲吃魔法 ×1.50，英雄護甲只有 ×0.60）。
+    # 狂徒被漏標成近戰時，整份配裝差點買錯一半，所以現在直接寫在抬頭。
+    urec = U.get(rec["id"], {})
+    utub = _f(urec, 'utub') or ''
+    rng = _f(urec, 'ua1r')
+    if rng:
+        bits.append('**%s**（攻擊距離 %d）'
+                    % ('遠程' if rng > 200 else '近戰', int(rng)))
+    else:
+        # 沒覆寫 ua1r 的英雄沿用原型的射程，抽不到；但地圖的英雄說明
+        # 一定會寫 "Атака: Ближний/Дальний бой (дальность N)"，從那裡撈。
+        m = re.search(r'(Ближний|Дальний) бой(?:\s*\(дальность (\d+)\))?', utub)
+        if m:
+            bits.append('**%s**%s' % ('近戰' if m.group(1) == u'Ближний' else '遠程',
+                                      '（攻擊距離 %s）' % m.group(2) if m.group(2) else ''))
+    ARMOR = {'flesh': '無甲', 'medium': '中甲', 'large': '重甲',
+             'fort': '強化（城牆）', 'hero': '英雄', 'divine': '神聖',
+             'normal': '普通'}
+    dty = _f(urec, 'udty')
+    if not dty:
+        m = re.search(r'Тип защиты: \|r\|cFF[0-9A-Fa-f]{6}([А-Яа-яЁё]+)', utub)
+        RU = {u'Средняя': 'medium', u'Тяжёлая': 'large', u'Тяжелая': 'large',
+              u'Лёгкая': 'flesh', u'Легкая': 'flesh', u'Укреплённая': 'fort',
+              u'Укрепленная': 'fort', u'Геройская': 'hero',
+              u'Божественная': 'divine', u'Обычная': 'normal'}
+        dty = RU.get(m.group(1)) if m else None
+    if dty:
+        note = '（六種攻擊類型全部 ×1.00，比英雄護甲差）' if dty == 'fort' else ''
+        bits.append('護甲類型 **%s**%s' % (ARMOR.get(dty, dty), note))
     if rec['random'] is False:
         bits.append('**不在隨機池**（只能手動挑）')
     if rec.get('lock'):

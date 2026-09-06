@@ -125,7 +125,13 @@ def scaling(heroes, jass):
     CALLED = re.compile(r'\b(?:function|call) ([A-Za-z0-9_]+)')
     dmod = [bool(KEY18.search(l)) and not KEY18_SET.search(l) for l in lines]
     dgive = [bool(KEY18_SET.search(l)) for l in lines]      # 反過來：授予裝備技能威力
-    dsp = ['udg_ItemBonusDMG' in l for l in lines]
+    # 「讀」才算吃技能強度，「寫」是加給玩家的來源 —— 這跟 key 18 的
+    # ◈／⊕ 是同一種區分，但當初只修了 key 18。全地圖有 128 處
+    # `udg_ItemBonusDMG[n]=udg_ItemBonusDMG[n]+X`（道具與技能的加成來源），
+    # 不排掉會把蠻族戰士的「強健體魄」那類標成吃技能強度。
+    # 結尾的 [^*]*$ 是保險：真正的讀取一定帶乘號（例如 *0.05）。
+    SP_SET = re.compile(r'udg_ItemBonusDMG\[\w+\]=udg_ItemBonusDMG\[\w+\]\s*[+-][^*]*$')
+    dsp = ['udg_ItemBonusDMG' in l and not SP_SET.search(l.strip()) for l in lines]
     # 每行提到的其他函式（排除函式定義那行）
     ref = [() if l.startswith('function ') else tuple(CALLED.findall(l))
            for l in strip]

@@ -393,6 +393,13 @@ def skins(jass, U):
                 'hab': [a.strip() for a in
                         str(U.get(sid, {}).get('uhab') or '').split(',')
                         if a.strip()],
+                # 固有技能（uabi）也要比。釀酒師的「深淵逃脫者」uhab 跟本體
+                # 一模一樣，但 uabi 把「醉意 A04Z」換成了「酒醉狂暴 A0JX」——
+                # 一個是受傷 −20%、一個是受傷 +15% 外加暴擊，方向完全相反。
+                # 只比 uhab 會把這種皮膚標成「純外觀」。
+                'abi': [a.strip() for a in
+                        str(U.get(sid, {}).get('uabi') or '').split(',')
+                        if a.strip()],
             })
     return out
 
@@ -445,11 +452,16 @@ def load(map_path, jass_text=None):
         # 皮膚的技能差異。base_hab 是本體的英雄技能，順序有意義（QWER）。
         base_hab = [a.strip() for a in str(u.get('uhab') or '').split(',')
                     if a.strip() and a.strip() not in SKIP_ABIL]
+        base_abi = [a.strip() for a in str(u.get('uabi') or '').split(',')
+                    if a.strip() and a.strip() not in SKIP_ABIL]
         sk_out = []
         for k in skn.get(uid, []):
             hab = [a for a in k.get('hab', []) if a not in SKIP_ABIL]
-            add = [a for a in hab if a not in base_hab]
-            rm = [a for a in base_hab if a not in hab]
+            abi = [a for a in k.get('abi', []) if a not in SKIP_ABIL]
+            add = ([a for a in hab if a not in base_hab]
+                   + [a for a in abi if a not in base_abi])
+            rm = ([a for a in base_hab if a not in hab]
+                  + [a for a in base_abi if a not in abi])
             sk_out.append({
                 'id': k['id'],
                 'name_ru': k['name_ru'],
