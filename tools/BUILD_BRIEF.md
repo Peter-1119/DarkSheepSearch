@@ -186,6 +186,26 @@ function SetUnitLife takes unit c,integer hp returns nothing
 - **DefCof 的「減項」是力量系才用得到的半邊**：黃金鎧甲（缺血越多減越多）、
   帝王鎧甲、救贖腰帶、英勇頭盔…… 它們彼此相加，但跟護甲相乘。
 
+**DefCof 超過 1.00 的那一段，是用 CHAOS/UNIVERSAL 另外打出去的。**
+`Trig_HeroTakeDamage_Actions` 第 20049 行：
+
+```jass
+if DefCof<1.00 then
+    set life=life+dmg*(1.00-DefCof)      // 減傷：直接把血補回去
+    call SetWidgetLife(d,life)
+elseif DefCof>1.00 then
+    call UnitDamageTarget(a,d,dmg*(DefCof-1.00),false,false,
+                          ATTACK_TYPE_CHAOS,DAMAGE_TYPE_UNIVERSAL,…)
+endif
+```
+
+也就是說「造成傷害 +%」（key 3/5/6/9/40/41）超出 100% 的部分
+**不吃護甲、也不吃護甲類型倍率** —— 它跟穿透是同一種結算方式。
+所以銀器、最後通牒、水晶項鍊那類道具對高護甲目標的實際價值
+遠高於帳面數字，配裝時要分開算這兩段。
+（整段 20032–20192 被 `DisableTrigger(GetTriggeringTrigger())` 包住，
+所以這一刀與穿透那一刀都不會再遞迴進管線。）
+
 **「裝備技能冷卻」對魔獸原生的技能冷卻（`acdn`）沒有作用，但有 7 個例外。**
 `key 1`（裝備技能冷卻）只經過 `StartModCooldown(u_Id, i_Id, CD)`：
 `CD = CD × key1`，下限 0.20。全地圖 78 個呼叫裡絕大多數傳的是道具 ID，
