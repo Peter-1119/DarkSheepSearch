@@ -1027,6 +1027,32 @@ body[data-resizing="1"]{cursor:col-resize;user-select:none}
   box-shadow:0 1px 0 var(--bg-2);
 }
 .p-tabs button:disabled{opacity:.4;cursor:default}
+/* 頁籤帶縮圖：英雄用頭像、裝備用圖示，一眼看出是誰的脈絡；名字太長就省略 */
+.p-tabs button{display:flex;align-items:center;justify-content:center;gap:6px;min-width:0}
+.p-tabs button>span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.p-tabs button img{width:18px;height:18px;border-radius:4px;flex:none;object-fit:cover}
+/* 英雄列表上目前在面板裡的那一隻 */
+.hc[aria-pressed="true"]{
+  background:var(--surface-2);
+  box-shadow:inset 0 0 0 2px var(--sc),0 0 0 3px color-mix(in srgb,var(--sc) 22%,transparent);
+}
+.ph-hint{color:var(--ink-3);font-size:12px}
+.hp-none{margin:18px 0}
+/* 英雄頁籤上的配裝摘要列：一列一套，點了跳到「AI 配裝」看完整卡片 */
+.hbb{display:flex;flex-direction:column;gap:6px;margin:6px 0 4px}
+.hbb-i{
+  display:flex;align-items:center;gap:10px;padding:7px 10px;text-align:left;cursor:pointer;
+  background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--sc);
+  border-radius:8px;color:var(--ink);font-size:12.5px;
+  transition:background var(--dur),border-color var(--dur);
+}
+.hbb-i:hover{background:var(--surface-2);border-color:color-mix(in srgb,var(--sc) 55%,var(--line))}
+.hbb-i b{flex:1 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600}
+.hbb-r{display:flex;gap:3px;flex:none}
+.hbb-r img,.hbb-r span{width:22px;height:22px;border-radius:4px;object-fit:cover}
+/* AI 配裝頁籤裡收合起來的通用配裝 */
+.ai-all{margin-top:14px;border-top:1px solid var(--line);padding-top:10px}
+.ai-all>summary{cursor:pointer;color:var(--ink-2);font-size:12.5px;padding:4px 0 8px}
 
 
 
@@ -1342,6 +1368,8 @@ const UI = {
       hGive:'⊕ 這招是「裝備技能威力」的來源 —— 它會提升你的威力值，讓道具觸發的傷害變強，但它自己的傷害不吃這個屬性。',
       hSkillRu:'技能說明譯自地圖原文；數值、公式與換行結構均保留原樣。',
       ptAI:'AI 配裝', bdApply:'套用', bdWhy:'為什麼有效',
+      ptHero:'英雄', ptAIFor:'%s 的配裝', ptAIAll:'通用配裝', ptAIAllN:'通用配裝 %s 套',
+      hpNoMatch:'沒有符合「%s」的英雄', hpSearchHint:'搜尋英雄名稱或定位',
       bdSub:'%s 套推薦，已排除幾乎抽不到的裝備',
       bdNote:'機制已對照 UD_v3.81 地圖原始碼逐條驗證（數值來自 war3map.j，非實戰測試）。'
             +'已排除特殊 lv.5++，每套最多 1 件特殊 lv.5+，並遵守「同一件神器最多 1 個」'
@@ -1430,6 +1458,8 @@ const UI = {
       hGive:'⊕ This ability is a source of Modifier power - it raises your power value, which strengthens item procs. Its own damage does not scale with it.',
       hSkillRu:'Ability text translated from the map source; numbers, formulas and line breaks preserved.',
       ptAI:'AI builds', bdApply:'Apply', bdWhy:'Why it works',
+      ptHero:'Hero', ptAIFor:'Builds for %s', ptAIAll:'Generic builds', ptAIAllN:'%s generic builds',
+      hpNoMatch:'No hero matches "%s"', hpSearchHint:'Search hero names or roles',
       bdSub:'%s builds, ultra-rare items excluded',
       bdNote:'Mechanics verified line by line against the UD_v3.81 map script (war3map.j), not playtested. '
             +'Special lv.5++ is excluded and each build uses at most one Special lv.5+, '
@@ -1523,6 +1553,8 @@ const UI = {
       hGive:'⊕ Это умение - источник силы модификаторов: оно повышает её значение и усиливает срабатывания предметов, но собственный урон от неё не зависит.',
       hSkillRu:'Описания умений - оригинальный текст карты.',
       ptAI:'Сборки ИИ', bdApply:'Применить', bdWhy:'Почему это работает',
+      ptHero:'Герой', ptAIFor:'Сборки для %s', ptAIAll:'Общие сборки', ptAIAllN:'Общих сборок: %s',
+      hpNoMatch:'Нет героев по запросу «%s»', hpSearchHint:'Поиск по имени или роли героя',
       bdSub:'%s сборок, без сверхредких предметов',
       bdNote:'Механики сверены со скриптом карты UD_v3.81 (war3map.j), но не проверены в бою. '
             +'Особые 5++ исключены, не более одного особого 5+ на сборку, '
@@ -1560,7 +1592,12 @@ const S = {
   rank: localStorage.getItem('ud.rank') || '',   // '' = 不排行
   mode: localStorage.getItem('ud.mode') || 'browse',        // browse | build
   load: JSON.parse(localStorage.getItem('ud.load') || '[]'),// 配裝欄位（可重複）
-  ptab: 'sum',       // 配裝模式下右面板看哪一頁：sum 總計 / item 這件
+  /* 右面板是獨立的「脈絡檢視器」：它記住英雄、選中的裝備、配裝欄三種脈絡，
+     頁籤列依脈絡存在與否出現，切換主區域頁籤不會把它關掉。
+     hero 與 ptab 持久化 —— 重整或切頁籤回來，看的還是同一隻英雄。 */
+  hero: localStorage.getItem('ud.hero') || null,
+  ptab: localStorage.getItem('ud.ptab') || 'item',  // hero | sum | ai | item
+  pscroll: {},       // 各頁籤各自記捲動位置，切回來不用重找
   bonus: JSON.parse(localStorage.getItem('ud.bonus') || '{}'),// 兩個不佔格的額外欄位
 };
 const STATS = DATA.stats || [];
@@ -1791,7 +1828,8 @@ function unlockLabel(v){
 function heroCard(h){
   const L = li();
   const tier = h.tier ? `<span class="hc-t">${esc(h.tier[L])}</span>` : '';
-  return `<button class="hc" data-hero="${h.id}" style="--sc:${ATTR_C[h.attr]}">
+  return `<button class="hc" data-hero="${h.id}" style="--sc:${ATTR_C[h.attr]}"
+      aria-pressed="${S.hero === h.id}">
     <img class="hc-i" src="${h.icon}" alt="" loading="lazy"
          onerror="this.replaceWith(Object.assign(document.createElement('span'),
                   {className:'hc-ph',textContent:'${esc(h.n[L].slice(0,1))}'}))">
@@ -1802,14 +1840,25 @@ function heroCard(h){
     ${tier}</button>`;
 }
 
+/* 英雄頁的搜尋：比對三語名稱、俄文本名、定位。以前打字沒反應（搜尋只認裝備），
+   現在英雄頁也吃同一個搜尋框。 */
+function heroMatch(h, qq){
+  if (!qq) return true;
+  const hay = h.n.concat([h.proper || ''], h.roles.map(r => r.join(' '))).join(' ').toLowerCase();
+  return hay.includes(qq);
+}
 function renderHeroPage(){
   const L = li();
+  const qq = S.q.trim().toLowerCase();
   let html = `<div class="page hero-page"><header class="ph">
       <h1>${esc(t('hpTitle'))}</h1>
-      <p>${esc(t('hpSub').replace('%s', HEROES.length))}</p></header>`;
+      <p>${esc(t('hpSub').replace('%s', HEROES.length))}${
+        qq ? '' : ` <span class="ph-hint">${esc(t('hpSearchHint'))}</span>`}</p></header>`;
+  let shown = 0;
   for (const a of ATTR_ORDER){
-    const list = HEROES.filter(h => h.attr === a);
+    const list = HEROES.filter(h => h.attr === a && heroMatch(h, qq));
     if (!list.length) continue;
+    shown += list.length;
     html += `<section class="hsec" style="--sc:${ATTR_C[a]}">
       <h2>${esc(t('hAttr_' + a))}<span class="n">${list.length}</span></h2>`;
     let last = null;
@@ -1823,21 +1872,31 @@ function renderHeroPage(){
     }
     html += '</section>';
   }
+  if (!shown) html += `<div class="note hp-none">${esc(t('hpNoMatch').replace('%s', S.q.trim()))}</div>`;
   html += `<div class="note">${esc(t('hpNote'))}</div></div>`;
   main.innerHTML = html;
+  paintHero();
 }
 
 /* 英雄面板。重點不是把技能翻完，而是把「這個英雄該找什麼裝備」講清楚，
    所以每個機制標籤都是可以點的入口，直接帶回裝備清單。 */
 function openHero(id){
-  const h = HERO[id]; if (!h) return;
-  const L = li();
-  S.hero = id;
-  panel.dataset.open = '1';
-  renderTabs();
-  phead.innerHTML = `
-    <button class="p-close" id="pclose" title="${esc(t('close'))}"
-            aria-label="${esc(t('close'))}">✕</button>
+  if (!HERO[id]) return;
+  S.hero = id; localStorage.setItem('ud.hero', id);
+  S.pscroll.hero = 0;
+  paintHero();
+  history.replaceState(null, '', '#h:' + id);
+  openPanel('hero');
+}
+/* 英雄列表上標出目前在面板裡的那一隻 —— 切去別頁再回來，一眼就找得到 */
+function paintHero(){
+  main.querySelectorAll('.hc[data-hero]').forEach(el =>
+    el.setAttribute('aria-pressed', String(el.dataset.hero === S.hero)));
+}
+function renderHeroTab(){
+  const h = HERO[S.hero], L = li();
+  phead.style.removeProperty('--c');
+  phead.innerHTML = closeBtn() + `
     <div class="p-top">
       <img class="p-img" src="${h.icon}" alt="">
       <div class="p-name"><h1>${esc(h.n[L])}</h1>
@@ -1886,14 +1945,21 @@ function openHero(id){
     ${h.give && h.give.length ? `<div class="hnote give">${esc(t('hGive'))}</div>` : ''}
     <div class="sg-note">${esc(t('hBuildHint'))}</div>
 
-    ${heroBuilds(h, L)}
+    ${heroBuildsBrief(h, L)}
     ${skinBlock(h, L)}
     ${abilBlock(h, 'hero', t('hSkills'))}
     ${abilBlock(h, 'innate', t('hInnate'))}
     <div class="sg-note">${esc(t('hSkillRu'))}</div>`;
-  pbody.scrollTop = 0;
-  $('#pclose').onclick = closeItem;
-  if (isMobile()){ setDrawer(false); setScrim(); }
+}
+/* 英雄頁籤上只放配裝的摘要列（名稱＋六格縮圖），點了跳去「AI 配裝」頁籤看完整卡片。
+   完整卡片放這裡的話，英雄頁籤會長到技能要捲三頁才看得到。 */
+function heroBuildsBrief(h, L){
+  if (!h.builds || !h.builds.length) return '';
+  return `<h5>${esc(t('hBuilds'))}<span class="cnt">${h.builds.length}</span></h5>
+    <div class="hbb">${h.builds.map(b => `<button class="hbb-i" data-ptab-go="ai"
+        style="--sc:${b.c}"><b>${esc(b.n[L])}</b>
+        <span class="hbb-r">${b.items.map(i => ITEMS[i] ? thumb(i) : '').join('')}</span>
+      </button>`).join('')}</div>`;
 }
 
 /* 這個英雄專屬的推薦配裝。跟「AI 配裝」分頁的通用配裝不同 ——
@@ -1916,13 +1982,13 @@ function findBuild(id){
   return null;
 }
 
-function heroBuilds(h, L){
+function heroBuilds(h, L, noHead){
   if (!h.builds || !h.builds.length) return '';
   const pic = i => ITEMS[i] ? `<button class="bd-i" data-goto="${i}"
       style="--c2:${ITEMS[i].k || '#39415a'}"
       title="${esc(nm(i))}　${esc(ITEMS[i].c[L])}">${thumb(i)}</button>` : '';
-  return `<h5>${esc(t('hBuilds'))}<span class="cnt">${h.builds.length}</span></h5>
-    ${h.builds.map(b => {
+  return (noHead ? '' : `<h5>${esc(t('hBuilds'))}<span class="cnt">${h.builds.length}</span></h5>`) +
+    `${h.builds.map(b => {
       const bs = Object.keys(b.bonus || {}).map(k => b.bonus[k]).filter(x => ITEMS[x]);
       const tal = b.talent ? talentName(h, b.talent, L) : '';
       return `<div class="bd" style="--sc:${b.c}">
@@ -2432,7 +2498,8 @@ function loadSave(){ localStorage.setItem('ud.load', JSON.stringify(S.load)); }
 /* 欄位一動，若正在看總計就同步重畫 —— 加一件就看到數字變 */
 function afterLoadChange(){
   renderLoad();
-  if (S.mode === 'build' && S.ptab === 'sum' && panel.dataset.open === '1') showSummary();
+  if (S.ptab === 'sum' && panel.dataset.open === '1') openPanel('sum', {keepScroll: true});
+  else if (panel.dataset.open === '1') renderTabs();   // 「總計」頁籤會隨配裝欄有無出現
 }
 function loadAdd(id){
   if (S.load.length >= MAXSLOT) return false;
@@ -2666,15 +2733,107 @@ function loadoutSecs(){
 
 /* 配裝模式下右面板有兩頁：總計 / 這件。
    分頁只在配裝模式出現 —— 瀏覽模式沒有「總計」可看，多一排按鈕只是雜訊。 */
+/* ---------------------------------------------------------------- 右面板 = 脈絡檢視器
+   四個頁籤各自對應一種脈絡，有脈絡才出現：
+     hero  英雄        S.hero（持久，切頁籤不掉）
+     sum   配裝總計    配裝模式，或配裝欄非空
+     ai    AI 配裝     配裝模式或有英雄時；有英雄先列該英雄的，通用的收合在後
+     item  這件裝備    S.sel（暫時，✕ 會清掉）
+   切換主區域的頁籤永遠不關面板 —— 使用者在英雄頁、瀏覽頁、配裝頁之間來回時，
+   右邊的脈絡要一直在，不用重新找英雄。頁籤各自記捲動位置。 */
+const PTABS = ['hero', 'sum', 'ai', 'item'];
+function tabAvail(k){
+  if (k === 'hero') return !!(S.hero && HERO[S.hero]);
+  if (k === 'sum')  return S.mode === 'build' || loadAll().length > 0;
+  if (k === 'ai')   return S.mode === 'build' || !!(S.hero && HERO[S.hero]);
+  return !!(S.sel && ITEMS[S.sel]);
+}
+function tabLabel(k){
+  const L = li();
+  if (k === 'hero'){ const h = HERO[S.hero];
+    return `<img src="${h.icon}" alt=""><span>${esc(h.n[L])}</span>`; }
+  if (k === 'item') return `${thumb(S.sel)}<span>${esc(nm(S.sel))}</span>`;
+  return `<span>${esc(k === 'sum' ? t('loTotal') : t('ptAI'))}</span>`;
+}
 function renderTabs(){
   const box = $('#ptabs');
-  box.hidden = S.mode !== 'build';
-  if (box.hidden) return;
-  const tab = (k, lab, on) => `<button data-ptab="${k}" aria-pressed="${S.ptab === k}"
-      ${on ? '' : 'disabled'}>${esc(lab)}</button>`;
-  box.innerHTML = tab('sum', t('loTotal'), true) + tab('ai', t('ptAI'), true) +
-                  tab('item', t('ptItem'), !!S.sel);
+  const avail = PTABS.filter(tabAvail);
+  box.hidden = avail.length < 2;            // 只有一種脈絡時頁籤列是噪音
+  box.innerHTML = avail.map(k => `<button data-ptab="${k}" aria-pressed="${S.ptab === k}"
+      title="${esc(k === 'hero' ? t('ptHero') : k === 'item' ? t('ptItem')
+                 : k === 'sum' ? t('loTotal') : t('ptAI'))}">${tabLabel(k)}</button>`).join('');
 }
+const closeBtn = () => `<button class="p-close" id="pclose" title="${esc(t('close'))}"
+        aria-label="${esc(t('close'))}">✕</button>`;
+
+/* 唯一的開面板入口。要求的頁籤沒有脈絡就退到有的那個；一個都沒有就關。 */
+function openPanel(tab, opts){
+  opts = opts || {};
+  if (!tabAvail(tab)){
+    tab = PTABS.find(k => k !== 'ai' && tabAvail(k)) || (tabAvail('ai') ? 'ai' : null);
+    if (!tab){ closePanel(); return; }
+  }
+  if (panel.dataset.open === '1' && S.ptab) S.pscroll[S.ptab] = pbody.scrollTop;
+  S.ptab = tab; localStorage.setItem('ud.ptab', tab);
+  const wasClosed = panel.dataset.open !== '1';
+  panel.dataset.open = '1';
+  if (tab === 'hero') renderHeroTab();
+  else if (tab === 'sum') renderSumTab();
+  else if (tab === 'ai') renderAITab();
+  else renderItemTab();
+  renderTabs();
+  $('#pclose').onclick = closePanel;
+  pbody.scrollTop = opts.keepScroll ? (S.pscroll[tab] || 0) : 0;
+  /* 已經開著時換內容 -> 淡入；第一次開啟 -> 整片滑入就夠了 */
+  if (!wasClosed){ panel.dataset.swap = '0'; void panel.offsetWidth; panel.dataset.swap = '1'; }
+  if (isMobile()){ setDrawer(false); setScrim(); }
+}
+/* ✕ 只清掉「這件裝備」這種暫時脈絡；英雄與配裝欄是持久的，留著。 */
+function closePanel(){
+  if (panel.dataset.open === '1' && S.ptab) S.pscroll[S.ptab] = pbody.scrollTop;
+  S.sel = null;
+  panel.dataset.open = '0';
+  panel.removeAttribute('data-swap');
+  paintRelations();
+  panel.style.height = '';
+  setScrim();
+  history.replaceState(null, '', location.pathname + location.search);
+}
+const closeItem = closePanel;                 // 舊名字，很多地方還在用
+
+function renderSumTab(){
+  phead.style.removeProperty('--c');
+  phead.innerHTML = closeBtn() + `
+    <div class="p-top"><div class="p-name">
+      <h1>${esc(t('loTotal'))}</h1>
+      <div class="alt">${esc(t('loSlotsN').replace('%s', loadAll().length))}</div>
+    </div></div>`;
+  pbody.innerHTML = loadoutSecs();
+}
+function renderAITab(){
+  const L = li(), h = S.hero ? HERO[S.hero] : null, all = DATA.builds || [];
+  phead.style.removeProperty('--c');
+  const note = `<div class="note" style="margin-top:14px">${esc(t('bdNote'))}</div>`;
+  if (h && h.builds && h.builds.length){
+    phead.innerHTML = closeBtn() + `
+      <div class="p-top"><img class="p-img" src="${h.icon}" alt="">
+        <div class="p-name"><h1>${esc(t('ptAIFor').replace('%s', h.n[L]))}</h1>
+        <div class="alt">${esc(t('hBuilds'))} ${h.builds.length}</div></div></div>`;
+    pbody.innerHTML = heroBuilds(h, L, true) +
+      `<details class="ai-all"><summary>${esc(t('ptAIAllN').replace('%s', all.length))}</summary>
+        ${all.map(buildCard).join('')}</details>` + note;
+  } else {
+    phead.innerHTML = closeBtn() + `
+      <div class="p-top"><div class="p-name">
+        <h1>${esc(t('ptAI'))}</h1>
+        <div class="alt">${esc(t('bdSub').replace('%s', all.length))}</div>
+      </div></div>`;
+    pbody.innerHTML = all.map(buildCard).join('') + note;
+  }
+}
+/* 舊入口，還有幾處在呼叫 */
+const showSummary = () => openPanel('sum');
+const showBuilds  = () => openPanel('ai');
 
 /* AI 推薦配裝。四套都是從道具文字與狀態交互規則推導出來的，
    而且資料進來前就驗證過遊戲規則（排除 5++、5+ 最多 1 件、神器不重複、完美 4 選 1），
@@ -2698,58 +2857,36 @@ function buildCard(b){
   </div>`;
 }
 
-function showBuilds(){
-  S.ptab = 'ai';
-  const wasClosed = panel.dataset.open !== '1';
-  panel.dataset.open = '1';
-  renderTabs();
-  phead.innerHTML = `
-    <button class="p-close" id="pclose" title="${esc(t('close'))}"
-            aria-label="${esc(t('close'))}">✕</button>
-    <div class="p-top"><div class="p-name">
-      <h1>${esc(t('ptAI'))}</h1>
-      <div class="alt">${esc(t('bdSub').replace('%s', (DATA.builds||[]).length))}</div>
-    </div></div>`;
-  pbody.innerHTML = (DATA.builds || []).map(buildCard).join('') +
-    `<div class="note" style="margin-top:14px">${esc(t('bdNote'))}</div>`;
-  pbody.scrollTop = 0;
-  $('#pclose').onclick = closeItem;
-  if (!wasClosed){ panel.dataset.swap = '0'; void panel.offsetWidth; panel.dataset.swap = '1'; }
-  if (isMobile()){ setDrawer(false); setScrim(); }
-}
-
-function showSummary(){
-  S.ptab = 'sum';
-  const wasClosed = panel.dataset.open !== '1';
-  panel.dataset.open = '1';
-  renderTabs();
-  phead.innerHTML = `
-    <button class="p-close" id="pclose" title="${esc(t('close'))}"
-            aria-label="${esc(t('close'))}">✕</button>
-    <div class="p-top"><div class="p-name">
-      <h1>${esc(t('loTotal'))}</h1>
-      <div class="alt">${esc(t('loSlotsN').replace('%s', loadAll().length))}</div>
-    </div></div>`;
-  pbody.innerHTML = loadoutSecs();
-  pbody.scrollTop = 0;
-  $('#pclose').onclick = closeItem;
-  if (!wasClosed){                 // 內容換掉時輕輕淡入，跟切換裝備一樣
-    panel.dataset.swap = '0'; void panel.offsetWidth; panel.dataset.swap = '1';
-  }
-  if (isMobile()){ setDrawer(false); setScrim(); }
-}
-
 /* ---------------------------------------------------------------- render: panel */
 function openItem(id, scroll){
+  if (!ITEMS[id]) return;
   S.sel = id;
-  const it = ITEMS[id], L = li();
+  S.pscroll.item = 0;
+  const wasClosed = panel.dataset.open !== '1';
+  /* 配裝模式下停在「總計」時，選取／捲動／高亮照常做，
+     但面板內容維持總計 —— 一邊加裝備一邊看數字即時變動。 */
+  openPanel(S.mode === 'build' && S.ptab === 'sum' && !wasClosed ? 'sum' : 'item');
+  /* 只有在瀏覽模式才動左側篩選去「找到」這件；
+     在英雄頁裡點配裝的縮圖就偷偷改掉篩選，會讓人回瀏覽頁時一頭霧水。 */
+  const moved = S.mode === 'browse' ? reveal(id) : false;
+  paintRelations();
+  const el = main.querySelector(`.tile[data-id="${id}"]`);
+  if (el && (scroll || wasClosed || moved)){
+    const r = el.getBoundingClientRect(), m = main.getBoundingClientRect();
+    if (scroll || moved || r.top < m.top + 8 || r.bottom > m.bottom - 8)
+      el.scrollIntoView({block:'center', behavior:'smooth'});
+  }
+  history.replaceState(null,'','#'+id);
+}
+function renderItemTab(){
+  const id = S.sel, it = ITEMS[id], L = li();
   document.documentElement.style.setProperty('--c', it.k || '#5b6ee1');
 
   const alt = [0,1,2].filter(i => i !== L).map(i => it.n[i]).join(' · ');
   phead.style.setProperty('--c', it.k || '#5b6ee1');
   phead.innerHTML = `
     <span class="p-id">${id}</span>
-    <button class="p-close" id="pclose" title="${esc(t('close'))}" aria-label="${esc(t('close'))}">✕</button>
+    ${closeBtn()}
     <div class="p-top">
       <div class="p-icon" style="--c:${it.k||'#39415a'}">${thumb(id)}</div>
       <div class="p-name">
@@ -2794,31 +2931,6 @@ function openItem(id, scroll){
   if (it.r.length) b += relBlock(t('recipe'), it.r, '＋');
   if (it.u.length) b += usedInBlock(id, it.u);
   pbody.innerHTML = b || `<div class="note">—</div>`;
-  pbody.scrollTop = 0;
-
-  const wasClosed = panel.dataset.open !== '1';
-  panel.dataset.open = '1';
-  /* 已經開著時換裝備 -> 內容淡入；第一次開啟 -> 整片滑入就夠了 */
-  if (!wasClosed){
-    panel.dataset.swap = '0';
-    void panel.offsetWidth;          // 強制重繪，讓動畫可以重播
-    panel.dataset.swap = '1';
-  }
-  $('#pclose').onclick = closeItem;
-  const moved = reveal(id);
-  paintRelations();
-  const el = main.querySelector(`.tile[data-id="${id}"]`);
-  if (el && (scroll || wasClosed || moved)){
-    const r = el.getBoundingClientRect(), m = main.getBoundingClientRect();
-    if (scroll || moved || r.top < m.top + 8 || r.bottom > m.bottom - 8)
-      el.scrollIntoView({block:'center', behavior:'smooth'});
-  }
-  history.replaceState(null,'','#'+id);
-  if (isMobile()){ setDrawer(false); setScrim(); }
-  renderTabs();
-  /* 配裝模式下停在「總計」頁時，選取／捲動／高亮照常做，
-     但面板內容維持總計 —— 這樣一邊加裝備一邊看數字即時變動。 */
-  if (S.mode === 'build' && S.ptab === 'sum') showSummary();
 }
 
 function rankedIds(){
@@ -2989,16 +3101,6 @@ function usedInBlock(id, ids){
     <div class="note" style="margin-top:7px">${esc(t('usedNote'))}</div></div>`;
 }
 
-function closeItem(){
-  S.sel = null;
-  panel.dataset.open = '0';
-  panel.removeAttribute('data-swap');
-  paintRelations();
-  panel.style.height = '';
-  setScrim();
-  history.replaceState(null, '', location.pathname + location.search);
-}
-
 /* ---------------------------------------------------------------- events */
 main.addEventListener('click', e => {
   /* 關係圖與抗性表上的狀態都可以點 —— 直接用它當關鍵字回到裝備清單，
@@ -3064,25 +3166,31 @@ pbody.addEventListener('click', e => {
   for (const k of Object.keys(b.bonus || {}))
     if (ITEMS[b.bonus[k]]) S.bonus[k] = b.bonus[k];
   loadSave(); bonusSave(); renderLoad(); renderGrid();
-  showSummary();                       /* 套用後直接看總計，馬上知道拿到什麼 */
+  openPanel('sum');                    /* 套用後直接看總計，馬上知道拿到什麼 */
 });
 
 $('#ptabs').addEventListener('click', e => {
   const b = e.target.closest('[data-ptab]'); if (!b || b.disabled) return;
-  S.ptab = b.dataset.ptab;
-  if (S.ptab === 'sum') showSummary();
-  else if (S.ptab === 'ai') showBuilds();
-  else if (S.sel) openItem(S.sel);
+  if (b.dataset.ptab === S.ptab) return;
+  openPanel(b.dataset.ptab, {keepScroll: true});
+});
+/* 面板內容裡「跳去某個頁籤」的按鈕（英雄頁籤上的配裝摘要列） */
+pbody.addEventListener('click', e => {
+  const g = e.target.closest('[data-ptab-go]'); if (!g) return;
+  openPanel(g.dataset.ptabGo);
 });
 
 $('#mode').addEventListener('click', e => {
   const b = e.target.closest('button'); if (!b) return;
+  if (b.dataset.v === S.mode) return;
   S.mode = b.dataset.v; localStorage.setItem('ud.mode', S.mode);
   applyMode(); renderLoad();
   renderGrid(); main.scrollTop = 0;
-  if (S.mode === 'build' && loadAll().length) showSummary();
-  else if (S.mode === 'status' || S.mode === 'hero') closeItem();
-  else if (S.sel) openItem(S.sel);
+  /* 面板不關。進配裝模式而且有裝備就切到總計；其他情況維持原頁籤，
+     只重驗一次（某些頁籤在新模式下可能不存在，例如離開配裝模式後的「總計」）。 */
+  if (S.mode === 'build' && loadAll().length) openPanel('sum');
+  else if (panel.dataset.open === '1') openPanel(S.ptab, {keepScroll: true});
+  paintRelations(); paintHero();
 });
 function applyMode(){
   document.body.dataset.mode = S.mode;
@@ -3122,6 +3230,14 @@ phead.addEventListener('click', e => {
     renderRail(); renderGrid(); main.scrollTop = 0;
   }
 });
+/* 左側分類是裝備的篩選器。在英雄頁或狀態頁點它，使用者的意圖顯然是「去看那類裝備」，
+   所以先切回瀏覽模式再套篩選 —— 以前這裡什麼都不會發生，看起來像壞掉。 */
+function ensureBrowse(){
+  if (S.mode === 'browse') return;
+  S.mode = 'browse'; localStorage.setItem('ud.mode', S.mode);
+  applyMode(); renderLoad();
+  if (panel.dataset.open === '1') renderTabs();
+}
 rail.addEventListener('click', e => {
   const tog = e.target.closest('[data-tog]');
   if (tog){                                   // 收合／展開，不影響篩選
@@ -3135,6 +3251,7 @@ rail.addEventListener('click', e => {
   }
   const cb = e.target.closest('[data-cat]');
   if (cb){                                    // 篩選整個取得管道
+    ensureBrowse();
     const ci = +cb.dataset.cat;
     S.cat = (S.cat === ci) ? null : ci;
     S.tier = null; S.set = null;
@@ -3144,6 +3261,7 @@ rail.addEventListener('click', e => {
   }
   const b = e.target.closest('.tier');
   if (!b) return;
+  ensureBrowse();
   const g = b.dataset.g === '' ? null : +b.dataset.g;
   if (g === null){ S.tier = null; S.cat = null; S.set = null; S.act = null; }
   else { S.tier = (S.tier === g) ? null : g; S.cat = null; S.set = null; }
@@ -3243,6 +3361,7 @@ let qT = null;
 q.addEventListener('input', () => {
   S.q = q.value;
   showSugg(!q.value.trim());
+  if (S.mode === 'status' && q.value.trim()) ensureBrowse();   // 狀態頁沒有可搜的清單
   renderGrid(); syncMenuDot();
   clearTimeout(qT); qT = setTimeout(renderRail, 90);   /* rail is cheap but not free */
 });
@@ -3263,17 +3382,21 @@ q.addEventListener('blur', () => setTimeout(() => showSugg(false), 60));
 $('#sugg').addEventListener('click', e => {
   const b = e.target.closest('button'); if (!b) return;
   const d = b.dataset;
-  if (d.sq){                       // 關鍵字：填進搜尋框
+  if (d.sq){                       // 關鍵字：填進搜尋框（建議表的命中數是算裝備的）
+    ensureBrowse();
     q.value = d.sq; S.q = d.sq;
     renderGrid(); renderRail(); showSugg(false); q.blur();
   } else if (d.sset){              // 套裝：套篩選
+    ensureBrowse();
     S.set = (S.set === d.sset) ? null : d.sset;
     S.tier = null; S.cat = null;
     renderRail(); renderGrid(); main.scrollTop = 0; showSugg(false); q.blur();
   } else if (d.sact){              // 只看主動技能道具
+    ensureBrowse();
     S.act = S.act ? null : 1;
     renderRail(); renderGrid(); main.scrollTop = 0; showSugg(false); q.blur();
   } else if (d.srank){             // 切換排行依據
+    ensureBrowse();
     S.rank = (S.rank === d.srank) ? '' : d.srank;
     localStorage.setItem('ud.rank', S.rank);
     fillRank(); renderGrid(); main.scrollTop = 0; showSugg(false); q.blur();
@@ -3284,7 +3407,7 @@ $('#lang').addEventListener('click', e => {
   const b = e.target.closest('button'); if (!b) return;
   S.lang = b.dataset.v; localStorage.setItem('ud.lang', S.lang);
   applyLang(); fillRank(); renderRail(); renderGrid(); renderLoad();
-  if (S.sel) openItem(S.sel);
+  if (panel.dataset.open === '1') openPanel(S.ptab, {keepScroll: true});
 });
 const rankSel = $('#rank');
 function fillRank(){
@@ -3296,6 +3419,7 @@ function fillRank(){
   rankSel.classList.toggle('on', !!S.rank);
 }
 rankSel.addEventListener('change', () => {
+  if (rankSel.value) ensureBrowse();            // 排行是裝備的檢視
   S.rank = rankSel.value;
   localStorage.setItem('ud.rank', S.rank);
   rankSel.classList.toggle('on', !!S.rank);
@@ -3447,14 +3571,14 @@ addEventListener('keydown', e => {
     if (!$('#sugg').hidden){ showSugg(false); q.blur(); return; }
     if (armed){ disarmBonus(true); return; }
     if (document.activeElement === q && q.value){ clearQ(false); }
-    else if (S.sel) closeItem();
+    else if (panel.dataset.open === '1') closePanel();
     return;
   }
   if (document.activeElement === q) return;
   if (['1','2','3'].includes(e.key)){
     S.lang = ['zh','en','ru'][+e.key-1]; localStorage.setItem('ud.lang',S.lang);
     applyLang(); fillRank(); renderRail(); renderGrid(); renderLoad();
-    if (S.sel) openItem(S.sel); return;
+    if (panel.dataset.open === '1') openPanel(S.ptab, {keepScroll: true}); return;
   }
   if (!S.sel) return;
   const tiles = [...main.querySelectorAll('.tile')];
@@ -3486,10 +3610,14 @@ else setTimeout(() => {
 applyLang(); applyDensity(); applyMode(); setW(S.width); fillRank();
 placeTools(); setSheet(62); setDrawer(false);
 renderRail(); renderGrid(); renderLoad();
+if (!PTABS.includes(S.ptab)) S.ptab = 'item';
 const start = location.hash.slice(1);
-if (start && ITEMS[start]) openItem(start, true);
+if (start.startsWith('h:') && HERO[start.slice(2)]) openHero(start.slice(2));
+else if (start && ITEMS[start]) openItem(start, true);
 /* 配裝模式且已經有裝備時直接把總計打開 —— 這模式下你要看的就是這個 */
-else if (S.mode === 'build' && loadAll().length) showSummary();
+else if (S.mode === 'build' && loadAll().length) openPanel('sum');
+/* 在英雄頁重整：剛才看的那隻還在 */
+else if (S.mode === 'hero' && S.hero && HERO[S.hero]) openPanel(S.ptab === 'ai' ? 'ai' : 'hero');
 })();
 </script>
 </body>
