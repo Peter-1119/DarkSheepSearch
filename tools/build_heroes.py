@@ -35,27 +35,34 @@ MECH = [
     ('dburn',  'burn',   r'поджог|подожж'),
     ('dbleed', 'bleed',  r'кровотеч'),
     ('ddise',  'disease', r'болезн|заболе'),
-    (None,     'flam',   r'горюч'),
+    (None,     'flammable', r'горюч'),
     (None,     'freeze', r'заморозк|заморож'),
     (None,     'shock',  r'\bшок\b|шоком|шока'),
     (None,     'curse',  r'проклят'),
-    (None,     'weak',   r'слабост'),
-    (None,     'vuln',   r'уязвим'),
+    (None,     'weakness', r'слабост'),
+    (None,     'vulnerable', r'уязвим'),
 ]
 
 
 def mechanics(hero):
-    """回傳 (屬性代碼集合, 狀態代碼集合)。"""
-    txt = ' '.join(a['name_ru'] + ' ' + a['text_ru']
-                   for a in hero['abilities']).lower()
-    stats, sts = [], []
+    """回傳 (屬性代碼集合, 狀態代碼集合, {代碼: [提到它的技能 ID]})。
+    第三個是給面板用的：光列「技能強度」沒人知道為什麼，列出是哪幾招吃它才有說服力。"""
+    stats, sts, who = [], [], {}
+    abs_ = [a for a in hero['abilities'] if not a.get('opts')]   # 技能書本身不算
     for code, st, pat in MECH:
-        if re.search(pat, txt):
-            if code and code not in stats:
-                stats.append(code)
-            if st and st not in sts:
-                sts.append(st)
-    return stats, sts
+        ids = [a['id'] for a in abs_
+               if re.search(pat, (a['name_ru'] + ' ' + a['text_ru']).lower())]
+        if not ids:
+            continue
+        if code and code not in stats:
+            stats.append(code)
+        if st and st not in sts:
+            sts.append(st)
+        for k in (code, st):
+            if k:
+                who.setdefault(k, [])
+                who[k] += [i for i in ids if i not in who[k]]
+    return stats, sts, who
 
 
 def scaling(heroes, jass):
@@ -275,7 +282,7 @@ def main():
                                         names.get(k, [''])[0])):
         h = H[uid]
         p = h['profile_ru']
-        stats, sts = mechanics(h)
+        stats, sts, scw = mechanics(h)
         nm = names.get(uid)
         if not nm:
             nm = [h['name_ru'], h['name_ru']]
@@ -316,6 +323,7 @@ def main():
             'st': h['stats'],
             'roles': [tri(V['role'], r) for r in roles],
             'sc': [stats, sts],              # 連到裝備用的
+            'scw': scw,                      # 每個機制是哪幾招提到的（面板顯示用）
             'mod': scale[uid]['mod'],        # 吃裝備技能威力的技能
             # 反過來：會「給」裝備技能威力的技能（例如惡魔獵手的著魔）
             **({'give': scale[uid]['give']} if scale[uid]['give'] else {}),

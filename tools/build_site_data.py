@@ -193,6 +193,7 @@ for r in DB:
                                                if v['url'][:-5] == i), ''))
                        for k in SHOPS) else None,
         'legion': prev.get('legion'),
+        'p': prev.get('gold') or None,     # 價格（配裝卡片算總價用）
         'act': 1 if prev.get('active') else None,
         # 暫代圖示（玩家截圖補的），拿到正式圖會換掉
         'tmp': 1 if prev.get('icon_src') == 'temp' else None,

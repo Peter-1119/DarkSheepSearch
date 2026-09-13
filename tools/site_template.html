@@ -745,6 +745,32 @@ body[data-resizing="1"]{cursor:col-resize;user-select:none}
   display:inline-flex;align-items:center;gap:5px}
 .hlink.s img{width:15px;height:15px;border-radius:4px}
 .hlink.s:hover{border-color:var(--sc)}
+/* 機制卡片：一列一個機制。左邊是可點的機制名（原本的標籤），中間寫「哪幾招吃它」，
+   右邊固定一個「看裝備」—— 以前只有一排標籤，沒人知道為什麼要堆技能強度。 */
+.hbc-list{display:flex;flex-direction:column;gap:6px;margin:2px 0 8px}
+.hbc{display:flex;align-items:center;gap:10px;width:100%;padding:8px 10px 8px 8px;text-align:left;
+  border:1px solid var(--line);border-radius:9px;background:var(--surface);cursor:pointer;
+  transition:border-color var(--dur),background var(--dur),transform var(--dur)}
+.hbc:hover{border-color:var(--accent);background:var(--surface-2);transform:translateX(2px)}
+.hbc.s:hover{border-color:var(--sc)}
+.hbc-k{flex:0 0 auto;display:inline-flex;align-items:center;gap:5px;min-width:64px;
+  font-size:12.5px;font-weight:600;color:var(--ink);padding:3px 9px;border-radius:99px;
+  background:var(--surface-2);border:1px solid var(--line-2)}
+.hbc.s .hbc-k{color:var(--sc);border-color:color-mix(in srgb,var(--sc) 45%,var(--line-2))}
+.hbc-k img{width:16px;height:16px;border-radius:4px}
+.hbc-w{flex:1;min-width:0;font-size:var(--fs-sub);color:var(--ink-2);line-height:1.5;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.hbc-w:empty::before{content:'—';color:var(--ink-3)}
+.hbc-go{flex:0 0 auto;font-size:11px;color:var(--ink-3);white-space:nowrap}
+.hbc:hover .hbc-go{color:var(--accent)}
+/* 配裝卡片：名字下面一行「總價 · 階段 · 需要天賦」，先給人一個成本感再看六格 */
+.bd-meta{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:-2px 0 8px;
+  font-size:11.5px;color:var(--ink-3)}
+.bd-meta .bm{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:99px;
+  background:var(--surface-2);border:1px solid var(--line);color:var(--ink-2);
+  font-variant-numeric:tabular-nums}
+.bd-meta .bm.tal{color:var(--sc);border-color:color-mix(in srgb,var(--sc) 45%,var(--line))}
+.bd-meta .bm.ph1{color:#7BD3A0}.bd-meta .bm.ph2{color:#F2C46B}.bd-meta .bm.ph3{color:#E8737D}
 .hnote{font-size:var(--fs-sub);line-height:1.6;border-radius:8px;padding:8px 10px;
   margin-top:9px;border:1px solid var(--line)}
 /* ⊕ 是「裝備技能威力的來源」，跟 ◈「吃裝備技能威力」是相反的兩件事 */
@@ -1411,6 +1437,9 @@ const UI = {
             +'強度等級與定位是地圖作者自己在英雄說明裡寫的。',
       hAttr_str:'力量', hAttr_agi:'敏捷', hAttr_int:'智力',
       hrAttr:'主屬性', hrRole:'定位', hrUnlock:'解鎖門檻', hrAll:'全部英雄',
+      hbcSee:'看裝備', hbcAttr_str:'主屬性：每點 +25 生命、+1 攻擊力', hbcAttr_agi:'主屬性：每點 +1% 攻速、+0.25 護甲、+1 攻擊力',
+      hbcAttr_int:'主屬性：每點 +15 法力、+1 攻擊力', hBuildHint2:'左邊是機制，中間是這隻哪幾招會用到它（從技能文字掃出來的）。點一列就跳到依那個屬性排序的裝備清單。',
+      bdCost:'總價', bdPh1:'中期就能湊齊', bdPh2:'中後期', bdPh3:'後期成型', bdTalShort:'需要天賦',
       srList:'狀態', srSec:'章節', srMap:'關係圖', srResist:'抗性對照', srRules:'通則',
       hTier:'強度', hLate:'後期', hkUnlock:'解鎖', hkStart:'一開始',
       hGrow:'屬性成長', hBase:'初始', hPer:'每級',
@@ -1503,6 +1532,9 @@ const UI = {
             +'random-hero functions; power rank and role are the map author\'s own notes.',
       hAttr_str:'Strength', hAttr_agi:'Agility', hAttr_int:'Intelligence',
       hrAttr:'Primary attribute', hrRole:'Role', hrUnlock:'Unlock', hrAll:'All heroes',
+      hbcSee:'Items', hbcAttr_str:'Primary: +25 HP and +1 attack per point', hbcAttr_agi:'Primary: +1% attack speed, +0.25 armour, +1 attack per point',
+      hbcAttr_int:'Primary: +15 mana and +1 attack per point', hBuildHint2:'Left is the mechanic, middle lists which of this hero\'s abilities use it (scanned from the ability text). Click a row to open the item list ranked by that stat.',
+      bdCost:'Total', bdPh1:'mid-game budget', bdPh2:'mid-to-late', bdPh3:'late-game', bdTalShort:'talent',
       srList:'Statuses', srSec:'Sections', srMap:'Relation map', srResist:'Resistances', srRules:'Rules',
       hTier:'Rank', hLate:'Late game', hkUnlock:'Unlock', hkStart:'From the start',
       hGrow:'Attribute growth', hBase:'Base', hPer:'Per level',
@@ -1600,6 +1632,9 @@ const UI = {
             +'ранг силы и роль - это заметки самого автора карты.',
       hAttr_str:'Сила', hAttr_agi:'Ловкость', hAttr_int:'Разум',
       hrAttr:'Основной атрибут', hrRole:'Роль', hrUnlock:'Открытие', hrAll:'Все герои',
+      hbcSee:'Предметы', hbcAttr_str:'Основной: +25 HP и +1 к атаке за очко', hbcAttr_agi:'Основной: +1% скорости атаки, +0.25 брони, +1 к атаке за очко',
+      hbcAttr_int:'Основной: +15 маны и +1 к атаке за очко', hBuildHint2:'Слева механика, в середине — какие умения героя её используют (из текста умений). Клик по строке открывает список предметов, отсортированный по этой характеристике.',
+      bdCost:'Цена', bdPh1:'собирается к середине', bdPh2:'середина–конец', bdPh3:'поздняя игра', bdTalShort:'талант',
       srList:'Статусы', srSec:'Разделы', srMap:'Схема связей', srResist:'Сопротивления', srRules:'Правила',
       hTier:'Ранг', hLate:'Поздняя игра', hkUnlock:'Открытие', hkStart:'Сразу',
       hGrow:'Рост характеристик', hBase:'База', hPer:'За уровень',
@@ -2051,8 +2086,22 @@ function renderHeroTab(){
       style="--sc:${x.c}">${x.icon ? `<img src="${x.icon}" alt="">` : ''}${
       esc((x.n || [])[L] || k)}</button>`;
   };
-  const wantStats = [h.attr].concat((h.sc && h.sc[0]) || []);
+  const wantStats = [h.attr].concat(((h.sc && h.sc[0]) || []).filter(k => k !== h.attr));
   const wantSt = (h.sc && h.sc[1]) || [];
+  /* 「哪幾招吃它」：build_heroes 掃技能文字時順手記下的技能 ID（scw） */
+  const abName = id => { for (const a of h.ab){ if (a.id === id) return a.n[L];
+      for (const o of (a.opts || [])) if (o.id === id) return o.n[L]; } return ''; };
+  const who = ids => { const ns = (ids || []).map(abName).filter(Boolean);
+      return ns.slice(0, 3).join('・') + (ns.length > 3 ? `　+${ns.length - 3}` : ''); };
+  const statCard = k => { const m = STAT(k); if (!m) return '';
+    const why = k === h.attr ? t('hbcAttr_' + k) : who((h.scw || {})[k]);
+    return `<button class="hbc" data-hrank="${k}"><span class="hbc-k">${esc(m[S.lang] || m.zh)}</span>
+      <span class="hbc-w" title="${esc(why)}">${esc(why)}</span><span class="hbc-go">${esc(t('hbcSee'))} →</span></button>`; };
+  const stCard = k => { const x = STATUS[k]; if (!x) return '';
+    const why = who((h.scw || {})[k]);
+    return `<button class="hbc s" data-mq="${esc((x.q || [''])[0])}" style="--sc:${x.c}"><span class="hbc-k">${
+      x.icon ? `<img src="${x.icon}" alt="">` : ''}${esc((x.n || [])[L] || k)}</span>
+      <span class="hbc-w" title="${esc(why)}">${esc(why)}</span><span class="hbc-go">${esc(t('hbcSee'))} →</span></button>`; };
 
   pbody.innerHTML = `
     <p class="hdesc">${esc(h.d[L] || h.d[0])}</p>
@@ -2064,10 +2113,10 @@ function renderHeroTab(){
         row('int', st.int, st.int_lv)}</tbody></table>
 
     <h5>${esc(t('hBuild'))}</h5>
-    <div class="hlinks">${wantStats.map(statBtn).join('')}${wantSt.map(stBtn).join('')}</div>
+    <div class="hbc-list">${wantStats.map(statCard).join('')}${wantSt.map(stCard).join('')}</div>
     ${h.mod && h.mod.length ? `<div class="hnote mod">${esc(t('hModYes'))}</div>` : ''}
     ${h.give && h.give.length ? `<div class="hnote give">${esc(t('hGive'))}</div>` : ''}
-    <div class="sg-note">${esc(t('hBuildHint'))}</div>
+    <div class="sg-note">${esc(t('hBuildHint2'))}</div>
 
     ${heroBuildsBrief(h, L)}
     ${skinBlock(h, L)}
@@ -2084,6 +2133,17 @@ function heroBuildsBrief(h, L){
         style="--sc:${b.c}"><b>${esc(b.n[L])}</b>
         <span class="hbb-r">${b.items.map(i => ITEMS[i] ? thumb(i) : '').join('')}</span>
       </button>`).join('')}</div>`;
+}
+
+/* 配裝的成本感：六格＋特殊格的總價，分成三段。門檻跟 BUILD_BRIEF 的「平價型 = 一萬金以內」對齊。 */
+function buildMeta(b, tal){
+  const ids = b.items.concat(Object.values(b.bonus || {}));
+  const gold = ids.reduce((a, i) => a + ((ITEMS[i] && ITEMS[i].p) || 0), 0);
+  const ph = gold <= 10000 ? 1 : gold <= 16000 ? 2 : 3;
+  return `<div class="bd-meta">
+    ${gold ? `<span class="bm">${esc(t('bdCost'))} ${gold.toLocaleString()}</span>
+             <span class="bm ph${ph}">${esc(t('bdPh' + ph))}</span>` : ''}
+    ${tal ? `<span class="bm tal">${esc(t('bdTalShort'))}：${esc(tal)}</span>` : ''}</div>`;
 }
 
 /* 這個英雄專屬的推薦配裝。跟「AI 配裝」分頁的通用配裝不同 ——
@@ -2118,7 +2178,7 @@ function heroBuilds(h, L, noHead){
       return `<div class="bd" style="--sc:${b.c}">
         <div class="bd-h"><b>${esc(b.n[L])}</b>
           <button class="bd-go" data-apply="${b.id}">${esc(t('bdApply'))}</button></div>
-        ${tal ? `<div class="bd-tal">${esc(t('hNeedTalent'))}${esc(tal)}</div>` : ''}
+        ${buildMeta(b, tal)}
         <div class="bd-key">${esc(b.key[L])}</div>
         <div class="bd-row">${b.items.map(pic).join('')}
           ${bs.length ? `<span class="bd-sep"></span>${bs.map(pic).join('')}` : ''}</div>
