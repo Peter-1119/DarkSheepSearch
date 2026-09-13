@@ -439,6 +439,26 @@ body[data-scrim="1"] .scrim{opacity:1;pointer-events:auto}
 .panel[data-drag="1"]{transition:none}
 .panel[data-open="0"] .handle{opacity:0;pointer-events:none}
 
+/* -------- 面板收起後的把手（桌機：右緣直條）
+   面板一關，英雄與配裝欄這些持久脈絡就看不見了；使用者要回去得重新找卡片。
+   這條把手把還存在的脈絡以圖示留在右緣，一點就回到那個頁籤。
+   寬 40px，跟主區域的捲軸互不干擾；沒有任何脈絡時整條隱藏。 */
+.p-edge{
+  flex:0 0 auto;display:flex;flex-direction:column;align-items:center;gap:6px;
+  width:40px;padding:10px 0;background:var(--bg-2);border-left:1px solid var(--line);
+}
+.p-edge[hidden]{display:none}
+.p-edge button{
+  width:32px;height:32px;border-radius:9px;display:grid;place-items:center;cursor:pointer;
+  background:var(--surface);border:1px solid var(--line);color:var(--ink-2);
+  font-size:11px;font-weight:600;letter-spacing:.02em;padding:0;overflow:hidden;
+  transition:border-color var(--dur),color var(--dur),background var(--dur),transform var(--dur);
+}
+.p-edge button:hover{border-color:var(--accent);color:var(--ink);transform:translateX(-1px)}
+.p-edge button img{width:100%;height:100%;object-fit:cover;display:block}
+.p-edge .pe-x{margin-top:auto;font-size:15px;font-weight:400}   /* 「收合把手」在最下面 */
+.p-edge .pe-t{display:none}                                        /* 文字只在手機橫條顯示 */
+
 /* 內層固定寬度：外層收合時內容不會被擠壓變形，
    只是被裁切掉，看起來就像整片滑出去 */
 .p-inner{
@@ -1201,6 +1221,28 @@ body[data-resizing="1"]{cursor:col-resize;user-select:none}
   .p-close{top:20px;right:10px}
   .p-id{top:30px;right:52px}
   body[data-resizing="1"]{cursor:grabbing}
+
+  /* -------- 面板收起後的把手（手機：底部橫條）
+     像音樂 app 的迷你播放列：貼在底部、一列脈絡 chip、點了 sheet 才升上來。
+     高 48px + 安全區；主區域底部已經留了 40vh，不會被蓋住。 */
+  .p-edge{
+    position:fixed;left:0;right:0;bottom:0;z-index:16;width:auto;height:auto;
+    flex-direction:row;justify-content:flex-start;gap:8px;
+    padding:8px 12px calc(8px + env(safe-area-inset-bottom));
+    border-left:0;border-top:1px solid var(--line);
+    box-shadow:0 -8px 30px rgba(0,0,0,.45);overflow-x:auto;scrollbar-width:none;
+  }
+  .p-edge::-webkit-scrollbar{display:none}
+  .p-edge button{
+    width:auto;height:36px;border-radius:18px;padding:0 12px 0 6px;
+    display:inline-flex;align-items:center;gap:7px;flex:0 0 auto;font-size:12.5px;
+  }
+  .p-edge button img{width:26px;height:26px;border-radius:50%}
+  .p-edge button:hover{transform:none}
+  .p-edge .pe-x{margin-top:0;margin-left:auto;width:36px;padding:0}
+  .p-edge .pe-t{display:inline}
+  .p-edge .pe-i{display:none}            /* 手機有文字標籤，Σ／AI 這種代字就不用了 */
+  .p-edge button:has(.pe-i){padding-left:12px}
 }
 @media (prefers-reduced-motion:reduce){
   *{transition-duration:.01ms!important;animation-duration:.01ms!important}
@@ -1271,6 +1313,9 @@ body[data-resizing="1"]{cursor:col-resize;user-select:none}
       <main class="main" id="main"></main>
     </div>
 
+    <!-- 面板收起時的把手：脈絡還在（英雄、配裝欄）就露出對應的圖示，點了重開。
+         桌機是貼在右緣的直條，手機是貼在底部的橫條。 -->
+    <nav class="p-edge" id="pedge" hidden aria-label="panel"></nav>
     <aside class="panel" id="panel" data-open="0" aria-live="polite">
       <div class="handle" id="handle" role="separator" aria-orientation="vertical"
            tabindex="0" title="拖曳調整寬度 · 雙擊重設"></div>
@@ -1882,6 +1927,7 @@ function renderHeroPage(){
    所以每個機制標籤都是可以點的入口，直接帶回裝備清單。 */
 function openHero(id){
   if (!HERO[id]) return;
+  edgeOff = false;
   S.hero = id; localStorage.setItem('ud.hero', id);
   S.pscroll.hero = 0;
   paintHero();
@@ -2500,6 +2546,7 @@ function afterLoadChange(){
   renderLoad();
   if (S.ptab === 'sum' && panel.dataset.open === '1') openPanel('sum', {keepScroll: true});
   else if (panel.dataset.open === '1') renderTabs();   // 「總計」頁籤會隨配裝欄有無出現
+  else renderEdge();
 }
 function loadAdd(id){
   if (S.load.length >= MAXSLOT) return false;
@@ -2766,6 +2813,29 @@ function renderTabs(){
 const closeBtn = () => `<button class="p-close" id="pclose" title="${esc(t('close'))}"
         aria-label="${esc(t('close'))}">✕</button>`;
 
+/* 面板收起時的把手。只列「持久」脈絡（英雄／總計／AI），「這件裝備」關掉就沒了。
+   最後一顆 ✕ 是「連把手一起收」—— 給不想看到它的人一個出口；
+   之後再點英雄或裝備，把手會自己回來。 */
+let edgeOff = false;
+function renderEdge(){
+  const box = $('#pedge'), L = li();
+  const avail = PTABS.filter(k => k !== 'item' && tabAvail(k));
+  const show = panel.dataset.open !== '1' && avail.length > 0 && !edgeOff;
+  box.hidden = !show;
+  if (!show) return;
+  const lab = k => k === 'hero' ? HERO[S.hero].n[L] : k === 'sum' ? t('loTotal') : t('ptAI');
+  const ico = k => k === 'hero' ? `<img src="${HERO[S.hero].icon}" alt="">`
+                 : `<i class="pe-i">${k === 'sum' ? 'Σ' : 'AI'}</i>`;
+  box.innerHTML = avail.map(k => `<button data-edge="${k}" title="${esc(lab(k))}">${ico(k)}<span class="pe-t">${esc(lab(k))}</span></button>`).join('') +
+    `<button class="pe-x" data-edge-off title="${esc(t('close'))}" aria-label="${esc(t('close'))}">✕</button>`;
+}
+$('#pedge').addEventListener('click', e => {
+  const x = e.target.closest('[data-edge-off]');
+  if (x){ edgeOff = true; renderEdge(); return; }
+  const b = e.target.closest('[data-edge]'); if (!b) return;
+  openPanel(b.dataset.edge, {keepScroll: true});
+});
+
 /* 唯一的開面板入口。要求的頁籤沒有脈絡就退到有的那個；一個都沒有就關。 */
 function openPanel(tab, opts){
   opts = opts || {};
@@ -2781,7 +2851,7 @@ function openPanel(tab, opts){
   else if (tab === 'sum') renderSumTab();
   else if (tab === 'ai') renderAITab();
   else renderItemTab();
-  renderTabs();
+  renderTabs(); renderEdge();
   $('#pclose').onclick = closePanel;
   pbody.scrollTop = opts.keepScroll ? (S.pscroll[tab] || 0) : 0;
   /* 已經開著時換內容 -> 淡入；第一次開啟 -> 整片滑入就夠了 */
@@ -2798,6 +2868,7 @@ function closePanel(){
   panel.style.height = '';
   setScrim();
   history.replaceState(null, '', location.pathname + location.search);
+  renderEdge();
 }
 const closeItem = closePanel;                 // 舊名字，很多地方還在用
 
@@ -2860,6 +2931,7 @@ function buildCard(b){
 /* ---------------------------------------------------------------- render: panel */
 function openItem(id, scroll){
   if (!ITEMS[id]) return;
+  edgeOff = false;
   S.sel = id;
   S.pscroll.item = 0;
   const wasClosed = panel.dataset.open !== '1';
@@ -3190,6 +3262,7 @@ $('#mode').addEventListener('click', e => {
      只重驗一次（某些頁籤在新模式下可能不存在，例如離開配裝模式後的「總計」）。 */
   if (S.mode === 'build' && loadAll().length) openPanel('sum');
   else if (panel.dataset.open === '1') openPanel(S.ptab, {keepScroll: true});
+  else renderEdge();
   paintRelations(); paintHero();
 });
 function applyMode(){
@@ -3407,7 +3480,7 @@ $('#lang').addEventListener('click', e => {
   const b = e.target.closest('button'); if (!b) return;
   S.lang = b.dataset.v; localStorage.setItem('ud.lang', S.lang);
   applyLang(); fillRank(); renderRail(); renderGrid(); renderLoad();
-  if (panel.dataset.open === '1') openPanel(S.ptab, {keepScroll: true});
+  if (panel.dataset.open === '1') openPanel(S.ptab, {keepScroll: true}); else renderEdge();
 });
 const rankSel = $('#rank');
 function fillRank(){
@@ -3618,6 +3691,8 @@ else if (start && ITEMS[start]) openItem(start, true);
 else if (S.mode === 'build' && loadAll().length) openPanel('sum');
 /* 在英雄頁重整：剛才看的那隻還在 */
 else if (S.mode === 'hero' && S.hero && HERO[S.hero]) openPanel(S.ptab === 'ai' ? 'ai' : 'hero');
+else renderEdge();
+/* 語言切換時把手上的名字也要換 */
 })();
 </script>
 </body>
