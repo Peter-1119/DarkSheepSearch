@@ -110,6 +110,44 @@ svg.sc .hit{fill:transparent}
 .bars .v.na{color:var(--ink-3)}
 .bars .src{grid-column:2/-1;color:var(--ink-3);font-size:10.5px;margin:-2px 0 2px}
 
+/* -------- 排名：一個維度排序的長條清單 + 每列一條 11 根的指紋 */
+.rank{margin-top:16px;background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.rank .rh{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;padding:12px 14px 8px}
+.rank .rh h2{margin:0;font-size:14px}
+.rank .rh .how{margin-left:auto;font-size:11.5px;color:var(--ink-3)}
+.rank .dims{display:flex;flex-wrap:wrap;gap:5px;padding:0 14px 10px}
+.rank .dims .sep{width:1px;height:18px;background:var(--line-2);margin:0 4px;align-self:center}
+.rank .dims .chip{padding:4px 9px;font-size:12px}
+.rank .vt{display:flex;gap:2px;background:var(--surface-2);border:1px solid var(--line);border-radius:8px;padding:2px}
+.rank .vt button{padding:3px 9px;border:0;background:none;border-radius:6px;color:var(--ink-2);font-size:12px}
+.rank .vt button[aria-pressed="true"]{background:var(--surface);color:var(--ink)}
+.rl{display:grid;grid-template-columns:34px 118px minmax(120px,1fr) 42px auto;gap:0 10px;align-items:center;padding:0 14px 12px}
+.rl > *{min-width:0}
+.rl .hdr{grid-column:1/-1;display:grid;grid-template-columns:subgrid;color:var(--ink-3);font-size:10.5px;letter-spacing:.06em;
+  text-transform:uppercase;padding:4px 0 6px;border-bottom:1px solid var(--line);margin-bottom:4px}
+.rl .hdr .fpl{display:flex;gap:2px}
+.rl .hdr .fpl i{display:inline-block;width:8px;text-align:center;font-style:normal;font-size:9px;color:var(--ink-3);cursor:help}
+.rl .hdr .fpl i.on{color:var(--ink)}
+.rl .row{display:contents;cursor:pointer}
+.rl .row > *{padding:4px 0;border-bottom:1px solid color-mix(in srgb,var(--line) 55%,transparent);transition:background var(--dur)}
+.rl .row:hover > *{background:color-mix(in srgb,var(--surface-2) 70%,transparent)}
+.rl .row.pin > *{background:color-mix(in srgb,var(--accent) 9%,transparent)}
+.rl .row img{width:26px;height:26px;border-radius:7px;border:2px solid var(--sc);object-fit:cover;display:block}
+.rl .row .nm{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rl .row .nm b{font-weight:600}
+.rl .row .nm span{color:var(--ink-3);font-size:11px;margin-left:5px}
+.rl .row .bar{height:12px;border-radius:6px;background:color-mix(in srgb,var(--line-2) 60%,transparent);overflow:hidden}
+.rl .row .bar.na{background:repeating-linear-gradient(135deg,var(--line) 0 3px,transparent 3px 6px)}
+.rl .row .bar i{display:block;height:100%;border-radius:6px;background:var(--bar)}
+.rl .row .v{text-align:right;font-variant-numeric:tabular-nums;color:var(--ink)}
+.rl .row .v.na{color:var(--ink-3)}
+/* 指紋：11 根固定順序的小直條，被選的那根用深色跟主長條對上 */
+.fp{display:flex;align-items:flex-end;gap:2px;height:26px}
+.fp i{display:block;width:8px;border-radius:2px 2px 0 0;background:color-mix(in srgb,var(--q7) 45%,transparent);min-height:1px}
+.fp i.on{background:var(--bar)}
+.fp i.na{background:repeating-linear-gradient(135deg,var(--line) 0 2px,transparent 2px 4px);height:26px !important;opacity:.6}
+@media (max-width:760px){.rl{grid-template-columns:30px 96px 1fr 36px}.rl .fp,.rl .hdr .fpl{display:none}.rl .row .nm span{display:none}}
+
 /* -------- 總表 */
 .tbl{margin-top:16px;background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden}
 .tbl h2{margin:0;padding:12px 14px 8px;font-size:14px;display:flex;gap:10px;align-items:baseline}
@@ -167,9 +205,13 @@ table.m td.c{color:#fff;text-shadow:0 1px 0 rgba(0,0,0,.5)}
   <aside class="side" id="side"></aside>
 </section>
 
-<section class="tbl">
-  <h2><span data-i="table">總表</span><span class="how" data-i="tableHow">點欄頭排序 · 數字是 0–100 的名次分位（100 = 全英雄最高）</span></h2>
-  <div class="scroll"><table class="m" id="m"></table></div>
+<section class="rank">
+  <div class="rh"><h2 data-i="rank">全英雄排名</h2>
+    <div class="vt" id="vt"><button data-vt="bars" aria-pressed="true" data-i="vtBars">長條</button><button data-vt="table" aria-pressed="false" data-i="vtTable">數字表</button></div>
+    <span class="how" data-i="rankHow">選一個維度排序 · 右邊的指紋是同一隻在 11 個配裝傾向上的形狀</span></div>
+  <div class="dims" id="dims"></div>
+  <div class="rl" id="rl"></div>
+  <div class="scroll" id="tblwrap" hidden><table class="m" id="m"></table></div>
 </section>
 
 <footer class="foot" id="foot"></footer>
@@ -190,7 +232,8 @@ const UI = {
        gA:'配裝傾向', gX:'複合軸', gB:'基礎底子', gC:'作者評級', gD:'程式碼旗標',
        hero:'英雄', attrH:'屬性', tier:'強度', late:'後期', roleH:'定位', src:'來源配裝：',
        str:'力量', agi:'敏捷', int:'智力', lock:'帳號鎖定', manual:'不在隨機池', legPin:'釘選', legDim:'被篩掉',
-       fromBuild:'從推薦配裝推導', pct:'名次分位',
+       fromBuild:'從推薦配裝推導', pct:'名次分位', rank:'全英雄排名', vtBars:'長條', vtTable:'數字表',
+       rankHow:'選一個維度排序 · 右邊的指紋是同一隻在 11 個配裝傾向上的形狀，順序固定，方便比對',
        foot1:'怎麼讀', foot2:'四組維度各自的來源：',
        fA:'配裝傾向 —— 每套推薦配裝把 6 格＋不佔格的道具數值加總，同一隻英雄取各套的最大值（＝這隻「能走多深」），再跨 57 隻換成 0～100 的名次分位。用名次是因為技能強度 2275 跟穿透 165 沒有共同尺度。',
        fX:'複合軸 —— 幾個配裝分位的平均，滑到軸名會顯示公式。',
@@ -208,7 +251,8 @@ const UI = {
        gA:'Build lean', gX:'Composite', gB:'Base stats', gC:'Author ratings', gD:'Code flags',
        hero:'Hero', attrH:'Attr', tier:'Tier', late:'Late', roleH:'Roles', src:'From build: ',
        str:'Strength', agi:'Agility', int:'Intelligence', lock:'account-locked', manual:'not in random pool', legPin:'pinned', legDim:'filtered out',
-       fromBuild:'derived from recommended builds', pct:'percentile',
+       fromBuild:'derived from recommended builds', pct:'percentile', rank:'All heroes ranked', vtBars:'Bars', vtTable:'Numbers',
+       rankHow:'Pick a dimension to sort by · the fingerprint on the right is the same hero across the 11 build-lean axes, always in the same order',
        foot1:'How to read', foot2:'Where each group of axes comes from:',
        fA:'Build lean — each recommended build sums its 6 slots + slot-free items; a hero takes the max across its builds (how far it can lean), then ranked 0–100 across 57 heroes. Ranks because 2275 spell power and 165 penetration share no scale.',
        fX:'Composite — the mean of a few build-lean percentiles; hover an axis name for the formula.',
@@ -226,7 +270,8 @@ const UI = {
        gA:'Уклон сборок', gX:'Составные', gB:'База', gC:'Оценки автора', gD:'Флаги кода',
        hero:'Герой', attrH:'Атр.', tier:'Ранг', late:'Поздн.', roleH:'Роли', src:'Из сборки: ',
        str:'Сила', agi:'Ловкость', int:'Разум', lock:'привязан к аккаунту', manual:'не в случайном пуле', legPin:'закреплён', legDim:'отфильтрован',
-       fromBuild:'из рекомендованных сборок', pct:'процентиль',
+       fromBuild:'из рекомендованных сборок', pct:'процентиль', rank:'Рейтинг всех героев', vtBars:'Полосы', vtTable:'Числа',
+       rankHow:'Выберите ось для сортировки · «отпечаток» справа — тот же герой по 11 осям сборок, порядок всегда одинаковый',
        foot1:'Как читать', foot2:'Откуда берётся каждая группа осей:',
        fA:'Уклон сборок — каждая сборка суммирует значения 6 слотов + предметов вне слотов; у героя берётся максимум по сборкам, затем ранг 0–100 среди 57 героев.',
        fX:'Составные — среднее нескольких процентилей; формула по наведению на название оси.',
@@ -239,7 +284,8 @@ const UI = {
 };
 const ATTR_C = {str: 'var(--str)', agi: 'var(--agi)', int: 'var(--int)'};
 const S = {lang: localStorage.getItem('ud.lang') || 'zh', x: 'out', y: 'tank',
-           attr: {str: true, agi: true, int: true}, roles: new Set(), q: '', pins: [], sort: null, sortDir: -1};
+           attr: {str: true, agi: true, int: true}, roles: new Set(), q: '', pins: [], sort: null, sortDir: -1,
+           rdim: 'out', vt: 'bars'};
 const li = () => LI[S.lang];
 const t = k => UI[S.lang][k] || k;
 const AX = Object.fromEntries(LAB.axes.map(a => [a.k, a]));
@@ -469,6 +515,44 @@ function renderTable(){
     </tr>`).join('')}</tbody>`;
 }
 
+/* ---------------------------------------------------------------- 排名清單 */
+const FP_DIMS = LAB.axes.filter(a => a.g === 'A').map(a => a.k);   // 指紋的 11 根，順序固定
+/* 複合軸由哪幾根指紋撐起來：選它時把那幾根點亮，讀者就知道分數從哪來 */
+const COMP_OF = {out: ['sp', 'pen', 'atk', 'stat'], tank: ['hp', 'armor', 'thorn', 'mres'],
+                 skill: ['sp', 'mod', 'cd'], auto: ['atk', 'as', 'pen']};
+const litDims = k => new Set(COMP_OF[k] || [k]);
+const RANK_DIMS = [['X', LAB.axes.filter(a => a.g === 'X').map(a => a.k)],
+                   ['A', FP_DIMS], ['B', ['b_sum', 'b_str', 'b_agi', 'b_int']], ['C', ['unlock']], ['D', ['nsp']]];
+function renderRank(){
+  const L = li();
+  $('#dims').innerHTML = RANK_DIMS.map(([g, ks], i) => (i ? '<span class="sep"></span>' : '') +
+    ks.map(k => `<button class="chip" data-rdim="${k}" aria-pressed="${S.rdim === k}" title="${esc(AX[k].note)}">${esc(axName(k))}</button>`).join('')).join('');
+  $('#vt').querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.vt === S.vt)));
+  $('#rl').hidden = S.vt !== 'bars';
+  $('#tblwrap').hidden = S.vt !== 'table';
+  if (S.vt !== 'bars') return;
+  const k = S.rdim;
+  const rows = H.filter(visible).slice().sort((a, b) => {
+    const va = val(a, k), vb = val(b, k);
+    if (va == null && vb == null) return 0;
+    if (va == null) return 1; if (vb == null) return -1;
+    return vb - va || a.n[L].localeCompare(b.n[L]);
+  });
+  const lit = litDims(k);
+  const fp = h => `<span class="fp" title="${esc(FP_DIMS.map(d => axName(d) + ' ' + (val(h, d) == null ? '—' : val(h, d).toFixed(0))).join(' · '))}">${
+    FP_DIMS.map(d => { const v = val(h, d);
+      return v == null ? '<i class="na"></i>' : `<i class="${lit.has(d) ? 'on' : ''}" style="height:${Math.max(1, v * 0.26)}px"></i>`; }).join('')}</span>`;
+  $('#rl').innerHTML = `<div class="hdr"><span></span><span>${esc(t('hero'))}</span><span>${esc(axName(k))}</span><span></span>
+      <span class="fpl">${FP_DIMS.map(d => `<i class="${lit.has(d) ? 'on' : ''}" title="${esc(axName(d))}">${esc(axName(d).slice(0, 1))}</i>`).join('')}</span></div>` +
+    rows.map(h => { const v = val(h, k), na = v == null;
+      return `<div class="row${S.pins.includes(h.id) ? ' pin' : ''}" data-pin="${h.id}">
+        <img src="${h.icon}" alt="" style="--sc:${ATTR_C[h.attr]}">
+        <span class="nm"><b>${esc(h.n[L])}</b><span>${h.roles.map(r => esc(r[L])).join('・')}</span></span>
+        <span class="bar${na ? ' na' : ''}"><i style="width:${na ? 0 : v}%"></i></span>
+        <span class="v${na ? ' na' : ''}">${na ? '—' : v.toFixed(0)}</span>
+        ${fp(h)}</div>`; }).join('');
+}
+
 function renderFoot(){
   $('#foot').innerHTML = `<b>${esc(t('foot1'))}</b> — ${esc(t('foot2'))}
     <ul><li><b>${esc(t('gA'))}</b>：${esc(t('fA'))}</li><li><b>${esc(t('gX'))}</b>：${esc(t('fX'))}</li>
@@ -476,7 +560,7 @@ function renderFoot(){
     ${esc(t('foot3'))}<br>${esc(t('foot4'))}<br><br>${esc(t('foot5'))}`;
 }
 
-function renderAll(){ renderCtrl(); renderPlot(); renderSide(); renderTable(); renderFoot(); }
+function renderAll(){ renderCtrl(); renderPlot(); renderSide(); renderRank(); renderTable(); renderFoot(); }
 
 /* ---------------------------------------------------------------- 事件 */
 document.querySelector('.ctrl').addEventListener('click', e => {
@@ -489,7 +573,7 @@ document.querySelector('.ctrl').addEventListener('click', e => {
 });
 $('#ax').addEventListener('change', e => { S.x = e.target.value; renderAll(); });
 $('#ay').addEventListener('change', e => { S.y = e.target.value; renderAll(); });
-$('#q').addEventListener('input', e => { S.q = e.target.value.trim(); renderPlot(); renderTable(); });
+$('#q').addEventListener('input', e => { S.q = e.target.value.trim(); renderPlot(); renderRank(); renderTable(); });
 $('#lang').addEventListener('click', e => {
   const b = e.target.closest('button'); if (!b) return;
   S.lang = b.dataset.v; localStorage.setItem('ud.lang', S.lang); renderAll();
@@ -509,10 +593,15 @@ function togglePin(id){
   const i = S.pins.indexOf(id);
   if (i >= 0) S.pins.splice(i, 1);
   else { if (S.pins.length >= 3) S.pins.shift(); S.pins.push(id); }
-  renderPlot(); renderSide(); renderTable();
+  renderPlot(); renderSide(); renderRank(); renderTable();
 }
 sc.addEventListener('click', e => { const m = e.target.closest('.mk'); if (m) togglePin(m.dataset.id); });
 $('#side').addEventListener('click', e => { const b = e.target.closest('[data-unpin]'); if (b) togglePin(b.dataset.unpin); });
+document.querySelector('.rank').addEventListener('click', e => {
+  const d = e.target.closest('[data-rdim]'); if (d){ S.rdim = d.dataset.rdim; renderRank(); return; }
+  const v = e.target.closest('[data-vt]');   if (v){ S.vt = v.dataset.vt; renderRank(); return; }
+  const p = e.target.closest('#rl [data-pin]'); if (p) togglePin(p.dataset.pin);
+});
 $('#m').addEventListener('click', e => {
   const th = e.target.closest('th[data-sort]');
   if (th){ const k = th.dataset.sort; if (S.sort === k) S.sortDir *= -1; else { S.sort = k; S.sortDir = k === 'name' ? 1 : -1; } renderTable(); return; }
