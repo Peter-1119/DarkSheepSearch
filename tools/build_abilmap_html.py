@@ -54,6 +54,7 @@ td.nm .k{font-size:10.5px;color:var(--ink-3);border:1px solid var(--line-2);bord
 .tag.fn{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:10.5px}
 .tag.on{background:var(--surface-2);border-color:var(--accent);color:var(--ink)}
 .tag.eng{border-style:dashed}
+.tag.own{color:var(--accent)}
 td.nat{color:var(--ink-3);font-style:italic}
 .foot{margin-top:18px;color:var(--ink-3);font-size:12px;line-height:1.7}
 </style></head><body><div class="wrap">
@@ -119,7 +120,7 @@ function renderList(){
         <td>${a.flags.map(f => tag('', (D.names.flag[f]||[f])[0], S.flag.has(f))).join('')}${a.dmg_calls ? tag('', '傷害呼叫×' + a.dmg_calls) : ''}</td>
         <td>${a.scale.map(s => tag('', (D.names.scale[s]||[s])[0], S.scale.has(s))).join('')}</td>
         <td>${a.kr.concat(a.kw.filter(k => !a.kr.includes(k))).filter(k => KEYN[k]).map(k => `<span class="tag${S.key.has(String(k)) ? ' on' : ''}" title="${esc(KEYN[k])}">${a.kw.includes(k) && !a.kr.includes(k) ? '寫' : a.kw.includes(k) ? '讀寫' : ''} ${k}</span>`).join('')}</td>
-        <td>${a.fns.filter(f => ENG.has(f)).map(f => tag('fn eng', f, S.fn.has(f))).join('')}${a.fns.filter(f => !ENG.has(f)).slice(0, 4).map(f => tag('fn', f, S.fn.has(f))).join('')}${a.fns.filter(f => !ENG.has(f)).length > 4 ? `<span class="tag">+${a.fns.filter(f => !ENG.has(f)).length - 4}</span>` : ''}</td>
+        <td>${a.own_fns.filter(f => ENG.has(f)).map(f => tag('fn eng own', '實作於 ' + f, S.fn.has(f))).join('')}${a.fns.filter(f => ENG.has(f)).map(f => tag('fn eng', f, S.fn.has(f))).join('')}${a.fns.filter(f => !ENG.has(f)).slice(0, 4).map(f => tag('fn', f, S.fn.has(f))).join('')}${a.fns.filter(f => !ENG.has(f)).length > 4 ? `<span class="tag">+${a.fns.filter(f => !ENG.has(f)).length - 4}</span>` : ''}</td>
         <td>${a.attack.map(x => tag('', x)).join('')}</td></tr>`).join('')}</tbody></table></div></details>`;
   }
   $('#list').innerHTML = out || '<p class="stat">沒有符合的技能</p>';
@@ -134,7 +135,7 @@ document.querySelector('.ctrl').addEventListener('click', e => {
 });
 $('#list').addEventListener('click', e => {
   const t = e.target.closest('.tag.fn'); if (!t) return;
-  const f = t.textContent.trim(); S.fn.has(f) ? S.fn.delete(f) : S.fn.add(f); render();
+  const f = t.textContent.trim().replace(/^實作於 /, ''); S.fn.has(f) ? S.fn.delete(f) : S.fn.add(f); render();
 });
 $('#q').addEventListener('input', e => { S.q = e.target.value.trim(); renderList(); });
 $('#clear').addEventListener('click', () => { for (const k of ['status','flag','scale','fn','key']) S[k].clear(); S.q = ''; $('#q').value = ''; render(); });
