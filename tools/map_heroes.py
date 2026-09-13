@@ -157,6 +157,33 @@ def parse_profile(txt):
     return out
 
 
+# 技能沒有自訂圖示（aart／arar 都空）時，遊戲會顯示它所根據的原版技能的預設圖示。
+# 這張表就是那些預設值（路徑都已在 war3.mpq／War3x.mpq 驗證過存在）；
+# 沒列到的 base 就維持空白，寧可缺圖也不要放錯圖。
+BASE_ICON = {
+    'AOcr': 'ReplaceableTextures\\PassiveButtons\\PASBTNCriticalStrike.blp',
+    'ACct': 'ReplaceableTextures\\PassiveButtons\\PASBTNCriticalStrike.blp',
+    'ACba': 'ReplaceableTextures\\PassiveButtons\\PASBTNBrilliance.blp',
+    'Amgl': 'ReplaceableTextures\\PassiveButtons\\PASBTNUpgradeMoonGlaive.blp',
+    'AHtc': 'ReplaceableTextures\\CommandButtons\\BTNThunderClap.blp',
+    'AHav': 'ReplaceableTextures\\CommandButtons\\BTNAvatar.blp',
+    'AHtb': 'ReplaceableTextures\\CommandButtons\\BTNStormBolt.blp',
+    'Ahrp': 'ReplaceableTextures\\CommandButtons\\BTNRepair.blp',
+    'AHhb': 'ReplaceableTextures\\CommandButtons\\BTNHolyBolt.blp',
+    'ANdh': 'ReplaceableTextures\\CommandButtons\\BTNStrongDrink.blp',
+    'AOwk': 'ReplaceableTextures\\CommandButtons\\BTNWindWalkOn.blp',
+    'AHfs': 'ReplaceableTextures\\CommandButtons\\BTNWallOfFire.blp',
+    'ACmf': 'ReplaceableTextures\\CommandButtons\\BTNManaFlare.blp',
+    'AOww': 'ReplaceableTextures\\CommandButtons\\BTNWhirlwind.blp',
+    'Aens': 'ReplaceableTextures\\CommandButtons\\BTNEnsnare.blp',
+    'Aspb': 'ReplaceableTextures\\CommandButtons\\BTNSpellBookBLS.blp',
+    'AIva': 'ReplaceableTextures\\CommandButtons\\BTNVampiricAura.blp',
+    'Aroc': 'ReplaceableTextures\\CommandButtons\\BTNScatterRockets.blp',
+    'AIbk': 'ReplaceableTextures\\CommandButtons\\BTNBlink.blp',
+    'AInv': 'ReplaceableTextures\\CommandButtons\\BTNPackBeast.blp',
+}
+
+
 def _first(v):
     """有多個等級的技能，欄位會是 list（每級一段文字），取第一段。"""
     return v[0] if isinstance(v, list) else v
@@ -350,7 +377,8 @@ def _abil(A, aid, kind, depth=0, stock=None):
         # 原因：很多技能沒有自訂 arut，那裡殘留著預設的擊退說明 —— 70 個技能
         # 因此拿到同一段不相干的文字。aub1 則是遊戲裡實際會顯示的那一段。
         'text_ru': clean(_first(a.get('aub1')) or '') or clean(_first(a.get('arut')) or ''),
-        'icon': (_first(a.get('aart')) or _first(a.get('arar')) or '').strip(),
+        'icon': (_first(a.get('aart')) or _first(a.get('arar'))
+                 or BASE_ICON.get(a.get('_base') or aid, '')).strip(),
         'hotkey': (_first(a.get('ahky')) or '').strip(),
         'levels': _first(a.get('alev')),
         'perlv': _levels(a),          # 隨等級變動的數值

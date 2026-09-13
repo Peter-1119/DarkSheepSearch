@@ -19,6 +19,7 @@ if (-not (Test-Path $mapFile)) {
 
 $steps = @(
     @{ f = 'refresh_db.py';      a = $mapFile; d = '讀地圖 -> tools/db_items.json + 缺少的圖示' }
+    @{ f = 'map_icons.py';       a = $mapFile; d = '讀地圖 -> images/heroes/ 英雄與技能圖示（含天賦、皮膚）' }
     @{ f = 'build_heroes.py';    a = $mapFile; d = '讀地圖 -> data/heroes.json' }
     @{ f = 'build_data2.py';     d = '合併資料 + 修正圖示色彩 -> data/items.json, images/' }
     @{ f = 'build_site_data.py'; d = '三語資料              -> data/site.json' }
