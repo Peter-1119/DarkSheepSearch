@@ -45,3 +45,8 @@ tools/check.js
 # 直接從 .w3x 解碼出來的圖示快取。跑 tools/refresh_db.py 會重建，
 # 實際輸出在 images/（有進版控），所以這裡不留。
 data/icons_map/
+
+# ---------------------------------------------------------------- 實驗頁，還沒準備好給新手看，先不發布
+# 產生器（tools/build_lab.py、tools/build_abilmap*.py）照常進版控，只有輸出的頁面不上。
+lab.html
+abilmap.html
