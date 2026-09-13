@@ -77,8 +77,10 @@ def fspans(jass):
 
 
 def main():
-    mp = json.load(io.open(os.path.join(HERE, 'version.json'),
-                           encoding='utf-8'))['map_file']
+    global V
+    V = json.load(io.open(os.path.join(HERE, 'version.json'),
+                  encoding='utf-8'))
+    mp = V['map_file']
     m = MPQ(mp)
     jass = m.read('war3map.j').decode('utf-8', 'replace')
     lines, spans = fspans(jass)
@@ -143,7 +145,7 @@ def main():
             L.append('')
 
     L += ['---', '',
-          '*由 `tools/build_engineref.py` 從 UD_v3.81 地圖檔產生。*', '']
+          '*由 `tools/build_engineref.py` 從 %s 地圖檔產生。*' % V['map_version'], '']
     doc = '\n'.join(L)
     d = os.path.dirname(OUT)
     if not os.path.isdir(d):

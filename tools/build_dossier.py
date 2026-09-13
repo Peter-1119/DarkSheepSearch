@@ -681,7 +681,7 @@ def hero_doc(h, rec, idx, A, U, spans):
 
     L.append('---')
     L.append('')
-    L.append('*由 `tools/build_dossier.py` 從 UD_v3.81 地圖檔產生。*')
+    L.append('*由 `tools/build_dossier.py` 從 %s 地圖檔產生。*' % V['map_version'])
     L.append('*機制通則、配裝規則與輸出格式見 `tools/BUILD_BRIEF.md`；*')
     L.append('*道具數值見 `data/dossier/_items.md`。*')
     return '\n'.join(L) + '\n'
@@ -689,8 +689,10 @@ def hero_doc(h, rec, idx, A, U, spans):
 
 def main():
     want = set(sys.argv[1:])
-    mp = json.load(io.open(os.path.join(HERE, 'version.json'),
-                           encoding='utf-8'))['map_file']
+    global V
+    V = json.load(io.open(os.path.join(HERE, 'version.json'),
+                  encoding='utf-8'))
+    mp = V['map_file']
     m = MPQ(mp)
     jass = m.read('war3map.j').decode('utf-8', 'replace')
     A = w3obj.parse(m.read('war3map.w3a'), True)

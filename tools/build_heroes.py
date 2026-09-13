@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """產生 data/heroes.json：英雄資料 + 與裝備的連結。
 
-資料全部來自 UD_v3.81 地圖本體：
+資料全部來自地圖本體（版本見 version.json）：
   單位/技能定義 -> war3map.w3u / war3map.w3a
   可選名單、主屬性、解鎖門檻 -> war3map.j 的 Random* 函式
   「這個英雄的技能吃不吃裝備技能威力」-> 直接看該技能的 JASS 有沒有讀 real key 18

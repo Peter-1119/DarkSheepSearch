@@ -2365,4 +2365,4 @@ endfunction
 
 ---
 
-*由 `tools/build_engineref.py` 從 UD_v3.81 地圖檔產生。*
+*由 `tools/build_engineref.py` 從 UD_v3.82fix 地圖檔產生。*

@@ -1,8 +1,8 @@
 {
  "_說明": [
   "狀態（status）的完整說明。地圖物件資料裡沒有這些，是玩家在遊戲內的圖鑑截圖，",
-  "注意：截圖是遊戲內的說明，跟程式碼不一定一致。已知冰凍那兩條與 war3map.j 不符，",
-  "已改成寫實際行為並註明圖鑑寫什麼（見 地圖問題回報.md B-24）。",
+  "注意：截圖是遊戲內的說明，跟程式碼不一定一致。3.81 時冰凍那兩條與 war3map.j 不符，",
+  "3.82fix 兩邊都改到一致了（程式碼英雄 2.5%、圖鑑 +50%），見 地圖問題回報.md B-24。",
   "原圖存於 data/status/*.jpg（俄文版）。俄文欄位盡量照原文，中英為翻譯。",
   "n = 三語名稱；q = 偵測用的查詢字串（俄文用詞幹，因為是屈折語）；",
   "kind = dmg 表示「會造成傷害的狀態」；sum = 一句話摘要；",
@@ -245,14 +245,14 @@
     "нельзя применить против строений и техники"
    ],
    [
-    "被冰凍的目標受到「穿透」效果的傷害 +50%；若攻擊者持有「復仇之手」且目標是英雄則 +100%（遊戲內圖鑑寫 +75%，與程式碼不符）",
-    "Frozen targets take 50% more Penetration damage; 100% if the attacker holds Hand of Vengeance and the target is a hero (the in-game codex says 75%, which does not match the code)",
-    "Замороженные цели получают на 50% больше урона от «Пробития»; на 100%, если у атакующего «Рука возмездия», а цель — герой (внутриигровой справочник указывает 75% — не совпадает с кодом)"
+    "被冰凍的目標受到「穿透」效果的傷害 +50%；若攻擊者持有「復仇之手」且目標是英雄則 +100%",
+    "Frozen targets take 50% more Penetration damage; 100% if the attacker holds Hand of Vengeance and the target is a hero",
+    "Замороженные цели получают на 50% больше урона от «Пробития»; на 100%, если у атакующего «Рука возмездия», а цель — герой"
    ],
    [
-    "對已冰凍的目標再次施加會解除冰凍，並造成傷害：**對英雄是最大生命的 25%**，對其他單位 5%（遊戲內圖鑑寫「5%，對英雄 2.5%」——數字與方向都與程式碼不符）",
-    "Re-applying to an already frozen target removes the freeze and deals damage: **25% of max health against heroes**, 5% against everything else (the in-game codex says \"5%, 2.5% against heroes\" - both the number and the direction disagree with the code)",
-    "Повторное применение к уже замороженной цели снимает заморозку и наносит урон: **25% от макс. здоровья по героям**, 5% по остальным (внутриигровой справочник говорит «5%, 2.5% против героев» — не совпадает ни число, ни направление)"
+    "對已冰凍的目標再次施加會解除冰凍，並造成傷害：最大生命的 5%，對英雄 2.5%（3.81 時程式碼對英雄是 25%，3.82fix 改成跟圖鑑一致）",
+    "Re-applying to an already frozen target removes the freeze and deals damage: 5% of max health, 2.5% against heroes (in 3.81 the code used 25% against heroes; 3.82fix matches the codex)",
+    "Повторное применение к уже замороженной цели снимает заморозку и наносит урон: 5% от макс. здоровья, 2.5% против героев (в 3.81 код использовал 25% по героям; в 3.82fix приведено к справочнику)"
    ],
    [
     "冰凍抗性（cold resist）使冰凍機率降低 75%",
