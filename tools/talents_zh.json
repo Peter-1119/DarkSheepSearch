@@ -16,6 +16,16 @@
     "Power rank: T2\nAttribute bonus / attribute growth per level bonus:\n+0 / +0\n+0 / +0\n+3 / +1\n\nYou receive 2 foundations for building base points."
    ]
   },
+  "A01S": {
+   "n": [
+    "物品欄擴充",
+    "Inventory Expansion"
+   ],
+   "t": [
+    "強度等級：T3\n屬性加成／每級屬性成長加成：\n+0 / +0\n+1 / +0\n+2 / +1\n\n物品欄格數增加至 6 格。",
+    "Power rank: T3\nAttribute bonus / attribute growth per level bonus:\n+0 / +0\n+1 / +0\n+2 / +1\n\nIncreases the number of item slots to 6."
+   ]
+  },
   "A02V": {
    "n": [
     "備用設計圖",
@@ -98,32 +108,32 @@
   },
   "A0CV": {
    "n": [
-    "貪婪之刃",
-    "Insatiable Blade"
+    "放血者",
+    "Bloodletter"
    ],
    "t": [
-    "擊殺敵方英雄可使英雄等級提升 1 級。達到最高等級後，這類擊殺將改為提高 25 點技能強度。",
-    "Killing enemy heroes increases the hero's level by 1. Upon reaching maximum level, such kills increase spell power by 25 instead."
+    "強度等級：T3\n屬性加成／每級屬性成長加成：\n+1 / +0\n+2 / +1\n+0 / +0\n\n「切割」的每一次打擊都會以 100% 機率對目標施加「虛弱」狀態。\n\n「鋼鐵旋風」的傷害降低 50%，但每一次打擊都有 50% 機率對敵人施加 325% 傷害的「流血」。",
+    "Power rank: T3\nAttribute bonus / attribute growth per level bonus:\n+1 / +0\n+2 / +1\n+0 / +0\n\nEvery strike of \"Lacerations\" applies the \"Weakness\" status to the target with a 100% chance.\n\n\"Steel Whirlwind\" deals 50% less damage, but every hit has a 50% chance to apply Bleed at 325% damage."
    ]
   },
   "A0D0": {
    "n": [
-    "無情幻影",
-    "Relentless Phantom"
+    "幻影",
+    "Phantom"
    ],
    "t": [
-    "若「切割」在其作用期間擊殺敵人，或造成暴擊傷害（在「專注」啟動時），則攻擊次數提高 1 次。擊殺敵方英雄可使「穿透」提高 2.5 點。",
-    "\"Lacerations\" increases its number of strikes by 1 if it kills an enemy during its duration or deals critical damage (while \"Concentration\" is active). Killing enemy heroes increases \"penetration\" by 2.5."
+    "強度等級：T3\n屬性加成／每級屬性成長加成：\n+2 / +1\n+3 / +1\n+0 / +0\n\n英雄獲得被動加成：對 0–1 級單位的傷害 +50%（狀態除外）。\n\n「切割」在擊殺敵人或造成暴擊傷害時，會多造成一次打擊。",
+    "Power rank: T3\nAttribute bonus / attribute growth per level bonus:\n+2 / +1\n+3 / +1\n+0 / +0\n\nThe hero gains a passive +50% damage bonus against level 0–1 units (except statuses).\n\n\"Lacerations\" deals an additional strike if it kills an enemy or deals critical damage."
    ]
   },
   "A0DM": {
    "n": [
-    "師範",
-    "Sensei"
+    "完美防禦",
+    "Perfect Defense"
    ],
    "t": [
-    "若擊殺敵人是在「專注」作用期間完成的，「戰鬥藝術」將給予英雄雙倍效果。擊殺敵方英雄可使「專注」的魔法傷害倍率提高 0.25。可透過指令「-i」查看累積進度。",
-    "\"Art of Combat\" grants the hero a doubled effect if the enemy kills were made while \"Concentration\" was active. Killing enemy heroes increases the magic damage multiplier of \"Concentration\" by 0.25. The accumulated progress can be checked with the \"-i\" command."
+    "強度等級：T3+\n屬性加成／每級屬性成長加成：\n+6 / +2\n+3 / +2\n+3 / +0\n\n你可以招架遠程單位的攻擊。近戰招架的觸發機率加倍。招架造成的暈眩持續 2 秒。",
+    "Power rank: T3+\nAttribute bonus / attribute growth per level bonus:\n+6 / +2\n+3 / +2\n+3 / +0\n\nYou can parry attacks from ranged units. Parrying in melee has double the trigger chance. The stun from a parry lasts 2 sec."
    ]
   },
   "A0F5": {
@@ -754,6 +764,26 @@
    "t": [
     "強度等級：T3+\n屬性加成／每級屬性成長加成：\n+20 / +3\n+0 / +0\n+3 / +1\n\n「地震衝擊」的擴散距離大幅增加（延伸裂縫的長度 +100%），技能傷害降低 50%。「地震衝擊」產生的爆裂距離起始點越遠，造成的傷害越高，最後也最遠的爆裂可獲得最高 +240% 的傷害加成。\n\n「野性符文」在英雄死亡後奪走 5 點力量。",
     "Power rank: T3+\nAttribute bonus / attribute growth per level bonus:\n+20 / +3\n+0 / +0\n+3 / +1\n\n\"Seismic Slam\" spreads much farther (+100% to the length of the diverging fissures), and the ability's damage is reduced by 50%. The blasts created by \"Seismic Slam\" deal more damage the farther they are from the starting point; the maximum damage bonus is +240% on the last and most distant blasts.\n\n\"Wild Runes\" takes away 5 Strength after the hero's death."
+   ]
+  },
+  "A10T": {
+   "n": [
+    "殘暴打擊",
+    "Brutal Strikes"
+   ],
+   "t": [
+    "強度等級：T3+\n屬性加成／每級屬性成長加成：\n+2 / +0\n+8 / +3\n+2 / +0\n\n「師範」對攻擊的暴擊傷害提高至 300%；對技能的暴擊傷害則依目標等級，每級額外提高 10%。",
+    "Power rank: T3+\nAttribute bonus / attribute growth per level bonus:\n+2 / +0\n+8 / +3\n+2 / +0\n\nThe critical damage of \"Sensei\" for attacks is raised to 300%; the critical damage for abilities is additionally increased by 10% per target level."
+   ]
+  },
+  "A10W": {
+   "n": [
+    "物品欄擴充",
+    "Inventory Expansion"
+   ],
+   "t": [
+    "強度等級：T3\n屬性加成／每級屬性成長加成：\n+0 / +0\n+1 / +0\n+2 / +1\n\n物品欄格數增加至 6 格。",
+    "Power rank: T3\nAttribute bonus / attribute growth per level bonus:\n+0 / +0\n+1 / +0\n+2 / +1\n\nIncreases the number of item slots to 6."
    ]
   },
   "S00B": {

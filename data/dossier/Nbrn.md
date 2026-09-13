@@ -1,6 +1,6 @@
 # 女武神 `Nbrn`（Валькирия）
 
-主屬性 **敏捷** · 背包 **6 格** · 解鎖 0 · 定位 刺客 · **不在隨機池**（只能手動挑）
+主屬性 **敏捷** · 背包 **6 格** · 解鎖 4000000 · 定位 刺客
 
 | | 初始 | 每級 |
 |---|---|---|
@@ -42,11 +42,11 @@
 每級變動：
   - 第 4 行：60 / 90 / 120 / 150 / 180
 
-物件欄位（原型 `ANcl`）：`Ncl1 = 0.20000000298023224`, `Ncl3 = 1`, `Ncl4 = 0.20000000298023224`, `Ncl5 = 0`, `Ncl6 = [None, 'channel']`, `acap = `, `acdn = 3.0`, `alev = 5`, `amcs = [20, 25, 30, 35, 40]`
+物件欄位（原型 `ANcl`）：`Ncl1 = 0.20000000298023224`, `Ncl3 = 1`, `Ncl4 = 0.20000000298023224`, `Ncl5 = 0`, `Ncl6 = [None, 'channel']`, `acap = `, `acdn = 5.0`, `alev = 5`, `amcs = [30, 37, 44, 51, 58]`
 
 實作：
 
-`Trig_HeroSkills56_Actions`　war3map.j:64681
+`Trig_HeroSkills56_Actions`　war3map.j:64800
 ```jass
 if Skill=='A07H' then
 set t=LoadTimerHandle(hash,GetHandleId(u),'A0AB')
@@ -76,11 +76,11 @@ call SaveInteger(hash,GetHandleId(u),'A0AB',0)
   - 第 5 行：15 / 20 / 25 / 30 / 35
   - 第 6 行：20 / 40 / 60 / 80 / 100
 
-物件欄位（原型 `ANcl`）：`Ncl1 = 0.20000000298023224`, `Ncl3 = 1`, `Ncl4 = 0.20000000298023224`, `Ncl5 = 0`, `Ncl6 = charm`, `acap = `, `acdn = 3.0`, `alev = 5`, `amcs = [20, 25, 30, 35, 40]`
+物件欄位（原型 `ANcl`）：`Ncl1 = 0.20000000298023224`, `Ncl3 = 1`, `Ncl4 = 0.20000000298023224`, `Ncl5 = 0`, `Ncl6 = charm`, `acap = `, `acdn = 5.0`, `alev = 5`, `amcs = [30, 37, 44, 51, 58]`
 
 實作：
 
-`Trig_HeroSkills56_Actions`　war3map.j:64687
+`Trig_HeroSkills56_Actions`　war3map.j:64806
 ```jass
 elseif Skill=='A0BD' then
 set t=LoadTimerHandle(hash,GetHandleId(u),'A0AB')
@@ -104,7 +104,7 @@ endif
 ```
 
 每級變動：
-  - 第 3 行：120 / 160 / 200 / 240 / 280
+  - 第 3 行：120 / 150 / 180 / 210 / 240
 
 物件欄位（原型 `Amgl`）：`aher = 1`, `alev = 5`
 
@@ -112,7 +112,7 @@ endif
 
 實作：
 
-`Trig_HeroSkills56_Actions`　war3map.j:64681
+`Trig_HeroSkills56_Actions`　war3map.j:64800
 ```jass
 if Skill=='A07H' then
 set t=LoadTimerHandle(hash,GetHandleId(u),'A0AB')
@@ -129,7 +129,7 @@ call SaveInteger(hash,GetHandleId(u),'A0AB',0)
 endif
 ```
 
-`Trig_HeroAttack56_Actions`　war3map.j:64761
+`Trig_HeroAttack56_Actions`　war3map.j:64880
 ```jass
 if GetUnitAbilityLevel(u,'A0AB')>=1 and LoadInteger(hash,u_Id,'A0AB')==0 and IsUnitEnemy(u2,pl)then
 call SaveInteger(hash,u_Id,'A0AB',1)
@@ -140,7 +140,7 @@ call SaveInteger(hash,Id,1,GetHandleId(u))
 call SaveInteger(hash,Id,2,'A0AB')
 call TimerStart(t,5.,false,function EndCooldown)
 call SaveTimerHandle(hash,GetHandleId(u),'A0AB',t)
-set dmg=I2R(GetHeroAgi(u,true))*(0.80+0.40*I2R(GetUnitAbilityLevel(u,'A0AB')))
+set dmg=I2R(GetHeroAgi(u,true))*(0.90+0.30*I2R(GetUnitAbilityLevel(u,'A0AB')))
 if check==0 then
 call UnitDamageTarget(u,u2,dmg,false,false,ATTACK_TYPE_HERO,DAMAGE_TYPE_NORMAL,WEAPON_TYPE_WHOKNOWS)
 call DestroyEffect(AddSpecialEffectTarget("war3mapImported\\Smite Blue.mdx",u2,"origin"))
@@ -237,7 +237,7 @@ endif
 endif
 ```
 
-`Hero56R`　war3map.j:64709
+`Hero56R`　war3map.j:64828
 ```jass
 function Hero56R takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -293,7 +293,7 @@ endfunction
 
 實作：
 
-`Trig_HeroAttack56_Actions`　war3map.j:64819
+`Trig_HeroAttack56_Actions`　war3map.j:64938
 ```jass
 if GetUnitAbilityLevel(u,'A0AL')==1 then
 if check==0 then
@@ -342,7 +342,7 @@ endif
 endif
 ```
 
-`Hero56R`　war3map.j:64709
+`Hero56R`　war3map.j:64828
 ```jass
 function Hero56R takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -394,7 +394,7 @@ endfunction
 
 實作：
 
-`Trig_ChangePoints_Actions`　war3map.j:17734
+`Trig_ChangePoints_Actions`　war3map.j:17742
 ```jass
 if GetSpellAbilityId()=='A03V' and GetUnitLevel(GetSpellTargetUnit())>0 then
 set udg_CTPoint[n]=GetSpellTargetUnit()
@@ -460,7 +460,7 @@ set count=8
 這幾段不是靠技能 ID 分派的，而是直接用單位型號 `Nbrn` 寫在共用函式的條件式裡
 （常見於寫進傷害管線的被動）。照技能抽取抓不到，所以單獨列出來。
 
-`Trig_HeroAttack36_Actions`　war3map.j:57746
+`Trig_HeroAttack36_Actions`　war3map.j:57865
 ```jass
 if GetUnitTypeId(u)=='Nbrn' then
 call DestroyEffect(AddSpecialEffect("Abilities\\Spells\\Human\\Thunderclap\\ThunderClapCaster.mdl",x3,y3))
@@ -492,7 +492,7 @@ endif
 英雄的實作散在同編號的一組函式裡，上面按技能抽取時抓不到的補在這裡
 （常見的是決定門檻、結算加成、清理 buff 的那幾支）。
 
-`Trig_HeroAttack56_Conditions`　war3map.j:64706
+`Trig_HeroAttack56_Conditions`　war3map.j:64825
 ```jass
 function Trig_HeroAttack56_Conditions takes nothing returns boolean
 return GetUnitTypeId(GetAttacker())=='Nbrn'

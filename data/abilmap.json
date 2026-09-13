@@ -1,5 +1,5 @@
 {
- "map": "UD_v3_81_opt.w3x",
+ "map": "UD_v3_82fix_opt.w3x",
  "abilities": [
   {
    "id": "A0AM",
@@ -406,234 +406,6 @@
    ],
    "dmg_calls": 0,
    "lines": 9
-  },
-  {
-   "id": "A07H",
-   "hero": "Nbrn",
-   "hero_n": [
-    "女武神",
-    "Valkyrie",
-    "Валькирия"
-   ],
-   "n": [
-    "貫穿之光",
-    "Piercing Light",
-    "Пронзающий свет"
-   ],
-   "kind": "hero",
-   "icon": "images/heroes/a_A07H.png",
-   "native": false,
-   "base": "ANcl",
-   "alev": 5,
-   "acdn": [
-    3.0,
-    3.0,
-    3.0,
-    3.0,
-    3.0
-   ],
-   "fns": [],
-   "own_fns": [
-    "Trig_HeroSkills56_Actions"
-   ],
-   "status": [],
-   "flags": [],
-   "attack": [],
-   "scale": [],
-   "kr": [],
-   "kw": [],
-   "skeys": [
-    "A0AB",
-    "PASS"
-   ],
-   "dmg_calls": 0,
-   "lines": 6
-  },
-  {
-   "id": "A0BD",
-   "hero": "Nbrn",
-   "hero_n": [
-    "女武神",
-    "Valkyrie",
-    "Валькирия"
-   ],
-   "n": [
-    "散射之光",
-    "Scattered Light",
-    "Рассеянный свет"
-   ],
-   "kind": "hero",
-   "icon": "images/heroes/a_A0BD.png",
-   "native": false,
-   "base": "ANcl",
-   "alev": 5,
-   "acdn": [
-    3.0,
-    3.0,
-    3.0,
-    3.0,
-    3.0
-   ],
-   "fns": [],
-   "own_fns": [
-    "Trig_HeroSkills56_Actions"
-   ],
-   "status": [],
-   "flags": [],
-   "attack": [],
-   "scale": [],
-   "kr": [],
-   "kw": [],
-   "skeys": [
-    "A0AB",
-    "PASS"
-   ],
-   "dmg_calls": 0,
-   "lines": 7
-  },
-  {
-   "id": "A0AB",
-   "hero": "Nbrn",
-   "hero_n": [
-    "女武神",
-    "Valkyrie",
-    "Валькирия"
-   ],
-   "n": [
-    "星光閃耀",
-    "Starglint",
-    "Звёздный блик"
-   ],
-   "kind": "hero",
-   "icon": "images/heroes/a_A0AB.png",
-   "native": false,
-   "base": "Amgl",
-   "alev": 5,
-   "acdn": null,
-   "fns": [
-    "EndCooldown",
-    "Hero56R",
-    "SetUnitExtraArmor",
-    "VulnerabilityUnit"
-   ],
-   "own_fns": [
-    "Trig_HeroAttack56_Actions",
-    "Trig_HeroSkills56_Actions"
-   ],
-   "status": [
-    "vuln"
-   ],
-   "flags": [
-    "aoe",
-    "chaos",
-    "summon"
-   ],
-   "attack": [
-    "CHAOS/UNIVERSAL",
-    "HERO/NORMAL",
-    "NORMAL/MAGIC"
-   ],
-   "scale": [
-    "agi",
-    "lvl"
-   ],
-   "kr": [
-    1,
-    2
-   ],
-   "kw": [
-    1,
-    2
-   ],
-   "skeys": [
-    "PASS"
-   ],
-   "dmg_calls": 6,
-   "lines": 153
-  },
-  {
-   "id": "A0AL",
-   "hero": "Nbrn",
-   "hero_n": [
-    "女武神",
-    "Valkyrie",
-    "Валькирия"
-   ],
-   "n": [
-    "流星",
-    "Falling Star",
-    "Падающая звезда"
-   ],
-   "kind": "hero",
-   "icon": "images/heroes/a_A0AL.png",
-   "native": false,
-   "base": "Amgl",
-   "alev": null,
-   "acdn": null,
-   "fns": [
-    "Hero56R",
-    "SetUnitExtraArmor"
-   ],
-   "own_fns": [
-    "Trig_HeroAttack56_Actions"
-   ],
-   "status": [],
-   "flags": [
-    "aoe",
-    "summon"
-   ],
-   "attack": [
-    "NORMAL/MAGIC"
-   ],
-   "scale": [
-    "lvl"
-   ],
-   "kr": [
-    1,
-    2
-   ],
-   "kw": [
-    1,
-    2
-   ],
-   "skeys": [],
-   "dmg_calls": 1,
-   "lines": 81
-  },
-  {
-   "id": "A064",
-   "hero": "Nbrn",
-   "hero_n": [
-    "女武神",
-    "Valkyrie",
-    "Валькирия"
-   ],
-   "n": [
-    "純血",
-    "Pure Blood",
-    "Чистокровность"
-   ],
-   "kind": "innate",
-   "icon": "images/heroes/a_A064.png",
-   "native": false,
-   "base": "Amgl",
-   "alev": null,
-   "acdn": null,
-   "fns": [],
-   "own_fns": [
-    "BleedUnit",
-    "BurnUnit",
-    "DiseaseUnit"
-   ],
-   "status": [],
-   "flags": [],
-   "attack": [],
-   "scale": [],
-   "kr": [],
-   "kw": [],
-   "skeys": [],
-   "dmg_calls": 0,
-   "lines": 7
   },
   {
    "id": "A08E",
@@ -1395,7 +1167,8 @@
    "fns": [],
    "own_fns": [
     "Trig_HeroSkills21_Actions",
-    "Trig_HeroSkills26_Actions"
+    "Trig_HeroSkills26_Actions",
+    "Trig_HeroSkills34_Actions"
    ],
    "status": [],
    "flags": [],
@@ -1411,10 +1184,11 @@
    ],
    "skeys": [
     "aAGI",
+    "aINT",
     "aSTR"
    ],
    "dmg_calls": 0,
-   "lines": 32
+   "lines": 47
   },
   {
    "id": "A039",
@@ -3393,9 +3167,7 @@
     "StartModCooldown"
    ],
    "own_fns": [
-    "Trig_HeroAttacks5_Actions",
-    "Trig_HeroGiveSkills5_Actions",
-    "Trig_HeroGiveSkills5_Conditions"
+    "Trig_HeroAttacks5_Actions"
    ],
    "status": [],
    "flags": [
@@ -3414,7 +3186,7 @@
    "kw": [],
    "skeys": [],
    "dmg_calls": 0,
-   "lines": 64
+   "lines": 56
   },
   {
    "id": "A032",
@@ -3634,172 +3406,6 @@
    "lines": 10
   },
   {
-   "id": "A0GT",
-   "hero": "O01O",
-   "hero_n": [
-    "劍聖",
-    "Blademaster",
-    "Мастер клинка"
-   ],
-   "n": [
-    "專注",
-    "Concentration",
-    "Концентрация"
-   ],
-   "kind": "hero",
-   "icon": "images/heroes/a_A0GT.png",
-   "native": false,
-   "base": "Absk",
-   "alev": 5,
-   "acdn": [
-    20.0,
-    20.0,
-    20.0,
-    20.0,
-    20.0
-   ],
-   "fns": [
-    "RemoveBuff"
-   ],
-   "own_fns": [
-    "Hero33Q",
-    "Hero33R_Bladestorm",
-    "Trig_HeroKills33_Actions",
-    "Trig_HeroSkills33_Actions"
-   ],
-   "status": [],
-   "flags": [],
-   "attack": [],
-   "scale": [
-    "lvl"
-   ],
-   "kr": [
-    1,
-    2
-   ],
-   "kw": [
-    1,
-    2
-   ],
-   "skeys": [],
-   "dmg_calls": 0,
-   "lines": 44
-  },
-  {
-   "id": "A0GS",
-   "hero": "O01O",
-   "hero_n": [
-    "劍聖",
-    "Blademaster",
-    "Мастер клинка"
-   ],
-   "n": [
-    "鋼鐵旋風",
-    "Steel Whirlwind",
-    "Стальной вихрь"
-   ],
-   "kind": "hero",
-   "icon": "images/heroes/a_A0GS.png",
-   "native": false,
-   "base": "AOww",
-   "alev": null,
-   "acdn": [
-    100.0
-   ],
-   "fns": [
-    "Hero33R_Bladestorm"
-   ],
-   "own_fns": [
-    "Trig_HeroSkills33_Actions"
-   ],
-   "status": [],
-   "flags": [
-    "aoe",
-    "tick"
-   ],
-   "attack": [
-    "NORMAL/MAGIC"
-   ],
-   "scale": [
-    "sp"
-   ],
-   "kr": [
-    1,
-    2,
-    4,
-    16
-   ],
-   "kw": [
-    1,
-    2,
-    4
-   ],
-   "skeys": [
-    "A0GR",
-    "A0GT"
-   ],
-   "dmg_calls": 1,
-   "lines": 65
-  },
-  {
-   "id": "A0GR",
-   "hero": "O01O",
-   "hero_n": [
-    "劍聖",
-    "Blademaster",
-    "Мастер клинка"
-   ],
-   "n": [
-    "戰鬥藝術",
-    "Art of Combat",
-    "Искусство боя"
-   ],
-   "kind": "hero",
-   "icon": "images/heroes/a_A0GR.png",
-   "native": false,
-   "base": "Amgl",
-   "alev": 5,
-   "acdn": null,
-   "fns": [
-    "Hero33E_1",
-    "Hero33E_2",
-    "Hero33Q",
-    "Hero33R_Bladestorm"
-   ],
-   "own_fns": [
-    "Hero33Q",
-    "Hero33R_Bladestorm",
-    "Trig_HeroKills33_Actions",
-    "Trig_HeroSkills33_Actions"
-   ],
-   "status": [],
-   "flags": [
-    "tick"
-   ],
-   "attack": [],
-   "scale": [
-    "agi",
-    "lvl",
-    "sp"
-   ],
-   "kr": [
-    1,
-    2,
-    3,
-    4,
-    16
-   ],
-   "kw": [
-    1,
-    2,
-    3,
-    4
-   ],
-   "skeys": [],
-   "dmg_calls": 0,
-   "lines": 136
-  },
-  {
    "id": "A0GP",
    "hero": "O01O",
    "hero_n": [
@@ -3825,12 +3431,81 @@
     12.0
    ],
    "fns": [
-    "Hero33Q"
+    "Hero33Q",
+    "WeakUnit"
    ],
    "own_fns": [
     "Trig_HeroSkills33_Actions"
    ],
-   "status": [],
+   "status": [
+    "weak"
+   ],
+   "flags": [
+    "aoe",
+    "tick"
+   ],
+   "attack": [
+    "NORMAL/MAGIC"
+   ],
+   "scale": [
+    "herolvl",
+    "lvl",
+    "sp"
+   ],
+   "kr": [
+    1,
+    2,
+    3,
+    4,
+    16
+   ],
+   "kw": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "skeys": [
+    "A0GR"
+   ],
+   "dmg_calls": 1,
+   "lines": 158
+  },
+  {
+   "id": "A0GS",
+   "hero": "O01O",
+   "hero_n": [
+    "劍聖",
+    "Blademaster",
+    "Мастер клинка"
+   ],
+   "n": [
+    "鋼鐵旋風",
+    "Steel Whirlwind",
+    "Стальной вихрь"
+   ],
+   "kind": "hero",
+   "icon": "images/heroes/a_A0GS.png",
+   "native": false,
+   "base": "AOww",
+   "alev": 5,
+   "acdn": [
+    25.0,
+    25.0,
+    25.0,
+    25.0,
+    25.0
+   ],
+   "fns": [
+    "BleedUnit",
+    "Hero33R_Bladestorm"
+   ],
+   "own_fns": [
+    "Trig_HeroSkills33_Actions"
+   ],
+   "status": [
+    "bleed"
+   ],
    "flags": [
     "aoe",
     "tick"
@@ -3856,11 +3531,166 @@
     4
    ],
    "skeys": [
-    "A0GR",
-    "A0GT"
+    "A0GR"
    ],
-   "dmg_calls": 1,
-   "lines": 148
+   "dmg_calls": 2,
+   "lines": 100
+  },
+  {
+   "id": "A0GT",
+   "hero": "O01O",
+   "hero_n": [
+    "劍聖",
+    "Blademaster",
+    "Мастер клинка"
+   ],
+   "n": [
+    "招架",
+    "Parry",
+    "Парирование"
+   ],
+   "kind": "hero",
+   "icon": "images/heroes/a_A0GT.png",
+   "native": false,
+   "base": "Amgl",
+   "alev": 5,
+   "acdn": null,
+   "fns": [
+    "BurnUnit",
+    "RemoveDummy",
+    "StunUnit"
+   ],
+   "own_fns": [
+    "Trig_HeroGiveSkills33_Actions",
+    "Trig_UAttacks_Actions"
+   ],
+   "status": [
+    "burn",
+    "stun"
+   ],
+   "flags": [
+    "chaos",
+    "heal",
+    "summon"
+   ],
+   "attack": [
+    "CHAOS/UNIVERSAL"
+   ],
+   "scale": [
+    "lvl",
+    "sp"
+   ],
+   "kr": [
+    1,
+    16,
+    17
+   ],
+   "kw": [
+    1,
+    17
+   ],
+   "skeys": [
+    "I068",
+    "shhn"
+   ],
+   "dmg_calls": 4,
+   "lines": 84
+  },
+  {
+   "id": "A0GR",
+   "hero": "O01O",
+   "hero_n": [
+    "劍聖",
+    "Blademaster",
+    "Мастер клинка"
+   ],
+   "n": [
+    "師範",
+    "Sensei",
+    "Сенсей"
+   ],
+   "kind": "hero",
+   "icon": "images/heroes/a_A0GR.png",
+   "native": false,
+   "base": "Amgl",
+   "alev": null,
+   "acdn": null,
+   "fns": [
+    "Hero33E_1",
+    "Hero33E_2",
+    "Hero33Q",
+    "Hero33R_Bladestorm"
+   ],
+   "own_fns": [
+    "Hero33Q",
+    "Hero33R_Bladestorm",
+    "Trig_HeroGiveSkills33_Actions",
+    "Trig_HeroKills33_Actions",
+    "Trig_HeroSkills33_Actions"
+   ],
+   "status": [],
+   "flags": [
+    "tick"
+   ],
+   "attack": [],
+   "scale": [
+    "agi",
+    "herolvl",
+    "lvl",
+    "sp"
+   ],
+   "kr": [
+    1,
+    2,
+    3,
+    4,
+    16
+   ],
+   "kw": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "skeys": [],
+   "dmg_calls": 0,
+   "lines": 169
+  },
+  {
+   "id": "A0GO",
+   "hero": "O01O",
+   "hero_n": [
+    "劍聖",
+    "Blademaster",
+    "Мастер клинка"
+   ],
+   "n": [
+    "貪婪之刃",
+    "Insatiable Blade",
+    "Ненасытный клинок"
+   ],
+   "kind": "innate",
+   "icon": "images/heroes/a_A0GO.png",
+   "native": false,
+   "base": "Amgl",
+   "alev": null,
+   "acdn": null,
+   "fns": [],
+   "own_fns": [
+    "Trig_HeroKills33_Actions"
+   ],
+   "status": [],
+   "flags": [],
+   "attack": [],
+   "scale": [
+    "herolvl",
+    "lvl"
+   ],
+   "kr": [],
+   "kw": [],
+   "skeys": [],
+   "dmg_calls": 0,
+   "lines": 7
   },
   {
    "id": "A0CW",
@@ -3871,9 +3701,9 @@
     "Мастер клинка"
    ],
    "n": [
-    "選擇技能",
-    "Choose an Ability",
-    "Выбрать умение"
+    "選擇天賦",
+    "Choose a Talent",
+    "Выбрать талант"
    ],
    "kind": "innate",
    "icon": "images/heroes/a_A0CW.png",
@@ -3888,53 +3718,24 @@
    "status": [],
    "flags": [],
    "attack": [],
-   "scale": [],
-   "kr": [],
-   "kw": [],
-   "skeys": [],
+   "scale": [
+    "agi",
+    "int",
+    "str"
+   ],
+   "kr": [
+    5
+   ],
+   "kw": [
+    5,
+    15
+   ],
+   "skeys": [
+    "aAGI",
+    "aSTR"
+   ],
    "dmg_calls": 0,
-   "lines": 10
-  },
-  {
-   "id": "A0CV",
-   "hero": "O01O",
-   "hero_n": [
-    "劍聖",
-    "Blademaster",
-    "Мастер клинка"
-   ],
-   "n": [
-    "貪婪之刃",
-    "Insatiable Blade",
-    "Ненасытный клинок"
-   ],
-   "kind": "talent",
-   "icon": "images/heroes/a_A0CV.png",
-   "native": false,
-   "base": "ANcl",
-   "alev": 1,
-   "acdn": [
-    1.0,
-    16.0,
-    16.0,
-    16.0,
-    16.0,
-    16.0,
-    16.0
-   ],
-   "fns": [],
-   "own_fns": [
-    "Trig_HeroSkills33_Actions"
-   ],
-   "status": [],
-   "flags": [],
-   "attack": [],
-   "scale": [],
-   "kr": [],
-   "kw": [],
-   "skeys": [],
-   "dmg_calls": 0,
-   "lines": 3
+   "lines": 34
   },
   {
    "id": "A0D0",
@@ -3945,9 +3746,9 @@
     "Мастер клинка"
    ],
    "n": [
-    "無情幻影",
-    "Relentless Phantom",
-    "Неумолимый фантом"
+    "幻影",
+    "Phantom",
+    "Фантом"
    ],
    "kind": "talent",
    "icon": "images/heroes/a_A0D0.png",
@@ -3970,12 +3771,71 @@
    "status": [],
    "flags": [],
    "attack": [],
-   "scale": [],
-   "kr": [],
-   "kw": [],
-   "skeys": [],
+   "scale": [
+    "agi",
+    "str"
+   ],
+   "kr": [
+    5
+   ],
+   "kw": [
+    5,
+    15
+   ],
+   "skeys": [
+    "aAGI",
+    "aSTR"
+   ],
    "dmg_calls": 0,
-   "lines": 3
+   "lines": 9
+  },
+  {
+   "id": "A0CV",
+   "hero": "O01O",
+   "hero_n": [
+    "劍聖",
+    "Blademaster",
+    "Мастер клинка"
+   ],
+   "n": [
+    "放血者",
+    "Bloodletter",
+    "Кровопускатель"
+   ],
+   "kind": "talent",
+   "icon": "images/heroes/a_A0CV.png",
+   "native": false,
+   "base": "ANcl",
+   "alev": 1,
+   "acdn": [
+    1.0,
+    16.0,
+    16.0,
+    16.0,
+    16.0,
+    16.0,
+    16.0
+   ],
+   "fns": [],
+   "own_fns": [
+    "Trig_HeroSkills33_Actions"
+   ],
+   "status": [],
+   "flags": [],
+   "attack": [],
+   "scale": [
+    "agi",
+    "str"
+   ],
+   "kr": [],
+   "kw": [
+    15
+   ],
+   "skeys": [
+    "aAGI"
+   ],
+   "dmg_calls": 0,
+   "lines": 7
   },
   {
    "id": "A0DM",
@@ -3986,9 +3846,9 @@
     "Мастер клинка"
    ],
    "n": [
-    "師範",
-    "Sensei",
-    "Сенсей"
+    "完美防禦",
+    "Perfect Defense",
+    "Идеальная защита"
    ],
    "kind": "talent",
    "icon": "images/heroes/a_A0DM.png",
@@ -4011,15 +3871,23 @@
    "status": [],
    "flags": [],
    "attack": [],
-   "scale": [],
+   "scale": [
+    "int",
+    "str"
+   ],
    "kr": [],
-   "kw": [],
-   "skeys": [],
+   "kw": [
+    15
+   ],
+   "skeys": [
+    "aAGI",
+    "aSTR"
+   ],
    "dmg_calls": 0,
-   "lines": 4
+   "lines": 9
   },
   {
-   "id": "A01S",
+   "id": "A10T",
    "hero": "O01O",
    "hero_n": [
     "劍聖",
@@ -4027,49 +3895,44 @@
     "Мастер клинка"
    ],
    "n": [
-    "劍刃召喚",
-    "Call of the Blade",
-    "Зов клинка"
+    "殘暴打擊",
+    "Brutal Strikes",
+    "Жестокие удары"
    ],
-   "kind": "skin",
-   "icon": "images/heroes/a_A01S.png",
+   "kind": "talent",
+   "icon": "images/heroes/a_A10T.png",
    "native": false,
    "base": "ANcl",
    "alev": 1,
    "acdn": [
-    90.0,
-    null,
-    30.0,
-    30.0,
-    30.0,
-    30.0,
-    30.0
+    1.0,
+    16.0,
+    16.0,
+    16.0,
+    16.0,
+    16.0,
+    16.0
    ],
-   "fns": [
-    "HeroR33_End",
-    "SetUnitExtraDamage"
-   ],
+   "fns": [],
    "own_fns": [
     "Trig_HeroSkills33_Actions"
    ],
    "status": [],
-   "flags": [
-    "tick"
-   ],
+   "flags": [],
    "attack": [],
    "scale": [
-    "agi"
+    "int",
+    "str"
    ],
-   "kr": [
-    1
-   ],
+   "kr": [],
    "kw": [
-    1,
-    34
+    15
    ],
-   "skeys": [],
+   "skeys": [
+    "aAGI"
+   ],
    "dmg_calls": 0,
-   "lines": 69
+   "lines": 9
   },
   {
    "id": "A0JS",
@@ -7122,6 +6985,234 @@
    "lines": 0
   },
   {
+   "id": "A07H",
+   "hero": "Nbrn",
+   "hero_n": [
+    "女武神",
+    "Valkyrie",
+    "Валькирия"
+   ],
+   "n": [
+    "貫穿之光",
+    "Piercing Light",
+    "Пронзающий свет"
+   ],
+   "kind": "hero",
+   "icon": "images/heroes/a_A07H.png",
+   "native": false,
+   "base": "ANcl",
+   "alev": 5,
+   "acdn": [
+    5.0,
+    5.0,
+    5.0,
+    5.0,
+    5.0
+   ],
+   "fns": [],
+   "own_fns": [
+    "Trig_HeroSkills56_Actions"
+   ],
+   "status": [],
+   "flags": [],
+   "attack": [],
+   "scale": [],
+   "kr": [],
+   "kw": [],
+   "skeys": [
+    "A0AB",
+    "PASS"
+   ],
+   "dmg_calls": 0,
+   "lines": 6
+  },
+  {
+   "id": "A0BD",
+   "hero": "Nbrn",
+   "hero_n": [
+    "女武神",
+    "Valkyrie",
+    "Валькирия"
+   ],
+   "n": [
+    "散射之光",
+    "Scattered Light",
+    "Рассеянный свет"
+   ],
+   "kind": "hero",
+   "icon": "images/heroes/a_A0BD.png",
+   "native": false,
+   "base": "ANcl",
+   "alev": 5,
+   "acdn": [
+    5.0,
+    5.0,
+    5.0,
+    5.0,
+    5.0
+   ],
+   "fns": [],
+   "own_fns": [
+    "Trig_HeroSkills56_Actions"
+   ],
+   "status": [],
+   "flags": [],
+   "attack": [],
+   "scale": [],
+   "kr": [],
+   "kw": [],
+   "skeys": [
+    "A0AB",
+    "PASS"
+   ],
+   "dmg_calls": 0,
+   "lines": 7
+  },
+  {
+   "id": "A0AB",
+   "hero": "Nbrn",
+   "hero_n": [
+    "女武神",
+    "Valkyrie",
+    "Валькирия"
+   ],
+   "n": [
+    "星光閃耀",
+    "Starglint",
+    "Звёздный блик"
+   ],
+   "kind": "hero",
+   "icon": "images/heroes/a_A0AB.png",
+   "native": false,
+   "base": "Amgl",
+   "alev": 5,
+   "acdn": null,
+   "fns": [
+    "EndCooldown",
+    "Hero56R",
+    "SetUnitExtraArmor",
+    "VulnerabilityUnit"
+   ],
+   "own_fns": [
+    "Trig_HeroAttack56_Actions",
+    "Trig_HeroSkills56_Actions"
+   ],
+   "status": [
+    "vuln"
+   ],
+   "flags": [
+    "aoe",
+    "chaos",
+    "summon"
+   ],
+   "attack": [
+    "CHAOS/UNIVERSAL",
+    "HERO/NORMAL",
+    "NORMAL/MAGIC"
+   ],
+   "scale": [
+    "agi",
+    "lvl"
+   ],
+   "kr": [
+    1,
+    2
+   ],
+   "kw": [
+    1,
+    2
+   ],
+   "skeys": [
+    "PASS"
+   ],
+   "dmg_calls": 6,
+   "lines": 153
+  },
+  {
+   "id": "A0AL",
+   "hero": "Nbrn",
+   "hero_n": [
+    "女武神",
+    "Valkyrie",
+    "Валькирия"
+   ],
+   "n": [
+    "流星",
+    "Falling Star",
+    "Падающая звезда"
+   ],
+   "kind": "hero",
+   "icon": "images/heroes/a_A0AL.png",
+   "native": false,
+   "base": "Amgl",
+   "alev": null,
+   "acdn": null,
+   "fns": [
+    "Hero56R",
+    "SetUnitExtraArmor"
+   ],
+   "own_fns": [
+    "Trig_HeroAttack56_Actions"
+   ],
+   "status": [],
+   "flags": [
+    "aoe",
+    "summon"
+   ],
+   "attack": [
+    "NORMAL/MAGIC"
+   ],
+   "scale": [
+    "lvl"
+   ],
+   "kr": [
+    1,
+    2
+   ],
+   "kw": [
+    1,
+    2
+   ],
+   "skeys": [],
+   "dmg_calls": 1,
+   "lines": 81
+  },
+  {
+   "id": "A064",
+   "hero": "Nbrn",
+   "hero_n": [
+    "女武神",
+    "Valkyrie",
+    "Валькирия"
+   ],
+   "n": [
+    "純血",
+    "Pure Blood",
+    "Чистокровность"
+   ],
+   "kind": "innate",
+   "icon": "images/heroes/a_A064.png",
+   "native": false,
+   "base": "Amgl",
+   "alev": null,
+   "acdn": null,
+   "fns": [],
+   "own_fns": [
+    "BleedUnit",
+    "BurnUnit",
+    "DiseaseUnit"
+   ],
+   "status": [],
+   "flags": [],
+   "attack": [],
+   "scale": [],
+   "kr": [],
+   "kw": [],
+   "skeys": [],
+   "dmg_calls": 0,
+   "lines": 7
+  },
+  {
    "id": "AEbl",
    "hero": "E00S",
    "hero_n": [
@@ -8138,13 +8229,13 @@
     80.0
    ],
    "fns": [
-    "OpalescenceLib___OpalescenceDamage",
-    "OpalescenceLib___OpalescenceMove",
-    "OpalescenceLib___SetScale",
-    "OpalescenceLib___SetScale_1",
-    "OpalescenceLib___SetUnitPositionEx",
-    "s__OpalescenceLib___OpalescenceMoveS_deallocate",
-    "s__OpalescenceLib___OpalescenceS_deallocate",
+    "OpalescenceLib__OpalescenceDamage",
+    "OpalescenceLib__OpalescenceMove",
+    "OpalescenceLib__SetScale",
+    "OpalescenceLib__SetScale_1",
+    "OpalescenceLib__SetUnitPositionEx",
+    "s__OpalescenceLib__OpalescenceMoveS_deallocate",
+    "s__OpalescenceLib__OpalescenceS_deallocate",
     "s__vector_deallocate",
     "s__vector_normalize"
    ],
@@ -10875,7 +10966,7 @@
     "iBLU"
    ],
    "dmg_calls": 3,
-   "lines": 99
+   "lines": 100
   },
   {
    "id": "A02R",
@@ -17957,255 +18048,6 @@
    "lines": 23
   },
   {
-   "id": "A0XO",
-   "hero": "Nsjs",
-   "hero_n": [
-    "超重型坦克",
-    "Super-Heavy Tank",
-    "Сверхтяжёлый танк"
-   ],
-   "n": [
-    "衝擊火箭",
-    "Impact Rocket",
-    "Ударная ракета"
-   ],
-   "kind": "hero",
-   "icon": "images/heroes/a_A0XO.png",
-   "native": false,
-   "base": "ANcl",
-   "alev": 5,
-   "acdn": [
-    18.0,
-    18.0,
-    18.0,
-    18.0,
-    18.0
-   ],
-   "fns": [
-    "BurnUnit",
-    "HeroQ55_Dmg",
-    "RemoveDummy",
-    "StunUnit"
-   ],
-   "own_fns": [
-    "Trig_HeroSkills55_Actions"
-   ],
-   "status": [
-    "burn",
-    "stun"
-   ],
-   "flags": [
-    "aoe",
-    "summon",
-    "tick"
-   ],
-   "attack": [
-    "NORMAL/MAGIC"
-   ],
-   "scale": [
-    "sp"
-   ],
-   "kr": [
-    1,
-    2,
-    3,
-    4
-   ],
-   "kw": [
-    1,
-    2,
-    3,
-    4
-   ],
-   "skeys": [],
-   "dmg_calls": 1,
-   "lines": 101
-  },
-  {
-   "id": "A0XQ",
-   "hero": "Nsjs",
-   "hero_n": [
-    "超重型坦克",
-    "Super-Heavy Tank",
-    "Сверхтяжёлый танк"
-   ],
-   "n": [
-    "衝撞",
-    "Ram",
-    "Таран"
-   ],
-   "kind": "hero",
-   "icon": "images/heroes/a_A0XQ.png",
-   "native": false,
-   "base": "ANcl",
-   "alev": 5,
-   "acdn": [
-    20.0,
-    20.0,
-    20.0,
-    20.0,
-    20.0
-   ],
-   "fns": [
-    "HeroW55_Dmg",
-    "KnockBackUnit"
-   ],
-   "own_fns": [
-    "Trig_HeroSkills55_Actions"
-   ],
-   "status": [
-    "knockback"
-   ],
-   "flags": [
-    "aoe",
-    "tick"
-   ],
-   "attack": [
-    "NORMAL/MAGIC"
-   ],
-   "scale": [
-    "str"
-   ],
-   "kr": [
-    1,
-    2
-   ],
-   "kw": [
-    1,
-    2
-   ],
-   "skeys": [],
-   "dmg_calls": 1,
-   "lines": 63
-  },
-  {
-   "id": "A0XT",
-   "hero": "Nsjs",
-   "hero_n": [
-    "超重型坦克",
-    "Super-Heavy Tank",
-    "Сверхтяжёлый танк"
-   ],
-   "n": [
-    "燃燒砲塔",
-    "Igniting Turrets",
-    "Поджигающие турели"
-   ],
-   "kind": "hero",
-   "icon": "images/heroes/a_A0XT.png",
-   "native": false,
-   "base": "Amgl",
-   "alev": 5,
-   "acdn": null,
-   "fns": [
-    "BurnUnit"
-   ],
-   "own_fns": [
-    "ProjectileMove"
-   ],
-   "status": [
-    "burn"
-   ],
-   "flags": [],
-   "attack": [],
-   "scale": [
-    "lvl",
-    "str"
-   ],
-   "kr": [],
-   "kw": [],
-   "skeys": [],
-   "dmg_calls": 0,
-   "lines": 12
-  },
-  {
-   "id": "A0XS",
-   "hero": "Nsjs",
-   "hero_n": [
-    "超重型坦克",
-    "Super-Heavy Tank",
-    "Сверхтяжёлый танк"
-   ],
-   "n": [
-    "砲兵轟擊",
-    "Artillery Barrage",
-    "Артиллерийский обстрел"
-   ],
-   "kind": "hero",
-   "icon": "images/heroes/a_A0XS.png",
-   "native": false,
-   "base": "ANcl",
-   "alev": 1,
-   "acdn": [
-    90.0,
-    null,
-    17.0,
-    17.0,
-    17.0,
-    17.0,
-    17.0
-   ],
-   "fns": [
-    "HeroR55_Dmg"
-   ],
-   "own_fns": [
-    "Trig_HeroSkills55_Actions"
-   ],
-   "status": [],
-   "flags": [
-    "relay",
-    "summon",
-    "tick"
-   ],
-   "attack": [],
-   "scale": [
-    "sp"
-   ],
-   "kr": [
-    1,
-    2
-   ],
-   "kw": [
-    1,
-    2,
-    13
-   ],
-   "skeys": [],
-   "dmg_calls": 0,
-   "lines": 55
-  },
-  {
-   "id": "A0XR",
-   "hero": "Nsjs",
-   "hero_n": [
-    "超重型坦克",
-    "Super-Heavy Tank",
-    "Сверхтяжёлый танк"
-   ],
-   "n": [
-    "側翼砲塔",
-    "Side Turrets",
-    "Боковые турели"
-   ],
-   "kind": "innate",
-   "icon": "images/heroes/a_A0XR.png",
-   "native": true,
-   "base": "Amgl",
-   "alev": null,
-   "acdn": null,
-   "fns": [],
-   "own_fns": [],
-   "status": [],
-   "flags": [],
-   "attack": [],
-   "scale": [],
-   "kr": [],
-   "kw": [],
-   "skeys": [],
-   "dmg_calls": 0,
-   "lines": 0
-  },
-  {
    "id": "A02N",
    "hero": "H03I",
    "hero_n": [
@@ -20074,7 +19916,8 @@
     "Hero26D3_End"
    ],
    "own_fns": [
-    "Trig_HeroSkills26_Actions"
+    "Trig_HeroSkills26_Actions",
+    "Trig_HeroSkills34_Actions"
    ],
    "status": [],
    "flags": [
@@ -20100,7 +19943,7 @@
     "aSTR"
    ],
    "dmg_calls": 0,
-   "lines": 78
+   "lines": 92
   },
   {
    "id": "A09W",
@@ -20183,7 +20026,8 @@
     "Hero26D3_End"
    ],
    "own_fns": [
-    "Trig_HeroSkills26_Actions"
+    "Trig_HeroSkills26_Actions",
+    "Trig_HeroSkills34_Actions"
    ],
    "status": [],
    "flags": [
@@ -20209,7 +20053,7 @@
     "aSTR"
    ],
    "dmg_calls": 0,
-   "lines": 63
+   "lines": 77
   },
   {
    "id": "A0G6",
@@ -22320,6 +22164,255 @@
    "skeys": [],
    "dmg_calls": 1,
    "lines": 168
+  },
+  {
+   "id": "A0XO",
+   "hero": "Nsjs",
+   "hero_n": [
+    "超重型坦克",
+    "Super-Heavy Tank",
+    "Сверхтяжёлый танк"
+   ],
+   "n": [
+    "衝擊火箭",
+    "Impact Rocket",
+    "Ударная ракета"
+   ],
+   "kind": "hero",
+   "icon": "images/heroes/a_A0XO.png",
+   "native": false,
+   "base": "ANcl",
+   "alev": 5,
+   "acdn": [
+    18.0,
+    18.0,
+    18.0,
+    18.0,
+    18.0
+   ],
+   "fns": [
+    "BurnUnit",
+    "HeroQ55_Dmg",
+    "RemoveDummy",
+    "StunUnit"
+   ],
+   "own_fns": [
+    "Trig_HeroSkills55_Actions"
+   ],
+   "status": [
+    "burn",
+    "stun"
+   ],
+   "flags": [
+    "aoe",
+    "summon",
+    "tick"
+   ],
+   "attack": [
+    "NORMAL/MAGIC"
+   ],
+   "scale": [
+    "sp"
+   ],
+   "kr": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "kw": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "skeys": [],
+   "dmg_calls": 1,
+   "lines": 101
+  },
+  {
+   "id": "A0XQ",
+   "hero": "Nsjs",
+   "hero_n": [
+    "超重型坦克",
+    "Super-Heavy Tank",
+    "Сверхтяжёлый танк"
+   ],
+   "n": [
+    "衝撞",
+    "Ram",
+    "Таран"
+   ],
+   "kind": "hero",
+   "icon": "images/heroes/a_A0XQ.png",
+   "native": false,
+   "base": "ANcl",
+   "alev": 5,
+   "acdn": [
+    20.0,
+    20.0,
+    20.0,
+    20.0,
+    20.0
+   ],
+   "fns": [
+    "HeroW55_Dmg",
+    "KnockBackUnit"
+   ],
+   "own_fns": [
+    "Trig_HeroSkills55_Actions"
+   ],
+   "status": [
+    "knockback"
+   ],
+   "flags": [
+    "aoe",
+    "tick"
+   ],
+   "attack": [
+    "NORMAL/MAGIC"
+   ],
+   "scale": [
+    "str"
+   ],
+   "kr": [
+    1,
+    2
+   ],
+   "kw": [
+    1,
+    2
+   ],
+   "skeys": [],
+   "dmg_calls": 1,
+   "lines": 63
+  },
+  {
+   "id": "A0XT",
+   "hero": "Nsjs",
+   "hero_n": [
+    "超重型坦克",
+    "Super-Heavy Tank",
+    "Сверхтяжёлый танк"
+   ],
+   "n": [
+    "燃燒砲塔",
+    "Igniting Turrets",
+    "Поджигающие турели"
+   ],
+   "kind": "hero",
+   "icon": "images/heroes/a_A0XT.png",
+   "native": false,
+   "base": "Amgl",
+   "alev": 5,
+   "acdn": null,
+   "fns": [
+    "BurnUnit"
+   ],
+   "own_fns": [
+    "ProjectileMove"
+   ],
+   "status": [
+    "burn"
+   ],
+   "flags": [],
+   "attack": [],
+   "scale": [
+    "lvl",
+    "str"
+   ],
+   "kr": [],
+   "kw": [],
+   "skeys": [],
+   "dmg_calls": 0,
+   "lines": 12
+  },
+  {
+   "id": "A0XS",
+   "hero": "Nsjs",
+   "hero_n": [
+    "超重型坦克",
+    "Super-Heavy Tank",
+    "Сверхтяжёлый танк"
+   ],
+   "n": [
+    "砲兵轟擊",
+    "Artillery Barrage",
+    "Артиллерийский обстрел"
+   ],
+   "kind": "hero",
+   "icon": "images/heroes/a_A0XS.png",
+   "native": false,
+   "base": "ANcl",
+   "alev": 1,
+   "acdn": [
+    90.0,
+    null,
+    17.0,
+    17.0,
+    17.0,
+    17.0,
+    17.0
+   ],
+   "fns": [
+    "HeroR55_Dmg"
+   ],
+   "own_fns": [
+    "Trig_HeroSkills55_Actions"
+   ],
+   "status": [],
+   "flags": [
+    "relay",
+    "summon",
+    "tick"
+   ],
+   "attack": [],
+   "scale": [
+    "sp"
+   ],
+   "kr": [
+    1,
+    2
+   ],
+   "kw": [
+    1,
+    2,
+    13
+   ],
+   "skeys": [],
+   "dmg_calls": 0,
+   "lines": 55
+  },
+  {
+   "id": "A0XR",
+   "hero": "Nsjs",
+   "hero_n": [
+    "超重型坦克",
+    "Super-Heavy Tank",
+    "Сверхтяжёлый танк"
+   ],
+   "n": [
+    "側翼砲塔",
+    "Side Turrets",
+    "Боковые турели"
+   ],
+   "kind": "innate",
+   "icon": "images/heroes/a_A0XR.png",
+   "native": true,
+   "base": "Amgl",
+   "alev": null,
+   "acdn": null,
+   "fns": [],
+   "own_fns": [],
+   "status": [],
+   "flags": [],
+   "attack": [],
+   "scale": [],
+   "kr": [],
+   "kw": [],
+   "skeys": [],
+   "dmg_calls": 0,
+   "lines": 0
   }
  ],
  "by_fn": {
@@ -22342,6 +22435,7 @@
    "A04X",
    "A08A",
    "A0AK",
+   "A0GS",
    "A0P7",
    "A0P9"
   ],
@@ -22424,19 +22518,122 @@
    "A037",
    "A067",
    "A08V",
-   "A0DW"
+   "A0DW",
+   "A0GP"
   ],
-  "EndCooldown": [
-   "A02C",
-   "A0AB",
-   "A0HU",
-   "A0NU",
-   "A0OE",
-   "A0VN"
+  "HeroQ16_Endbuff": [
+   "A08E"
   ],
-  "Hero56R": [
+  "HeroW16_Endbuff": [
+   "A08Q"
+  ],
+  "HeroR16_check": [
+   "A08H"
+  ],
+  "RemoveBuff": [
+   "A01W",
+   "A03A",
+   "A03D",
+   "A07L",
+   "A08A",
+   "A0A6",
+   "A0D9",
+   "A0JQ",
+   "A0MP",
+   "A0T2"
+  ],
+  "Hero21E": [
+   "A08A"
+  ],
+  "Hero11E": [
+   "A03A"
+  ],
+  "DiseaseUnit": [
+   "A03C",
+   "Awrh"
+  ],
+  "Hero11AttackCD": [
+   "A03C"
+  ],
+  "Hero11D": [
+   "A038"
+  ],
+  "BurnUnit": [
+   "A00Z",
+   "A017",
+   "A03O",
+   "A04X",
+   "A05R",
+   "A065",
+   "A066",
+   "A067",
+   "A068",
+   "A08T",
+   "A08Y",
+   "A0C3",
+   "A0DY",
+   "A0E3",
+   "A0GT",
+   "A0GX",
+   "A0H1",
+   "A0IG",
+   "A0IJ",
+   "A0K7",
+   "A0MR",
+   "A0WT",
+   "A0XO",
+   "A0XT"
+  ],
+  "StartCooldown": [
+   "A04X",
+   "A06K"
+  ],
+  "VulnerabilityUnit": [
+   "A016",
+   "A037",
+   "A04X",
+   "A067",
+   "A08V",
    "A0AB",
-   "A0AL"
+   "A0BZ",
+   "A0CP",
+   "A0E0",
+   "A0IG",
+   "A0XE"
+  ],
+  "HeroR1_EndBuff": [
+   "A04T"
+  ],
+  "Hero24R_Delete": [
+   "A0B0",
+   "A0B2",
+   "A0B3",
+   "A0B4"
+  ],
+  "SetUnitAttackSpeed": [
+   "A018",
+   "A01Q",
+   "A02U",
+   "A02W",
+   "A02Z",
+   "A030",
+   "A04K",
+   "A04L",
+   "A06S",
+   "A070",
+   "A0B0",
+   "A0B2",
+   "A0B3",
+   "A0B4",
+   "A0K8",
+   "A0KD",
+   "A0M2",
+   "A0M4",
+   "A0M6",
+   "A0TG",
+   "A0WH",
+   "A0Y5",
+   "A0ZW"
   ],
   "SetUnitExtraArmor": [
    "A01P",
@@ -22481,123 +22678,8 @@
    "A0ZR",
    "AEbl"
   ],
-  "VulnerabilityUnit": [
-   "A016",
-   "A037",
-   "A04X",
-   "A067",
-   "A08V",
-   "A0AB",
-   "A0BZ",
-   "A0CP",
-   "A0E0",
-   "A0IG",
-   "A0XE"
-  ],
-  "HeroQ16_Endbuff": [
-   "A08E"
-  ],
-  "HeroW16_Endbuff": [
-   "A08Q"
-  ],
-  "HeroR16_check": [
-   "A08H"
-  ],
-  "RemoveBuff": [
-   "A01W",
-   "A03A",
-   "A03D",
-   "A07L",
-   "A08A",
-   "A0A6",
-   "A0D9",
-   "A0GT",
-   "A0JQ",
-   "A0MP",
-   "A0T2"
-  ],
-  "Hero21E": [
-   "A08A"
-  ],
-  "Hero11E": [
-   "A03A"
-  ],
-  "DiseaseUnit": [
-   "A03C",
-   "Awrh"
-  ],
-  "Hero11AttackCD": [
-   "A03C"
-  ],
-  "Hero11D": [
-   "A038"
-  ],
-  "BurnUnit": [
-   "A00Z",
-   "A017",
-   "A03O",
-   "A04X",
-   "A05R",
-   "A065",
-   "A066",
-   "A067",
-   "A068",
-   "A08T",
-   "A08Y",
-   "A0C3",
-   "A0DY",
-   "A0E3",
-   "A0GX",
-   "A0H1",
-   "A0IG",
-   "A0IJ",
-   "A0K7",
-   "A0MR",
-   "A0WT",
-   "A0XO",
-   "A0XT"
-  ],
-  "StartCooldown": [
-   "A04X",
-   "A06K"
-  ],
-  "HeroR1_EndBuff": [
-   "A04T"
-  ],
-  "Hero24R_Delete": [
-   "A0B0",
-   "A0B2",
-   "A0B3",
-   "A0B4"
-  ],
-  "SetUnitAttackSpeed": [
-   "A018",
-   "A01Q",
-   "A02U",
-   "A02W",
-   "A02Z",
-   "A030",
-   "A04K",
-   "A04L",
-   "A06S",
-   "A070",
-   "A0B0",
-   "A0B2",
-   "A0B3",
-   "A0B4",
-   "A0K8",
-   "A0KD",
-   "A0M2",
-   "A0M4",
-   "A0M6",
-   "A0TG",
-   "A0WH",
-   "A0Y5",
-   "A0ZW"
-  ],
   "SetUnitExtraDamage": [
    "A01C",
-   "A01S",
    "A02U",
    "A030",
    "A06K",
@@ -22668,6 +22750,7 @@
    "A054",
    "A097",
    "A0EX",
+   "A0GT",
    "A0KV",
    "A0XO"
   ],
@@ -22676,6 +22759,7 @@
    "A054",
    "A097",
    "A0EX",
+   "A0GT",
    "A0KV",
    "A0XO"
   ],
@@ -22696,6 +22780,10 @@
   "Hero5Agi": [
    "A033"
   ],
+  "Hero33Q": [
+   "A0GP",
+   "A0GR"
+  ],
   "Hero33R_Bladestorm": [
    "A0GR",
    "A0GS"
@@ -22706,18 +22794,19 @@
   "Hero33E_2": [
    "A0GR"
   ],
-  "Hero33Q": [
-   "A0GP",
-   "A0GR"
-  ],
-  "HeroR33_End": [
-   "A01S"
-  ],
   "Hero36Q": [
    "A0JS"
   ],
   "Hero36R": [
    "A0JU"
+  ],
+  "EndCooldown": [
+   "A02C",
+   "A0AB",
+   "A0HU",
+   "A0NU",
+   "A0OE",
+   "A0VN"
   ],
   "ProjectilesSkill36": [
    "A0VN"
@@ -22822,6 +22911,10 @@
   "Hero53E_poison": [
    "A0X6"
   ],
+  "Hero56R": [
+   "A0AB",
+   "A0AL"
+  ],
   "Hero49W_Buff": [
    "AEbl"
   ],
@@ -22877,25 +22970,25 @@
   "RemovePortalBuff": [
    "A0KY"
   ],
-  "OpalescenceLib___OpalescenceDamage": [
+  "OpalescenceLib__OpalescenceDamage": [
    "A0L0"
   ],
-  "OpalescenceLib___OpalescenceMove": [
+  "OpalescenceLib__OpalescenceMove": [
    "A0L0"
   ],
-  "OpalescenceLib___SetScale": [
+  "OpalescenceLib__SetScale": [
    "A0L0"
   ],
-  "OpalescenceLib___SetScale_1": [
+  "OpalescenceLib__SetScale_1": [
    "A0L0"
   ],
-  "OpalescenceLib___SetUnitPositionEx": [
+  "OpalescenceLib__SetUnitPositionEx": [
    "A0L0"
   ],
-  "s__OpalescenceLib___OpalescenceMoveS_deallocate": [
+  "s__OpalescenceLib__OpalescenceMoveS_deallocate": [
    "A0L0"
   ],
-  "s__OpalescenceLib___OpalescenceS_deallocate": [
+  "s__OpalescenceLib__OpalescenceS_deallocate": [
    "A0L0"
   ],
   "s__vector_deallocate": [
@@ -23191,15 +23284,6 @@
   "HeroE15": [
    "A081"
   ],
-  "HeroQ55_Dmg": [
-   "A0XO"
-  ],
-  "HeroW55_Dmg": [
-   "A0XQ"
-  ],
-  "HeroR55_Dmg": [
-   "A0XS"
-  ],
   "HeroQ57": [
    "A02N"
   ],
@@ -23347,6 +23431,15 @@
   ],
   "Hero52D": [
    "A01D"
+  ],
+  "HeroQ55_Dmg": [
+   "A0XO"
+  ],
+  "HeroW55_Dmg": [
+   "A0XQ"
+  ],
+  "HeroR55_Dmg": [
+   "A0XS"
   ]
  },
  "by_status": {
@@ -23366,6 +23459,7 @@
    "A04X",
    "A08A",
    "A0AK",
+   "A0GS",
    "A0P7",
    "A0P9"
   ],
@@ -23380,20 +23474,8 @@
    "A037",
    "A067",
    "A08V",
-   "A0DW"
-  ],
-  "vuln": [
-   "A016",
-   "A037",
-   "A04X",
-   "A067",
-   "A08V",
-   "A0AB",
-   "A0BZ",
-   "A0CP",
-   "A0E0",
-   "A0IG",
-   "A0XE"
+   "A0DW",
+   "A0GP"
   ],
   "disease": [
    "A03C",
@@ -23414,6 +23496,7 @@
    "A0C3",
    "A0DY",
    "A0E3",
+   "A0GT",
    "A0GX",
    "A0H1",
    "A0IG",
@@ -23424,11 +23507,25 @@
    "A0XO",
    "A0XT"
   ],
+  "vuln": [
+   "A016",
+   "A037",
+   "A04X",
+   "A067",
+   "A08V",
+   "A0AB",
+   "A0BZ",
+   "A0CP",
+   "A0E0",
+   "A0IG",
+   "A0XE"
+  ],
   "stun": [
    "A037",
    "A054",
    "A097",
    "A0EX",
+   "A0GT",
    "A0KV",
    "A0XO"
   ],
@@ -23479,7 +23576,6 @@
    "A01C",
    "A01D",
    "A01P",
-   "A01S",
    "A01U",
    "A01W",
    "A028",
@@ -23756,7 +23852,6 @@
    "A0GP",
    "A0GR",
    "A0GS",
-   "A0GT",
    "A0GX",
    "A0H1",
    "A0H4",
@@ -23871,6 +23966,7 @@
    "A0FV",
    "A0GP",
    "A0GR",
+   "A0GS",
    "A0H4",
    "A0HT",
    "A0IT",
@@ -24009,6 +24105,10 @@
    "A09Z",
    "A0A8",
    "A0CB",
+   "A0CV",
+   "A0CW",
+   "A0D0",
+   "A0DM",
    "A0HJ",
    "A0HK",
    "A0HM",
@@ -24081,7 +24181,8 @@
    "A10A",
    "A10I",
    "A10J",
-   "A10M"
+   "A10M",
+   "A10T"
   ],
   "OG01": [
    "A09L",
@@ -24101,6 +24202,10 @@
    "A09Y",
    "A0A8",
    "A0CB",
+   "A0CV",
+   "A0CW",
+   "A0D0",
+   "A0DM",
    "A0HJ",
    "A0HK",
    "A0HM",
@@ -24130,16 +24235,8 @@
    "A0YD",
    "A0YF",
    "A0YG",
-   "A0ZX"
-  ],
-  "A0AB": [
-   "A07H",
-   "A0BD"
-  ],
-  "PASS": [
-   "A07H",
-   "A0AB",
-   "A0BD"
+   "A0ZX",
+   "A10T"
   ],
   "6": [
    "A028",
@@ -24198,6 +24295,9 @@
    "A09W",
    "A09Y",
    "A09Z",
+   "A0CW",
+   "A0D0",
+   "A0DM",
    "A0HK",
    "A0HM",
    "A0I2",
@@ -24239,6 +24339,57 @@
    "A10A",
    "A10I",
    "A10J",
+   "A10M"
+  ],
+  "aINT": [
+   "A010",
+   "A012",
+   "A01H",
+   "A02L",
+   "A02V",
+   "A03G",
+   "A03J",
+   "A08K",
+   "A090",
+   "A091",
+   "A09Y",
+   "A09Z",
+   "A0CB",
+   "A0IA",
+   "A0IV",
+   "A0IX",
+   "A0J1",
+   "A0JA",
+   "A0JC",
+   "A0JI",
+   "A0JK",
+   "A0JM",
+   "A0LE",
+   "A0LS",
+   "A0LX",
+   "A0MK",
+   "A0OJ",
+   "A0Q4",
+   "A0Q6",
+   "A0R6",
+   "A0RK",
+   "A0TA",
+   "A0TB",
+   "A0TE",
+   "A0U3",
+   "A0U7",
+   "A0Y2",
+   "A0YO",
+   "A0YP",
+   "A0YR",
+   "A0ZQ",
+   "A100",
+   "A103",
+   "A104",
+   "A107",
+   "A108",
+   "A10A",
+   "A10I",
    "A10M"
   ],
   "A0I6": [
@@ -24295,6 +24446,7 @@
    "A0GP",
    "A0GR",
    "A0GS",
+   "A0GT",
    "A0X7",
    "ANbl",
    "AOwk"
@@ -24305,6 +24457,7 @@
    "A0B2",
    "A0B3",
    "A0B4",
+   "A0GT",
    "A0M6",
    "A0TG"
   ],
@@ -24357,7 +24510,6 @@
   ],
   "34": [
    "A01C",
-   "A01S",
    "A02U",
    "A030",
    "A06K",
@@ -24417,56 +24569,6 @@
    "A0OJ",
    "A0ON"
   ],
-  "aINT": [
-   "A010",
-   "A012",
-   "A01H",
-   "A02L",
-   "A02V",
-   "A03G",
-   "A03J",
-   "A090",
-   "A091",
-   "A09Y",
-   "A09Z",
-   "A0CB",
-   "A0IA",
-   "A0IV",
-   "A0IX",
-   "A0J1",
-   "A0JA",
-   "A0JC",
-   "A0JI",
-   "A0JK",
-   "A0JM",
-   "A0LE",
-   "A0LS",
-   "A0LX",
-   "A0MK",
-   "A0OJ",
-   "A0Q4",
-   "A0Q6",
-   "A0R6",
-   "A0RK",
-   "A0TA",
-   "A0TB",
-   "A0TE",
-   "A0U3",
-   "A0U7",
-   "A0Y2",
-   "A0YO",
-   "A0YP",
-   "A0YR",
-   "A0ZQ",
-   "A100",
-   "A103",
-   "A104",
-   "A107",
-   "A108",
-   "A10A",
-   "A10I",
-   "A10M"
-  ],
   "24": [
    "A018",
    "A0KD",
@@ -24502,6 +24604,8 @@
    "A09M",
    "A09N",
    "A09V",
+   "A0CW",
+   "A0D0",
    "A0EW",
    "A0FV",
    "A0IU",
@@ -24519,9 +24623,11 @@
    "A0GP",
    "A0GS"
   ],
-  "A0GT": [
-   "A0GP",
-   "A0GS"
+  "I068": [
+   "A0GT"
+  ],
+  "shhn": [
+   "A0GT"
   ],
   "A02C": [
    "A0JU"
@@ -24585,6 +24691,15 @@
   ],
   "B08Y": [
    "A08Y"
+  ],
+  "A0AB": [
+   "A07H",
+   "A0BD"
+  ],
+  "PASS": [
+   "A07H",
+   "A0AB",
+   "A0BD"
   ],
   "8": [
    "A0IG",
@@ -24948,6 +25063,7 @@
    "A0B7",
    "A0C6",
    "A0E3",
+   "A0GT",
    "A0H9",
    "A0HU",
    "A0K7",
@@ -25023,6 +25139,7 @@
    "A0EX",
    "A0EY",
    "A0F4",
+   "A0GT",
    "A0GX",
    "A0H1",
    "A0HE",
@@ -25076,7 +25193,6 @@
    "A01C",
    "A01D",
    "A01P",
-   "A01S",
    "A01U",
    "A01W",
    "A028",
@@ -25249,6 +25365,7 @@
    "A08A",
    "A08P",
    "A0AB",
+   "A0GT",
    "A0J2",
    "A0NU",
    "A0PM",
@@ -25410,8 +25527,10 @@
    "A0FV",
    "A0G0",
    "A0G2",
+   "A0GO",
    "A0GP",
    "A0GR",
+   "A0GS",
    "A0GT",
    "A0GZ",
    "A0H3",
@@ -25581,6 +25700,7 @@
    "A0GP",
    "A0GR",
    "A0GS",
+   "A0GT",
    "A0GX",
    "A0GZ",
    "A0H1",
@@ -25665,7 +25785,6 @@
    "A010",
    "A013",
    "A01H",
-   "A01S",
    "A02C",
    "A02L",
    "A02V",
@@ -25694,6 +25813,9 @@
    "A0B4",
    "A0BY",
    "A0CB",
+   "A0CV",
+   "A0CW",
+   "A0D0",
    "A0DW",
    "A0GR",
    "A0HJ",
@@ -25863,6 +25985,10 @@
    "A0B3",
    "A0B4",
    "A0CB",
+   "A0CV",
+   "A0CW",
+   "A0D0",
+   "A0DM",
    "A0FV",
    "A0HJ",
    "A0HK",
@@ -25949,7 +26075,8 @@
    "A10J",
    "A10M",
    "A10P",
-   "A10Q"
+   "A10Q",
+   "A10T"
   ],
   "int": [
    "A010",
@@ -25982,6 +26109,8 @@
    "A0B3",
    "A0B4",
    "A0CB",
+   "A0CW",
+   "A0DM",
    "A0EX",
    "A0HJ",
    "A0HK",
@@ -26069,7 +26198,8 @@
    "A10J",
    "A10M",
    "A10P",
-   "A10Q"
+   "A10Q",
+   "A10T"
   ],
   "herolvl": [
    "A01D",
@@ -26080,6 +26210,9 @@
    "A0B2",
    "A0B3",
    "A0B4",
+   "A0GO",
+   "A0GP",
+   "A0GR",
    "A0M7",
    "A0MR",
    "A0PB",
@@ -26105,24 +26238,6 @@
   ],
   "Trig_HeroKills18_Actions": [
    "A0AF"
-  ],
-  "Trig_HeroSkills56_Actions": [
-   "A07H",
-   "A0AB",
-   "A0BD"
-  ],
-  "Trig_HeroAttack56_Actions": [
-   "A0AB",
-   "A0AL"
-  ],
-  "BleedUnit": [
-   "A064"
-  ],
-  "BurnUnit": [
-   "A064"
-  ],
-  "DiseaseUnit": [
-   "A064"
   ],
   "Trig_HeroSkills16_Actions": [
    "A08D",
@@ -26186,6 +26301,15 @@
    "A0BA",
    "A0BB",
    "A0BE"
+  ],
+  "Trig_HeroSkills34_Actions": [
+   "A01Q",
+   "A08K",
+   "A090",
+   "A09Z",
+   "A0CB",
+   "A0GX",
+   "A0H1"
   ],
   "Trig_HeroSkills11_Actions": [
    "A038",
@@ -26269,26 +26393,7 @@
   "Trig_HeroAttacks5_Actions": [
    "A034"
   ],
-  "Trig_HeroGiveSkills5_Actions": [
-   "A034"
-  ],
-  "Trig_HeroGiveSkills5_Conditions": [
-   "A034"
-  ],
-  "Hero33Q": [
-   "A0GR",
-   "A0GT"
-  ],
-  "Hero33R_Bladestorm": [
-   "A0GR",
-   "A0GT"
-  ],
-  "Trig_HeroKills33_Actions": [
-   "A0GR",
-   "A0GT"
-  ],
   "Trig_HeroSkills33_Actions": [
-   "A01S",
    "A0CV",
    "A0CW",
    "A0D0",
@@ -26296,7 +26401,26 @@
    "A0GP",
    "A0GR",
    "A0GS",
+   "A10T"
+  ],
+  "Trig_HeroGiveSkills33_Actions": [
+   "A0GR",
    "A0GT"
+  ],
+  "Trig_UAttacks_Actions": [
+   "A070",
+   "A0G0",
+   "A0GT"
+  ],
+  "Hero33Q": [
+   "A0GR"
+  ],
+  "Hero33R_Bladestorm": [
+   "A0GR"
+  ],
+  "Trig_HeroKills33_Actions": [
+   "A0GO",
+   "A0GR"
   ],
   "Hero36Q": [
    "A0JS"
@@ -26470,6 +26594,24 @@
   "Hero53E_poison": [
    "A0X6"
   ],
+  "Trig_HeroSkills56_Actions": [
+   "A07H",
+   "A0AB",
+   "A0BD"
+  ],
+  "Trig_HeroAttack56_Actions": [
+   "A0AB",
+   "A0AL"
+  ],
+  "BleedUnit": [
+   "A064"
+  ],
+  "BurnUnit": [
+   "A064"
+  ],
+  "DiseaseUnit": [
+   "A064"
+  ],
   "Trig_HeroSkills49_Actions": [
    "A0OA",
    "A0OF",
@@ -26587,18 +26729,8 @@
   "HeroE20": [
    "A070"
   ],
-  "Trig_UAttacks_Actions": [
-   "A070",
-   "A0G0"
-  ],
   "Trig_HeroDeath20_Actions": [
    "A06Z"
-  ],
-  "Trig_HeroSkills34_Actions": [
-   "A01Q",
-   "A0CB",
-   "A0GX",
-   "A0H1"
   ],
   "HeroSkinDCheck20_conditions": [
    "A0L8"
@@ -27024,14 +27156,6 @@
   "HeroE15": [
    "A0XC"
   ],
-  "Trig_HeroSkills55_Actions": [
-   "A0XO",
-   "A0XQ",
-   "A0XS"
-  ],
-  "ProjectileMove": [
-   "A0XT"
-  ],
   "HeroQ57": [
    "A02N"
   ],
@@ -27220,6 +27344,14 @@
   ],
   "Trig_Hero52SkillsStop_Actions": [
    "A01D"
+  ],
+  "Trig_HeroSkills55_Actions": [
+   "A0XO",
+   "A0XQ",
+   "A0XS"
+  ],
+  "ProjectileMove": [
+   "A0XT"
   ]
  },
  "names": {

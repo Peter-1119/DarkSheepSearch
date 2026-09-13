@@ -1,6 +1,6 @@
 # 占星師 `Ekee`（Астромант）
 
-主屬性 **智力** · 背包 **6 格** · 解鎖 0 · 定位 法師 · **不在隨機池**（只能手動挑） · **帳號鎖定**：Lorit, murlock227, MikeRoss, st1073741824, JEIFEJFIJ151, Koshitan
+主屬性 **智力** · 背包 **6 格** · 解鎖 0 · 定位 法師 · **不在隨機池**（只能手動挑） · **帳號鎖定**：Lorit, murlock227, MikeRoss, Koshitan
 
 | | 初始 | 每級 |
 |---|---|---|
@@ -42,7 +42,7 @@
 
 實作：
 
-`HeroQ54`　war3map.j:65003
+`HeroQ54`　war3map.j:65122
 ```jass
 function HeroQ54 takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -103,7 +103,7 @@ set ug=null
 endfunction
 ```
 
-`Trig_HeroSkills54_Actions`　war3map.j:65149
+`Trig_HeroSkills54_Actions`　war3map.j:65268
 ```jass
 if Skill=='A0KU' then
 set x=GetUnitX(u)
@@ -125,7 +125,7 @@ elseif Skill=='A0CT' then
 call HeroA54_Boom(u,LoadUnitHandle(hash,GetHandleId(u),'A0KU'))
 ```
 
-`HeroA54_Boom`　war3map.j:64905
+`HeroA54_Boom`　war3map.j:65024
 ```jass
 function HeroA54_Boom takes unit u,unit u2 returns nothing
 local real x=GetUnitX(u2)
@@ -184,7 +184,7 @@ endfunction
 
 實作：
 
-`Trig_HeroSkills54_Actions`　war3map.j:65167
+`Trig_HeroSkills54_Actions`　war3map.j:65286
 ```jass
 elseif Skill=='A0KV' then
 set x=GetUnitX(u)
@@ -246,7 +246,7 @@ set t=null
 endfunction
 ```
 
-`HeroW54`　war3map.j:64940
+`HeroW54`　war3map.j:65059
 ```jass
 function HeroW54 takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -335,7 +335,7 @@ endfunction
 
 實作：
 
-`Trig_HeroSkillCheck_Actions`　war3map.j:45559
+`Trig_HeroSkillCheck_Actions`　war3map.j:45641
 ```jass
 if Skill=='A0KY' then
 set x=GetSpellTargetX()
@@ -347,7 +347,7 @@ endif
 endif
 ```
 
-`HeroE54`　war3map.j:65078
+`HeroE54`　war3map.j:65197
 ```jass
 if UnitAlive(u3)and IsUnitAlly(u3,pl)and not IsUnitType(u3,UNIT_TYPE_STRUCTURE)and GetUnitPointValue(u3)!=0 and GetUnitAbilityLevel(u3,'B00W')!=1 and LoadInteger(hash,GetHandleId(u3),'A0KY')!=1 then
 call SetUnitX(u3,x2)
@@ -358,7 +358,7 @@ call PortalBuffUnit(u3)
 endif
 ```
 
-`HeroE54`　war3map.j:65093
+`HeroE54`　war3map.j:65212
 ```jass
 if UnitAlive(u3)and IsUnitAlly(u3,pl)and not IsUnitType(u3,UNIT_TYPE_STRUCTURE)and GetUnitPointValue(u3)!=0 and GetUnitAbilityLevel(u3,'B00W')!=1 and LoadInteger(hash,GetHandleId(u3),'A0KY')!=1 then
 call SetUnitX(u3,x)
@@ -369,7 +369,7 @@ call PortalBuffUnit(u3)
 endif
 ```
 
-`HeroE54_HeroImmune`　war3map.j:65118
+`HeroE54_HeroImmune`　war3map.j:65237
 ```jass
 function HeroE54_HeroImmune takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -384,7 +384,7 @@ set u=null
 endfunction
 ```
 
-`Trig_HeroSkills54_Actions`　war3map.j:65191
+`Trig_HeroSkills54_Actions`　war3map.j:65310
 ```jass
 elseif Skill=='A0KY' then
 set x=GetUnitX(u)
@@ -410,7 +410,7 @@ call SaveUnitHandle(hash,Id,1,u)
 call TimerStart(t,2.,false,function HeroE54_HeroImmune)
 ```
 
-`RemovePortalBuff`　war3map.j:64878
+`RemovePortalBuff`　war3map.j:64997
 ```jass
 function RemovePortalBuff takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -460,33 +460,33 @@ endfunction
 
 實作：
 
-`Opalescence_Actions`　war3map.j:3690
+`Opalescence_Actions`　war3map.j:3694
 ```jass
 function Opalescence_Actions takes nothing returns nothing
-local integer A=s__OpalescenceLib___OpalescenceS__allocate()
-set s__OpalescenceLib___OpalescenceS_t[A]=CreateTimer()
-set s__OpalescenceLib___OpalescenceS_caster[A]=GetTriggerUnit()
-set s__OpalescenceLib___OpalescenceS_p[A]=GetOwningPlayer(s__OpalescenceLib___OpalescenceS_caster[A])
-set s__OpalescenceLib___OpalescenceS_damage[A]=30.+udg_ItemBonusDMG[GetPlayerId(s__OpalescenceLib___OpalescenceS_p[A])+1]*0.05
-set s__OpalescenceLib___OpalescenceS_radius[A]=400.00
-set s__OpalescenceLib___OpalescenceS_time[A]=10.00
-set s__OpalescenceLib___OpalescenceS_timeThreshold[A]=0.70
-set s__OpalescenceLib___OpalescenceS_l[A]=s__vector_create(GetUnitX(s__OpalescenceLib___OpalescenceS_caster[A]),GetUnitY(s__OpalescenceLib___OpalescenceS_caster[A]),0.00)
-set s__vector_z[s__OpalescenceLib___OpalescenceS_l[A]]=OpalescenceLib___GetLocZ(s__vector_x[s__OpalescenceLib___OpalescenceS_l[A]],s__vector_y[s__OpalescenceLib___OpalescenceS_l[A]])
-set s__OpalescenceLib___OpalescenceS_endPos[A]=s__vector_create(GetSpellTargetX(),GetSpellTargetY(),0.00)
-set s__vector_z[s__OpalescenceLib___OpalescenceS_endPos[A]]=OpalescenceLib___GetLocZ(s__vector_x[s__OpalescenceLib___OpalescenceS_endPos[A]],s__vector_y[s__OpalescenceLib___OpalescenceS_endPos[A]])+300.00
-set s__OpalescenceLib___OpalescenceS_v[A]=s__vector_create(s__vector_x[s__OpalescenceLib___OpalescenceS_endPos[A]]-s__vector_x[s__OpalescenceLib___OpalescenceS_l[A]],s__vector_y[s__OpalescenceLib___OpalescenceS_endPos[A]]-s__vector_y[s__OpalescenceLib___OpalescenceS_l[A]],s__vector_z[s__OpalescenceLib___OpalescenceS_endPos[A]]-s__vector_z[s__OpalescenceLib___OpalescenceS_l[A]])
-set s__OpalescenceLib___OpalescenceS_speed[A]=s__vector_length(s__OpalescenceLib___OpalescenceS_v[A])*1.30*0.01
-call s__vector_normalize(s__OpalescenceLib___OpalescenceS_v[A])
-set s__OpalescenceLib___OpalescenceS_dummy[A]=CreateUnit(s__OpalescenceLib___OpalescenceS_p[A],OpalescenceLib___AbolishID,s__vector_x[s__OpalescenceLib___OpalescenceS_l[A]],s__vector_y[s__OpalescenceLib___OpalescenceS_l[A]],Atan2(s__vector_y[s__OpalescenceLib___OpalescenceS_v[A]],s__vector_x[s__OpalescenceLib___OpalescenceS_v[A]])*bj_RADTODEG)
-call SetUnitX(s__OpalescenceLib___OpalescenceS_dummy[A],s__vector_x[s__OpalescenceLib___OpalescenceS_l[A]])
-call SetUnitY(s__OpalescenceLib___OpalescenceS_dummy[A],s__vector_y[s__OpalescenceLib___OpalescenceS_l[A]])
-call SetUnitScale(s__OpalescenceLib___OpalescenceS_dummy[A],2.00,2.00,2.00)
-call UnitApplyTimedLife(s__OpalescenceLib___OpalescenceS_dummy[A],'BTLF',1.00)
-call SetUnitAnimation(s__OpalescenceLib___OpalescenceS_dummy[A],"birth")
-call QueueUnitAnimation(s__OpalescenceLib___OpalescenceS_dummy[A],"stand")
-call SaveInteger(hash,GetHandleId(s__OpalescenceLib___OpalescenceS_t[A]),0,A)
-call TimerStart(s__OpalescenceLib___OpalescenceS_t[A],0.01,true,function OpalescenceLib___OpalescenceDamage)
+local integer A=s__OpalescenceLib__OpalescenceS__allocate()
+set s__OpalescenceLib__OpalescenceS_t[A]=CreateTimer()
+set s__OpalescenceLib__OpalescenceS_caster[A]=GetTriggerUnit()
+set s__OpalescenceLib__OpalescenceS_p[A]=GetOwningPlayer(s__OpalescenceLib__OpalescenceS_caster[A])
+set s__OpalescenceLib__OpalescenceS_damage[A]=30.+udg_ItemBonusDMG[GetPlayerId(s__OpalescenceLib__OpalescenceS_p[A])+1]*0.05
+set s__OpalescenceLib__OpalescenceS_radius[A]=400.00
+set s__OpalescenceLib__OpalescenceS_time[A]=10.00
+set s__OpalescenceLib__OpalescenceS_timeThreshold[A]=0.70
+set s__OpalescenceLib__OpalescenceS_l[A]=s__vector_create(GetUnitX(s__OpalescenceLib__OpalescenceS_caster[A]),GetUnitY(s__OpalescenceLib__OpalescenceS_caster[A]),0.00)
+set s__vector_z[s__OpalescenceLib__OpalescenceS_l[A]]=OpalescenceLib__GetLocZ(s__vector_x[s__OpalescenceLib__OpalescenceS_l[A]],s__vector_y[s__OpalescenceLib__OpalescenceS_l[A]])
+set s__OpalescenceLib__OpalescenceS_endPos[A]=s__vector_create(GetSpellTargetX(),GetSpellTargetY(),0.00)
+set s__vector_z[s__OpalescenceLib__OpalescenceS_endPos[A]]=OpalescenceLib__GetLocZ(s__vector_x[s__OpalescenceLib__OpalescenceS_endPos[A]],s__vector_y[s__OpalescenceLib__OpalescenceS_endPos[A]])+300.00
+set s__OpalescenceLib__OpalescenceS_v[A]=s__vector_create(s__vector_x[s__OpalescenceLib__OpalescenceS_endPos[A]]-s__vector_x[s__OpalescenceLib__OpalescenceS_l[A]],s__vector_y[s__OpalescenceLib__OpalescenceS_endPos[A]]-s__vector_y[s__OpalescenceLib__OpalescenceS_l[A]],s__vector_z[s__OpalescenceLib__OpalescenceS_endPos[A]]-s__vector_z[s__OpalescenceLib__OpalescenceS_l[A]])
+set s__OpalescenceLib__OpalescenceS_speed[A]=s__vector_length(s__OpalescenceLib__OpalescenceS_v[A])*1.30*0.01
+call s__vector_normalize(s__OpalescenceLib__OpalescenceS_v[A])
+set s__OpalescenceLib__OpalescenceS_dummy[A]=CreateUnit(s__OpalescenceLib__OpalescenceS_p[A],OpalescenceLib__AbolishID,s__vector_x[s__OpalescenceLib__OpalescenceS_l[A]],s__vector_y[s__OpalescenceLib__OpalescenceS_l[A]],Atan2(s__vector_y[s__OpalescenceLib__OpalescenceS_v[A]],s__vector_x[s__OpalescenceLib__OpalescenceS_v[A]])*bj_RADTODEG)
+call SetUnitX(s__OpalescenceLib__OpalescenceS_dummy[A],s__vector_x[s__OpalescenceLib__OpalescenceS_l[A]])
+call SetUnitY(s__OpalescenceLib__OpalescenceS_dummy[A],s__vector_y[s__OpalescenceLib__OpalescenceS_l[A]])
+call SetUnitScale(s__OpalescenceLib__OpalescenceS_dummy[A],2.00,2.00,2.00)
+call UnitApplyTimedLife(s__OpalescenceLib__OpalescenceS_dummy[A],'BTLF',1.00)
+call SetUnitAnimation(s__OpalescenceLib__OpalescenceS_dummy[A],"birth")
+call QueueUnitAnimation(s__OpalescenceLib__OpalescenceS_dummy[A],"stand")
+call SaveInteger(hash,GetHandleId(s__OpalescenceLib__OpalescenceS_t[A]),0,A)
+call TimerStart(s__OpalescenceLib__OpalescenceS_t[A],0.01,true,function OpalescenceLib__OpalescenceDamage)
 endfunction
 function Opalescence_Conditions takes nothing returns boolean
 return GetSpellAbilityId()=='A0L0'
@@ -506,51 +506,51 @@ set si__vector_F=this
 endfunction
 ```
 
-`s__OpalescenceLib___OpalescenceS_deallocate`　war3map.j:1346
+`s__OpalescenceLib__OpalescenceS_deallocate`　war3map.j:1346
 ```jass
-function s__OpalescenceLib___OpalescenceS_deallocate takes integer this returns nothing
+function s__OpalescenceLib__OpalescenceS_deallocate takes integer this returns nothing
 if this==null then
 return
-elseif(si__OpalescenceLib___OpalescenceS_V[this]!=-1)then
+elseif(si__OpalescenceLib__OpalescenceS_V[this]!=-1)then
 return
 endif
-set si__OpalescenceLib___OpalescenceS_V[this]=si__OpalescenceLib___OpalescenceS_F
-set si__OpalescenceLib___OpalescenceS_F=this
+set si__OpalescenceLib__OpalescenceS_V[this]=si__OpalescenceLib__OpalescenceS_F
+set si__OpalescenceLib__OpalescenceS_F=this
 endfunction
 ```
 
-`s__OpalescenceLib___OpalescenceMoveS_deallocate`　war3map.j:1370
+`s__OpalescenceLib__OpalescenceMoveS_deallocate`　war3map.j:1370
 ```jass
-function s__OpalescenceLib___OpalescenceMoveS_deallocate takes integer this returns nothing
+function s__OpalescenceLib__OpalescenceMoveS_deallocate takes integer this returns nothing
 if this==null then
 return
-elseif(si__OpalescenceLib___OpalescenceMoveS_V[this]!=-1)then
+elseif(si__OpalescenceLib__OpalescenceMoveS_V[this]!=-1)then
 return
 endif
-set si__OpalescenceLib___OpalescenceMoveS_V[this]=si__OpalescenceLib___OpalescenceMoveS_F
-set si__OpalescenceLib___OpalescenceMoveS_F=this
+set si__OpalescenceLib__OpalescenceMoveS_V[this]=si__OpalescenceLib__OpalescenceMoveS_F
+set si__OpalescenceLib__OpalescenceMoveS_F=this
 endfunction
 ```
 
-`OpalescenceLib___SetUnitPositionEx`　war3map.j:3408
+`OpalescenceLib__SetUnitPositionEx`　war3map.j:3412
 ```jass
-function OpalescenceLib___SetUnitPositionEx takes unit u,real x,real y returns nothing
-if x>OpalescenceLib___MaxX then
-set x=OpalescenceLib___MaxX
-elseif x<OpalescenceLib___MinX then
-set x=OpalescenceLib___MinX
+function OpalescenceLib__SetUnitPositionEx takes unit u,real x,real y returns nothing
+if x>OpalescenceLib__MaxX then
+set x=OpalescenceLib__MaxX
+elseif x<OpalescenceLib__MinX then
+set x=OpalescenceLib__MinX
 endif
-if y>OpalescenceLib___MaxY then
-set y=OpalescenceLib___MaxY
-elseif y<OpalescenceLib___MinY then
-set y=OpalescenceLib___MinY
+if y>OpalescenceLib__MaxY then
+set y=OpalescenceLib__MaxY
+elseif y<OpalescenceLib__MinY then
+set y=OpalescenceLib__MinY
 endif
 call SetUnitX(u,x)
 call SetUnitY(u,y)
 endfunction
 ```
 
-`s__vector_normalize`　war3map.j:3425
+`s__vector_normalize`　war3map.j:3429
 ```jass
 function s__vector_normalize takes integer this returns nothing
 local real l=s__vector_length(this)
@@ -563,9 +563,9 @@ set s__vector_z[this]=s__vector_z[this]/l
 endfunction
 ```
 
-`OpalescenceLib___OpalescenceMove`　war3map.j:3441
+`OpalescenceLib__OpalescenceMove`　war3map.j:3445
 ```jass
-function OpalescenceLib___OpalescenceMove takes nothing returns nothing
+function OpalescenceLib__OpalescenceMove takes nothing returns nothing
 local integer A=LoadInteger(hash,GetHandleId(GetExpiredTimer()),0)
 local integer i=0
 local integer k=0
@@ -574,14 +574,14 @@ local real array y
 local real array z
 local real r
 local unit u
-set s__OpalescenceLib___OpalescenceMoveS_time[A]=s__OpalescenceLib___OpalescenceMoveS_time[A]+0.03125/s__OpalescenceLib___OpalescenceMoveS_timeMax[A]
-if s__OpalescenceLib___OpalescenceMoveS_time[A]>1.00 then
-set s__OpalescenceLib___OpalescenceMoveS_time[A]=1.00
+set s__OpalescenceLib__OpalescenceMoveS_time[A]=s__OpalescenceLib__OpalescenceMoveS_time[A]+0.03125/s__OpalescenceLib__OpalescenceMoveS_timeMax[A]
+if s__OpalescenceLib__OpalescenceMoveS_time[A]>1.00 then
+set s__OpalescenceLib__OpalescenceMoveS_time[A]=1.00
 endif
 loop
-set x[k]=s__vector_x[s___OpalescenceLib___OpalescenceMoveS_l[s__OpalescenceLib___OpalescenceMoveS_l[A]+k]]
-set y[k]=s__vector_y[s___OpalescenceLib___OpalescenceMoveS_l[s__OpalescenceLib___OpalescenceMoveS_l[A]+k]]
-set z[k]=s__vector_z[s___OpalescenceLib___OpalescenceMoveS_l[s__OpalescenceLib___OpalescenceMoveS_l[A]+k]]
+set x[k]=s__vector_x[s___OpalescenceLib__OpalescenceMoveS_l[s__OpalescenceLib__OpalescenceMoveS_l[A]+k]]
+set y[k]=s__vector_y[s___OpalescenceLib__OpalescenceMoveS_l[s__OpalescenceLib__OpalescenceMoveS_l[A]+k]]
+set z[k]=s__vector_z[s___OpalescenceLib__OpalescenceMoveS_l[s__OpalescenceLib__OpalescenceMoveS_l[A]+k]]
 set k=k+1
 exitwhen k>=6
 endloop
@@ -589,41 +589,41 @@ set k=0
 loop
 set i=0
 loop
-set x[i]=(1.00-s__OpalescenceLib___OpalescenceMoveS_time[A])*x[i]+s__OpalescenceLib___OpalescenceMoveS_time[A]*x[i+1]
-set y[i]=(1.00-s__OpalescenceLib___OpalescenceMoveS_time[A])*y[i]+s__OpalescenceLib___OpalescenceMoveS_time[A]*y[i+1]
-set z[i]=(1.00-s__OpalescenceLib___OpalescenceMoveS_time[A])*z[i]+s__OpalescenceLib___OpalescenceMoveS_time[A]*z[i+1]
+set x[i]=(1.00-s__OpalescenceLib__OpalescenceMoveS_time[A])*x[i]+s__OpalescenceLib__OpalescenceMoveS_time[A]*x[i+1]
+set y[i]=(1.00-s__OpalescenceLib__OpalescenceMoveS_time[A])*y[i]+s__OpalescenceLib__OpalescenceMoveS_time[A]*y[i+1]
+set z[i]=(1.00-s__OpalescenceLib__OpalescenceMoveS_time[A])*z[i]+s__OpalescenceLib__OpalescenceMoveS_time[A]*z[i+1]
 set i=i+1
 exitwhen i>6-k
 endloop
 set k=k+1
 exitwhen k>=6-1
 endloop
-call OpalescenceLib___SetUnitPositionEx(s__OpalescenceLib___OpalescenceMoveS_dummy[A],x[0],y[0])
-call SetUnitFlyHeight(s__OpalescenceLib___OpalescenceMoveS_dummy[A],z[0]-OpalescenceLib___GetLocZ(x[0],y[0]),0.00)
-call SetUnitFacing(s__OpalescenceLib___OpalescenceMoveS_dummy[A],Atan2(y[0]-s__vector_y[s__OpalescenceLib___OpalescenceMoveS_last[A]],x[0]-s__vector_x[s__OpalescenceLib___OpalescenceMoveS_last[A]])*bj_RADTODEG)
-if s__OpalescenceLib___OpalescenceMoveS_time[A]>=1.00 then
-call PauseTimer(s__OpalescenceLib___OpalescenceMoveS_t[A])
-call FlushChildHashtable(hash,GetHandleId(s__OpalescenceLib___OpalescenceMoveS_t[A]))
-call DestroyTimer(s__OpalescenceLib___OpalescenceMoveS_t[A])
-call UnitApplyTimedLife(s__OpalescenceLib___OpalescenceMoveS_dummy[A],'BTLF',2.00)
-call SetUnitAnimation(s__OpalescenceLib___OpalescenceMoveS_dummy[A],"death")
+call OpalescenceLib__SetUnitPositionEx(s__OpalescenceLib__OpalescenceMoveS_dummy[A],x[0],y[0])
+call SetUnitFlyHeight(s__OpalescenceLib__OpalescenceMoveS_dummy[A],z[0]-OpalescenceLib__GetLocZ(x[0],y[0]),0.00)
+call SetUnitFacing(s__OpalescenceLib__OpalescenceMoveS_dummy[A],Atan2(y[0]-s__vector_y[s__OpalescenceLib__OpalescenceMoveS_last[A]],x[0]-s__vector_x[s__OpalescenceLib__OpalescenceMoveS_last[A]])*bj_RADTODEG)
+if s__OpalescenceLib__OpalescenceMoveS_time[A]>=1.00 then
+call PauseTimer(s__OpalescenceLib__OpalescenceMoveS_t[A])
+call FlushChildHashtable(hash,GetHandleId(s__OpalescenceLib__OpalescenceMoveS_t[A]))
+call DestroyTimer(s__OpalescenceLib__OpalescenceMoveS_t[A])
+call UnitApplyTimedLife(s__OpalescenceLib__OpalescenceMoveS_dummy[A],'BTLF',2.00)
+call SetUnitAnimation(s__OpalescenceLib__OpalescenceMoveS_dummy[A],"death")
 set i=0
 loop
-call s__vector_deallocate(s___OpalescenceLib___OpalescenceMoveS_l[s__OpalescenceLib___OpalescenceMoveS_l[A]+i])
+call s__vector_deallocate(s___OpalescenceLib__OpalescenceMoveS_l[s__OpalescenceLib__OpalescenceMoveS_l[A]+i])
 set i=i+1
 exitwhen i>=6
 endloop
-call s__vector_deallocate(s__OpalescenceLib___OpalescenceMoveS_last[A])
-set s__OpalescenceLib___OpalescenceMoveS_t[A]=null
-set s__OpalescenceLib___OpalescenceMoveS_dummy[A]=null
-call s__OpalescenceLib___OpalescenceMoveS_deallocate(A)
+call s__vector_deallocate(s__OpalescenceLib__OpalescenceMoveS_last[A])
+set s__OpalescenceLib__OpalescenceMoveS_t[A]=null
+set s__OpalescenceLib__OpalescenceMoveS_dummy[A]=null
+call s__OpalescenceLib__OpalescenceMoveS_deallocate(A)
 else
-set s__vector_x[s__OpalescenceLib___OpalescenceMoveS_last[A]]=x[0]
-set s__vector_y[s__OpalescenceLib___OpalescenceMoveS_last[A]]=y[0]
-set s__vector_z[s__OpalescenceLib___OpalescenceMoveS_last[A]]=z[0]
+set s__vector_x[s__OpalescenceLib__OpalescenceMoveS_last[A]]=x[0]
+set s__vector_y[s__OpalescenceLib__OpalescenceMoveS_last[A]]=y[0]
+set s__vector_z[s__OpalescenceLib__OpalescenceMoveS_last[A]]=z[0]
 endif
 endfunction
-function OpalescenceLib___SetScale_1 takes nothing returns nothing
+function OpalescenceLib__SetScale_1 takes nothing returns nothing
 local timer t=GetExpiredTimer()
 local integer i=GetHandleId(t)
 local real r=LoadReal(hash,i,1)+1.75
@@ -639,7 +639,7 @@ call SaveReal(hash,i,1,r)
 endif
 set t=null
 endfunction
-function OpalescenceLib___SetScale takes nothing returns nothing
+function OpalescenceLib__SetScale takes nothing returns nothing
 local timer t=GetExpiredTimer()
 local integer i=GetHandleId(t)
 local real r=LoadReal(hash,i,1)+0.25
@@ -654,7 +654,7 @@ call SaveReal(hash,i,1,r)
 endif
 set t=null
 endfunction
-function OpalescenceLib___OpalescenceDamage takes nothing returns nothing
+function OpalescenceLib__OpalescenceDamage takes nothing returns nothing
 local integer A=LoadInteger(hash,GetHandleId(GetExpiredTimer()),0)
 local integer B
 local unit u
@@ -664,181 +664,181 @@ local timer t
 local integer i
 local integer j
 local real mana_dmg
-if s__OpalescenceLib___OpalescenceS_timeThreshold[A]>0.00 then
-set s__OpalescenceLib___OpalescenceS_timeThreshold[A]=s__OpalescenceLib___OpalescenceS_timeThreshold[A]-0.01
-if s__OpalescenceLib___OpalescenceS_timeThreshold[A]==0.20 then
-set OpalescenceLib___TempUnit=CreateUnit(s__OpalescenceLib___OpalescenceS_p[A],OpalescenceLib___WispID,s__vector_x[s__OpalescenceLib___OpalescenceS_l[A]]+s__OpalescenceLib___OpalescenceS_speed[A]*20.00*s__vector_x[s__OpalescenceLib___OpalescenceS_v[A]],s__vector_y[s__OpalescenceLib___OpalescenceS_l[A]]+s__OpalescenceLib___OpalescenceS_speed[A]*20.00*s__vector_y[s__OpalescenceLib___OpalescenceS_v[A]],GetRandomReal(0.00,360.00))
-call OpalescenceLib___SetUnitPositionEx(OpalescenceLib___TempUnit,s__vector_x[s__OpalescenceLib___OpalescenceS_l[A]]+s__OpalescenceLib___OpalescenceS_speed[A]*20.00*s__vector_x[s__OpalescenceLib___OpalescenceS_v[A]],s__vector_y[s__OpalescenceLib___OpalescenceS_l[A]]+s__OpalescenceLib___OpalescenceS_speed[A]*20.00*s__vector_y[s__OpalescenceLib___OpalescenceS_v[A]])
-call SetUnitFlyHeight(OpalescenceLib___TempUnit,300.00,0.00)
-call SetUnitScale(OpalescenceLib___TempUnit,2.00,2.00,2.00)
-call SetUnitTimeScale(OpalescenceLib___TempUnit,2.00)
-call UnitApplyTimedLife(OpalescenceLib___TempUnit,'BTLF',2.)
+if s__OpalescenceLib__OpalescenceS_timeThreshold[A]>0.00 then
+set s__OpalescenceLib__OpalescenceS_timeThreshold[A]=s__OpalescenceLib__OpalescenceS_timeThreshold[A]-0.01
+if s__OpalescenceLib__OpalescenceS_timeThreshold[A]==0.20 then
+set OpalescenceLib__TempUnit=CreateUnit(s__OpalescenceLib__OpalescenceS_p[A],OpalescenceLib__WispID,s__vector_x[s__OpalescenceLib__OpalescenceS_l[A]]+s__OpalescenceLib__OpalescenceS_speed[A]*20.00*s__vector_x[s__OpalescenceLib__OpalescenceS_v[A]],s__vector_y[s__OpalescenceLib__OpalescenceS_l[A]]+s__OpalescenceLib__OpalescenceS_speed[A]*20.00*s__vector_y[s__OpalescenceLib__OpalescenceS_v[A]],GetRandomReal(0.00,360.00))
+call OpalescenceLib__SetUnitPositionEx(OpalescenceLib__TempUnit,s__vector_x[s__OpalescenceLib__OpalescenceS_l[A]]+s__OpalescenceLib__OpalescenceS_speed[A]*20.00*s__vector_x[s__OpalescenceLib__OpalescenceS_v[A]],s__vector_y[s__OpalescenceLib__OpalescenceS_l[A]]+s__OpalescenceLib__OpalescenceS_speed[A]*20.00*s__vector_y[s__OpalescenceLib__OpalescenceS_v[A]])
+call SetUnitFlyHeight(OpalescenceLib__TempUnit,300.00,0.00)
+call SetUnitScale(OpalescenceLib__TempUnit,2.00,2.00,2.00)
+call SetUnitTimeScale(OpalescenceLib__TempUnit,2.00)
+call UnitApplyTimedLife(OpalescenceLib__TempUnit,'BTLF',2.)
 endif
-set s__vector_x[s__OpalescenceLib___OpalescenceS_l[A]]=s__vector_x[s__OpalescenceLib___OpalescenceS_l[A]]+s__OpalescenceLib___OpalescenceS_speed[A]*s__vector_x[s__OpalescenceLib___OpalescenceS_v[A]]
-set s__vector_y[s__OpalescenceLib___OpalescenceS_l[A]]=s__vector_y[s__OpalescenceLib___OpalescenceS_l[A]]+s__OpalescenceLib___OpalescenceS_speed[A]*s__vector_y[s__OpalescenceLib___OpalescenceS_v[A]]
-set s__vector_z[s__OpalescenceLib___OpalescenceS_l[A]]=s__vector_z[s__OpalescenceLib___OpalescenceS_l[A]]+s__OpalescenceLib___OpalescenceS_speed[A]*s__vector_z[s__OpalescenceLib___OpalescenceS_v[A]]
-call OpalescenceLib___SetUnitPositionEx(s__OpalescenceLib___OpalescenceS_dummy[A],s__vector_x[s__OpalescenceLib___OpalescenceS_l[A]],s__vector_y[s__OpalescenceLib___OpalescenceS_l[A]])
-call SetUnitFlyHeight(s__OpalescenceLib___OpalescenceS_dummy[A],s__vector_z[s__OpalescenceLib___OpalescenceS_l[A]]-OpalescenceLib___GetLocZ(s__vector_x[s__OpalescenceLib___OpalescenceS_l[A]],s__vector_y[s__OpalescenceLib___OpalescenceS_l[A]]),0.00)
-if s__OpalescenceLib___OpalescenceS_timeThreshold[A]<=0.00 then
-call UnitApplyTimedLife(s__OpalescenceLib___OpalescenceS_dummy[A],'BTLF',0.30)
-call SetUnitAnimation(s__OpalescenceLib___OpalescenceS_dummy[A],"death")
-call TimerStart(s__OpalescenceLib___OpalescenceS_t[A],0.15,true,function OpalescenceLib___OpalescenceDamage)
-set OpalescenceLib___TempUnit=CreateUnit(s__OpalescenceLib___OpalescenceS_p[A],OpalescenceLib___PhaseID,s__vector_x[s__OpalescenceLib___OpalescenceS_l[A]],s__vector_y[s__OpalescenceLib___OpalescenceS_l[A]],GetRandomReal(0.00,360.00))
-call OpalescenceLib___SetUnitPositionEx(OpalescenceLib___TempUnit,s__vector_x[s__OpalescenceLib___OpalescenceS_l[A]],s__vector_y[s__OpalescenceLib___OpalescenceS_l[A]])
-call SetUnitFlyHeight(OpalescenceLib___TempUnit,300.00,0.00)
-call SetUnitScale(OpalescenceLib___TempUnit,3.00,3.00,3.00)
-call SetUnitAnimation(s__OpalescenceLib___OpalescenceS_dummy[A],"birth")
-call QueueUnitAnimation(s__OpalescenceLib___OpalescenceS_dummy[A],"stand")
-call UnitApplyTimedLife(OpalescenceLib___TempUnit,'BTLF',0.50)
+set s__vector_x[s__OpalescenceLib__OpalescenceS_l[A]]=s__vector_x[s__OpalescenceLib__OpalescenceS_l[A]]+s__OpalescenceLib__OpalescenceS_speed[A]*s__vector_x[s__OpalescenceLib__OpalescenceS_v[A]]
+set s__vector_y[s__OpalescenceLib__OpalescenceS_l[A]]=s__vector_y[s__OpalescenceLib__OpalescenceS_l[A]]+s__OpalescenceLib__OpalescenceS_speed[A]*s__vector_y[s__OpalescenceLib__OpalescenceS_v[A]]
+set s__vector_z[s__OpalescenceLib__OpalescenceS_l[A]]=s__vector_z[s__OpalescenceLib__OpalescenceS_l[A]]+s__OpalescenceLib__OpalescenceS_speed[A]*s__vector_z[s__OpalescenceLib__OpalescenceS_v[A]]
+call OpalescenceLib__SetUnitPositionEx(s__OpalescenceLib__OpalescenceS_dummy[A],s__vector_x[s__OpalescenceLib__OpalescenceS_l[A]],s__vector_y[s__OpalescenceLib__OpalescenceS_l[A]])
+call SetUnitFlyHeight(s__OpalescenceLib__OpalescenceS_dummy[A],s__vector_z[s__OpalescenceLib__OpalescenceS_l[A]]-OpalescenceLib__GetLocZ(s__vector_x[s__OpalescenceLib__OpalescenceS_l[A]],s__vector_y[s__OpalescenceLib__OpalescenceS_l[A]]),0.00)
+if s__OpalescenceLib__OpalescenceS_timeThreshold[A]<=0.00 then
+call UnitApplyTimedLife(s__OpalescenceLib__OpalescenceS_dummy[A],'BTLF',0.30)
+call SetUnitAnimation(s__OpalescenceLib__OpalescenceS_dummy[A],"death")
+call TimerStart(s__OpalescenceLib__OpalescenceS_t[A],0.15,true,function OpalescenceLib__OpalescenceDamage)
+set OpalescenceLib__TempUnit=CreateUnit(s__OpalescenceLib__OpalescenceS_p[A],OpalescenceLib__PhaseID,s__vector_x[s__OpalescenceLib__OpalescenceS_l[A]],s__vector_y[s__OpalescenceLib__OpalescenceS_l[A]],GetRandomReal(0.00,360.00))
+call OpalescenceLib__SetUnitPositionEx(OpalescenceLib__TempUnit,s__vector_x[s__OpalescenceLib__OpalescenceS_l[A]],s__vector_y[s__OpalescenceLib__OpalescenceS_l[A]])
+call SetUnitFlyHeight(OpalescenceLib__TempUnit,300.00,0.00)
+call SetUnitScale(OpalescenceLib__TempUnit,3.00,3.00,3.00)
+call SetUnitAnimation(s__OpalescenceLib__OpalescenceS_dummy[A],"birth")
+call QueueUnitAnimation(s__OpalescenceLib__OpalescenceS_dummy[A],"stand")
+call UnitApplyTimedLife(OpalescenceLib__TempUnit,'BTLF',0.50)
 set t=CreateTimer()
-call SaveUnitHandle(hash,GetHandleId(t),0,OpalescenceLib___TempUnit)
+call SaveUnitHandle(hash,GetHandleId(t),0,OpalescenceLib__TempUnit)
 call SaveReal(hash,GetHandleId(t),1,2.00)
-call TimerStart(t,0.05,true,function OpalescenceLib___SetScale)
-set OpalescenceLib___TempUnit=CreateUnit(s__OpalescenceLib___OpalescenceS_p[A],OpalescenceLib___HealingID,s__vector_x[s__OpalescenceLib___OpalescenceS_l[A]],s__vector_y[s__OpalescenceLib___OpalescenceS_l[A]],GetRandomReal(0.00,360.00))
-call OpalescenceLib___SetUnitPositionEx(OpalescenceLib___TempUnit,s__vector_x[s__OpalescenceLib___OpalescenceS_l[A]],s__vector_y[s__OpalescenceLib___OpalescenceS_l[A]])
-call SetUnitScale(OpalescenceLib___TempUnit,2.00,2.00,2.00)
-call SetUnitAnimation(OpalescenceLib___TempUnit,"death")
+call TimerStart(t,0.05,true,function OpalescenceLib__SetScale)
+set OpalescenceLib__TempUnit=CreateUnit(s__OpalescenceLib__OpalescenceS_p[A],OpalescenceLib__HealingID,s__vector_x[s__OpalescenceLib__OpalescenceS_l[A]],s__vector_y[s__OpalescenceLib__OpalescenceS_l[A]],GetRandomReal(0.00,360.00))
+call OpalescenceLib__SetUnitPositionEx(OpalescenceLib__TempUnit,s__vector_x[s__OpalescenceLib__OpalescenceS_l[A]],s__vector_y[s__OpalescenceLib__OpalescenceS_l[A]])
+call SetUnitScale(OpalescenceLib__TempUnit,2.00,2.00,2.00)
+call SetUnitAnimation(OpalescenceLib__TempUnit,"death")
 set t=CreateTimer()
-call SaveUnitHandle(hash,GetHandleId(t),0,OpalescenceLib___TempUnit)
+call SaveUnitHandle(hash,GetHandleId(t),0,OpalescenceLib__TempUnit)
 call SaveReal(hash,GetHandleId(t),1,2.00)
-call TimerStart(t,0.05,true,function OpalescenceLib___SetScale_1)
-set OpalescenceLib___TempUnit=CreateUnit(s__OpalescenceLib___OpalescenceS_p[A],OpalescenceLib___PhaseID,s__vector_x[s__OpalescenceLib___OpalescenceS_l[A]],s__vector_y[s__OpalescenceLib___OpalescenceS_l[A]],GetRandomReal(0.00,360.00))
-call OpalescenceLib___SetUnitPositionEx(OpalescenceLib___TempUnit,s__vector_x[s__OpalescenceLib___OpalescenceS_l[A]],s__vector_y[s__OpalescenceLib___OpalescenceS_l[A]])
-call SetUnitFlyHeight(OpalescenceLib___TempUnit,300.00,0.00)
-call SetUnitScale(OpalescenceLib___TempUnit,2.00,2.00,2.00)
-call SetUnitAnimation(s__OpalescenceLib___OpalescenceS_dummy[A],"birth")
-call QueueUnitAnimation(s__OpalescenceLib___OpalescenceS_dummy[A],"stand")
+call TimerStart(t,0.05,true,function OpalescenceLib__SetScale_1)
+set OpalescenceLib__TempUnit=CreateUnit(s__OpalescenceLib__OpalescenceS_p[A],OpalescenceLib__PhaseID,s__vector_x[s__OpalescenceLib__OpalescenceS_l[A]],s__vector_y[s__OpalescenceLib__OpalescenceS_l[A]],GetRandomReal(0.00,360.00))
+call OpalescenceLib__SetUnitPositionEx(OpalescenceLib__TempUnit,s__vector_x[s__OpalescenceLib__OpalescenceS_l[A]],s__vector_y[s__OpalescenceLib__OpalescenceS_l[A]])
+call SetUnitFlyHeight(OpalescenceLib__TempUnit,300.00,0.00)
+call SetUnitScale(OpalescenceLib__TempUnit,2.00,2.00,2.00)
+call SetUnitAnimation(s__OpalescenceLib__OpalescenceS_dummy[A],"birth")
+call QueueUnitAnimation(s__OpalescenceLib__OpalescenceS_dummy[A],"stand")
 set t=CreateTimer()
-call SaveUnitHandle(hash,GetHandleId(t),0,OpalescenceLib___TempUnit)
+call SaveUnitHandle(hash,GetHandleId(t),0,OpalescenceLib__TempUnit)
 call SaveReal(hash,GetHandleId(t),1,2.00)
-call TimerStart(t,0.05,true,function OpalescenceLib___SetScale)
+call TimerStart(t,0.05,true,function OpalescenceLib__SetScale)
 set t=null
 set i=10
 loop
-set B=s__OpalescenceLib___OpalescenceMoveS__allocate()
-set s__OpalescenceLib___OpalescenceMoveS_t[B]=CreateTimer()
-set s___OpalescenceLib___OpalescenceMoveS_l[s__OpalescenceLib___OpalescenceMoveS_l[B]]=s__vector_create(s__vector_x[s__OpalescenceLib___OpalescenceS_l[A]]+GetRandomReal(s__OpalescenceLib___OpalescenceS_radius[A]*0.25,s__OpalescenceLib___OpalescenceS_radius[A]*1.25)*Cos(GetRandomReal(-bj_PI,bj_PI)),s__vector_y[s__OpalescenceLib___OpalescenceS_l[A]]+GetRandomReal(s__OpalescenceLib___OpalescenceS_radius[A]*0.25,s__OpalescenceLib___OpalescenceS_radius[A]*1.25)*Sin(GetRandomReal(-bj_PI,bj_PI)),0.00)
-set OpalescenceLib___TempUnit=CreateUnit(s__OpalescenceLib___OpalescenceS_p[A],OpalescenceLib___FaerieID,s__vector_x[s___OpalescenceLib___OpalescenceMoveS_l[s__OpalescenceLib___OpalescenceMoveS_l[B]]],s__vector_y[s___OpalescenceLib___OpalescenceMoveS_l[s__OpalescenceLib___OpalescenceMoveS_l[B]]],GetRandomReal(0.00,360.00))
-call OpalescenceLib___SetUnitPositionEx(OpalescenceLib___TempUnit,s__vector_x[s___OpalescenceLib___OpalescenceMoveS_l[s__OpalescenceLib___OpalescenceMoveS_l[B]]],s__vector_y[s___OpalescenceLib___OpalescenceMoveS_l[s__OpalescenceLib___OpalescenceMoveS_l[B]]])
-call SetUnitFlyHeight(OpalescenceLib___TempUnit,GetRandomReal(0.00,100.00),0.00)
-call SetUnitAnimation(OpalescenceLib___TempUnit,"death")
-call UnitApplyTimedLife(OpalescenceLib___TempUnit,'BTLF',1.00)
-set s__vector_x[s___OpalescenceLib___OpalescenceMoveS_l[s__OpalescenceLib___OpalescenceMoveS_l[B]]]=s__vector_x[s__OpalescenceLib___OpalescenceS_l[A]]+GetRandomReal(15.00,50.00)*Cos(GetRandomReal(-bj_PI,bj_PI))
-set s__vector_y[s___OpalescenceLib___OpalescenceMoveS_l[s__OpalescenceLib___OpalescenceMoveS_l[B]]]=s__vector_y[s__OpalescenceLib___OpalescenceS_l[A]]+GetRandomReal(15.00,50.00)*Sin(GetRandomReal(-bj_PI,bj_PI))
-set s__vector_z[s___OpalescenceLib___OpalescenceMoveS_l[s__OpalescenceLib___OpalescenceMoveS_l[B]]]=OpalescenceLib___GetLocZ(s__vector_x[s___OpalescenceLib___OpalescenceMoveS_l[s__OpalescenceLib___OpalescenceMoveS_l[B]]],s__vector_y[s___OpalescenceLib___OpalescenceMoveS_l[s__OpalescenceLib___OpalescenceMoveS_l[B]]])+GetRandomReal(400.00,600.00)
+set B=s__OpalescenceLib__OpalescenceMoveS__allocate()
+set s__OpalescenceLib__OpalescenceMoveS_t[B]=CreateTimer()
+set s___OpalescenceLib__OpalescenceMoveS_l[s__OpalescenceLib__OpalescenceMoveS_l[B]]=s__vector_create(s__vector_x[s__OpalescenceLib__OpalescenceS_l[A]]+GetRandomReal(s__OpalescenceLib__OpalescenceS_radius[A]*0.25,s__OpalescenceLib__OpalescenceS_radius[A]*1.25)*Cos(GetRandomReal(-bj_PI,bj_PI)),s__vector_y[s__OpalescenceLib__OpalescenceS_l[A]]+GetRandomReal(s__OpalescenceLib__OpalescenceS_radius[A]*0.25,s__OpalescenceLib__OpalescenceS_radius[A]*1.25)*Sin(GetRandomReal(-bj_PI,bj_PI)),0.00)
+set OpalescenceLib__TempUnit=CreateUnit(s__OpalescenceLib__OpalescenceS_p[A],OpalescenceLib__FaerieID,s__vector_x[s___OpalescenceLib__OpalescenceMoveS_l[s__OpalescenceLib__OpalescenceMoveS_l[B]]],s__vector_y[s___OpalescenceLib__OpalescenceMoveS_l[s__OpalescenceLib__OpalescenceMoveS_l[B]]],GetRandomReal(0.00,360.00))
+call OpalescenceLib__SetUnitPositionEx(OpalescenceLib__TempUnit,s__vector_x[s___OpalescenceLib__OpalescenceMoveS_l[s__OpalescenceLib__OpalescenceMoveS_l[B]]],s__vector_y[s___OpalescenceLib__OpalescenceMoveS_l[s__OpalescenceLib__OpalescenceMoveS_l[B]]])
+call SetUnitFlyHeight(OpalescenceLib__TempUnit,GetRandomReal(0.00,100.00),0.00)
+call SetUnitAnimation(OpalescenceLib__TempUnit,"death")
+call UnitApplyTimedLife(OpalescenceLib__TempUnit,'BTLF',1.00)
+set s__vector_x[s___OpalescenceLib__OpalescenceMoveS_l[s__OpalescenceLib__OpalescenceMoveS_l[B]]]=s__vector_x[s__OpalescenceLib__OpalescenceS_l[A]]+GetRandomReal(15.00,50.00)*Cos(GetRandomReal(-bj_PI,bj_PI))
+set s__vector_y[s___OpalescenceLib__OpalescenceMoveS_l[s__OpalescenceLib__OpalescenceMoveS_l[B]]]=s__vector_y[s__OpalescenceLib__OpalescenceS_l[A]]+GetRandomReal(15.00,50.00)*Sin(GetRandomReal(-bj_PI,bj_PI))
+set s__vector_z[s___OpalescenceLib__OpalescenceMoveS_l[s__OpalescenceLib__OpalescenceMoveS_l[B]]]=OpalescenceLib__GetLocZ(s__vector_x[s___OpalescenceLib__OpalescenceMoveS_l[s__OpalescenceLib__OpalescenceMoveS_l[B]]],s__vector_y[s___OpalescenceLib__OpalescenceMoveS_l[s__OpalescenceLib__OpalescenceMoveS_l[B]]])+GetRandomReal(400.00,600.00)
 set j=1
 loop
-set s___OpalescenceLib___OpalescenceMoveS_l[s__OpalescenceLib___OpalescenceMoveS_l[B]+j]=s__vector_create(s__vector_x[s__OpalescenceLib___OpalescenceS_l[A]]+GetRandomReal(s__OpalescenceLib___OpalescenceS_radius[A]*1.80,s__OpalescenceLib___OpalescenceS_radius[A]*2.00)*Cos(GetRandomReal(-bj_PI,bj_PI)),s__vector_y[s__OpalescenceLib___OpalescenceS_l[A]]+GetRandomReal(s__OpalescenceLib___OpalescenceS_radius[A]*1.80,s__OpalescenceLib___OpalescenceS_radius[A]*2.00)*Sin(GetRandomReal(-bj_PI,bj_PI)),0.00)
-set s__vector_z[s___OpalescenceLib___OpalescenceMoveS_l[s__OpalescenceLib___OpalescenceMoveS_l[B]+j]]=OpalescenceLib___GetLocZ(s__vector_x[s___OpalescenceLib___OpalescenceMoveS_l[s__OpalescenceLib___OpalescenceMoveS_l[B]+j]],s__vector_y[s___OpalescenceLib___OpalescenceMoveS_l[s__OpalescenceLib___OpalescenceMoveS_l[B]+j]])+GetRandomReal(-100.00,650.00)
+set s___OpalescenceLib__OpalescenceMoveS_l[s__OpalescenceLib__OpalescenceMoveS_l[B]+j]=s__vector_create(s__vector_x[s__OpalescenceLib__OpalescenceS_l[A]]+GetRandomReal(s__OpalescenceLib__OpalescenceS_radius[A]*1.80,s__OpalescenceLib__OpalescenceS_radius[A]*2.00)*Cos(GetRandomReal(-bj_PI,bj_PI)),s__vector_y[s__OpalescenceLib__OpalescenceS_l[A]]+GetRandomReal(s__OpalescenceLib__OpalescenceS_radius[A]*1.80,s__OpalescenceLib__OpalescenceS_radius[A]*2.00)*Sin(GetRandomReal(-bj_PI,bj_PI)),0.00)
+set s__vector_z[s___OpalescenceLib__OpalescenceMoveS_l[s__OpalescenceLib__OpalescenceMoveS_l[B]+j]]=OpalescenceLib__GetLocZ(s__vector_x[s___OpalescenceLib__OpalescenceMoveS_l[s__OpalescenceLib__OpalescenceMoveS_l[B]+j]],s__vector_y[s___OpalescenceLib__OpalescenceMoveS_l[s__OpalescenceLib__OpalescenceMoveS_l[B]+j]])+GetRandomReal(-100.00,650.00)
 set j=j+1
 exitwhen j>=5
 endloop
-set s___OpalescenceLib___OpalescenceMoveS_l[s__OpalescenceLib___OpalescenceMoveS_l[B]+j]=s__vector_create(s__vector_x[s__OpalescenceLib___OpalescenceS_l[A]]+GetRandomReal(s__OpalescenceLib___OpalescenceS_radius[A]*0.80,s__OpalescenceLib___OpalescenceS_radius[A])*Cos(GetRandomReal(-bj_PI,bj_PI)),s__vector_y[s__OpalescenceLib___OpalescenceS_l[A]]+GetRandomReal(s__OpalescenceLib___OpalescenceS_radius[A]*0.80,s__OpalescenceLib___OpalescenceS_radius[A])*Sin(GetRandomReal(-bj_PI,bj_PI)),0.00)
-set s__vector_z[s___OpalescenceLib___OpalescenceMoveS_l[s__OpalescenceLib___OpalescenceMoveS_l[B]+j]]=OpalescenceLib___GetLocZ(s__vector_x[s___OpalescenceLib___OpalescenceMoveS_l[s__OpalescenceLib___OpalescenceMoveS_l[B]+j]],s__vector_y[s___OpalescenceLib___OpalescenceMoveS_l[s__OpalescenceLib___OpalescenceMoveS_l[B]+j]])+GetRandomReal(50.00,100.00)
-set s__OpalescenceLib___OpalescenceMoveS_last[B]=s__vector_create(s__vector_x[s___OpalescenceLib___OpalescenceMoveS_l[s__OpalescenceLib___OpalescenceMoveS_l[B]]],s__vector_y[s___OpalescenceLib___OpalescenceMoveS_l[s__OpalescenceLib___OpalescenceMoveS_l[B]]],s__vector_z[s___OpalescenceLib___OpalescenceMoveS_l[s__OpalescenceLib___OpalescenceMoveS_l[B]]])
-set s__OpalescenceLib___OpalescenceMoveS_time[B]=0.00
-set s__OpalescenceLib___OpalescenceMoveS_timeMax[B]=0.70
-set s__OpalescenceLib___OpalescenceMoveS_dummy[B]=CreateUnit(s__OpalescenceLib___OpalescenceS_p[A],OpalescenceLib___FaerieID,s__vector_x[s___OpalescenceLib___OpalescenceMoveS_l[s__OpalescenceLib___OpalescenceMoveS_l[B]]],s__vector_y[s___OpalescenceLib___OpalescenceMoveS_l[s__OpalescenceLib___OpalescenceMoveS_l[B]]],GetRandomReal(0.00,360.00))
-call OpalescenceLib___SetUnitPositionEx(s__OpalescenceLib___OpalescenceMoveS_dummy[B],s__vector_x[s___OpalescenceLib___OpalescenceMoveS_l[s__OpalescenceLib___OpalescenceMoveS_l[B]]],s__vector_y[s___OpalescenceLib___OpalescenceMoveS_l[s__OpalescenceLib___OpalescenceMoveS_l[B]]])
-call SetUnitFlyHeight(s__OpalescenceLib___OpalescenceMoveS_dummy[B],s__vector_z[s___OpalescenceLib___OpalescenceMoveS_l[s__OpalescenceLib___OpalescenceMoveS_l[B]]]-OpalescenceLib___GetLocZ(s__vector_x[s___OpalescenceLib___OpalescenceMoveS_l[s__OpalescenceLib___OpalescenceMoveS_l[B]]],s__vector_y[s___OpalescenceLib___OpalescenceMoveS_l[s__OpalescenceLib___OpalescenceMoveS_l[B]]]),0.00)
-call SetUnitAnimation(s__OpalescenceLib___OpalescenceMoveS_dummy[B],"birth")
-call QueueUnitAnimation(s__OpalescenceLib___OpalescenceMoveS_dummy[B],"stand")
-call SetUnitVertexColor(s__OpalescenceLib___OpalescenceMoveS_dummy[B],255,255,255,0)
-call SaveInteger(hash,GetHandleId(s__OpalescenceLib___OpalescenceMoveS_t[B]),0,B)
-call TimerStart(s__OpalescenceLib___OpalescenceMoveS_t[B],0.03125,true,function OpalescenceLib___OpalescenceMove)
+set s___OpalescenceLib__OpalescenceMoveS_l[s__OpalescenceLib__OpalescenceMoveS_l[B]+j]=s__vector_create(s__vector_x[s__OpalescenceLib__OpalescenceS_l[A]]+GetRandomReal(s__OpalescenceLib__OpalescenceS_radius[A]*0.80,s__OpalescenceLib__OpalescenceS_radius[A])*Cos(GetRandomReal(-bj_PI,bj_PI)),s__vector_y[s__OpalescenceLib__OpalescenceS_l[A]]+GetRandomReal(s__OpalescenceLib__OpalescenceS_radius[A]*0.80,s__OpalescenceLib__OpalescenceS_radius[A])*Sin(GetRandomReal(-bj_PI,bj_PI)),0.00)
+set s__vector_z[s___OpalescenceLib__OpalescenceMoveS_l[s__OpalescenceLib__OpalescenceMoveS_l[B]+j]]=OpalescenceLib__GetLocZ(s__vector_x[s___OpalescenceLib__OpalescenceMoveS_l[s__OpalescenceLib__OpalescenceMoveS_l[B]+j]],s__vector_y[s___OpalescenceLib__OpalescenceMoveS_l[s__OpalescenceLib__OpalescenceMoveS_l[B]+j]])+GetRandomReal(50.00,100.00)
+set s__OpalescenceLib__OpalescenceMoveS_last[B]=s__vector_create(s__vector_x[s___OpalescenceLib__OpalescenceMoveS_l[s__OpalescenceLib__OpalescenceMoveS_l[B]]],s__vector_y[s___OpalescenceLib__OpalescenceMoveS_l[s__OpalescenceLib__OpalescenceMoveS_l[B]]],s__vector_z[s___OpalescenceLib__OpalescenceMoveS_l[s__OpalescenceLib__OpalescenceMoveS_l[B]]])
+set s__OpalescenceLib__OpalescenceMoveS_time[B]=0.00
+set s__OpalescenceLib__OpalescenceMoveS_timeMax[B]=0.70
+set s__OpalescenceLib__OpalescenceMoveS_dummy[B]=CreateUnit(s__OpalescenceLib__OpalescenceS_p[A],OpalescenceLib__FaerieID,s__vector_x[s___OpalescenceLib__OpalescenceMoveS_l[s__OpalescenceLib__OpalescenceMoveS_l[B]]],s__vector_y[s___OpalescenceLib__OpalescenceMoveS_l[s__OpalescenceLib__OpalescenceMoveS_l[B]]],GetRandomReal(0.00,360.00))
+call OpalescenceLib__SetUnitPositionEx(s__OpalescenceLib__OpalescenceMoveS_dummy[B],s__vector_x[s___OpalescenceLib__OpalescenceMoveS_l[s__OpalescenceLib__OpalescenceMoveS_l[B]]],s__vector_y[s___OpalescenceLib__OpalescenceMoveS_l[s__OpalescenceLib__OpalescenceMoveS_l[B]]])
+call SetUnitFlyHeight(s__OpalescenceLib__OpalescenceMoveS_dummy[B],s__vector_z[s___OpalescenceLib__OpalescenceMoveS_l[s__OpalescenceLib__OpalescenceMoveS_l[B]]]-OpalescenceLib__GetLocZ(s__vector_x[s___OpalescenceLib__OpalescenceMoveS_l[s__OpalescenceLib__OpalescenceMoveS_l[B]]],s__vector_y[s___OpalescenceLib__OpalescenceMoveS_l[s__OpalescenceLib__OpalescenceMoveS_l[B]]]),0.00)
+call SetUnitAnimation(s__OpalescenceLib__OpalescenceMoveS_dummy[B],"birth")
+call QueueUnitAnimation(s__OpalescenceLib__OpalescenceMoveS_dummy[B],"stand")
+call SetUnitVertexColor(s__OpalescenceLib__OpalescenceMoveS_dummy[B],255,255,255,0)
+call SaveInteger(hash,GetHandleId(s__OpalescenceLib__OpalescenceMoveS_t[B]),0,B)
+call TimerStart(s__OpalescenceLib__OpalescenceMoveS_t[B],0.03125,true,function OpalescenceLib__OpalescenceMove)
 set i=i-1
 exitwhen i<0
 endloop
 endif
 else
-set s__OpalescenceLib___OpalescenceS_time[A]=s__OpalescenceLib___OpalescenceS_time[A]-0.15
-call GroupEnumUnitsInRange(OpalescenceLib___TempGroup,s__vector_x[s__OpalescenceLib___OpalescenceS_l[A]],s__vector_y[s__OpalescenceLib___OpalescenceS_l[A]],s__OpalescenceLib___OpalescenceS_radius[A]+200.00,null)
-set mana_dmg=GetUnitState(s__OpalescenceLib___OpalescenceS_caster[A],UNIT_STATE_MANA)*0.03
-call SetUnitState(s__OpalescenceLib___OpalescenceS_caster[A],UNIT_STATE_MANA,GetUnitState(s__OpalescenceLib___OpalescenceS_caster[A],UNIT_STATE_MANA)-mana_dmg*0.50)
+set s__OpalescenceLib__OpalescenceS_time[A]=s__OpalescenceLib__OpalescenceS_time[A]-0.15
+call GroupEnumUnitsInRange(OpalescenceLib__TempGroup,s__vector_x[s__OpalescenceLib__OpalescenceS_l[A]],s__vector_y[s__OpalescenceLib__OpalescenceS_l[A]],s__OpalescenceLib__OpalescenceS_radius[A]+200.00,null)
+set mana_dmg=GetUnitState(s__OpalescenceLib__OpalescenceS_caster[A],UNIT_STATE_MANA)*0.03
+call SetUnitState(s__OpalescenceLib__OpalescenceS_caster[A],UNIT_STATE_MANA,GetUnitState(s__OpalescenceLib__OpalescenceS_caster[A],UNIT_STATE_MANA)-mana_dmg*0.50)
 loop
-set u=FirstOfGroup(OpalescenceLib___TempGroup)
+set u=FirstOfGroup(OpalescenceLib__TempGroup)
 exitwhen u==null
-call GroupRemoveUnit(OpalescenceLib___TempGroup,u)
-if IsUnitInRangeXY(u,s__vector_x[s__OpalescenceLib___OpalescenceS_l[A]],s__vector_y[s__OpalescenceLib___OpalescenceS_l[A]],s__OpalescenceLib___OpalescenceS_radius[A])then
-if UnitAlive(u)and IsUnitEnemy(u,s__OpalescenceLib___OpalescenceS_p[A])then
-call DestroyEffect(AddSpecialEffectTarget("Abilities\\Spells\\Items\\WandOfNeutralization\\NeutralizationMissile.mdl",u,OpalescenceLib___AttachPointName[GetRandomInt(0,5)]))
-if s__OpalescenceLib___OpalescenceS_damage[A]>=0.00 then
-call UnitDamageTarget(s__OpalescenceLib___OpalescenceS_caster[A],u,s__OpalescenceLib___OpalescenceS_damage[A],false,false,null,null,null)
+call GroupRemoveUnit(OpalescenceLib__TempGroup,u)
+if IsUnitInRangeXY(u,s__vector_x[s__OpalescenceLib__OpalescenceS_l[A]],s__vector_y[s__OpalescenceLib__OpalescenceS_l[A]],s__OpalescenceLib__OpalescenceS_radius[A])then
+if UnitAlive(u)and IsUnitEnemy(u,s__OpalescenceLib__OpalescenceS_p[A])then
+call DestroyEffect(AddSpecialEffectTarget("Abilities\\Spells\\Items\\WandOfNeutralization\\NeutralizationMissile.mdl",u,OpalescenceLib__AttachPointName[GetRandomInt(0,5)]))
+if s__OpalescenceLib__OpalescenceS_damage[A]>=0.00 then
+call UnitDamageTarget(s__OpalescenceLib__OpalescenceS_caster[A],u,s__OpalescenceLib__OpalescenceS_damage[A],false,false,null,null,null)
 endif
 endif
 endif
 endloop
-if s__OpalescenceLib___OpalescenceS_time[A]>=0.70 then
-set B=s__OpalescenceLib___OpalescenceMoveS__allocate()
-set s__OpalescenceLib___OpalescenceMoveS_t[B]=CreateTimer()
-set s___OpalescenceLib___OpalescenceMoveS_l[s__OpalescenceLib___OpalescenceMoveS_l[B]]=s__vector_create(s__vector_x[s__OpalescenceLib___OpalescenceS_l[A]]+GetRandomReal(s__OpalescenceLib___OpalescenceS_radius[A]*0.25,s__OpalescenceLib___OpalescenceS_radius[A]*1.25)*Cos(GetRandomReal(-bj_PI,bj_PI)),s__vector_y[s__OpalescenceLib___OpalescenceS_l[A]]+GetRandomReal(s__OpalescenceLib___OpalescenceS_radius[A]*0.25,s__OpalescenceLib___OpalescenceS_radius[A]*1.25)*Sin(GetRandomReal(-bj_PI,bj_PI)),0.00)
-set OpalescenceLib___TempUnit=CreateUnit(s__OpalescenceLib___OpalescenceS_p[A],OpalescenceLib___FaerieID,s__vector_x[s___OpalescenceLib___OpalescenceMoveS_l[s__OpalescenceLib___OpalescenceMoveS_l[B]]],s__vector_y[s___OpalescenceLib___OpalescenceMoveS_l[s__OpalescenceLib___OpalescenceMoveS_l[B]]],GetRandomReal(0.00,360.00))
-call OpalescenceLib___SetUnitPositionEx(OpalescenceLib___TempUnit,s__vector_x[s___OpalescenceLib___OpalescenceMoveS_l[s__OpalescenceLib___OpalescenceMoveS_l[B]]],s__vector_y[s___OpalescenceLib___OpalescenceMoveS_l[s__OpalescenceLib___OpalescenceMoveS_l[B]]])
-call SetUnitFlyHeight(OpalescenceLib___TempUnit,GetRandomReal(0.00,100.00),0.00)
-call SetUnitAnimation(OpalescenceLib___TempUnit,"death")
-call UnitApplyTimedLife(OpalescenceLib___TempUnit,'BTLF',1.00)
-set s__vector_x[s___OpalescenceLib___OpalescenceMoveS_l[s__OpalescenceLib___OpalescenceMoveS_l[B]]]=s__vector_x[s__OpalescenceLib___OpalescenceS_l[A]]+GetRandomReal(15.00,50.00)*Cos(GetRandomReal(-bj_PI,bj_PI))
-set s__vector_y[s___OpalescenceLib___OpalescenceMoveS_l[s__OpalescenceLib___OpalescenceMoveS_l[B]]]=s__vector_y[s__OpalescenceLib___OpalescenceS_l[A]]+GetRandomReal(15.00,50.00)*Sin(GetRandomReal(-bj_PI,bj_PI))
-set s__vector_z[s___OpalescenceLib___OpalescenceMoveS_l[s__OpalescenceLib___OpalescenceMoveS_l[B]]]=OpalescenceLib___GetLocZ(s__vector_x[s___OpalescenceLib___OpalescenceMoveS_l[s__OpalescenceLib___OpalescenceMoveS_l[B]]],s__vector_y[s___OpalescenceLib___OpalescenceMoveS_l[s__OpalescenceLib___OpalescenceMoveS_l[B]]])+GetRandomReal(400.00,600.00)
+if s__OpalescenceLib__OpalescenceS_time[A]>=0.70 then
+set B=s__OpalescenceLib__OpalescenceMoveS__allocate()
+set s__OpalescenceLib__OpalescenceMoveS_t[B]=CreateTimer()
+set s___OpalescenceLib__OpalescenceMoveS_l[s__OpalescenceLib__OpalescenceMoveS_l[B]]=s__vector_create(s__vector_x[s__OpalescenceLib__OpalescenceS_l[A]]+GetRandomReal(s__OpalescenceLib__OpalescenceS_radius[A]*0.25,s__OpalescenceLib__OpalescenceS_radius[A]*1.25)*Cos(GetRandomReal(-bj_PI,bj_PI)),s__vector_y[s__OpalescenceLib__OpalescenceS_l[A]]+GetRandomReal(s__OpalescenceLib__OpalescenceS_radius[A]*0.25,s__OpalescenceLib__OpalescenceS_radius[A]*1.25)*Sin(GetRandomReal(-bj_PI,bj_PI)),0.00)
+set OpalescenceLib__TempUnit=CreateUnit(s__OpalescenceLib__OpalescenceS_p[A],OpalescenceLib__FaerieID,s__vector_x[s___OpalescenceLib__OpalescenceMoveS_l[s__OpalescenceLib__OpalescenceMoveS_l[B]]],s__vector_y[s___OpalescenceLib__OpalescenceMoveS_l[s__OpalescenceLib__OpalescenceMoveS_l[B]]],GetRandomReal(0.00,360.00))
+call OpalescenceLib__SetUnitPositionEx(OpalescenceLib__TempUnit,s__vector_x[s___OpalescenceLib__OpalescenceMoveS_l[s__OpalescenceLib__OpalescenceMoveS_l[B]]],s__vector_y[s___OpalescenceLib__OpalescenceMoveS_l[s__OpalescenceLib__OpalescenceMoveS_l[B]]])
+call SetUnitFlyHeight(OpalescenceLib__TempUnit,GetRandomReal(0.00,100.00),0.00)
+call SetUnitAnimation(OpalescenceLib__TempUnit,"death")
+call UnitApplyTimedLife(OpalescenceLib__TempUnit,'BTLF',1.00)
+set s__vector_x[s___OpalescenceLib__OpalescenceMoveS_l[s__OpalescenceLib__OpalescenceMoveS_l[B]]]=s__vector_x[s__OpalescenceLib__OpalescenceS_l[A]]+GetRandomReal(15.00,50.00)*Cos(GetRandomReal(-bj_PI,bj_PI))
+set s__vector_y[s___OpalescenceLib__OpalescenceMoveS_l[s__OpalescenceLib__OpalescenceMoveS_l[B]]]=s__vector_y[s__OpalescenceLib__OpalescenceS_l[A]]+GetRandomReal(15.00,50.00)*Sin(GetRandomReal(-bj_PI,bj_PI))
+set s__vector_z[s___OpalescenceLib__OpalescenceMoveS_l[s__OpalescenceLib__OpalescenceMoveS_l[B]]]=OpalescenceLib__GetLocZ(s__vector_x[s___OpalescenceLib__OpalescenceMoveS_l[s__OpalescenceLib__OpalescenceMoveS_l[B]]],s__vector_y[s___OpalescenceLib__OpalescenceMoveS_l[s__OpalescenceLib__OpalescenceMoveS_l[B]]])+GetRandomReal(400.00,600.00)
 set j=1
 loop
-set s___OpalescenceLib___OpalescenceMoveS_l[s__OpalescenceLib___OpalescenceMoveS_l[B]+j]=s__vector_create(s__vector_x[s__OpalescenceLib___OpalescenceS_l[A]]+GetRandomReal(s__OpalescenceLib___OpalescenceS_radius[A]*1.80,s__OpalescenceLib___OpalescenceS_radius[A]*2.00)*Cos(GetRandomReal(-bj_PI,bj_PI)),s__vector_y[s__OpalescenceLib___OpalescenceS_l[A]]+GetRandomReal(s__OpalescenceLib___OpalescenceS_radius[A]*1.80,s__OpalescenceLib___OpalescenceS_radius[A]*2.00)*Sin(GetRandomReal(-bj_PI,bj_PI)),0.00)
-set s__vector_z[s___OpalescenceLib___OpalescenceMoveS_l[s__OpalescenceLib___OpalescenceMoveS_l[B]+j]]=OpalescenceLib___GetLocZ(s__vector_x[s___OpalescenceLib___OpalescenceMoveS_l[s__OpalescenceLib___OpalescenceMoveS_l[B]+j]],s__vector_y[s___OpalescenceLib___OpalescenceMoveS_l[s__OpalescenceLib___OpalescenceMoveS_l[B]+j]])+GetRandomReal(-100.00,650.00)
+set s___OpalescenceLib__OpalescenceMoveS_l[s__OpalescenceLib__OpalescenceMoveS_l[B]+j]=s__vector_create(s__vector_x[s__OpalescenceLib__OpalescenceS_l[A]]+GetRandomReal(s__OpalescenceLib__OpalescenceS_radius[A]*1.80,s__OpalescenceLib__OpalescenceS_radius[A]*2.00)*Cos(GetRandomReal(-bj_PI,bj_PI)),s__vector_y[s__OpalescenceLib__OpalescenceS_l[A]]+GetRandomReal(s__OpalescenceLib__OpalescenceS_radius[A]*1.80,s__OpalescenceLib__OpalescenceS_radius[A]*2.00)*Sin(GetRandomReal(-bj_PI,bj_PI)),0.00)
+set s__vector_z[s___OpalescenceLib__OpalescenceMoveS_l[s__OpalescenceLib__OpalescenceMoveS_l[B]+j]]=OpalescenceLib__GetLocZ(s__vector_x[s___OpalescenceLib__OpalescenceMoveS_l[s__OpalescenceLib__OpalescenceMoveS_l[B]+j]],s__vector_y[s___OpalescenceLib__OpalescenceMoveS_l[s__OpalescenceLib__OpalescenceMoveS_l[B]+j]])+GetRandomReal(-100.00,650.00)
 set j=j+1
 exitwhen j>=5
 endloop
-set s___OpalescenceLib___OpalescenceMoveS_l[s__OpalescenceLib___OpalescenceMoveS_l[B]+j]=s__vector_create(s__vector_x[s__OpalescenceLib___OpalescenceS_l[A]]+GetRandomReal(s__OpalescenceLib___OpalescenceS_radius[A]*0.80,s__OpalescenceLib___OpalescenceS_radius[A])*Cos(GetRandomReal(-bj_PI,bj_PI)),s__vector_y[s__OpalescenceLib___OpalescenceS_l[A]]+GetRandomReal(s__OpalescenceLib___OpalescenceS_radius[A]*0.80,s__OpalescenceLib___OpalescenceS_radius[A])*Sin(GetRandomReal(-bj_PI,bj_PI)),0.00)
-set s__vector_z[s___OpalescenceLib___OpalescenceMoveS_l[s__OpalescenceLib___OpalescenceMoveS_l[B]+j]]=OpalescenceLib___GetLocZ(s__vector_x[s___OpalescenceLib___OpalescenceMoveS_l[s__OpalescenceLib___OpalescenceMoveS_l[B]+j]],s__vector_y[s___OpalescenceLib___OpalescenceMoveS_l[s__OpalescenceLib___OpalescenceMoveS_l[B]+j]])+GetRandomReal(50.00,100.00)
-set s__OpalescenceLib___OpalescenceMoveS_last[B]=s__vector_create(s__vector_x[s___OpalescenceLib___OpalescenceMoveS_l[s__OpalescenceLib___OpalescenceMoveS_l[B]]],s__vector_y[s___OpalescenceLib___OpalescenceMoveS_l[s__OpalescenceLib___OpalescenceMoveS_l[B]]],s__vector_z[s___OpalescenceLib___OpalescenceMoveS_l[s__OpalescenceLib___OpalescenceMoveS_l[B]]])
-set s__OpalescenceLib___OpalescenceMoveS_time[B]=0.00
-set s__OpalescenceLib___OpalescenceMoveS_timeMax[B]=0.70
-set s__OpalescenceLib___OpalescenceMoveS_dummy[B]=CreateUnit(s__OpalescenceLib___OpalescenceS_p[A],OpalescenceLib___FaerieID,s__vector_x[s___OpalescenceLib___OpalescenceMoveS_l[s__OpalescenceLib___OpalescenceMoveS_l[B]]],s__vector_y[s___OpalescenceLib___OpalescenceMoveS_l[s__OpalescenceLib___OpalescenceMoveS_l[B]]],GetRandomReal(0.00,360.00))
-call OpalescenceLib___SetUnitPositionEx(s__OpalescenceLib___OpalescenceMoveS_dummy[B],s__vector_x[s___OpalescenceLib___OpalescenceMoveS_l[s__OpalescenceLib___OpalescenceMoveS_l[B]]],s__vector_y[s___OpalescenceLib___OpalescenceMoveS_l[s__OpalescenceLib___OpalescenceMoveS_l[B]]])
-call SetUnitFlyHeight(s__OpalescenceLib___OpalescenceMoveS_dummy[B],s__vector_z[s___OpalescenceLib___OpalescenceMoveS_l[s__OpalescenceLib___OpalescenceMoveS_l[B]]]-OpalescenceLib___GetLocZ(s__vector_x[s___OpalescenceLib___OpalescenceMoveS_l[s__OpalescenceLib___OpalescenceMoveS_l[B]]],s__vector_y[s___OpalescenceLib___OpalescenceMoveS_l[s__OpalescenceLib___OpalescenceMoveS_l[B]]]),0.00)
-call SetUnitAnimation(s__OpalescenceLib___OpalescenceMoveS_dummy[B],"birth")
-call QueueUnitAnimation(s__OpalescenceLib___OpalescenceMoveS_dummy[B],"stand")
-call SetUnitVertexColor(s__OpalescenceLib___OpalescenceMoveS_dummy[B],255,255,255,0)
-call SaveInteger(hash,GetHandleId(s__OpalescenceLib___OpalescenceMoveS_t[B]),0,B)
-call TimerStart(s__OpalescenceLib___OpalescenceMoveS_t[B],0.03125,true,function OpalescenceLib___OpalescenceMove)
-elseif s__OpalescenceLib___OpalescenceS_time[A]<=0.00 then
-call PauseTimer(s__OpalescenceLib___OpalescenceS_t[A])
-call FlushChildHashtable(hash,GetHandleId(s__OpalescenceLib___OpalescenceS_t[A]))
-call DestroyTimer(s__OpalescenceLib___OpalescenceS_t[A])
-set s__OpalescenceLib___OpalescenceS_t[A]=null
-set s__OpalescenceLib___OpalescenceS_dummy[A]=null
-set s__OpalescenceLib___OpalescenceS_caster[A]=null
-call s__vector_deallocate(s__OpalescenceLib___OpalescenceS_l[A])
-call s__vector_deallocate(s__OpalescenceLib___OpalescenceS_v[A])
-call s__vector_deallocate(s__OpalescenceLib___OpalescenceS_endPos[A])
-call s__OpalescenceLib___OpalescenceS_deallocate(A)
+set s___OpalescenceLib__OpalescenceMoveS_l[s__OpalescenceLib__OpalescenceMoveS_l[B]+j]=s__vector_create(s__vector_x[s__OpalescenceLib__OpalescenceS_l[A]]+GetRandomReal(s__OpalescenceLib__OpalescenceS_radius[A]*0.80,s__OpalescenceLib__OpalescenceS_radius[A])*Cos(GetRandomReal(-bj_PI,bj_PI)),s__vector_y[s__OpalescenceLib__OpalescenceS_l[A]]+GetRandomReal(s__OpalescenceLib__OpalescenceS_radius[A]*0.80,s__OpalescenceLib__OpalescenceS_radius[A])*Sin(GetRandomReal(-bj_PI,bj_PI)),0.00)
+set s__vector_z[s___OpalescenceLib__OpalescenceMoveS_l[s__OpalescenceLib__OpalescenceMoveS_l[B]+j]]=OpalescenceLib__GetLocZ(s__vector_x[s___OpalescenceLib__OpalescenceMoveS_l[s__OpalescenceLib__OpalescenceMoveS_l[B]+j]],s__vector_y[s___OpalescenceLib__OpalescenceMoveS_l[s__OpalescenceLib__OpalescenceMoveS_l[B]+j]])+GetRandomReal(50.00,100.00)
+set s__OpalescenceLib__OpalescenceMoveS_last[B]=s__vector_create(s__vector_x[s___OpalescenceLib__OpalescenceMoveS_l[s__OpalescenceLib__OpalescenceMoveS_l[B]]],s__vector_y[s___OpalescenceLib__OpalescenceMoveS_l[s__OpalescenceLib__OpalescenceMoveS_l[B]]],s__vector_z[s___OpalescenceLib__OpalescenceMoveS_l[s__OpalescenceLib__OpalescenceMoveS_l[B]]])
+set s__OpalescenceLib__OpalescenceMoveS_time[B]=0.00
+set s__OpalescenceLib__OpalescenceMoveS_timeMax[B]=0.70
+set s__OpalescenceLib__OpalescenceMoveS_dummy[B]=CreateUnit(s__OpalescenceLib__OpalescenceS_p[A],OpalescenceLib__FaerieID,s__vector_x[s___OpalescenceLib__OpalescenceMoveS_l[s__OpalescenceLib__OpalescenceMoveS_l[B]]],s__vector_y[s___OpalescenceLib__OpalescenceMoveS_l[s__OpalescenceLib__OpalescenceMoveS_l[B]]],GetRandomReal(0.00,360.00))
+call OpalescenceLib__SetUnitPositionEx(s__OpalescenceLib__OpalescenceMoveS_dummy[B],s__vector_x[s___OpalescenceLib__OpalescenceMoveS_l[s__OpalescenceLib__OpalescenceMoveS_l[B]]],s__vector_y[s___OpalescenceLib__OpalescenceMoveS_l[s__OpalescenceLib__OpalescenceMoveS_l[B]]])
+call SetUnitFlyHeight(s__OpalescenceLib__OpalescenceMoveS_dummy[B],s__vector_z[s___OpalescenceLib__OpalescenceMoveS_l[s__OpalescenceLib__OpalescenceMoveS_l[B]]]-OpalescenceLib__GetLocZ(s__vector_x[s___OpalescenceLib__OpalescenceMoveS_l[s__OpalescenceLib__OpalescenceMoveS_l[B]]],s__vector_y[s___OpalescenceLib__OpalescenceMoveS_l[s__OpalescenceLib__OpalescenceMoveS_l[B]]]),0.00)
+call SetUnitAnimation(s__OpalescenceLib__OpalescenceMoveS_dummy[B],"birth")
+call QueueUnitAnimation(s__OpalescenceLib__OpalescenceMoveS_dummy[B],"stand")
+call SetUnitVertexColor(s__OpalescenceLib__OpalescenceMoveS_dummy[B],255,255,255,0)
+call SaveInteger(hash,GetHandleId(s__OpalescenceLib__OpalescenceMoveS_t[B]),0,B)
+call TimerStart(s__OpalescenceLib__OpalescenceMoveS_t[B],0.03125,true,function OpalescenceLib__OpalescenceMove)
+elseif s__OpalescenceLib__OpalescenceS_time[A]<=0.00 then
+call PauseTimer(s__OpalescenceLib__OpalescenceS_t[A])
+call FlushChildHashtable(hash,GetHandleId(s__OpalescenceLib__OpalescenceS_t[A]))
+call DestroyTimer(s__OpalescenceLib__OpalescenceS_t[A])
+set s__OpalescenceLib__OpalescenceS_t[A]=null
+set s__OpalescenceLib__OpalescenceS_dummy[A]=null
+set s__OpalescenceLib__OpalescenceS_caster[A]=null
+call s__vector_deallocate(s__OpalescenceLib__OpalescenceS_l[A])
+call s__vector_deallocate(s__OpalescenceLib__OpalescenceS_v[A])
+call s__vector_deallocate(s__OpalescenceLib__OpalescenceS_endPos[A])
+call s__OpalescenceLib__OpalescenceS_deallocate(A)
 endif
 endif
 endfunction
 function Opalescence_Actions takes nothing returns nothing
-local integer A=s__OpalescenceLib___OpalescenceS__allocate()
-set s__OpalescenceLib___OpalescenceS_t[A]=CreateTimer()
-set s__OpalescenceLib___OpalescenceS_caster[A]=GetTriggerUnit()
-set s__OpalescenceLib___OpalescenceS_p[A]=GetOwningPlayer(s__OpalescenceLib___OpalescenceS_caster[A])
-set s__OpalescenceLib___OpalescenceS_damage[A]=30.+udg_ItemBonusDMG[GetPlayerId(s__OpalescenceLib___OpalescenceS_p[A])+1]*0.05
-set s__OpalescenceLib___OpalescenceS_radius[A]=400.00
-set s__OpalescenceLib___OpalescenceS_time[A]=10.00
-set s__OpalescenceLib___OpalescenceS_timeThreshold[A]=0.70
-set s__OpalescenceLib___OpalescenceS_l[A]=s__vector_create(GetUnitX(s__OpalescenceLib___OpalescenceS_caster[A]),GetUnitY(s__OpalescenceLib___OpalescenceS_caster[A]),0.00)
-set s__vector_z[s__OpalescenceLib___OpalescenceS_l[A]]=OpalescenceLib___GetLocZ(s__vector_x[s__OpalescenceLib___OpalescenceS_l[A]],s__vector_y[s__OpalescenceLib___OpalescenceS_l[A]])
-set s__OpalescenceLib___OpalescenceS_endPos[A]=s__vector_create(GetSpellTargetX(),GetSpellTargetY(),0.00)
-set s__vector_z[s__OpalescenceLib___OpalescenceS_endPos[A]]=OpalescenceLib___GetLocZ(s__vector_x[s__OpalescenceLib___OpalescenceS_endPos[A]],s__vector_y[s__OpalescenceLib___OpalescenceS_endPos[A]])+300.00
-set s__OpalescenceLib___OpalescenceS_v[A]=s__vector_create(s__vector_x[s__OpalescenceLib___OpalescenceS_endPos[A]]-s__vector_x[s__OpalescenceLib___OpalescenceS_l[A]],s__vector_y[s__OpalescenceLib___OpalescenceS_endPos[A]]-s__vector_y[s__OpalescenceLib___OpalescenceS_l[A]],s__vector_z[s__OpalescenceLib___OpalescenceS_endPos[A]]-s__vector_z[s__OpalescenceLib___OpalescenceS_l[A]])
-set s__OpalescenceLib___OpalescenceS_speed[A]=s__vector_length(s__OpalescenceLib___OpalescenceS_v[A])*1.30*0.01
-call s__vector_normalize(s__OpalescenceLib___OpalescenceS_v[A])
-set s__OpalescenceLib___OpalescenceS_dummy[A]=CreateUnit(s__OpalescenceLib___OpalescenceS_p[A],OpalescenceLib___AbolishID,s__vector_x[s__OpalescenceLib___OpalescenceS_l[A]],s__vector_y[s__OpalescenceLib___OpalescenceS_l[A]],Atan2(s__vector_y[s__OpalescenceLib___OpalescenceS_v[A]],s__vector_x[s__OpalescenceLib___OpalescenceS_v[A]])*bj_RADTODEG)
-call SetUnitX(s__OpalescenceLib___OpalescenceS_dummy[A],s__vector_x[s__OpalescenceLib___OpalescenceS_l[A]])
-call SetUnitY(s__OpalescenceLib___OpalescenceS_dummy[A],s__vector_y[s__OpalescenceLib___OpalescenceS_l[A]])
-call SetUnitScale(s__OpalescenceLib___OpalescenceS_dummy[A],2.00,2.00,2.00)
-call UnitApplyTimedLife(s__OpalescenceLib___OpalescenceS_dummy[A],'BTLF',1.00)
-call SetUnitAnimation(s__OpalescenceLib___OpalescenceS_dummy[A],"birth")
-call QueueUnitAnimation(s__OpalescenceLib___OpalescenceS_dummy[A],"stand")
-call SaveInteger(hash,GetHandleId(s__OpalescenceLib___OpalescenceS_t[A]),0,A)
-call TimerStart(s__OpalescenceLib___OpalescenceS_t[A],0.01,true,function OpalescenceLib___OpalescenceDamage)
+local integer A=s__OpalescenceLib__OpalescenceS__allocate()
+set s__OpalescenceLib__OpalescenceS_t[A]=CreateTimer()
+set s__OpalescenceLib__OpalescenceS_caster[A]=GetTriggerUnit()
+set s__OpalescenceLib__OpalescenceS_p[A]=GetOwningPlayer(s__OpalescenceLib__OpalescenceS_caster[A])
+set s__OpalescenceLib__OpalescenceS_damage[A]=30.+udg_ItemBonusDMG[GetPlayerId(s__OpalescenceLib__OpalescenceS_p[A])+1]*0.05
+set s__OpalescenceLib__OpalescenceS_radius[A]=400.00
+set s__OpalescenceLib__OpalescenceS_time[A]=10.00
+set s__OpalescenceLib__OpalescenceS_timeThreshold[A]=0.70
+set s__OpalescenceLib__OpalescenceS_l[A]=s__vector_create(GetUnitX(s__OpalescenceLib__OpalescenceS_caster[A]),GetUnitY(s__OpalescenceLib__OpalescenceS_caster[A]),0.00)
+set s__vector_z[s__OpalescenceLib__OpalescenceS_l[A]]=OpalescenceLib__GetLocZ(s__vector_x[s__OpalescenceLib__OpalescenceS_l[A]],s__vector_y[s__OpalescenceLib__OpalescenceS_l[A]])
+set s__OpalescenceLib__OpalescenceS_endPos[A]=s__vector_create(GetSpellTargetX(),GetSpellTargetY(),0.00)
+set s__vector_z[s__OpalescenceLib__OpalescenceS_endPos[A]]=OpalescenceLib__GetLocZ(s__vector_x[s__OpalescenceLib__OpalescenceS_endPos[A]],s__vector_y[s__OpalescenceLib__OpalescenceS_endPos[A]])+300.00
+set s__OpalescenceLib__OpalescenceS_v[A]=s__vector_create(s__vector_x[s__OpalescenceLib__OpalescenceS_endPos[A]]-s__vector_x[s__OpalescenceLib__OpalescenceS_l[A]],s__vector_y[s__OpalescenceLib__OpalescenceS_endPos[A]]-s__vector_y[s__OpalescenceLib__OpalescenceS_l[A]],s__vector_z[s__OpalescenceLib__OpalescenceS_endPos[A]]-s__vector_z[s__OpalescenceLib__OpalescenceS_l[A]])
+set s__OpalescenceLib__OpalescenceS_speed[A]=s__vector_length(s__OpalescenceLib__OpalescenceS_v[A])*1.30*0.01
+call s__vector_normalize(s__OpalescenceLib__OpalescenceS_v[A])
+set s__OpalescenceLib__OpalescenceS_dummy[A]=CreateUnit(s__OpalescenceLib__OpalescenceS_p[A],OpalescenceLib__AbolishID,s__vector_x[s__OpalescenceLib__OpalescenceS_l[A]],s__vector_y[s__OpalescenceLib__OpalescenceS_l[A]],Atan2(s__vector_y[s__OpalescenceLib__OpalescenceS_v[A]],s__vector_x[s__OpalescenceLib__OpalescenceS_v[A]])*bj_RADTODEG)
+call SetUnitX(s__OpalescenceLib__OpalescenceS_dummy[A],s__vector_x[s__OpalescenceLib__OpalescenceS_l[A]])
+call SetUnitY(s__OpalescenceLib__OpalescenceS_dummy[A],s__vector_y[s__OpalescenceLib__OpalescenceS_l[A]])
+call SetUnitScale(s__OpalescenceLib__OpalescenceS_dummy[A],2.00,2.00,2.00)
+call UnitApplyTimedLife(s__OpalescenceLib__OpalescenceS_dummy[A],'BTLF',1.00)
+call SetUnitAnimation(s__OpalescenceLib__OpalescenceS_dummy[A],"birth")
+call QueueUnitAnimation(s__OpalescenceLib__OpalescenceS_dummy[A],"stand")
+call SaveInteger(hash,GetHandleId(s__OpalescenceLib__OpalescenceS_t[A]),0,A)
+call TimerStart(s__OpalescenceLib__OpalescenceS_t[A],0.01,true,function OpalescenceLib__OpalescenceDamage)
 endfunction
 function Opalescence_Conditions takes nothing returns boolean
 return GetSpellAbilityId()=='A0L0'
@@ -863,13 +863,13 @@ endfunction
 
 實作：
 
-`Trig_HeroSkills54_Actions`　war3map.j:65165
+`Trig_HeroSkills54_Actions`　war3map.j:65284
 ```jass
 elseif Skill=='A0CT' then
 call HeroA54_Boom(u,LoadUnitHandle(hash,GetHandleId(u),'A0KU'))
 ```
 
-`HeroA54_Boom`　war3map.j:64905
+`HeroA54_Boom`　war3map.j:65024
 ```jass
 function HeroA54_Boom takes unit u,unit u2 returns nothing
 local real x=GetUnitX(u2)
@@ -922,7 +922,7 @@ endfunction
 
 實作：
 
-`Trig_HeroSkills54_Actions`　war3map.j:65213
+`Trig_HeroSkills54_Actions`　war3map.j:65332
 ```jass
 elseif Skill=='A0YT' then
 set u3=GetSpellTargetUnit()
@@ -964,7 +964,7 @@ endif
 endif
 ```
 
-`Trig_SkillsInfo54_Actions`　war3map.j:65267
+`Trig_SkillsInfo54_Actions`　war3map.j:65386
 ```jass
 if GetUnitAbilityLevel(udg_Hero[n],'A0YT')!=1 then
 call UnitRemoveAbility(udg_Hero[n],LoadInteger(hash,pl_Id,'A0YT'))
@@ -1023,7 +1023,7 @@ endif
 
 實作：
 
-`Trig_ChangePoints_Actions`　war3map.j:17734
+`Trig_ChangePoints_Actions`　war3map.j:17742
 ```jass
 if GetSpellAbilityId()=='A03V' and GetUnitLevel(GetSpellTargetUnit())>0 then
 set udg_CTPoint[n]=GetSpellTargetUnit()

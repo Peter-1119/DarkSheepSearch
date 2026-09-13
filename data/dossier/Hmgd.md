@@ -45,7 +45,7 @@
 
 實作：
 
-`Trig_HeroAttack53_Actions`　war3map.j:64298
+`Trig_HeroAttack53_Actions`　war3map.j:64417
 ```jass
 if GetUnitAbilityLevel(u,'BOwk')>=1 then
 call UnitRemoveAbility(u,'BOwk')
@@ -83,7 +83,7 @@ call SetTextTagFadepoint(text,2.00)
 
 實作：
 
-`Trig_HeroSkills53_Actions`　war3map.j:64217
+`Trig_HeroSkills53_Actions`　war3map.j:64336
 ```jass
 if Skill=='ANbl' then
 set t=CreateTimer()
@@ -97,7 +97,7 @@ call SaveEffectHandle(hash,Id,2,AddSpecialEffectTarget("Radiance Royal.mdx",u,"o
 call SetUnitAnimation(u,"stand")
 ```
 
-`Hero53W_Buff`　war3map.j:64189
+`Hero53W_Buff`　war3map.j:64308
 ```jass
 function Hero53W_Buff takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -131,7 +131,7 @@ endfunction
 
 實作：
 
-`Hero53E_poison`　war3map.j:64265
+`Hero53E_poison`　war3map.j:64384
 ```jass
 function Hero53E_poison takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -156,7 +156,7 @@ set u2=null
 endfunction
 ```
 
-`Trig_HeroAttack53_Actions`　war3map.j:64310
+`Trig_HeroAttack53_Actions`　war3map.j:64429
 ```jass
 elseif GetUnitAbilityLevel(u,'A0X6')>=1 then
 set u_Id=GetHandleId(u3)
@@ -189,7 +189,7 @@ endif
 
 實作：
 
-`Trig_HeroSkills53_Actions`　war3map.j:64227
+`Trig_HeroSkills53_Actions`　war3map.j:64346
 ```jass
 elseif Skill=='A0X7' then
 set dmg=200.+udg_ItemBonusDMG[n]*0.90+LoadReal(hash,GetHandleId(u),16)*9.00
@@ -246,7 +246,7 @@ endif
 
 實作：
 
-`Trig_ChangePoints_Actions`　war3map.j:17734
+`Trig_ChangePoints_Actions`　war3map.j:17742
 ```jass
 if GetSpellAbilityId()=='A03V' and GetUnitLevel(GetSpellTargetUnit())>0 then
 set udg_CTPoint[n]=GetSpellTargetUnit()
@@ -273,7 +273,7 @@ endif
 這幾段不是靠技能 ID 分派的，而是直接用單位型號 `Hmgd` 寫在共用函式的條件式裡
 （常見於寫進傷害管線的被動）。照技能抽取抓不到，所以單獨列出來。
 
-`Trig_HeroTakeDamage_Actions`　war3map.j:20135
+`Trig_HeroTakeDamage_Actions`　war3map.j:20126
 ```jass
 if a_type=='Hmgd' then
 if IsUnitEnemy(d,GetOwningPlayer(a))then
@@ -319,7 +319,7 @@ endif
 英雄的實作散在同編號的一組函式裡，上面按技能抽取時抓不到的補在這裡
 （常見的是決定門檻、結算加成、清理 buff 的那幾支）。
 
-`Trig_HeroAttack53_Conditions`　war3map.j:64262
+`Trig_HeroAttack53_Conditions`　war3map.j:64381
 ```jass
 function Trig_HeroAttack53_Conditions takes nothing returns boolean
 return GetUnitTypeId(GetAttacker())=='Hmgd' and IsUnitEnemy(GetTriggerUnit(),GetOwningPlayer(GetAttacker()))

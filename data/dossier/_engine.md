@@ -303,7 +303,7 @@ set random=GetRandomInt(1,100)
 if random<=chanse_random then
 if GetUnitAbilityLevel(damager,'A0AQ')==1 and GetUnitAbilityLevel(target,'B046')==1 then
 if IsUnitType(target,UNIT_TYPE_HERO)then
-set dmg=GetUnitState(target,UNIT_STATE_MAX_LIFE)*0.25
+set dmg=GetUnitState(target,UNIT_STATE_MAX_LIFE)*0.025
 else
 set dmg=GetUnitState(target,UNIT_STATE_MAX_LIFE)*0.05
 endif
@@ -353,7 +353,7 @@ endif
 if GetUnitAbilityLevel(target,'B02V')==1 then
 set cof=1.00
 if IsUnitType(target,UNIT_TYPE_HERO)then
-set dmg=GetUnitState(target,UNIT_STATE_MAX_LIFE)*0.25
+set dmg=GetUnitState(target,UNIT_STATE_MAX_LIFE)*0.025
 else
 set dmg=GetUnitState(target,UNIT_STATE_MAX_LIFE)*0.05
 endif
@@ -823,7 +823,7 @@ set t=null
 endfunction
 ```
 
-### `CharmUnit`　war3map.j:49826（42 行）
+### `CharmUnit`　war3map.j:49899（42 行）
 
 ```jass
 function CharmUnit takes unit damager,unit target,real chanse returns nothing
@@ -870,7 +870,7 @@ set t=null
 endfunction
 ```
 
-### `SliceUnit`　war3map.j:52250（30 行）
+### `SliceUnit`　war3map.j:52312（30 行）
 
 ```jass
 function SliceUnit takes unit target,real chanse returns nothing
@@ -905,7 +905,7 @@ set t=null
 endfunction
 ```
 
-### `AnathemaUnit`　war3map.j:55567（50 行）
+### `AnathemaUnit`　war3map.j:55629（50 行）
 
 ```jass
 function AnathemaUnit takes unit damager,unit target,real debuff,real chanse returns nothing
@@ -1452,7 +1452,7 @@ endfunction
 
 ## 投射物 —— 命中時會附帶狀態，技能只呼叫 CreateProjectile 是看不出來的
 
-### `CreateProjectile`　war3map.j:3071（27 行）
+### `CreateProjectile`　war3map.j:3075（27 行）
 
 ```jass
 function CreateProjectile takes unit u,integer dummy_Id,real speed,real dist,real x,real y,real angle,real dmg,real aoe,real size,string eff,string eff2 returns nothing
@@ -1484,7 +1484,7 @@ set pl=null
 endfunction
 ```
 
-### `ProjectileMove`　war3map.j:2937（134 行）
+### `ProjectileMove`　war3map.j:2941（134 行）
 
 ```jass
 function ProjectileMove takes nothing returns nothing
@@ -1627,7 +1627,7 @@ endfunction
 
 ## 傷害管線 —— DefCof、穿透、反傷、苦難面具都在這一支
 
-### `Trig_HeroTakeDamage_Actions`　war3map.j:19501（697 行）
+### `Trig_HeroTakeDamage_Actions`　war3map.j:19509（680 行）
 
 ```jass
 function Trig_HeroTakeDamage_Actions takes nothing returns nothing
@@ -1813,9 +1813,9 @@ elseif a_type=='n053' then
 call FrostUnit(a,d,0.50)
 elseif a_type=='n041' or a_type=='n06L' or a_type=='n06S' or a_type=='n06U' or a_type=='n06V' then
 if GetPlayerTechCount(GetOwningPlayer(a),'Rufb',true)==1 then
-call FrostUnit(a,d,10.00)
+call FrostUnit(a,d,0.80)
 else
-call FrostUnit(a,d,0.50)
+call FrostUnit(a,d,0.40)
 endif
 elseif a_type=='nntg' then
 if GetUnitAbilityLevel(a,'A0YB')==1 then
@@ -1982,11 +1982,11 @@ endif
 endif
 if GetUnitAbilityLevel(a,'B048')>=1 then
 set L=GetPlayerId(GetOwningPlayer(a))+1
-set DefCof=DefCof+(0.02+0.02*I2R(GetUnitAbilityLevel(udg_Hero[L],'A10E'))+udg_ItemBonusDMG[L]*0.01)
+set DefCof=DefCof+(0.02+0.01*I2R(GetUnitAbilityLevel(udg_Hero[L],'A10E'))+udg_ItemBonusDMG[L]/150.)
 endif
 if GetUnitAbilityLevel(d,'B048')>=1 then
 set L=GetPlayerId(GetOwningPlayer(d))+1
-set DefCof=DefCof-(0.02+0.02*I2R(GetUnitAbilityLevel(udg_Hero[L],'A10E'))+udg_ItemBonusDMG[L]*0.01)
+set DefCof=DefCof-(0.02+0.01*I2R(GetUnitAbilityLevel(udg_Hero[L],'A10E'))+udg_ItemBonusDMG[L]/150.)
 endif
 if LoadInteger(hash,GetHandleId(d),6)>=6 and GetUnitLevel(a)<=4 then
 set DefCof=DefCof-0.40
@@ -2188,7 +2188,7 @@ call UnitDamageTarget(a,d,dmg*(DefCof-1.00),false,false,ATTACK_TYPE_CHAOS,DAMAGE
 endif
 set life=LoadReal(hash,GetHandleId(a),16)
 if life>0.00 then
-if IsUnitType(d,UNIT_TYPE_STRUCTURE)!=true then
+if not IsUnitType(d,UNIT_TYPE_STRUCTURE)then
 if GetUnitAbilityLevel(d,'B02V')==1 then
 if check==1 and IsUnitType(d,UNIT_TYPE_HERO)then
 set life=life*2.00
@@ -2241,23 +2241,6 @@ exitwhen r<r2
 call SaveReal(hash,GetHandleId(a),16,LoadReal(hash,GetHandleId(a),16)+0.5)
 set r=r-r2
 set r2=r2+35.
-call SaveReal(hash,GetHandleId(a),'ST02',r2)
-endloop
-endif
-call SaveReal(hash,GetHandleId(a),'ST01',r)
-endif
-endif
-if a_type=='Etyr' then
-if IsUnitEnemy(d,GetOwningPlayer(a))then
-set r=dmg*DefCof+life
-set r=r+LoadReal(hash,GetHandleId(a),'ST01')
-set r2=LoadReal(hash,GetHandleId(a),'ST02')
-if r>=r2 then
-loop
-exitwhen r<r2
-call SetHeroAgi(a,GetHeroAgi(a,false)+1,true)
-set r=r-r2
-set r2=r2+250.
 call SaveReal(hash,GetHandleId(a),'ST02',r2)
 endloop
 endif
@@ -2333,7 +2316,7 @@ endfunction
 
 ## 道具觸發的入口 —— 注意它們各自的過濾條件
 
-### `Trig_ItemAttacksFromHero_Conditions`　war3map.j:27470（3 行）
+### `Trig_ItemAttacksFromHero_Conditions`　war3map.j:27533（3 行）
 
 ```jass
 function Trig_ItemAttacksFromHero_Conditions takes nothing returns boolean
@@ -2341,7 +2324,7 @@ return IsUnitEnemy(GetTriggerUnit(),GetOwningPlayer(GetAttacker()))and IsUnitTyp
 endfunction
 ```
 
-### `Trig_ItemKills_Conditions`　war3map.j:29434（3 行）
+### `Trig_ItemKills_Conditions`　war3map.j:29501（3 行）
 
 ```jass
 function Trig_ItemKills_Conditions takes nothing returns boolean
@@ -2349,7 +2332,7 @@ return IsUnitEnemy(GetDyingUnit(),GetOwningPlayer(GetKillingUnit()))and GetUnitL
 endfunction
 ```
 
-### `Trig_UseSkillsEndcast_Conditions`　war3map.j:28632（3 行）
+### `Trig_UseSkillsEndcast_Conditions`　war3map.j:28699（3 行）
 
 ```jass
 function Trig_UseSkillsEndcast_Conditions takes nothing returns boolean
@@ -2357,14 +2340,18 @@ return IsUnitType(GetSpellAbilityUnit(),UNIT_TYPE_HERO)and GetSpellAbilityId()!=
 endfunction
 ```
 
-### `StartModCooldown`　war3map.j:2914（14 行）
+### `StartModCooldown`　war3map.j:2914（18 行）
 
 ```jass
-function StartModCooldown takes integer u_Id,integer i_Id,real CD returns nothing
+function StartModCooldown takes unit u,integer u_Id,integer i_Id,real CD returns nothing
 local real CDCof=LoadReal(hash,u_Id,1)
 local timer t=CreateTimer()
+if GetUnitTypeId(u)=='Hpb1' then
+set CDCof=0.50
+else
 if CDCof<0.20 then
 set CDCof=0.20
+endif
 endif
 set CD=CD*CDCof
 call SaveReal(hash,u_Id,i_Id,1.)

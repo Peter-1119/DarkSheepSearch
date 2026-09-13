@@ -46,14 +46,14 @@
 
 實作：
 
-`Hero52SkillsStart2_conditions`　war3map.j:63969
+`Hero52SkillsStart2_conditions`　war3map.j:64088
 ```jass
 function Hero52SkillsStart2_conditions takes nothing returns boolean
 return GetSpellAbilityId()=='A0MR'
 endfunction
 ```
 
-`Trig_Hero52SkillsStart2_Actions`　war3map.j:64022
+`Trig_Hero52SkillsStart2_Actions`　war3map.j:64141
 ```jass
 function Trig_Hero52SkillsStart2_Actions takes nothing returns nothing
 local unit u=GetSpellAbilityUnit()
@@ -79,14 +79,14 @@ set t=null
 endfunction
 ```
 
-`Hero52SkillsStop2_conditions`　war3map.j:64049
+`Hero52SkillsStop2_conditions`　war3map.j:64168
 ```jass
 function Hero52SkillsStop2_conditions takes nothing returns boolean
 return GetSpellAbilityId()=='A0MR'
 endfunction
 ```
 
-`Trig_Hero52SkillsStop2_Actions`　war3map.j:64112
+`Trig_Hero52SkillsStop2_Actions`　war3map.j:64231
 ```jass
 function Trig_Hero52SkillsStop2_Actions takes nothing returns nothing
 local unit u=GetSpellAbilityUnit()
@@ -141,7 +141,7 @@ set text=null
 endfunction
 ```
 
-`Hero52SkillsStart2_conditions`　war3map.j:63969
+`Hero52SkillsStart2_conditions`　war3map.j:64088
 ```jass
 function Hero52SkillsStart2_conditions takes nothing returns boolean
 return GetSpellAbilityId()=='A0MR'
@@ -220,7 +220,7 @@ set t=null
 endfunction
 ```
 
-`Hero52SkillsStop2_conditions`　war3map.j:64049
+`Hero52SkillsStop2_conditions`　war3map.j:64168
 ```jass
 function Hero52SkillsStop2_conditions takes nothing returns boolean
 return GetSpellAbilityId()=='A0MR'
@@ -368,14 +368,14 @@ endfunction
 
 實作：
 
-`Trig_UKills_Actions`　war3map.j:21143
+`Trig_UKills_Actions`　war3map.j:21206
 ```jass
 if GetUnitAbilityLevel(u,'A0K7')>=1 then
 call SetUnitLifePercentBJ(u,UnitLifePercent(u)+1.00)
 endif
 ```
 
-`Trig_HeroSkills52_Actions`　war3map.j:63665
+`Trig_HeroSkills52_Actions`　war3map.j:63784
 ```jass
 elseif Skill=='A0K7' then
 call SaveReal(hash,GetHandleId(u),26,0)
@@ -456,7 +456,7 @@ call SetUnitState(u,UNIT_STATE_LIFE,GetUnitState(u,UNIT_STATE_LIFE)+(GetUnitStat
 endif
 ```
 
-`Hero52W_Buff`　war3map.j:63475
+`Hero52W_Buff`　war3map.j:63594
 ```jass
 function Hero52W_Buff takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -505,7 +505,7 @@ endfunction
 
 實作：
 
-`Trig_HeroSkills52_Actions`　war3map.j:63742
+`Trig_HeroSkills52_Actions`　war3map.j:63861
 ```jass
 elseif Skill=='A06N' then
 set x2=GetSpellTargetX()
@@ -546,7 +546,7 @@ endif
 endif
 ```
 
-`Hero52E_Buff`　war3map.j:63497
+`Hero52E_Buff`　war3map.j:63616
 ```jass
 function Hero52E_Buff takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -588,7 +588,7 @@ endfunction
 
 實作：
 
-`Trig_HeroSkills52_Actions`　war3map.j:63570
+`Trig_HeroSkills52_Actions`　war3map.j:63689
 ```jass
 if Skill=='A04L' then
 set x=GetUnitX(u2)
@@ -687,7 +687,7 @@ call TimerStart(t,4,false,function Hero52Q_Dmg)
 endif
 ```
 
-`Hero52Q_Buff`　war3map.j:63465
+`Hero52Q_Buff`　war3map.j:63584
 ```jass
 function Hero52Q_Buff takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -701,7 +701,7 @@ set t=null
 endfunction
 ```
 
-`Hero52Q_Dmg`　war3map.j:63507
+`Hero52Q_Dmg`　war3map.j:63626
 ```jass
 function Hero52Q_Dmg takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -767,14 +767,14 @@ endfunction
 
 實作：
 
-`Hero52SkillsStart_conditions`　war3map.j:63791
+`Hero52SkillsStart_conditions`　war3map.j:63910
 ```jass
 function Hero52SkillsStart_conditions takes nothing returns boolean
 return GetSpellAbilityId()=='A01D'
 endfunction
 ```
 
-`Trig_Hero52SkillsStart_Actions`　war3map.j:63892
+`Trig_Hero52SkillsStart_Actions`　war3map.j:64011
 ```jass
 function Trig_Hero52SkillsStart_Actions takes nothing returns nothing
 local unit u=GetSpellAbilityUnit()
@@ -794,7 +794,7 @@ set t=null
 endfunction
 ```
 
-`Hero52SkillsStop_conditions`　war3map.j:63913
+`Hero52SkillsStop_conditions`　war3map.j:64032
 ```jass
 function Hero52SkillsStop_conditions takes nothing returns boolean
 return GetSpellAbilityId()=='A01D'
@@ -849,7 +849,7 @@ set text=null
 endfunction
 ```
 
-`Hero52SkillsStart_conditions`　war3map.j:63791
+`Hero52SkillsStart_conditions`　war3map.j:63910
 ```jass
 function Hero52SkillsStart_conditions takes nothing returns boolean
 return GetSpellAbilityId()=='A01D'
@@ -982,7 +982,7 @@ endfunction
 
 實作：
 
-`Trig_ChangePoints_Actions`　war3map.j:17734
+`Trig_ChangePoints_Actions`　war3map.j:17742
 ```jass
 if GetSpellAbilityId()=='A03V' and GetUnitLevel(GetSpellTargetUnit())>0 then
 set udg_CTPoint[n]=GetSpellTargetUnit()
@@ -1021,7 +1021,7 @@ endif
 英雄的實作散在同編號的一組函式裡，上面按技能抽取時抓不到的補在這裡
 （常見的是決定門檻、結算加成、清理 buff 的那幾支）。
 
-`Hero52W_Buff2`　war3map.j:63486
+`Hero52W_Buff2`　war3map.j:63605
 ```jass
 function Hero52W_Buff2 takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -1036,7 +1036,7 @@ set t=null
 endfunction
 ```
 
-`Hero52D`　war3map.j:63794
+`Hero52D`　war3map.j:63913
 ```jass
 function Hero52D takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -1138,7 +1138,7 @@ set text=null
 endfunction
 ```
 
-`Trig_Hero52SkillsStop_Actions`　war3map.j:63916
+`Trig_Hero52SkillsStop_Actions`　war3map.j:64035
 ```jass
 function Trig_Hero52SkillsStop_Actions takes nothing returns nothing
 local unit u=GetSpellAbilityUnit()
@@ -1190,7 +1190,7 @@ set text=null
 endfunction
 ```
 
-`Hero52R`　war3map.j:63972
+`Hero52R`　war3map.j:64091
 ```jass
 function Hero52R takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -1244,7 +1244,7 @@ set text=null
 endfunction
 ```
 
-`Hero52R_Move`　war3map.j:64052
+`Hero52R_Move`　war3map.j:64171
 ```jass
 function Hero52R_Move takes nothing returns nothing
 local timer t=GetExpiredTimer()

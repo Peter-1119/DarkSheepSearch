@@ -1,6 +1,6 @@
 # 超重型坦克 `Nsjs`（Сверхтяжёлый танк）
 
-主屬性 **力量** · 背包 **6 格** · 解鎖 0 · 定位 戰士/坦克 · **遠程**（攻擊距離 500） · 護甲類型 **強化（城牆）**（六種攻擊類型全部 ×1.00，比英雄護甲差） · **不在隨機池**（只能手動挑）
+主屬性 **力量** · 背包 **6 格** · 解鎖 4000000 · 定位 戰士/坦克 · **遠程**（攻擊距離 500） · 護甲類型 **強化（城牆）**（六種攻擊類型全部 ×1.00，比英雄護甲差）
 
 | | 初始 | 每級 |
 |---|---|---|
@@ -48,7 +48,7 @@
 
 實作：
 
-`Trig_HeroSkills55_Actions`　war3map.j:64501
+`Trig_HeroSkills55_Actions`　war3map.j:64620
 ```jass
 if Skill=='A0XO' then
 set x2=GetSpellTargetX()
@@ -103,7 +103,7 @@ set t=null
 endfunction
 ```
 
-`HeroQ55_Dmg`　war3map.j:64379
+`HeroQ55_Dmg`　war3map.j:64498
 ```jass
 function HeroQ55_Dmg takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -180,7 +180,7 @@ endfunction
 
 實作：
 
-`Trig_HeroSkills55_Actions`　war3map.j:64518
+`Trig_HeroSkills55_Actions`　war3map.j:64637
 ```jass
 elseif Skill=='A0XQ' then
 set dmg=50.+50.*I2R(lvl)+I2R(GetHeroStr(u,true))
@@ -199,7 +199,7 @@ call SaveGroupHandle(hash,Id,2,CreateGroup())
 call TimerStart(t,0.10,true,function HeroW55_Dmg)
 ```
 
-`HeroW55_Dmg`　war3map.j:64433
+`HeroW55_Dmg`　war3map.j:64552
 ```jass
 function HeroW55_Dmg takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -270,7 +270,7 @@ endfunction
 
 實作：
 
-`ProjectileMove`　war3map.j:2999
+`ProjectileMove`　war3map.j:3003
 ```jass
 elseif u2_Id=='o02C' then
 set i=GetUnitAbilityLevel(u,'A0XT')
@@ -280,7 +280,7 @@ endif
 endif
 ```
 
-`ProjectileMove`　war3map.j:3044
+`ProjectileMove`　war3map.j:3048
 ```jass
 elseif u2_Id=='o02C' then
 set i=GetUnitAbilityLevel(u,'A0XT')
@@ -308,7 +308,7 @@ endif
 
 實作：
 
-`Trig_HeroSkills55_Actions`　war3map.j:64533
+`Trig_HeroSkills55_Actions`　war3map.j:64652
 ```jass
 elseif Skill=='A0XS' then
 set x2=GetSpellTargetX()
@@ -323,7 +323,7 @@ call TimerStart(t,0.1,true,function HeroR55_Dmg)
 endif
 ```
 
-`HeroR55_Dmg`　war3map.j:64335
+`HeroR55_Dmg`　war3map.j:64454
 ```jass
 function HeroR55_Dmg takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -400,7 +400,7 @@ endfunction
 
 實作：
 
-`Trig_ChangePoints_Actions`　war3map.j:17734
+`Trig_ChangePoints_Actions`　war3map.j:17742
 ```jass
 if GetSpellAbilityId()=='A03V' and GetUnitLevel(GetSpellTargetUnit())>0 then
 set udg_CTPoint[n]=GetSpellTargetUnit()
@@ -427,7 +427,7 @@ endif
 這幾段不是靠技能 ID 分派的，而是直接用單位型號 `Nsjs` 寫在共用函式的條件式裡
 （常見於寫進傷害管線的被動）。照技能抽取抓不到，所以單獨列出來。
 
-`ResHero`　war3map.j:46352
+`ResHero`　war3map.j:46438
 ```jass
 if GetUnitTypeId(u)=='Nsjs' then
 set unit_global=u
@@ -435,7 +435,7 @@ call TriggerExecute(gg_trg_HeroTurretsActivate55)
 endif
 ```
 
-`Trig_DieHero_Actions`　war3map.j:46568
+`Trig_DieHero_Actions`　war3map.j:46654
 ```jass
 if GetUnitTypeId(u)=='Nsjs' then
 call PauseTimer(LoadTimerHandle(hash,GetHandleId(u),'TUR1'))
@@ -450,7 +450,7 @@ endif
 英雄的實作散在同編號的一組函式裡，上面按技能抽取時抓不到的補在這裡
 （常見的是決定門檻、結算加成、清理 buff 的那幾支）。
 
-`Trig_HeroTurretsActivate55_Actions`　war3map.j:64600
+`Trig_HeroTurretsActivate55_Actions`　war3map.j:64719
 ```jass
 function Trig_HeroTurretsActivate55_Actions takes nothing returns nothing
 local unit u=unit_global
@@ -487,14 +487,14 @@ set u=null
 endfunction
 ```
 
-`Trig_HeroKills55_Conditions`　war3map.j:64637
+`Trig_HeroKills55_Conditions`　war3map.j:64756
 ```jass
 function Trig_HeroKills55_Conditions takes nothing returns boolean
 return GetUnitTypeId(GetKillingUnit())=='Nsjs'
 endfunction
 ```
 
-`Trig_HeroKills55_Actions`　war3map.j:64640
+`Trig_HeroKills55_Actions`　war3map.j:64759
 ```jass
 function Trig_HeroKills55_Actions takes nothing returns nothing
 local unit u=GetKillingUnit()
@@ -506,7 +506,7 @@ if IsUnitEnemy(u2,pl)then
 set count=LoadInteger(hash,u_Id,'TAL1')+1
 if count==100 then
 set count=0
-call SaveReal(hash,u_Id,27,LoadReal(hash,u_Id,27)+0.05)
+call SaveReal(hash,u_Id,27,LoadReal(hash,u_Id,27)+0.03)
 endif
 call SaveInteger(hash,u_Id,'TAL1',count)
 endif

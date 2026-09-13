@@ -43,7 +43,7 @@
 
 實作：
 
-`Trig_HeroSkills48_Actions`　war3map.j:61465
+`Trig_HeroSkills48_Actions`　war3map.j:61584
 ```jass
 if Skill=='A0WR' then
 set x2=GetSpellTargetX()
@@ -75,7 +75,7 @@ exitwhen i==L
 endloop
 ```
 
-`HeroQ48`　war3map.j:61199
+`HeroQ48`　war3map.j:61318
 ```jass
 function HeroQ48 takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -223,7 +223,7 @@ endfunction
 
 實作：
 
-`HeroW48_conditions`　war3map.j:61525
+`HeroW48_conditions`　war3map.j:61644
 ```jass
 function HeroW48_conditions takes nothing returns boolean
 return GetSpellAbilityId()=='A0WP'
@@ -292,7 +292,7 @@ set t=null
 endfunction
 ```
 
-`Trig_HeroW48_Stop_Conditions`　war3map.j:61595
+`Trig_HeroW48_Stop_Conditions`　war3map.j:61714
 ```jass
 function Trig_HeroW48_Stop_Conditions takes nothing returns boolean
 return GetSpellAbilityId()=='A0WP'
@@ -332,7 +332,7 @@ endfunction
 
 實作：
 
-`Trig_HeroSkills48_Actions`　war3map.j:61493
+`Trig_HeroSkills48_Actions`　war3map.j:61612
 ```jass
 elseif Skill=='A0WT' then
 set x2=GetSpellTargetX()
@@ -348,7 +348,7 @@ call SaveReal(hash,Id,3,y)
 call TimerStart(t,0.04,true,function Hero48R)
 ```
 
-`Hero48R_dmg`　war3map.j:61303
+`Hero48R_dmg`　war3map.j:61422
 ```jass
 function Hero48R_dmg takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -480,7 +480,7 @@ endfunction
 
 實作：
 
-`Trig_ButtonChangePoints_Actions`　war3map.j:17774
+`Trig_ButtonChangePoints_Actions`　war3map.j:17782
 ```jass
 if b==udg_CTButton[9]then
 set n2=0
@@ -516,7 +516,7 @@ return
 endif
 ```
 
-`Trig_HeroTakeDamage_Actions`　war3map.j:19541
+`Trig_HeroTakeDamage_Actions`　war3map.j:19549
 ```jass
 elseif LoadInteger(hash,GetHandleId(d),'A0WS')==1 then
 set r=LoadReal(hash,GetHandleId(d),'A0WS')
@@ -542,7 +542,7 @@ return
 endif
 ```
 
-`Hero48D`　war3map.j:61414
+`Hero48D`　war3map.j:61533
 ```jass
 function Hero48D takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -577,7 +577,7 @@ set text=null
 endfunction
 ```
 
-`Trig_HeroSkills48_Actions`　war3map.j:61505
+`Trig_HeroSkills48_Actions`　war3map.j:61624
 ```jass
 elseif Skill=='A0WS' then
 call DestroyEffect(AddSpecialEffectTarget("Abilities\\Spells\\Items\\TomeOfRetraining\\TomeOfRetrainingCaster.mdl",u2,"origin"))
@@ -603,7 +603,7 @@ endif
 
 實作：
 
-`Trig_ChangePoints_Actions`　war3map.j:17734
+`Trig_ChangePoints_Actions`　war3map.j:17742
 ```jass
 if GetSpellAbilityId()=='A03V' and GetUnitLevel(GetSpellTargetUnit())>0 then
 set udg_CTPoint[n]=GetSpellTargetUnit()
@@ -663,7 +663,7 @@ endif
 英雄的實作散在同編號的一組函式裡，上面按技能抽取時抓不到的補在這裡
 （常見的是決定門檻、結算加成、清理 buff 的那幾支）。
 
-`Hero48R`　war3map.j:61344
+`Hero48R`　war3map.j:61463
 ```jass
 function Hero48R takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -737,7 +737,7 @@ set ug=null
 endfunction
 ```
 
-`HeroW48_Dmg`　war3map.j:61528
+`HeroW48_Dmg`　war3map.j:61647
 ```jass
 function HeroW48_Dmg takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -782,7 +782,7 @@ set ug=null
 endfunction
 ```
 
-`Trig_HeroW48_Actions`　war3map.j:61569
+`Trig_HeroW48_Actions`　war3map.j:61688
 ```jass
 function Trig_HeroW48_Actions takes nothing returns nothing
 local unit u=GetSpellAbilityUnit()
@@ -807,7 +807,7 @@ set t=null
 endfunction
 ```
 
-`Trig_HeroW48_Stop_Actions`　war3map.j:61598
+`Trig_HeroW48_Stop_Actions`　war3map.j:61717
 ```jass
 function Trig_HeroW48_Stop_Actions takes nothing returns nothing
 local unit u=GetSpellAbilityUnit()

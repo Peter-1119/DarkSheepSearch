@@ -42,7 +42,7 @@
 
 實作：
 
-`Skill43Q`　war3map.j:59595
+`Skill43Q`　war3map.j:59714
 ```jass
 if B==true then
 set n=GetPlayerId(pl)+1
@@ -98,7 +98,7 @@ return
 endif
 ```
 
-`Skill43Q`　war3map.j:59649
+`Skill43Q`　war3map.j:59768
 ```jass
 if count==0 then
 set pl=GetOwningPlayer(u)
@@ -147,7 +147,7 @@ call DestroyTimer(t)
 call FlushChildHashtable(hash,Id)
 ```
 
-`Trig_HeroSkills43_Actions`　war3map.j:59720
+`Trig_HeroSkills43_Actions`　war3map.j:59839
 ```jass
 if Skill=='A01U' then
 set x=GetUnitX(u)
@@ -194,14 +194,14 @@ call SetUnitAnimation(u,"Stand Defend")
 
 實作：
 
-`Trig_HeroTakeDamage_Actions`　war3map.j:19805
+`Trig_HeroTakeDamage_Actions`　war3map.j:19813
 ```jass
 if GetUnitAbilityLevel(d,'B03I')==1 then
 set DefCof=DefCof-(0.12+0.08*I2R(GetUnitAbilityLevel(d,'Absk')))
 endif
 ```
 
-`Skill43W`　war3map.j:59515
+`Skill43W`　war3map.j:59634
 ```jass
 function Skill43W takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -243,7 +243,7 @@ set e=null
 endfunction
 ```
 
-`Trig_HeroSkills43_Actions`　war3map.j:59738
+`Trig_HeroSkills43_Actions`　war3map.j:59857
 ```jass
 elseif Skill=='Absk' then
 set t=CreateTimer()
@@ -255,7 +255,7 @@ call SaveReal(hash,GetHandleId(u),4,LoadReal(hash,GetHandleId(u),4)+dmg)
 call SaveReal(hash,Id,1,dmg)
 ```
 
-`SetUnitExtraDamage`　war3map.j:3928
+`SetUnitExtraDamage`　war3map.j:3932
 ```jass
 function SetUnitExtraDamage takes unit u,integer a returns nothing
 local integer Id=GetHandleId(u)
@@ -300,7 +300,7 @@ call SaveInteger(hash,Id,34,a)
 endfunction
 ```
 
-`Skill43W2`　war3map.j:59499
+`Skill43W2`　war3map.j:59618
 ```jass
 function Skill43W2 takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -378,7 +378,7 @@ endfunction
 
 實作：
 
-`Hero43E`　war3map.j:59776
+`Hero43E`　war3map.j:59895
 ```jass
 function Hero43E takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -425,7 +425,7 @@ set e=null
 endfunction
 ```
 
-`Trig_HeroAttack43_Actions`　war3map.j:59831
+`Trig_HeroAttack43_Actions`　war3map.j:59950
 ```jass
 if GetUnitAbilityLevel(u,'Amgl')>0 then
 if LoadInteger(hash,GetHandleId(u),28)!=1 then
@@ -442,7 +442,7 @@ endif
 endif
 ```
 
-`Hero43E2`　war3map.j:59766
+`Hero43E2`　war3map.j:59885
 ```jass
 function Hero43E2 takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -519,7 +519,7 @@ endfunction
 
 實作：
 
-`Trig_HeroSkills43_Actions`　war3map.j:59746
+`Trig_HeroSkills43_Actions`　war3map.j:59865
 ```jass
 elseif Skill=='A01W' then
 call UnitAddAbility(u,'A01Y')
@@ -572,7 +572,7 @@ endfunction
 
 實作：
 
-`Trig_ChangePoints_Actions`　war3map.j:17734
+`Trig_ChangePoints_Actions`　war3map.j:17742
 ```jass
 if GetSpellAbilityId()=='A03V' and GetUnitLevel(GetSpellTargetUnit())>0 then
 set udg_CTPoint[n]=GetSpellTargetUnit()
@@ -610,7 +610,7 @@ endif
 這幾段不是靠技能 ID 分派的，而是直接用單位型號 `Hmkg` 寫在共用函式的條件式裡
 （常見於寫進傷害管線的被動）。照技能抽取抓不到，所以單獨列出來。
 
-`Trig_HeroKills43_Actions`　war3map.j:59900
+`Trig_HeroKills43_Actions`　war3map.j:60019
 ```jass
 if GetUnitTypeId(u2)=='Hmkg' then
 set r=I2R(GetHeroStr(u2,true))*0.65
@@ -625,7 +625,7 @@ endif
 英雄的實作散在同編號的一組函式裡，上面按技能抽取時抓不到的補在這裡
 （常見的是決定門檻、結算加成、清理 buff 的那幾支）。
 
-`Trig_HeroKills43_Actions`　war3map.j:59895
+`Trig_HeroKills43_Actions`　war3map.j:60014
 ```jass
 function Trig_HeroKills43_Actions takes nothing returns nothing
 local unit u=GetDyingUnit()

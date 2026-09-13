@@ -1826,7 +1826,7 @@
    "image": "images/I02I.png",
    "icon_src": "map",
    "level": null,
-   "gold": 30,
+   "gold": 0,
    "recipe": [],
    "used_in": [],
    "in_wiki": false

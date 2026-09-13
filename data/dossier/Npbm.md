@@ -48,7 +48,7 @@
 
 實作：
 
-`HeroQ45_Move`　war3map.j:60318
+`HeroQ45_Move`　war3map.j:60437
 ```jass
 if dist>100 and dist<200 then
 call SaveReal(hash,GetHandleId(u),'A08T',0.50)
@@ -60,7 +60,7 @@ call SaveReal(hash,GetHandleId(u),'A08T',1.00)
 endif
 ```
 
-`HeroQ45_Dmg`　war3map.j:60340
+`HeroQ45_Dmg`　war3map.j:60459
 ```jass
 function HeroQ45_Dmg takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -111,7 +111,7 @@ set pl=null
 endfunction
 ```
 
-`Trig_HeroSkills45_Actions`　war3map.j:60406
+`Trig_HeroSkills45_Actions`　war3map.j:60525
 ```jass
 if Skill=='A08T' then
 set x=GetUnitX(u)
@@ -196,7 +196,7 @@ call TimerStart(t2,0.20,true,function HeroQ45_Dmg)
 
 實作：
 
-`Hero45_Move`　war3map.j:60272
+`Hero45_Move`　war3map.j:60391
 ```jass
 function Hero45_Move takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -234,7 +234,7 @@ set u=null
 endfunction
 ```
 
-`Trig_HeroSkills45_Actions`　war3map.j:60464
+`Trig_HeroSkills45_Actions`　war3map.j:60583
 ```jass
 elseif Skill=='A08M' then
 set t=CreateTimer()
@@ -269,7 +269,7 @@ call SaveInteger(hash,Id,1,80)
 
 實作：
 
-`Trig_HeroTakeDamage_Actions`　war3map.j:19576
+`Trig_HeroTakeDamage_Actions`　war3map.j:19584
 ```jass
 if LoadInteger(hash,Id,'A08Y')==1 then
 if UnitAlive(d)then
@@ -278,7 +278,7 @@ endif
 endif
 ```
 
-`Trig_HeroAttack45_Actions`　war3map.j:60560
+`Trig_HeroAttack45_Actions`　war3map.j:60679
 ```jass
 if GetUnitAbilityLevel(u,'A08Y')>0 and LoadInteger(hash,GetHandleId(u),'B08Y')!=1 then
 set Id=LoadInteger(hash,u_Id,'A08Y')
@@ -307,7 +307,7 @@ call SaveUnitHandle(hash,GetHandleId(t),1,u)
 endif
 ```
 
-`HeroE45_Cd`　war3map.j:60514
+`HeroE45_Cd`　war3map.j:60633
 ```jass
 function HeroE45_Cd takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -341,7 +341,7 @@ endfunction
 
 實作：
 
-`Trig_HeroSkills45_Actions`　war3map.j:60473
+`Trig_HeroSkills45_Actions`　war3map.j:60592
 ```jass
 elseif Skill=='A08V' then
 set dmg=600+I2R(GetHeroStr(u,true)+GetHeroAgi(u,true))*3.50
@@ -384,7 +384,7 @@ endif
 
 實作：
 
-`Trig_ChangePoints_Actions`　war3map.j:17734
+`Trig_ChangePoints_Actions`　war3map.j:17742
 ```jass
 if GetSpellAbilityId()=='A03V' and GetUnitLevel(GetSpellTargetUnit())>0 then
 set udg_CTPoint[n]=GetSpellTargetUnit()
@@ -423,10 +423,10 @@ endif
 
 實作：
 
-`Trig_HeroAttack45_Actions`　war3map.j:60539
+`Trig_HeroAttack45_Actions`　war3map.j:60658
 ```jass
 if LoadReal(hash,u_Id,'A08W')==0. then
-call StartModCooldown(u_Id,'A08W',10.)
+call StartModCooldown(u,u_Id,'A08W',10.)
 set cof=LoadReal(hash,u_Id,18)+1.
 set x=GetUnitX(u2)
 set y=GetUnitY(u2)
@@ -455,7 +455,7 @@ endif
 這幾段不是靠技能 ID 分派的，而是直接用單位型號 `Npbm` 寫在共用函式的條件式裡
 （常見於寫進傷害管線的被動）。照技能抽取抓不到，所以單獨列出來。
 
-`Trig_RepickHero_Actions`　war3map.j:45621
+`Trig_RepickHero_Actions`　war3map.j:45703
 ```jass
 if GetUnitTypeId(udg_Hero[n])=='Npbm' then
 set t=LoadTimerHandle(hash,GetHandleId(udg_Hero[n]),'Npbm')
@@ -472,7 +472,7 @@ endif
 英雄的實作散在同編號的一組函式裡，上面按技能抽取時抓不到的補在這裡
 （常見的是決定門檻、結算加成、清理 buff 的那幾支）。
 
-`Trig_HeroAttack45_Conditions`　war3map.j:60511
+`Trig_HeroAttack45_Conditions`　war3map.j:60630
 ```jass
 function Trig_HeroAttack45_Conditions takes nothing returns boolean
 return GetUnitTypeId(GetAttacker())=='Npbm'

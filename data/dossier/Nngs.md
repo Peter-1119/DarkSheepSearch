@@ -42,7 +42,7 @@
 
 實作：
 
-`Hero47Q`　war3map.j:60852
+`Hero47Q`　war3map.j:60971
 ```jass
 function Hero47Q takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -104,7 +104,7 @@ set ug=null
 endfunction
 ```
 
-`Trig_HeroSkills47_Actions`　war3map.j:60958
+`Trig_HeroSkills47_Actions`　war3map.j:61077
 ```jass
 if Skill=='A0EQ' then
 set x=GetUnitX(u)
@@ -147,7 +147,7 @@ call SaveReal(hash,Id,3,angle)
 call TimerStart(t,0.01,false,function Hero47Q)
 ```
 
-`Hero47Q_Buff`　war3map.j:60929
+`Hero47Q_Buff`　war3map.j:61048
 ```jass
 function Hero47Q_Buff takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -183,13 +183,13 @@ endfunction
 
 實作：
 
-`Hero47Q`　war3map.j:60880
+`Hero47Q`　war3map.j:60999
 ```jass
 if GetUnitAbilityLevel(u,'B03H')>0 and IsUnitType(u3,UNIT_TYPE_HERO)then
 call UnitDamageTarget(u,u3,dmg*(1.00+0.20+0.20*I2R(GetUnitAbilityLevel(u,'A0ER'))),false,false,ATTACK_TYPE_NORMAL,DAMAGE_TYPE_MAGIC,null)
 ```
 
-`Trig_HeroSkills47_Actions`　war3map.j:60997
+`Trig_HeroSkills47_Actions`　war3map.j:61116
 ```jass
 elseif Skill=='A0ER' then
 set t=CreateTimer()
@@ -214,7 +214,7 @@ call TimerStart(t,20,false,function Hero47W)
 endif
 ```
 
-`Hero47W`　war3map.j:60910
+`Hero47W`　war3map.j:61029
 ```jass
 function Hero47W takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -260,7 +260,7 @@ endfunction
 
 實作：
 
-`Trig_HeroAttack47_Actions`　war3map.j:61069
+`Trig_HeroAttack47_Actions`　war3map.j:61188
 ```jass
 if(GetUnitTypeId(u2)=='Nngs' or GetUnitTypeId(u2)=='Nplh')and GetUnitAbilityLevel(u2,'Amgr')>=1 and LoadInteger(hash,GetHandleId(u2),20)!=1 then
 call SaveInteger(hash,GetHandleId(u2),20,1)
@@ -323,7 +323,7 @@ endif
 endif
 ```
 
-`HeroE47_Cd`　war3map.j:61029
+`HeroE47_Cd`　war3map.j:61148
 ```jass
 function HeroE47_Cd takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -369,7 +369,7 @@ endfunction
 
 實作：
 
-`HeroR47`　war3map.j:61144
+`HeroR47`　war3map.j:61263
 ```jass
 function HeroR47 takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -383,7 +383,7 @@ set u=null
 endfunction
 ```
 
-`Trig_HeroKills47_Actions`　war3map.j:61169
+`Trig_HeroKills47_Actions`　war3map.j:61288
 ```jass
 if GetUnitAbilityLevel(u,'A0F4')>0 then
 if LoadBoolean(hash,GetHandleId(u),'A0F4')==true then
@@ -450,7 +450,7 @@ endif
 
 實作：
 
-`Trig_ChangePoints_Actions`　war3map.j:17734
+`Trig_ChangePoints_Actions`　war3map.j:17742
 ```jass
 if GetSpellAbilityId()=='A03V' and GetUnitLevel(GetSpellTargetUnit())>0 then
 set udg_CTPoint[n]=GetSpellTargetUnit()
@@ -534,7 +534,7 @@ endif
 這幾段不是靠技能 ID 分派的，而是直接用單位型號 `Nngs` 寫在共用函式的條件式裡
 （常見於寫進傷害管線的被動）。照技能抽取抓不到，所以單獨列出來。
 
-`Trig_HeroTakeDamage_Actions`　war3map.j:20082
+`Trig_HeroTakeDamage_Actions`　war3map.j:20090
 ```jass
 if a_type=='Nngs' or a_type=='Nplh' then
 if IsUnitType(d,UNIT_TYPE_HERO)and IsUnitEnemy(d,GetOwningPlayer(a))then
@@ -570,7 +570,7 @@ endif
 英雄的實作散在同編號的一組函式裡，上面按技能抽取時抓不到的補在這裡
 （常見的是決定門檻、結算加成、清理 buff 的那幾支）。
 
-`HeroE47_EndDebuff`　war3map.j:61040
+`HeroE47_EndDebuff`　war3map.j:61159
 ```jass
 function HeroE47_EndDebuff takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -590,7 +590,7 @@ set u=null
 endfunction
 ```
 
-`Trig_HeroKills47_Conditions`　war3map.j:61141
+`Trig_HeroKills47_Conditions`　war3map.j:61260
 ```jass
 function Trig_HeroKills47_Conditions takes nothing returns boolean
 return(GetUnitTypeId(GetKillingUnit())=='Nngs' or GetUnitTypeId(GetKillingUnit())=='Nplh')and IsUnitEnemy(GetDyingUnit(),GetOwningPlayer(GetKillingUnit()))

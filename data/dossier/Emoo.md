@@ -49,7 +49,7 @@
 
 實作：
 
-`Hero36Q`　war3map.j:57537
+`Hero36Q`　war3map.j:57656
 ```jass
 function Hero36Q takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -93,7 +93,7 @@ set pl=null
 endfunction
 ```
 
-`Trig_HeroSkills36_Actions`　war3map.j:57646
+`Trig_HeroSkills36_Actions`　war3map.j:57765
 ```jass
 if Skill=='A0JS' then
 set u3=GetSpellTargetUnit()
@@ -127,7 +127,7 @@ call TimerStart(t,x,true,function Hero36Q)
 
 實作：
 
-`Trig_HeroSkills36_Actions`　war3map.j:57666
+`Trig_HeroSkills36_Actions`　war3map.j:57785
 ```jass
 elseif Skill=='A0JU' then
 set x=GetSpellTargetX()
@@ -144,7 +144,7 @@ call TimerStart(t,0.4,true,function Hero36R)
 endif
 ```
 
-`Hero36R`　war3map.j:57577
+`Hero36R`　war3map.j:57696
 ```jass
 function Hero36R takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -223,7 +223,7 @@ endfunction
 
 實作：
 
-`Trig_HeroSkills36_Actions`　war3map.j:57658
+`Trig_HeroSkills36_Actions`　war3map.j:57777
 ```jass
 elseif Skill=='A0JQ' then
 call UnitAddAbility(u,'A0JR')
@@ -270,7 +270,7 @@ endfunction
 
 實作：
 
-`Hero36R`　war3map.j:57577
+`Hero36R`　war3map.j:57696
 ```jass
 function Hero36R takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -326,7 +326,7 @@ set pl=null
 endfunction
 ```
 
-`Trig_HeroAttack36_Actions`　war3map.j:57732
+`Trig_HeroAttack36_Actions`　war3map.j:57851
 ```jass
 if GetUnitAbilityLevel(u,'A02C')>=1 and LoadInteger(hash,Id,'A02C')==0 and IsUnitEnemy(u3,pl)then
 call SaveInteger(hash,Id,'A02C',1)
@@ -377,7 +377,7 @@ endif
 
 實作：
 
-`Trig_ChangePoints_Actions`　war3map.j:17734
+`Trig_ChangePoints_Actions`　war3map.j:17742
 ```jass
 if GetSpellAbilityId()=='A03V' and GetUnitLevel(GetSpellTargetUnit())>0 then
 set udg_CTPoint[n]=GetSpellTargetUnit()
@@ -427,7 +427,7 @@ endif
 
 實作：
 
-`ProjectilesSkill36`　war3map.j:57694
+`ProjectilesSkill36`　war3map.j:57813
 ```jass
 function ProjectilesSkill36 takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -453,7 +453,7 @@ set u=null
 endfunction
 ```
 
-`Trig_HeroAttack36_Actions`　war3map.j:57767
+`Trig_HeroAttack36_Actions`　war3map.j:57886
 ```jass
 elseif GetUnitAbilityLevel(u,'A0VN')>=1 and LoadInteger(hash,Id,'A0VN')==0 and IsUnitEnemy(u3,pl)then
 call SaveInteger(hash,Id,'A0VN',1)
@@ -504,7 +504,7 @@ endif
 英雄的實作散在同編號的一組函式裡，上面按技能抽取時抓不到的補在這裡
 （常見的是決定門檻、結算加成、清理 buff 的那幾支）。
 
-`Trig_HeroAttack36_Conditions`　war3map.j:57691
+`Trig_HeroAttack36_Conditions`　war3map.j:57810
 ```jass
 function Trig_HeroAttack36_Conditions takes nothing returns boolean
 return GetUnitTypeId(GetAttacker())=='Emoo' or GetUnitTypeId(GetAttacker())=='Nbrn' or GetUnitTypeId(GetAttacker())=='E00J'

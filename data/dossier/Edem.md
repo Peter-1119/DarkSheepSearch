@@ -47,7 +47,7 @@
 
 實作：
 
-`Trig_HeroQ1_Actions`　war3map.j:46678
+`Trig_HeroQ1_Actions`　war3map.j:46764
 ```jass
 function Trig_HeroQ1_Actions takes nothing returns nothing
 local unit u=GetAttacker()
@@ -161,7 +161,7 @@ endfunction
 
 實作：
 
-`Trig_HeroSkills1_Actions`　war3map.j:46652
+`Trig_HeroSkills1_Actions`　war3map.j:46738
 ```jass
 if Skill=='A04T' then
 set i=GetHeroAgi(u,false)
@@ -180,7 +180,7 @@ call SaveUnitHandle(hash,Id,1,u)
 endif
 ```
 
-`HeroR1_EndBuff`　war3map.j:46604
+`HeroR1_EndBuff`　war3map.j:46690
 ```jass
 function HeroR1_EndBuff takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -254,7 +254,7 @@ endfunction
 
 實作：
 
-`Trig_HeroSkills1_Actions`　war3map.j:46632
+`Trig_HeroSkills1_Actions`　war3map.j:46718
 ```jass
 if Skill=='A0RX' then
 call SetHeroStr(u,GetHeroStr(u,false)+1,true)
@@ -290,7 +290,7 @@ endif
 
 實作：
 
-`Trig_ChangePoints_Actions`　war3map.j:17734
+`Trig_ChangePoints_Actions`　war3map.j:17742
 ```jass
 if GetSpellAbilityId()=='A03V' and GetUnitLevel(GetSpellTargetUnit())>0 then
 set udg_CTPoint[n]=GetSpellTargetUnit()
@@ -328,7 +328,7 @@ endif
 
 實作：
 
-`Trig_HeroSkills1_Actions`　war3map.j:46632
+`Trig_HeroSkills1_Actions`　war3map.j:46718
 ```jass
 if Skill=='A0RX' then
 call SetHeroStr(u,GetHeroStr(u,false)+1,true)
@@ -362,7 +362,7 @@ call SaveInteger(hash,GetHandleId(pl),15,1)
 
 實作：
 
-`Trig_HeroSkills1_Actions`　war3map.j:46640
+`Trig_HeroSkills1_Actions`　war3map.j:46726
 ```jass
 elseif Skill=='A0YG' then
 call SetHeroStr(u,GetHeroStr(u,false)+2,true)
@@ -391,7 +391,7 @@ endif
 英雄的實作散在同編號的一組函式裡，上面按技能抽取時抓不到的補在這裡
 （常見的是決定門檻、結算加成、清理 buff 的那幾支）。
 
-`Trig_CreateHero1_Actions`　war3map.j:34443
+`Trig_CreateHero1_Actions`　war3map.j:34516
 ```jass
 function Trig_CreateHero1_Actions takes nothing returns nothing
 local location p
@@ -487,7 +487,7 @@ set u=null
 endfunction
 ```
 
-`Trig_CreateHero1_Hard_Actions`　war3map.j:34842
+`Trig_CreateHero1_Hard_Actions`　war3map.j:34915
 ```jass
 function Trig_CreateHero1_Hard_Actions takes nothing returns nothing
 local location p
@@ -587,21 +587,21 @@ set u=null
 endfunction
 ```
 
-`Trig_HeroQ1_Conditions`　war3map.j:46675
+`Trig_HeroQ1_Conditions`　war3map.j:46761
 ```jass
 function Trig_HeroQ1_Conditions takes nothing returns boolean
 return GetUnitAbilityLevel(GetAttacker(),'B00C')>0 or GetUnitTypeId(GetAttacker())=='Eevi'
 endfunction
 ```
 
-`Trig_HeroD1_Conditions`　war3map.j:46758
+`Trig_HeroD1_Conditions`　war3map.j:46844
 ```jass
 function Trig_HeroD1_Conditions takes nothing returns boolean
 return GetUnitTypeId(GetKillingUnit())=='Edem' or GetUnitTypeId(GetKillingUnit())=='Eevi' or GetUnitTypeId(GetKillingUnit())=='Emns'
 endfunction
 ```
 
-`Trig_HeroD1_Actions`　war3map.j:46761
+`Trig_HeroD1_Actions`　war3map.j:46847
 ```jass
 function Trig_HeroD1_Actions takes nothing returns nothing
 local unit u=GetKillingUnit()

@@ -46,7 +46,7 @@
 
 實作：
 
-`HeroE25_Dmg`　war3map.j:54172
+`HeroE25_Dmg`　war3map.j:54234
 ```jass
 if count==1 then
 call DestroyEffect(AddSpecialEffect("war3mapImported\\NewDirtEXNofire.mdx",x,y))
@@ -60,7 +60,7 @@ call GroupEnumUnitsInRange(ug,x,y,160,null)
 endif
 ```
 
-`Trig_HeroSkills25_Actions`　war3map.j:54302
+`Trig_HeroSkills25_Actions`　war3map.j:54364
 ```jass
 elseif Skill=='A03F' then
 set x=GetUnitX(u)
@@ -103,7 +103,7 @@ call TimerStart(t,0.08,true,function HeroE25_Dmg)
 
 實作：
 
-`HeroQ25_Start`　war3map.j:54125
+`HeroQ25_Start`　war3map.j:54187
 ```jass
 if count>8 then
 set dmg=(20+25*I2R(GetUnitAbilityLevel(hero,'AHfs'))+udg_ItemBonusDMG[n]*0.20)*0.33
@@ -112,7 +112,7 @@ set dmg=5+5*I2R(GetUnitAbilityLevel(hero,'AHfs'))+udg_ItemBonusDMG[n]*0.05
 endif
 ```
 
-`Trig_HeroSkills25_Actions`　war3map.j:54280
+`Trig_HeroSkills25_Actions`　war3map.j:54342
 ```jass
 if Skill=='AHfs' then
 set x=GetSpellTargetX()
@@ -148,7 +148,7 @@ call TimerStart(t,0.33,true,function HeroQ25_Start)
 
 實作：
 
-`FireTorrent`　war3map.j:54209
+`FireTorrent`　war3map.j:54271
 ```jass
 function FireTorrent takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -190,7 +190,7 @@ set pl=null
 endfunction
 ```
 
-`Trig_HeroSkills25_Actions`　war3map.j:54290
+`Trig_HeroSkills25_Actions`　war3map.j:54352
 ```jass
 elseif Skill=='A02J' then
 set u3=GetSpellTargetUnit()
@@ -227,14 +227,14 @@ call TimerStart(t,0.04,true,function FireTorrent)
 
 實作：
 
-`Trig_HeroSkill25R_Conditions`　war3map.j:54348
+`Trig_HeroSkill25R_Conditions`　war3map.j:54410
 ```jass
 function Trig_HeroSkill25R_Conditions takes nothing returns boolean
 return GetSpellAbilityId()=='A03O'
 endfunction
 ```
 
-`Trig_HeroSkill25R_Actions`　war3map.j:54509
+`Trig_HeroSkill25R_Actions`　war3map.j:54571
 ```jass
 function Trig_HeroSkill25R_Actions takes nothing returns nothing
 local unit u=GetTriggerUnit()
@@ -253,7 +253,7 @@ set u=null
 endfunction
 ```
 
-`Trig_HeroSkill25R_Conditions`　war3map.j:54348
+`Trig_HeroSkill25R_Conditions`　war3map.j:54410
 ```jass
 function Trig_HeroSkill25R_Conditions takes nothing returns boolean
 return GetSpellAbilityId()=='A03O'
@@ -452,7 +452,7 @@ endfunction
 
 實作：
 
-`Trig_HeroSkills25_Actions`　war3map.j:54318
+`Trig_HeroSkills25_Actions`　war3map.j:54380
 ```jass
 elseif Skill=='A031' then
 set x=GetSpellTargetX()
@@ -494,7 +494,7 @@ endif
 
 實作：
 
-`Trig_HeroSkills25_Actions`　war3map.j:54262
+`Trig_HeroSkills25_Actions`　war3map.j:54324
 ```jass
 if Skill=='A03G' then
 call SetHeroStr(u,GetHeroStr(u,false)+1,true)
@@ -528,7 +528,7 @@ endif
 
 實作：
 
-`Trig_ChangePoints_Actions`　war3map.j:17734
+`Trig_ChangePoints_Actions`　war3map.j:17742
 ```jass
 if GetSpellAbilityId()=='A03V' and GetUnitLevel(GetSpellTargetUnit())>0 then
 set udg_CTPoint[n]=GetSpellTargetUnit()
@@ -566,7 +566,7 @@ endif
 
 實作：
 
-`Trig_HeroSkills25_Actions`　war3map.j:54262
+`Trig_HeroSkills25_Actions`　war3map.j:54324
 ```jass
 if Skill=='A03G' then
 call SetHeroStr(u,GetHeroStr(u,false)+1,true)
@@ -597,7 +597,7 @@ call SaveInteger(hash,GetHandleId(pl),15,1)
 
 實作：
 
-`Trig_HeroSkills25_Actions`　war3map.j:54269
+`Trig_HeroSkills25_Actions`　war3map.j:54331
 ```jass
 elseif Skill=='A03J' then
 call SetHeroStr(u,GetHeroStr(u,false)+3,true)

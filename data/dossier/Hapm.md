@@ -38,14 +38,14 @@
 
 實作：
 
-`Trig_HeroR2_Conditions`　war3map.j:46949
+`Trig_HeroR2_Conditions`　war3map.j:47035
 ```jass
 function Trig_HeroR2_Conditions takes nothing returns boolean
 return GetLearnedSkill()=='A07U'
 endfunction
 ```
 
-`Trig_HeroR2_Actions`　war3map.j:46978
+`Trig_HeroR2_Actions`　war3map.j:47064
 ```jass
 function Trig_HeroR2_Actions takes nothing returns nothing
 local timer t=CreateTimer()
@@ -58,7 +58,7 @@ set u=null
 endfunction
 ```
 
-`Trig_HeroR2_Conditions`　war3map.j:46949
+`Trig_HeroR2_Conditions`　war3map.j:47035
 ```jass
 function Trig_HeroR2_Conditions takes nothing returns boolean
 return GetLearnedSkill()=='A07U'
@@ -122,7 +122,7 @@ endfunction
 
 實作：
 
-`Trig_HeroSkills2_Actions`　war3map.j:46911
+`Trig_HeroSkills2_Actions`　war3map.j:46997
 ```jass
 elseif Skill=='A01E' or Skill=='A0RM' then
 set x=GetUnitX(u)
@@ -175,7 +175,7 @@ endif
 
 實作：
 
-`Hero2Q`　war3map.j:46808
+`Hero2Q`　war3map.j:46894
 ```jass
 if count<=0 or not UnitAlive(u)then
 call SaveInteger(hash,GetHandleId(u),'A01C',LoadInteger(hash,GetHandleId(u),'A01C')-1)
@@ -190,7 +190,7 @@ call DestroyTimer(t)
 endif
 ```
 
-`Trig_HeroSkills2_Actions`　war3map.j:46859
+`Trig_HeroSkills2_Actions`　war3map.j:46945
 ```jass
 if Skill=='A01C' then
 set t=CreateTimer()
@@ -214,13 +214,13 @@ call SaveInteger(hash,Id,2,15)
 call TimerStart(t,1.,true,function Hero2Q)
 ```
 
-`Trig_HeroSkills2_Actions`　war3map.j:46927
+`Trig_HeroSkills2_Actions`　war3map.j:47013
 ```jass
 if LoadInteger(hash,GetHandleId(u2),'A01C')>=1 then
 call SetUnitState(u2,UNIT_STATE_LIFE,r+(dmg*6))
 ```
 
-`SetUnitExtraDamage`　war3map.j:3928
+`SetUnitExtraDamage`　war3map.j:3932
 ```jass
 function SetUnitExtraDamage takes unit u,integer a returns nothing
 local integer Id=GetHandleId(u)
@@ -289,7 +289,7 @@ endfunction
 
 實作：
 
-`Trig_HeroSkills2_Actions`　war3map.j:46879
+`Trig_HeroSkills2_Actions`　war3map.j:46965
 ```jass
 elseif Skill=='A01B' then
 if GetUnitAbilityLevel(u,'A0RI')==1 then
@@ -335,7 +335,7 @@ call SetTextTagFadepoint(text,2.00)
 
 實作：
 
-`PercentStatsRefresh`　war3map.j:21797
+`PercentStatsRefresh`　war3map.j:21860
 ```jass
 if GetUnitAbilityLevel(u,'A0Y5')==1 then
 set i=LoadInteger(hash,I_Id,1)
@@ -361,7 +361,7 @@ endif
 call SaveInteger(hash,I_Id,3,i2)
 ```
 
-`PercentStatsRefresh`　war3map.j:21843
+`PercentStatsRefresh`　war3map.j:21906
 ```jass
 if GetUnitAbilityLevel(u,'A0Y5')==1 then
 set i=LoadInteger(hash,I_Id,1)
@@ -387,7 +387,7 @@ endif
 call SaveInteger(hash,I_Id,3,i2)
 ```
 
-`PercentStatsRefresh`　war3map.j:21889
+`PercentStatsRefresh`　war3map.j:21952
 ```jass
 if GetUnitAbilityLevel(u,'A0Y5')==1 then
 set i=LoadInteger(hash,I_Id,1)
@@ -406,7 +406,7 @@ endif
 call SaveInteger(hash,I_Id,2,i2)
 ```
 
-`PercentStatsRefresh`　war3map.j:21921
+`PercentStatsRefresh`　war3map.j:21984
 ```jass
 if GetUnitAbilityLevel(u,'A0Y5')==1 then
 set i=LoadInteger(hash,I_Id,1)
@@ -418,7 +418,7 @@ endif
 call SaveInteger(hash,I_Id,1,i2)
 ```
 
-`PercentStatsRefresh`　war3map.j:21939
+`PercentStatsRefresh`　war3map.j:22002
 ```jass
 if GetUnitAbilityLevel(u,'A0Y5')==1 then
 set i=LoadInteger(hash,I_Id,1)
@@ -430,7 +430,7 @@ endif
 call SaveInteger(hash,I_Id,1,i2)
 ```
 
-`PercentStatsRefresh`　war3map.j:21957
+`PercentStatsRefresh`　war3map.j:22020
 ```jass
 if GetUnitAbilityLevel(u,'A0Y5')==1 then
 set i=LoadInteger(hash,I_Id,1)
@@ -442,7 +442,7 @@ endif
 call SaveInteger(hash,I_Id,1,i2)
 ```
 
-`PercentStatsRefresh`　war3map.j:21975
+`PercentStatsRefresh`　war3map.j:22038
 ```jass
 if GetUnitAbilityLevel(u,'A0Y5')==1 then
 set i=LoadInteger(hash,I_Id,1)
@@ -454,7 +454,7 @@ endif
 call SaveInteger(hash,I_Id,1,i2)
 ```
 
-`PercentStatsRefresh`　war3map.j:21993
+`PercentStatsRefresh`　war3map.j:22056
 ```jass
 if GetUnitAbilityLevel(u,'A0Y5')==1 then
 set r=LoadReal(hash,I_Id,1)
@@ -465,7 +465,7 @@ endif
 call SaveReal(hash,I_Id,1,r2)
 ```
 
-`PercentStatsRefresh`　war3map.j:22009
+`PercentStatsRefresh`　war3map.j:22072
 ```jass
 if GetUnitAbilityLevel(u,'A0Y5')==1 then
 set r=LoadReal(hash,I_Id,1)
@@ -476,7 +476,7 @@ endif
 call SaveReal(hash,I_Id,1,r2)
 ```
 
-`PercentStatsRefresh`　war3map.j:22025
+`PercentStatsRefresh`　war3map.j:22088
 ```jass
 if GetUnitAbilityLevel(u,'A0Y5')==1 then
 set i=LoadInteger(hash,I_Id,1)
@@ -488,7 +488,7 @@ endif
 call SaveInteger(hash,I_Id,1,i2)
 ```
 
-`SetUnitExtraDamage`　war3map.j:3928
+`SetUnitExtraDamage`　war3map.j:3932
 ```jass
 function SetUnitExtraDamage takes unit u,integer a returns nothing
 local integer Id=GetHandleId(u)
@@ -545,7 +545,7 @@ endfunction
 
 實作：
 
-`Trig_ChangePoints_Actions`　war3map.j:17734
+`Trig_ChangePoints_Actions`　war3map.j:17742
 ```jass
 if GetSpellAbilityId()=='A03V' and GetUnitLevel(GetSpellTargetUnit())>0 then
 set udg_CTPoint[n]=GetSpellTargetUnit()
@@ -583,7 +583,7 @@ endif
 
 實作：
 
-`Trig_HeroSkills2_Actions`　war3map.j:46838
+`Trig_HeroSkills2_Actions`　war3map.j:46924
 ```jass
 if Skill=='A0RH' then
 call SetHeroStr(u,GetHeroStr(u,false)+2,true)
@@ -631,7 +631,7 @@ endif
 
 實作：
 
-`Trig_HeroSkills2_Actions`　war3map.j:46838
+`Trig_HeroSkills2_Actions`　war3map.j:46924
 ```jass
 if Skill=='A0RH' then
 call SetHeroStr(u,GetHeroStr(u,false)+2,true)
@@ -662,7 +662,7 @@ call SaveInteger(hash,GetHandleId(pl),15,1)
 
 實作：
 
-`Trig_HeroSkills2_Actions`　war3map.j:46845
+`Trig_HeroSkills2_Actions`　war3map.j:46931
 ```jass
 elseif Skill=='A0Y2' then
 call SetHeroStr(u,GetHeroStr(u,false)+3,true)
@@ -687,7 +687,7 @@ endif
 這幾段不是靠技能 ID 分派的，而是直接用單位型號 `Hapm` 寫在共用函式的條件式裡
 （常見於寫進傷害管線的被動）。照技能抽取抓不到，所以單獨列出來。
 
-`Trig_HeroLvlUp_Actions`　war3map.j:45509
+`Trig_HeroLvlUp_Actions`　war3map.j:45591
 ```jass
 elseif GetUnitTypeId(u)=='Hapm' then
 if GetUnitAbilityLevel(u,'A0Y3')==1 then
@@ -697,7 +697,7 @@ call SaveReal(hash,u_Id,2,LoadReal(hash,u_Id,2)+1.)
 endif
 ```
 
-`Trig_DieHero_Actions`　war3map.j:46501
+`Trig_DieHero_Actions`　war3map.j:46587
 ```jass
 if GetUnitTypeId(u)=='Hapm' and GetUnitAbilityLevel(u,'A01H')==1 then
 set ug=CreateGroup()
@@ -724,7 +724,7 @@ endif
 英雄的實作散在同編號的一組函式裡，上面按技能抽取時抓不到的補在這裡
 （常見的是決定門檻、結算加成、清理 buff 的那幾支）。
 
-`Trig_EnemyHeroesSkill2_Actions`　war3map.j:32335
+`Trig_EnemyHeroesSkill2_Actions`　war3map.j:32408
 ```jass
 function Trig_EnemyHeroesSkill2_Actions takes nothing returns nothing
 local unit u=GetSpellAbilityUnit()
@@ -928,7 +928,7 @@ set u4=CreateUnit(pl,'o010',x,y,0.00)
 call UnitAddAbility(u4,'A05C')
 ```
 
-`Trig_CreateHero2_Actions`　war3map.j:35139
+`Trig_CreateHero2_Actions`　war3map.j:35212
 ```jass
 function Trig_CreateHero2_Actions takes nothing returns nothing
 local location p
@@ -1040,7 +1040,7 @@ set ug=null
 endfunction
 ```
 
-`Trig_CreateHero2_Hard_Actions`　war3map.j:35565
+`Trig_CreateHero2_Hard_Actions`　war3map.j:35638
 ```jass
 function Trig_CreateHero2_Hard_Actions takes nothing returns nothing
 local location p
@@ -1149,7 +1149,7 @@ set ug=null
 endfunction
 ```
 
-`HeroR2_check`　war3map.j:46952
+`HeroR2_check`　war3map.j:47038
 ```jass
 function HeroR2_check takes nothing returns nothing
 local timer t=GetExpiredTimer()

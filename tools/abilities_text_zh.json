@@ -73,9 +73,9 @@
    "英雄召喚火焰之靈，持續 60 秒。火焰之靈可造成範圍傷害，並擁有數個受技能強度影響的技能。\n\n火焰之靈生命值：450 + 25% 英雄最大生命值 點\n火焰之靈攻擊力：34 + （10% 技能強度）點\n火焰之靈護甲：2 點\n持有物品「扭曲權杖」時：火焰之靈攻擊速度 +30%\n\n冷卻：60 秒",
    "The hero summons a fire spirit for 60 sec. The spirit can deal area damage and has several abilities that scale with spell power.\n\nSpirit health: 450 + 25% of the hero's max HP\nSpirit attack power: 34 + (10% spell power)\nSpirit armour: 2\nWith the item \"Scepter of Distortion\": +30% spirit attack speed\n\nCooldown: 60 sec."
   ],
-  "A01S": [
-   "英雄獲得魔法免疫並提升自身的攻擊力。「切割」技能也會開始造成更多次打擊。\n\n攻擊力加成：+（100% 敏捷）點\n「切割」技能的打擊次數：+100%\n持續時間：18 秒\n\n冷卻：90 秒",
-   "The hero becomes immune to magic and increases his attack power. The \"Lacerations\" ability also begins to deal more strikes.\n\nAttack power bonus: + (100% Agility)\nNumber of \"Lacerations\" strikes: +100%\nDuration: 18 sec.\n\nCooldown: 90 sec."
+  "A01R": [
+   "當玩家的經驗點數足夠時，你可以選擇一項天賦，大幅強化英雄並提升至新的強度等級。",
+   "Once the player has enough experience points, you can choose a talent that significantly strengthens the hero to a new power rank."
   ],
   "A01U": [
    "朝指定方向衝刺，碰撞時對敵人造成傷害。敵方英雄受到的傷害提高 100%。當「閃耀護盾」技能效果啟動時，碰撞會在英雄兩側產生兩道力量波，造成 75% 的傷害。\n\n傷害：100 + （40% 技能強度）點\n\n冷卻：10 秒",
@@ -690,8 +690,8 @@
    "Detonates the active \"Void Charge\", dealing area damage. The inner area takes full damage, the outer area takes 50% damage.\n\nFull damage: 50% of the hero's current mana + 100% spell power\nInner area: 225\nOuter area: 450\n\nCooldown: 10 sec."
   ],
   "A0CW": [
-   "在與敵人開戰之前，請務必選擇一項額外技能。",
-   "Be sure to choose an additional ability before you start fighting the enemy."
+   "當玩家的經驗點數足夠時，你可以選擇一項天賦，大幅強化英雄並提升至新的強度等級。",
+   "Once the player has enough experience points, you can choose a talent that significantly strengthens the hero to a new power rank."
   ],
   "A0D9": [
    "英雄變得完全隱形，並可以毫無顧忌地攻擊敵人。使用此技能會為「深度創傷」技能增加額外充能。\n\n持續時間：5 秒。\n額外充能：3\n\n冷卻：10 秒。",
@@ -797,21 +797,25 @@
    "符文守護者散發一道光環，保護附近的友軍英雄。受保護的英雄所受到的部分傷害會被轉移到符文守護者身上。對自身無效。\n\n友軍英雄的傷害防護：30%\n英雄受到的傷害：光環所擋下傷害的 50%\n\n當啟用「相同英雄」設定時，英雄不會受到傷害，但光環對友軍的效果會減弱兩倍。多個符文守護者的光環不會疊加。",
    "The Rune Defender emits an aura that protects nearby allied heroes. Part of the damage taken by the protected heroes is redirected to the Rune Defender. Does not affect himself.\n\nDamage protection for allied heroes: 30%\nDamage the hero takes: 50% of the damage blocked by the aura\n\nWith the \"Identical heroes\" setting enabled the hero will not take damage, but the aura's effect for allies is weakened twofold. The aura does not stack from several Rune Defenders."
   ],
+  "A0GO": [
+   "擊殺敵方英雄可使英雄等級提升 1 級。達到最高等級後，這類擊殺將改為提高 25 點技能強度。",
+   "Killing enemy heroes increases the hero's level by 1. Upon reaching maximum level, such kills increase spell power by 25 instead."
+  ],
   "A0GP": [
    "英雄快速攻擊敵人並返回原本的位置。對同一名敵人的重複攻擊造成的傷害較低。\n\n每次攻擊傷害：40 + （20% 技能強度） + （400% 穿透）點\n目標數量：6 個\n\n冷卻：12 秒",
    "The hero rapidly attacks enemies and returns to the starting position. Repeated strikes on the same enemy deal less damage.\n\nDamage per strike: 40 + (20% spell power) + (400% penetration)\nTargets: 6\n\nCooldown: 12 sec."
   ],
   "A0GR": [
-   "以攻擊擊殺敵人可為英雄帶來暫時的敏捷，以英雄技能擊殺敵人則可提升技能強度。\n\n擊殺獲得的額外敏捷：+2 點\n敏捷加成持續時間：5 秒\n以技能擊殺提升的技能強度：+8 點\n技能強度加成持續時間：10 秒",
-   "Killing enemies with attacks grants the hero temporary Agility, and killing enemies with the hero's abilities increases spell power.\n\nBonus Agility per kill: +2\nAgility bonus duration: 5 sec.\nSpell power increase per kill with abilities: +8\nSpell power bonus duration: 10 sec."
+   "你的攻擊與技能有機率造成更高的傷害。以攻擊擊殺敵人可為英雄帶來暫時的敏捷，以技能擊殺敵人則可提升技能強度。\n\n擊殺獲得的額外敏捷：+3 點，持續 5 秒\n以技能擊殺提升的技能強度：+15 點，持續 10 秒\n攻擊暴擊機率：25%，200% 傷害\n技能暴擊機率：25%，250% 傷害",
+   "Your attacks and abilities have a chance to deal increased damage. Killing enemies with attacks grants the hero temporary Agility, and killing enemies with abilities increases spell power.\n\nBonus Agility per kill: +3 for 5 sec.\nSpell power per ability kill: +15 for 10 sec.\nAttack critical chance: 25%, 200% damage\nAbility critical chance: 25%, 250% damage"
   ],
   "A0GS": [
-   "英雄獲得魔法免疫，並開始對周圍的敵人造成持續傷害，作用範圍逐漸擴大。技能持續期間降低受到的傷害。\n\n每秒傷害：75 +（30% 技能強度）+（300% 穿透）點\n持續時間：8 秒\n作用範圍：200 >>> 500\n傷害減免：+40%\n\n冷卻：100 秒",
-   "The hero gains magic immunity and begins dealing continuous damage to enemies around, gradually increasing the area of effect. Reduces damage taken while the ability is active.\n\nDamage per second: 75 + (30% spell power) + (300% penetration)\nDuration: 8 sec.\nArea: 200 >>> 500\nDamage reduction: +40%\n\nCooldown: 100 sec."
+   "英雄獲得魔法免疫，並開始對周圍的敵人造成持續傷害，作用範圍逐漸擴大。技能持續期間降低受到的傷害。\n\n每秒傷害：40 +（15% 技能強度）+（150% 穿透）點\n持續時間：5 秒\n作用範圍：200 >>> 400\n傷害減免（狀態除外）：+15%\n\n冷卻：25 秒",
+   "The hero gains magic immunity and begins dealing continuous damage to enemies around, gradually increasing the area of effect. Reduces damage taken while the ability is active.\n\nDamage per second: 40 + (15% spell power) + (150% penetration)\nDuration: 5 sec.\nArea: 200 >>> 400\nDamage reduction (except statuses): +15%\n\nCooldown: 25 sec."
   ],
   "A0GT": [
-   "英雄的攻擊與技能獲得造成暴擊傷害的機率。\n\n暴擊機率：25%\n傷害倍率：x1.5\n持續時間：15 秒\n\n冷卻：20 秒",
-   "The hero's attacks and abilities gain a chance to deal critical damage.\n\nCritical damage chance: 25%\nDamage multiplier: x1.5\nDuration: 15 sec.\n\nCooldown: 20 sec."
+   "此技能只對近戰單位生效。\n\n提供反傷的被動加成，並讓每一次反傷結算都有機率招架。招架會對敵人造成更高的傷害、治療英雄，並有小機率暈眩對方。\n\n反傷加成：+10 點\n招架機率：20%\n招架時的反傷加成：+20 +（100% 穿透）\n招架時回復生命：+20 +（10% 技能強度）\n招架時暈眩敵人的機率：50%，1 秒",
+   "This ability only works against melee units.\n\nAdds a passive bonus to thorns damage and grants a chance to parry on every thorns tick. A parry deals increased damage to the enemy, heals the hero and has a small chance to stun the attacker.\n\nThorns damage bonus: +10\nParry chance: 20%\nThorns damage bonus on parry: +20 + (100% penetration)\nHealth restored on parry: +20 + (10% spell power)\nChance to stun the enemy on parry: 50%, 1 sec."
   ],
   "A0GX": [
    "在選定的區域內生成火焰地帶，造成週期性傷害並點燃敵人。技能強度達 300 以上時，火焰地帶還會額外使敵人的移動速度降低 50%。\n\n週期性傷害：20 + （8% 技能強度）點/秒\n傷害觸發間隔：0.5 秒\n點燃效果：每次觸發 15% 機率；75% 傷害\n持續時間：18 + （2% 技能強度）秒\n\n冷卻：18 秒",
