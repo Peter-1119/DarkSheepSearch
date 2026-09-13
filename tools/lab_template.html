@@ -1,0 +1,526 @@
+<!doctype html>
+<html lang="zh-Hant" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>UD 圖鑑 · 英雄定位圖</title>
+<style>
+/* 沿用主站的深色 token，這頁之後要併回去時不用重調 */
+:root{
+  color-scheme:dark;
+  --bg:#0a0c11; --bg-2:#0e1118; --surface:#141822; --surface-2:#1a1f2b;
+  --line:#242a38; --line-2:#2f3646;
+  --ink:#e8ebf2; --ink-2:#9aa3b8; --ink-3:#646d82;
+  --accent:#ffb648;
+  --str:#f2795b; --agi:#57d98a; --int:#54c6ec;   /* 主屬性：只當外環與圖例，不當填色 */
+  /* 量的顏色一律單一色相（藍）深→淺，已用 dataviz 驗證器對深色底驗過 */
+  --q1:#184f95; --q2:#1c5cab; --q3:#256abf; --q4:#2a78d6; --q5:#3987e5; --q6:#5598e7; --q7:#6da7ec; --q8:#86b6ef;
+  --bar:#3987e5;
+  --ease:cubic-bezier(.22,.7,.3,1); --dur:.16s;
+  font-family:system-ui,-apple-system,"Segoe UI","Noto Sans TC","PingFang TC",sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-size:13px;line-height:1.5}
+a{color:var(--accent)}
+button,select,input{font:inherit;color:inherit}
+button{cursor:pointer}
+code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.92em;color:var(--ink-2)}
+
+.wrap{max-width:1480px;margin:0 auto;padding:18px 22px 60px}
+header.top{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:10px}
+header.top h1{font-size:20px;margin:0;letter-spacing:.02em}
+header.top .sub{color:var(--ink-2)}
+header.top .lang{margin-left:auto;display:flex;gap:2px;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:2px}
+header.top .lang button{padding:4px 10px;border:0;background:none;border-radius:6px;color:var(--ink-2)}
+header.top .lang button[aria-pressed="true"]{background:var(--surface-2);color:var(--ink)}
+
+/* -------- 控制列：一列，左邊視角、右邊篩選 */
+.ctrl{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;padding:12px 14px;
+  background:var(--surface);border:1px solid var(--line);border-radius:12px;margin-bottom:14px}
+.ctrl .lab{font-size:11px;color:var(--ink-3);letter-spacing:.06em;text-transform:uppercase;margin-right:2px}
+.grp{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.chip{padding:5px 10px;border-radius:999px;border:1px solid var(--line-2);background:none;color:var(--ink-2);font-size:12.5px;
+  transition:border-color var(--dur),color var(--dur),background var(--dur)}
+.chip:hover{color:var(--ink);border-color:var(--ink-3)}
+.chip[aria-pressed="true"]{background:var(--surface-2);color:var(--ink);border-color:var(--accent)}
+.chip.attr{padding-left:8px}
+.chip.attr i{display:inline-block;width:12px;height:12px;border-radius:50%;border:2.5px solid var(--sc);vertical-align:-2px;margin-right:6px;background:var(--surface)}
+.chip.attr[aria-pressed="false"] i{opacity:.35}
+select.ax{background:var(--surface-2);border:1px solid var(--line-2);border-radius:8px;padding:6px 8px;min-width:150px}
+.ax-note{font-size:11.5px;color:var(--ink-3);max-width:300px}
+input.q{background:var(--surface-2);border:1px solid var(--line-2);border-radius:8px;padding:6px 10px;width:160px}
+input.q:focus{outline:2px solid color-mix(in srgb,var(--accent) 45%,transparent);border-color:var(--accent)}
+
+/* -------- 主體：散點 + 側欄 */
+.viz{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:14px;align-items:start}
+@media (max-width:1100px){.viz{grid-template-columns:1fr}}
+.plot{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 12px 8px;position:relative}
+.plot h2{margin:0 0 4px;font-size:14px;font-weight:600;display:flex;align-items:baseline;gap:10px}
+.plot h2 .cnt{color:var(--ink-3);font-weight:400;font-size:12px}
+.plot h2 .how{margin-left:auto;font-size:11.5px;color:var(--ink-3);font-weight:400}
+svg.sc{width:100%;height:auto;display:block;user-select:none}
+svg.sc .grid line{stroke:var(--line);stroke-width:1}
+svg.sc .mid line{stroke:var(--line-2);stroke-width:1;stroke-dasharray:4 4}
+svg.sc .axl{fill:var(--ink-2);font-size:12px}
+svg.sc .tick{fill:var(--ink-3);font-size:10.5px}
+svg.sc .quad{fill:var(--ink-3);font-size:11px;opacity:.85}
+svg.sc .tail{stroke:var(--ink-3);stroke-width:1;opacity:.55}
+svg.sc .mk{cursor:pointer}
+svg.sc .mk circle.ring{fill:var(--surface-2);stroke-width:2.5;transition:r var(--dur),stroke-width var(--dur)}
+svg.sc .mk.dim{opacity:.18}
+svg.sc .mk.hot circle.ring{stroke-width:3.5}
+svg.sc .mk.pin circle.ring{stroke:var(--accent) !important;stroke-width:3.5}
+svg.sc .mk image{clip-path:circle(46% at 50% 50%);pointer-events:none}
+svg.sc .mk text{fill:var(--ink);font-size:11px;pointer-events:none;paint-order:stroke;stroke:var(--surface);stroke-width:3px;stroke-linejoin:round}
+svg.sc .hit{fill:transparent}
+.tip{position:absolute;z-index:5;pointer-events:none;background:var(--bg-2);border:1px solid var(--line-2);border-radius:10px;
+  padding:9px 11px;min-width:200px;max-width:280px;box-shadow:0 12px 40px -10px rgba(0,0,0,.8);font-size:12.5px}
+.tip[hidden]{display:none}
+.tip b{font-size:13.5px}
+.tip .r{color:var(--ink-2)}
+.tip table{border-collapse:collapse;margin-top:6px;width:100%}
+.tip td{padding:1px 0;color:var(--ink-2)}
+.tip td.v{text-align:right;color:var(--ink);font-variant-numeric:tabular-nums}
+.tip .src{color:var(--ink-3);font-size:11px;margin-top:4px}
+.legend{display:flex;gap:14px;align-items:center;font-size:12px;color:var(--ink-2);padding:6px 4px 0;flex-wrap:wrap}
+.legend i{display:inline-block;width:11px;height:11px;border-radius:50%;border:2.5px solid var(--sc);vertical-align:-1px;margin-right:5px;background:var(--surface-2)}
+.legend .pin-i{border-color:var(--accent)}
+.legend .hint{margin-left:auto;color:var(--ink-3)}
+
+/* -------- 側欄：釘選的英雄輪廓 */
+.side{display:flex;flex-direction:column;gap:12px;position:sticky;top:12px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.card.empty{color:var(--ink-3);text-align:center;padding:26px 14px}
+.card .hd{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.card .hd img{width:40px;height:40px;border-radius:9px;border:2px solid var(--sc);object-fit:cover}
+.card .hd b{font-size:14px;display:block}
+.card .hd .r{color:var(--ink-2);font-size:12px}
+.card .hd .x{margin-left:auto;width:26px;height:26px;border-radius:7px;border:1px solid var(--line);background:none;color:var(--ink-3)}
+.card .hd .x:hover{color:var(--ink);border-color:var(--ink-3)}
+.badges{display:flex;gap:5px;flex-wrap:wrap;margin:0 0 8px}
+.badge{font-size:11px;padding:2px 7px;border-radius:6px;border:1px solid var(--line-2);color:var(--ink-2)}
+.badge.on{color:var(--ink);border-color:var(--ink-3)}
+.bars{display:grid;grid-template-columns:auto 1fr auto;gap:3px 8px;align-items:center;font-size:12px}
+.bars .k{color:var(--ink-2);white-space:nowrap}
+.bars .k.h{color:var(--ink-3);font-size:10.5px;letter-spacing:.06em;grid-column:1/-1;margin-top:6px;text-transform:uppercase}
+.bars .t{height:8px;border-radius:4px;background:color-mix(in srgb,var(--line-2) 70%,transparent);overflow:hidden}
+.bars .t i{display:block;height:100%;border-radius:4px;background:var(--bar);transition:width .25s var(--ease)}
+.bars .t.na{background:repeating-linear-gradient(135deg,var(--line) 0 3px,transparent 3px 6px)}
+.bars .v{color:var(--ink);font-variant-numeric:tabular-nums;min-width:28px;text-align:right}
+.bars .v.na{color:var(--ink-3)}
+.bars .src{grid-column:2/-1;color:var(--ink-3);font-size:10.5px;margin:-2px 0 2px}
+
+/* -------- 總表 */
+.tbl{margin-top:16px;background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.tbl h2{margin:0;padding:12px 14px 8px;font-size:14px;display:flex;gap:10px;align-items:baseline}
+.tbl h2 .how{margin-left:auto;font-size:11.5px;color:var(--ink-3);font-weight:400}
+.tbl .scroll{overflow-x:auto}
+table.m{border-collapse:separate;border-spacing:0;width:100%;font-size:12px;font-variant-numeric:tabular-nums}
+table.m th{position:sticky;top:0;background:var(--surface-2);color:var(--ink-2);font-weight:500;text-align:left;
+  padding:8px 8px;border-bottom:1px solid var(--line-2);white-space:nowrap;cursor:pointer;user-select:none}
+table.m th.n{text-align:right}
+table.m th:hover{color:var(--ink)}
+table.m th[aria-sort]{color:var(--ink)}
+table.m th[aria-sort="descending"]::after{content:" ↓";color:var(--accent)}
+table.m th[aria-sort="ascending"]::after{content:" ↑";color:var(--accent)}
+table.m td{padding:4px 8px;border-bottom:1px solid var(--line);white-space:nowrap}
+table.m td.n{text-align:right;color:var(--ink)}
+table.m td.na{color:var(--ink-3);text-align:center}
+table.m td.hero{display:flex;align-items:center;gap:8px;cursor:pointer}
+table.m td.hero img{width:22px;height:22px;border-radius:6px;border:2px solid var(--sc);object-fit:cover}
+table.m tr:hover td{background:color-mix(in srgb,var(--surface-2) 70%,transparent)}
+table.m tr.pin td{background:color-mix(in srgb,var(--accent) 9%,transparent)}
+table.m td.c{color:#fff;text-shadow:0 1px 0 rgba(0,0,0,.5)}
+.foot{margin-top:18px;color:var(--ink-3);font-size:12px;line-height:1.7}
+.foot b{color:var(--ink-2)}
+.foot ul{padding-left:18px;margin:6px 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <h1 data-i="title">英雄定位圖</h1>
+  <span class="sub" data-i="sub">57 隻英雄靠什麼、站在哪 —— 每個維度都標明來源</span>
+  <div class="lang" id="lang">
+    <button data-v="zh" aria-pressed="true">中文</button>
+    <button data-v="en" aria-pressed="false">EN</button>
+    <button data-v="ru" aria-pressed="false">РУ</button>
+  </div>
+</header>
+
+<section class="ctrl">
+  <div class="grp"><span class="lab" data-i="view">視角</span><span id="presets"></span></div>
+  <div class="grp"><span class="lab">X</span><select class="ax" id="ax"></select>
+    <span class="lab">Y</span><select class="ax" id="ay"></select></div>
+  <div class="grp"><span class="lab" data-i="attr">主屬性</span><span id="attrs"></span></div>
+  <div class="grp"><span class="lab" data-i="role">定位</span><span id="roles"></span></div>
+  <div class="grp"><input class="q" id="q" data-i-ph="search" placeholder="搜英雄名…"></div>
+</section>
+
+<section class="viz">
+  <div class="plot">
+    <h2><span id="ptitle"></span><span class="cnt" id="pcnt"></span><span class="how" data-i="how">滑過看數字 · 點一下釘選（最多 3 隻）</span></h2>
+    <svg class="sc" id="sc" viewBox="0 0 960 620" role="img"></svg>
+    <div class="legend" id="legend"></div>
+    <div class="tip" id="tip" hidden></div>
+  </div>
+  <aside class="side" id="side"></aside>
+</section>
+
+<section class="tbl">
+  <h2><span data-i="table">總表</span><span class="how" data-i="tableHow">點欄頭排序 · 數字是 0–100 的名次分位（100 = 全英雄最高）</span></h2>
+  <div class="scroll"><table class="m" id="m"></table></div>
+</section>
+
+<footer class="foot" id="foot"></footer>
+</div>
+
+<script>
+/*__LAB_DATA__*/
+(() => {
+const $ = s => document.querySelector(s);
+const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const LI = {zh: 0, en: 1, ru: 2};
+const UI = {
+  zh: {title:'英雄定位圖', sub:'57 隻英雄靠什麼、站在哪 —— 每個維度都標明來源', view:'視角', attr:'主屬性', role:'定位',
+       search:'搜英雄名…', how:'滑過看數字 · 點一下釘選（最多 3 隻）', table:'總表',
+       tableHow:'點欄頭排序 · 數字是 0–100 的名次分位（100 = 全英雄最高）',
+       pAll:'自訂', pOut:'輸出 × 坦度', pSkill:'技能 × 普攻', pPen:'穿透 × 狀態', pBase:'底子 × 後期', pTier:'強度 × 後期',
+       hi:'高', lo:'低', of:'', na:'無法確認', noBuild:'尚無配裝', pinHint:'點英雄頭像釘選，最多 3 隻並排比較',
+       gA:'配裝傾向', gX:'複合軸', gB:'基礎底子', gC:'作者評級', gD:'程式碼旗標',
+       hero:'英雄', attrH:'屬性', tier:'強度', late:'後期', roleH:'定位', src:'來源配裝：',
+       str:'力量', agi:'敏捷', int:'智力', lock:'帳號鎖定', manual:'不在隨機池', legPin:'釘選', legDim:'被篩掉',
+       fromBuild:'從推薦配裝推導', pct:'名次分位',
+       foot1:'怎麼讀', foot2:'四組維度各自的來源：',
+       fA:'配裝傾向 —— 每套推薦配裝把 6 格＋不佔格的道具數值加總，同一隻英雄取各套的最大值（＝這隻「能走多深」），再跨 57 隻換成 0～100 的名次分位。用名次是因為技能強度 2275 跟穿透 165 沒有共同尺度。',
+       fX:'複合軸 —— 幾個配裝分位的平均，滑到軸名會顯示公式。',
+       fB:'基礎底子 —— 地圖檔 war3map.w3u 的初始值＋成長×24。沒覆寫的欄位標「無法確認」而不是 0。',
+       fC:'作者評級 —— 地圖作者在英雄說明裡自己寫的強度等級、後期潛力、解鎖門檻。',
+       fD:'程式碼旗標 —— 從 war3map.j 逐條驗證：技能是否真的讀技能強度、吃／給裝備技能威力。',
+       foot3:'顏色只是外環：頭像才是身分，三個主屬性的顏色沿用主站，方便對照；同一個值在任何位置都是同一種深淺（藍色序列）。',
+       foot4:'重疊的頭像會被推開一點以便閱讀，細線指向它真正的位置。',
+       foot5:'限制：「配裝傾向」量的是推薦配裝堆了什麼數值，不是實測 DPS。靠機制而不是靠數值的英雄會被低估 —— 例如拜火者的推薦配裝故意用熾熱核心與零時迷子換易燃翻倍，技能強度只堆到 1500（中位數 1660），所以「輸出傾向」只有 43，但「狀態傷害」是 89；看這類英雄請切到「穿透 × 狀態」。'},
+  en: {title:'Hero positioning map', sub:'What each of the 57 heroes relies on, and where it sits — every axis states its source', view:'View', attr:'Attribute', role:'Role',
+       search:'Search heroes…', how:'Hover for numbers · click to pin (up to 3)', table:'All heroes',
+       tableHow:'Click a header to sort · values are 0–100 percentile ranks (100 = highest of all heroes)',
+       pAll:'Custom', pOut:'Damage × Tank', pSkill:'Skill × Auto-attack', pPen:'Penetration × Status', pBase:'Base stats × Late game', pTier:'Tier × Late game',
+       hi:'High', lo:'Low', of:'', na:'unconfirmed', noBuild:'no builds yet', pinHint:'Click a portrait to pin, up to 3 side by side',
+       gA:'Build lean', gX:'Composite', gB:'Base stats', gC:'Author ratings', gD:'Code flags',
+       hero:'Hero', attrH:'Attr', tier:'Tier', late:'Late', roleH:'Roles', src:'From build: ',
+       str:'Strength', agi:'Agility', int:'Intelligence', lock:'account-locked', manual:'not in random pool', legPin:'pinned', legDim:'filtered out',
+       fromBuild:'derived from recommended builds', pct:'percentile',
+       foot1:'How to read', foot2:'Where each group of axes comes from:',
+       fA:'Build lean — each recommended build sums its 6 slots + slot-free items; a hero takes the max across its builds (how far it can lean), then ranked 0–100 across 57 heroes. Ranks because 2275 spell power and 165 penetration share no scale.',
+       fX:'Composite — the mean of a few build-lean percentiles; hover an axis name for the formula.',
+       fB:'Base stats — war3map.w3u base + growth × 24. Fields the map does not override show as "unconfirmed", not 0.',
+       fC:'Author ratings — power tier, late-game potential and unlock cost written by the map author in each hero\'s description.',
+       fD:'Code flags — verified line by line in war3map.j: whether an ability really reads spell power, and whether it consumes / grants modifier power.',
+       foot3:'Colour is only a ring: the portrait is the identity. The three attribute hues match the main site; any value is the same shade wherever it appears (one blue ramp).',
+       foot4:'Overlapping portraits are nudged apart for legibility; a thin tail points to the true position.',
+       foot5:'Limitation: build lean measures what the recommended builds stack, not measured DPS. Heroes that win through mechanics rather than raw numbers are under-represented - e.g. the Fire Worshipper build deliberately trades spell power (1500, median 1660) for Molten Core + Zero Hour to double burn ticks, so its damage lean is 43 while its status damage is 89. Use the Penetration × Status view for such heroes.'},
+  ru: {title:'Карта позиционирования героев', sub:'На что опирается каждый из 57 героев и где он стоит — у каждой оси указан источник', view:'Вид', attr:'Атрибут', role:'Роль',
+       search:'Поиск героя…', how:'Наведите для чисел · клик — закрепить (до 3)', table:'Все герои',
+       tableHow:'Клик по заголовку — сортировка · значения 0–100 (процентиль, 100 = максимум среди героев)',
+       pAll:'Свои оси', pOut:'Урон × Живучесть', pSkill:'Умения × Автоатака', pPen:'Пробитие × Статусы', pBase:'База × Поздняя игра', pTier:'Ранг × Поздняя игра',
+       hi:'Выс.', lo:'Низ.', of:'', na:'не подтверждено', noBuild:'сборок нет', pinHint:'Клик по портрету закрепляет героя, до 3 рядом',
+       gA:'Уклон сборок', gX:'Составные', gB:'База', gC:'Оценки автора', gD:'Флаги кода',
+       hero:'Герой', attrH:'Атр.', tier:'Ранг', late:'Поздн.', roleH:'Роли', src:'Из сборки: ',
+       str:'Сила', agi:'Ловкость', int:'Разум', lock:'привязан к аккаунту', manual:'не в случайном пуле', legPin:'закреплён', legDim:'отфильтрован',
+       fromBuild:'из рекомендованных сборок', pct:'процентиль',
+       foot1:'Как читать', foot2:'Откуда берётся каждая группа осей:',
+       fA:'Уклон сборок — каждая сборка суммирует значения 6 слотов + предметов вне слотов; у героя берётся максимум по сборкам, затем ранг 0–100 среди 57 героев.',
+       fX:'Составные — среднее нескольких процентилей; формула по наведению на название оси.',
+       fB:'База — war3map.w3u: начальное + прирост × 24. Не переопределённые поля показаны как «не подтверждено», а не 0.',
+       fC:'Оценки автора — ранг силы, потенциал поздней игры и порог открытия из описания героя в карте.',
+       fD:'Флаги кода — сверено построчно с war3map.j.',
+       foot3:'Цвет — только кольцо: личность несёт портрет. Три цвета атрибутов совпадают с основным сайтом; любое значение везде одного оттенка (одна синяя шкала).',
+       foot4:'Пересекающиеся портреты слегка раздвинуты; тонкая линия указывает на истинную позицию.',
+       foot5:'Ограничение: уклон сборок измеряет, что набирают рекомендованные сборки, а не фактический DPS. Герои, сильные механикой, а не числами, недооценены — для них смотрите вид «Пробитие × Статусы».'},
+};
+const ATTR_C = {str: 'var(--str)', agi: 'var(--agi)', int: 'var(--int)'};
+const S = {lang: localStorage.getItem('ud.lang') || 'zh', x: 'out', y: 'tank',
+           attr: {str: true, agi: true, int: true}, roles: new Set(), q: '', pins: [], sort: null, sortDir: -1};
+const li = () => LI[S.lang];
+const t = k => UI[S.lang][k] || k;
+const AX = Object.fromEntries(LAB.axes.map(a => [a.k, a]));
+const H = LAB.heroes;
+const axName = k => AX[k] ? AX[k].n[li()] : k;
+
+/* 預設視角：軸對 */
+const PRESETS = [
+  ['pOut',  'out',  'tank'], ['pSkill', 'skill', 'auto'], ['pPen', 'pen', 'stat'],
+  ['pBase', 'b_sum', 'late'], ['pTier', 'tier', 'late'],
+];
+
+/* ---------------------------------------------------------------- 篩選 */
+function visible(h){
+  if (!S.attr[h.attr]) return false;
+  if (S.roles.size && !h.roles.some(r => S.roles.has(r[0]))) return false;
+  if (S.q){
+    const q = S.q.toLowerCase();
+    if (!h.n.join(' ').toLowerCase().includes(q)) return false;
+  }
+  return true;
+}
+const val = (h, k) => h.p[k] == null ? null : h.p[k];
+
+/* ---------------------------------------------------------------- 控制列 */
+function renderCtrl(){
+  const L = li();
+  $('#presets').innerHTML = PRESETS.map(([k, x, y]) =>
+    `<button class="chip" data-px="${x}" data-py="${y}" aria-pressed="${S.x === x && S.y === y}">${esc(t(k))}</button>`).join('') +
+    `<button class="chip" data-px="" aria-pressed="${!PRESETS.some(([,x,y]) => S.x===x && S.y===y)}">${esc(t('pAll'))}</button>`;
+  const opt = sel => {
+    const groups = ['X', 'A', 'B', 'C', 'D'];
+    sel.innerHTML = groups.map(g => `<optgroup label="${esc(t('g' + g))}">${
+      LAB.axes.filter(a => a.g === g).map(a => `<option value="${a.k}">${esc(a.n[L])}</option>`).join('')}</optgroup>`).join('');
+  };
+  opt($('#ax')); opt($('#ay'));
+  $('#ax').value = S.x; $('#ay').value = S.y;
+  $('#ax').title = AX[S.x].note; $('#ay').title = AX[S.y].note;
+  $('#attrs').innerHTML = ['str', 'agi', 'int'].map(a =>
+    `<button class="chip attr" data-attr="${a}" aria-pressed="${S.attr[a]}" style="--sc:${ATTR_C[a]}"><i></i>${esc(t(a))}</button>`).join('');
+  $('#roles').innerHTML = LAB.roles.map(r => {
+    const lab = (H.find(h => h.roles.some(x => x[0] === r)) || {roles: [[r, r, r]]}).roles.find(x => x[0] === r);
+    return `<button class="chip" data-role="${esc(r)}" aria-pressed="${S.roles.has(r)}">${esc(lab[L])}</button>`;
+  }).join('');
+  document.querySelectorAll('[data-i]').forEach(el => el.textContent = t(el.dataset.i));
+  document.querySelectorAll('[data-i-ph]').forEach(el => el.placeholder = t(el.dataset.iPh));
+  $('#lang').querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.v === S.lang)));
+  document.documentElement.lang = {zh: 'zh-Hant', en: 'en', ru: 'ru'}[S.lang];
+}
+
+/* ---------------------------------------------------------------- 散點 */
+const W = 960, Hh = 620, M = {l: 58, r: 26, t: 22, b: 48};
+const PW = W - M.l - M.r, PH = Hh - M.t - M.b;
+const R = 15;                                   // 頭像半徑
+
+function scale(k){
+  const a = AX[k];
+  if (a.unit === 'ord') return {min: 0.5, max: 4.5, mid: 2.5, ticks: [1, 2, 3, 4].map((v, i) => [v, a.ticks[i]])};
+  return {min: -4, max: 104, mid: 50, ticks: [0, 25, 50, 75, 100].map(v => [v, String(v)])};
+}
+const sx = (v, sc) => M.l + (v - sc.min) / (sc.max - sc.min) * PW;
+const sy = (v, sc) => M.t + PH - (v - sc.min) / (sc.max - sc.min) * PH;
+
+/* 把重疊的頭像推開。序數軸只有 4 個位置，不推開就是一疊看不見的臉。
+   幾輪簡單的排斥就夠了；位移超過半徑時畫一條細線回真實位置。 */
+function relax(pts){
+  const it = 60, minD = R * 2 + 2;
+  for (let n = 0; n < it; n++){
+    let moved = false;
+    for (let i = 0; i < pts.length; i++) for (let j = i + 1; j < pts.length; j++){
+      const a = pts[i], b = pts[j];
+      let dx = b.x - a.x, dy = b.y - a.y, d = Math.hypot(dx, dy);
+      if (d >= minD) continue;
+      if (d < 0.01){ dx = (Math.random() - .5); dy = (Math.random() - .5); d = Math.hypot(dx, dy); }
+      const push = (minD - d) / 2 * 0.9;
+      dx /= d; dy /= d;
+      a.x -= dx * push; a.y -= dy * push; b.x += dx * push; b.y += dy * push;
+      moved = true;
+    }
+    /* 拉回自己的真實位置一點點，免得整團漂走 */
+    for (const p of pts){
+      p.x += (p.x0 - p.x) * 0.05; p.y += (p.y0 - p.y) * 0.05;
+      p.x = Math.max(M.l + R, Math.min(W - M.r - R, p.x));
+      p.y = Math.max(M.t + R, Math.min(Hh - M.b - R, p.y));
+    }
+    if (!moved) break;
+  }
+}
+
+let PTS = [];
+function renderPlot(){
+  const L = li(), scX = scale(S.x), scY = scale(S.y);
+  const vis = H.filter(visible);
+  const shown = vis.filter(h => val(h, S.x) != null && val(h, S.y) != null);
+  const missing = vis.length - shown.length;
+  $('#ptitle').textContent = `${axName(S.x)} × ${axName(S.y)}`;
+  $('#pcnt').textContent = `${shown.length}/${H.length}` + (missing ? ` · ${missing} ${t('na')}` : '');
+
+  PTS = shown.map(h => {
+    const x0 = sx(val(h, S.x), scX), y0 = sy(val(h, S.y), scY);
+    return {h, x0, y0, x: x0, y: y0};
+  });
+  relax(PTS);
+
+  let g = `<g class="grid">${scX.ticks.map(([v]) => `<line x1="${sx(v, scX)}" x2="${sx(v, scX)}" y1="${M.t}" y2="${M.t + PH}"/>`).join('')}
+    ${scY.ticks.map(([v]) => `<line y1="${sy(v, scY)}" y2="${sy(v, scY)}" x1="${M.l}" x2="${M.l + PW}"/>`).join('')}</g>`;
+  g += `<g class="mid"><line x1="${sx(scX.mid, scX)}" x2="${sx(scX.mid, scX)}" y1="${M.t}" y2="${M.t + PH}"/>
+        <line y1="${sy(scY.mid, scY)}" y2="${sy(scY.mid, scY)}" x1="${M.l}" x2="${M.l + PW}"/></g>`;
+  g += scX.ticks.map(([v, lab]) => `<text class="tick" x="${sx(v, scX)}" y="${Hh - M.b + 16}" text-anchor="middle">${esc(lab)}</text>`).join('');
+  g += scY.ticks.map(([v, lab]) => `<text class="tick" x="${M.l - 8}" y="${sy(v, scY) + 4}" text-anchor="end">${esc(lab)}</text>`).join('');
+  g += `<text class="axl" x="${M.l + PW / 2}" y="${Hh - 10}" text-anchor="middle">${esc(axName(S.x))} →</text>`;
+  g += `<text class="axl" transform="translate(14,${M.t + PH / 2}) rotate(-90)" text-anchor="middle">${esc(axName(S.y))} →</text>`;
+  /* 四個角落的象限標籤 */
+  const qx = (hi) => (hi ? t('hi') : t('lo')) + axName(S.x), qy = (hi) => (hi ? t('hi') : t('lo')) + axName(S.y);
+  const sep = S.lang === 'zh' ? '・' : ' · ';
+  g += `<text class="quad" x="${M.l + 8}" y="${M.t + 14}">${esc(qy(1) + sep + qx(0))}</text>
+        <text class="quad" x="${M.l + PW - 8}" y="${M.t + 14}" text-anchor="end">${esc(qy(1) + sep + qx(1))}</text>
+        <text class="quad" x="${M.l + 8}" y="${M.t + PH - 6}">${esc(qy(0) + sep + qx(0))}</text>
+        <text class="quad" x="${M.l + PW - 8}" y="${M.t + PH - 6}" text-anchor="end">${esc(qy(0) + sep + qx(1))}</text>`;
+  /* 位移的尾巴先畫，頭像蓋在上面 */
+  g += `<g>${PTS.filter(p => Math.hypot(p.x - p.x0, p.y - p.y0) > R * 0.6).map(p =>
+    `<line class="tail" x1="${p.x0}" y1="${p.y0}" x2="${p.x}" y2="${p.y}"/><circle cx="${p.x0}" cy="${p.y0}" r="1.6" fill="var(--ink-3)"/>`).join('')}</g>`;
+  /* 頭像：釘選的最後畫，才不會被蓋住 */
+  const order = PTS.slice().sort((a, b) => (S.pins.includes(a.h.id) ? 1 : 0) - (S.pins.includes(b.h.id) ? 1 : 0));
+  g += order.map(p => {
+    const h = p.h, pin = S.pins.includes(h.id);
+    return `<g class="mk${pin ? ' pin' : ''}" data-id="${h.id}" transform="translate(${p.x.toFixed(1)},${p.y.toFixed(1)})">
+      <circle class="hit" r="${R + 6}"/>
+      <circle class="ring" r="${R}" stroke="${ATTR_C[h.attr]}"/>
+      <image href="${h.icon}" x="${-R + 2}" y="${-R + 2}" width="${R * 2 - 4}" height="${R * 2 - 4}"/>
+      ${pin ? `<text y="${R + 12}" text-anchor="middle">${esc(h.n[L])}</text>` : ''}</g>`;
+  }).join('');
+  $('#sc').innerHTML = g;
+  $('#legend').innerHTML = ['str', 'agi', 'int'].map(a => `<span><i style="--sc:${ATTR_C[a]}"></i>${esc(t(a))}</span>`).join('') +
+    `<span><i class="pin-i"></i>${esc(t('legPin'))}</span><span class="hint">${esc(t('pinHint'))}</span>`;
+}
+
+/* ---------------------------------------------------------------- tooltip */
+function fmt(h, k){
+  const a = AX[k], v = val(h, k);
+  if (v == null) return t('na');
+  if (a.unit === 'ord') return a.ticks[v - 1] || v;
+  return v.toFixed(0);
+}
+function rawOf(h, k){
+  const r = h.raw && h.raw[k];
+  return r == null ? null : r;
+}
+function showTip(h, x, y){
+  const L = li(), tip = $('#tip');
+  const row = k => {
+    const raw = rawOf(h, k), src = h.src && h.src[k];
+    return `<tr><td>${esc(axName(k))}</td><td class="v">${esc(fmt(h, k))}${raw != null ? ` <span class="r">(${Math.round(raw)})</span>` : ''}</td></tr>` +
+      (src ? `<tr><td colspan="2" class="src">${esc(t('src'))}${esc(src[L])}</td></tr>` : '');
+  };
+  tip.innerHTML = `<b>${esc(h.n[L])}</b> <span class="r">${esc(t(h.attr))} · ${h.roles.map(r => esc(r[L])).join('・')}</span>
+    <table>${row(S.x)}${row(S.y)}
+    <tr><td>${esc(t('tier'))} / ${esc(t('late'))}</td><td class="v">${esc((h.tierL || ['—'])[L])} / ${esc((h.lateL || ['—'])[L])}</td></tr></table>
+    ${h.nb ? '' : `<div class="src">${esc(t('noBuild'))}</div>`}`;
+  tip.hidden = false;
+  const box = $('.plot').getBoundingClientRect();
+  const tw = tip.offsetWidth, th = tip.offsetHeight;
+  let px = x - box.left + 16, py = y - box.top + 12;
+  if (px + tw > box.width - 8) px = x - box.left - tw - 16;
+  if (py + th > box.height - 8) py = y - box.top - th - 12;
+  tip.style.left = px + 'px'; tip.style.top = py + 'px';
+}
+
+/* ---------------------------------------------------------------- 側欄 */
+const PROFILE = [['gA', LAB.axes.filter(a => a.g === 'A').map(a => a.k)],
+                 ['gX', LAB.axes.filter(a => a.g === 'X').map(a => a.k)],
+                 ['gB', ['b_str', 'b_agi', 'b_int']]];
+function card(h, closable){
+  const L = li();
+  const bar = k => {
+    const v = val(h, k), src = h.src && h.src[k];
+    const na = v == null;
+    return `<span class="k" title="${esc(AX[k].note)}">${esc(axName(k))}</span>
+      <span class="t${na ? ' na' : ''}"><i style="width:${na ? 0 : v}%"></i></span>
+      <span class="v${na ? ' na' : ''}">${na ? '—' : v.toFixed(0)}</span>`;
+  };
+  return `<div class="card" data-id="${h.id}">
+    <div class="hd"><img src="${h.icon}" alt="" style="--sc:${ATTR_C[h.attr]}">
+      <div><b>${esc(h.n[L])}</b><span class="r">${esc(t(h.attr))} · ${h.roles.map(r => esc(r[L])).join('・')}</span></div>
+      ${closable ? `<button class="x" data-unpin="${h.id}" title="✕">✕</button>` : ''}</div>
+    <div class="badges">
+      ${h.tierL ? `<span class="badge on">${esc(t('tier'))} ${esc(h.tierL[L])}</span>` : ''}
+      ${h.lateL ? `<span class="badge on">${esc(t('late'))} ${esc(h.lateL[L])}</span>` : ''}
+      ${h.mod ? `<span class="badge on">◈</span>` : ''}${h.give ? `<span class="badge on">⊕</span>` : ''}
+      ${h.random === false ? `<span class="badge">${esc(t('manual'))}</span>` : ''}
+      ${h.lock ? `<span class="badge">🔒 ${esc(t('lock'))}</span>` : ''}
+      ${h.nb ? '' : `<span class="badge">${esc(t('noBuild'))}</span>`}</div>
+    <div class="bars">${PROFILE.map(([g, ks]) => `<span class="k h">${esc(t(g))}</span>` + ks.map(bar).join('')).join('')}</div>
+  </div>`;
+}
+let hoverId = null;
+function renderSide(){
+  const ids = S.pins.length ? S.pins : (hoverId ? [hoverId] : []);
+  const box = $('#side');
+  if (!ids.length){ box.innerHTML = `<div class="card empty">${esc(t('pinHint'))}</div>`; return; }
+  box.innerHTML = ids.map(id => card(H.find(h => h.id === id), S.pins.includes(id))).join('');
+}
+
+/* ---------------------------------------------------------------- 總表 */
+const TCOLS = () => ['out', 'tank', 'skill', 'auto'].concat(LAB.axes.filter(a => a.g === 'A').map(a => a.k)).concat(['b_sum', 'nsp']);
+/* 0～100 -> 藍色序列 8 階（深＝低、淺＝高，深色底上淺色更顯眼＝更大） */
+const cellBg = v => v == null ? '' : `background:var(--q${Math.min(8, Math.max(1, Math.ceil(v / 12.5) || 1))})`;
+function renderTable(){
+  const L = li(), cols = TCOLS();
+  let rows = H.filter(visible);
+  if (S.sort){
+    const k = S.sort;
+    rows = rows.slice().sort((a, b) => {
+      const va = k === 'name' ? a.n[L] : k === 'tier' || k === 'late' ? (a[k] || 0) : (val(a, k) == null ? -1 : val(a, k));
+      const vb = k === 'name' ? b.n[L] : k === 'tier' || k === 'late' ? (b[k] || 0) : (val(b, k) == null ? -1 : val(b, k));
+      return (va < vb ? -1 : va > vb ? 1 : 0) * S.sortDir;
+    });
+  }
+  const th = (k, lab, num) => `<th data-sort="${k}" class="${num ? 'n' : ''}"${S.sort === k ? ` aria-sort="${S.sortDir < 0 ? 'descending' : 'ascending'}"` : ''} title="${esc(AX[k] ? AX[k].note : '')}">${esc(lab)}</th>`;
+  $('#m').innerHTML = `<thead><tr>${th('name', t('hero'))}<th>${esc(t('attrH'))}</th><th>${esc(t('roleH'))}</th>${th('tier', t('tier'), 1)}${th('late', t('late'), 1)}${
+    cols.map(k => th(k, axName(k), 1)).join('')}</tr></thead><tbody>${rows.map(h => `<tr class="${S.pins.includes(h.id) ? 'pin' : ''}" data-id="${h.id}">
+      <td class="hero" data-pin="${h.id}"><img src="${h.icon}" alt="" style="--sc:${ATTR_C[h.attr]}">${esc(h.n[L])}</td>
+      <td style="color:${ATTR_C[h.attr]}">${esc(t(h.attr))}</td>
+      <td>${h.roles.map(r => esc(r[L])).join('・')}</td>
+      <td class="n">${esc((h.tierL || ['—'])[L])}</td><td class="n">${esc((h.lateL || ['—'])[L])}</td>
+      ${cols.map(k => { const v = val(h, k); return v == null ? `<td class="na">—</td>` : `<td class="n c" style="${cellBg(v)}">${v.toFixed(0)}</td>`; }).join('')}
+    </tr>`).join('')}</tbody>`;
+}
+
+function renderFoot(){
+  $('#foot').innerHTML = `<b>${esc(t('foot1'))}</b> — ${esc(t('foot2'))}
+    <ul><li><b>${esc(t('gA'))}</b>：${esc(t('fA'))}</li><li><b>${esc(t('gX'))}</b>：${esc(t('fX'))}</li>
+    <li><b>${esc(t('gB'))}</b>：${esc(t('fB'))}</li><li><b>${esc(t('gC'))}</b>：${esc(t('fC'))}</li><li><b>${esc(t('gD'))}</b>：${esc(t('fD'))}</li></ul>
+    ${esc(t('foot3'))}<br>${esc(t('foot4'))}<br><br>${esc(t('foot5'))}`;
+}
+
+function renderAll(){ renderCtrl(); renderPlot(); renderSide(); renderTable(); renderFoot(); }
+
+/* ---------------------------------------------------------------- 事件 */
+document.querySelector('.ctrl').addEventListener('click', e => {
+  const p = e.target.closest('[data-px]');
+  if (p){ if (p.dataset.px){ S.x = p.dataset.px; S.y = p.dataset.py; } renderAll(); return; }
+  const a = e.target.closest('[data-attr]');
+  if (a){ S.attr[a.dataset.attr] = !S.attr[a.dataset.attr]; renderAll(); return; }
+  const r = e.target.closest('[data-role]');
+  if (r){ const k = r.dataset.role; S.roles.has(k) ? S.roles.delete(k) : S.roles.add(k); renderAll(); }
+});
+$('#ax').addEventListener('change', e => { S.x = e.target.value; renderAll(); });
+$('#ay').addEventListener('change', e => { S.y = e.target.value; renderAll(); });
+$('#q').addEventListener('input', e => { S.q = e.target.value.trim(); renderPlot(); renderTable(); });
+$('#lang').addEventListener('click', e => {
+  const b = e.target.closest('button'); if (!b) return;
+  S.lang = b.dataset.v; localStorage.setItem('ud.lang', S.lang); renderAll();
+});
+const sc = $('#sc');
+sc.addEventListener('pointermove', e => {
+  const m = e.target.closest('.mk');
+  sc.querySelectorAll('.mk.hot').forEach(x => x.classList.remove('hot'));
+  if (!m){ $('#tip').hidden = true; if (hoverId && !S.pins.length){ hoverId = null; renderSide(); } return; }
+  m.classList.add('hot');
+  const h = H.find(x => x.id === m.dataset.id);
+  showTip(h, e.clientX, e.clientY);
+  if (hoverId !== h.id){ hoverId = h.id; if (!S.pins.length) renderSide(); }
+});
+sc.addEventListener('pointerleave', () => { $('#tip').hidden = true; hoverId = null; if (!S.pins.length) renderSide(); });
+function togglePin(id){
+  const i = S.pins.indexOf(id);
+  if (i >= 0) S.pins.splice(i, 1);
+  else { if (S.pins.length >= 3) S.pins.shift(); S.pins.push(id); }
+  renderPlot(); renderSide(); renderTable();
+}
+sc.addEventListener('click', e => { const m = e.target.closest('.mk'); if (m) togglePin(m.dataset.id); });
+$('#side').addEventListener('click', e => { const b = e.target.closest('[data-unpin]'); if (b) togglePin(b.dataset.unpin); });
+$('#m').addEventListener('click', e => {
+  const th = e.target.closest('th[data-sort]');
+  if (th){ const k = th.dataset.sort; if (S.sort === k) S.sortDir *= -1; else { S.sort = k; S.sortDir = k === 'name' ? 1 : -1; } renderTable(); return; }
+  const p = e.target.closest('[data-pin]'); if (p) togglePin(p.dataset.pin);
+});
+
+renderAll();
+})();
+</script>
+</body>
+</html>
