@@ -1078,8 +1078,8 @@
    "Passive ability. The hero's attacks can deal additional magic damage to several nearby enemies.\n\nDamage: 40 + (20% spell power)\nTargets: 3 (5 at 500 spell power and above)\n\nCooldown: 6 sec."
   ],
   "A0OF": [
-   "英雄在自身腳下創造一片魔法領域，領域內所有當前生命值高於英雄的敵人都會受到傷害。\n\n每次跳動的傷害：50 + （20% 技能強度）點。\n跳動間隔：0.5 秒。\n持續時間：11 秒。\n\n冷卻：80 秒。",
-   "The hero creates a magic field beneath itself; inside it, all enemies with a current health pool larger than the hero's take damage.\n\nDamage per tick: 50 + (20% spell power)\nTick interval: 0.5 sec.\nDuration: 11 sec.\n\nCooldown: 80 sec."
+   "英雄在自身腳下創造一片魔法領域，領域內所有當前生命百分比高於英雄的敵人都會受到傷害。\n\n每次跳動的傷害：50 + （20% 技能強度）點。\n跳動間隔：0.5 秒。\n持續時間：11 秒。\n\n冷卻：80 秒。",
+   "The hero creates a magic field beneath itself; inside it, all enemies whose current health percentage is higher than the hero's take damage.\n\nDamage per tick: 50 + (20% spell power)\nTick interval: 0.5 sec.\nDuration: 11 sec.\n\nCooldown: 80 sec."
   ],
   "A0OJ": [
    "當玩家的經驗點數足夠時，你可以選擇一項天賦，將英雄大幅強化至新的強度等級。",
