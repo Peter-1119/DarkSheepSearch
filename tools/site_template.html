@@ -16,6 +16,9 @@
   --r:10px; --r-sm:7px;
   --shadow:0 18px 50px -12px rgba(0,0,0,.7);
   --tile:104px; --icon:56px;
+  /* 主區域左右留白。以前各處寫死 20px，貼著側欄的框線，讀起來像擠在一起；
+     統一從這裡拿，桌機 28、窄桌機 22、手機 14。 */
+  --gutter:28px;
   /* 面板文字的三段刻度。原本有 59 處各自寫死 10~12px，
      所以同一層級的東西大小不一，看起來就亂。統一成三段之後
      只要調這三個值，整個面板的閱讀感就一起變。 */
@@ -165,7 +168,7 @@ input{font:inherit}
   display:flex;flex-direction:column;min-height:0;
   width:206px;flex:0 0 auto;border-right:1px solid var(--line);background:var(--bg-2);
 }
-.rail{flex:1;min-height:0;overflow-y:auto;padding:12px 8px 40px}
+.rail{flex:1;min-height:0;overflow-y:auto;padding:14px 10px 40px}
 .dr-head,.dr-tools{display:none}
 .tools{display:flex;align-items:center;gap:16px}
 #tbtools{display:contents}
@@ -178,7 +181,7 @@ body[data-scrim="1"] .scrim{opacity:1;pointer-events:auto}
 .lo-slot .ph{width:100%;height:100%;display:grid;place-items:center;overflow:hidden;
   font:9px/1.1 ui-monospace,monospace;color:var(--ink-3);text-align:center;padding:2px}
 .rail h3{
-  margin:14px 8px 6px;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+  margin:18px 8px 7px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;
   color:var(--ink-3);font-weight:600;
 }
 .rail h3:first-child{margin-top:2px}
@@ -248,18 +251,19 @@ body[data-scrim="1"] .scrim{opacity:1;pointer-events:auto}
 
 .sec-head{
   position:sticky;top:0;z-index:3;display:flex;align-items:center;gap:10px;
-  padding:14px 20px 9px;
+  padding:18px var(--gutter) 10px;
   background:linear-gradient(180deg,var(--bg) 62%,rgba(10,12,17,0));
 }
-.sec-head h2{margin:0;font-size:13.5px;font-weight:600;letter-spacing:.02em}
+.sec-head h2{margin:0;font-size:15px;font-weight:600;letter-spacing:.01em}
 .sec-head .bar{flex:1;height:1px;background:linear-gradient(90deg,var(--line),transparent)}
-.sec-head .n{font:11px/1 ui-monospace,monospace;color:var(--ink-3)}
+.sec-head .n{font:11.5px/1 ui-monospace,monospace;color:var(--ink-3);
+  background:var(--surface);border:1px solid var(--line);border-radius:99px;padding:3px 7px}
 .sec-head .seq-tag{
   font-size:10.5px;color:var(--ink-3);padding:2px 7px;border-radius:99px;
   background:var(--surface);border:1px solid var(--line);white-space:nowrap;
 }
 
-.grid{display:grid;gap:8px;padding:2px 20px 16px;
+.grid{display:grid;gap:8px;padding:2px var(--gutter) 22px;
   grid-template-columns:repeat(auto-fill,minmax(var(--tile),1fr))}
 
 .tile{
@@ -363,7 +367,7 @@ body[data-scrim="1"] .scrim{opacity:1;pointer-events:auto}
 .grid[data-focus="1"] .tile:not([data-sel]):not([data-rel]):hover{opacity:.85;filter:none}
 
 /* ---- 排行檢視：數值是主角，所以改成橫列＋長度條 ---- */
-.rank{display:flex;flex-direction:column;gap:3px;padding:2px 20px 16px}
+.rank{display:flex;flex-direction:column;gap:3px;padding:2px var(--gutter) 16px}
 .rrow{
   position:relative;display:flex;align-items:center;gap:12px;width:100%;
   padding:7px 14px 7px 10px;border-radius:10px;text-align:left;
@@ -415,16 +419,16 @@ body[data-scrim="1"] .scrim{opacity:1;pointer-events:auto}
 .rrow .unit{font-size:11px;color:var(--ink-3);margin-left:3px;font-weight:400}
 
 .rank-head{
-  display:flex;align-items:baseline;gap:10px;padding:14px 20px 10px;
+  display:flex;align-items:baseline;gap:10px;padding:16px var(--gutter) 10px;
   position:sticky;top:0;z-index:3;
   background:linear-gradient(180deg,var(--bg) 62%,rgba(10,12,17,0));
 }
 .rank-head h2{margin:0;font-size:15px;font-weight:600}
 .rank-head .sub{font-size:11.5px;color:var(--ink-3)}
 .rank-head .bar{flex:1;height:1px;background:linear-gradient(90deg,var(--line),transparent)}
-.rank-note{padding:0 20px 12px;font-size:var(--fs-sub);color:var(--ink-3);line-height:1.7}
+.rank-note{padding:0 var(--gutter) 12px;font-size:var(--fs-sub);color:var(--ink-3);line-height:1.7}
 
-.empty{padding:60px 20px;text-align:center;color:var(--ink-3)}
+.empty{padding:60px var(--gutter);text-align:center;color:var(--ink-3)}
 .empty b{display:block;color:var(--ink-2);margin-bottom:6px;font-weight:500}
 
 /* -------- panel */
@@ -444,20 +448,24 @@ body[data-scrim="1"] .scrim{opacity:1;pointer-events:auto}
    這條把手把還存在的脈絡以圖示留在右緣，一點就回到那個頁籤。
    寬 40px，跟主區域的捲軸互不干擾；沒有任何脈絡時整條隱藏。 */
 .p-edge{
-  flex:0 0 auto;display:flex;flex-direction:column;align-items:center;gap:6px;
-  width:40px;padding:10px 0;background:var(--bg-2);border-left:1px solid var(--line);
+  flex:0 0 auto;display:flex;flex-direction:column;align-items:center;gap:8px;
+  width:44px;padding:10px 0;background:var(--bg-2);border-left:1px solid var(--line);
 }
 .p-edge[hidden]{display:none}
 .p-edge button{
-  width:32px;height:32px;border-radius:9px;display:grid;place-items:center;cursor:pointer;
+  width:34px;min-height:34px;border-radius:9px;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:6px;padding:7px 0 9px;cursor:pointer;
   background:var(--surface);border:1px solid var(--line);color:var(--ink-2);
   font-size:11px;font-weight:600;letter-spacing:.02em;padding:0;overflow:hidden;
   transition:border-color var(--dur),color var(--dur),background var(--dur),transform var(--dur);
 }
 .p-edge button:hover{border-color:var(--accent);color:var(--ink);transform:translateX(-1px)}
-.p-edge button img{width:100%;height:100%;object-fit:cover;display:block}
-.p-edge .pe-x{margin-top:auto;font-size:15px;font-weight:400}   /* 「收合把手」在最下面 */
-.p-edge .pe-t{display:none}                                        /* 文字只在手機橫條顯示 */
+.p-edge button img,.p-edge .pe-i{width:22px;height:22px;border-radius:6px;object-fit:cover;display:grid;
+  place-items:center;font-size:10px;font-style:normal;flex:0 0 auto}
+.p-edge .pe-x{margin-top:auto;padding:0;height:32px;font-size:15px;font-weight:400}   /* 「收合把手」在最下面 */
+/* 桌機也要看得懂：只剩一個 Σ 或 AI 沒人知道那是什麼，把名稱直排放在圖示下面 */
+.p-edge .pe-t{writing-mode:vertical-rl;text-orientation:mixed;font-size:11px;font-weight:500;
+  letter-spacing:.08em;color:var(--ink-2);max-height:112px;overflow:hidden;white-space:nowrap}
 
 /* 內層固定寬度：外層收合時內容不會被擠壓變形，
    只是被裁切掉，看起來就像整片滑出去 */
@@ -483,7 +491,7 @@ body[data-scrim="1"] .scrim{opacity:1;pointer-events:auto}
 .handle:hover::before,.handle[data-drag="1"]::before{background:var(--accent);height:64px}
 body[data-resizing="1"]{cursor:col-resize;user-select:none}
 
-.p-head{position:relative;padding:18px 18px 14px;border-bottom:1px solid var(--line);overflow:hidden}
+.p-head{position:relative;padding:20px 22px 16px;border-bottom:1px solid var(--line);overflow:hidden}
 .p-head::before{
   content:"";position:absolute;inset:-40% -20% auto;height:190px;pointer-events:none;
   background:radial-gradient(closest-side,var(--c,#5b6ee1),transparent 72%);opacity:.16;
@@ -544,7 +552,7 @@ body[data-resizing="1"]{cursor:col-resize;user-select:none}
 /* 暫代圖示：標一下，之後拿到正式圖才知道要換哪幾件 */
 .chip.tmp{border-color:rgba(224,163,64,.45);color:#e0a340;cursor:help}
 
-.p-body{flex:1;overflow-y:auto;padding:16px 18px 40px;min-height:0}
+.p-body{flex:1;overflow-y:auto;padding:18px 22px 44px;min-height:0}
 .sect{margin-bottom:20px}
 .sect:last-child{margin-bottom:0}
 .sect > h4{
@@ -607,7 +615,8 @@ body[data-resizing="1"]{cursor:col-resize;user-select:none}
   box-shadow:0 0 0 1px color-mix(in srgb,var(--sc) 55%,transparent)}
 
 /* -------- 狀態頁 */
-.spage{padding:6px 20px 60px;max-width:1000px}
+.spage{padding:16px var(--gutter) 60px;max-width:1040px}
+.spage .sec-head{position:static;padding-left:0;padding-right:0;background:none}
 .spage .sec{margin-bottom:30px}
 .spage .note{margin:0 0 14px}
 /* 圖比面板寬時讓它自己橫向捲，不要把整頁撐出橫向捲軸 */
@@ -668,9 +677,13 @@ body[data-resizing="1"]{cursor:col-resize;user-select:none}
 .st-g li{font-size:var(--fs-read);line-height:1.75;color:var(--ink-2);margin:4px 0}
 
 /* 英雄頁：卡片沿用裝備格子的視覺重量，但橫向排版好放名字與定位 */
-.hero-page .hsec{margin-bottom:22px}
+.page{padding:8px var(--gutter) 60px;max-width:1320px}
+.page .ph{margin:12px 0 22px}
+.page .ph h1{margin:0 0 6px;font-size:22px;font-weight:650;letter-spacing:.01em;line-height:1.3}
+.page .ph p{margin:0;font-size:13.5px;color:var(--ink-2);line-height:1.7}
+.hero-page .hsec{margin-bottom:28px}
 .hero-page .hsec > h2{
-  font-size:14px;color:var(--sc);margin:0 0 8px;display:flex;align-items:center;gap:8px;
+  font-size:15px;color:var(--sc);margin:0 0 8px;display:flex;align-items:center;gap:8px;
   padding-bottom:6px;border-bottom:1px solid var(--line);
 }
 .hero-page .hsec > h2 .n{
@@ -678,7 +691,7 @@ body[data-resizing="1"]{cursor:col-resize;user-select:none}
   background:var(--surface-2);border-radius:99px;padding:3px 7px;
 }
 .hulk{
-  grid-column:1/-1;font-size:11px;color:var(--ink-3);margin:10px 0 4px;
+  grid-column:1/-1;font-size:12px;color:var(--ink-3);margin:12px 0 4px;scroll-margin-top:12px;
   display:flex;align-items:center;gap:6px;
 }
 .hulk b{color:var(--ink-2);font-family:ui-monospace,monospace}
@@ -696,9 +709,9 @@ body[data-resizing="1"]{cursor:col-resize;user-select:none}
 .hc-ph{width:40px;height:40px;border-radius:8px;flex:0 0 auto;display:grid;
   place-items:center;background:#0c0f15;color:var(--ink-3);font-size:15px}
 .hc-b{min-width:0;flex:1;display:flex;flex-direction:column;gap:2px}
-.hc-b b{font-size:13px;color:var(--ink);white-space:nowrap;overflow:hidden;
+.hc-b b{font-size:13.5px;color:var(--ink);white-space:nowrap;overflow:hidden;
   text-overflow:ellipsis}
-.hc-r{font-size:11px;color:var(--ink-3);white-space:nowrap;overflow:hidden;
+.hc-r{font-size:12px;color:var(--ink-3);white-space:nowrap;overflow:hidden;
   text-overflow:ellipsis}
 .hc-t{
   flex:0 0 auto;font:10px/1 ui-monospace,monospace;color:var(--sc);
@@ -957,7 +970,7 @@ body[data-resizing="1"]{cursor:col-resize;user-select:none}
 .load{
   flex:0 0 auto;border-bottom:1px solid var(--line);
   background:linear-gradient(180deg,var(--surface),var(--bg-2));
-  padding:10px 20px 18px;      /* 下緣多留一點：收合鈕會往上壓約 11px */
+  padding:12px var(--gutter) 18px;      /* 下緣多留一點：收合鈕會往上壓約 11px */
 }
 .lo-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .lo-slots{display:flex;gap:8px;flex-wrap:wrap}
@@ -1107,7 +1120,7 @@ body[data-resizing="1"]{cursor:col-resize;user-select:none}
 .lo-setline b{color:var(--sc,var(--accent))}
 
 /* -------- responsive */
-@media (max-width:1100px){ .drawer{width:176px} }
+@media (max-width:1100px){ :root{--gutter:22px} .drawer{width:176px} }
 
 /* ============================================================ 手機版
    桌機版建立在「同時看得見」上：側欄、格子、面板三欄並存，可以邊比對邊讀。
@@ -1117,6 +1130,7 @@ body[data-resizing="1"]{cursor:col-resize;user-select:none}
      工具列 -> 只留搜尋與篩選，其餘整組搬進抽屜
    同一份程式碼、同一份資料，只是換一種組合方式。 */
 @media (max-width:860px){
+  :root{--gutter:14px}
   .topbar{gap:9px;padding:0 11px;height:52px}
   .brand span[data-i="sub"]{display:none}
   .brand b{font-size:14px}
@@ -1240,7 +1254,8 @@ body[data-resizing="1"]{cursor:col-resize;user-select:none}
   .p-edge button img{width:26px;height:26px;border-radius:50%}
   .p-edge button:hover{transform:none}
   .p-edge .pe-x{margin-top:0;margin-left:auto;width:36px;padding:0}
-  .p-edge .pe-t{display:inline}
+  .p-edge .pe-t{display:inline;writing-mode:horizontal-tb;max-height:none}
+  .p-edge button{flex-direction:row;min-height:0;padding:0}
   .p-edge .pe-i{display:none}            /* 手機有文字標籤，Σ／AI 這種代字就不用了 */
   .p-edge button:has(.pe-i){padding-left:12px}
 }
@@ -1395,6 +1410,8 @@ const UI = {
       hpNote:'可選名單、主屬性與解鎖門檻取自地圖的隨機英雄函式；'
             +'強度等級與定位是地圖作者自己在英雄說明裡寫的。',
       hAttr_str:'力量', hAttr_agi:'敏捷', hAttr_int:'智力',
+      hrAttr:'主屬性', hrRole:'定位', hrUnlock:'解鎖門檻', hrAll:'全部英雄',
+      srList:'狀態', srSec:'章節', srMap:'關係圖', srResist:'抗性對照', srRules:'通則',
       hTier:'強度', hLate:'後期', hkUnlock:'解鎖', hkStart:'一開始',
       hGrow:'屬性成長', hBase:'初始', hPer:'每級',
       hBuild:'該找什麼裝備', hSkills:'英雄技能', hInnate:'固有技能',
@@ -1485,6 +1502,8 @@ const UI = {
       hpNote:'The roster, primary attributes and unlock thresholds come from the map\'s '
             +'random-hero functions; power rank and role are the map author\'s own notes.',
       hAttr_str:'Strength', hAttr_agi:'Agility', hAttr_int:'Intelligence',
+      hrAttr:'Primary attribute', hrRole:'Role', hrUnlock:'Unlock', hrAll:'All heroes',
+      srList:'Statuses', srSec:'Sections', srMap:'Relation map', srResist:'Resistances', srRules:'Rules',
       hTier:'Rank', hLate:'Late game', hkUnlock:'Unlock', hkStart:'From the start',
       hGrow:'Attribute growth', hBase:'Base', hPer:'Per level',
       hBuild:'What to build', hSkills:'Hero abilities', hInnate:'Innate abilities',
@@ -1580,6 +1599,8 @@ const UI = {
       hpNote:'Список, основная характеристика и пороги открытия взяты из функций случайного героя; '
             +'ранг силы и роль - это заметки самого автора карты.',
       hAttr_str:'Сила', hAttr_agi:'Ловкость', hAttr_int:'Разум',
+      hrAttr:'Основной атрибут', hrRole:'Роль', hrUnlock:'Открытие', hrAll:'Все герои',
+      srList:'Статусы', srSec:'Разделы', srMap:'Схема связей', srResist:'Сопротивления', srRules:'Правила',
       hTier:'Ранг', hLate:'Поздняя игра', hkUnlock:'Открытие', hkStart:'Сразу',
       hGrow:'Рост характеристик', hBase:'База', hPer:'За уровень',
       hBuild:'Что собирать', hSkills:'Умения героя', hInnate:'Врождённые умения',
@@ -1628,6 +1649,8 @@ const S = {
   density: localStorage.getItem('ud.density') || 'comfortable',
   width: +(localStorage.getItem('ud.pw') || 460),
   tier: null,        // null = all
+  hattr: null,       // 英雄頁：主屬性篩選
+  hrole: null,       // 英雄頁：定位篩選（用中文定位字串當 key）
   cat: null,         // 取得管道分類
   set: null,         // 套裝（c1~c4）
   act: null,         // 只看主動技能道具
@@ -1678,7 +1701,72 @@ const thumb = (id, cls) => {
 };
 
 /* ---------------------------------------------------------------- render: rail */
+/* 側欄跟著模式走：瀏覽／配裝是裝備分類，英雄頁是英雄篩選，狀態頁是章節目錄。
+   以前三種模式都顯示裝備分類，在英雄頁看到「神器 lv.5」只會讓人以為點了會有反應。 */
+function railMeta(){
+  const M = DATA.meta || {};
+  return `<h3>${esc(t('dataL'))}</h3>
+    <div class="meta">
+      <span class="ver">${esc(M.mapVersion || t('verUnknown'))}</span>
+      <dl>
+        <dt>${esc(t('siteL'))}</dt><dd>${esc(M.siteVersion || '—')}</dd>
+        <dt>${esc(t('builtL'))}</dt><dd>${esc(M.builtAt || '—')}</dd>
+        ${M.author ? `<dt>${esc(t('authorL'))}</dt><dd>${esc(M.author)}</dd>` : ''}
+        <dt>${esc(t('dateL'))}</dt><dd>${esc(M.dataDate || '—')}</dd>
+        <dt>${esc(t('cntL'))}</dt><dd>${M.items ?? IDS.length}</dd>
+        <dt>${esc(t('icoL'))}</dt><dd>${M.icons ?? ''}</dd>
+      </dl>
+    </div>`;
+}
+function heroRail(){
+  const L = li(), qq = S.q.trim().toLowerCase();
+  const base = HEROES.filter(h => heroMatch(h, qq));
+  const byRole = h => !S.hrole || h.roles.some(r => r[0] === S.hrole);
+  const byAttr = h => !S.hattr || h.attr === S.hattr;
+  let h = `<h3>${esc(t('hrAttr'))}</h3>`;
+  h += `<button class="tier" data-hattr="" aria-pressed="${!S.hattr && !S.hrole}">
+          <i class="dot" style="background:#7a8398"></i>
+          <span class="nm">${esc(t('hrAll'))}</span><span class="ct">${base.length}</span></button>`;
+  for (const a of ATTR_ORDER){
+    const n = base.filter(x => x.attr === a && byRole(x)).length;
+    h += `<button class="tier" data-hattr="${a}" aria-pressed="${S.hattr === a}">
+          <i class="dot" style="background:${ATTR_C[a]}"></i>
+          <span class="nm">${esc(t('hAttr_' + a))}</span><span class="ct">${n}</span></button>`;
+  }
+  const roles = new Map();
+  for (const x of base) if (byAttr(x)) for (const r of x.roles)
+    roles.set(r[0], {r, n: ((roles.get(r[0]) || {}).n || 0) + 1});
+  h += `<h3>${esc(t('hrRole'))}</h3>`;
+  for (const {r, n} of [...roles.values()].sort((a, b) => b.n - a.n))
+    h += `<button class="tier" data-hrole="${esc(r[0])}" aria-pressed="${S.hrole === r[0]}">
+          <i class="dot" style="background:${S.hrole === r[0] ? 'var(--accent)' : 'var(--line-2)'}"></i>
+          <span class="nm">${esc(r[L])}</span><span class="ct">${n}</span></button>`;
+  const ul = [...new Set(base.filter(x => byAttr(x) && byRole(x)).map(x => x.unlock || 0))].sort((a, b) => a - b);
+  if (ul.length > 1){
+    h += `<h3>${esc(t('hrUnlock'))}</h3>`;
+    for (const u of ul) h += `<button class="tier" data-hjump="${u}">
+          <i class="dot" style="background:var(--line-2)"></i>
+          <span class="nm">${esc(unlockLabel(u))}</span></button>`;
+  }
+  return h + railMeta();
+}
+function statusRail(){
+  const L = li();
+  let h = `<h3>${esc(t('srSec'))}</h3>`;
+  for (const [id, k] of [['smap', 'srMap'], ['sres', 'srResist'], ['srul', 'srRules']])
+    h += `<button class="tier" data-sjump="${id}"><i class="dot" style="background:var(--line-2)"></i>
+          <span class="nm">${esc(t(k))}</span></button>`;
+  h += `<h3>${esc(t('srList'))}</h3>`;
+  for (const k of SKEYS){
+    const st = STATUS[k]; if (!st) continue;
+    h += `<button class="tier" data-sjump="st-${k}"><i class="dot" style="background:${st.c || 'var(--line-2)'}"></i>
+          <span class="nm">${esc((st.n || [])[L] || k)}</span></button>`;
+  }
+  return h + railMeta();
+}
 function renderRail(){
+  if (S.mode === 'hero'){ rail.innerHTML = heroRail(); syncMenuDot(); return; }
+  if (S.mode === 'status'){ rail.innerHTML = statusRail(); syncMenuDot(); return; }
   /* counts follow the search so the rail doubles as a result breakdown */
   const q = S.q.trim().toLowerCase();
   const counts = {}; let total = 0;
@@ -1734,19 +1822,7 @@ function renderRail(){
       <div><i class="fl mat">${FLAG_MAT}</i>${esc(t('mat'))}</div>
       <div><i class="fl into">↑</i>${esc(t('into'))}</div>
     </div>`;
-  const M = DATA.meta || {};
-  h += `<h3>${esc(t('dataL'))}</h3>
-    <div class="meta">
-      <span class="ver">${esc(M.mapVersion || t('verUnknown'))}</span>
-      <dl>
-        <dt>${esc(t('siteL'))}</dt><dd>${esc(M.siteVersion || '—')}</dd>
-        <dt>${esc(t('builtL'))}</dt><dd>${esc(M.builtAt || '—')}</dd>
-        ${M.author ? `<dt>${esc(t('authorL'))}</dt><dd>${esc(M.author)}</dd>` : ''}
-        <dt>${esc(t('dateL'))}</dt><dd>${esc(M.dataDate || '—')}</dd>
-        <dt>${esc(t('cntL'))}</dt><dd>${M.items ?? IDS.length}</dd>
-        <dt>${esc(t('icoL'))}</dt><dd>${M.icons ?? ''}</dd>
-      </dl>
-    </div>`;
+  h += railMeta();
   rail.innerHTML = h;
   syncMenuDot();
 }
@@ -1901,7 +1977,9 @@ function renderHeroPage(){
         qq ? '' : ` <span class="ph-hint">${esc(t('hpSearchHint'))}</span>`}</p></header>`;
   let shown = 0;
   for (const a of ATTR_ORDER){
-    const list = HEROES.filter(h => h.attr === a && heroMatch(h, qq));
+    if (S.hattr && S.hattr !== a) continue;
+    const list = HEROES.filter(h => h.attr === a && heroMatch(h, qq)
+                                 && (!S.hrole || h.roles.some(r => r[0] === S.hrole)));
     if (!list.length) continue;
     shown += list.length;
     html += `<section class="hsec" style="--sc:${ATTR_C[a]}">
@@ -1910,7 +1988,7 @@ function renderHeroPage(){
     for (const h of list){
       if (h.unlock !== last){
         last = h.unlock;
-        html += `<div class="hulk">${esc(t('hkUnlock'))}
+        html += `<div class="hulk" data-unlock="${h.unlock || 0}">${esc(t('hkUnlock'))}
                  <b>${esc(unlockLabel(h.unlock))}</b></div>`;
       }
       html += heroCard(h);
@@ -2201,7 +2279,7 @@ function renderStatusPage(){
     </details>`).join('');
 
   main.innerHTML = `<div class="spage">
-    <section class="sec">
+    <section class="sec" id="smap">
       <div class="sec-head"><h2>${esc(t('smTitle'))}</h2><span class="bar"></span></div>
       <p class="note">${esc(t('smIntro'))}</p>
       <div class="smap-wrap">${statusMap()}</div>
@@ -2212,12 +2290,12 @@ function renderStatusPage(){
       </div>
     </section>
 
-    <section class="sec">
+    <section class="sec" id="sres">
       <div class="sec-head"><h2>${esc(t('smResist'))}</h2><span class="bar"></span></div>
       <table class="stab"><tbody>${rres}</tbody></table>
     </section>
 
-    <section class="sec">
+    <section class="sec" id="srul">
       <div class="sec-head"><h2>${esc(t('smRules'))}</h2><span class="bar"></span></div>
       <div class="sts">${rules}</div>
     </section>
@@ -2312,7 +2390,7 @@ function statusRows(keys){
     const grp = (lab, arr) => (arr && arr.length)
       ? `<div class="st-g"><h6>${esc(t(lab))}</h6><ul>${
           arr.map(x => `<li>${esc(x[L])}</li>`).join('')}</ul></div>` : '';
-    return `<details class="st" style="--sc:${st.c || 'var(--line-2)'}">
+    return `<details class="st" id="st-${k}" style="--sc:${st.c || 'var(--line-2)'}">
       <summary title="${esc(t('stMore'))}">
         <span class="st-hd">${st.icon
             ? `<img class="ic" src="${st.icon}" alt="" loading="lazy">` : ''}<b>${
@@ -3256,7 +3334,7 @@ $('#mode').addEventListener('click', e => {
   const b = e.target.closest('button'); if (!b) return;
   if (b.dataset.v === S.mode) return;
   S.mode = b.dataset.v; localStorage.setItem('ud.mode', S.mode);
-  applyMode(); renderLoad();
+  applyMode(); renderLoad(); renderRail();
   renderGrid(); main.scrollTop = 0;
   /* 面板不關。進配裝模式而且有裝備就切到總計；其他情況維持原頁籤，
      只重驗一次（某些頁籤在新模式下可能不存在，例如離開配裝模式後的「總計」）。 */
@@ -3308,8 +3386,14 @@ phead.addEventListener('click', e => {
 function ensureBrowse(){
   if (S.mode === 'browse') return;
   S.mode = 'browse'; localStorage.setItem('ud.mode', S.mode);
-  applyMode(); renderLoad();
+  applyMode(); renderLoad(); renderRail();
   if (panel.dataset.open === '1') renderTabs();
+}
+/* 主區域自己是捲動容器，scrollIntoView 在這裡不可靠（會被 sticky 的段落標題蓋住），
+   直接算位移。 */
+function scrollMainTo(el){
+  const top = el.getBoundingClientRect().top - main.getBoundingClientRect().top + main.scrollTop - 14;
+  main.scrollTo({top: Math.max(0, top), behavior: 'smooth'});
 }
 rail.addEventListener('click', e => {
   const tog = e.target.closest('[data-tog]');
@@ -3321,6 +3405,30 @@ rail.addEventListener('click', e => {
     localStorage.setItem('ud.fold', JSON.stringify(S.fold));
     rail.querySelector(`.cat[data-c="${ci}"]`).dataset.open = !cur ? 1 : 0;
     return;
+  }
+  /* 英雄頁的篩選與跳轉 —— 放在 .tier 的通用處理之前，不然會被當成裝備分類切回瀏覽 */
+  const ha = e.target.closest('[data-hattr]');
+  if (ha){
+    const a = ha.dataset.hattr;
+    if (!a){ S.hattr = null; S.hrole = null; } else S.hattr = (S.hattr === a) ? null : a;
+    renderRail(); renderGrid(); main.scrollTop = 0; setDrawer(false); return;
+  }
+  const hr = e.target.closest('[data-hrole]');
+  if (hr){
+    S.hrole = (S.hrole === hr.dataset.hrole) ? null : hr.dataset.hrole;
+    renderRail(); renderGrid(); main.scrollTop = 0; setDrawer(false); return;
+  }
+  const hj = e.target.closest('[data-hjump]');
+  if (hj){
+    const el = main.querySelector(`.hulk[data-unlock="${hj.dataset.hjump}"]`);
+    if (el) scrollMainTo(el);
+    setDrawer(false); return;
+  }
+  const sj = e.target.closest('[data-sjump]');
+  if (sj){
+    const el = main.querySelector('#' + sj.dataset.sjump);
+    if (el){ if (el.tagName === 'DETAILS') el.open = true; scrollMainTo(el); }
+    setDrawer(false); return;
   }
   const cb = e.target.closest('[data-cat]');
   if (cb){                                    // 篩選整個取得管道

@@ -165,3 +165,26 @@ if __name__ == '__main__':
     print('輸出 %d 張，失敗 %d 張' % (ok, len(bad)))
     for n, p in bad[:15]:
         print('   %-8s %s' % (n, p or '(沒有圖示路徑)'))
+
+    # 狀態圖示：直接拿地圖 buff 表（war3map.w3h）裡對應 buff 的 fart，
+    # 跟遊戲裡看到的一模一樣；以前用的是截圖裁下來的版本，糊且切到邊框。
+    import w3obj
+    ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    try:
+        BUFFS = w3obj.parse(MPQ(mp).read('war3map.w3h'))
+    except Exception as e:
+        BUFFS = {}
+        print('讀不到 war3map.w3h：%s' % e)
+    STATUS_BUFF = {'burn': 'B040', 'flammable': 'B042', 'bleed': 'B041', 'disease': 'B006',
+                   'freeze': 'B02V', 'shock': 'B046', 'curse': 'B044', 'weakness': 'B043',
+                   'vulnerable': 'B045', 'slice': 'B038', 'anathema': 'B047'}
+    sjobs = []
+    for name, bid in STATUS_BUFF.items():
+        art = (BUFFS.get(bid) or {}).get('fart')
+        if art:
+            sjobs.append((name, art))
+        else:
+            print('   狀態 %-10s 找不到 buff %s 的圖示' % (name, bid))
+    ok2, bad2 = save_all(src, sjobs, os.path.join(ROOT, 'images', 'status'))
+    print('狀態圖示 %d 張，失敗 %d 張' % (ok2, len(bad2)))
+
