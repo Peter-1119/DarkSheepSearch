@@ -394,8 +394,8 @@
    "Instantly creates a production point at the target location.\n\nCooldown: 300 sec."
   ],
   "A07H": [
-   "重置「星光閃耀」的冷卻，並強化下一次「閃耀」，移除其範圍傷害，但大幅提升單體傷害。\n\n「星光閃耀」的懲罰：不造成範圍傷害\n單體傷害提升：+60%\n附加條件：處於「易傷」效果下的目標會受到「星光閃耀」的純粹傷害\n\n冷卻：3 秒",
-   "Refreshes the \"Starlight Flare\" ability and empowers the next pulse of the \"flare\", removing its area damage but greatly increasing its single-target damage.\n\n\"Starlight Flare\" penalty: deals no area damage\nSingle-target damage increase: +60%\nAdditional condition: a target under Vulnerability takes pure damage from \"Starlight Flare\"\n\nCooldown: 3 sec."
+   "重置「星光閃耀」的冷卻，並強化下一次「閃耀」，移除其範圍傷害，但大幅提升單體傷害。擊殺目標可使英雄的敏捷提升 1 點。\n\n「星光閃耀」的懲罰：不造成範圍傷害\n單體傷害提升：+60%\n附加條件：處於「易傷」效果下的目標會受到「星光閃耀」的純粹傷害\n\n冷卻：5 秒",
+   "Refreshes the \"Starlight Flare\" ability and empowers the next pulse of the \"flare\", removing its area damage but greatly increasing its single-target damage. Killing the target increases the hero's Agility by 1.\n\n\"Starlight Flare\" penalty: deals no area damage\nSingle-target damage increase: +60%\nAdditional condition: a target under Vulnerability takes pure damage from \"Starlight Flare\"\n\nCooldown: 5 sec."
   ],
   "A07L": [
    "英雄發出震懾人心的咆哮，降低附近敵人的護甲與攻擊力。\n\n護甲降低：3 點\n攻擊力降低：15%\n持續時間：30 秒（英雄 15 秒）\n技能強度 200 以上：英雄攻擊速度 +75%，持續 8 秒。\n\n冷卻：25 秒。",
@@ -574,8 +574,8 @@
    "The target building becomes completely invisible.\n\nDuration: 6 sec.\n\nCooldown: 20 sec."
   ],
   "A0AB": [
-   "女武神的攻擊會對目標與目標周圍的敵人造成額外物理傷害。若此技能擊殺目標，英雄有 50% 機率使自身敏捷提升 1 點。\n\n傷害：對目標（120% 敏捷）點；附近的敵人受到 50% 的傷害\n\n冷卻：5 秒",
-   "The Valkyrie's attack deals additional physical damage to the target and to enemies around the target. If the ability kills the target, the hero has a 50% chance to increase her Agility by 1.\n\nDamage: (120% Agility) to the target; 50% of the damage is dealt to nearby enemies\n\nCooldown: 5 sec."
+   "女武神的攻擊會對目標與目標周圍的敵人造成額外物理傷害。\n\n傷害：對目標（120% 敏捷）點；附近的敵人受到 50% 的傷害\n\n冷卻：5 秒",
+   "The Valkyrie's attack deals additional physical damage to the target and to enemies around the target.\n\nDamage: (120% Agility) to the target; 50% of the damage is dealt to nearby enemies\n\nCooldown: 5 sec."
   ],
   "A0AF": [
    "擊殺敵人時有小機率生成觸手，攻擊附近的敵人。\n\n觸手出現機率：20%\n觸手生命值：100 +（10% 英雄最大生命值）\n觸手攻擊力：10 +（30% 英雄敏捷）\n觸手存活時間：40 秒\n擊殺處於「切口」效果下的敵人：觸手的出現機率、生命值、攻擊力與存活時間 +50%",
@@ -630,8 +630,8 @@
    "Mekhatron strikes enemies in the target area with an electric impulse, dealing damage to them and applying Shock with a high chance.\n\nDamage: 60 + (40% spell power)\nAdditional effect: 75% chance to apply Shock to the enemy\n\nCooldown: 10 sec."
   ],
   "A0BD": [
-   "重置「星光閃耀」的冷卻，並強化下一次「閃耀」，降低對主要目標的傷害並提升範圍傷害。\n\n「星光閃耀」的懲罰：主要目標受到與範圍傷害相同的傷害\n範圍傷害提升：+30%\n作用範圍提升：+15%\n額外範圍效果：20% 機率對敵人施加「易傷」狀態\n\n冷卻：3 秒",
-   "Refreshes the \"Starlight Flare\" ability and empowers the next pulse of the \"flare\", reducing the damage to the primary target and increasing the area damage.\n\n\"Starlight Flare\" penalty: the primary target takes damage equal to the area damage\nArea damage increase: +30%\nArea increase: +15%\nAdditional area effect: 20% chance to apply the Vulnerability status to enemies\n\nCooldown: 3 sec."
+   "重置「星光閃耀」的冷卻，並強化下一次「閃耀」，降低對主要目標的傷害並提升範圍傷害。\n\n「星光閃耀」的懲罰：主要目標受到與範圍傷害相同的傷害\n範圍傷害提升：+30%\n作用範圍提升：+15%\n額外範圍效果：20% 機率對敵人施加「易傷」狀態\n\n冷卻：5 秒",
+   "Refreshes the \"Starlight Flare\" ability and empowers the next pulse of the \"flare\", reducing the damage to the primary target and increasing the area damage.\n\n\"Starlight Flare\" penalty: the primary target takes damage equal to the area damage\nArea damage increase: +30%\nArea increase: +15%\nAdditional area effect: 20% chance to apply the Vulnerability status to enemies\n\nCooldown: 5 sec."
   ],
   "A0BE": [
    "英雄的技能會在隨機延遲後額外以閃電打擊敵人。處於電擊狀態下的敵人會受到更多傷害。\n\n電流傷害：20 +（10% 技能強度）點\n對電擊狀態敵人的傷害提升：+100%\n傷害延遲：0.5 - 3 秒",
