@@ -626,9 +626,27 @@ def hero_doc(h, rec, idx, A, U, spans):
         L.append('')
         L.append('## 皮膚')
         L.append('')
-        plain = [k['n'][0] for k in rec['skins'] if not (k.get('add') or k.get('rm'))]
+        # 「純外觀」只代表物件資料沒差；很多皮膚的加成是 JASS 用 GetUnitTypeId 分支寫的，
+        # 所以另外數一下這個單位型號在腳本裡出現在哪些函式（跳過登記／換模型那幾行）。
+        def skin_refs(uid):
+            out = []
+            for i, line in enumerate(idx[0]):
+                if ("'%s'" % uid) in line and 'RegisterSkin' not in line \
+                        and 'ReplaceUnitBJ' not in line and 'SaveStr(hash' not in line:
+                    fn = idx[2][i]
+                    if fn and fn not in [f for f, _ in out]:
+                        out.append((fn, i + 1))
+            return out
+        plain = [k for k in rec['skins'] if not (k.get('add') or k.get('rm'))]
+        for k in plain:
+            refs = skin_refs(k['id'])
+            if refs:
+                L.append('%s `%s` —— 物件資料同本體，但 **JASS 有依單位型號分支**：%s'
+                         % (k['n'][0], k['id'],
+                            '、'.join('`%s`（%d）' % r for r in refs[:8])))
+            else:
+                L.append('%s `%s` —— 純外觀' % (k['n'][0], k['id']))
         if plain:
-            L.append('純外觀：%s' % '、'.join(plain))
             L.append('')
         for k in sk:
             L.append('### %s `%s`%s —— **會換技能**'

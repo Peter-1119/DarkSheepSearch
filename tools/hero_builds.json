@@ -6482,30 +6482,94 @@
   ],
   "O01O": [
    {
-    "id": "blade-pen-storm",
+    "id": "blade-brutal-pen",
     "c": "#C0392B",
-    "talent": "A0D0",
+    "talent": "A10T",
     "n": [
-     "穿透風暴",
-     "Penetration Storm",
-     "Буря пробития"
+     "殘暴穿刺",
+     "Brutal Piercing",
+     "Жестокое пробитие"
     ],
     "key": [
-     "鋼鐵旋風 41 跳＋切割 10 段＝一輪 51 次獨立傷害事件，每一次事件後都再打一段等於穿透值的 CHAOS/UNIVERSAL —— 1 點穿透 ≈ 26 點技能強度",
-     "41 whirlwind ticks + 10 laceration strikes = 51 separate damage events per rotation, each followed by a CHAOS/UNIVERSAL hit equal to your penetration - 1 pen is worth ~26 spell power",
-     "41 тик вихря + 10 ударов разрезов = 51 отдельное событие урона за круг, после каждого идёт удар CHAOS/UNIVERSAL, равный пробитию: 1 пробитие ≈ 26 силы умений"
+     "殘暴打擊把切割暴擊改成 ×(2.5＋0.1×目標等級)、普攻暴擊 20%／×3，再用銀器＋深淵之眼把 DefCof 疊到 2.15 —— 101 穿透在切割每一段先被乘 1.6×2.15，然後再另外打一刀",
+     "Brutal Strikes turns the Lacerations crit into x(2.5 + 0.1 x target level) and the attack crit into 20% x3; Silverware + Eye of the Abyss push DefCof to 2.15, so 101 pen is multiplied by 1.6 x 2.15 inside every strike and then paid out again as a separate hit",
+     "«Жестокие удары» делают крит «Разрезов» ×(2,5 + 0,1×уровень цели), крит атак 20% ×3; Серебро + Око Бездны поднимают DefCof до 2,15 — 101 пробития умножается внутри каждого удара, а потом бьёт ещё раз отдельно"
     ],
     "why": [
-     "這隻的兩個傷害技能都把穿透寫進公式，而且穿透在管線裡還會另外結算一次。鋼鐵旋風每 0.20 秒跳一次、共 41 跳（`SaveInteger(hash,Id,1,41)`），每跳 `(75 + 技能強度×0.30 + 穿透×3.00)×0.20`；切割 10 段（`L=5+等級`，count=L+1 → 實跳 10 次），每段 `120 + 技能強度×0.20 + 穿透×4.00`。所以對單一目標一輪就是 41+10 = 51 次獨立 `UnitDamageTarget`，每一次事件後 `Trig_HeroTakeDamage_Actions` 都會再打一段等於 key 16 的 CHAOS/UNIVERSAL，不吃護甲、不吃減傷。換算邊際值：1 點穿透對鋼鐵旋風單目標值 3×8.2＋41 = 65.6 點，對切割一輪值 4×10＋10 = 50 點；1 點技能強度只有 2.46 與 2.0。1 穿透 ≈ 26 技能強度，這就是為什麼這套完全不碰星界耳環。合計 159 穿透（耶夢加得 50、毀滅之錘 25、鶴嘴鎬 20、裂魂之刃 20、熾天使長矛 20、復仇之手 15、刺刀 5、守衛之斧 4）。復仇之手再讓穿透那一刀對英雄 ×1.50（`if check==1 and IsUnitType(d,UNIT_TYPE_HERO) then life=life*1.50`，check 由 `LoadInteger(hash,Id,'fgfh')` 開啟）→ 對英雄每次事件 238.5 點純傷害，光鋼鐵旋風 41 跳就是 9,779。耶夢加得之戒的 −50% 攻速沒有想像中痛：攻速是加法，敏捷 104 已經 +104%，扣 0.50 只是從 ×2.34 變 ×1.84，少 21% 普攻次數，換 50 穿透（≈3,280 點鋼鐵旋風單目標傷害）非常划算。天賦選無情幻影：每殺一名敵方英雄永久 +2.5 穿透，八顆人頭＝一件免費的耶夢加得之戒；另外暴擊時切割 +1 段，期望段數 10→13.33。試算等級 25 單目標一輪約 14.4 萬，技能佔 66%、普攻 34%；五個目標時技能佔 81%。",
-     "Both damage abilities put penetration inside their formula, and penetration is then paid out a second time by the damage pipeline. Steel Whirlwind ticks every 0.20 s for 41 ticks (`SaveInteger(hash,Id,1,41)`), each tick `(75 + 0.30*SP + 3.00*pen)*0.20`; Lacerations fires 10 strikes (`L=5+level`, count=L+1), each `120 + 0.20*SP + 4.00*pen`. That is 41+10 = 51 separate `UnitDamageTarget` calls per rotation against one target, and after every one of them `Trig_HeroTakeDamage_Actions` fires an extra CHAOS/UNIVERSAL hit equal to hash key 16, ignoring armor and all damage reduction. Marginal value: 1 pen is worth 3*8.2+41 = 65.6 on the whirlwind and 4*10+10 = 50 on Lacerations; 1 spell power is worth only 2.46 and 2.0. So 1 pen ~ 26 SP, which is why this build never touches the Astral Earring. Total 159 pen. Avenger's Hand then multiplies the penetration hit by 1.50 against heroes (`if check==1 and IsUnitType(d,UNIT_TYPE_HERO) then life=life*1.50`, check set by `LoadInteger(hash,Id,'fgfh')`) - 238.5 unmitigated damage per event, 9,779 from the whirlwind's 41 ticks alone. Jormungandr's -50% attack speed is cheap: speed is additive, 104 agility already gives +104%, so you drop from x2.34 to x1.84 - 21% fewer swings for 50 pen. Talent Relentless Phantom: +2.5 permanent pen per enemy hero kill (eight kills = a free Jormungandr) plus +1 strike on every crit, raising expected strikes from 10 to 13.33. At level 25 a single-target rotation is ~144k, 66% skills / 34% autos; against five targets skills are 81%.",
-     "Оба уронных умения содержат пробитие в формуле, и конвейер урона выплачивает его ещё раз. Стальной вихрь: 41 тик по 0.20 с, каждый `(75 + 0.30*СУ + 3.00*проб)*0.20`. Разрезы: 10 ударов, каждый `120 + 0.20*СУ + 4.00*проб`. Итого 51 отдельное событие урона за круг, и после каждого идёт дополнительный удар CHAOS/UNIVERSAL, равный ключу 16, без учёта брони и снижения урона. Предельная ценность: 1 пробитие = 65.6 на вихре и 50 на разрезах, 1 сила умений = 2.46 и 2.0. Поэтому Астральная серьга здесь бесполезна. Всего 159 пробития. Рука мщения умножает удар пробития на 1.50 по героям (`check==1` от `LoadInteger(hash,Id,'fgfh')`) - 238.5 чистого урона за событие, 9 779 только за 41 тик вихря. Минус 50% скорости атаки от Кольца Ёрмунганда почти не мешает: скорость складывается, 104 ловкости дают +104%, множитель падает с 2.34 до 1.84. Талант «Неумолимый фантом»: +2.5 пробития навсегда за убийство героя и +1 удар разрезов при крите (ожидание 13.33 удара вместо 10). На 25 уровне круг по одной цели ~144 000: 66% умения, 34% автоатаки."
+     "殘暴打擊實際給的固定值是 +2 力／+10 智（56899–56903 把敏捷那一行寫成 SetHeroInt），真正的價值是每級 +3 敏捷（'aAGI'=3，45544–45545）：1 級選、25 級 +72 敏捷 = +72 攻擊力與 +72% 攻速。切割暴擊在 `Hero33Q` 56691–56702：25% 機率 ×(2.50＋0.10×目標等級)，10 級精英 ×3.5、25 級英雄 ×5.0，期望倍率 1.625／2.0（無天賦 1.375）；鋼鐵旋風沒有這段（56818 固定 ×2.5）。普攻暴擊是 `A10V`（ACct）：學師範時已經有殘暴打擊才會升到 lv2 = 20%／×3.0（57053–57057），lv1 沒覆寫任何欄位、走引擎預設 15%／×2 —— 天賦要在 10 級學 R 之前選好，`A10T` 分支（56899–56906）不會回頭升級 A10V。每段切割 = 120＋0.2×SP＋4×穿透 = 544（穿透 101、SP 100）×1.625×DefCof，再另外打一刀 101（20065–20082）。DefCof：深淵之眼 key6 +0.15（22482）、目標 <50% 血再 +0.40（19961–19964）、銀器對 ≥75% 血 +1.00（19954–19959）。對 10 級精英：滿血一段 ≈ 2,000、中段 1,120、殘血 1,470；對 25 級英雄中段 1,350。普攻 326 攻擊力、攻速 ×3.57（每秒 2.23 下）、暴擊期望 ×1.4：滿血目標每下 ≈ 1,080，每秒 2,400；單目標 25 秒（2Q＋1W＋16.7 秒普攻）約 8.7 萬（滿血段）～5 萬（中段），未計目標護甲。邊際值：1 穿透對切割 ≈ 23 SP、對旋風 ≈ 27 SP，所以不碰星界耳環。不拿耶夢加得之戒：試算 >75% 血段它多 8%、50–75% 多 4%，但 <50% 段深淵之眼反而多 25%（三種傷害都吃 +0.40），整條血條平均略勝，而且不用吃 −50% 攻速 —— 裂魂之刃＋銀器的 +50% 攻速才是這套的普攻引擎。",
+     "What Brutal Strikes actually grants is +2 STR / +10 INT (56899-56903 wrote the AGI line as SetHeroInt); the real value is +3 AGI per level ('aAGI'=3, 45544-45545): pick it at level 1 and you have +72 AGI at 25 = +72 damage and +72% attack speed. The Lacerations crit lives in `Hero33Q` 56691-56702: 25% chance x(2.50 + 0.10 x target level) - x3.5 on a level-10 elite, x5.0 on a level-25 hero, expected multiplier 1.625 / 2.0 (1.375 without the talent). Steel Whirlwind does not have this branch (56818 is a flat x2.5). The attack crit is `A10V` (ACct): it is raised to level 2 = 20% x3.0 only if the talent is already present when Sensei is learned (57053-57057); level 1 overrides nothing and uses the engine default 15% x2 - so take the talent before learning R at level 10, the `A10T` branch (56899-56906) never upgrades A10V afterwards. Each strike = 120 + 0.2 SP + 4 pen = 544 (101 pen, 100 SP) x1.625 x DefCof, then a separate 101 hit (20065-20082). DefCof: Eye of the Abyss key6 +0.15 (22482), +0.40 more on targets below 50% (19961-19964), Silverware +1.00 on targets at 75%+ (19954-19959). Vs a level-10 elite: ~2,000 per strike at full HP, 1,120 mid, 1,470 low; vs a level-25 hero 1,350 mid. Attacks: 326 damage, x3.57 speed (2.23/s), crit expectation x1.4 - ~1,080 per hit on a fresh target, 2,400/s. Single target over one 25 s cycle (2Q + 1W + 16.7 s of attacks): ~87k in the full-HP band, ~50k mid-band, before target armor. Marginal value: 1 pen ~ 23 SP on Lacerations, ~27 SP on the whirlwind - no Astral Earring. No Jormungandr: it wins by 8% above 75% HP and 4% in the 50-75% band, but the Eye wins by 25% below 50% (+0.40 on all three damage sources), comes out slightly ahead over a whole HP bar, and costs no -50% attack speed - the +50% speed from Soul Ripper + Silverware is this build's attack engine.",
+     "«Жестокие удары» реально дают +2 силы / +10 интеллекта (56899-56903: строка ловкости написана как SetHeroInt), ценность в +3 ловкости за уровень ('aAGI'=3, 45544-45545): взять на 1-м уровне = +72 ловкости к 25-му. Крит «Разрезов» в `Hero33Q` 56691-56702: 25% ×(2,50 + 0,10×уровень цели) - ×3,5 по элите 10 ур., ×5,0 по герою 25 ур., ожидание 1,625 / 2,0 (без таланта 1,375); у «Стального вихря» этой ветки нет (56818 - фиксированные ×2,5). Крит атак - `A10V` (ACct): уровень 2 = 20% ×3,0 ставится только если талант уже взят при изучении «Сенсея» (57053-57057); уровень 1 ничего не переопределяет и использует стандарт движка 15% ×2 - берите талант до 10-го уровня, ветка `A10T` (56899-56906) A10V не повышает. Удар = 120 + 0,2×СУ + 4×пробитие = 544 (101 пробития, 100 СУ) ×1,625 ×DefCof, плюс отдельный удар на 101 (20065-20082). DefCof: Око Бездны key6 +0,15 (22482), ещё +0,40 по цели ниже 50% (19961-19964), Серебро +1,00 по цели выше 75% (19954-19959). По элите 10 ур.: ~2 000 за удар при полном здоровье, 1 120 в середине, 1 470 при низком; по герою 25 ур. 1 350. Атаки: 326 урона, скорость ×3,57 (2,23/с), крит ×1,4 - ~1 080 за удар по свежей цели, 2 400/с. Одна цель за цикл 25 с: ~87k в верхней полосе здоровья, ~50k в средней, без учёта брони. 1 пробитие ≈ 23 СУ на «Разрезах», ≈ 27 на вихре - серьга не нужна. Без Ёрмунганда: он выигрывает 8% выше 75% здоровья и 4% в полосе 50-75%, но Око выигрывает 25% ниже 50% (+0,40 на все три источника урона), в среднем по полосе здоровья чуть впереди и без -50% скорости атаки."
     ],
     "items": [
-     "I01P",
+     "I06V",
      "pnvu",
      "fgrg",
+     "hlst",
      "ankh",
-     "fgfh",
+     "stel"
+    ],
+    "bonus": {
+     "s1": "rej4",
+     "s2": "I01K"
+    }
+   },
+   {
+    "id": "blade-parry-bastion",
+    "c": "#2E86AB",
+    "talent": "A0DM",
+    "n": [
+     "招架堡壘",
+     "Parry Bastion",
+     "Бастион парирования"
+    ],
+    "key": [
+     "完美防禦把近戰招架提到 40%、遠程 20%、暈眩 2 秒；反傷 125×1.95 = 每次被攻擊 244 點、招架回血、鋼鐵奉獻每 4 秒 3×敏捷 —— 被越多人打越強，代價是穿透只剩 11",
+     "Perfect Defense raises melee parry to 40%, ranged to 20% and the stun to 2 s; thorns 125 x 1.95 = 244 per incoming attack, parry heals, Steel Devotion hits back for 3x AGI every 4 s - the more attackers, the stronger it gets; the price is 11 pen",
+     "«Идеальная защита» поднимает парирование до 40% в ближнем бою и 20% против дальнего, оглушение 2 с; ответный урон 125×1,95 = 244 за каждую атаку по вам, парирование лечит, Стальная преданность бьёт 3×ловкость каждые 4 с - чем больше нападающих, тем сильнее; цена - всего 11 пробития"
+    ],
+    "why": [
+     "反傷走 `Trig_UAttacks_Actions`（20268–20281），掛 EVENT_PLAYER_UNIT_ATTACKED（20581）：對方起手就結算，CHAOS/UNIVERSAL、包在 DisableTrigger 裡，不吃護甲、不經 DefCof、對遠程攻擊者也生效。key17 = 招架 lv5 的 30（57058–57064）＋冥界之盾 40＋不詳之盾 40＋蠻族之盾 15 = 125；key19 = 荊棘戒指 0.60＋不詳之盾 0.15＋王室徽記 0.15＋蠻族之盾 0.05 = 0.95 → 每次被攻擊 244 點。招架在同一事件裡緊接著判定（20297–20343）：完美防禦讓近戰 40%、遠程 20%（本體只有近戰 20%），成功 → 60＋穿透 = 71 點、回血 60＋0.1×SP（鋼鐵守護者 150 → 75，啟動後 90）、50% 暈眩 2 秒（StunUnit Id=2 → A0Y8 lv2）；招架那一刀是固定值，不吃 key19。10 隻近戰各 1.5 秒打一次 = 每秒 6.7 次事件 → 反傷 1,630／秒、招架 2.7 次／秒、回血 200／秒、每秒 1.3 個 2 秒暈眩。鋼鐵奉獻：被攻擊時每 4 秒對攻擊者 3×敏捷（193 → 579）並 50% 暈眩 4 秒（28651–28656）。減傷：鋼鐵旋風 5 秒內 key4 +0.35（56935–56936）、帝王鎧甲對 ≥75% 血的攻擊者 −0.25（19922–19925，說明寫 70%），下限 0.20。完美防禦每級 +2 力 +2 敏（'aSTR'/'aAGI'=2），25 級 +48／+48；固定值是 +6 力 +6 智（56890–56895，敏捷那一行寫成智力）。生命 ≈ 4,000（力量 156）＋3,825（道具）；護甲 ≈ 36＋193×0.25 ≈ 84（物理減傷 83%）。代價說清楚：穿透 11、SP 150，切割一段 ≈ 280、旋風每跳 ≈ 70，主動輸出約是殘暴穿刺的 1/6，這套的輸出來自站在人堆裡被打。",
+     "Thorns run through `Trig_UAttacks_Actions` (20268-20281) on EVENT_PLAYER_UNIT_ATTACKED (20581): they resolve on the attack wind-up, CHAOS/UNIVERSAL inside DisableTrigger - no armor, no DefCof, and they hit ranged attackers too. key17 = 30 from Parry lv5 (57058-57064) + Nether Shield 40 + Ominous Shield 40 + Barbarian Shield 15 = 125; key19 = Thorn Ring 0.60 + Ominous 0.15 + Royal Crest 0.15 + Barbarian 0.05 = 0.95, so 244 per incoming attack. The parry roll follows in the same event (20297-20343): Perfect Defense makes it 40% melee / 20% ranged (base is melee-only 20%); on success 60 + pen = 71 damage, heal 60 + 0.1 SP (Steel Guardian 150 -> 75, 90 activated) and a 50% 2 s stun (StunUnit Id=2 -> A0Y8 lv2); the parry hit is flat and ignores key19. Ten melee attackers swinging every 1.5 s = 6.7 events/s -> 1,630 thorns/s, 2.7 parries/s, 200 heal/s, 1.3 two-second stuns per second. Steel Devotion: when attacked, every 4 s the attacker takes 3x AGI (193 -> 579) with a 50% 4 s stun (28651-28656). Mitigation: Steel Whirlwind adds key4 +0.35 for 5 s (56935-56936), Emperor's Armor -0.25 against attackers above 75% HP (19922-19925; the text says 70%), floor 0.20. Perfect Defense gives +2 STR +2 AGI per level ('aSTR'/'aAGI'=2), +48/+48 at 25; its flat bonus is +6 STR +6 INT (56890-56895 wrote the AGI line as INT). HP ~4,000 from 156 STR + 3,825 from items; armor ~36 + 193 x 0.25 = 84 (83% physical reduction). The cost, stated plainly: 11 pen, 150 SP, ~280 per Lacerations strike, ~70 per whirlwind tick - about 1/6 of Brutal Piercing's active damage; this build's damage comes from standing in the crowd and being hit.",
+     "Ответный урон идёт через `Trig_UAttacks_Actions` (20268-20281) по EVENT_PLAYER_UNIT_ATTACKED (20581): срабатывает на замахе, CHAOS/UNIVERSAL внутри DisableTrigger - без брони, без DefCof, и по дальнобойным тоже. key17 = 30 от «Парирования» 5 ур. (57058-57064) + Щит Преисподней 40 + Зловещий щит 40 + Щит варвара 15 = 125; key19 = Кольцо шипов 0,60 + Зловещий 0,15 + Королевский герб 0,15 + варвар 0,05 = 0,95 → 244 за каждую атаку по вам. Парирование проверяется в том же событии (20297-20343): «Идеальная защита» даёт 40% ближний / 20% дальний (база - только ближний 20%); при успехе 60 + пробитие = 71 урона, лечение 60 + 0,1×СУ (Стальной страж 150 → 75, 90 при активации), 50% оглушение 2 с (StunUnit Id=2 → A0Y8 ур. 2); удар парирования фиксированный и не учитывает key19. 10 бойцов ближнего боя с атакой раз в 1,5 с = 6,7 событий/с → 1 630 ответного урона/с, 2,7 парирований/с, 200 лечения/с, 1,3 оглушения/с. Стальная преданность: при атаке по вам каждые 4 с атакующий получает 3×ловкость (193 → 579) и 50% оглушение 4 с (28651-28656). Снижение урона: «Стальной вихрь» key4 +0,35 на 5 с (56935-56936), Императорская броня -0,25 против атакующих выше 75% здоровья (19922-19925; в описании 70%), нижний предел 0,20. Талант даёт +2 силы +2 ловкости за уровень, +48/+48 к 25-му; фиксированный бонус +6 силы +6 интеллекта (56890-56895, строка ловкости написана как интеллект). Здоровье ≈ 4 000 от 156 силы + 3 825 от предметов; броня ≈ 84 (83% физ. снижения). Цена: 11 пробития, 150 СУ, ~280 за удар «Разрезов», ~70 за тик вихря - примерно 1/6 активного урона «Жестокого пробития»; урон этой сборки - это стоять в толпе и получать удары."
+    ],
+    "items": [
+     "axas",
+     "pnvl",
+     "I029",
+     "fwss",
+     "tbak",
+     "wshs"
+    ],
+    "bonus": {
+     "s1": "vddl",
+     "s2": "I01S"
+    }
+   },
+   {
+    "id": "blade-weakness-gloves",
+    "c": "#8E44AD",
+    "talent": "A0CV",
+    "n": [
+     "虛弱雙擊",
+     "Weakness Double-Tap",
+     "Двойной удар слабости"
+    ],
+    "key": [
+     "放血者讓切割每段 100% 上虛弱，黑暗手套在 WeakUnit 裡再打一次 100% 敏捷 —— 每段變成兩個傷害事件、穿透那一刀也打兩次；301 敏捷一段 ≈ 970，銀器滿血段 1,800",
+     "Bloodletter makes every Lacerations strike apply Weakness at 100%, and Dark Gloves fire a second hit of 100% AGI from inside WeakUnit - every strike becomes two damage events and the penetration hit lands twice; at 301 AGI one strike is ~970, ~1,800 on a full-HP target with Silverware",
+     "«Кровопускатель» вешает слабость каждым ударом «Разрезов» со 100%, а Тёмные перчатки бьют второй раз на 100% ловкости прямо из WeakUnit - каждый удар это два события урона, и удар пробития проходит дважды; при 301 ловкости удар ≈ 970, ≈ 1 800 по полной цели с Серебром"
+    ],
+    "why": [
+     "`Hero33Q` 56719–56721：有放血者（A0GU）時每段 `WeakUnit(u,u2,1.00)`。`WeakUnit`（2398–2445）判定成功後檢查 `UnitHasItemOfType(damager,'I044')`（2436–2437）→ 對目標 `UnitDamageTarget(敏捷)`，NORMAL/MAGIC、外面沒有 DisableTrigger → 走完整管線：吃 DefCof，而且再補一刀穿透（20065–20082）。所以每段切割 = (120＋4×67)×1.375×DefCof＋67 ＋ 敏捷×DefCof＋67。敏捷 301（基礎 104＋天賦 26＋翡翠耳環 100＋鋼鐵奉獻 40＋狩獵女神之戒 30）→ 一段 ≈ 970、銀器對 ≥75% 血 ≈ 1,800；沒有手套只有 ≈ 600。虛弱本身（2429–2430）：S00N −30% 移速、−10% 攻速 8 秒，並把目標 key49 −0.50 → 流血係數 +0.5。鋼鐵旋風減半（56789–56790）但每跳 50% 上 3.25× 的流血（56809）：每跳直接 ≈ 41（＋67 穿透那一刀），一層 = 30×1.375×3.25×1.5（虛弱）≈ 200，8 秒內隨目標缺血遞減（Bleed_Dmg 每缺 1% −0.75%），一次旋風每目標 10 層 ≈ 1,600～2,000 ＋ 直接 2,160；流血不走 DefCof、沒有穿透那一刀、建築與機械免疫。不要帶會上流血的攻擊道具（災妄之星、巫師之災）：BleedUnit 2170–2174 重用過期槽位時把 'bled' 寫成槽位編號，後面的旋風流血層全部停跳。普攻：敏捷 301 → 攻擊力 ≈ 360、攻速 ×4.6（每秒 2.9 下）、暴擊 15%／×2。100% 虛弱的例外：建築／機械免疫、目標虛弱抗性（key30）>50 免疫、B00W ×0.7。鋼鐵奉獻在這套是敏捷道具，但被打時每 4 秒的 3×敏捷 ≈ 900 反傷是白送的。",
+     "`Hero33Q` 56719-56721: with Bloodletter (A0GU) every strike calls `WeakUnit(u,u2,1.00)`. Once the roll succeeds, `WeakUnit` (2398-2445) checks `UnitHasItemOfType(damager,'I044')` (2436-2437) and calls `UnitDamageTarget(AGI)` on the target - NORMAL/MAGIC with no DisableTrigger around it, so it runs the full pipeline: DefCof applies and the penetration hit fires again (20065-20082). Each strike is therefore (120 + 4 x 67) x 1.375 x DefCof + 67, plus AGI x DefCof + 67. At 301 AGI (104 base + 26 talent + 100 Emerald Earring + 40 Steel Devotion + 30 Ring of Artemis) that is ~970 per strike, ~1,800 on a target above 75% HP with Silverware; without the gloves ~600. Weakness itself (2429-2430): S00N -30% move / -10% attack speed for 8 s and key49 -0.50 on the target = bleed coefficient +0.5. Steel Whirlwind is halved (56789-56790) but every tick has a 50% chance to apply a 3.25x bleed (56809): ~41 direct per tick (+67 from the penetration hit), one stack = 30 x 1.375 x 3.25 x 1.5 (weakened) ~ 200 over 8 s, decaying as the target loses HP (Bleed_Dmg: -0.75% per missing 1%); one whirlwind ~10 stacks ~ 1,600-2,000 per target plus 2,160 direct. Bleed skips DefCof, has no penetration hit, and structures/mechanical are immune. Do not carry attack items that apply bleed (Star of Calamity, Wizard's Bane): BleedUnit 2170-2174 writes the slot index into 'bled' when it reuses an expired slot, and every later whirlwind stack stops ticking. Attacks: 301 AGI -> ~360 damage, x4.6 speed (2.9/s), crit 15% x2. Exceptions to the 100% weakness: structures/mechanical immune, target weakness resistance (key30) over 50 immune, B00W x0.7. Steel Devotion is here as an AGI item, but its 3x AGI (~900) thorn every 4 s when attacked comes free.",
+     "`Hero33Q` 56719-56721: с «Кровопускателем» (A0GU) каждый удар вызывает `WeakUnit(u,u2,1.00)`. После успешной проверки `WeakUnit` (2398-2445) смотрит `UnitHasItemOfType(damager,'I044')` (2436-2437) и наносит `UnitDamageTarget(ловкость)` - NORMAL/MAGIC без DisableTrigger, то есть полный конвейер: DefCof учитывается и удар пробития проходит ещё раз (20065-20082). Удар = (120 + 4×67) ×1,375 ×DefCof + 67, плюс ловкость×DefCof + 67. При 301 ловкости (104 база + 26 талант + 100 Изумрудная серьга + 40 Стальная преданность + 30 Кольцо Артемиды) это ≈ 970 за удар, ≈ 1 800 по цели выше 75% с Серебром; без перчаток ≈ 600. Сама слабость (2429-2430): S00N -30% скорости бега / -10% скорости атаки на 8 с и key49 -0,50 у цели = коэффициент кровотечения +0,5. «Стальной вихрь» ослаблен вдвое (56789-56790), но каждый тик с 50% вешает кровотечение 3,25× (56809): ~41 прямого за тик (+67 удар пробития), стак = 30×1,375×3,25×1,5 ≈ 200 за 8 с, убывает с потерей здоровья цели; один вихрь ≈ 10 стаков ≈ 1 600-2 000 на цель плюс 2 160 прямого. Кровотечение не проходит DefCof, без удара пробития, строения и механизмы иммунны. Не берите предметы с кровотечением от атак (Звезда бедствия, Погибель чародея): BleedUnit 2170-2174 при повторном использовании истёкшего слота записывает его номер в 'bled', и все последующие стаки вихря перестают тикать. Атаки: 301 ловкости → ~360 урона, скорость ×4,6 (2,9/с), крит 15% ×2. Исключения для 100% слабости: строения/механизмы, сопротивление слабости (key30) выше 50, B00W ×0,7."
+    ],
+    "items": [
+     "I044",
+     "I00F",
+     "axas",
+     "stel",
+     "hlst",
      "ocor"
     ],
     "bonus": {
@@ -6514,98 +6578,34 @@
     }
    },
    {
-    "id": "blade-bulwark",
-    "c": "#4A6FA5",
-    "talent": "A0DM",
-    "n": [
-     "鐵壁旋風",
-     "Bulwark Whirlwind",
-     "Вихрь-бастион"
-    ],
-    "key": [
-     "鋼鐵旋風的 8.2 秒本來就是 −40% 受傷＋魔法免疫；再疊三件減傷把 DefCof 壓到程式碼下限 0.20，等於進來的傷害先砍 80% 再被 74 點護甲砍一次",
-     "The whirlwind's 8.2 s already gives -40% damage taken plus spell immunity; three more reduction items push DefCof to the hard floor of 0.20, so incoming damage is cut 80% before 74 armor cuts it again",
-     "8.2 секунды вихря уже дают -40% получаемого урона и иммунитет к магии; ещё три предмета опускают DefCof до жёсткого минимума 0.20"
-    ],
-    "why": [
-     "開鋼鐵旋風時腳本執行 `SaveReal(hash,GetHandleId(u),4,+0.40)`，key 4 在管線裡是直接從 DefCof 減掉的 —— 這 8.2 秒你受到的所有傷害 −40%，而且原生 AOww 同時給魔法免疫。這套把那 8.2 秒做成真正的無敵窗：榮譽頭盔 key 8 再 −20%（對英雄）、帝王鎧甲在攻擊者血量 ≥70% 時 −25%、黃金鎧甲每缺 10% 生命 −4%。四項相加很快撞到 `if DefCof<0.20 then set DefCof=0.20` 的下限，等於進來的傷害先被砍 80%。護甲方面：裝備 41 點（帝王 5＋黃金 7＋榮譽 5＋鋼鐵守護者 10＋鶴嘴鎬 4＋五行吊墜 2＋重盾 8）加上 134 敏捷提供的 33.5 點（AgiDefenseBonus 0.25、AgiDefenseBase −1.0）＝約 74.5 點 → 物理減傷 81.7%（0.06 係數）。生命值 +4,550（帝王 1500、黃金 1000、鋼鐵守護者 1000、榮譽 300，加 30 力量的 750）。切割本身也是保命鍵：`PauseUnit(u,true)` 加 `SetUnitInvulnerable(u,true)` 讓你在 10 段（0.15×10＝1.5 秒）內完全無敵，12 秒冷卻，是這隻最便宜的閃避。代價說清楚：穿透只剩 35、技能強度 150，等級 25 單目標一輪約 5.2 萬（穿透流是 14.4 萬），技能佔 43%、普攻 57% —— 這一套剛好就落在卷宗說的「普攻與技能相當平衡」上。天賦選師範：專注開著時用技能擊殺會給雙倍戰鬥藝術（`8.00+等級×8.00` ＝ 48 點技能強度、10 秒，且各筆獨立疊加），鋼鐵旋風一輪掃掉一波小兵能疊出好幾百點技能強度，把犧牲掉的輸出補一部分回來；擊殺敵方英雄還永久 +0.25 技能暴擊倍率（`-i` 可查）。",
-     "Casting Steel Whirlwind runs `SaveReal(hash,GetHandleId(u),4,+0.40)`, and hash key 4 is subtracted straight from DefCof - so for 8.2 s all incoming damage is -40%, on top of the spell immunity the native AOww base already grants. This build turns that window into a real invulnerability phase: Helm of Honour subtracts another 0.20 (key 8, vs heroes), Imperial Armour -0.25 while the attacker is above 70% life, Golden Armour -4% per 10% life missing. Summed, these hit the hard floor `if DefCof<0.20 then set DefCof=0.20`, i.e. 80% off before armor. Armor: 41 from items plus 33.5 from 134 agility (AgiDefenseBonus 0.25, AgiDefenseBase -1.0) = ~74.5 -> 81.7% physical reduction at the 0.06 coefficient. HP +4,550. Lacerations doubles as a defensive button: `PauseUnit(u,true)` + `SetUnitInvulnerable(u,true)` make you untargetable for the whole 10-strike, 1.5 s animation on a 12 s cooldown. The cost is explicit: only 35 pen and 150 SP, so a level-25 single-target rotation is ~52k instead of the pen build's 144k, split 43% skills / 57% autos - which is exactly the \"balanced attacks and abilities\" the hero tooltip claims. Talent Sensei: with Concentration up, ability kills give doubled Art of Combat (`8.00+8.00*level` = 48 SP for 10 s, and each kill stacks separately), so one whirlwind through a creep wave stacks hundreds of spell power back; hero kills also add a permanent +0.25 to the ability crit multiplier (readable with `-i`).",
-     "Каст Стального вихря выполняет `SaveReal(hash,GetHandleId(u),4,+0.40)`, а ключ 4 вычитается прямо из DefCof: 8.2 секунды весь входящий урон -40%, плюс иммунитет к магии от базового AOww. Шлем чести добавляет -0.20 по героям (ключ 8), Имперская броня -0.25 пока атакующий выше 70% жизни, Золотая броня -4% за каждые 10% недостающего здоровья. В сумме упираемся в жёсткий предел `if DefCof<0.20 then set DefCof=0.20`. Броня: 41 от предметов плюс 33.5 от 134 ловкости = ~74.5 -> 81.7% снижения физического урона. Здоровье +4 550. Разрезы работают и как защита: `PauseUnit` + `SetUnitInvulnerable` дают полную неуязвимость на 1.5 секунды каждые 12 секунд. Цена честная: всего 35 пробития и 150 силы умений, круг по одной цели ~52 000 вместо 144 000, соотношение 43% умения / 57% автоатаки - ровно тот «баланс», о котором говорит описание героя. Талант «Сенсей»: при активной Концентрации убийства умениями дают двойное Искусство боя (48 силы умений на 10 с), а убийства героев навсегда +0.25 к множителю крита умений."
-    ],
-    "items": [
-     "tbak",
-     "I0AB",
-     "ssan",
-     "wshs",
-     "stel",
-     "ocor"
-    ],
-    "bonus": {
-     "s1": "frgd",
-     "s2": "I072"
-    }
-   },
-   {
-    "id": "blade-perpetual",
-    "c": "#8E44AD",
+    "id": "blade-phantom-chain",
+    "c": "#27AE60",
     "talent": "A0D0",
     "n": [
-     "切割永動機",
-     "Perpetual Laceration",
-     "Вечные разрезы"
+     "幻影連鎖",
+     "Phantom Chain",
+     "Цепь фантома"
     ],
     "key": [
-     "無情幻影讓切割每次暴擊或擊殺都 +1 段；當單段幾乎必殺時淨變化 ≥ 0，切割就停不下來 —— 而整段期間你是無敵的",
-     "Relentless Phantom adds +1 strike on every crit and every kill; once a single strike reliably kills, the net change is >= 0 and Lacerations never terminates - and you are invulnerable the whole time",
-     "«Неумолимый фантом» добавляет +1 удар за каждый крит и каждое убийство; когда один удар почти всегда убивает, счётчик не убывает и разрезы не заканчиваются - а вы всё это время неуязвимы"
+     "6,800 金：幻影對 0–1 級 +50%，再疊雷霆環／釘頭錘／尖刺手套到 DefCof 1.93，切割一段 ≈ 730 秒掉多數小兵；每殺一隻 +1 段、每暴擊 +1 段 —— 切割在人堆裡停不下來，而且整段無敵",
+     "6,800 gold: Phantom's +50% vs level 0-1 stacked with Thunder Ring / Mace / Spiked Gloves to DefCof 1.93, so one Lacerations strike (~730) kills most fodder; every kill and every crit add a strike - Lacerations never stops in a crowd, and you are invulnerable the whole time",
+     "6 800 золота: +50% «Фантома» по целям 0-1 ур. плюс Кольцо грома / Булава / Шипастые перчатки до DefCof 1,93 - удар «Разрезов» (~730) убивает большинство рядовых; каждое убийство и каждый крит добавляют удар - «Разрезы» в толпе не заканчиваются, а вы всё это время неуязвимы"
     ],
     "why": [
-     "切割的段數是一個會自我補充的計數器。`Hero33Q` 每次跳動先 `count=count-1`，然後：這一段暴擊（專注開著，`GetRandomInt(1,100)<=25`）且有無情幻影 → `count=count+1`；這一段把目標打死且有無情幻影 → 再 `count=count+1`。每段的期望淨變化是 −1 ＋ 0.25 ＋ P(擊殺)。光靠暴擊，期望段數就從 10 變成 10/(1−0.25) ＝ 13.33；若單段幾乎必殺（P(擊殺)→1），淨變化 ≥ 0，切割不會自己停，只有在 400 範圍內找不到任何活著的敵人時才 `set count=0` 收尾。而整段期間 `PauseUnit(u,true)` ＋ `SetUnitInvulnerable(u,true)` 讓你完全無敵。所以這套不堆總傷害，堆的是「單段夠不夠一刀秒掉小兵」。切割單段 ＝ 120 ＋ 技能強度×0.20 ＋ 穿透×4.00 ＝ 120 ＋ 165（825 技能強度）＋ 120（30 穿透）＝ 405。而對「近戰的 0–1 級小兵」DefCof 疊到 1 ＋ 0.50（均衡者 key 40，近戰英雄才有這個方向）＋ 0.20（釘頭錘 key 40）＋ 0.08（尖刺手套 key 40）＋ 0.15（雷霆環 key 5）＋ 0.30（蔑視者之戒 key 6）＝ 2.23。超過 1.00 的那 1.23 是 `UnitDamageTarget(...,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_UNIVERSAL,...)` 另外打的，不吃護甲也不吃護甲類型倍率，所以單段實際 ≈ 405 ＋ 498 ＋ 30（穿透那一刀）＝ 933，暴擊時 `dmg` 先 ×2.75 再過 DefCof ＝ 2,536。這足以一刀清掉多數 0–1 級單位，切割就會在人堆裡一直鏈下去。額外好處：切割期間 `LoadInteger(hash,u,'A0GR')==1`，所有擊殺都算「技能擊殺」，每個給 +24 技能強度（10 秒）並且各自疊加，一輪清完一波後技能強度會暫時翻倍，正好餵下一發鋼鐵旋風（此時單目標 8.2 秒 12,074）。天賦必須是無情幻影 —— 那個 +1 段就是這套的引擎，換成別的天賦整套機制不存在。",
-     "The strike counter of Lacerations refills itself. In `Hero33Q` each tick does `count=count-1`, then: if the strike crits (Concentration up, `GetRandomInt(1,100)<=25`) and you own Relentless Phantom -> `count=count+1`; if the strike killed the target and you own Relentless Phantom -> `count=count+1` again. Expected net change per strike is -1 + 0.25 + P(kill). From crits alone expected strikes go from 10 to 10/(1-0.25) = 13.33; once a single strike reliably kills, the net change is >= 0 and the ability does not stop on its own - it only ends via `set count=0` when no living enemy remains within 400 range. Throughout, `PauseUnit(u,true)` + `SetUnitInvulnerable(u,true)` make you invulnerable. So this build maximises per-strike damage, not total. One strike = 120 + 0.20*SP + 4.00*pen = 120 + 165 (825 SP) + 120 (30 pen) = 405, and against a melee level-0/1 creep DefCof stacks to 1 + 0.50 (Equalizer key 40, melee-hero branch) + 0.20 (Mace key 40) + 0.08 (Spiked Gloves key 40) + 0.15 (Thunder Ring key 5) + 0.30 (Ring of Contempt key 6) = 2.23. The 1.23 above 1.00 is paid out as a separate `ATTACK_TYPE_CHAOS / DAMAGE_TYPE_UNIVERSAL` hit that ignores armor and armor-type multipliers, so a strike really lands ~405 + 498 + 30 = 933, or 2,536 on a crit. That one-shots most level-0/1 units, so Lacerations chains through the whole pack. Bonus: during Lacerations `LoadInteger(hash,u,'A0GR')==1`, so every kill counts as an ability kill and grants +24 spell power for 10 s, each stacking separately - after clearing a wave your spell power is temporarily doubled, which is exactly what you want before the whirlwind (12,074 per creep target over 8.2 s at that point). The talent must be Relentless Phantom; the +1 strike is the entire engine.",
-     "Счётчик ударов Разрезов пополняет сам себя. В `Hero33Q` каждый тик делает `count=count-1`, затем: крит (при активной Концентрации, шанс 25%) и наличие «Неумолимого фантома» -> `count=count+1`; убийство цели и «Фантом» -> ещё `count=count+1`. Ожидаемое изменение за удар: -1 + 0.25 + P(убийство). Только за счёт критов ожидание растёт с 10 до 10/(1-0.25) = 13.33; когда один удар почти всегда убивает, изменение >= 0 и умение не заканчивается само - только через `set count=0`, когда в радиусе 400 не осталось живых врагов. Всё это время `PauseUnit` + `SetUnitInvulnerable` дают полную неуязвимость. Поэтому сборка максимизирует урон одного удара: 120 + 0.20*СУ + 4.00*проб = 405, а DefCof по ближнему бойцу 0-1 уровня складывается до 2.23 (Уравнитель +0.50, Булава +0.20, Шипастые перчатки +0.08 - ключ 40; Кольцо грома +0.15 - ключ 5; Кольцо презрения +0.30 - ключ 6). Избыток 1.23 выплачивается отдельным ударом CHAOS/UNIVERSAL мимо брони, итого ~933 за удар и 2 536 при крите. Бонус: во время Разрезов все убийства считаются убийствами умением и дают +24 силы умений на 10 секунд каждое. Талант обязателен - «Неумолимый фантом»."
+     "幻影（56874–56881）給 key5 +0.50 與 A0DL；`Hero33Q` 每段先 count−1，暴擊（25%，56691–56712）+1 段、擊殺（56716–56718）+1 段，期望淨變化 = −1＋0.25＋P(擊殺)。單段秒殺率 ≥ 75% 時計數不再遞減，直到目標周圍 400 內沒有活敵才 `count=0`（56736–56747）；每段都從「還沒打過的敵人」裡隨機挑下一個（56725–56733），全部打過一輪才會回頭打 ×0.5 的重複目標（56687，固定減半、不累減）。整段 PauseUnit＋SetUnitInvulnerable（56928–56929）。DefCof 對 0–1 級近戰 = 1＋0.50＋雷霆環 0.15（22616）＋釘頭錘 0.20（23979）＋尖刺手套 0.08（24388）= 1.93（遠程 1.55）；超過 1.00 的部分是另一刀 CHAOS/UNIVERSAL（20062–20063），不吃護甲。一段 = (120＋4×57)×1.93＋57 = 729，暴擊 1,736。1 級小兵基礎血量 200–600（食屍鬼 415、野蠻人 600），波次加成無法從物件資料確認，所以「必殺」只保證前中期。寒冰長矛：攻擊 100% 冰凍、冷卻 4 秒 → 穿透那一刀 ×1.5（20072）；但第 4 秒的第二次觸發對已冰凍目標改成 5% 最大生命傷害並立即解凍（1615–1670），單一目標冰凍覆蓋約 50%。切割期間所有擊殺都算技能擊殺（'A0GR' 旗標 56932）→ 每殺 +15 SP 10 秒、各自獨立疊加（57005–57014），清一波 20 隻 = +300 SP，下一發旋風每跳 +11。總價 6,800、最貴 1,400，穿透 57；位移匕首打英雄每下 +2 敏 5 秒可疊。",
+     "Phantom (56874-56881) grants key5 +0.50 and A0DL; in `Hero33Q` each tick does count-1, then a crit (25%, 56691-56712) adds +1 and a kill (56716-56718) adds +1, so the expected net change is -1 + 0.25 + P(kill). Once a single strike kills 75% of the time the counter stops falling and Lacerations only ends when no living enemy is left within 400 of the target (`count=0`, 56736-56747); every strike picks its next target at random among enemies not yet hit (56725-56733), and only after everyone has been hit once does it return to x0.5 repeats (56687, a flat halving, not cumulative). You are paused and invulnerable throughout (56928-56929). DefCof vs level 0-1 melee = 1 + 0.50 + Thunder Ring 0.15 (22616) + Mace 0.20 (23979) + Spiked Gloves 0.08 (24388) = 1.93 (ranged 1.55); the part above 1.00 is a separate CHAOS/UNIVERSAL hit (20062-20063) that ignores armor. One strike = (120 + 4 x 57) x 1.93 + 57 = 729, crit 1,736. Level-1 fodder has 200-600 base HP (Ghoul 415, Savage 600); wave scaling cannot be confirmed from the object data, so the one-shot is only guaranteed early to mid game. Frost Spear: attacks freeze at 100% on a 4 s cooldown, so the penetration hit is x1.5 (20072); but the second proc at 4 s turns into 5% max-HP damage and removes the frost immediately (1615-1670), so a single target is frozen about half the time. Every kill during Lacerations counts as a spell kill ('A0GR' flag, 56932): +15 SP for 10 s, each stack independent (57005-57014) - clearing a 20-unit wave is +300 SP, +11 per whirlwind tick next cast. Total 6,800 gold, nothing over 1,400, 57 pen; Displacement Dagger stacks +2 AGI per hit on heroes for 5 s.",
+     "«Фантом» (56874-56881) даёт key5 +0,50 и A0DL; в `Hero33Q` каждый тик делает count-1, затем крит (25%, 56691-56712) даёт +1 и убийство (56716-56718) даёт +1, ожидаемое изменение = -1 + 0,25 + P(убийства). Когда один удар убивает в 75% случаев, счётчик перестаёт убывать, и «Разрезы» заканчиваются только когда в 400 от цели нет живых врагов (`count=0`, 56736-56747); следующая цель выбирается случайно среди ещё не битых (56725-56733), повторы ×0,5 только после того, как все получили по удару (56687, фиксированное деление пополам). Всё это время вы неуязвимы (56928-56929). DefCof по бойцам ближнего боя 0-1 ур. = 1 + 0,50 + Кольцо грома 0,15 (22616) + Булава 0,20 (23979) + Шипастые перчатки 0,08 (24388) = 1,93 (дальние 1,55); часть выше 1,00 - отдельный удар CHAOS/UNIVERSAL (20062-20063) без брони. Удар = (120 + 4×57) ×1,93 + 57 = 729, крит 1 736. Базовое здоровье рядовых 1 ур. 200-600 (Упырь 415, Дикарь 600); рост по волнам из данных объектов не подтвердить, поэтому гарантия убийства с одного удара - ранняя и средняя игра. Ледяное копьё: заморозка 100% раз в 4 с → удар пробития ×1,5 (20072); но второй прок на 4-й секунде превращается в 5% макс. здоровья и сразу снимает заморозку (1615-1670), поэтому одна цель заморожена примерно половину времени. Все убийства во время «Разрезов» считаются убийствами умением (флаг 'A0GR', 56932): +15 СУ на 10 с, стаки независимы (57005-57014). Всего 6 800 золота, ничего дороже 1 400, 57 пробития."
     ],
     "items": [
-     "I00A",
-     "I0AN",
      "I00N",
      "I01C",
-     "kpin",
-     "sor5"
-    ],
-    "bonus": {
-     "s1": "sfog",
-     "s2": "I01K"
-    }
-   },
-   {
-    "id": "blade-frost-budget",
-    "c": "#16A085",
-    "talent": "A0CV",
-    "n": [
-     "霜刃切割",
-     "Frostbite Lacerations",
-     "Разрезы инея"
-    ],
-    "key": [
-     "6,800 金就堆到 62 穿透；目標帶冰凍時穿透那一刀 ×1.50，先普攻冰住再開旋風，8.2 秒裡前 6 秒的 30 跳全部吃加成",
-     "62 penetration for 6,800 gold; the penetration hit is x1.50 while the target is frozen, so freeze with an auto-attack first and the first 6 s (30 ticks) of the whirlwind all get the bonus",
-     "62 пробития за 6 800 золота; удар пробития x1.50 по замороженной цели - заморозьте автоатакой, и первые 6 секунд вихря (30 тиков) получат бонус"
-    ],
-    "why": [
-     "6,800 金、最貴的一件 1,400，中期就湊得齊，但穿透已經到 62 —— 因為便宜道具的穿透單價最好：戰鬥砍刀 900 金給 10 穿透＋30 攻擊力、精金鶴嘴鎬 1,000 金給 20 穿透、寒冰長矛 1,400 金給 10、位移匕首 900 金給 7、尖刺手套 900 金給 6、刺刀 300 金給 5、守衛之斧 500 金給 4。以邊際值算（穿透對鋼鐵旋風單目標 65.6／點、對切割一輪 50／點），62 穿透＝鋼鐵旋風單目標 4,067 點、切割一輪 3,100 點，同價位沒有任何技能強度道具接近。核心互動是寒冰長矛：管線裡穿透那一刀在目標帶 `B02V`（冰凍）時 ×1.50（`if GetUnitAbilityLevel(d,'B02V')==1 then set life=life*1.50`），而寒冰長矛是 100% 機率、4 秒內冷、額外 115 點魔傷。冰凍持續 6 秒（`FrostUnit` 的 `TimerStart(t,6.,false,function RemoveFrost)`），鋼鐵旋風是 8.2 秒 41 跳，所以正確打法是先用普攻冰住、立刻開旋風，前 6 秒的 30 跳穿透全部 ×1.50（多 30×62×0.5 ＝ 930 點）。重要陷阱：`FrostUnit` 對已冰凍的目標是結算二次冰凍傷害然後**立刻解除**冰凍（`TimerStart(t,0.,false,function RemoveFrost)`），所以不要再帶第二個冰凍源，那會把加成打掉；建築與機械單位則直接免疫冰凍。位移匕首每次打到敵方英雄 +2 敏捷、5 秒、可疊加並刷新持續時間，纏鬥時自己滾出攻速與攻擊力。天賦選貪婪之刃，前期每殺一名敵方英雄直接 +1 等級，是把窮裝補回來最快的方式 —— 但要知道實作寫死 `if GetHeroLevel(u)==16`，而地圖的 MaxHeroLevel 是 25：只有剛好 16 級時才改成 +25 技能強度（而且那一行還誤讀 `udg_ItemBonusDMG[udg_n]`，索引是別人的），17–24 級恢復 +1 級，25 級滿等後這類擊殺完全沒有效果。",
-     "6,800 gold, nothing above 1,400 a piece, and it still reaches 62 penetration - cheap items have the best gold-per-pen ratio: Battle Cleaver 900g for 10 pen and 30 attack, Adamantite Pickaxe 1,000g for 20, Ice Spear 1,400g for 10, Displacement Dagger 900g for 7, Spiked Gloves 900g for 6, Bayonet 300g for 5, Guard's Axe 500g for 4. At 65.6 damage per pen on a single whirlwind target and 50 per Lacerations rotation, 62 pen is 4,067 and 3,100 respectively - no spell-power item in this price bracket is close. The key interaction is Ice Spear: the penetration hit is multiplied by 1.50 while the target carries `B02V` (frozen) - `if GetUnitAbilityLevel(d,'B02V')==1 then set life=life*1.50` - and Ice Spear applies frost at 100% chance on a 4 s internal cooldown plus 115 magic damage. Frost lasts 6 s (`TimerStart(t,6.,false,function RemoveFrost)`) against the whirlwind's 8.2 s / 41 ticks, so freeze with an auto first, then whirl: the first 30 ticks all get x1.50 (+930 damage). Trap to avoid: re-applying frost to an already frozen unit deals the second-freeze damage and then removes the frost immediately (`TimerStart(t,0.,...)`), so do not carry a second frost source - it would delete your own bonus. Structures and mechanical units are outright immune. Displacement Dagger gives +2 agility per hit on an enemy hero, 5 s, stacking and refreshing. Talent Insatiable Blade: +1 hero level per enemy hero kill is the fastest way to make up for cheap gear - but note the implementation hard-codes `if GetHeroLevel(u)==16` while MaxHeroLevel is 25, so the \"+25 spell power\" branch only fires at exactly level 16 (and that line reads `udg_ItemBonusDMG[udg_n]`, the wrong index); at 17-24 you get levels again, and at 25 the kill does nothing at all.",
-     "6 800 золота, самый дорогой предмет - 1 400, но уже 62 пробития: у дешёвых предметов лучшее соотношение золото/пробитие (Боевой тесак 900 за 10, Адамантитовая кирка 1 000 за 20, Ледяное копьё 1 400 за 10, Кинжал смещения 900 за 7, Шипастые перчатки 900 за 6, Штык 300 за 5, Топор стража 500 за 4). При 65.6 урона за пробитие на цель вихря и 50 за круг разрезов это 4 067 и 3 100 соответственно. Ключевое взаимодействие - Ледяное копьё: удар пробития умножается на 1.50, пока цель заморожена (`B02V`), а копьё накладывает заморозку со 100% шансом и внутренним КД 4 секунды. Заморозка длится 6 секунд, вихрь - 8.2 секунды и 41 тик: сначала заморозьте автоатакой, потом вихрь, и первые 30 тиков получат x1.50. Важно: повторное наложение на уже замороженную цель наносит урон второй заморозки и сразу снимает её, поэтому второй источник заморозки только испортит бонус. Талант «Ненасытный клинок» быстрее всего компенсирует бедную сборку, но в коде жёстко зашито `if GetHeroLevel(u)==16` при MaxHeroLevel=25: ветка «+25 силы умений» срабатывает только ровно на 16 уровне (и читает неверный индекс `udg_ItemBonusDMG[udg_n]`), а на 25 уровне убийство героя не даёт ничего."
-    ],
-    "items": [
      "I003",
      "ocor",
      "I006",
-     "I05G",
-     "I01C",
-     "rag1"
+     "I05G"
     ],
     "bonus": {
-     "s1": "rej4",
+     "s1": "sfog",
      "s2": "I01K"
     }
    }

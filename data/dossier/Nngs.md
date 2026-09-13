@@ -561,7 +561,7 @@ endif
 
 ## 皮膚
 
-純外觀：黑暗主教（男）
+黑暗主教（男） `Nplh` —— 物件資料同本體，但 **JASS 有依單位型號分支**：`Trig_i_Actions`（16756）、`Trig_HeroTakeDamage_Actions`（20090）、`Trig_HeroPick_Actions`（45343）、`Trig_HeroAttack47_Actions`（61188）、`Trig_HeroKills47_Conditions`（61261）
 
 ---
 

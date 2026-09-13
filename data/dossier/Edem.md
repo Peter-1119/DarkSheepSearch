@@ -382,7 +382,8 @@ endif
 
 ## 皮膚
 
-純外觀：黑曜石獵手、赤紅刺客
+黑曜石獵手 `Eevi` —— 物件資料同本體，但 **JASS 有依單位型號分支**：`Trig_HeroPick_Actions`（44645）、`Trig_HeroQ1_Conditions`（46762）、`Trig_HeroQ1_Actions`（46777）、`Trig_HeroD1_Conditions`（46845）
+赤紅刺客 `Emns` —— 物件資料同本體，但 **JASS 有依單位型號分支**：`Trig_HeroPick_Actions`（44657）、`Trig_HeroD1_Conditions`（46845）、`Trig_HeroD1_Actions`（46864）
 
 ---
 
