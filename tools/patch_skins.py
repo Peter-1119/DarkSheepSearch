@@ -69,6 +69,37 @@ def skin_names():
     return out
 
 
+# 「額外資訊」單位被放在地圖角落 (13000+玩家編號*150, 13100)，開場鏡頭在 (12122,12000)，
+# 剛好在畫面外的右上角，所以幾乎沒人知道有這東西。補一個 -skin 指令：選取它並把鏡頭移過去。
+SKIN_CMD = """function SkinMenuCmd takes nothing returns nothing
+local player pl=GetTriggerPlayer()
+local integer n=GetPlayerId(pl)
+if Info[n]!=null then
+call SelectUnitForPlayerSingle(Info[n],pl)
+if GetLocalPlayer()==pl then
+call PanCameraToTimed(GetUnitX(Info[n]),GetUnitY(Info[n]),0)
+endif
+call DisplayTimedTextToPlayer(pl,0,0,15,"|cFF9ED1D8Skin menu: press W on this unit, click a skin to toggle it, then pick your hero.|r")
+endif
+set pl=null
+endfunction
+function SkinMenuInit takes nothing returns nothing
+local trigger t=CreateTrigger()
+local integer i=0
+loop
+exitwhen i>5
+call TriggerRegisterPlayerChatEvent(t,Player(i),"-skin",true)
+set i=i+1
+endloop
+call TriggerAddAction(t,function SkinMenuCmd)
+set t=null
+endfunction
+"""
+CMD_ANCHOR = 'function Trig_NewInit_Actions takes nothing returns nothing\n'
+INIT_ANCHOR = ('set L=L+1\nendloop\nset u=null\nset ug=null\nset pl=null\n'
+               'call DestroyTrigger(GetTriggeringTrigger())\nendfunction\n')
+
+
 def build_patch(jass):
     """回傳 (錨點行, 新內容, 補進去的皮膚清單)。"""
     lines = jass.split('\n')
@@ -122,9 +153,17 @@ def main():
     m = MPQ(src)
     jass = m.read('war3map.j').decode('utf-8', 'surrogateescape')
     old, new, added = build_patch(jass)
-    if jass.count(old) != 1:
-        raise SystemExit('錨點在檔案裡出現 %d 次（要剛好 1 次）' % jass.count(old))
-    raw = jass.replace(old, new, 1).encode('utf-8', 'surrogateescape')
+    edits = [(old, new)]
+    if 'function SkinMenuCmd ' not in jass:      # -skin 指令（只加一次）
+        edits.append((CMD_ANCHOR, SKIN_CMD + CMD_ANCHOR))
+        edits.append((INIT_ANCHOR,
+                      INIT_ANCHOR.replace('endloop\n', 'endloop\ncall SkinMenuInit()\n', 1)))
+    out = jass
+    for a, b in edits:
+        if out.count(a) != 1:
+            raise SystemExit('錨點在檔案裡出現 %d 次（要剛好 1 次）：%s' % (out.count(a), a[:40]))
+        out = out.replace(a, b, 1)
+    raw = out.encode('utf-8', 'surrogateescape')
 
     blob = pack(raw, m.sector)
     bi = m.find('war3map.j')
@@ -155,7 +194,9 @@ def main():
     # 驗證：改過的讀得回來，其他檔案原封不動
     m2 = MPQ(dst)
     t2 = m2.read('war3map.j').decode('utf-8', 'surrogateescape')
-    ok = t2.count(new) == 1 and len(t2.encode('utf-8', 'surrogateescape')) == len(raw)
+    ok = (t2.count(new) == 1 and t2.count('function SkinMenuCmd ') == 1
+          and t2.count('call SkinMenuInit()') == 1
+          and len(t2.encode('utf-8', 'surrogateescape')) == len(raw))
     m1 = MPQ(src)
     same = all(m1.read(x) == m2.read(x) for x in
                ('war3map.w3a', 'war3map.w3u', 'war3map.w3t', 'war3map.w3h',
@@ -169,6 +210,7 @@ def main():
     print('  補上 %d 個皮膚，war3map.j %s' % (len(added), where))
     print('  war3map.j 寫回正確：%s｜其他檔案未更動：%s' % (ok, same))
     print('  選英雄時不會生效的：%s' % (dead or '無'))
+    print('  已加入 -skin 指令（選取「額外資訊」單位並把鏡頭移過去）')
     if not (ok and same) or dead:
         raise SystemExit('驗證失敗，請不要用這份檔案')
     print('  完成。多人連線時每個隊友都要換成這一份地圖檔。')
