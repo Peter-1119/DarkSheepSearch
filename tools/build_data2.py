@@ -226,6 +226,19 @@ RECIPE_FIX = {
     'sbok': ['schl', 'pclr'],       # 黃道十二宮 = 潛能覺醒 + 覺醒卷軸
     'I00S': ['I04G', 'gvsm'],       # 寒冰之球 = 熔岩球（特殊3）+ 石英法杖（特殊1）
     'shcw': ['ratf', 'gsou', 'rej2'],  # 矛與盾：新版把石英法杖換成翡翠吊墜
+    # 寶石線的數量：wiki 只列出「有哪些材料」，但程式碼數的是件數 ——
+    # 純淨寶石要 3 顆同色（Ruby2/Emerald2/… 的 `if L2>=3`），耳環要 2 顆同色純淨寶石
+    # （Ruby3/… 的 `if L2>=2`）。少寫數量會讓人以為一顆就能做，差 6 倍。
+    'rma2': ['rhe3', 'lmbr', 'lmbr', 'lmbr'],
+    'sor2': ['rhe3', 'gomn', 'gomn', 'gomn'],
+    'sor3': ['rhe3', 'gfor', 'gfor', 'gfor'],
+    'sor4': ['rhe3', 'guvi', 'guvi', 'guvi'],
+    'sor5': ['rhe3', 'tpow', 'tpow', 'tpow'],
+    'I00P': ['I00D', 'rma2', 'rma2'],
+    'I00F': ['I00D', 'sor2', 'sor2'],
+    'I00Q': ['I00D', 'sor3', 'sor3'],
+    'I00O': ['I00D', 'sor4', 'sor4'],
+    'I00E': ['I00D', 'sor5', 'sor5'],
 }
 for k, v in RECIPE_FIX.items():
     items[k]['recipe'] = v

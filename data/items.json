@@ -394,6 +394,7 @@
    "gold": 5000,
    "recipe": [
     "I00D",
+    "sor5",
     "sor5"
    ],
    "used_in": [],
@@ -425,6 +426,7 @@
    "gold": 5000,
    "recipe": [
     "I00D",
+    "sor2",
     "sor2"
    ],
    "used_in": [],
@@ -672,6 +674,7 @@
    "gold": 5000,
    "recipe": [
     "I00D",
+    "sor4",
     "sor4"
    ],
    "used_in": [],
@@ -703,6 +706,7 @@
    "gold": 5000,
    "recipe": [
     "I00D",
+    "rma2",
     "rma2"
    ],
    "used_in": [],
@@ -734,6 +738,7 @@
    "gold": 5000,
    "recipe": [
     "I00D",
+    "sor3",
     "sor3"
    ],
    "used_in": [],
@@ -9979,6 +9984,8 @@
    "gold": 2200,
    "recipe": [
     "rhe3",
+    "lmbr",
+    "lmbr",
     "lmbr"
    ],
    "used_in": [
@@ -11134,6 +11141,8 @@
    "gold": 2200,
    "recipe": [
     "rhe3",
+    "gomn",
+    "gomn",
     "gomn"
    ],
    "used_in": [
@@ -11161,6 +11170,8 @@
    "gold": 2200,
    "recipe": [
     "rhe3",
+    "gfor",
+    "gfor",
     "gfor"
    ],
    "used_in": [
@@ -11188,6 +11199,8 @@
    "gold": 2200,
    "recipe": [
     "rhe3",
+    "guvi",
+    "guvi",
     "guvi"
    ],
    "used_in": [
@@ -11215,6 +11228,8 @@
    "gold": 2200,
    "recipe": [
     "rhe3",
+    "tpow",
+    "tpow",
     "tpow"
    ],
    "used_in": [
