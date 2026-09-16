@@ -431,6 +431,111 @@ body[data-scrim="1"] .scrim{opacity:1;pointer-events:auto}
 .empty{padding:60px var(--gutter);text-align:center;color:var(--ink-3)}
 .empty b{display:block;color:var(--ink-2);margin-bottom:6px;font-weight:500}
 
+/* ============================================================ 抽裝頁
+   等級是「有順序」的量（lv.1 -> lv.5++），所以用單一色相、亮度遞增的階梯，
+   讓顏色本身就讀得出高低；「寶藏判定」不是等級而是一道閘門，用網站的強調色
+   另外標，並且每一段都直接寫上名稱，不靠顏色單獨辨識。 */
+.gpage{padding:16px var(--gutter) 60px;max-width:1040px}
+.gpage .sec{margin-bottom:34px}
+.gpage .sec-head{position:static;padding-left:0;padding-right:0;background:none}
+.gpage .note{margin:0 0 14px}
+
+/* 流程圖 */
+.gflow{display:flex;flex-wrap:wrap;gap:10px;align-items:stretch}
+.gf-col{flex:1 1 300px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.gf-step{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;
+  background:var(--surface);border:1px solid var(--line)}
+.gf-step b{font-size:13.5px}
+.gf-step .g{margin-left:auto;font:11.5px/1 ui-monospace,monospace;color:var(--ink-3);
+  white-space:nowrap}
+.gf-step p{margin:3px 0 0;font-size:var(--fs-sub);color:var(--ink-3);line-height:1.6}
+.gf-arrow{align-self:center;color:var(--ink-3);font-size:14px;line-height:1}
+.gf-body{min-width:0;flex:1}
+/* 學院不產盒子，只讓保底變快 —— 用虛線與整列寬度表示它在流程之外 */
+.gf-side{margin-top:10px;border-style:dashed;border-left:3px solid var(--mat)}
+
+/* 機率長條：一列一個狀態 */
+.gbox{background:var(--surface);border:1px solid var(--line);border-radius:12px;
+  padding:14px 16px 12px;margin-bottom:10px}
+.gbox > h3{margin:0 0 2px;font-size:14.5px;display:flex;align-items:baseline;gap:9px;flex-wrap:wrap}
+.gbox > h3 .g{font:12px/1 ui-monospace,monospace;color:var(--accent)}
+.gbox > h3 .t{font:11.5px/1 ui-monospace,monospace;color:var(--ink-3)}
+.gbox > p{margin:7px 0 11px;font-size:var(--fs-sub);color:var(--ink-2);line-height:1.7}
+.grow{display:grid;grid-template-columns:minmax(96px,auto) 1fr;gap:6px 12px;align-items:center;
+  margin-top:7px}
+.grow .w{font-size:11.5px;color:var(--ink-3);text-align:right;line-height:1.4}
+.gbar{display:flex;height:26px;border-radius:6px;overflow:hidden;gap:2px;background:var(--bg-2)}
+.gbar i{display:flex;align-items:center;justify-content:center;font-style:normal;
+  font:11px/1 ui-monospace,monospace;color:#0a0c11;font-weight:600;min-width:0;overflow:hidden;
+  white-space:nowrap}
+.gbar i:first-child{border-radius:6px 0 0 6px}
+.gbar i:last-child{border-radius:0 6px 6px 0}
+.gbar i.dim{color:var(--ink)}
+/* 窄螢幕上 10% 的色塊寫不下字，補一行純文字的數字當表格版 */
+.gtxt{display:none;font-size:11.5px;color:var(--ink-3);line-height:1.6;margin-top:3px}
+
+/* 圖例 */
+.gleg{display:flex;flex-wrap:wrap;gap:4px 12px;margin:0 0 14px;font-size:11.5px;color:var(--ink-2)}
+.gleg button{display:inline-flex;align-items:center;gap:6px;color:inherit;font-size:inherit;
+  padding:2px 6px;border-radius:6px;transition:background var(--dur)}
+.gleg button:hover{background:var(--surface-2);color:var(--ink)}
+.gleg i{width:13px;height:13px;border-radius:4px;display:inline-block;flex:0 0 auto}
+
+/* 保底格子 */
+.gtr{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px}
+.gtr-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.gtr-row:last-child{margin-bottom:0}
+.gtr-lab{font-size:var(--fs-sub);color:var(--ink-2);min-width:118px}
+.gticks{display:flex;gap:4px}
+.gticks i{width:17px;height:26px;border-radius:4px;background:var(--surface-2);
+  border:1px solid var(--line-2);display:block}
+.gticks i.on{background:var(--accent);border-color:var(--accent)}
+.gticks i.seer{background:repeating-linear-gradient(135deg,var(--accent) 0 3px,transparent 3px 6px);
+  border-color:var(--accent)}
+.gtr-out{display:inline-flex;align-items:center;gap:7px;padding:4px 10px;border-radius:99px;
+  font-size:12px;color:var(--ink);background:var(--surface-2);border:1px solid var(--line-2)}
+.gtr-out i{width:11px;height:11px;border-radius:3px;display:inline-block}
+.gtr-note{margin:12px 0 0;font-size:var(--fs-sub);color:var(--ink-3);line-height:1.7}
+
+/* 牌堆 */
+.gdeck{display:grid;gap:7px}
+.gd{display:grid;grid-template-columns:minmax(84px,auto) 1fr 52px;gap:10px;align-items:center;
+  width:100%;text-align:left;padding:5px 8px;border-radius:8px;transition:background var(--dur)}
+.gd:hover{background:var(--surface-2)}
+.gd .nm{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;color:var(--ink)}
+.gd .nm i{width:11px;height:11px;border-radius:3px;flex:0 0 auto}
+.gd .bar{height:14px;border-radius:5px;background:var(--surface-2);overflow:hidden}
+.gd .bar span{display:block;height:100%;border-radius:5px}
+.gd .v{font:12px/1 ui-monospace,monospace;color:var(--ink-2);text-align:right;
+  font-variant-numeric:tabular-nums}
+
+/* 加成／陷阱 */
+.gcards{display:grid;gap:9px;grid-template-columns:repeat(auto-fit,minmax(290px,1fr))}
+.gcard{padding:12px 14px;border-radius:10px;background:var(--surface);
+  border:1px solid var(--line);border-left:3px solid var(--line-2)}
+.gcard.good{border-left-color:var(--mat)}
+.gcard.trap{border-left-color:#E8737D}
+.gcard b{display:block;font-size:13px;margin-bottom:5px}
+.gcard.good b{color:var(--mat)}
+.gcard.trap b{color:#E8737D}
+.gcard p{margin:0;font-size:var(--fs-sub);color:var(--ink-2);line-height:1.75}
+
+/* 卷軸盒 */
+.gscr{display:grid;gap:7px}
+.gs{display:grid;grid-template-columns:minmax(96px,auto) 1fr;gap:4px 12px;
+  padding:9px 11px;border-radius:9px;background:var(--surface);border:1px solid var(--line)}
+.gs .h{font-size:13px;display:flex;align-items:baseline;gap:8px}
+.gs .h .g{font:11.5px/1 ui-monospace,monospace;color:var(--accent)}
+.gs .o{font-size:var(--fs-sub);color:var(--ink-2);line-height:1.6}
+.gs .p{grid-column:2;font-size:11.5px;color:var(--ink-3);line-height:1.6}
+@media (max-width:620px){
+  .gtxt{display:block}
+  .grow{grid-template-columns:1fr}
+  .grow .w{text-align:left}
+  .gs{grid-template-columns:1fr}
+  .gs .p{grid-column:1}
+}
+
 /* -------- panel */
 .panel{
   position:relative;flex:0 0 auto;min-width:0;overflow:hidden;
@@ -1320,6 +1425,7 @@ body[data-resizing="1"]{cursor:col-resize;user-select:none}
       <button data-v="build" aria-pressed="false" data-i="mBuild">配裝</button>
       <button data-v="status" aria-pressed="false" data-i="mStatus">狀態</button>
       <button data-v="hero" aria-pressed="false" data-i="mHero">英雄</button>
+      <button data-v="gacha" aria-pressed="false" data-i="mGacha">抽裝</button>
     </div>
 
     <span class="tb-label" data-i="rankL">排行</span>
@@ -1411,7 +1517,14 @@ const UI = {
       setB:'套裝加成', pcs:'%s 件', unsure:'待確認',
       setSrc:'加成數值取自遊戲內 -c1 ~ -c5，非地圖資料',
       mBrowse:'瀏覽', mBuild:'配裝',
-      mStatus:'狀態',
+      mStatus:'狀態', mGacha:'抽裝',
+      gTitle:'抽裝備', gSub:'盒子開出什麼不是純亂數 —— 有個人保底、全隊共用的保底，還有一副抽過就不再出現的牌。',
+      gFlow:'從哪裡抽', gBoxes:'每種盒子開出什麼', gTr:'寶藏判定：兩層保底', gDeck:'每一階是一副牌',
+      gBonus:'能提升機率的', gTrap:'容易踩到的坑', gGold:'金', gSec:'秒',
+      gTrShort:'寶藏', gDeckN:'件', gShared:'全隊共用', gPer:'每人各自計算',
+      gScroll:'卷軸盒（開出的是卷軸，不是裝備）', gOut:'開出', gPity:'保底',
+      gTick:'格', gThen:'然後', gSee:'看這一階的裝備',
+      gSeer:'有「先知」天賦：每次填 2 格，3 次就滿',
       smTitle:'狀態關係圖', smChance:'中招機率', smDmg:'受到傷害',
       smAll:'對框內所有狀態：中招機率 +%s%',
       smNoAmp:'沒有專屬放大器', smResist:'抗性對照', smImmune:'免疫',
@@ -1505,7 +1618,14 @@ const UI = {
       setB:'Set bonuses', pcs:'%s pcs', unsure:'unverified',
       setSrc:'Bonus values transcribed from -c1 ~ -c5 in game, not from map data',
       mBrowse:'Browse', mBuild:'Loadout',
-      mStatus:'Statuses',
+      mStatus:'Statuses', mGacha:'Boxes',
+      gTitle:'Opening boxes', gSub:'What a box drops is not pure chance - there is a personal pity counter, a team-wide one, and a deck that never repeats within a round.',
+      gFlow:'Where the boxes come from', gBoxes:'What each box drops', gTr:'The treasure roll: two pity layers', gDeck:'Each tier is a deck',
+      gBonus:'What actually raises your odds', gTrap:'Easy mistakes', gGold:'gold', gSec:'s',
+      gTrShort:'Treasure', gDeckN:'items', gShared:'shared by the team', gPer:'per player',
+      gScroll:'Scroll boxes (these drop scrolls, not equipment)', gOut:'Drops', gPity:'Pity',
+      gTick:'ticks', gThen:'then', gSee:'See the items in this tier',
+      gSeer:'With the Seer talent: 2 ticks per roll, full in 3',
       smTitle:'Status relationships', smChance:'chance', smDmg:'damage',
       smAll:'Everything inside: +%s% chance to be applied',
       smNoAmp:'no dedicated amplifier', smResist:'Resistances', smImmune:'immune',
@@ -1604,7 +1724,14 @@ const UI = {
       setB:'Бонусы комплекта', pcs:'%s пр.', unsure:'не уточнено',
       setSrc:'Значения переписаны из -c1 ~ -c5 в игре, не из данных карты',
       mBrowse:'Обзор', mBuild:'Сборка',
-      mStatus:'Статусы',
+      mStatus:'Статусы', mGacha:'Коробки',
+      gTitle:'Открытие коробок', gSub:'Выпадение из коробок - не чистый рандом: есть личный гарант, общий для команды гарант и колода, которая не повторяется в пределах круга.',
+      gFlow:'Откуда берутся коробки', gBoxes:'Что даёт каждая коробка', gTr:'Бросок сокровища: два уровня гаранта', gDeck:'Каждая ступень - это колода',
+      gBonus:'Что реально повышает шансы', gTrap:'Частые ошибки', gGold:'зол.', gSec:'сек.',
+      gTrShort:'Сокровище', gDeckN:'шт.', gShared:'общий для команды', gPer:'у каждого свой',
+      gScroll:'Коробки свитков (дают свитки, а не снаряжение)', gOut:'Выдаёт', gPity:'Гарант',
+      gTick:'делений', gThen:'затем', gSee:'Показать предметы этой ступени',
+      gSeer:'С талантом «Провидец»: 2 деления за бросок, полный за 3',
       smTitle:'Связи статусов', smChance:'шанс', smDmg:'урон',
       smAll:'Всё внутри рамки: шанс наложения +%s%',
       smNoAmp:'нет усилителя', smResist:'Сопротивления', smImmune:'иммунитет',
@@ -1799,7 +1926,21 @@ function statusRail(){
   }
   return h + railMeta();
 }
+function gachaRail(){
+  const L = li(), G = DATA.gacha || {};
+  let h = `<h3>${esc(t('srSec'))}</h3>`;
+  for (const [id, k] of [['gflow', 'gFlow'], ['gboxes', 'gBoxes'], ['gtr', 'gTr'],
+                         ['gdeck', 'gDeck'], ['gbonus', 'gBonus'], ['gtrap', 'gTrap']])
+    h += `<button class="tier" data-sjump="${id}"><i class="dot" style="background:var(--line-2)"></i>
+          <span class="nm">${esc(t(k))}</span></button>`;
+  h += `<h3>${esc(t('gDeck'))}</h3>`;
+  for (const x of (G.tiers || []))
+    h += `<button class="tier" data-gq="${esc(x.q)}"><i class="dot" style="background:${x.c}"></i>
+          <span class="nm">${esc(x.n[L])}</span><span class="ct">${x.n_pool}</span></button>`;
+  return h + railMeta();
+}
 function renderRail(){
+  if (S.mode === 'gacha'){ rail.innerHTML = gachaRail(); syncMenuDot(); return; }
   if (S.mode === 'hero'){ rail.innerHTML = heroRail(); syncMenuDot(); return; }
   if (S.mode === 'status'){ rail.innerHTML = statusRail(); syncMenuDot(); return; }
   /* counts follow the search so the rail doubles as a result breakdown */
@@ -2368,7 +2509,134 @@ function renderStatusPage(){
   </div>`;
 }
 
+/* 抽裝頁。機率、保底門檻與牌堆件數都在 data/gacha.json，由 build_gacha.py
+   從地圖與人工整理的機率表合出來 —— 這裡只負責畫。 */
+function renderGachaPage(){
+  const L = li(), G = DATA.gacha;
+  if (!G){ main.innerHTML = `<div class="gpage"><p class="note">—</p></div>`; return; }
+  const TI = {}; for (const x of G.tiers) TI[x.k] = x;
+  const TR = G.treasure;
+  const col = k => k === 'tr' ? TR.c : (TI[k] || {}).c || 'var(--line-2)';
+  const lab = k => k === 'tr' ? t('gTrShort') : ((TI[k] || {}).n || [k])[L];
+  /* 長條上的空間有限，用短名（lv.3）就好；完整名稱在圖例與 tooltip 裡 */
+  const shortLab = k => k === 'tr' ? t('gTrShort')
+      : (((TI[k] || {}).n || [k])[L].match(/lv\.[0-9+]+/) || [k])[0];
+  const money = b => [b.gold ? `${b.gold} ${t('gGold')}` : '', b.sec ? `${b.sec} ${t('gSec')}` : '']
+      .filter(Boolean).join(' · ');
+
+  const legend = `<div class="gleg">${G.tiers.map(x =>
+      `<button data-gq="${esc(x.q)}" title="${esc(t('gSee'))}"><i style="background:${x.c}"></i>${
+        esc(x.n[L])}</button>`).join('')}
+    <span style="display:inline-flex;align-items:center;gap:6px;padding:2px 6px">
+      <i style="width:13px;height:13px;border-radius:4px;background:${TR.c}"></i>${esc(t('gTrShort'))}</span></div>`;
+
+  const bar = p => {
+    const ks = Object.keys(p);
+    return `<div class="gbar">${ks.map(k => {
+      const v = p[k], light = k === 't1' || k === 't2';
+      return `<i style="flex:${v} 1 0;background:${col(k)}" class="${light ? 'dim' : ''}"
+        title="${esc(lab(k))} ${v}%">${v >= 9 ? (esc(shortLab(k)) + ' ' + v + '%') : (v >= 5 ? v + '%' : '')}</i>`;
+    }).join('')}</div>
+      <span class="gtxt">${ks.map(k => esc(lab(k)) + ' ' + p[k] + '%').join('　·　')}</span>`;
+  };
+
+  const boxCard = b => `<article class="gbox">
+      <h3>${esc(b.n[L])}<span class="g">${esc(money(b))}</span>
+        <span class="t">${esc((G.where[b.where] || {}).n[L] || '')}</span></h3>
+      <p>${esc(b.note[L])}</p>
+      ${b.states.map(st => `<div class="grow"><span class="w">${esc(st.when[L])}</span>${bar(st.p)}</div>`).join('')}
+    </article>`;
+
+  const ticks = (n, on, seer) => `<span class="gticks">${Array.from({length: n}, (_, i) =>
+      `<i class="${i < on ? (seer && i >= on - 2 ? 'seer' : 'on') : ''}"></i>`).join('')}</span>`;
+  const pill = k => `<span class="gtr-out"><i style="background:${col(k)}"></i>${esc(lab(k))}</span>`;
+
+  const w = G.where;
+  main.innerHTML = `<div class="gpage">
+    <header class="ph"><h1>${esc(t('gTitle'))}</h1><p>${esc(t('gSub'))}</p></header>
+
+    <section class="sec" id="gflow">
+      <div class="sec-head"><h2>${esc(t('gFlow'))}</h2><span class="bar"></span></div>
+      <div class="gflow">
+        <div class="gf-col">
+          <div class="gf-step"><div class="gf-body"><b>${esc(w.arch.n[L])}</b>
+            <p>${esc(w.arch.t[L])}</p></div><span class="g">${esc(money(w.arch))}</span></div>
+          <div class="gf-arrow">↓</div>
+          ${G.boxes.filter(b => b.where === 'arch').map(b => `<div class="gf-step">
+            <div class="gf-body"><b>${esc(b.n[L])}</b></div>
+            <span class="g">${esc(money(b))}</span></div>`).join('')}
+        </div>
+        <div class="gf-col">
+          <div class="gf-step"><div class="gf-body"><b>${esc(w.vault.n[L])}</b>
+            <p>${esc(w.vault.t[L])}</p></div></div>
+          <div class="gf-arrow">↓</div>
+          ${G.boxes.filter(b => b.where === 'vault').map(b => `<div class="gf-step">
+            <div class="gf-body"><b>${esc(b.n[L])}</b></div>
+            <span class="g">${esc(money(b))}</span></div>`).join('')}
+        </div>
+      </div>
+      <div class="gf-step gf-side"><div class="gf-body"><b>${esc(w.academy.n[L])}</b>
+        <p>${esc(w.academy.t[L])}</p></div><span class="g">${esc(money(w.academy))}</span></div>
+    </section>
+
+    <section class="sec" id="gboxes">
+      <div class="sec-head"><h2>${esc(t('gBoxes'))}</h2><span class="bar"></span></div>
+      ${legend}
+      ${G.boxes.map(boxCard).join('')}
+    </section>
+
+    <section class="sec" id="gtr">
+      <div class="sec-head"><h2>${esc(t('gTr'))}</h2><span class="bar"></span></div>
+      <p class="note">${esc(TR.sum[L])}</p>
+      <div class="gtr">
+        <div class="gtr-row"><span class="gtr-lab">${esc(TR.steps[0].n[L])}</span>
+          ${ticks(6, 6)}<span class="gf-arrow">→</span>${pill('t6')}</div>
+        <div class="gtr-row"><span class="gtr-lab">${esc(TR.steps[0].elseN[L])}</span>
+          ${ticks(6, 3)}<span class="gf-arrow">→</span>${pill('t5')}</div>
+        <div class="gtr-row"><span class="gtr-lab">${esc(TR.steps[1].n[L])}</span>
+          ${Array.from({length: 5}, () => pill('t6')).slice(0, 4).join('')}
+          <span class="gf-arrow">→</span>${pill('t7')}</div>
+        <p class="gtr-note">${esc(G.bonus[0].n[L])}：${esc(G.bonus[0].t[L])}</p>
+        <div class="gtr-row"><span class="gtr-lab">${esc(t('gSeer'))}</span>
+          ${ticks(6, 6, true)}<span class="gf-arrow">→</span>${pill('t6')}</div>
+      </div>
+    </section>
+
+    <section class="sec" id="gdeck">
+      <div class="sec-head"><h2>${esc(t('gDeck'))}</h2><span class="bar"></span>
+        <span class="n">${esc(t('gShared'))}</span></div>
+      <p class="note">${esc(G.traps[1].t[L])}</p>
+      <div class="gdeck">${G.tiers.map(x => `<button class="gd" data-gq="${esc(x.q)}"
+          title="${esc(t('gSee'))}">
+          <span class="nm"><i style="background:${x.c}"></i>${esc(x.n[L])}</span>
+          <span class="bar"><span style="width:${x.n_pool / 35 * 100}%;background:${x.c}"></span></span>
+          <span class="v">${x.n_pool} ${esc(t('gDeckN'))}</span></button>`).join('')}</div>
+    </section>
+
+    <section class="sec" id="gbonus">
+      <div class="sec-head"><h2>${esc(t('gBonus'))}</h2><span class="bar"></span></div>
+      <div class="gcards">${G.bonus.map(x => `<div class="gcard good">
+        <b>${esc(x.n[L])}</b><p>${esc(x.t[L])}</p></div>`).join('')}</div>
+    </section>
+
+    <section class="sec" id="gtrap">
+      <div class="sec-head"><h2>${esc(t('gTrap'))}</h2><span class="bar"></span></div>
+      <div class="gcards">${G.traps.map(x => `<div class="gcard trap">
+        <b>${esc(x.n[L])}</b><p>${esc(x.t[L])}</p></div>`).join('')}</div>
+    </section>
+
+    <section class="sec">
+      <div class="sec-head"><h2>${esc(t('gScroll'))}</h2><span class="bar"></span></div>
+      <div class="gscr">${G.scrolls.map(x => `<div class="gs">
+        <span class="h">${esc(x.n[L])}<span class="g">${esc(money(x))}</span></span>
+        <span class="o">${esc(x.out[L].join('・'))}</span>
+        <span class="p">${esc(t('gPity'))}：${esc(x.pity[L])}</span></div>`).join('')}</div>
+    </section>
+  </div>`;
+}
+
 function renderGrid(){
+  if (S.mode === 'gacha'){ renderGachaPage(); return; }
   if (S.mode === 'status'){ renderStatusPage(); return; }
   if (S.mode === 'hero'){ renderHeroPage(); return; }
   const ids = visible();
@@ -3313,6 +3581,13 @@ function usedInBlock(id, ids){
 
 /* ---------------------------------------------------------------- events */
 main.addEventListener('click', e => {
+  const gq0 = e.target.closest('[data-gq]');
+  if (gq0 && S.mode === 'gacha'){
+    const gi = (DATA.groups || []).findIndex(g => g.zh === gq0.dataset.gq);
+    ensureBrowse();
+    S.tier = gi >= 0 ? gi : null; S.cat = null; S.set = null; S.act = null;
+    renderRail(); renderGrid(); main.scrollTop = 0; return;
+  }
   /* 關係圖與抗性表上的狀態都可以點 —— 直接用它當關鍵字回到裝備清單，
      圖不只是圖，也是進入清單的入口。 */
   const mq = e.target.closest('[data-mq]');
@@ -3483,6 +3758,15 @@ rail.addEventListener('click', e => {
     const el = main.querySelector(`.hulk[data-unlock="${hj.dataset.hjump}"]`);
     if (el) scrollMainTo(el);
     setDrawer(false); return;
+  }
+  const gq = e.target.closest('[data-gq]');
+  if (gq){                                   // 抽裝頁的階級 -> 回裝備清單看那一階
+    const want = gq.dataset.gq;
+    const gi = (DATA.groups || []).findIndex(g => g.zh === want);
+    ensureBrowse();
+    S.tier = gi >= 0 ? gi : null; S.cat = null; S.set = null; S.act = null;
+    S.q = ''; $('#q').value = '';
+    renderRail(); renderGrid(); main.scrollTop = 0; setDrawer(false); return;
   }
   const sj = e.target.closest('[data-sjump]');
   if (sj){
