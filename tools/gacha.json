@@ -9,157 +9,605 @@
   "key 是 tiers 的 k（t1~t7）或 tr（寶藏判定）。"
  ],
  "tiers": [
-  {"k": "t1", "c": "#3a5f86", "q": "特殊（lv.1）",
-   "n": ["特殊 lv.1", "Special lv.1", "Особый 1 ур."]},
-  {"k": "t2", "c": "#4a7fb0", "q": "特殊（lv.2）",
-   "n": ["特殊 lv.2", "Special lv.2", "Особый 2 ур."]},
-  {"k": "t3", "c": "#5c9fd6", "q": "特殊（lv.3）",
-   "n": ["特殊 lv.3", "Special lv.3", "Особый 3 ур."]},
-  {"k": "t4", "c": "#7bbdf0", "q": "特殊（lv.4）",
-   "n": ["特殊 lv.4", "Special lv.4", "Особый 4 ур."]},
-  {"k": "t5", "c": "#a3d4f7", "q": "特殊（lv.5）",
-   "n": ["特殊 lv.5", "Special lv.5", "Особый 5 ур."]},
-  {"k": "t6", "c": "#c8e6fb", "q": "特殊（lv.5+）",
-   "n": ["特殊 lv.5+", "Special lv.5+", "Особый 5+ ур."]},
-  {"k": "t7", "c": "#e8f4fe", "q": "特殊（lv.5++）",
-   "n": ["特殊 lv.5++", "Special lv.5++", "Особый 5++ ур."]}
+  {
+   "k": "t1",
+   "c": "#3a5f86",
+   "q": "特殊（lv.1）",
+   "n": [
+    "特殊 lv.1",
+    "Special lv.1",
+    "Особый 1 ур."
+   ]
+  },
+  {
+   "k": "t2",
+   "c": "#4a7fb0",
+   "q": "特殊（lv.2）",
+   "n": [
+    "特殊 lv.2",
+    "Special lv.2",
+    "Особый 2 ур."
+   ]
+  },
+  {
+   "k": "t3",
+   "c": "#5c9fd6",
+   "q": "特殊（lv.3）",
+   "n": [
+    "特殊 lv.3",
+    "Special lv.3",
+    "Особый 3 ур."
+   ]
+  },
+  {
+   "k": "t4",
+   "c": "#7bbdf0",
+   "q": "特殊（lv.4）",
+   "n": [
+    "特殊 lv.4",
+    "Special lv.4",
+    "Особый 4 ур."
+   ]
+  },
+  {
+   "k": "t5",
+   "c": "#a3d4f7",
+   "q": "特殊（lv.5）",
+   "n": [
+    "特殊 lv.5",
+    "Special lv.5",
+    "Особый 5 ур."
+   ]
+  },
+  {
+   "k": "t6",
+   "c": "#c8e6fb",
+   "q": "特殊（lv.5+）",
+   "n": [
+    "特殊 lv.5+",
+    "Special lv.5+",
+    "Особый 5+ ур."
+   ]
+  },
+  {
+   "k": "t7",
+   "c": "#e8f4fe",
+   "q": "特殊（lv.5++）",
+   "n": [
+    "特殊 lv.5++",
+    "Special lv.5++",
+    "Особый 5++ ур."
+   ]
+  }
  ],
  "treasure": {
   "c": "#ffb648",
-  "n": ["寶藏判定", "Treasure roll", "Бросок сокровища"],
+  "n": [
+   "寶藏判定",
+   "Treasure roll",
+   "Бросок сокровища"
+  ],
   "sum": [
-   "抽到「寶藏判定」不是直接給 lv.5，而是往全隊共用的計數器加一格。",
-   "A treasure roll does not hand you a lv.5 outright - it adds one tick to a counter the whole team shares.",
-   "Бросок сокровища не выдаёт предмет 5 ур. сразу - он добавляет деление к общему для всей команды счётчику."
+   "「寶藏」不是一個等級，是一張入場券：抽中它代表這一次一定給 lv.5 以上。給哪一階不再擲骰，完全看全隊共用的計數器排到哪裡 —— 所以 400 金的盒子抽中寶藏，和 1125 金的盒子抽中寶藏，拿到的東西一模一樣。貴的盒子只是比較常抽到寶藏而已。",
+   "\"Treasure\" is not a tier - it is a ticket: hitting it guarantees lv.5 or better. Which tier you get involves no further dice; it is decided purely by where the team-wide counter stands. A treasure from the 400-gold box and a treasure from the 1125-gold box give exactly the same thing - the expensive box just hits treasure more often.",
+   "«Сокровище» - это не ступень, а билет: попадание гарантирует 5 ур. или выше. Какая именно ступень - без дополнительного броска, всё решает общий для команды счётчик. Сокровище из коробки за 400 золота и за 1125 даёт одно и то же - дорогая коробка просто чаще выпадает сокровищем."
   ],
   "steps": [
-   {"need": 6, "give": "t6",
-    "n": ["每 6 格 → 一件 lv.5+", "Every 6 ticks -> one lv.5+", "Каждые 6 делений -> один предмет 5+"],
+   {
+    "need": 6,
+    "give": "t6",
+    "n": [
+     "每 6 格 → 一件 lv.5+",
+     "Every 6 ticks -> one lv.5+",
+     "Каждые 6 делений -> один предмет 5+"
+    ],
     "else": "t5",
-    "elseN": ["沒滿格就給 lv.5", "Otherwise you get a lv.5", "Иначе выдаётся предмет 5 ур."]},
-   {"need": 5, "give": "t7",
-    "n": ["每 5 件 lv.5+ → 改成 lv.5++", "Every 5th lv.5+ becomes a lv.5++", "Каждый 5-й предмет 5+ становится 5++"],
-    "else": "t6", "elseN": ["", "", ""]}
-  ]
+    "elseN": [
+     "沒滿格就給 lv.5",
+     "Otherwise you get a lv.5",
+     "Иначе выдаётся предмет 5 ур."
+    ]
+   },
+   {
+    "need": 5,
+    "give": "t7",
+    "n": [
+     "每 5 件 lv.5+ → 改成 lv.5++",
+     "Every 5th lv.5+ becomes a lv.5++",
+     "Каждый 5-й предмет 5+ становится 5++"
+    ],
+    "else": "t6",
+    "elseN": [
+     "",
+     "",
+     ""
+    ]
+   }
+  ],
+  "cycle": {
+   "n": [
+    "30 次寶藏判定的固定節奏",
+    "The fixed rhythm of 30 treasure rolls",
+    "Фиксированный ритм из 30 бросков сокровища"
+   ],
+   "t": [
+    "計數器不歸零、也不重骰，所以只要數得出來現在排到第幾次，就知道下一發是什麼。每 6 次出一個 lv.5+，每 5 個 lv.5+ 的那一個變成 lv.5++ —— 湊起來就是每 30 次固定 25 個 lv.5、4 個 lv.5+、1 個 lv.5++。有「先知」天賦時每次算 2 格，整個節奏縮成 15 次（10 / 4 / 1）。",
+    "The counter never resets on its own and never re-rolls, so if you can count where the team is, you know what the next treasure will be. Every 6th roll is a lv.5+, and every 5th lv.5+ becomes a lv.5++ - which works out to exactly 25 lv.5, 4 lv.5+ and 1 lv.5++ per 30 rolls. With the Seer talent each roll counts double and the whole rhythm compresses to 15 rolls (10 / 4 / 1).",
+    "Счётчик сам не сбрасывается и не перебрасывается, поэтому, зная номер броска, вы знаете и результат. Каждый 6-й бросок - 5+, каждый 5-й предмет 5+ становится 5++: ровно 25 предметов 5 ур., 4 предмета 5+ и 1 предмет 5++ на 30 бросков. С «Провидцем» каждый бросок считается за два, и весь ритм сжимается до 15 бросков (10 / 4 / 1)."
+   ],
+   "seq": [
+    5,
+    1,
+    5,
+    1,
+    5,
+    1,
+    5,
+    1,
+    5,
+    1
+   ],
+   "give": [
+    "t5",
+    "t6",
+    "t5",
+    "t6",
+    "t5",
+    "t6",
+    "t5",
+    "t6",
+    "t5",
+    "t7"
+   ]
+  }
  },
  "boxes": [
-  {"id": "h034", "where": "arch", "gold": 135, "sec": 20,
-   "n": ["簡易道具", "Simple item", "Простой предмет"],
-   "states": [
-    {"when": ["第一次抽", "First roll", "Первый раз"], "p": {"t1": 60, "t2": 40}},
-    {"when": ["抽過 1 次後", "After 1 roll", "После 1 раза"], "p": {"t1": 60, "t2": 30, "t3": 10}},
-    {"when": ["抽過 3 次後", "After 3 rolls", "После 3 раз"], "p": {"t1": 60, "t2": 25, "t3": 10, "t4": 5}}
+  {
+   "id": "h034",
+   "where": "arch",
+   "gold": 135,
+   "sec": 20,
+   "n": [
+    "簡易道具",
+    "Simple item",
+    "Простой предмет"
    ],
-   "note": ["前期補位用。第一次一定出不了 lv.3 以上，要連抽才會解鎖上面兩階。",
-            "Early filler. The first roll can never give lv.3+; the top two tiers only unlock as you keep rolling.",
-            "Для раннего этапа. Первый бросок не может дать 3+ ур.; верхние ступени открываются только сериями."]},
-
-  {"id": "h035", "where": "arch", "gold": 400, "sec": 30,
-   "n": ["強化道具", "Enhanced item", "Усиленный предмет"],
    "states": [
-    {"when": ["前 3 次", "First 3 rolls", "Первые 3 раза"], "p": {"t2": 50, "t3": 30, "t4": 15, "tr": 5}},
-    {"when": ["連 3 次沒出 lv.4 之後", "After 3 rolls without a lv.4", "После 3 раз без 4 ур."],
-     "p": {"t2": 40, "t3": 28, "t4": 22, "tr": 10}}
+    {
+     "when": [
+      "第一次抽",
+      "First roll",
+      "Первый раз"
+     ],
+     "p": {
+      "t1": 60,
+      "t2": 40
+     }
+    },
+    {
+     "when": [
+      "抽過 1 次後",
+      "After 1 roll",
+      "После 1 раза"
+     ],
+     "p": {
+      "t1": 60,
+      "t2": 30,
+      "t3": 10
+     }
+    },
+    {
+     "when": [
+      "抽過 3 次後",
+      "After 3 rolls",
+      "После 3 раз"
+     ],
+     "p": {
+      "t1": 60,
+      "t2": 25,
+      "t3": 10,
+      "t4": 5
+     }
+    }
    ],
-   "note": ["出到 lv.4 或寶藏就把計數器歸零，所以這盒的「變好」是暫時的。",
-            "Hitting a lv.4 or a treasure resets the counter, so the improved table here is temporary.",
-            "Предмет 4 ур. или сокровище обнуляют счётчик, поэтому улучшённая таблица держится недолго."]},
-
-  {"id": "h036", "where": "arch", "gold": 775, "sec": 50,
-   "n": ["強力道具", "Strong item", "Сильный предмет"],
+   "note": [
+    "前期補位用。第一次一定出不了 lv.3 以上，要連抽才會解鎖上面兩階。",
+    "Early filler. The first roll can never give lv.3+; the top two tiers only unlock as you keep rolling.",
+    "Для раннего этапа. Первый бросок не может дать 3+ ур.; верхние ступени открываются только сериями."
+   ]
+  },
+  {
+   "id": "h035",
+   "where": "arch",
+   "gold": 400,
+   "sec": 30,
+   "n": [
+    "強化道具",
+    "Enhanced item",
+    "Усиленный предмет"
+   ],
    "states": [
-    {"when": ["剛開始", "From cold", "С нуля"], "p": {"t3": 42, "t4": 40, "tr": 18}},
-    {"when": ["連 2 次沒出寶藏", "2 rolls without a treasure", "2 раза без сокровища"],
-     "p": {"t3": 38, "t4": 36, "tr": 26}},
-    {"when": ["連 4 次沒出寶藏", "4 rolls without a treasure", "4 rolls без сокровища"],
-     "p": {"t3": 34, "t4": 32, "tr": 34}}
+    {
+     "when": [
+      "前 3 次",
+      "First 3 rolls",
+      "Первые 3 раза"
+     ],
+     "p": {
+      "t2": 50,
+      "t3": 30,
+      "t4": 15,
+      "tr": 5
+     }
+    },
+    {
+     "when": [
+      "連 3 次沒出 lv.4 之後",
+      "After 3 rolls without a lv.4",
+      "После 3 раз без 4 ур."
+     ],
+     "p": {
+      "t2": 40,
+      "t3": 28,
+      "t4": 22,
+      "tr": 10
+     }
+    }
    ],
-   "note": ["唯一會自己越抽越好的盒子：每次沒出寶藏，寶藏機率就 +4%，出了才歸零。中期最划算的寶藏來源。",
-            "The only box that ramps on its own: every roll without a treasure adds 4% to the treasure chance, and only a treasure resets it. The best mid-game treasure source.",
-            "Единственная коробка, которая сама разгоняется: каждый бросок без сокровища добавляет 4% к его шансу, сбрасывает только само сокровище. Лучший источник в середине игры."]},
-
-  {"id": "h03O", "where": "arch", "gold": 1125, "sec": 45,
-   "n": ["寶藏", "Treasure", "Сокровище"],
+   "note": [
+    "出到 lv.4 或寶藏就把計數器歸零，所以這盒的「變好」是暫時的。不過它只要 400 金就有寶藏判定 —— 如果全隊的寶藏計數器剛好排到 lv.5++ 那一發，用這盒去接是最省的。",
+    "Hitting a lv.4 or a treasure resets the counter, so the improved table here is temporary. But at 400 gold it still rolls treasures - if the team counter happens to be on the lv.5++ step, this is the cheapest box to collect it with.",
+    "Предмет 4 ур. или сокровище обнуляют счётчик, поэтому улучшённая таблица держится недолго. Но за 400 золота она всё же бросает сокровища: если общий счётчик стоит на ступени 5++, забрать её этой коробкой дешевле всего."
+   ]
+  },
+  {
+   "id": "h036",
+   "where": "arch",
+   "gold": 775,
+   "sec": 50,
+   "n": [
+    "強力道具",
+    "Strong item",
+    "Сильный предмет"
+   ],
    "states": [
-    {"when": ["前 3 次", "First 3 rolls", "Первые 3 раза"], "p": {"t4": 50, "tr": 50}},
-    {"when": ["連 3 次都出 lv.4 之後", "After 3 lv.4 in a row", "После 3 предметов 4 ур. подряд"],
-     "p": {"tr": 100}}
+    {
+     "when": [
+      "剛開始",
+      "From cold",
+      "С нуля"
+     ],
+     "p": {
+      "t3": 42,
+      "t4": 40,
+      "tr": 18
+     }
+    },
+    {
+     "when": [
+      "連 2 次沒出寶藏",
+      "2 rolls without a treasure",
+      "2 раза без сокровища"
+     ],
+     "p": {
+      "t3": 38,
+      "t4": 36,
+      "tr": 26
+     }
+    },
+    {
+     "when": [
+      "連 4 次沒出寶藏",
+      "4 rolls without a treasure",
+      "4 rolls без сокровища"
+     ],
+     "p": {
+      "t3": 34,
+      "t4": 32,
+      "tr": 34
+     }
+    }
    ],
-   "note": ["最貴，但也是唯一保證只給 lv.4 以上的盒子。注意前 3 次吃不到「先知」天賦的加成（見下面的陷阱）。",
-            "The most expensive box, and the only one that never drops below lv.4. Note the first 3 rolls do not get the Seer talent bonus (see the pitfalls below).",
-            "Самая дорогая коробка и единственная, которая никогда не даёт ниже 4 ур. Первые 3 броска не получают бонус таланта «Провидец» (см. ниже)."]},
-
-  {"id": "I011", "where": "vault", "gold": 250, "sec": 0,
-   "n": ["包裹", "Parcel", "Посылка"],
+   "note": [
+    "唯一會自己越抽越好的盒子：每次沒出寶藏，寶藏機率就 +4%，出了才歸零。中期最划算的寶藏來源。",
+    "The only box that ramps on its own: every roll without a treasure adds 4% to the treasure chance, and only a treasure resets it. The best mid-game treasure source.",
+    "Единственная коробка, которая сама разгоняется: каждый бросок без сокровища добавляет 4% к его шансу, сбрасывает только само сокровище. Лучший источник в середине игры."
+   ]
+  },
+  {
+   "id": "h03O",
+   "where": "arch",
+   "gold": 1125,
+   "sec": 45,
+   "n": [
+    "寶藏",
+    "Treasure",
+    "Сокровище"
+   ],
    "states": [
-    {"when": ["第一次", "First one", "Первая"], "p": {"t1": 60, "t2": 40}},
-    {"when": ["之後", "After that", "Далее"], "p": {"t1": 60, "t2": 30, "t3": 10}}
+    {
+     "when": [
+      "前 3 次",
+      "First 3 rolls",
+      "Первые 3 раза"
+     ],
+     "p": {
+      "t4": 50,
+      "tr": 50
+     }
+    },
+    {
+     "when": [
+      "連 3 次都出 lv.4 之後",
+      "After 3 lv.4 in a row",
+      "После 3 предметов 4 ур. подряд"
+     ],
+     "p": {
+      "tr": 100
+     }
+    }
    ],
-   "note": ["撿起來就開，不用等建築。但這條線沒有寶藏判定，永遠開不出 lv.5 以上。",
-            "Opens the moment you pick it up, no building needed - but this line has no treasure roll, so it can never produce lv.5 or above.",
-            "Открывается при подборе, здание не нужно - но здесь нет броска сокровища, поэтому 5 ур. и выше не выпадет никогда."]},
-
-  {"id": "I012", "where": "vault", "gold": 525, "sec": 0,
-   "n": ["大包裹", "Large parcel", "Большая посылка"],
+   "note": [
+    "最貴，但也是唯一保證只給 lv.4 以上的盒子。注意前 3 次吃不到「先知」天賦的加成（見下面的陷阱）。",
+    "The most expensive box, and the only one that never drops below lv.4. Note the first 3 rolls do not get the Seer talent bonus (see the pitfalls below).",
+    "Самая дорогая коробка и единственная, которая никогда не даёт ниже 4 ур. Первые 3 броска не получают бонус таланта «Провидец» (см. ниже)."
+   ]
+  },
+  {
+   "id": "I011",
+   "where": "vault",
+   "gold": 250,
+   "sec": 0,
+   "n": [
+    "包裹",
+    "Parcel",
+    "Посылка"
+   ],
    "states": [
-    {"when": ["前 3 次", "First 3", "Первые 3"], "p": {"t2": 50, "t3": 30, "t4": 20}},
-    {"when": ["連 3 次沒出 lv.4 之後", "After 3 without a lv.4", "После 3 без 4 ур."],
-     "p": {"t2": 40, "t3": 25, "t4": 35}}
+    {
+     "when": [
+      "第一次",
+      "First one",
+      "Первая"
+     ],
+     "p": {
+      "t1": 60,
+      "t2": 40
+     }
+    },
+    {
+     "when": [
+      "之後",
+      "After that",
+      "Далее"
+     ],
+     "p": {
+      "t1": 60,
+      "t2": 30,
+      "t3": 10
+     }
+    }
    ],
-   "note": ["同樣沒有寶藏判定，上限就是 lv.4。",
-            "Also has no treasure roll - lv.4 is the ceiling.",
-            "Здесь тоже нет броска сокровища - потолок 4 ур."]}
+   "note": [
+    "撿起來就開，不用等建築。但這條線沒有寶藏判定，永遠開不出 lv.5 以上。",
+    "Opens the moment you pick it up, no building needed - but this line has no treasure roll, so it can never produce lv.5 or above.",
+    "Открывается при подборе, здание не нужно - но здесь нет броска сокровища, поэтому 5 ур. и выше не выпадет никогда."
+   ]
+  },
+  {
+   "id": "I012",
+   "where": "vault",
+   "gold": 525,
+   "sec": 0,
+   "n": [
+    "大包裹",
+    "Large parcel",
+    "Большая посылка"
+   ],
+   "states": [
+    {
+     "when": [
+      "前 3 次",
+      "First 3",
+      "Первые 3"
+     ],
+     "p": {
+      "t2": 50,
+      "t3": 30,
+      "t4": 20
+     }
+    },
+    {
+     "when": [
+      "連 3 次沒出 lv.4 之後",
+      "After 3 without a lv.4",
+      "После 3 без 4 ур."
+     ],
+     "p": {
+      "t2": 40,
+      "t3": 25,
+      "t4": 35
+     }
+    }
+   ],
+   "note": [
+    "同樣沒有寶藏判定，上限就是 lv.4。",
+    "Also has no treasure roll - lv.4 is the ceiling.",
+    "Здесь тоже нет броска сокровища - потолок 4 ур."
+   ]
+  }
  ],
  "scrolls": [
-  {"id": "h00U", "gold": 75, "sec": 20,
-   "n": ["簡易卷軸", "Simple scroll", "Простой свиток"],
-   "out": [["升級卷軸", "轉化卷軸", "不穩定卷軸"],
-           ["Upgrade scroll", "Transmute scroll", "Unstable scroll"],
-           ["Свиток улучшения", "Свиток превращения", "Нестабильный свиток"]],
-   "pity": ["連 2 次沒出轉化／不穩定，第 3 次一定出",
-            "Two rolls without a transmute/unstable guarantees one on the third",
-            "Два броска без превращения/нестабильного гарантируют его на третьем"]},
-  {"id": "h019", "gold": 350, "sec": 35,
-   "n": ["魔法卷軸", "Magic scroll", "Магический свиток"],
-   "out": [["強化卷軸", "淬火卷軸", "扭曲卷軸", "覺醒卷軸", "折射卷軸"],
-           ["Enhance scroll", "Quench scroll", "Warp scroll", "Awakening scroll", "Refraction scroll"],
-           ["Свиток усиления", "Свиток закалки", "Свиток искажения", "Свиток пробуждения", "Свиток преломления"]],
-   "pity": ["覺醒／折射一開始只有 10%，累積 20 次沒出就變成 100%",
-            "Awakening/Refraction start at 10%; 20 rolls without one makes it 100%",
-            "Пробуждение/преломление начинаются с 10%; 20 бросков без них дают 100%"]},
-  {"id": "h03J", "gold": 450, "sec": 40,
-   "n": ["偉大卷軸", "Great scroll", "Великий свиток"],
-   "out": [["覺醒卷軸", "折射卷軸", "淬火卷軸", "扭曲卷軸"],
-           ["Awakening scroll", "Refraction scroll", "Quench scroll", "Warp scroll"],
-           ["Свиток пробуждения", "Свиток преломления", "Свиток закалки", "Свиток искажения"]],
-   "pity": ["覺醒／折射一開始 60%，連 2 次沒出就變成 100%",
-            "Awakening/Refraction start at 60%; two misses make it 100%",
-            "Пробуждение/преломление начинаются с 60%; после двух промахов - 100%"]}
+  {
+   "id": "h00U",
+   "gold": 75,
+   "sec": 20,
+   "n": [
+    "簡易卷軸",
+    "Simple scroll",
+    "Простой свиток"
+   ],
+   "out": [
+    [
+     "升級卷軸",
+     "轉化卷軸",
+     "不穩定卷軸"
+    ],
+    [
+     "Upgrade scroll",
+     "Transmute scroll",
+     "Unstable scroll"
+    ],
+    [
+     "Свиток улучшения",
+     "Свиток превращения",
+     "Нестабильный свиток"
+    ]
+   ],
+   "pity": [
+    "連 2 次沒出轉化／不穩定，第 3 次一定出",
+    "Two rolls without a transmute/unstable guarantees one on the third",
+    "Два броска без превращения/нестабильного гарантируют его на третьем"
+   ]
+  },
+  {
+   "id": "h019",
+   "gold": 350,
+   "sec": 35,
+   "n": [
+    "魔法卷軸",
+    "Magic scroll",
+    "Магический свиток"
+   ],
+   "out": [
+    [
+     "強化卷軸",
+     "淬火卷軸",
+     "扭曲卷軸",
+     "覺醒卷軸",
+     "折射卷軸"
+    ],
+    [
+     "Enhance scroll",
+     "Quench scroll",
+     "Warp scroll",
+     "Awakening scroll",
+     "Refraction scroll"
+    ],
+    [
+     "Свиток усиления",
+     "Свиток закалки",
+     "Свиток искажения",
+     "Свиток пробуждения",
+     "Свиток преломления"
+    ]
+   ],
+   "pity": [
+    "覺醒／折射一開始只有 10%，累積 20 次沒出就變成 100%",
+    "Awakening/Refraction start at 10%; 20 rolls without one makes it 100%",
+    "Пробуждение/преломление начинаются с 10%; 20 бросков без них дают 100%"
+   ]
+  },
+  {
+   "id": "h03J",
+   "gold": 450,
+   "sec": 40,
+   "n": [
+    "偉大卷軸",
+    "Great scroll",
+    "Великий свиток"
+   ],
+   "out": [
+    [
+     "覺醒卷軸",
+     "折射卷軸",
+     "淬火卷軸",
+     "扭曲卷軸"
+    ],
+    [
+     "Awakening scroll",
+     "Refraction scroll",
+     "Quench scroll",
+     "Warp scroll"
+    ],
+    [
+     "Свиток пробуждения",
+     "Свиток преломления",
+     "Свиток закалки",
+     "Свиток искажения"
+    ]
+   ],
+   "pity": [
+    "覺醒／折射一開始 60%，連 2 次沒出就變成 100%",
+    "Awakening/Refraction start at 60%; two misses make it 100%",
+    "Пробуждение/преломление начинаются с 60%; после двух промахов - 100%"
+   ]
+  }
  ],
  "bonus": [
-  {"kind": "good",
-   "n": ["學院天賦「先知」", "Academy talent \"Seer\"", "Талант Академии «Провидец»"],
-   "t": ["每次寶藏判定改成填 2 格，等於保底減半 —— 3 次判定就出 lv.5+、15 次出 lv.5++。效果是全隊的，越早研究越賺。學院要 750 金、遊戲第 2 階段才蓋得起來，天賦本身研究 70 秒。",
-         "Each treasure roll fills 2 ticks instead of 1, halving both pity counters - a lv.5+ every 3 rolls and a lv.5++ every 15. It applies to the whole team, so research it as early as you can. The Academy costs 750 gold and needs game phase 2; the talent itself takes 70 s.",
-         "Каждый бросок сокровища заполняет 2 деления вместо 1 - оба счётчика вдвое короче: 5+ каждые 3 броска, 5++ каждые 15. Действует на всю команду, поэтому изучайте как можно раньше. Академия стоит 750 золота и требует 2-й фазы игры; исследование - 70 сек."]},
-  {"kind": "good",
-   "n": ["隊上有人玩小混混", "Someone on the team plays the Punk", "Кто-то играет Шкета"],
-   "t": ["選了小混混的玩家，所有盒子的個人計數器永遠 +1 —— 簡易道具第一次就能出 lv.3、寶藏盒第二次就進 100%。讓他負責開盒子。",
-         "The player who picked the Punk gets +1 on every box's personal counter - a lv.3 on the very first simple item, and the treasure box hits 100% one roll earlier. Let them open the boxes.",
-         "У игрока за Шкета личный счётчик каждой коробки всегда +1: 3 ур. с первого простого предмета и 100% сокровища на бросок раньше. Пусть коробки открывает он."]}
+  {
+   "kind": "good",
+   "n": [
+    "學院天賦「先知」",
+    "Academy talent \"Seer\"",
+    "Талант Академии «Провидец»"
+   ],
+   "t": [
+    "每次寶藏判定改成填 2 格，等於保底減半 —— 3 次判定就出 lv.5+、15 次出 lv.5++。效果是全隊的，越早研究越賺。學院要 750 金、遊戲第 2 階段才蓋得起來，天賦本身研究 70 秒。",
+    "Each treasure roll fills 2 ticks instead of 1, halving both pity counters - a lv.5+ every 3 rolls and a lv.5++ every 15. It applies to the whole team, so research it as early as you can. The Academy costs 750 gold and needs game phase 2; the talent itself takes 70 s.",
+    "Каждый бросок сокровища заполняет 2 деления вместо 1 - оба счётчика вдвое короче: 5+ каждые 3 броска, 5++ каждые 15. Действует на всю команду, поэтому изучайте как можно раньше. Академия стоит 750 золота и требует 2-й фазы игры; исследование - 70 сек."
+   ]
+  },
+  {
+   "kind": "good",
+   "n": [
+    "隊上有人玩小混混",
+    "Someone on the team plays the Punk",
+    "Кто-то играет Шкета"
+   ],
+   "t": [
+    "選了小混混的玩家，所有盒子的個人計數器永遠 +1 —— 簡易道具第一次就能出 lv.3、寶藏盒第二次就進 100%。讓他負責開盒子。",
+    "The player who picked the Punk gets +1 on every box's personal counter - a lv.3 on the very first simple item, and the treasure box hits 100% one roll earlier. Let them open the boxes.",
+    "У игрока за Шкета личный счётчик каждой коробки всегда +1: 3 ур. с первого простого предмета и 100% сокровища на бросок раньше. Пусть коробки открывает он."
+   ]
+  }
  ],
  "traps": [
-  {"n": ["換盒子等於重來", "Switching boxes starts over", "Смена коробки обнуляет прогресс"],
-   "t": ["每一種盒子有各自獨立的計數器。抽兩次簡易道具再抽兩次強力道具，兩邊都還在起點。要嘛專心抽同一種，要嘛接受一直在低保底。",
-         "Every box type keeps its own counter. Two simple items and two strong items leave both counters near zero. Commit to one box or accept permanently low pity.",
-         "У каждой коробки свой счётчик. Два простых и два сильных предмета оставят оба счётчика почти на нуле. Либо держитесь одной коробки, либо смиритесь с низким гарантом."]},
-  {"n": ["同一階的裝備一輪不會重複", "No repeats within a tier's round", "В пределах круга предметы не повторяются"],
-   "t": ["每一階是一副牌，抽走就不再出現，整階抽完才重洗，而且全隊共用同一副。好處是不會一直開到同一件；壞處是隊友先抽走的，你這輪就沒有了。",
-         "Each tier is a deck: a drawn item is set aside until the whole tier is exhausted, and the deck is shared by the entire team. You will never open the same item twice in a round - but whatever a teammate draws is gone from your round too.",
-         "Каждая ступень - это колода: вытянутый предмет откладывается до конца круга, и колода общая на всю команду. Один и тот же предмет дважды за круг не выпадет, но то, что забрал союзник, в этом круге вам уже не достанется."]},
-  {"n": ["寶藏盒的前 3 次拿不到先知加成", "The treasure box's first 3 rolls ignore the Seer talent", "Первые 3 броска «Сокровища» игнорируют «Провидца»"],
-   "t": ["那一段程式碼檢查的升級在地圖裡根本不存在（見問題回報 A-61），所以先知天賦在寶藏盒的前 3 次是失效的。實務做法：先用強力道具把節奏帶起來，寶藏盒留到計數器過 3 之後再買。",
-         "That branch checks an upgrade that does not exist anywhere in the map (bug report A-61), so the Seer talent does nothing there. In practice: warm up with strong items and save the treasure box for after the counter passes 3.",
-         "Эта ветка проверяет улучшение, которого в карте вообще нет (отчёт A-61), поэтому «Провидец» там не работает. На практике: разгоняйтесь сильными предметами, а «Сокровище» покупайте после того, как счётчик перевалит за 3."]}
+  {
+   "n": [
+    "換盒子等於重來",
+    "Switching boxes starts over",
+    "Смена коробки обнуляет прогресс"
+   ],
+   "t": [
+    "每一種盒子有各自獨立的計數器。抽兩次簡易道具再抽兩次強力道具，兩邊都還在起點。要嘛專心抽同一種，要嘛接受一直在低保底。",
+    "Every box type keeps its own counter. Two simple items and two strong items leave both counters near zero. Commit to one box or accept permanently low pity.",
+    "У каждой коробки свой счётчик. Два простых и два сильных предмета оставят оба счётчика почти на нуле. Либо держитесь одной коробки, либо смиритесь с низким гарантом."
+   ]
+  },
+  {
+   "n": [
+    "同一階的裝備一輪不會重複",
+    "No repeats within a tier's round",
+    "В пределах круга предметы не повторяются"
+   ],
+   "t": [
+    "每一階是一副牌，抽走就不再出現，整階抽完才重洗，而且全隊共用同一副。好處是不會一直開到同一件；壞處是隊友先抽走的，你這輪就沒有了。",
+    "Each tier is a deck: a drawn item is set aside until the whole tier is exhausted, and the deck is shared by the entire team. You will never open the same item twice in a round - but whatever a teammate draws is gone from your round too.",
+    "Каждая ступень - это колода: вытянутый предмет откладывается до конца круга, и колода общая на всю команду. Один и тот же предмет дважды за круг не выпадет, но то, что забрал союзник, в этом круге вам уже не достанется."
+   ]
+  },
+  {
+   "n": [
+    "寶藏盒的前 3 次拿不到先知加成",
+    "The treasure box's first 3 rolls ignore the Seer talent",
+    "Первые 3 броска «Сокровища» игнорируют «Провидца»"
+   ],
+   "t": [
+    "那一段程式碼檢查的升級在地圖裡根本不存在（見問題回報 A-61），所以先知天賦在寶藏盒的前 3 次是失效的。實務做法：先用強力道具把節奏帶起來，寶藏盒留到計數器過 3 之後再買。",
+    "That branch checks an upgrade that does not exist anywhere in the map (bug report A-61), so the Seer talent does nothing there. In practice: warm up with strong items and save the treasure box for after the counter passes 3.",
+    "Эта ветка проверяет улучшение, которого в карте вообще нет (отчёт A-61), поэтому «Провидец» там не работает. На практике: разгоняйтесь сильными предметами, а «Сокровище» покупайте после того, как счётчик перевалит за 3."
+   ]
+  }
  ]
 }

@@ -496,6 +496,14 @@ body[data-scrim="1"] .scrim{opacity:1;pointer-events:auto}
   font-size:12px;color:var(--ink);background:var(--surface-2);border:1px solid var(--line-2)}
 .gtr-out i{width:11px;height:11px;border-radius:3px;display:inline-block}
 .gtr-note{margin:12px 0 0;font-size:var(--fs-sub);color:var(--ink-3);line-height:1.7}
+/* 30 次節奏條：一格一次寶藏判定，亮的那幾格就是 lv.5+／lv.5++ 落在第幾次 */
+.gcyc{margin-top:14px}
+.gcyc h4{margin:0 0 7px;font-size:13px;font-weight:600}
+.gcyc-strip{display:flex;gap:3px;flex-wrap:wrap}
+.gcyc-strip i{flex:1 1 18px;min-width:14px;height:20px;border-radius:3px;display:grid;
+  place-items:center;font:9.5px/1 ui-monospace,monospace;color:#0a0c11;font-style:normal}
+.gcyc-strip i.big{height:28px;font-weight:700;align-self:flex-end}
+.gcyc p{margin:9px 0 0;font-size:var(--fs-sub);color:var(--ink-2);line-height:1.75}
 
 /* 牌堆 */
 .gdeck{display:grid;gap:7px}
@@ -1521,7 +1529,8 @@ const UI = {
       gTitle:'抽裝備', gSub:'盒子開出什麼不是純亂數 —— 有個人保底、全隊共用的保底，還有一副抽過就不再出現的牌。',
       gFlow:'從哪裡抽', gBoxes:'每種盒子開出什麼', gTr:'寶藏判定：兩層保底', gDeck:'每一階是一副牌',
       gBonus:'能提升機率的', gTrap:'容易踩到的坑', gGold:'金', gSec:'秒',
-      gTrShort:'寶藏', gDeckN:'件', gShared:'全隊共用', gPer:'每人各自計算',
+      gTrShort:'寶藏', gTrIs:'寶藏＝保證 lv.5 以上（哪一階看下面的計數器）',
+      gCycNth:'第 %s 次', gDeckN:'件', gShared:'全隊共用', gPer:'每人各自計算',
       gScroll:'卷軸盒（開出的是卷軸，不是裝備）', gOut:'開出', gPity:'保底',
       gTick:'格', gThen:'然後', gSee:'看這一階的裝備',
       gSeer:'有「先知」天賦：每次填 2 格，3 次就滿',
@@ -1622,7 +1631,8 @@ const UI = {
       gTitle:'Opening boxes', gSub:'What a box drops is not pure chance - there is a personal pity counter, a team-wide one, and a deck that never repeats within a round.',
       gFlow:'Where the boxes come from', gBoxes:'What each box drops', gTr:'The treasure roll: two pity layers', gDeck:'Each tier is a deck',
       gBonus:'What actually raises your odds', gTrap:'Easy mistakes', gGold:'gold', gSec:'s',
-      gTrShort:'Treasure', gDeckN:'items', gShared:'shared by the team', gPer:'per player',
+      gTrShort:'Treasure', gTrIs:'Treasure = guaranteed lv.5 or better (which tier: see the counter below)',
+      gCycNth:'Roll %s', gDeckN:'items', gShared:'shared by the team', gPer:'per player',
       gScroll:'Scroll boxes (these drop scrolls, not equipment)', gOut:'Drops', gPity:'Pity',
       gTick:'ticks', gThen:'then', gSee:'See the items in this tier',
       gSeer:'With the Seer talent: 2 ticks per roll, full in 3',
@@ -1728,7 +1738,8 @@ const UI = {
       gTitle:'Открытие коробок', gSub:'Выпадение из коробок - не чистый рандом: есть личный гарант, общий для команды гарант и колода, которая не повторяется в пределах круга.',
       gFlow:'Откуда берутся коробки', gBoxes:'Что даёт каждая коробка', gTr:'Бросок сокровища: два уровня гаранта', gDeck:'Каждая ступень - это колода',
       gBonus:'Что реально повышает шансы', gTrap:'Частые ошибки', gGold:'зол.', gSec:'сек.',
-      gTrShort:'Сокровище', gDeckN:'шт.', gShared:'общий для команды', gPer:'у каждого свой',
+      gTrShort:'Сокровище', gTrIs:'Сокровище = гарантированно 5 ур. и выше (ступень - см. счётчик ниже)',
+      gCycNth:'Бросок %s', gDeckN:'шт.', gShared:'общий для команды', gPer:'у каждого свой',
       gScroll:'Коробки свитков (дают свитки, а не снаряжение)', gOut:'Выдаёт', gPity:'Гарант',
       gTick:'делений', gThen:'затем', gSee:'Показать предметы этой ступени',
       gSeer:'С талантом «Провидец»: 2 деления за бросок, полный за 3',
@@ -2528,7 +2539,7 @@ function renderGachaPage(){
       `<button data-gq="${esc(x.q)}" title="${esc(t('gSee'))}"><i style="background:${x.c}"></i>${
         esc(x.n[L])}</button>`).join('')}
     <span style="display:inline-flex;align-items:center;gap:6px;padding:2px 6px">
-      <i style="width:13px;height:13px;border-radius:4px;background:${TR.c}"></i>${esc(t('gTrShort'))}</span></div>`;
+      <i style="width:13px;height:13px;border-radius:4px;background:${TR.c}"></i>${esc(t('gTrIs'))}</span></div>`;
 
   const bar = p => {
     const ks = Object.keys(p);
@@ -2547,6 +2558,23 @@ function renderGachaPage(){
       ${b.states.map(st => `<div class="grow"><span class="w">${esc(st.when[L])}</span>${bar(st.p)}</div>`).join('')}
     </article>`;
 
+  /* 計數器不重骰，所以 30 次寶藏判定的結果順序是固定的 —— 直接把那 30 格畫出來，
+     比講「每 6 次、每 5 個」好懂：看得到 25 個 lv.5、4 個 lv.5+、最後 1 個 lv.5++。 */
+  const cycleBar = () => {
+    const C = TR.cycle; if (!C) return '';
+    let cells = '', n = 0;
+    C.seq.forEach((cnt, gi) => {
+      for (let i = 0; i < cnt; i++){
+        n++;
+        const k = C.give[gi], big = k !== 't5';
+        cells += `<i class="${big ? 'big' : ''}" style="background:${col(k)}"
+          title="${esc(t('gCycNth').replace('%s', n))} → ${esc(lab(k))}">${big ? n : ''}</i>`;
+      }
+    });
+    return `<div class="gcyc"><h4>${esc(C.n[L])}</h4>
+      <div class="gcyc-strip">${cells}</div>
+      <p>${esc(C.t[L])}</p></div>`;
+  };
   const ticks = (n, on, seer) => `<span class="gticks">${Array.from({length: n}, (_, i) =>
       `<i class="${i < on ? (seer && i >= on - 2 ? 'seer' : 'on') : ''}"></i>`).join('')}</span>`;
   const pill = k => `<span class="gtr-out"><i style="background:${col(k)}"></i>${esc(lab(k))}</span>`;
@@ -2600,6 +2628,7 @@ function renderGachaPage(){
         <div class="gtr-row"><span class="gtr-lab">${esc(t('gSeer'))}</span>
           ${ticks(6, 6, true)}<span class="gf-arrow">→</span>${pill('t6')}</div>
       </div>
+      ${cycleBar()}
     </section>
 
     <section class="sec" id="gdeck">
