@@ -242,9 +242,9 @@
     },
     {
      "when": [
-      "連 3 次沒出 lv.4 之後",
-      "After 3 rolls without a lv.4",
-      "После 3 раз без 4 ур."
+      "連 3 次沒出 lv.4 或寶藏之後（上限）",
+      "After 3 rolls with no lv.4 or treasure (ceiling)",
+      "После 3 раз без 4 ур. и сокровища (потолок)"
      ],
      "p": {
       "t2": 40,
@@ -255,9 +255,9 @@
     }
    ],
    "note": [
-    "出到 lv.4 或寶藏就把計數器歸零，所以這盒的「變好」是暫時的。不過它只要 400 金就有寶藏判定 —— 如果全隊的寶藏計數器剛好排到 lv.5++ 那一發，用這盒去接是最省的。",
-    "Hitting a lv.4 or a treasure resets the counter, so the improved table here is temporary. But at 400 gold it still rolls treasures - if the team counter happens to be on the lv.5++ step, this is the cheapest box to collect it with.",
-    "Предмет 4 ур. или сокровище обнуляют счётчик, поэтому улучшённая таблица держится недолго. Но за 400 золота она всё же бросает сокровища: если общий счётчик стоит на ступени 5++, забрать её этой коробкой дешевле всего."
+    "這盒只有兩張表，第二張就是上限：進入之後 lv.2／lv.3 不會再動計數器，寶藏機率就固定停在 10%，不會再往上爬。出到 lv.4 或寶藏則歸零、退回第一張表。穩定後平均 10 抽一次寶藏，換算每次寶藏約 4000 金 —— 比強力道具貴，但它只要 400 金就有寶藏判定，計數器剛好排到 lv.5++ 那一發時用它去接最省。",
+    "This box has only two tables and the second one is the ceiling: once there, lv.2/lv.3 stop touching the counter, so the treasure chance stays pinned at 10% and never climbs further. A lv.4 or a treasure resets it back to the first table. In the steady state that is one treasure per 10 rolls, about 4000 gold each - more than the strong item, but at 400 gold a roll it is the cheapest way to collect a treasure when the counter is sitting on the lv.5++ step.",
+    "У этой коробки всего две таблицы, и вторая - потолок: после перехода предметы 2/3 ур. перестают менять счётчик, шанс сокровища замирает на 10% и выше не растёт. Предмет 4 ур. или сокровище возвращают к первой таблице. В устоявшемся режиме это одно сокровище на 10 бросков, около 4000 золота за штуку - дороже сильного предмета, но за 400 золота это самый дешёвый способ забрать сокровище, когда счётчик стоит на ступени 5++."
    ]
   },
   {
@@ -299,19 +299,31 @@
      "when": [
       "連 4 次沒出寶藏",
       "4 rolls without a treasure",
-      "4 rolls без сокровища"
+      "4 раза без сокровища"
      ],
      "p": {
       "t3": 34,
       "t4": 32,
       "tr": 34
      }
+    },
+    {
+     "when": [
+      "連 8 次沒出寶藏",
+      "8 rolls without a treasure",
+      "8 раз без сокровища"
+     ],
+     "p": {
+      "t3": 26,
+      "t4": 24,
+      "tr": 50
+     }
     }
    ],
    "note": [
-    "唯一會自己越抽越好的盒子：每次沒出寶藏，寶藏機率就 +4%，出了才歸零。中期最划算的寶藏來源。",
-    "The only box that ramps on its own: every roll without a treasure adds 4% to the treasure chance, and only a treasure resets it. The best mid-game treasure source.",
-    "Единственная коробка, которая сама разгоняется: каждый бросок без сокровища добавляет 4% к его шансу, сбрасывает только само сокровище. Лучший источник в середине игры."
+    "唯一會一直往上爬的盒子，而且沒有停在哪一格：每抽一次沒出寶藏，寶藏機率就 +4%（lv.3 與 lv.4 各讓出 2%），出了寶藏才歸零。一路算下去第 21 抽是 98%、第 22 抽 100%，但實際上撐不到那裡 —— 平均 3.8 抽就會中一次，換算每次寶藏約 2900 金，是全場最划算的寶藏來源。",
+    "The only box that keeps climbing, with no plateau anywhere: every roll without a treasure adds 4% to the treasure chance (lv.3 and lv.4 each give up 2%), and only a treasure resets it. Carried all the way out, roll 21 is 98% and roll 22 is a guaranteed treasure - though you will never get there, because it lands after 3.8 rolls on average. That works out to about 2900 gold per treasure, the cheapest source in the game.",
+    "Единственная коробка, которая разгоняется без всякого потолка: каждый бросок без сокровища добавляет 4% к его шансу (по 2% отдают 3 и 4 ур.), сбрасывает только само сокровище. Если продолжать, 21-й бросок даёт 98%, а 22-й - гарантию, но до этого не доходит: в среднем сокровище выпадает за 3,8 броска, то есть около 2900 золота за штуку - самый дешёвый источник в игре."
    ]
   },
   {
