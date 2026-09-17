@@ -504,6 +504,16 @@ body[data-scrim="1"] .scrim{opacity:1;pointer-events:auto}
   place-items:center;font:9.5px/1 ui-monospace,monospace;color:#0a0c11;font-style:normal}
 .gcyc-strip i.big{height:28px;font-weight:700;align-self:flex-end}
 .gcyc p{margin:9px 0 0;font-size:var(--fs-sub);color:var(--ink-2);line-height:1.75}
+/* 一次性轉換：整場只能各做一次，列成清單 */
+.gonce{display:grid;gap:5px;margin-top:9px}
+.go{display:grid;grid-template-columns:minmax(86px,auto) minmax(86px,1fr) 16px minmax(86px,1fr) auto;
+  gap:8px;align-items:center;font-size:12.5px;color:var(--ink-2);padding:4px 0;
+  border-top:1px solid color-mix(in srgb,var(--line) 60%,transparent)}
+.go .s{font-size:11px;color:var(--ink-3)}
+.go .ar{color:var(--ink-3);text-align:center}
+.go b{color:var(--ink)}
+.go .c{font-size:11px;color:var(--accent);white-space:nowrap}
+@media (max-width:620px){.go{grid-template-columns:1fr auto}.go .s,.go .ar{display:none}}
 
 /* 牌堆 */
 .gdeck{display:grid;gap:7px}
@@ -1532,6 +1542,7 @@ const UI = {
       gTrShort:'寶藏', gTrIs:'寶藏＝保證 lv.5 以上（哪一階看下面的計數器）',
       gCycNth:'第 %s 次', gDeckN:'件', gShared:'全隊共用', gPer:'每人各自計算',
       gScroll:'卷軸盒（開出的是卷軸，不是裝備）', gOut:'開出', gPity:'保底',
+      gConv:'轉化卷軸與不穩定卷軸', gConvSub:'這兩張的遊戲內說明都只寫了機率、沒提保底 —— 兩張都有各自的計數器，知道了就能用便宜的道具去墊失敗。',
       gTick:'格', gThen:'然後', gSee:'看這一階的裝備',
       gSeer:'有「先知」天賦：每次填 2 格，3 次就滿',
       smTitle:'狀態關係圖', smChance:'中招機率', smDmg:'受到傷害',
@@ -1634,6 +1645,7 @@ const UI = {
       gTrShort:'Treasure', gTrIs:'Treasure = guaranteed lv.5 or better (which tier: see the counter below)',
       gCycNth:'Roll %s', gDeckN:'items', gShared:'shared by the team', gPer:'per player',
       gScroll:'Scroll boxes (these drop scrolls, not equipment)', gOut:'Drops', gPity:'Pity',
+      gConv:'Transmute and unstable scrolls', gConvSub:'Both in-game tooltips give only the odds and never mention the pity - each scroll keeps its own counter, so cheap items can absorb the misses.',
       gTick:'ticks', gThen:'then', gSee:'See the items in this tier',
       gSeer:'With the Seer talent: 2 ticks per roll, full in 3',
       smTitle:'Status relationships', smChance:'chance', smDmg:'damage',
@@ -1741,6 +1753,7 @@ const UI = {
       gTrShort:'Сокровище', gTrIs:'Сокровище = гарантированно 5 ур. и выше (ступень - см. счётчик ниже)',
       gCycNth:'Бросок %s', gDeckN:'шт.', gShared:'общий для команды', gPer:'у каждого свой',
       gScroll:'Коробки свитков (дают свитки, а не снаряжение)', gOut:'Выдаёт', gPity:'Гарант',
+      gConv:'Свитки превращения и нестабильности', gConvSub:'Обе подсказки в игре дают только шансы и молчат о гаранте - у каждого свитка свой счётчик, так что промахи можно принять дешёвыми предметами.',
       gTick:'делений', gThen:'затем', gSee:'Показать предметы этой ступени',
       gSeer:'С талантом «Провидец»: 2 деления за бросок, полный за 3',
       smTitle:'Связи статусов', smChance:'шанс', smDmg:'урон',
@@ -1941,7 +1954,8 @@ function gachaRail(){
   const L = li(), G = DATA.gacha || {};
   let h = `<h3>${esc(t('srSec'))}</h3>`;
   for (const [id, k] of [['gflow', 'gFlow'], ['gboxes', 'gBoxes'], ['gtr', 'gTr'],
-                         ['gdeck', 'gDeck'], ['gbonus', 'gBonus'], ['gtrap', 'gTrap']])
+                         ['gdeck', 'gDeck'], ['gbonus', 'gBonus'], ['gtrap', 'gTrap'],
+                         ['gscroll', 'gScroll'], ['gconv', 'gConv']])
     h += `<button class="tier" data-sjump="${id}"><i class="dot" style="background:var(--line-2)"></i>
           <span class="nm">${esc(t(k))}</span></button>`;
   h += `<h3>${esc(t('gDeck'))}</h3>`;
@@ -2527,11 +2541,14 @@ function renderGachaPage(){
   if (!G){ main.innerHTML = `<div class="gpage"><p class="note">—</p></div>`; return; }
   const TI = {}; for (const x of G.tiers) TI[x.k] = x;
   const TR = G.treasure;
-  const col = k => k === 'tr' ? TR.c : (TI[k] || {}).c || 'var(--line-2)';
-  const lab = k => k === 'tr' ? t('gTrShort') : ((TI[k] || {}).n || [k])[L];
+  /* 轉化／不穩定卷軸的結果不是裝備等級（稀有／獨特／成功／失敗），另外給色與名稱 */
+  const CV = {}; for (const x of (G.convert_tiers || [])) CV[x.k] = x;
+  const col = k => k === 'tr' ? TR.c : (CV[k] || TI[k] || {}).c || 'var(--line-2)';
+  const lab = k => k === 'tr' ? t('gTrShort') : ((CV[k] || TI[k] || {}).n || [k])[L];
   /* 長條上的空間有限，用短名（lv.3）就好；完整名稱在圖例與 tooltip 裡 */
   const shortLab = k => k === 'tr' ? t('gTrShort')
-      : (((TI[k] || {}).n || [k])[L].match(/lv\.[0-9+]+/) || [k])[0];
+      : ((((CV[k] || TI[k] || {}).n || [k])[L].match(/lv\.[0-9+]+/) || [])[0]
+         || ((CV[k] || TI[k] || {}).n || [k])[L]);
   const money = b => [b.gold ? `${b.gold} ${t('gGold')}` : '', b.sec ? `${b.sec} ${t('gSec')}` : '']
       .filter(Boolean).join(' · ');
 
@@ -2654,12 +2671,30 @@ function renderGachaPage(){
         <b>${esc(x.n[L])}</b><p>${esc(x.t[L])}</p></div>`).join('')}</div>
     </section>
 
-    <section class="sec">
+    <section class="sec" id="gscroll">
       <div class="sec-head"><h2>${esc(t('gScroll'))}</h2><span class="bar"></span></div>
       <div class="gscr">${G.scrolls.map(x => `<div class="gs">
         <span class="h">${esc(x.n[L])}<span class="g">${esc(money(x))}</span></span>
         <span class="o">${esc(x.out[L].join('・'))}</span>
         <span class="p">${esc(t('gPity'))}：${esc(x.pity[L])}</span></div>`).join('')}</div>
+    </section>
+
+    <section class="sec" id="gconv">
+      <div class="sec-head"><h2>${esc(t('gConv'))}</h2><span class="bar"></span></div>
+      <p class="note">${esc(t('gConvSub'))}</p>
+      ${(G.convert || []).map(c => `<article class="gbox">
+        <h3>${esc(c.n[L])}<span class="g">${c.gold} ${esc(t('gGold'))}</span></h3>
+        <p>${esc(c.use[L])}</p>
+        ${c.states.map(st => `<div class="grow"><span class="w">${esc(st.when[L])}</span>${bar(st.p)}</div>`).join('')}
+        <p style="margin:11px 0 0">${esc(c.note[L])}</p>
+      </article>`).join('')}
+      ${G.convert_once ? `<article class="gbox"><h3>${esc(G.convert_once.n[L])}</h3>
+        <p>${esc(G.convert_once.t[L])}</p>
+        <div class="gonce">${G.convert_once.rows.map(r => `<div class="go">
+          <span class="s">${esc((((G.convert || []).find(c => c.id === r.s) || {}).n || [''])[L])}</span>
+          <span>${esc(r.from)}</span><span class="ar">→</span>
+          <b>${esc(r.to)}</b><span class="c">${esc(r.cls)}</span></div>`).join('')}</div>
+      </article>` : ''}
     </section>
   </div>`;
 }

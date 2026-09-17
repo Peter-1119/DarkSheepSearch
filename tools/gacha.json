@@ -477,9 +477,9 @@
     ]
    ],
    "pity": [
-    "連 2 次沒出轉化／不穩定，第 3 次一定出",
-    "Two rolls without a transmute/unstable guarantees one on the third",
-    "Два броска без превращения/нестабильного гарантируют его на третьем"
+    "連 2 次開到升級卷軸之後，第 3 次一定給轉化或不穩定。平均 1.75 個盒子（約 131 金）就能拿到一張，而且路上還會撿到平均 0.75 張升級卷軸 —— 比在倉庫用 300／350 金直接買便宜得多。抽出來是 45% 轉化、55% 不穩定。",
+    "Two upgrade scrolls in a row guarantees a transmute or unstable on the third. On average 1.75 boxes (about 131 gold) per scroll, and you keep ~0.75 upgrade scrolls along the way - far cheaper than buying them at the vault for 300/350. The split is 45% transmute, 55% unstable.",
+    "Два свитка улучшения подряд гарантируют превращение или нестабильный на третьем. В среднем 1,75 коробки (около 131 золота) за свиток, и по пути остаётся ~0,75 свитка улучшения - намного дешевле покупки за 300/350 в хранилище. Соотношение: 45% превращение, 55% нестабильный."
    ]
   },
   {
@@ -619,6 +619,183 @@
     "那一段程式碼檢查的升級在地圖裡根本不存在（見問題回報 A-61），所以先知天賦在寶藏盒的前 3 次是失效的。實務做法：先用強力道具把節奏帶起來，寶藏盒留到計數器過 3 之後再買。",
     "That branch checks an upgrade that does not exist anywhere in the map (bug report A-61), so the Seer talent does nothing there. In practice: warm up with strong items and save the treasure box for after the counter passes 3.",
     "Эта ветка проверяет улучшение, которого в карте вообще нет (отчёт A-61), поэтому «Провидец» там не работает. На практике: разгоняйтесь сильными предметами, а «Сокровище» покупайте после того, как счётчик перевалит за 3."
+   ]
+  }
+ ],
+ "convert": [
+  {
+   "id": "sksh",
+   "gold": 300,
+   "n": [
+    "轉化卷軸",
+    "Transmute scroll",
+    "Свиток превращения"
+   ],
+   "use": [
+    "對 11 種 200 金的「普通」商店貨使用（戒指／簡易盔甲／普通手套…）",
+    "Use it on any of the eleven 200-gold \"Common\" shop items (rings, simple armour, common gloves...)",
+    "Применяется к одиннадцати «обычным» предметам за 200 золота (кольца, простая броня, обычные перчатки...)"
+   ],
+   "states": [
+    {
+     "when": [
+      "前 4 次",
+      "First 4 uses",
+      "Первые 4 раза"
+     ],
+     "p": {
+      "rare": 50,
+      "t2": 25,
+      "t3": 15,
+      "uniq": 10
+     }
+    },
+    {
+     "when": [
+      "連 4 次沒出特殊 lv.3／獨特之後",
+      "After 4 uses with no lv.3 or Unique",
+      "После 4 раз без 3 ур. и уникального"
+     ],
+     "p": {
+      "t3": 60,
+      "uniq": 40
+     }
+    }
+   ],
+   "note": [
+    "遊戲內的說明只寫了第一張表，沒提保底。計數器在出到特殊 lv.3 或獨特時歸零，所以前 4 次拿最便宜的 200 金普通貨去墊，第 5 次保證翻到特殊 lv.3 或獨特。",
+    "The in-game tooltip only shows the first table and never mentions the pity. The counter resets when you hit a lv.3 or a Unique, so feed it the cheapest 200-gold commons four times and the fifth is a guaranteed lv.3 or Unique.",
+    "Внутриигровая подсказка показывает только первую таблицу и умалчивает о гаранте. Счётчик обнуляется на предмете 3 ур. или уникальном, поэтому скормите ему четыре самых дешёвых «обычных» предмета за 200 золота - пятый гарантированно даст 3 ур. или уникальный."
+   ]
+  },
+  {
+   "id": "esaz",
+   "gold": 350,
+   "n": [
+    "不穩定卷軸",
+    "Unstable scroll",
+    "Нестабильный свиток"
+   ],
+   "use": [
+    "對「任務物品」使用，成功就升一階：任務物品(1/2) 300 金 → 任務物品(2/2) 750 金 → 聖物 1500 金",
+    "Use it on a Quest item to push it one step: Quest (1/2) 300g -> Quest (2/2) 750g -> Relic 1500g",
+    "Применяется к «квестовому» предмету, поднимая его на ступень: квест (1/2) 300 -> квест (2/2) 750 -> реликвия 1500"
+   ],
+   "states": [
+    {
+     "when": [
+      "前 2 次",
+      "First 2 tries",
+      "Первые 2 попытки"
+     ],
+     "p": {
+      "ok": 50,
+      "fail": 50
+     }
+    },
+    {
+     "when": [
+      "連 2 次失敗之後",
+      "After 2 failures",
+      "После 2 неудач"
+     ],
+     "p": {
+      "ok": 100
+     }
+    }
+   ],
+   "note": [
+    "失敗會把目標道具和卷軸一起銷毀。但計數器是所有任務物品共用的 —— 先用 300 金的任務物品(1/2) 去承受那兩次失敗，第 3 次再對著 750 金或 1500 金的目標用，那一次一定成功。",
+    "A failure destroys both the target item and the scroll. But the counter is shared across every quest item - let two cheap 300-gold Quest (1/2) items absorb the failures, then spend the third attempt on the 750- or 1500-gold target, where it cannot fail.",
+    "Неудача уничтожает и предмет, и свиток. Но счётчик общий для всех квестовых предметов: пусть два дешёвых предмета за 300 золота примут неудачи на себя, а третью попытку потратьте на цель за 750 или 1500 - она не может провалиться."
+   ]
+  }
+ ],
+ "convert_once": {
+  "n": [
+   "一次性轉換：全地圖各只有一次",
+   "One-shot conversions: once per game, map-wide",
+   "Разовые превращения: один раз за игру на всю карту"
+  ],
+  "t": [
+   "這幾條不擲骰、100% 成功，但每一條整場只能做一次（旗標存在全域，不分玩家），先做先贏。",
+   "These never roll - they always succeed - but each one can only happen once per game (the flag is global, not per player), so whoever does it first gets it.",
+   "Эти превращения не бросают кубик и всегда удаются, но каждое можно сделать лишь раз за игру (флаг глобальный, не по игрокам) - кто успел, тот и получил."
+  ],
+  "rows": [
+   {
+    "s": "sksh",
+    "from": "十字軍的護符",
+    "to": "十字軍之刃",
+    "cls": "神器（lv.1）"
+   },
+   {
+    "s": "sksh",
+    "from": "法師之戒",
+    "to": "邪教戒指",
+    "cls": "神器（lv.1）"
+   },
+   {
+    "s": "sksh",
+    "from": "儀式聖杯",
+    "to": "黑暗容器",
+    "cls": "神器（lv.1）"
+   },
+   {
+    "s": "esaz",
+    "from": "瓊漿玉液",
+    "to": "聖女之血",
+    "cls": "神器（lv.3）"
+   },
+   {
+    "s": "esaz",
+    "from": "穿刺長矛",
+    "to": "歌寂神兵",
+    "cls": "神器（lv.2）"
+   },
+   {
+    "s": "esaz",
+    "from": "預言者寶珠",
+    "to": "腐化之球",
+    "cls": "神器（lv.1）"
+   }
+  ]
+ },
+ "convert_tiers": [
+  {
+   "k": "fail",
+   "c": "#5a6377",
+   "n": [
+    "失敗（道具銷毀）",
+    "Failure (item destroyed)",
+    "Неудача (предмет уничтожен)"
+   ]
+  },
+  {
+   "k": "rare",
+   "c": "#4a7fb0",
+   "n": [
+    "稀有",
+    "Rare",
+    "Редкий"
+   ]
+  },
+  {
+   "k": "uniq",
+   "c": "#7bbdf0",
+   "n": [
+    "獨特",
+    "Unique",
+    "Уникальный"
+   ]
+  },
+  {
+   "k": "ok",
+   "c": "#a3d4f7",
+   "n": [
+    "成功，升一階",
+    "Success, one step up",
+    "Успех, на ступень выше"
    ]
   }
  ]
