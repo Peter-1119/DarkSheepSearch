@@ -1542,7 +1542,7 @@ const UI = {
       gTrShort:'寶藏', gTrIs:'寶藏＝保證 lv.5 以上（哪一階看下面的計數器）',
       gCycNth:'第 %s 次', gDeckN:'件', gShared:'全隊共用', gPer:'每人各自計算',
       gScroll:'卷軸盒（開出的是卷軸，不是裝備）', gOut:'開出', gPity:'保底',
-      gConv:'轉化卷軸與不穩定卷軸', gConvSub:'這兩張的遊戲內說明都只寫了機率、沒提保底 —— 兩張都有各自的計數器，知道了就能用便宜的道具去墊失敗。',
+      gRogue:'盜賊的戰利品箱', gEachOpen:'每次開箱', gConv:'轉化卷軸與不穩定卷軸', gConvSub:'這兩張的遊戲內說明都只寫了機率、沒提保底 —— 兩張都有各自的計數器，知道了就能用便宜的道具去墊失敗。',
       gTick:'格', gThen:'然後', gSee:'看這一階的裝備',
       gSeer:'有「先知」天賦：每次填 2 格，3 次就滿',
       smTitle:'狀態關係圖', smChance:'中招機率', smDmg:'受到傷害',
@@ -1645,7 +1645,7 @@ const UI = {
       gTrShort:'Treasure', gTrIs:'Treasure = guaranteed lv.5 or better (which tier: see the counter below)',
       gCycNth:'Roll %s', gDeckN:'items', gShared:'shared by the team', gPer:'per player',
       gScroll:'Scroll boxes (these drop scrolls, not equipment)', gOut:'Drops', gPity:'Pity',
-      gConv:'Transmute and unstable scrolls', gConvSub:'Both in-game tooltips give only the odds and never mention the pity - each scroll keeps its own counter, so cheap items can absorb the misses.',
+      gRogue:"The Rogue's lootbox", gEachOpen:'Per open', gConv:'Transmute and unstable scrolls', gConvSub:'Both in-game tooltips give only the odds and never mention the pity - each scroll keeps its own counter, so cheap items can absorb the misses.',
       gTick:'ticks', gThen:'then', gSee:'See the items in this tier',
       gSeer:'With the Seer talent: 2 ticks per roll, full in 3',
       smTitle:'Status relationships', smChance:'chance', smDmg:'damage',
@@ -1753,7 +1753,7 @@ const UI = {
       gTrShort:'Сокровище', gTrIs:'Сокровище = гарантированно 5 ур. и выше (ступень - см. счётчик ниже)',
       gCycNth:'Бросок %s', gDeckN:'шт.', gShared:'общий для команды', gPer:'у каждого свой',
       gScroll:'Коробки свитков (дают свитки, а не снаряжение)', gOut:'Выдаёт', gPity:'Гарант',
-      gConv:'Свитки превращения и нестабильности', gConvSub:'Обе подсказки в игре дают только шансы и молчат о гаранте - у каждого свитка свой счётчик, так что промахи можно принять дешёвыми предметами.',
+      gRogue:'Лутбокс Разбойника', gEachOpen:'За открытие', gConv:'Свитки превращения и нестабильности', gConvSub:'Обе подсказки в игре дают только шансы и молчат о гаранте - у каждого свитка свой счётчик, так что промахи можно принять дешёвыми предметами.',
       gTick:'делений', gThen:'затем', gSee:'Показать предметы этой ступени',
       gSeer:'С талантом «Провидец»: 2 деления за бросок, полный за 3',
       smTitle:'Связи статусов', smChance:'шанс', smDmg:'урон',
@@ -1955,7 +1955,7 @@ function gachaRail(){
   let h = `<h3>${esc(t('srSec'))}</h3>`;
   for (const [id, k] of [['gflow', 'gFlow'], ['gboxes', 'gBoxes'], ['gtr', 'gTr'],
                          ['gdeck', 'gDeck'], ['gbonus', 'gBonus'], ['gtrap', 'gTrap'],
-                         ['gscroll', 'gScroll'], ['gconv', 'gConv']])
+                         ['grogue', 'gRogue'], ['gscroll', 'gScroll'], ['gconv', 'gConv']])
     h += `<button class="tier" data-sjump="${id}"><i class="dot" style="background:var(--line-2)"></i>
           <span class="nm">${esc(t(k))}</span></button>`;
   h += `<h3>${esc(t('gDeck'))}</h3>`;
@@ -2548,7 +2548,7 @@ function renderGachaPage(){
   /* 長條上的空間有限，用短名（lv.3）就好；完整名稱在圖例與 tooltip 裡 */
   const shortLab = k => k === 'tr' ? t('gTrShort')
       : ((((CV[k] || TI[k] || {}).n || [k])[L].match(/lv\.[0-9+]+/) || [])[0]
-         || ((CV[k] || TI[k] || {}).n || [k])[L]);
+         || ((CV[k] || TI[k] || {}).n || [k])[L].split(/[（(]/)[0].trim());
   const money = b => [b.gold ? `${b.gold} ${t('gGold')}` : '', b.sec ? `${b.sec} ${t('gSec')}` : '']
       .filter(Boolean).join(' · ');
 
@@ -2678,6 +2678,19 @@ function renderGachaPage(){
         <span class="o">${esc(x.out[L].join('・'))}</span>
         <span class="p">${esc(t('gPity'))}：${esc(x.pity[L])}</span></div>`).join('')}</div>
     </section>
+
+    ${G.rogue ? `<section class="sec" id="grogue">
+      <div class="sec-head"><h2>${esc(G.rogue.n[L])}</h2><span class="bar"></span>
+        <span class="n">${G.rogue.gold} ${esc(t('gGold'))} · ${G.rogue.cd} ${esc(t('gSec'))}</span></div>
+      <p class="note">${esc(G.rogue.t[L])}</p>
+      <article class="gbox">
+        <div class="grow"><span class="w">${esc(t('gEachOpen'))}</span>${bar(G.rogue.p)}</div>
+        ${G.rogue.notes.map(x => `<p style="margin:11px 0 0">${esc(x[L])}</p>`).join('')}
+      </article>
+      <article class="gbox"><h3>${esc(G.rogue.steal.n[L])}
+        <span class="g">${G.rogue.steal.cd} ${esc(t('gSec'))}</span></h3>
+        <p style="margin-bottom:0">${esc(G.rogue.steal.t[L])}</p></article>
+    </section>` : ''}
 
     <section class="sec" id="gconv">
       <div class="sec-head"><h2>${esc(t('gConv'))}</h2><span class="bar"></span></div>

@@ -797,6 +797,89 @@
     "Success, one step up",
     "Успех, на ступень выше"
    ]
+  },
+  {
+   "k": "ritual",
+   "c": "#c8a6f0",
+   "n": [
+    "儀式（11 件）",
+    "Ritual (11)",
+    "Ритуальный (11)"
+   ]
+  },
+  {
+   "k": "fest",
+   "c": "#8fd6b4",
+   "n": [
+    "節日（36 件）",
+    "Festive (36)",
+    "Праздничный (36)"
+   ]
+  },
+  {
+   "k": "warp",
+   "c": "#f0a6c8",
+   "n": [
+    "扭曲（29 件）",
+    "Warped (29)",
+    "Искажённый (29)"
+   ]
   }
- ]
+ ],
+ "rogue": {
+  "id": "A08G",
+  "hero": "H024",
+  "gold": 750,
+  "cd": 120,
+  "n": [
+   "盜賊的戰利品箱",
+   "The Rogue's lootbox",
+   "Лутбокс Разбойника"
+  ],
+  "t": [
+   "盜賊的 Q 技能，不是建築也不是道具：直接從你的金幣扣 750，冷卻 120 秒，開出來的東西跟書記官的盒子完全不同一條線 —— 它是全場唯一能穩定拿到「儀式」「節日」「扭曲」這三類的方法。",
+   "The Rogue's Q - not a building, not an item: it takes 750 straight from your gold on a 120-second cooldown, and its table has nothing to do with the Archivist's. It is the only reliable source of Ritual, Festive and Warped items in the game.",
+   "Умение Разбойника (Q) - не здание и не предмет: снимает 750 золота напрямую, перезарядка 120 сек., а таблица не имеет ничего общего с Архивариусом. Это единственный надёжный источник ритуальных, праздничных и искажённых предметов."
+  ],
+  "p": {
+   "t4": 40,
+   "ritual": 25,
+   "fest": 15,
+   "warp": 10,
+   "tr": 10
+  },
+  "notes": [
+   [
+    "那 10% 的「寶藏」跟書記官的盒子共用同一組全隊計數器，所以一樣可能直接給 lv.5+ 或 lv.5++。遊戲內說明寫「特殊 lv.5 10%」是低估了（見問題回報 B-30）。",
+    "That 10% treasure shares the same team-wide counter as the Archivist's boxes, so it can hand you a lv.5+ or even a lv.5++. The in-game tooltip's \"Special lv.5 10%\" understates it (bug report B-30).",
+    "Эти 10% сокровища используют тот же общий счётчик, что и коробки Архивариуса, поэтому могут выдать 5+ и даже 5++. Подсказка «Особый 5 ур. 10%» занижает (отчёт B-30)."
+   ],
+   [
+    "而且它是全地圖唯一結算後寫 `計數器 − 6` 而不是歸零的地方 —— 溢出的格子會留著。帶「先知」天賦時每次 +2，用戰利品箱推保底不會浪費，書記官的盒子則會。",
+    "It is also the only place in the map that subtracts 6 from the counter instead of zeroing it, so overflow ticks carry over. With the Seer talent (+2 per roll) the lootbox never wastes progress; the Archivist's boxes do.",
+    "Это также единственное место на карте, где счётчик уменьшается на 6, а не обнуляется, поэтому лишние деления сохраняются. С «Провидцем» (+2 за бросок) лутбокс не теряет прогресс, а коробки Архивариуса теряют."
+   ],
+   [
+    "儀式／節日／扭曲這三類是純亂數，沒有牌堆也沒有去重，所以會開到重複的。只有那 40% 的特殊 lv.4 與 10% 的寶藏走共用牌堆。",
+    "The Ritual, Festive and Warped draws are plain random with no deck and no duplicate check, so repeats happen. Only the 40% lv.4 and the 10% treasure use the shared decks.",
+    "Ритуальные, праздничные и искажённые предметы берутся простым рандомом без колоды и проверки на повтор - дубликаты бывают. Только 40% (4 ур.) и 10% (сокровище) используют общие колоды."
+   ]
+  ],
+  "steal": {
+   "id": "A0DQ",
+   "cd": 55,
+   "mana": 90,
+   "range": 200,
+   "n": [
+    "偷竊",
+    "Steal",
+    "Воровство"
+   ],
+   "t": [
+    "對敵方英雄用，隨機偷走他背包裡的一件道具直接放進自己身上，55 秒冷卻。敵方英雄是開場就被塞滿特殊 lv.1～lv.4 道具的（`PrepareEnemyHero` 裡有 159 次發道具），所以這招等於免費開箱 —— 而且不花金幣。對方背包全空時會自動取消，不會浪費冷卻。",
+    "Target an enemy hero and a random item from their inventory moves straight into yours, on a 55-second cooldown. Enemy heroes are pre-loaded with Special lv.1-4 items (PrepareEnemyHero hands out 159 of them), so this is a free box that costs no gold. If their inventory is empty the cast is cancelled, so no cooldown is wasted.",
+    "Нацельтесь на вражеского героя - случайный предмет из его инвентаря переходит к вам, перезарядка 55 сек. Вражеские герои заранее набиты предметами 1-4 ур. (в PrepareEnemyHero их 159), так что это бесплатная коробка без затрат золота. Если инвентарь пуст, каст отменяется и перезарядка не тратится."
+   ]
+  }
+ }
 }
