@@ -17,10 +17,41 @@ for _k, _f in (('siteVersion', 'site_version'), ('mapVersion', 'map_version'),
             print('  %s: %s -> %s' % (_k, _d['meta'].get(_k), _v[_f]))
         _d['meta'][_k] = _v[_f]
 
-data = json.dumps(_d, ensure_ascii=False, separators=(',', ':'))
-# safe to embed inside <script type="application/json">
-data = data.replace('</', '<\/').replace('\u2028', '\u2028').replace('\u2029', '\u2029')
-out = tpl.replace('__DATA__', data)
-p = os.path.join(ROOT, 'index.html')
-open(p, 'w', encoding='utf-8').write(out)
-print('wrote', p, '%.0f KB' % (len(out.encode('utf-8'))/1024))
+# 只在本機看的頁面：資料另外放，不進 site.json，也不進公開的 index.html。
+# 兩個檔一起產生 —— index.html 是要推上去的那份（沒有這些頁），
+# index.local.html 是自己看的那份（有），已列入 .gitignore。
+LOCAL_ONLY = {'gacha': os.path.join(ROOT, 'data', 'gacha.json')}
+
+
+def strip_local(text):
+    """把 @local:gacha .. @/local 之間的行整段拿掉（含標記那兩行）。
+    標記都是各自語境的整行註解，所以整行刪掉之後剩下的檔案仍然合法。"""
+    out, skip = [], False
+    for line in text.splitlines(True):
+        if '@local:' in line:
+            skip = True
+            continue
+        if '@/local' in line:
+            skip = False
+            continue
+        if not skip:
+            out.append(line)
+    return ''.join(out)
+
+
+def emit(rec, name):
+    body = json.dumps(rec, ensure_ascii=False, separators=(',', ':'))
+    # safe to embed inside <script type="application/json">
+    body = body.replace('</', '<' + chr(92) + '/')
+    out = (tpl if 'local' in name else strip_local(tpl)).replace('__DATA__', body)
+    p = os.path.join(ROOT, name)
+    open(p, 'w', encoding='utf-8').write(out)
+    print('wrote', p, '%.0f KB' % (len(out.encode('utf-8')) / 1024))
+
+
+emit(_d, 'index.html')                       # 公開版：不含只在本機看的頁
+extra = {k: json.load(open(v, encoding='utf-8'))
+         for k, v in LOCAL_ONLY.items() if os.path.isfile(v)}
+if extra:
+    emit(dict(_d, **extra), 'index.local.html')
+    print('  本機版多了：%s（index.local.html 不進版控）' % '、'.join(extra))

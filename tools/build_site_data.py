@@ -302,10 +302,8 @@ out = {
     'status': {k: v for k, v in STAT_INFO.items() if not k.startswith('_')},
     'statusRules': STAT_INFO.get('_rules', []),
     'statusGraph': STAT_INFO.get('_graph', {}),
-    # 抽裝備（盒子）機制，由 build_gacha.py 產生
-    'gacha': json.load(open(os.path.join(ROOT, 'data', 'gacha.json'),
-                               encoding='utf-8'))
-             if os.path.isfile(os.path.join(ROOT, 'data', 'gacha.json')) else None,
+    # 抽裝備（盒子）機制不放進 site.json —— 那一頁只在本機看，
+    # 由 build_site.py 在產生 index.local.html 時才從 data/gacha.json 併進去。
     # 推薦配裝（AI 從道具文字與狀態規則推導，非實測）
     'builds': BUILDS.get('list', []),
     'heroes': HEROES,

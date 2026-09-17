@@ -22,6 +22,7 @@ $steps = @(
     @{ f = 'map_icons.py';       a = $mapFile; d = '讀地圖 -> images/heroes/ 英雄與技能圖示（含天賦、皮膚）' }
     @{ f = 'build_heroes.py';    a = $mapFile; d = '讀地圖 -> data/heroes.json' }
     @{ f = 'build_data2.py';     d = '合併資料 + 修正圖示色彩 -> data/items.json, images/' }
+    @{ f = 'build_gacha.py';     d = '抽裝機制（只在本機看）-> data/gacha.json' }
     @{ f = 'build_site_data.py'; d = '三語資料              -> data/site.json' }
     @{ f = 'build_site.py';      d = '產生網站              -> index.html' }
     @{ f = 'build_md2.py';       d = '產生攻略              -> 裝備合成攻略.md' }
@@ -43,4 +44,5 @@ foreach ($s in $steps) {
 
 Write-Host ''
 Write-Host '全部完成。' -ForegroundColor Green
-Write-Host '直接開啟 ..\index.html 就能看到結果。'
+Write-Host '直接開啟 ..\index.html 就能看到結果（要推上去的就是這一份）。'
+Write-Host '..\index.local.html 是本機版，多了「抽裝」那一頁，不進版控。' -ForegroundColor DarkGray

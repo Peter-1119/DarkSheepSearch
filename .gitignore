@@ -50,3 +50,10 @@ data/icons_map/
 # 產生器（tools/build_lab.py、tools/build_abilmap*.py）照常進版控，只有輸出的頁面不上。
 lab.html
 abilmap.html
+
+# ---------------------------------------------------------------- 只在本機看的頁
+# 「抽裝」那一頁不發布：資料放 data/gacha.json（由 tools/build_gacha.py 從
+# tools/gacha.json + 地圖產生），build_site.py 會另外產生 index.local.html。
+# 要看就開 index.local.html；公開的 index.html 連按鈕都沒有。
+index.local.html
+data/gacha.json

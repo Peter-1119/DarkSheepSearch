@@ -431,6 +431,7 @@ body[data-scrim="1"] .scrim{opacity:1;pointer-events:auto}
 .empty{padding:60px var(--gutter);text-align:center;color:var(--ink-3)}
 .empty b{display:block;color:var(--ink-2);margin-bottom:6px;font-weight:500}
 
+/* @local:gacha */
 /* ============================================================ 抽裝頁
    等級是「有順序」的量（lv.1 -> lv.5++），所以用單一色相、亮度遞增的階梯，
    讓顏色本身就讀得出高低；「寶藏判定」不是等級而是一道閘門，用網站的強調色
@@ -553,6 +554,7 @@ body[data-scrim="1"] .scrim{opacity:1;pointer-events:auto}
   .gs{grid-template-columns:1fr}
   .gs .p{grid-column:1}
 }
+/* @/local */
 
 /* -------- panel */
 .panel{
@@ -1443,7 +1445,9 @@ body[data-resizing="1"]{cursor:col-resize;user-select:none}
       <button data-v="build" aria-pressed="false" data-i="mBuild">配裝</button>
       <button data-v="status" aria-pressed="false" data-i="mStatus">狀態</button>
       <button data-v="hero" aria-pressed="false" data-i="mHero">英雄</button>
+    <!-- @local:gacha -->
       <button data-v="gacha" aria-pressed="false" data-i="mGacha">抽裝</button>
+    <!-- @/local -->
     </div>
 
     <span class="tb-label" data-i="rankL">排行</span>
@@ -1535,7 +1539,9 @@ const UI = {
       setB:'套裝加成', pcs:'%s 件', unsure:'待確認',
       setSrc:'加成數值取自遊戲內 -c1 ~ -c5，非地圖資料',
       mBrowse:'瀏覽', mBuild:'配裝',
-      mStatus:'狀態', mGacha:'抽裝',
+      mStatus:'狀態',
+    // @local:gacha 
+      mGacha:'抽裝',
       gTitle:'抽裝備', gSub:'盒子開出什麼不是純亂數 —— 有個人保底、全隊共用的保底，還有一副抽過就不再出現的牌。',
       gFlow:'從哪裡抽', gBoxes:'每種盒子開出什麼', gTr:'寶藏判定：兩層保底', gDeck:'每一階是一副牌',
       gBonus:'能提升機率的', gTrap:'容易踩到的坑', gGold:'金', gSec:'秒',
@@ -1545,6 +1551,7 @@ const UI = {
       gRogue:'盜賊的戰利品箱', gEachOpen:'每次開箱', gConv:'轉化卷軸與不穩定卷軸', gConvSub:'這兩張的遊戲內說明都只寫了機率、沒提保底 —— 兩張都有各自的計數器，知道了就能用便宜的道具去墊失敗。',
       gTick:'格', gThen:'然後', gSee:'看這一階的裝備',
       gSeer:'有「先知」天賦：每次填 2 格，3 次就滿',
+    // @/local 
       smTitle:'狀態關係圖', smChance:'中招機率', smDmg:'受到傷害',
       smAll:'對框內所有狀態：中招機率 +%s%',
       smNoAmp:'沒有專屬放大器', smResist:'抗性對照', smImmune:'免疫',
@@ -1638,7 +1645,9 @@ const UI = {
       setB:'Set bonuses', pcs:'%s pcs', unsure:'unverified',
       setSrc:'Bonus values transcribed from -c1 ~ -c5 in game, not from map data',
       mBrowse:'Browse', mBuild:'Loadout',
-      mStatus:'Statuses', mGacha:'Boxes',
+      mStatus:'Statuses',
+    // @local:gacha 
+      mGacha:'Boxes',
       gTitle:'Opening boxes', gSub:'What a box drops is not pure chance - there is a personal pity counter, a team-wide one, and a deck that never repeats within a round.',
       gFlow:'Where the boxes come from', gBoxes:'What each box drops', gTr:'The treasure roll: two pity layers', gDeck:'Each tier is a deck',
       gBonus:'What actually raises your odds', gTrap:'Easy mistakes', gGold:'gold', gSec:'s',
@@ -1648,6 +1657,7 @@ const UI = {
       gRogue:"The Rogue's lootbox", gEachOpen:'Per open', gConv:'Transmute and unstable scrolls', gConvSub:'Both in-game tooltips give only the odds and never mention the pity - each scroll keeps its own counter, so cheap items can absorb the misses.',
       gTick:'ticks', gThen:'then', gSee:'See the items in this tier',
       gSeer:'With the Seer talent: 2 ticks per roll, full in 3',
+    // @/local 
       smTitle:'Status relationships', smChance:'chance', smDmg:'damage',
       smAll:'Everything inside: +%s% chance to be applied',
       smNoAmp:'no dedicated amplifier', smResist:'Resistances', smImmune:'immune',
@@ -1746,7 +1756,9 @@ const UI = {
       setB:'Бонусы комплекта', pcs:'%s пр.', unsure:'не уточнено',
       setSrc:'Значения переписаны из -c1 ~ -c5 в игре, не из данных карты',
       mBrowse:'Обзор', mBuild:'Сборка',
-      mStatus:'Статусы', mGacha:'Коробки',
+      mStatus:'Статусы',
+    // @local:gacha 
+      mGacha:'Коробки',
       gTitle:'Открытие коробок', gSub:'Выпадение из коробок - не чистый рандом: есть личный гарант, общий для команды гарант и колода, которая не повторяется в пределах круга.',
       gFlow:'Откуда берутся коробки', gBoxes:'Что даёт каждая коробка', gTr:'Бросок сокровища: два уровня гаранта', gDeck:'Каждая ступень - это колода',
       gBonus:'Что реально повышает шансы', gTrap:'Частые ошибки', gGold:'зол.', gSec:'сек.',
@@ -1756,6 +1768,7 @@ const UI = {
       gRogue:'Лутбокс Разбойника', gEachOpen:'За открытие', gConv:'Свитки превращения и нестабильности', gConvSub:'Обе подсказки в игре дают только шансы и молчат о гаранте - у каждого свитка свой счётчик, так что промахи можно принять дешёвыми предметами.',
       gTick:'делений', gThen:'затем', gSee:'Показать предметы этой ступени',
       gSeer:'С талантом «Провидец»: 2 деления за бросок, полный за 3',
+    // @/local 
       smTitle:'Связи статусов', smChance:'шанс', smDmg:'урон',
       smAll:'Всё внутри рамки: шанс наложения +%s%',
       smNoAmp:'нет усилителя', smResist:'Сопротивления', smImmune:'иммунитет',
@@ -1950,6 +1963,7 @@ function statusRail(){
   }
   return h + railMeta();
 }
+// @local:gacha 
 function gachaRail(){
   const L = li(), G = DATA.gacha || {};
   let h = `<h3>${esc(t('srSec'))}</h3>`;
@@ -1964,8 +1978,11 @@ function gachaRail(){
           <span class="nm">${esc(x.n[L])}</span><span class="ct">${x.n_pool}</span></button>`;
   return h + railMeta();
 }
+// @/local 
 function renderRail(){
+  // @local:gacha 
   if (S.mode === 'gacha'){ rail.innerHTML = gachaRail(); syncMenuDot(); return; }
+  // @/local 
   if (S.mode === 'hero'){ rail.innerHTML = heroRail(); syncMenuDot(); return; }
   if (S.mode === 'status'){ rail.innerHTML = statusRail(); syncMenuDot(); return; }
   /* counts follow the search so the rail doubles as a result breakdown */
@@ -2534,6 +2551,7 @@ function renderStatusPage(){
   </div>`;
 }
 
+// @local:gacha 
 /* 抽裝頁。機率、保底門檻與牌堆件數都在 data/gacha.json，由 build_gacha.py
    從地圖與人工整理的機率表合出來 —— 這裡只負責畫。 */
 function renderGachaPage(){
@@ -2711,9 +2729,12 @@ function renderGachaPage(){
     </section>
   </div>`;
 }
+// @/local 
 
 function renderGrid(){
+  // @local:gacha 
   if (S.mode === 'gacha'){ renderGachaPage(); return; }
+  // @/local 
   if (S.mode === 'status'){ renderStatusPage(); return; }
   if (S.mode === 'hero'){ renderHeroPage(); return; }
   const ids = visible();
@@ -3658,6 +3679,7 @@ function usedInBlock(id, ids){
 
 /* ---------------------------------------------------------------- events */
 main.addEventListener('click', e => {
+  // @local:gacha 
   const gq0 = e.target.closest('[data-gq]');
   if (gq0 && S.mode === 'gacha'){
     const gi = (DATA.groups || []).findIndex(g => g.zh === gq0.dataset.gq);
@@ -3665,6 +3687,7 @@ main.addEventListener('click', e => {
     S.tier = gi >= 0 ? gi : null; S.cat = null; S.set = null; S.act = null;
     renderRail(); renderGrid(); main.scrollTop = 0; return;
   }
+  // @/local 
   /* 關係圖與抗性表上的狀態都可以點 —— 直接用它當關鍵字回到裝備清單，
      圖不只是圖，也是進入清單的入口。 */
   const mq = e.target.closest('[data-mq]');
@@ -3755,6 +3778,14 @@ $('#mode').addEventListener('click', e => {
   else renderEdge();
   paintRelations(); paintHero();
 });
+// @local:gacha 
+/* 只在本機看的頁：公開版的 index.html 沒有 DATA.gacha，按鈕直接移除，
+   萬一有人手動把模式設成 gacha 也退回瀏覽。 */
+if (!DATA.gacha){
+  $('#mode [data-v="gacha"]')?.remove();
+  if (S.mode === 'gacha'){ S.mode = 'browse'; localStorage.setItem('ud.mode', S.mode); }
+}
+// @/local 
 function applyMode(){
   document.body.dataset.mode = S.mode;
   $('#mode').querySelectorAll('button').forEach(b =>
@@ -3836,6 +3867,7 @@ rail.addEventListener('click', e => {
     if (el) scrollMainTo(el);
     setDrawer(false); return;
   }
+  // @local:gacha 
   const gq = e.target.closest('[data-gq]');
   if (gq){                                   // 抽裝頁的階級 -> 回裝備清單看那一階
     const want = gq.dataset.gq;
@@ -3845,6 +3877,7 @@ rail.addEventListener('click', e => {
     S.q = ''; $('#q').value = '';
     renderRail(); renderGrid(); main.scrollTop = 0; setDrawer(false); return;
   }
+  // @/local 
   const sj = e.target.closest('[data-sjump]');
   if (sj){
     const el = main.querySelector('#' + sj.dataset.sjump);
