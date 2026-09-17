@@ -855,9 +855,9 @@
     "Эти 10% сокровища используют тот же общий счётчик, что и коробки Архивариуса, поэтому могут выдать 5+ и даже 5++. Подсказка «Особый 5 ур. 10%» занижает (отчёт B-30)."
    ],
    [
-    "而且它是全地圖唯一結算後寫 `計數器 − 6` 而不是歸零的地方 —— 溢出的格子會留著。帶「先知」天賦時每次 +2，用戰利品箱推保底不會浪費，書記官的盒子則會。",
-    "It is also the only place in the map that subtracts 6 from the counter instead of zeroing it, so overflow ticks carry over. With the Seer talent (+2 per roll) the lootbox never wastes progress; the Archivist's boxes do.",
-    "Это также единственное место на карте, где счётчик уменьшается на 6, а не обнуляется, поэтому лишние деления сохраняются. С «Провидцем» (+2 за бросок) лутбокс не теряет прогресс, а коробки Архивариуса теряют."
+    "它也是全地圖唯一結算後寫「計數器 − 6」而不是歸零的地方。不過實際差別很小：計數器的門檻是 6，結算前最多只會到 7，所以最多留下 1 格。全隊都沒有先知（每次 +1，走到剛好 6）或全隊都有（每次 +2，走到剛好 6）時，兩種寫法完全一樣；只有在「先知天賦有人研究、有人沒研究」的混合狀態下，計數器才可能停在 5 再被 +2 變成 7，這時戰利品箱會留下那 1 格、書記官的盒子會丟掉。另外注意：lv.5++ 那一發歸零的是第二層計數器（5 → 0），跟這個 − 6 無關。",
+    "It is also the only place in the map that subtracts 6 instead of zeroing the counter - but the difference is tiny. The threshold is 6 and the counter can only reach 7 before it settles, so at most one tick carries over. If nobody on the team has the Seer talent (+1 each, landing exactly on 6) or everybody has it (+2 each, also landing exactly on 6), the two forms behave identically; only a mixed team can leave the counter on 5 and then add 2 for a 7, where the lootbox keeps that one tick and the Archivist's boxes drop it. Note also that a lv.5++ zeroes the second counter (5 -> 0), which has nothing to do with this subtraction.",
+    "Это также единственное место на карте, где счётчик уменьшается на 6, а не обнуляется, но разница крошечная. Порог равен 6, а до срабатывания счётчик может дойти максимум до 7, поэтому переносится не больше одного деления. Если талант «Провидец» есть у всех (+2, ровно 6) или ни у кого (+1, ровно 6), обе записи ведут себя одинаково; только в смешанной команде счётчик может застыть на 5, а затем получить +2 и стать 7 - тогда лутбокс сохранит это деление, а коробки Архивариуса его потеряют. И ещё: предмет 5++ обнуляет второй счётчик (5 -> 0), к этому вычитанию это отношения не имеет."
    ],
    [
     "儀式／節日／扭曲這三類是純亂數，沒有牌堆也沒有去重，所以會開到重複的。只有那 40% 的特殊 lv.4 與 10% 的寶藏走共用牌堆。",
