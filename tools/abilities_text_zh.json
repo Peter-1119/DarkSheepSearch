@@ -366,8 +366,8 @@
    "Attacks against enemies with less than 50% health grant a brief bonus to attack power and armour. These bonuses work independently of each other.\n\nAttack bonus: +3\nArmour bonus: +1\nBonus duration: 5 + (2% spell power) sec.\nSpell power 200+: 100% chance to apply the \"Flammable\" status to the enemy\n\nCooldown: 1 sec."
   ],
   "A06N": [
-   "在指定地點創造一顆火焰法球。法球會週期性地對附近隨機一名敵人造成傷害。此外法球還會額外灼燒身邊的敵人，造成 50% 傷害。\n\n傷害：30 +（30% 惡魔之力）點\n傷害觸發間隔：0.4 秒\n持續時間：11 秒\n\n冷卻：30 秒\n\n額外加成資訊請見指令「-е」。",
-   "Creates a fire orb at the target point. The orb periodically deals damage to a random nearby enemy. The orb also additionally scorches enemies next to it, dealing 50% damage.\n\nDamage: 30 + (30% demonic power)\nDamage interval: 0.4 sec.\nDuration: 11 sec.\n\nCooldown: 30 sec.\n\nInformation about additional bonuses in the \"-е\" command."
+   "在指定地點創造一顆火焰法球。法球會週期性地對附近隨機一名敵人造成傷害。此外法球還會額外灼燒身邊的敵人，造成 50% 傷害。\n\n傷害：30 +（30% 惡魔之力）點\n傷害觸發間隔：0.4 秒\n持續時間：11 秒\n\n冷卻：30 秒\n\n額外加成資訊請見指令「-e」。",
+   "Creates a fire orb at the target point. The orb periodically deals damage to a random nearby enemy. The orb also additionally scorches enemies next to it, dealing 50% damage.\n\nDamage: 30 + (30% demonic power)\nDamage interval: 0.4 sec.\nDuration: 11 sec.\n\nCooldown: 30 sec.\n\nInformation about additional bonuses in the \"-e\" command."
   ],
   "A06Q": [
    "機械師能以極高的速度修理機械與建築。",
@@ -737,6 +737,10 @@
    "產生 8 枚火焰彈，經過短暫準備後隨機擊中英雄周圍 500 範圍內的敵人並使其點燃。若火焰彈找不到敵人，則為英雄回復相當於其所造成傷害 80% 的生命值。火焰彈會優先攻擊處於「詛咒審判」效果下的敵人。\n\n每枚火焰彈的傷害：30 + （15% 技能強度）點；100% 機率施加點燃，傷害為 100%\n\n冷卻：18 秒。",
    "Creates 8 fire missiles that, after a short delay, strike random enemies within 500 around the hero and set them on fire. If a missile finds no enemies, it restores health to the hero equal to 80% of the damage it would deal. The missiles prioritise enemies affected by \"Anathema\".\n\nDamage of each missile: 30 + (15% spell power); 100% chance to apply Burn with 100% damage\n\nCooldown: 18 sec."
   ],
+  "A0E5": [
+   "開啟英雄的額外技能列表。",
+   "Opens the list of the hero's additional abilities."
+  ],
   "A0EQ": [
    "向前進行一次短距離衝刺，對身旁的敵人造成傷害。傷害會造成 2 次。\n\n傷害：60 + （25% 技能強度）點\n\n冷卻：10 秒",
    "Performs a short dash forward, dealing damage to enemies nearby. The damage is dealt 2 times.\n\nDamage: 60 + (25% spell power)\n\nCooldown: 10 sec."
@@ -870,8 +874,8 @@
    "With a sufficient amount of player experience points you can choose a talent that will significantly strengthen the hero up to a new power rank."
   ],
   "A0IG": [
-   "英雄可以使用「軍團遺產」套裝的加成。要獲得套裝加成，英雄的物品欄中必須擁有下列道具：\n\n- 「聖物」類別的道具\n- 帝王之劍（扭曲）\n- 雄獅鎧甲（扭曲）\n- 干將（扭曲）\n- 榮譽頭盔（扭曲）\n- 碎界（折射）\n- 庇護者（折射）\n- 帝王鎧甲（神器 lv.4）\n- 泰坦神拳（神器 lv.5）\n- 王國宙斯盾（神器 lv.5）\n\n可透過文字指令「-с5」查看套裝加成。",
-   "The hero can use the bonuses of the \"Legion Legacy\" set. To receive the bonuses, the hero's inventory must contain the items from this list:\n\n- items of the \"Relic\" class\n- Emperor's Sword (Distorted)\n- Lion Cuirass (Distorted)\n- Kladenets Sword (Distorted)\n- Helm of Honour (Distorted)\n- Collapse (Refracted)\n- Defender (Refracted)\n- Emperor's Armour (Artifact lvl 4)\n- Titan's Fist (Artifact lvl 5)\n- Aegis of Kings (Artifact lvl 5)\n\nThe set bonuses can be viewed with the text command \"-с5\"."
+   "英雄可以使用「軍團遺產」套裝的加成。要獲得套裝加成，英雄的物品欄中必須擁有下列道具：\n\n- 「聖物」類別的道具\n- 帝王之劍（扭曲）\n- 雄獅鎧甲（扭曲）\n- 干將（扭曲）\n- 榮譽頭盔（扭曲）\n- 碎界（折射）\n- 庇護者（折射）\n- 帝王鎧甲（神器 lv.4）\n- 泰坦神拳（神器 lv.5）\n- 王國宙斯盾（神器 lv.5）\n\n可透過文字指令「-c5」查看套裝加成。",
+   "The hero can use the bonuses of the \"Legion Legacy\" set. To receive the bonuses, the hero's inventory must contain the items from this list:\n\n- items of the \"Relic\" class\n- Emperor's Sword (Distorted)\n- Lion Cuirass (Distorted)\n- Kladenets Sword (Distorted)\n- Helm of Honour (Distorted)\n- Collapse (Refracted)\n- Defender (Refracted)\n- Emperor's Armour (Artifact lvl 4)\n- Titan's Fist (Artifact lvl 5)\n- Aegis of Kings (Artifact lvl 5)\n\nThe set bonuses can be viewed with the text command \"-c5\"."
   ],
   "A0IH": [
    "用盾牌撞擊指定目標並造成範圍傷害，將敵人從自身推開。被命中的敵人會短時間減速。\n\n對目標的傷害：100 +（50% 技能強度）點\n對目標附近敵人的傷害：主要傷害公式的 60%\n敵人減速：移動速度 -60%，持續 4 秒\n\n冷卻：12 秒",
@@ -933,6 +937,10 @@
    "英雄開始持續維持法術，期間英雄周圍 2000 半徑內的隨機敵人會在每次觸發時受到傷害。\n\n傷害：20 + （10% 技能強度） + （30% 全部屬性）\n觸發間隔：0.5 秒\n每次觸發的敵人數量：8 名\n持續時間：20 秒\n\n冷卻：120 秒",
    "The hero begins channelling a spell during which random enemies within a radius of 2000 around the hero take damage every tick.\n\nDamage: 20 + (10% spell power) + (30% of all attributes)\nInterval: 0.5 sec.\nEnemies per tick: 8\nDuration: 20 sec.\n\nCooldown: 120 sec."
   ],
+  "A0JX": [
+   "「小酌一杯」與「烈性藥湯」會對釀酒師施加「酒醉狂暴」效果。處於此效果下，英雄受到的傷害會提高，但戰鬥方式變得兇猛許多。酒醉狂暴同樣會繼承英雄天賦的效果。\n\n狂暴持續時間：4 秒\n英雄受到的傷害：+15%\n英雄造成的傷害：+30%\n額外效果：30% 機率造成 3 倍暴擊",
+   "\"Have a Drink\" and \"Potent Brew\" apply the \"Drunken Rampage\" effect to the brewmaster. Under this effect the hero takes more damage but fights far more aggressively. Drunken Rampage also inherits the hero's talent effects.\n\nRampage duration: 4 sec.\nDamage taken by the hero: +15%\nDamage dealt by the hero: +30%\nAdditional effect: 30% chance of a x3 crit"
+  ],
   "A0K3": [
    "永久提升友方英雄的智力，並賦予其持續 10 秒的法力回復光環。\n\n智力提升：+1 點\n光環效果：+3 MP regen\n光環作用範圍：400\n\n冷卻：30 秒",
    "Permanently increases an allied hero's Intelligence and grants a mana regeneration aura for 10 sec.\n\nIntelligence increase: +1\nAura effect: +3 MP regen\nAura area: 400\n\nCooldown: 30 sec."
@@ -976,6 +984,10 @@
   "A0L0": [
    "將星辰分解成大量光團，對作用範圍內的敵人造成傷害。每次傷害跳動都會吸收英雄的法力值以造成更高的傷害。\n\n傷害：30 + （5% 技能強度）點。\n每次跳動的額外傷害：英雄當前法力值的 3%，造成傷害後消耗當前法力值的 1.5%\n跳動間隔：0.15 秒。\n持續時間：10 秒。\n\n冷卻：80 秒。",
    "Splits a star into many clusters of light that deal damage to enemies in the area. Each damage tick absorbs the hero's mana to deal increased damage.\n\nDamage: 30 + (5% spell power)\nExtra damage per tick: 3% of the hero's current mana; after the damage is dealt, 1.5% of current mana is consumed\nTick interval: 0.15 sec.\nDuration: 10 sec.\n\nCooldown: 80 sec."
+  ],
+  "A0L8": [
+   "在指定的基地點位上建造一座工廠。",
+   "Builds a factory at the designated base point."
   ],
   "A0LD": [
    "散發光環，降低英雄附近敵人的護甲。\n\n護甲降低：3 點\n作用範圍：200 點",
@@ -1153,6 +1165,10 @@
    "當玩家經驗點數足夠時，你可以選擇一項天賦，將英雄大幅強化至新的力量位階。",
    "With enough player experience points you can choose a talent that will significantly strengthen the hero up to a new power rank."
   ],
+  "A0SU": [
+   "每秒回復附近友軍 1% 生命值。此效果為全地圖範圍。",
+   "Restores 1% health to nearby allies every second. The effect is global."
+  ],
   "A0T1": [
    "英雄以網捕捉敵人，使其無法移動。受「捕獵者」影響的敵人受到英雄的傷害提高。效果不可疊加。\n\n對被捕捉目標的額外傷害：+25%\n持續時間：9 秒\n持續時間（英雄）：4 秒\n\n冷卻：20 秒",
    "The hero catches an enemy in a net, depriving it of the ability to move. Enemies affected by \"Trapper\" take more damage from the hero. The effect does not stack.\n\nBonus damage to the caught target: +25%\nDuration: 9 sec.\nDuration (heroes): 4 sec.\n\nCooldown: 20 sec."
@@ -1245,6 +1261,14 @@
    "英雄召喚一名瘟疫使者，牠能夠召喚殭屍、引爆殭屍並燒去敵人的法力值。\n\n瘟疫使者的生命值：英雄 max HP 的 100%\n使者的攻擊力：英雄智力的 125%\n使者的護甲：5 點\n使者的存活時間：60 秒\n\n冷卻：70 秒",
    "The hero summons a plague herald that can raise zombies, detonate zombies and burn the mana of enemies.\n\nPlague herald health: 100% of the hero's max HP\nHerald attack power: 125% of the hero's Intelligence\nHerald armour: 5\nHerald lifetime: 60 sec.\n\nCooldown: 70 sec."
   ],
+  "A0W2": [
+   "殭屍與瘟疫鼠有機率感染敵人。被感染的敵人死亡時，會從牠身上產生一隻殭屍，屬性依「召喚殭屍」的技能等級而定。感染發生後，存活下來的單位會獲得短暫免疫。\n\n殭屍的感染機率：7%\n瘟疫鼠的感染機率：15%\n感染持續時間：10 秒\n免疫持續時間：6 秒\n寄生殭屍的存活時間：25 秒",
+   "Zombies and plague rats have a chance to infect enemies. If an infected enemy dies, a zombie emerges from it with stats matching the level of \"Raise Zombies\". After an infection, the units that survive gain immunity for a short time.\n\nInfection chance from a zombie: 7%\nInfection chance from a rat: 15%\nInfection duration: 10 sec.\nImmunity duration: 6 sec.\nParasite zombie lifetime: 25 sec."
+  ],
+  "A0WE": [
+   "開啟英雄的額外技能列表。",
+   "Opens the list of the hero's additional abilities."
+  ],
   "A0WG": [
    "永久提升友方英雄的智力，並賦予其持續 10 秒的法力回復光環。\n\n智力提升：+1 點\n光環效果：+3 MP regen\n光環作用範圍：400 點\n\n冷卻：30 秒",
    "Permanently increases an allied hero's Intelligence and grants a mana regeneration aura for 10 sec.\n\nIntelligence increase: +1\nAura effect: +3 MP regen\nAura area: 400\n\nCooldown: 30 sec."
@@ -1301,6 +1325,10 @@
    "造成傷害可為英雄帶來加成：\n\n對任何敵人每造成 100 點傷害：攻擊力 +1 點，穿透 +0.35；下一次強化所需的傷害 +35 點\n\n受到傷害可為英雄帶來加成：\n\n每受到敵人 200 點傷害：生命值上限 +15 點，生命回復 +0.50；下一次強化所需的傷害 +30 點",
    "Dealing damage grants the hero bonuses:\n\nFor every 100 damage dealt to any enemies: +1 attack power, +0.35 penetration; +35 to the damage required for the next upgrade\n\nTaking damage grants the hero bonuses:\n\nFor every 200 damage taken from enemies: +15 maximum health, +0.50 health regeneration; +30 to the damage required for the next upgrade"
   ],
+  "A0XC": [
+   "藥水對英雄的效果提升 30%。\n\n「求生」每缺少 1% 生命值，就多回復 1% 生命值。「野性戰士」在每個已獲得的效果結束後，有 5% 機率保留 1 點力量；累積 100 點力量之後，機率降為 3%。指令「-i」可查看已獲得的力量。\n\n「震懾咆哮」的作用範圍擴大 50%，且施放時會造成（125% 力量）點傷害。「斬擊者」改為另一種效果 —— 對敵方英雄造成的傷害提高 75%，受到英雄的傷害降低 25%。擊殺敵方英雄可獲得 5 點力量；每累積 3 次擊殺英雄，力量的累積量減少 1 點，最低為 1 點。",
+   "Potions are 30% more effective on the hero.\n\n\"Survival\" restores 1% more health for every 1% of health missing. \"Wild Warrior\" has a 5% chance to keep 1 strength after each gained effect expires; once 100 strength has been gained the chance drops to 3%. The \"-i\" command shows the strength gained.\n\nThe area of \"Terrifying Roar\" is increased by 50%, and casting it also deals (125% STR) damage. \"Slasher\" gains a different effect - it increases damage dealt to enemy heroes by 75% and reduces damage taken from heroes by 25%. Killing an enemy hero grants 5 strength; the amount gained drops by 1 for every 3 hero kills, down to a minimum of 1."
+  ],
   "A0XE": [
    "對範圍內的敵人造成傷害，並以 100% 機率施加冰凍效果。「軍團遺產」套裝加成會改為以 50% 機率對敵人施加易傷，而非點燃。\n\n傷害：60 +（40% 技能強度）點\n裝備技能威力加成：+15%，持續 6 秒\n\n冷卻：15 秒",
    "Deals damage to enemies in an area and applies the freeze effect with 100% chance. The \"Legion Legacy\" set bonus applies Vulnerability to enemies with 50% chance instead of Burn.\n\nDamage: 60 + (40% spell power)\nModifier power bonus: +15% for 6 sec.\n\nCooldown: 15 sec."
@@ -1308,6 +1336,10 @@
   "A0XJ": [
    "英雄獲得一項強化，期間攻擊速度與移動速度提升，附近的敵人則會開始受到傷害。\n\n攻擊速度加成：+50%\n移動速度加成：+50%\n對附近敵人的傷害：30 +（15% 技能強度）點\n持續時間：15 秒\n\n冷卻：90 秒",
    "The hero gains a buff during which attack and movement speed are increased and nearby enemies begin to take damage.\n\nAttack speed bonus: +50%\nMovement speed bonus: +50%\nDamage to nearby enemies: 30 + (15% spell power)\nDuration: 15 sec.\n\nCooldown: 90 sec."
+  ],
+  "A0XN": [
+   "造成傷害會給予英雄加成：\n\n每對任意敵人造成 500 點傷害：+0.5 穿透；下一次強化所需的傷害量 +35 點",
+   "Dealing damage grants the hero bonuses:\n\nFor every 500 damage dealt to any enemy: +0.5 penetration; +35 damage required for the next upgrade"
   ],
   "A0XO": [
    "向指定區域發射一枚火箭，造成傷害並以 100% 機率暈眩敵人。具有點燃效果。\n\n傷害：80 +（30% 技能強度）\n點燃效果：50% 機率，100% 傷害\n暈眩：3 秒（英雄 2 秒）\n英雄 25 級：每 8 秒一次，攻擊會發射一枚火箭，造成 50% 傷害並暈眩 2 秒（英雄 1 秒）\n\n冷卻：18 秒",
@@ -1332,6 +1364,14 @@
   "A0XT": [
    "砲塔的投射物有機率點燃敵人。\n\n點燃（砲塔投射物）：40% 機率；傷害等於英雄力量的 60%",
    "Turret projectiles can set enemies on fire.\n\nBurn (turret projectiles): 40% chance; damage equals 60% of the hero's Strength"
+  ],
+  "A0XV": [
+   "攻擊、技能與流血效果具有 10% 吸血。\n\n任務：達到 5 級。完成後吸血效果提升至 15%。",
+   "Attacks, abilities and bleed effects have 10% lifesteal.\n\nQuest: reach level 5. Once complete, the lifesteal is increased to 15%."
+  ],
+  "A0XW": [
+   "任務：達到 8 級。完成後「撕裂」將無視流血抗性。",
+   "Quest: reach level 8. Once complete, \"Rupture\" ignores bleed resistance."
   ],
   "A0Y5": [
    "物品中的倍增效果對此英雄產生雙倍效果。",
@@ -1361,6 +1401,10 @@
    "你可以將屬於植物、食物或生物的物品移動到第二背包（F2）。如此一來第二背包中可以擁有 1 件物品。",
    "You can move an item that is a plant, food or organism into the second inventory (F2). In this way you can have 1 item in the second inventory."
   ],
+  "A0ZQ": [
+   "當玩家的經驗點數足夠時，你可以選擇一項天賦，將英雄大幅強化至新的強度等級。",
+   "With a sufficient amount of player experience points you can choose a talent that will significantly strengthen the hero to a new power rank."
+  ],
   "A0ZR": [
    "英雄躲進通靈塔，通靈塔可以射擊附近的敵人。通靈塔的持續時間無限制，英雄可以自行離開通靈塔，或在通靈塔被摧毀時離開。\n\n通靈塔的生命值：400 + 35% 英雄 max HP 點\n通靈塔的攻擊力：50 +（20% 技能強度）點\n通靈塔的護甲：2 點\n\n冷卻：60 秒",
    "The hero hides in a ziggurat that can shoot at nearby enemies. The ziggurat's duration is unlimited; the hero can leave it on his own or when it is destroyed.\n\nZiggurat health: 400 + 35% of the hero's max HP\nZiggurat attack power: 50 + (20% spell power)\nZiggurat armour: 2\n\nCooldown: 60 sec."
@@ -1384,6 +1428,10 @@
   "A10I": [
    "當玩家的經驗值達到足夠數量時，你可以選擇一項天賦，大幅強化英雄，使其提升至新的力量階級。",
    "With a sufficient amount of player experience points you can choose a talent that will significantly strengthen the hero to a new power rank."
+  ],
+  "A10P": [
+   "摧毀選定的道具，並依照道具的類別給予英雄加成。\n\n「特殊 lv.1」類別：+5 技能強度，+0.4 生命回復，+0.2 法力回復\n「特殊 lv.2」類別：+7 技能強度，+0.6 生命回復，+0.3 法力回復\n「特殊 lv.3」類別：+12 技能強度，+1 全屬性\n「特殊 lv.4」類別：+20 技能強度，+2 全屬性\n「特殊 lv.5」類別：+30 技能強度，+3 全屬性\n「特殊 lv.5+」類別：+50 技能強度，+3 全屬性，+1.2 生命回復，+0.6 法力回復\n「特殊 lv.5++」類別：+100 技能強度，+5 全屬性，+2.2 生命回復，+1.1 法力回復\n\n冷卻：0.5 秒",
+   "Destroys the selected item and grants the hero bonuses based on the item category.\n\nCategory \"Special lv.1\": +5 spell power, +0.4 HP regen, +0.2 MP regen\nCategory \"Special lv.2\": +7 spell power, +0.6 HP regen, +0.3 MP regen\nCategory \"Special lv.3\": +12 spell power, +1 all stats\nCategory \"Special lv.4\": +20 spell power, +2 all stats\nCategory \"Special lv.5\": +30 spell power, +3 all stats\nCategory \"Special lv.5+\": +50 spell power, +3 all stats, +1.2 HP regen, +0.6 MP regen\nCategory \"Special lv.5++\": +100 spell power, +5 all stats, +2.2 HP regen, +1.1 MP regen\n\nCooldown: 0.5 sec."
   ],
   "A10Q": [
    "幽魂犧牲自己，將「吸收」技能累積的加成交給友方英雄。此技能的目標同時獲得生命值與法力值的完全回復，並清除身上的負面狀態。\n\n冷卻：90 秒",
