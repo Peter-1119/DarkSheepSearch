@@ -65,9 +65,9 @@ _LEN_BITS = [3, 2, 3, 3, 4, 4, 4, 5, 5, 5, 5, 6, 6, 6, 7, 7]
 _LEN_CODE = [5, 3, 1, 6, 10, 2, 12, 20, 4, 24, 8, 48, 16, 32, 64, 0]
 _LEN_XBIT = [0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 5, 6, 7, 8]
 _LEN_BASE = [2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 16, 24, 40, 72, 136, 264]
-_DST_BITS = [2, 4, 4, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7,
-             7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8,
-             8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8]
+_DST_BITS = [2, 4, 4, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 
+             6, 6, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 
+             7, 7, 7, 7, 7, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8]
 _DST_CODE = [0x03, 0x0D, 0x05, 0x19, 0x09, 0x11, 0x01, 0x3E, 0x1E, 0x2E, 0x0E,
              0x36, 0x16, 0x26, 0x06, 0x3A, 0x1A, 0x2A, 0x0A, 0x32, 0x12, 0x22,
              0x02, 0x7C, 0x3C, 0x5C, 0x1C, 0x6C, 0x2C, 0x4C, 0x0C, 0x74, 0x34,
@@ -78,8 +78,9 @@ _DST_CODE = [0x03, 0x0D, 0x05, 0x19, 0x09, 0x11, 0x01, 0x3E, 0x1E, 0x2E, 0x0E,
 # 反查表：(位元數, 編碼) -> 索引，避免每個符號都線性掃描
 _LEN_MAP = {(_LEN_BITS[i], _LEN_CODE[i]): i for i in range(len(_LEN_CODE))}
 _DST_MAP = {(_DST_BITS[i], _DST_CODE[i]): i for i in range(len(_DST_CODE))}
-# 註：_DST_CODE 只抄到 63 筆（規格是 64），最後一個距離碼未經查證就不補。
-# WC3 地圖內部檔案實務上一律 zlib，PKWARE 走不到這裡；真的走到會在 _pick 明確報錯。
+# 距離表就是 63 個碼（不是 64）—— 位元長度是解出來的：前綴碼必須把 0~255
+# 剛好蓋滿一次，把長度當未知數解這個精確覆蓋，只有一組解，Kraft 剛好 = 1。
+# 之前憑印象填的長度有 23 處是錯的，導致所有 PKWARE 壓縮的檔案都解不開。
 
 # ASCII 模式的字面值表在 PKWARE 規格裡是另一組 huffman，地圖不會用到，
 # 所以遇到就直接報錯而不是默默解錯。
@@ -98,11 +99,13 @@ def _pk_explode(d):
     while b.p <= len(b.d):
         if b.get(1):                                  # 1 = 複製既有內容
             li = _pick(b, _LEN_MAP)
-            if li == 15:                              # 結束標記
-                break
             ln = _LEN_BASE[li]
             if _LEN_XBIT[li]:
                 ln += b.get(_LEN_XBIT[li])
+            # 結束標記是「長度剛好 519」（最大的符號配滿 8 個附加位元），
+            # 不是「符號 15」—— 符號 15 配上較小的附加值是合法的長匹配。
+            if ln == 519:
+                break
             di = _pick(b, _DST_MAP)
             dist = ((di << 2) | b.get(2)) if ln == 2 else \
                    ((di << dsize_bits) | b.get(dsize_bits))
@@ -158,6 +161,37 @@ class MPQ(object):
         s.base = 0x200 if s.f.read(4) == b'HM3W' else 0   # w3x 前有 512 byte 標頭
         s.f.seek(s.base)
         h = s.f.read(0x20)
+        if h[:4] == b'MPQ\x1b':
+            # 使用者資料標頭：真正的 MPQ 標頭位置寫在裡面（位移 0x08，相對於自己）
+            s.base += struct.unpack_from('<I', h, 8)[0]
+            s.f.seek(s.base)
+            h = s.f.read(0x20)
+        if h[:4] != b'MPQ\x1a':
+            # 有些檔案在 w3x 標頭後還墊了東西，沿著 512 byte 邊界找。
+            # 被保護過的地圖常放假的 MPQ\x1b 誘餌（指向檔案外），所以要驗證
+            # 雜湊表與區塊表的位置真的落在檔案裡，不能看到標頭就信。
+            s.f.seek(0, 2)
+            size = s.f.tell()
+            for off in range(0, min(size, 0x100000), 0x200):
+                s.f.seek(off)
+                probe = s.f.read(4)
+                cand = None
+                if probe == b'MPQ\x1a':
+                    cand = off
+                elif probe == b'MPQ\x1b':
+                    s.f.seek(off)
+                    cand = off + struct.unpack_from('<I', s.f.read(0x10), 8)[0]
+                if cand is None or cand + 0x20 > size:
+                    continue
+                s.f.seek(cand)
+                t = s.f.read(0x20)
+                if t[:4] != b'MPQ\x1a':
+                    continue
+                htp, btp, hn, bn = struct.unpack_from('<IIII', t, 16)
+                if cand + max(htp + hn * 16, btp + bn * 16) > size:
+                    continue                      # 表格超出檔尾 = 誘餌
+                s.base, h = cand, t
+                break
         if h[:4] != b'MPQ\x1a':
             raise ValueError('不是 MPQ 檔')
         (_, _hs, _az, s.ver, s.bshift, htp, btp, s.hn, s.bn) = \

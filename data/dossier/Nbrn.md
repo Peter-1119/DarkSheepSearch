@@ -36,7 +36,7 @@
 單體傷害提升：+60%
 附加條件：處於「易傷」效果下的目標會受到「星光閃耀」的純粹傷害
 
-冷卻：5 秒
+冷卻時間：5 秒
 ```
 
 每級變動：
@@ -46,7 +46,7 @@
 
 實作：
 
-`Trig_HeroSkills56_Actions`　war3map.j:64800
+`Trig_HeroSkills56_Actions`　war3map.j:65818
 ```jass
 if Skill=='A07H' then
 set t=LoadTimerHandle(hash,GetHandleId(u),'A0AB')
@@ -68,7 +68,7 @@ call SaveInteger(hash,GetHandleId(u),'A0AB',0)
 作用範圍提升：+15%
 額外範圍效果：20% 機率對敵人施加「易傷」狀態
 
-冷卻：5 秒
+冷卻時間：5 秒
 ```
 
 每級變動：
@@ -80,7 +80,7 @@ call SaveInteger(hash,GetHandleId(u),'A0AB',0)
 
 實作：
 
-`Trig_HeroSkills56_Actions`　war3map.j:64806
+`Trig_HeroSkills56_Actions`　war3map.j:65824
 ```jass
 elseif Skill=='A0BD' then
 set t=LoadTimerHandle(hash,GetHandleId(u),'A0AB')
@@ -100,7 +100,7 @@ endif
 
 傷害：對目標（120% 敏捷）點；附近的敵人受到 50% 的傷害
 
-冷卻：5 秒
+冷卻時間：5 秒
 ```
 
 每級變動：
@@ -112,7 +112,7 @@ endif
 
 實作：
 
-`Trig_HeroSkills56_Actions`　war3map.j:64800
+`Trig_HeroSkills56_Actions`　war3map.j:65818
 ```jass
 if Skill=='A07H' then
 set t=LoadTimerHandle(hash,GetHandleId(u),'A0AB')
@@ -129,7 +129,7 @@ call SaveInteger(hash,GetHandleId(u),'A0AB',0)
 endif
 ```
 
-`Trig_HeroAttack56_Actions`　war3map.j:64880
+`Trig_HeroAttack56_Actions`　war3map.j:65898
 ```jass
 if GetUnitAbilityLevel(u,'A0AB')>=1 and LoadInteger(hash,u_Id,'A0AB')==0 and IsUnitEnemy(u2,pl)then
 call SaveInteger(hash,u_Id,'A0AB',1)
@@ -164,6 +164,10 @@ else
 call UnitDamageTarget(u,u2,dmg,false,false,ATTACK_TYPE_HERO,DAMAGE_TYPE_NORMAL,WEAPON_TYPE_WHOKNOWS)
 endif
 call DestroyEffect(AddSpecialEffect("war3mapImported\\WispQ.mdx",x2,y2))
+if not UnitAlive(u2)then
+call DestroyEffect(AddSpecialEffectTarget("Abilities\\Spells\\Items\\AIsm\\AIsmTarget.mdl",u,"origin"))
+call SetHeroAgi(u,GetHeroAgi(u,false)+1,true)
+endif
 elseif check==2 then
 set dmg=dmg*(1.15+0.15*I2R(GetUnitAbilityLevel(u,'A0AB')))
 set aoe=250.*(1.1+0.05*I2R(GetUnitAbilityLevel(u,'A0AB')))
@@ -181,13 +185,6 @@ endif
 call GroupRemoveUnit(ug,u3)
 endloop
 call DestroyGroup(ug)
-endif
-if not UnitAlive(u2)then
-set n=GetRandomInt(1,2)
-if n==1 then
-call DestroyEffect(AddSpecialEffectTarget("Abilities\\Spells\\Items\\AIsm\\AIsmTarget.mdl",u,"origin"))
-call SetHeroAgi(u,GetHeroAgi(u,false)+1,true)
-endif
 endif
 if GetUnitAbilityLevel(u,'A0AL')==1 then
 if check==0 then
@@ -237,7 +234,7 @@ endif
 endif
 ```
 
-`Hero56R`　war3map.j:64828
+`Hero56R`　war3map.j:65846
 ```jass
 function Hero56R takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -282,18 +279,18 @@ endfunction
 俄文原名：Падающая звезда
 
 ```
-「星光閃耀」技能有機率召喚一顆流星，造成額外的範圍傷害並永久降低被擊中敵人的護甲。
+「星光閃耀」技能有機率召喚一顆流星，造成額外的範圍傷害並永久降低被擊中敵人的防禦力。
 
-一般星光閃耀：50% 機率，星光閃耀傷害的 75%，範圍 250 點，護甲降低 2 點
-處於「貫穿之光」效果下：100% 機率，星光閃耀傷害的 50%，範圍 150 點，護甲降低 5 點
-處於「散射之光」效果下：50% 機率，星光閃耀傷害的 75%，範圍等同於提升後的星光閃耀範圍，護甲降低 2 點
+一般星光閃耀：50% 機率，星光閃耀傷害的 75%，範圍 250 點，防禦力降低 2 點
+處於「貫穿之光」效果下：100% 機率，星光閃耀傷害的 50%，範圍 150 點，防禦力降低 5 點
+處於「散射之光」效果下：50% 機率，星光閃耀傷害的 75%，範圍等同於提升後的星光閃耀範圍，防禦力降低 2 點
 ```
 
 物件欄位（原型 `Amgl`）：`aher = 1`
 
 實作：
 
-`Trig_HeroAttack56_Actions`　war3map.j:64938
+`Trig_HeroAttack56_Actions`　war3map.j:65953
 ```jass
 if GetUnitAbilityLevel(u,'A0AL')==1 then
 if check==0 then
@@ -342,7 +339,7 @@ endif
 endif
 ```
 
-`Hero56R`　war3map.j:64828
+`Hero56R`　war3map.j:65846
 ```jass
 function Hero56R takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -394,7 +391,7 @@ endfunction
 
 實作：
 
-`Trig_ChangePoints_Actions`　war3map.j:17742
+`Trig_ChangePoints_Actions`　war3map.j:18929
 ```jass
 if GetSpellAbilityId()=='A03V' and GetUnitLevel(GetSpellTargetUnit())>0 then
 set udg_CTPoint[n]=GetSpellTargetUnit()
@@ -424,23 +421,25 @@ endif
 
 實作：
 
-`BurnUnit`　war3map.j:1939
+`BurnUnit`　war3map.j:2090
 ```jass
 if GetUnitAbilityLevel(target,'A064')==1 then
 set count=count/2
 endif
 ```
 
-`BleedUnit`　war3map.j:2146
+`BleedUnit`　war3map.j:2311
 ```jass
 if GetUnitAbilityLevel(target,'A064')==1 then
-set count=8
+set count=count/2
+endif
 ```
 
-`DiseaseUnit`　war3map.j:2335
+`DiseaseUnit`　war3map.j:2512
 ```jass
 if GetUnitAbilityLevel(target,'A064')==1 then
-set count=8
+set count=count/2
+endif
 ```
 
 ---
@@ -455,44 +454,12 @@ set count=8
 
 ---
 
-## 以「單位型號」內聯的實作
-
-這幾段不是靠技能 ID 分派的，而是直接用單位型號 `Nbrn` 寫在共用函式的條件式裡
-（常見於寫進傷害管線的被動）。照技能抽取抓不到，所以單獨列出來。
-
-`Trig_HeroAttack36_Actions`　war3map.j:57865
-```jass
-if GetUnitTypeId(u)=='Nbrn' then
-call DestroyEffect(AddSpecialEffect("Abilities\\Spells\\Human\\Thunderclap\\ThunderClapCaster.mdl",x3,y3))
-set ug=CreateGroup()
-call GroupEnumUnitsInRange(ug,x3,y3,300.,null)
-loop
-set u4=FirstOfGroup(ug)
-exitwhen u4==null
-if UnitAlive(u4)and IsUnitEnemy(u4,pl)and u4 !=u3 then
-call UnitDamageTarget(u,u4,dmg*0.50,false,false,ATTACK_TYPE_NORMAL,DAMAGE_TYPE_MAGIC,WEAPON_TYPE_WHOKNOWS)
-endif
-call GroupRemoveUnit(ug,u4)
-endloop
-call DestroyGroup(ug)
-if not UnitAlive(u3)then
-set n=GetRandomInt(1,2)
-if n==1 then
-call DestroyEffect(AddSpecialEffectTarget("Abilities\\Spells\\Items\\AIsm\\AIsmTarget.mdl",u,"origin"))
-call SetHeroAgi(u,GetHeroAgi(u,false)+1,true)
-endif
-endif
-endif
-```
-
----
-
 ## 同一組的其他實作函式
 
 英雄的實作散在同編號的一組函式裡，上面按技能抽取時抓不到的補在這裡
 （常見的是決定門檻、結算加成、清理 buff 的那幾支）。
 
-`Trig_HeroAttack56_Conditions`　war3map.j:64825
+`Trig_HeroAttack56_Conditions`　war3map.j:65843
 ```jass
 function Trig_HeroAttack56_Conditions takes nothing returns boolean
 return GetUnitTypeId(GetAttacker())=='Nbrn'
@@ -507,6 +474,6 @@ endfunction
 
 ---
 
-*由 `tools/build_dossier.py` 從 UD_v3.82fix 地圖檔產生。*
+*由 `tools/build_dossier.py` 從 UD test 24.09.27（合併版） 地圖檔產生。*
 *機制通則、配裝規則與輸出格式見 `tools/BUILD_BRIEF.md`；*
 *道具數值見 `data/dossier/_items.md`。*

@@ -35,7 +35,7 @@
 強化爆破傷害：50 +（20% 技能強度）點
 強化爆破的點燃：75% 機率，200% 傷害
 
-冷卻：14 秒
+冷卻時間：14 秒
 ```
 
 每級變動：
@@ -46,7 +46,7 @@
 
 實作：
 
-`HeroE25_Dmg`　war3map.j:54234
+`HeroE25_Dmg`　war3map.j:54922
 ```jass
 if count==1 then
 call DestroyEffect(AddSpecialEffect("war3mapImported\\NewDirtEXNofire.mdx",x,y))
@@ -60,7 +60,7 @@ call GroupEnumUnitsInRange(ug,x,y,160,null)
 endif
 ```
 
-`Trig_HeroSkills25_Actions`　war3map.j:54364
+`Trig_HeroSkills25_Actions`　war3map.j:55052
 ```jass
 elseif Skill=='A03F' then
 set x=GetUnitX(u)
@@ -92,7 +92,7 @@ call TimerStart(t,0.08,true,function HeroE25_Dmg)
 火焰傷害：10 +（5% 技能強度）點/秒
 火焰持續時間：8 秒
 
-冷卻：13 秒
+冷卻時間：13 秒
 ```
 
 每級變動：
@@ -103,7 +103,7 @@ call TimerStart(t,0.08,true,function HeroE25_Dmg)
 
 實作：
 
-`HeroQ25_Start`　war3map.j:54187
+`HeroQ25_Start`　war3map.j:54875
 ```jass
 if count>8 then
 set dmg=(20+25*I2R(GetUnitAbilityLevel(hero,'AHfs'))+udg_ItemBonusDMG[n]*0.20)*0.33
@@ -112,7 +112,7 @@ set dmg=5+5*I2R(GetUnitAbilityLevel(hero,'AHfs'))+udg_ItemBonusDMG[n]*0.05
 endif
 ```
 
-`Trig_HeroSkills25_Actions`　war3map.j:54342
+`Trig_HeroSkills25_Actions`　war3map.j:55030
 ```jass
 if Skill=='AHfs' then
 set x=GetSpellTargetX()
@@ -137,7 +137,7 @@ call TimerStart(t,0.33,true,function HeroQ25_Start)
 投射物的點燃效果：50% 機率，100% 傷害
 投射物數量：20 發
 
-冷卻：20 秒
+冷卻時間：20 秒
 ```
 
 每級變動：
@@ -148,7 +148,7 @@ call TimerStart(t,0.33,true,function HeroQ25_Start)
 
 實作：
 
-`FireTorrent`　war3map.j:54271
+`FireTorrent`　war3map.j:54959
 ```jass
 function FireTorrent takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -190,7 +190,7 @@ set pl=null
 endfunction
 ```
 
-`Trig_HeroSkills25_Actions`　war3map.j:54352
+`Trig_HeroSkills25_Actions`　war3map.j:55040
 ```jass
 elseif Skill=='A02J' then
 set u3=GetSpellTargetUnit()
@@ -211,14 +211,14 @@ call TimerStart(t,0.04,true,function FireTorrent)
 俄文原名：Огненный вихрь
 
 ```
-在指定位置生成一個無規則移動的火焰旋風。旋風會朝周圍區域射出火焰彈，造成小範圍傷害。此外旋風也會對自身附近的敵人造成額外傷害。旋風與火焰彈都可能點燃敵人。
+在指定位置生成一個無規則移動的火焰旋風。旋風會朝周圍區域射出能量團，造成小範圍傷害。此外旋風也會對自身附近的敵人造成額外傷害。旋風與能量團都可能點燃敵人。
 
 旋風傷害：30 + （15% 技能強度）點/秒
-火焰彈傷害：60 + （30% 技能強度）點
-旋風與火焰彈的點燃效果：60% 機率，250% 傷害
+能量團傷害：60 + （30% 技能強度）點
+旋風與能量團的點燃效果：60% 機率，250% 傷害
 技能持續時間：12 秒
 
-冷卻：90 秒
+冷卻時間：90 秒
 ```
 
 物件欄位（原型 `ANcl`）：`Ncl1 = 0.800000011920929`, `Ncl2 = 2`, `Ncl3 = 1`, `Ncl4 = 0.800000011920929`, `Ncl5 = 0`, `Ncl6 = coldarrowstarg`, `acap = `, `acdn = 90.0`, `alev = 1`, `amcs = 300`, `aran = 800.0`
@@ -227,14 +227,14 @@ call TimerStart(t,0.04,true,function FireTorrent)
 
 實作：
 
-`Trig_HeroSkill25R_Conditions`　war3map.j:54410
+`Trig_HeroSkill25R_Conditions`　war3map.j:55098
 ```jass
 function Trig_HeroSkill25R_Conditions takes nothing returns boolean
 return GetSpellAbilityId()=='A03O'
 endfunction
 ```
 
-`Trig_HeroSkill25R_Actions`　war3map.j:54571
+`Trig_HeroSkill25R_Actions`　war3map.j:55259
 ```jass
 function Trig_HeroSkill25R_Actions takes nothing returns nothing
 local unit u=GetTriggerUnit()
@@ -253,7 +253,7 @@ set u=null
 endfunction
 ```
 
-`Trig_HeroSkill25R_Conditions`　war3map.j:54410
+`Trig_HeroSkill25R_Conditions`　war3map.j:55098
 ```jass
 function Trig_HeroSkill25R_Conditions takes nothing returns boolean
 return GetSpellAbilityId()=='A03O'
@@ -443,7 +443,7 @@ endfunction
 傷害：（200% int）點
 易燃：120% 機率
 
-冷卻：15 秒
+冷卻時間：15 秒
 ```
 
 物件欄位（原型 `ANcl`）：`Ncl1 = 0.5`, `Ncl2 = 2`, `Ncl3 = 3`, `Ncl4 = 0.5`, `Ncl5 = 0`, `Ncl6 = cloudoffog`, `aare = 180.0`, `acap = `, `acdn = 15.0`, `aher = 0`, `alev = 1`, `amcs = 75`, `aran = 700.0`, `atar = hero,friend,self`
@@ -452,7 +452,7 @@ endfunction
 
 實作：
 
-`Trig_HeroSkills25_Actions`　war3map.j:54380
+`Trig_HeroSkills25_Actions`　war3map.j:55068
 ```jass
 elseif Skill=='A031' then
 set x=GetSpellTargetX()
@@ -494,7 +494,7 @@ endif
 
 實作：
 
-`Trig_HeroSkills25_Actions`　war3map.j:54324
+`Trig_HeroSkills25_Actions`　war3map.j:55012
 ```jass
 if Skill=='A03G' then
 call SetHeroStr(u,GetHeroStr(u,false)+1,true)
@@ -528,7 +528,7 @@ endif
 
 實作：
 
-`Trig_ChangePoints_Actions`　war3map.j:17742
+`Trig_ChangePoints_Actions`　war3map.j:18929
 ```jass
 if GetSpellAbilityId()=='A03V' and GetUnitLevel(GetSpellTargetUnit())>0 then
 set udg_CTPoint[n]=GetSpellTargetUnit()
@@ -566,7 +566,7 @@ endif
 
 實作：
 
-`Trig_HeroSkills25_Actions`　war3map.j:54324
+`Trig_HeroSkills25_Actions`　war3map.j:55012
 ```jass
 if Skill=='A03G' then
 call SetHeroStr(u,GetHeroStr(u,false)+1,true)
@@ -597,7 +597,7 @@ call SaveInteger(hash,GetHandleId(pl),15,1)
 
 實作：
 
-`Trig_HeroSkills25_Actions`　war3map.j:54331
+`Trig_HeroSkills25_Actions`　war3map.j:55019
 ```jass
 elseif Skill=='A03J' then
 call SetHeroStr(u,GetHeroStr(u,false)+3,true)
@@ -624,6 +624,6 @@ endif
 
 ---
 
-*由 `tools/build_dossier.py` 從 UD_v3.82fix 地圖檔產生。*
+*由 `tools/build_dossier.py` 從 UD test 24.09.27（合併版） 地圖檔產生。*
 *機制通則、配裝規則與輸出格式見 `tools/BUILD_BRIEF.md`；*
 *道具數值見 `data/dossier/_items.md`。*

@@ -100,6 +100,84 @@ INIT_ANCHOR = ('set L=L+1\nendloop\nset u=null\nset ug=null\nset pl=null\n'
                'call DestroyTrigger(GetTriggeringTrigger())\nendfunction\n')
 
 
+def gated_blocks(lines, start, stop):
+    """找出 start..stop 之間「body 只有 RegisterSkin」的 if name== 區塊。
+
+    RegisterSkin 是「往清單後面加一筆」（SkinsCount+1 才寫進 Skins_n），
+    所以同一個皮膚註冊兩次，選單裡就會出現兩個按鈕。補進「所有人」那一批之後，
+    這些綁名字的區塊就是純粹的重複來源 —— 名單上的玩家會看到重複的皮膚。
+    整段拿掉最乾淨：反正每個皮膚在上面都已經註冊過一次了。
+
+    只動 body 全是 RegisterSkin 的那幾段；同一段迴圈裡還有
+    Players_Gifts 與 SetPlayerTechResearched 的名字判斷，那些要留著。
+    """
+    out, i = [], start
+    while i < stop:
+        if not lines[i].strip().startswith('if name=='):
+            i += 1
+            continue
+        depth, end = 0, None
+        for k in range(i, stop + 1):
+            s = lines[k].strip()
+            if s.startswith('if '):
+                depth += 1
+            elif s == 'endif':
+                depth -= 1
+                if depth == 0:
+                    end = k
+                    break
+        if end is None:
+            break
+        body = [lines[k].strip() for k in range(i + 1, end)]
+        if body and all(RS.match(b) or b.startswith('elseif name==')
+                        for b in body):
+            out.append((i, end))
+        i = end + 1
+    return out
+
+
+def check_duplicates(jass):
+    """模擬每一個會被判斷到的帳號名稱，看有沒有皮膚被註冊兩次。
+
+    回傳 {帳號名: [重複的皮膚單位]}，正常應該是空的。
+    """
+    lines = jass.split('\n')
+    start = next(i for i, l in enumerate(lines)
+                 if l.strip() == 'set name=GetPlayerName(pl)')
+    stop = next(i for i in range(start, len(lines))
+                if lines[i].strip() == 'set L=L+1')
+    uni, per = [], {}
+    cur = None
+    for k in range(start, stop):
+        s = lines[k].strip()
+        m = re.match(r'(?:else)?if (name==.*) then$', s)
+        if m:
+            cur = re.findall(r'name=="([^"]*)"', m.group(1))
+            for n in cur:
+                per.setdefault(n, [])
+            continue
+        if s in ('endif', 'else'):
+            cur = None
+            continue
+        r = RS.match(s)
+        if r:
+            if cur:
+                for n in cur:
+                    per[n].append(r.group(2))
+            else:
+                uni.append(r.group(2))
+    out = {}
+    for n, v in per.items():
+        seen, d = set(uni), []
+        for u in v:
+            (d.append(u) if u in seen else seen.add(u))
+        if d:
+            out[n] = d
+    if len(set(uni)) != len(uni):
+        out['(所有人)'] = [u for u in set(uni) if uni.count(u) > 1]
+    return out
+
+
 def build_patch(jass):
     """回傳 (錨點行, 新內容, 補進去的皮膚清單)。"""
     lines = jass.split('\n')
@@ -138,7 +216,19 @@ def build_patch(jass):
         h, s = nm.get(u, ('', ''))
         out.append("""call RegisterSkin(L,'%s','%s',"off")%s"""
                    % (a, u, (' // %s-%s' % (h, s)) if h else ''))
-    return anchor + '\n', '\n'.join(out) + '\n', gated
+    edits = [(anchor + '\n', '\n'.join(out) + '\n')]
+
+    # 原本綁名字的那幾段整個拿掉，否則名單上的玩家會被註冊兩次 -> 選單出現重複。
+    stop = next(i for i in range(start, len(lines))
+                if lines[i].strip() == 'set L=L+1')
+    dead = gated_blocks(lines, start, stop)
+    if not dead:
+        raise SystemExit('找不到只含 RegisterSkin 的綁名字區塊，地圖結構可能變了')
+    for a, b in dead:
+        old = '\n'.join(lines[a:b + 1]) + '\n'
+        edits.append((old, '// 本機改動：原本綁帳號名稱的皮膚註冊（%d 行）已移除，'
+                           '改由上面的「所有人」那一批統一註冊，避免重複。\n' % (b - a + 1)))
+    return edits, gated, dead
 
 
 def main():
@@ -152,8 +242,8 @@ def main():
 
     m = MPQ(src)
     jass = m.read('war3map.j').decode('utf-8', 'surrogateescape')
-    old, new, added = build_patch(jass)
-    edits = [(old, new)]
+    edits, added, removed = build_patch(jass)
+    new = edits[0][1]
     if 'function SkinMenuCmd ' not in jass:      # -skin 指令（只加一次）
         edits.append((CMD_ANCHOR, SKIN_CMD + CMD_ANCHOR))
         edits.append((INIT_ANCHOR,
@@ -206,9 +296,16 @@ def main():
     body = body[:body.index('\nfunction ', 10)]
     dead = [u for _, u in added if ("LoadInteger(hash,pl_Id,'%s')" % u) not in body]
 
+    # 沒有任何帳號會被註冊到重複的皮膚？（RegisterSkin 是往清單後面加，重複＝選單多一顆按鈕）
+    dup = check_duplicates(t2)
+
     print('%s -> %s' % (os.path.basename(src), os.path.basename(dst)))
-    print('  補上 %d 個皮膚，war3map.j %s' % (len(added), where))
+    print('  補上 %d 個皮膚，移除 %d 段綁帳號的重複註冊，war3map.j %s'
+          % (len(added), len(removed), where))
     print('  war3map.j 寫回正確：%s｜其他檔案未更動：%s' % (ok, same))
+    print('  會看到重複皮膚的帳號：%s' % (dup or '無（所有人都是一個皮膚一顆按鈕）'))
+    if dup:
+        raise SystemExit('還有重複註冊，請不要用這份檔案')
     print('  選英雄時不會生效的：%s' % (dead or '無'))
     print('  已加入 -skin 指令（選取「額外資訊」單位並把鏡頭移過去）')
     if not (ok and same) or dead:

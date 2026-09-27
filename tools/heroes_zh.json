@@ -105,7 +105,7 @@
       "Silver Lictor"
     ],
     "Edem": [
-      "惡魔獵手",
+      "惡魔獵人",
       "Demon Hunter"
     ],
     "Ekee": [
@@ -118,7 +118,7 @@
       "Жрица Луны"
     ],
     "H00N": [
-      "神射手",
+      "火槍先鋒",
       "Sharpshooter"
     ],
     "H00O": [
@@ -138,16 +138,16 @@
       "Spirit of Life"
     ],
     "H00Z": [
-      "聖武士",
+      "聖騎士",
       "Paladin",
       "Паладин"
     ],
     "H012": [
-      "秘法學者",
+      "奧術師",
       "Arcanologist"
     ],
     "H01C": [
-      "弩砲手",
+      "弩車",
       "Ballista"
     ],
     "H01D": [
@@ -163,7 +163,7 @@
       "Ancient of Lore"
     ],
     "H01G": [
-      "女獵手",
+      "女獵人",
       "Huntress"
     ],
     "H01H": [
@@ -232,7 +232,7 @@
       "Механик"
     ],
     "N01P": [
-      "幽魂之狼",
+      "幽魂狼",
       "Ghost Wolf"
     ],
     "N01V": [
@@ -300,7 +300,7 @@
       "Rune Guardian"
     ],
     "O01O": [
-      "劍聖",
+      "刀鋒大師",
       "Blademaster"
     ],
     "O022": [
@@ -312,7 +312,7 @@
       "Mo'arg"
     ],
     "U00Q": [
-      "黑暗獵手",
+      "黑暗遊俠",
       "Dark Huntress"
     ],
     "U011": [
@@ -366,7 +366,7 @@
       "Steals items from enemy heroes and earns gold in combat, but is weak in a straight fight."
     ],
     "N05T": [
-      "著魔的刺客，攻擊與移動速度都很高，能累積攻擊力與敏捷。沒有英雄護甲。",
+      "著魔的刺客，攻擊與移動速度都很高，能累積攻擊力與敏捷。沒有英雄防禦力。",
       "An obsessed assassin with very high attack and movement speed, able to accumulate attack damage and agility. Has no hero armour."
     ],
     "O01O": [
@@ -442,11 +442,11 @@
       "A strong mage limited to 4 items. Summons a fire spirit and runs on a separate resource."
     ],
     "N03S": [
-      "無情的法師，對敵方集群造成巨量傷害，但非常吃法力。",
+      "無情的法師，對敵方集群造成巨量傷害，但非常吃魔力。",
       "A merciless mage who devastates enemy clusters but is extremely mana-hungry."
     ],
     "U011": [
-      "近戰法師，能用自己的法力吸收傷害。",
+      "近戰法師，能用自己的魔力吸收傷害。",
       "A melee mage who absorbs damage with his own mana."
     ],
     "H02Y": [
@@ -542,7 +542,7 @@
       "A ranged hero with steady magic damage against both single targets and packs, who accumulates Agility over time."
     ],
     "Ekee": [
-      "沒有普通攻擊的法師，靠屏障控場並殲滅大量敵人，非常吃法力。",
+      "沒有普通攻擊的法師，靠屏障控場並殲滅大量敵人，非常吃魔力。",
       "A sorceress with no attack at all, controlling the field with barriers and wiping large packs - very mana-hungry."
     ],
     "Nsjs": [
@@ -550,7 +550,7 @@
       "A sturdy ranged hero with Fortified armour and side turrets that fire on their own, stacking burn amplification."
     ],
     "H03I": [
-      "結實的遠程英雄，回復能力優秀，每次升級都有額外加成；滿等之後仍能繼續成長。",
+      "結實的遠程英雄，恢復能力優秀，每次升級都有額外加成；滿等之後仍能繼續成長。",
       "A sturdy ranged hero with strong regeneration and extra bonuses per level - and it keeps growing past max level."
     ]
   },
@@ -600,7 +600,7 @@
       "Ice Golem"
     ],
     "Ратлинг": [
-      "鼠人",
+      "萊特林人",
       "Ratling"
     ],
     "Всадница Чёрной Луны": [
@@ -652,7 +652,7 @@
       "Rocker"
     ],
     "Тёмный застрельщик": [
-      "黑暗神射手",
+      "黑暗火槍先鋒",
       "Dark Sharpshooter"
     ],
     "Убийца драконов": [
@@ -660,7 +660,7 @@
       "Dragonslayer"
     ],
     "Тёмный мастер клинка": [
-      "黑暗劍聖",
+      "黑暗刀鋒大師",
       "Dark Blademaster"
     ],
     "Дворянин": [
@@ -700,7 +700,7 @@
       "Ancient Elemental"
     ],
     "Полемарх": [
-      "統兵官",
+      "戰爭統帥",
       "Polemarch"
     ],
     "Падший пророк": [

@@ -1,0 +1,14 @@
+ud_new/
+ud_old/
+ud_210/
+ud_vers/
+*.j
+*.w3i
+*.w3x
+__pycache__/
+ud_termaudit*.json
+ud_termcheck.json
+ud_itemcheck.json
+ud_itemimpl.json
+ud_build_minimap.png
+ud_minimap.blp

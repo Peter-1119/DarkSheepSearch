@@ -13,7 +13,7 @@ SETB = json.load(open('set_bonus.json', encoding='utf-8'))
 # Бонусы 裡沒被 stat_values 採計的片段。分兩種：
 #   · 條件加成（「對英雄」「對亡靈」「對 N 級敵人」…）—— 不能跟無條件屬性混加，
 #     但也不能整段丟掉，否則像「弒神者 +50% 對英雄傷害」這種主力屬性會憑空消失。
-#   · 無數值旗標（抗詛咒、免疫反傷…）
+#   · 無數值旗標（抗詛咒、免疫反彈傷害…）
 # 這裡逐段翻成三語並保留俄文原文當分組鍵，配裝時同條件的可以加總。
 _NUMRE = re.compile(r'^([-+]?\d+(?:\.\d+)?)\s*(%?)\s+(.+)$')
 _ZHNUM = re.compile(r'^([-+]?\d+(?:\.\d+)?%?)\s*(.*)$', re.S)
@@ -56,9 +56,10 @@ RAW = {x['id']: x for x in json.load(
 SITE = json.load(open(os.path.join(ROOT, 'data', 'items.json'), encoding='utf-8'))
 
 # attach the English ability strings
-it = iter(ABEN)
+# ab_en.json：{道具 ID: [每一條效果的英文]}，與 ab_db.json 的 parts 一一對應
 for uid, e in AB.items():
-    e['en'] = [next(it) for _ in e['parts']]
+    e['en'] = ABEN[uid]
+    assert len(e['en']) == len(e['parts']), ('ab_en.json 條數不符', uid)
 
 zh_old = {}
 for v in MAP.values():
@@ -137,7 +138,7 @@ assert len(_seen) == len(set(_seen)) == len(GROUPS), (
 SET = {'c1': ('英勇', 'Valor', 'Доблесть'), 'c2': ('深淵', 'Abyss', 'Бездна'),
        'c3': ('風暴', 'Storm', 'Шторм'), 'c4': ('地獄', 'Infernal', 'Адский')}
 LABEL = {'能力': ('能力', 'Ability', 'Способности'),
-         'MOD': ('MOD', 'Mod', 'Модификатор'),
+         'MOD': ('觸發效果', 'Mod', 'Модификатор'),
          '倍增': ('倍增', 'Multiplier', 'Множитель'),
          '任務': ('任務', 'Quest', 'Задание'),
          '特性': ('特性', 'Trait', 'Особенность'),
@@ -151,12 +152,28 @@ LABEL = {'能力': ('能力', 'Ability', 'Способности'),
 CLSRU = {g[0]: g[1] for g in GROUPS}
 CLSEN = {g[0]: g[2] for g in GROUPS}
 
+_T = []
+
+
+def raw_name(i):
+    """道具名稱原文（含顏色碼）；舊匯出沒有的新道具直接讀地圖。"""
+    if i in RAW:
+        return RAW[i].get('name') or ''
+    if not _T:
+        import mpq, w3obj
+        mf = json.load(open('version.json', encoding='utf-8'))['map_file']
+        _T.append(w3obj.parse(mpq.MPQ(mf).read('war3map.w3t'), False))
+    v = _T[0].get(i, {}).get('unam') or ''
+    return v[0] if isinstance(v, list) else v
+
+
 items = {}
 for r in DB:
     i = r['id']
     prev = SITE['items'][i]
+    bon = prev.get('stats_ru') or ''    # 已套 build_data2 的 STAT_FIX（說明與實際不符的數值）
     grp = prev['group']
-    m = re.match(r'\|c[fF]{2}([0-9a-fA-F]{6})', RAW[i].get('name') or '')
+    m = re.match(r'\|c[fF]{2}([0-9a-fA-F]{6})', raw_name(i))
     colour = '#' + m.group(1).upper() if m else None
     eff = []
     e = AB.get(i)
@@ -178,10 +195,10 @@ for r in DB:
         'c': [prev['cls'], prev['cls'].replace(grp, CLSEN[grp]),
               prev['cls'].replace(grp, CLSRU[grp])],
         'k': colour,
-        's': tr_bonus(r['fields'].get('Бонусы', ''), 'zh')[0] and [
-            tr_bonus(r['fields'].get('Бонусы', ''), 'zh')[0],
-            tr_bonus(r['fields'].get('Бонусы', ''), 'en')[0],
-            r['fields'].get('Бонусы', '')] or None,
+        's': tr_bonus(bon, 'zh')[0] and [
+            tr_bonus(bon, 'zh')[0],
+            tr_bonus(bon, 'en')[0],
+            bon] or None,
         'e': eff,
         'img': prev['image'],
         'sk': sks or None,
@@ -197,10 +214,10 @@ for r in DB:
         'act': 1 if prev.get('active') else None,
         # 暫代圖示（玩家截圖補的），拿到正式圖會換掉
         'tmp': 1 if prev.get('icon_src') == 'temp' else None,
-        'vx': leftovers(r['fields'].get('Бонусы', '')) or None,
+        'vx': leftovers(bon) or None,
         'r': prev['recipe'],
         'u': prev['used_in'],
-        'v': stat_values.parse(r['fields'].get('Бонусы', '')) or None,
+        'v': stat_values.parse(bon) or None,
     }
 
 # ---------------------------------------------------------------- 版本資訊
@@ -284,7 +301,7 @@ if SITE.get('legion'):
     SITE['legion']['b'] = SETB.get('c5', {}).get('tiers', [])
     SITE['legion']['only'] = SETB.get('c5', {}).get('only')
 
-# 配裝計算：多數加成直接相加，但減傷類同時帶好幾件並不會疊加，
+# 配裝計算：多數加成直接相加，但防禦類同時帶好幾件並不會疊加，
 # 遊戲內是同類取最高。哪些屬於這類無法從地圖資料判斷（規則寫在觸發裡），
 # 這份清單是依玩家說明列的，介面上會標示出來讓人知道是這樣算的。
 NOSTACK = ['mres', 'sres']

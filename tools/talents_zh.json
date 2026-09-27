@@ -72,7 +72,7 @@
     "Sinister Shadows"
    ],
    "t": [
-    "強度等級：T3\n屬性加成／每級屬性成長加成：\n+4 / +1\n+6 / +2\n+4 / +1\n\n當生命值與法力值皆高於 50% 時，召喚暗影會消耗英雄 1% 生命值與法力值，但會創造出擁有 +100% 造成傷害加成的邪祟暗影。每次召喚邪祟暗影都會使它們的傷害加成提升 1%，傷害加成的進度可透過指令「-i」查看。當生命值或法力值低於 50% 時，將只會召喚出普通的暗影。\n\n技能「暗影分身」遵循相同的條件，但會吸取英雄 5% 生命值與法力值，並使邪祟暗影的傷害加成提升 +5%。",
+    "強度等級：T3\n屬性加成／每級屬性成長加成：\n+4 / +1\n+6 / +2\n+4 / +1\n\n當生命值與魔力值皆高於 50% 時，召喚暗影會消耗英雄 1% 生命值與魔力值，但會創造出擁有 +100% 造成傷害加成的邪祟暗影。每次召喚邪祟暗影都會使它們的傷害加成提升 1%，傷害加成的進度可透過指令「-i」查看。當生命值或魔力值低於 50% 時，將只會召喚出普通的暗影。\n\n技能「暗影分身」遵循相同的條件，但會吸取英雄 5% 生命值與魔力值，並使邪祟暗影的傷害加成提升 +5%。",
     "Power rank: T3\nAttribute bonus / attribute growth per level bonus:\n+4 / +1\n+6 / +2\n+4 / +1\n\nWhile both health and mana are above 50%, summoning a shadow takes 1% of the hero's health and mana but creates a sinister shadow with a +100% bonus to the damage it deals. Each summon of a sinister shadow raises their damage bonus by 1%; the progress of the damage bonus can be tracked with the \"-i\" command. While health or mana is below 50%, ordinary shadows are summoned instead.\n\nThe \"Shadow Clone\" ability follows the same conditions, but absorbs 5% of the hero's health and mana and grants +5% to the damage bonus of sinister shadows."
    ]
   },
@@ -92,7 +92,7 @@
     "Cryogenic Battery"
    ],
    "t": [
-    "強度等級：T3+\n屬性加成／每級屬性成長加成：\n+8 / +3\n+2 / +0\n+6 / +1\n\n當英雄的生命值或法力值低於 40% 時，低溫電池便會啟動——英雄每秒回復 2% 生命值與法力值。效果持續時間為 20 秒，冷卻為 40 秒。\n\n技能「電流衝擊」以 33% 機率對目標施加冰凍。\n\n對處於電擊狀態的目標施加冰凍時，會如同重複冰凍一般觸發傷害，且不會移除該效果。",
+    "強度等級：T3+\n屬性加成／每級屬性成長加成：\n+8 / +3\n+2 / +0\n+6 / +1\n\n當英雄的生命值或魔力值低於 40% 時，低溫電池便會啟動——英雄每秒恢復 2% 生命值與魔力值。效果持續時間為 20 秒，冷卻為 40 秒。\n\n技能「電流衝擊」以 33% 機率對目標施加冰凍。\n\n對處於震擊狀態的目標施加冰凍時，會如同重複冰凍一般觸發傷害，且不會移除該效果。",
     "Power rank: T3+\nAttribute bonus / attribute growth per level bonus:\n+8 / +3\n+2 / +0\n+6 / +1\n\nWhen the hero's health or mana falls below 40%, the cryogenic battery activates - the hero regenerates 2% of health and mana per sec. Duration of the effect - 20 sec., cooldown - 40 sec.\n\nThe \"Shock Current\" ability applies Freeze to targets with a 33% chance.\n\nApplying Freeze to a target under Shock triggers damage as if it were a repeated Freeze, without removing the effect."
    ]
   },
@@ -102,7 +102,7 @@
     "Gifts of the Old Gods"
    ],
    "t": [
-    "強度等級：T2\n屬性加成／每級屬性成長加成：\n+1 / +0\n+2 / +1\n+0 / +0\n\n擊殺處於「切口」效果下的敵人，以獲得「儀式」類別的物品。\n\n所需擊殺數：8 (+2)\n可獲得的物品數量：11\n\n指令「-i」會顯示擊殺進度。",
+    "強度等級：T2\n屬性加成／每級屬性成長加成：\n+1 / +0\n+2 / +1\n+0 / +0\n\n擊殺處於「割裂」效果下的敵人，以獲得「儀式」類別的物品。\n\n所需擊殺數：8 (+2)\n可獲得的物品數量：11\n\n指令「-i」會顯示擊殺進度。",
     "Power rank: T2\nAttribute bonus / attribute growth per level bonus:\n+1 / +0\n+2 / +1\n+0 / +0\n\nKill enemies affected by \"Incision\" to obtain items of the \"Ritual\" category.\n\nKills required: 8 (+2)\nItems available to obtain: 11\n\nThe \"-i\" command displays the kill progress."
    ]
   },
@@ -112,7 +112,7 @@
     "Bloodletter"
    ],
    "t": [
-    "強度等級：T3\n屬性加成／每級屬性成長加成：\n+1 / +0\n+2 / +1\n+0 / +0\n\n「切割」的每一次打擊都會以 100% 機率對目標施加「虛弱」狀態。\n\n「鋼鐵旋風」的傷害降低 50%，但每一次打擊都有 50% 機率對敵人施加 325% 傷害的「流血」。",
+    "強度等級：T3\n屬性加成／每級屬性成長加成：\n+1 / +0\n+2 / +1\n+0 / +0\n\n「割裂」的每一次打擊都會以 100% 機率對目標施加「虛弱」狀態。\n\n「鋼鐵旋風」的傷害降低 50%，但每一次打擊都有 50% 機率對敵人施加 325% 傷害的「流血」。",
     "Power rank: T3\nAttribute bonus / attribute growth per level bonus:\n+1 / +0\n+2 / +1\n+0 / +0\n\nEvery strike of \"Lacerations\" applies the \"Weakness\" status to the target with a 100% chance.\n\n\"Steel Whirlwind\" deals 50% less damage, but every hit has a 50% chance to apply Bleed at 325% damage."
    ]
   },
@@ -122,7 +122,7 @@
     "Phantom"
    ],
    "t": [
-    "強度等級：T3\n屬性加成／每級屬性成長加成：\n+2 / +1\n+3 / +1\n+0 / +0\n\n英雄獲得被動加成：對 0–1 級單位的傷害 +50%（狀態除外）。\n\n「切割」在擊殺敵人或造成暴擊傷害時，會多造成一次打擊。",
+    "強度等級：T3\n屬性加成／每級屬性成長加成：\n+2 / +1\n+3 / +1\n+0 / +0\n\n英雄獲得被動加成：對 0–1 級單位的傷害 +50%（狀態除外）。\n\n「割裂」在擊殺敵人或造成暴擊傷害時，會多造成一次打擊。",
     "Power rank: T3\nAttribute bonus / attribute growth per level bonus:\n+2 / +1\n+3 / +1\n+0 / +0\n\nThe hero gains a passive +50% damage bonus against level 0–1 units (except statuses).\n\n\"Lacerations\" deals an additional strike if it kills an enemy or deals critical damage."
    ]
   },
@@ -142,7 +142,7 @@
     "Follower of Darkness [1/2]"
    ],
    "t": [
-    "對敵方英雄造成傷害會給予黑暗主教一系列加成：\n\n每累積 500 點傷害：+1 點攻擊力，+15 HP；下一次強化所需的傷害增加 10 點\n\n1000 點傷害：「受詛之刃」的持續時間 +1.5 秒\n\n2000 點傷害：「衝勁」的傷害段數 +1\n\n4000 點傷害：「黑暗強化」每秒回復 1% HP\n\n6000 點傷害：當敵人身上累積 3 層效果時，「受詛之刃」額外造成 100 +（35% 技能強度）點傷害\n\n8000 點傷害：「衝勁」的傷害段數 +1\n\n11000 點傷害：「黑暗強化」的濺射效果範圍 +25%",
+    "對敵方英雄造成傷害會給予黑暗主教一系列加成：\n\n每累積 500 點傷害：+1 點攻擊力，+15 HP；下一次強化所需的傷害增加 10 點\n\n1000 點傷害：「受詛之刃」的持續時間 +1.5 秒\n\n2000 點傷害：「衝勁」的傷害段數 +1\n\n4000 點傷害：「黑暗強化」每秒恢復 1% HP\n\n6000 點傷害：當敵人身上累積 3 層效果時，「受詛之刃」額外造成 100 +（35% 技能強度）點傷害\n\n8000 點傷害：「衝勁」的傷害段數 +1\n\n11000 點傷害：「黑暗強化」的濺射效果範圍 +25%",
     "Dealing damage to enemy heroes grants the Prelate a series of bonuses:\n\nEvery 500 damage: +1 attack power, +15 HP; +10 to the damage required for the next upgrade\n\n1000 damage: +1.5 sec. to the duration of \"Cursed Blade\"\n\n2000 damage: +1 damage tick to \"Surge\"\n\n4000 damage: \"Dark Empowerment\" restores 1% HP/sec.\n\n6000 damage: \"Cursed Blade\" deals an additional 100 + (35% spell power) damage when 3 effects are stacked on the enemy\n\n8000 damage: +1 damage tick to \"Surge\"\n\n11000 damage: +25% to the splash area of \"Dark Empowerment\""
    ]
   },
@@ -152,7 +152,7 @@
     "Follower of Darkness [2/2]"
    ],
    "t": [
-    "15000 點傷害：「衝勁」在 5 秒內將受到傷害的防護提高 25%\n\n20000 點傷害：「受詛之刃」的冷卻降低 0.5 秒\n\n27000 點傷害：「衝勁」的傷害段數 +1\n\n35000 點傷害：「靈魂撕裂」可命中 5 個目標\n\n45000 點傷害：「衝勁」的傷害段數 +1\n\n60000 點傷害：「黑暗強化」使裝備技能威力提高 50%\n\n80000 點傷害：「衝勁」的傷害段數 +1",
+    "15000 點傷害：「衝勁」在 5 秒內將受到傷害的防護提高 25%\n\n20000 點傷害：「受詛之刃」的冷卻降低 0.5 秒\n\n27000 點傷害：「衝勁」的傷害段數 +1\n\n35000 點傷害：「靈魂撕裂」可命中 5 個目標\n\n45000 點傷害：「衝勁」的傷害段數 +1\n\n60000 點傷害：「黑暗強化」使觸發效果強度提高 50%\n\n80000 點傷害：「衝勁」的傷害段數 +1",
     "15000 damage: \"Surge\" increases protection from incoming damage by 25% for 5 sec.\n\n20000 damage: the cooldown of \"Cursed Blade\" is reduced by 0.5 sec.\n\n27000 damage: +1 damage tick to \"Surge\"\n\n35000 damage: \"Soul Rupture\" hits 5 targets\n\n45000 damage: +1 damage tick to \"Surge\"\n\n60000 damage: \"Dark Empowerment\" increases modifier power by 50%\n\n80000 damage: +1 damage tick to \"Surge\""
    ]
   },
@@ -202,7 +202,7 @@
     "Butcher"
    ],
    "t": [
-    "強度等級：T2\n屬性加成／每級屬性成長加成：\n+1 / +0\n+2 / +1\n+0 / +0\n\n在技能「開膛」持續期間，英雄獲得 50% 傷害減免，每擊殺一名敵人便使技能「開膛」的總傷害提升 2.5 點。\n\n指令「-i」會顯示計入技能等級與技能強度後的「開膛」傷害。",
+    "強度等級：T2\n屬性加成／每級屬性成長加成：\n+1 / +0\n+2 / +1\n+0 / +0\n\n在技能「開膛」持續期間，英雄獲得 50% 防禦，每擊殺一名敵人便使技能「開膛」的總傷害提升 2.5 點。\n\n指令「-i」會顯示計入技能等級與技能強度後的「開膛」傷害。",
     "Power rank: T2\nAttribute bonus / attribute growth per level bonus:\n+1 / +0\n+2 / +1\n+0 / +0\n\nWhile the \"Eviscerate\" ability is active the hero gains 50% protection from damage, and each enemy kill increases the total damage of the \"Eviscerate\" ability by 2.5.\n\nThe \"-i\" command displays the damage of \"Eviscerate\" taking the ability level and spell power into account."
    ]
   },
@@ -262,7 +262,7 @@
     "Magical Abundance"
    ],
    "t": [
-    "強度等級：T2\n屬性加成／每級屬性成長加成：\n+0 / +0\n+1 / +0\n+2 / +1\n\n當法力值在 80% 以上時，女術士的技能造成的傷害提高 75%。",
+    "強度等級：T2\n屬性加成／每級屬性成長加成：\n+0 / +0\n+1 / +0\n+2 / +1\n\n當魔力值在 80% 以上時，女術士的技能造成的傷害提高 75%。",
     "Power rank: T2\nAttribute bonus / attribute growth per level bonus:\n+0 / +0\n+1 / +0\n+2 / +1\n\nThe Sorceress's abilities deal 75% more damage while her mana is at 80% or above."
    ]
   },
@@ -292,7 +292,7 @@
     "Capture Point"
    ],
    "t": [
-    "佔領選定的據點。無法佔領敵方的建築。\n\n冷卻：10 秒。",
+    "佔領選定的據點。無法佔領敵方的建築。\n\n冷卻時間：10 秒。",
     "Captures the selected point. Enemy buildings cannot be captured.\n\nCooldown: 10 sec."
    ]
   },
@@ -302,7 +302,7 @@
     "Healing Song"
    ],
    "t": [
-    "為友方英雄回復 15% 生命值。技能強度 200 以上時，額外提升目標 25 點生命值上限。\n\n冷卻：15 秒。",
+    "為友方英雄恢復 15% 生命值。技能強度 200 以上時，額外提升目標 25 點生命值上限。\n\n冷卻時間：15 秒。",
     "Heals an allied hero for 15% of health. At 200 spell power and above it increases the target's maximum health by 25.\n\nCooldown: 15 sec."
    ]
   },
@@ -312,7 +312,7 @@
     "Battle Song"
    ],
    "t": [
-    "使友方英雄的力量提升 1 點。技能強度 500 以上時，再額外提升友方英雄 1 點力量。\n\n冷卻：20 秒。",
+    "使友方英雄的力量提升 1 點。技能強度 500 以上時，再額外提升友方英雄 1 點力量。\n\n冷卻時間：20 秒。",
     "Increases an allied hero's Strength by 1. At 500 spell power and above it increases the allied hero's Strength by a further 1.\n\nCooldown: 20 sec."
    ]
   },
@@ -332,7 +332,7 @@
     "Sapper"
    ],
    "t": [
-    "強度等級：T2\n屬性加成／每級屬性成長加成：\n+0 / +0\n+1 / +0\n+2 / +1\n\n技能「雷區」現在會在極大的範圍內佈下 30 顆地雷。該技能的法力消耗與冷卻提高 50%。",
+    "強度等級：T2\n屬性加成／每級屬性成長加成：\n+0 / +0\n+1 / +0\n+2 / +1\n\n技能「雷區」現在會在極大的範圍內佈下 30 顆地雷。該技能的魔力消耗與冷卻提高 50%。",
     "Power rank: T2\nAttribute bonus / attribute growth per level bonus:\n+0 / +0\n+1 / +0\n+2 / +1\n\nThe \"Minefield\" ability now creates 30 mines over a huge area. The ability's mana cost and cooldown are increased by 50%."
    ]
   },
@@ -342,7 +342,7 @@
     "Will from Above"
    ],
    "t": [
-    "強度等級：T3\n屬性加成／每級屬性成長加成：\n+2 / +0\n+1 / +0\n+4 / +2\n\n技能「天堂意志」對敵人造成的傷害提高 100%，回復的生命值提高 100%，並在爆炸時施加「致盲」效果。\n\n技能「神聖之焰」以 100% 機率對目標施加易傷、虛弱與易燃效果。",
+    "強度等級：T3\n屬性加成／每級屬性成長加成：\n+2 / +0\n+1 / +0\n+4 / +2\n\n技能「天堂意志」對敵人造成的傷害提高 100%，恢復的生命值提高 100%，並在爆炸時施加「致盲」效果。\n\n技能「神聖之焰」以 100% 機率對目標施加易傷、虛弱與易燃效果。",
     "Power rank: T3\nAttribute bonus / attribute growth per level bonus:\n+2 / +0\n+1 / +0\n+4 / +2\n\nThe \"Will of Heaven\" ability deals 100% more damage to enemies and heals 100% more health, and also applies the \"Blind\" effect on explosion.\n\nThe \"Holy Flame\" ability applies Vulnerability, Weakness and Flammable to the target with a 100% chance."
    ]
   },
@@ -352,7 +352,7 @@
     "Summon Ents"
    ],
    "t": [
-    "召喚樹人前來助戰，存在時間為 40 秒。樹人會繼承夜精靈種族的升級。\n\n樹人數量：2 + （每 200 點技能強度 1 隻樹人）",
+    "召喚樹人前來助戰，持續為 40 秒。樹人會繼承夜精靈種族的升級。\n\n樹人數量：2 + （每 200 點技能強度 1 隻樹人）",
     "Summons ents to your aid, existing for 40 sec. The ents inherit the Night Elf race upgrades.\n\nNumber of ents: 2 + (1 ent for every 200 spell power)"
    ]
   },
@@ -362,7 +362,7 @@
     "Mastery of Wind"
    ],
    "t": [
-    "大幅減慢龍捲風的移動速度與造成傷害的速度，龍捲風獲得 +50% 作用範圍加成，並額外使敵人的攻擊速度降低 50%。技能「回復」在持續期間會使目標的攻擊速度提升 75%。",
+    "大幅減慢龍捲風的移動速度與造成傷害的速度，龍捲風獲得 +50% 作用範圍加成，並額外使敵人的攻擊速度降低 50%。技能「恢復」在持續期間會使目標的攻擊速度提升 75%。",
     "Greatly slows the tornado's movement speed and its rate of dealing damage; the tornado gains a +50% bonus to its area and additionally slows enemies' attack speed by 50%. The \"Restoration\" ability increases the target's attack speed by 75% while it is active."
    ]
   },
@@ -372,7 +372,7 @@
     "Mastery of Earth"
    ],
    "t": [
-    "技能「回復」為其目標提供 +10 護甲。技能「纏繞」的持續時間延長 60%。龍捲風對處於「纏繞」效果下的敵人造成的傷害提高 150%。森林守衛獲得 +5 護甲，存在時間延長 40 秒，並獲得對點燃、冰凍與反傷的免疫。",
+    "技能「恢復」為其目標提供 +10 防禦力。技能「纏繞」的持續時間延長 60%。龍捲風對處於「纏繞」效果下的敵人造成的傷害提高 150%。森林守衛獲得 +5 防禦力，存在時間延長 40 秒，並獲得對點燃、冰凍與反彈傷害的免疫。",
     "The \"Restoration\" ability grants +10 armour to its target. The \"Entangle\" ability lasts 60% longer. The tornado deals 150% more damage to enemies under \"Entangle\". The Forest Warden gains +5 armour, exists 40 sec. longer and also becomes immune to Burn, Freeze and thorns."
    ]
   },
@@ -382,7 +382,7 @@
     "Mighty Champion"
    ],
    "t": [
-    "強度等級：T2\n屬性加成／每級屬性成長加成：\n+3 / +1\n+0 / +0\n+0 / +0\n\n技能「求生」每缺少 1% 生命值，就多回復 1% 生命值。\n\n技能「野性戰士」在每次獲得的效果結束後，有 5% 機率保留 1 點力量。累積獲得 100 點力量後，機率降低至 3%。指令「-i」會顯示已獲得的力量。",
+    "強度等級：T2\n屬性加成／每級屬性成長加成：\n+3 / +1\n+0 / +0\n+0 / +0\n\n技能「求生」每缺少 1% 生命值，就多恢復 1% 生命值。\n\n技能「野性戰士」在每次獲得的效果結束後，有 5% 機率保留 1 點力量。累積獲得 100 點力量後，機率降低至 3%。指令「-i」會顯示已獲得的力量。",
     "Power rank: T2\nAttribute bonus / attribute growth per level bonus:\n+3 / +1\n+0 / +0\n+0 / +0\n\nThe \"Survival\" ability restores 1% more health for each 1% of missing health.\n\nThe \"Wild Warrior\" ability has a 5% chance to keep 1 Strength after each gained effect expires. After gaining 100 Strength the chance drops to 3%. The \"-i\" command displays the Strength gained."
    ]
   },
@@ -402,7 +402,7 @@
     "Shadow Absorption"
    ],
    "t": [
-    "強度等級：T2\n屬性加成／每級屬性成長加成：\n+1 / +0\n+2 / +1\n+2 / +0\n\n暗影消失時會為英雄各回復 2% 生命值與法力值，並使暗影法球的傷害提升 0.5 點。法球傷害加成的進度可透過指令「-i」查看。\n\n技能「暗影分身」遵循相同的條件，但會回復英雄 10% 生命值與法力值，並使法球傷害提升 2.5 點。",
+    "強度等級：T2\n屬性加成／每級屬性成長加成：\n+1 / +0\n+2 / +1\n+2 / +0\n\n暗影消失時會為英雄各恢復 2% 生命值與魔力值，並使暗影球體的傷害提升 0.5 點。球體傷害加成的進度可透過指令「-i」查看。\n\n技能「暗影分身」遵循相同的條件，但會恢復英雄 10% 生命值與魔力值，並使球體傷害提升 2.5 點。",
     "Power rank: T2\nAttribute bonus / attribute growth per level bonus:\n+1 / +0\n+2 / +1\n+2 / +0\n\nThe disappearance of shadows restores 2% of health and mana to the hero and increases the damage of the Orb of Shadows by 0.5. The progress of the orb's damage bonus can be tracked with the \"-i\" command.\n\nThe \"Shadow Clone\" ability follows the same conditions, but restores 10% of the hero's health and mana and increases the orb's damage by 2.5."
    ]
   },
@@ -412,7 +412,7 @@
     "Energy Cage"
    ],
    "t": [
-    "在指定區域創造一座能量牢籠，將敵人囚禁在其中，並阻擋外部單位的通行。持續時間為 10 秒。技能強度 500 以上時，能量牢籠的存在時間會延長 3 秒。",
+    "在指定區域創造一座能量牢籠，將敵人囚禁在其中，並阻擋外部單位的通行。持續時間為 10 秒。技能強度 500 以上時，能量牢籠的持續會延長 3 秒。",
     "Creates an energy cage in the target area that locks enemies inside and blocks the path of units outside. Duration - 10 sec. At 500+ spell power the energy cage lasts 3 sec. longer."
    ]
   },
@@ -452,7 +452,7 @@
     "Eternal Service"
    ],
    "t": [
-    "強度等級：T2\n屬性加成／每級屬性成長加成：\n+1 / +0\n+1 / +0\n+1 / +1\n\n創造一個區域，在其範圍內骷髏死亡時會召喚出新的骷髏。骷髏繼承技能「召喚亡者」（或其同類技能）的屬性。不會復活骷髏法師。\n\n復活骷髏的存在時間：15 + （1% 技能強度）秒\n骷髏召喚的冷卻：0.1 秒\n技能持續時間：20 秒\n\n冷卻：60 秒。",
+    "強度等級：T2\n屬性加成／每級屬性成長加成：\n+1 / +0\n+1 / +0\n+1 / +1\n\n創造一個區域，在其範圍內骷髏死亡時會召喚出新的骷髏。骷髏繼承技能「召喚亡者」（或其同類技能）的屬性。不會復活骷髏法師。\n\n復活骷髏的持續時間：15 + （1% 技能強度）秒\n骷髏召喚的冷卻時間：0.1 秒\n技能持續時間：20 秒\n\n冷卻時間：60 秒。",
     "Power rank: T2\nAttribute bonus / attribute growth per level bonus:\n+1 / +0\n+1 / +0\n+1 / +1\n\nCreates a zone inside which the death of a skeleton summons a new skeleton. The skeletons inherit the attributes of the \"Raise Dead\" ability (or its equivalents). Does not revive skeleton mages.\n\nLifetime of the raised skeletons: 15 + (1% spell power) sec.\nCooldown of the skeleton summon: 0.1 sec.\nDuration of the ability: 20 sec.\n\nCooldown: 60 sec."
    ]
   },
@@ -492,7 +492,7 @@
     "Companions"
    ],
    "t": [
-    "強度等級：T3\n屬性加成／每級屬性成長加成：\n+4 / +2\n+2 / +1\n+2 / +0\n\n「螢火蟲」現在只能施放於友方英雄，並給予 10/15/20/25/30 點護甲。若目標為弩砲手本身，持續時間為 50%。\n\n「幽靈貓頭鷹」現在只能施放於友方英雄，並給予 +40/60/80/100/120% 攻擊力。若目標為弩砲手本身，持續時間為 50%。",
+    "強度等級：T3\n屬性加成／每級屬性成長加成：\n+4 / +2\n+2 / +1\n+2 / +0\n\n「小精靈」現在只能施放於友方英雄，並給予 10/15/20/25/30 點防禦力。若目標為弩車本身，持續時間為 50%。\n\n「幽靈貓頭鷹」現在只能施放於友方英雄，並給予 +40/60/80/100/120% 攻擊力。若目標為弩車本身，持續時間為 50%。",
     "Power rank: T3\nAttribute bonus / attribute growth per level bonus:\n+4 / +2\n+2 / +1\n+2 / +0\n\n\"Firefly\" can now only be cast on allied heroes and grants 10/15/20/25/30 armour. Lasts 50% of the duration if the target is the Ballista himself.\n\n\"Spectral Owl\" can now only be cast on allied heroes and grants +40/60/80/100/120% attack power. Lasts 50% of the duration if the target is the Ballista himself."
    ]
   },
@@ -502,7 +502,7 @@
     "Might of the Mountain King"
    ],
    "t": [
-    "強度等級：T3\n屬性加成／每級屬性成長加成：\n+4 / +2\n+0 / +0\n+2 / +0\n\n英雄每 60 秒使自身力量提高 1 點。英雄的復活時間增加 25 秒。\n\n「風暴之鎚」對範圍內造成 50% 傷害，並對目標施加電擊（主要目標 40% 機率，範圍內 20% 機率）。\n\n「群山之力」的加成加倍。",
+    "強度等級：T3\n屬性加成／每級屬性成長加成：\n+4 / +2\n+0 / +0\n+2 / +0\n\n英雄每 60 秒使自身力量提高 1 點。英雄的復活時間增加 25 秒。\n\n「風暴之鎚」對範圍內造成 50% 傷害，並對目標施加震擊（主要目標 40% 機率，範圍內 20% 機率）。\n\n「群山之力」的加成加倍。",
     "Power rank: T3\nAttribute bonus / attribute growth per level bonus:\n+4 / +2\n+0 / +0\n+2 / +0\n\nThe hero increases his Strength by 1 every 60 sec. The hero's resurrection time is increased by 25 sec.\n\n\"Storm Hammer\" deals 50% of its damage over an area and applies Shock to targets (40% chance on the main target and 20% chance within the area).\n\nThe bonuses of \"Might of the Mountains\" are doubled."
    ]
   },
@@ -512,7 +512,7 @@
     "Provocateur"
    ],
    "t": [
-    "強度等級：T2\n屬性加成／每級屬性成長加成：\n+2 / +1\n+1 / +0\n+0 / +0\n\n使用後迫使附近的敵人攻擊英雄。\n\n被動效果：\n「雷霆一擊」會移除敵人身上的正面效果，並移除英雄身上的負面效果與狀態。\n\n英雄每次受到傷害時回復 1 點生命值。",
+    "強度等級：T2\n屬性加成／每級屬性成長加成：\n+2 / +1\n+1 / +0\n+0 / +0\n\n使用後迫使附近的敵人攻擊英雄。\n\n被動效果：\n「雷霆一擊」會移除敵人身上的正面效果，並移除英雄身上的負面效果與狀態。\n\n英雄每次受到傷害時恢復 1 點生命值。",
     "Power rank: T2\nAttribute bonus / attribute growth per level bonus:\n+2 / +1\n+1 / +0\n+0 / +0\n\nOn use, forces nearby enemies to attack the hero.\n\nPassive effects:\n\"Thunder Clap\" removes positive effects from enemies and removes negative effects and statuses from the hero.\n\nThe hero restores 1 health each time he takes damage."
    ]
   },
@@ -528,11 +528,11 @@
   },
   "A0RQ": {
    "n": [
-    "巫術之箭",
+    "巫術箭",
     "Sorcerous Arrows"
    ],
    "t": [
-    "強度等級：T2\n屬性加成／每級屬性成長加成：\n+0 / +0\n+2 / +1\n+1 / +0\n\n降低 20% 裝備技能冷卻。每 20 次擊殺可使裝備技能威力提高 2%。累積加成達到 100% 後，裝備技能威力的累積量降為 1%。",
+    "強度等級：T2\n屬性加成／每級屬性成長加成：\n+0 / +0\n+2 / +1\n+1 / +0\n\n降低 20% 觸發效果冷卻。每 20 次擊殺可使觸發效果強度提高 2%。累積加成達到 100% 後，觸發效果強度的累積量降為 1%。",
     "Power rank: T2\nAttribute bonus / attribute growth per level bonus:\n+0 / +0\n+2 / +1\n+1 / +0\n\nReduces modifier cooldown by 20%. For every 20 kills, modifier power increases by 2%. After the bonus reaches 100%, the modifier power gain drops to 1%."
    ]
   },
@@ -542,7 +542,7 @@
     "Killer's Mark"
    ],
    "t": [
-    "強度等級：T3\n屬性加成／每級屬性成長加成：\n+1 / +0\n+4 / +2\n+1 / +0\n\n「獵人印記」的效果提高 75%，但需要多消耗 50% 的法力。此外「獵人印記」還會額外影響目標附近的敵人，對他們施加未強化的基礎版印記。\n\n被女獵手擊殺、且處於印記效果下的敵方英雄，可提供 2 倍的「倒鉤箭」加成。",
+    "強度等級：T3\n屬性加成／每級屬性成長加成：\n+1 / +0\n+4 / +2\n+1 / +0\n\n「獵人印記」的效果提高 75%，但需要多消耗 50% 的魔力。此外「獵人印記」還會額外影響目標附近的敵人，對他們施加未強化的基礎版印記。\n\n被女獵人擊殺、且處於印記效果下的敵方英雄，可提供 2 倍的「倒鉤箭」加成。",
     "Power rank: T3\nAttribute bonus / attribute growth per level bonus:\n+1 / +0\n+4 / +2\n+1 / +0\n\n\"Hunter's Mark\" is 75% more effective, but requires 50% more mana. \"Hunter's Mark\" also additionally affects enemies near the target, applying a basic, unempowered version of the mark to them.\n\nAn enemy hero under the mark who is killed by the Huntress grants 2 times more bonus from \"Barbed Arrows\"."
    ]
   },
@@ -578,11 +578,11 @@
   },
   "A0U1": {
    "n": [
-    "黑水之刃",
+    "暗水之刃",
     "Blade of Dark Waters"
    ],
    "t": [
-    "強度等級：T3\n屬性加成／每級屬性成長加成：\n+2 / +0\n+3 / +2\n+1 / +0\n\n「切口」會額外以 100% 機率對敵人施加「虛弱」狀態。\n\n為「懲戒之刃」的傷害加上 100% 敏捷。\n\n擊殺處於「切口」效果下的敵方英雄，可使英雄的力量與敏捷提高 1 點。",
+    "強度等級：T3\n屬性加成／每級屬性成長加成：\n+2 / +0\n+3 / +2\n+1 / +0\n\n「割裂」會額外以 100% 機率對敵人施加「虛弱」狀態。\n\n為「懲戒之刃」的傷害加上 100% 敏捷。\n\n擊殺處於「割裂」效果下的敵方英雄，可使英雄的力量與敏捷提高 1 點。",
     "Power rank: T3\nAttribute bonus / attribute growth per level bonus:\n+2 / +0\n+3 / +2\n+1 / +0\n\n\"Incision\" additionally applies the \"Weakness\" status to enemies with 100% chance.\n\nAdds 100% of Agility to the damage of \"Punishing Blade\".\n\nKilling enemy heroes affected by \"Incision\" increases the hero's Strength and Agility by 1."
    ]
   },
@@ -612,7 +612,7 @@
     "King's Blessing"
    ],
    "t": [
-    "強度等級：T3\n屬性加成／每級屬性成長加成：\n+3 / +1\n+1 / +0\n+3 / +1\n\n英雄每次提升等級時，生命值上限提高 100 點、攻擊力提高 10 點，但同時復活時間增加 1 秒。\n\n英雄獲得點燃抗性、流血抗性以及 +20% 反傷加成。",
+    "強度等級：T3\n屬性加成／每級屬性成長加成：\n+3 / +1\n+1 / +0\n+3 / +1\n\n英雄每次提升等級時，生命值上限提高 100 點、攻擊力提高 10 點，但同時復活時間增加 1 秒。\n\n英雄獲得點燃抗性、流血抗性以及 +20% 反彈傷害提升。",
     "Power rank: T3\nAttribute bonus / attribute growth per level bonus:\n+3 / +1\n+1 / +0\n+3 / +1\n\nOn level up, the hero's maximum health increases by 100 and attack power by 10, but the resurrection time increases by 1 sec.\n\nThe hero gains Burn resistance, Bleed resistance and a +20% thorns bonus."
    ]
   },
@@ -642,7 +642,7 @@
     "Masterful Fencing"
    ],
    "t": [
-    "強度等級：T3\n屬性加成／每級屬性成長加成：\n+2 / +1\n+3 / +1\n+1 / +0\n\n英雄獲得 15% 攻擊閃避與 -20% 裝備技能冷卻。\n\n技能「燃燒之刃」現在會額外以 30% 機率對敵人施加易傷。\n\n技能「著魔」在持續期間會將閃避提升至 30%，額外降低 20% 裝備技能冷卻，並增加 +40% 裝備技能威力。",
+    "強度等級：T3\n屬性加成／每級屬性成長加成：\n+2 / +1\n+3 / +1\n+1 / +0\n\n英雄獲得 15% 攻擊閃避與 -20% 觸發效果冷卻。\n\n技能「燃燒之刃」現在會額外以 30% 機率對敵人施加易傷。\n\n技能「著魔」在持續期間會將閃避提升至 30%，額外降低 20% 觸發效果冷卻，並增加 +40% 觸發效果強度。",
     "Power rank: T3\nAttribute bonus / attribute growth per level bonus:\n+2 / +1\n+3 / +1\n+1 / +0\n\nThe hero gains 15% evasion from attacks and -20% modifier cooldown.\n\nThe \"Burning Blades\" ability now additionally applies Vulnerability to enemies with a 30% chance.\n\nWhile the \"Obsession\" ability is active it raises evasion to 30%, additionally reduces modifier cooldown by 20% and adds +40% modifier power."
    ]
   },
@@ -712,7 +712,7 @@
     "Shield of Light"
    ],
    "t": [
-    "強度等級：T3\n屬性加成／每級屬性成長加成：\n+4 / +2\n+0 / +0\n+2 / +0\n\n使用後英雄獲得一面護盾，降低受到的傷害，並在每次受到傷害時回復生命值（造成傷害的狀態除外）。\n\n受到傷害降低：20%\n每段傷害回復生命值：4 點\n持續時間：12 秒\n\n冷卻：30 秒",
+    "強度等級：T3\n屬性加成／每級屬性成長加成：\n+4 / +2\n+0 / +0\n+2 / +0\n\n使用後英雄獲得一面護盾，降低受到的傷害，並在每次受到傷害時恢復生命值（造成傷害的狀態除外）。\n\n受到傷害降低：20%\n每段傷害恢復生命值：4 點\n持續時間：12 秒\n\n冷卻時間：30 秒",
     "Power rank: T3\nAttribute bonus / attribute growth per level bonus:\n+4 / +2\n+0 / +0\n+2 / +0\n\nOn use, the hero gains a shield that reduces incoming damage and restores health on every damage tick (except damaging statuses).\n\nIncoming damage reduction: 20%\nHealth restored per damage tick: 4\nDuration: 12 sec.\n\nCooldown: 30 sec."
    ]
   },
@@ -742,7 +742,7 @@
     "Herald of Thunder"
    ],
    "t": [
-    "強度等級：T3+\n屬性加成／每級屬性成長加成：\n+6 / +2\n+3 / +0\n+6 / +2\n\n技能「球狀閃電」撞上英雄時造成的傷害降低 25%，但作用範圍提升 75%，並使敵人暈眩 3 秒（英雄 2 秒）。\n\n技能「球狀閃電」不再有彈體計數——現在每產生一枚彈體便消耗 25 點法力值，技能會持續到英雄的法力值低於 25% 為止。球狀閃電還會以 25% 機率對被擊中的敵人施加電擊。",
+    "強度等級：T3+\n屬性加成／每級屬性成長加成：\n+6 / +2\n+3 / +0\n+6 / +2\n\n技能「球狀閃電」撞上英雄時造成的傷害降低 25%，但作用範圍提升 75%，並使敵人暈眩 3 秒（英雄 2 秒）。\n\n技能「球狀閃電」不再有彈體計數——現在每產生一枚彈體便消耗 25 點魔力值，技能會持續到英雄的魔力值低於 25% 為止。球狀閃電還會以 25% 機率對被擊中的敵人施加震擊。",
     "Power rank: T3+\nAttribute bonus / attribute growth per level bonus:\n+6 / +2\n+3 / +0\n+6 / +2\n\nThe \"Ball Lightning\" ability deals 25% less damage when it collides with a hero, but over a 75% larger area and stunning enemies for 3 sec. (heroes for 2 sec.)\n\nThe \"Ball Lightning\" ability no longer has a projectile counter - each projectile that appears now costs 25 mana, and the ability lasts until the hero's mana level drops below 25%. Ball lightnings also apply Shock to the enemies they hit with a 25% chance."
    ]
   },
@@ -752,7 +752,7 @@
     "Origins of Power"
    ],
    "t": [
-    "強度等級：T3\n屬性加成／每級屬性成長加成：\n+6 / +1\n+0 / +0\n+1 / +0\n\n「不動守衛」不再格擋受到的傷害，但英雄死亡後保留力量的機率加倍；若英雄成功保留力量，則會額外獲得 +5 點力量與 +2.5 點生命值回復。",
+    "強度等級：T3\n屬性加成／每級屬性成長加成：\n+6 / +1\n+0 / +0\n+1 / +0\n\n「不動守衛」不再格擋受到的傷害，但英雄死亡後保留力量的機率加倍；若英雄成功保留力量，則會額外獲得 +5 點力量與 +2.5 點生命值恢復。",
     "Power rank: T3\nAttribute bonus / attribute growth per level bonus:\n+6 / +1\n+0 / +0\n+1 / +0\n\n\"Unshakeable Guardian\" no longer blocks incoming damage, but gains double the chance to preserve the hero's Strength after death. If the hero preserves Strength, he additionally gains a +5 Strength bonus and +2.5 health regeneration."
    ]
   },
@@ -792,7 +792,7 @@
     "Musicality"
    ],
    "t": [
-    "吟遊詩人提升附近友軍的移動速度，並減緩附近敵人的移動。作用範圍為 800 點。\n\n友軍移動速度加成：10%\n敵人移動速度降低：15%",
+    "吟遊詩人提升附近盟友的移動速度，並減緩附近敵人的移動。作用範圍為 800 點。\n\n盟友移動速度加成：10%\n敵人移動速度降低：15%",
     "The Minstrel increases the movement speed of nearby allies and slows the movement of nearby enemies. Area - 800.\n\nMovement speed bonus for allies: 10%\nMovement speed reduction for enemies: 15%"
    ]
   }

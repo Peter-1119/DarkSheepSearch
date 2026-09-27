@@ -26,17 +26,17 @@
 
 ---
 
-## 火焰法球 `A08T`　—　吃技能強度
+## 火焰球體 `A08T`　—　吃技能強度
 
 俄文原名：Огненные сферы
 
 ```
-3 顆火焰法球開始環繞英雄旋轉，點燃敵人。法球起初只造成 25% 傷害，隨著遠離英雄逐漸提升自身傷害，直到進入軌道為止。
+3 顆火焰球體開始環繞英雄旋轉，點燃敵人。球體起初只造成 25% 傷害，隨著遠離英雄逐漸提升自身傷害，直到進入軌道為止。
 
 點燃：100% 機率；50 + （25% 技能強度）點傷害
-法球持續時間：6 秒
+球體持續時間：6 秒
 
-冷卻：20 秒
+冷卻時間：20 秒
 ```
 
 每級變動：
@@ -48,7 +48,7 @@
 
 實作：
 
-`HeroQ45_Move`　war3map.j:60437
+`HeroQ45_Move`　war3map.j:61433
 ```jass
 if dist>100 and dist<200 then
 call SaveReal(hash,GetHandleId(u),'A08T',0.50)
@@ -60,7 +60,7 @@ call SaveReal(hash,GetHandleId(u),'A08T',1.00)
 endif
 ```
 
-`HeroQ45_Dmg`　war3map.j:60459
+`HeroQ45_Dmg`　war3map.j:61455
 ```jass
 function HeroQ45_Dmg takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -111,7 +111,7 @@ set pl=null
 endfunction
 ```
 
-`Trig_HeroSkills45_Actions`　war3map.j:60525
+`Trig_HeroSkills45_Actions`　war3map.j:61521
 ```jass
 if Skill=='A08T' then
 set x=GetUnitX(u)
@@ -178,14 +178,14 @@ call TimerStart(t2,0.20,true,function HeroQ45_Dmg)
 俄文原名：Легкая поступь
 
 ```
-提高英雄的移動速度並開始逐漸回復生命值。移動中的英雄可回復更多生命值。
+提高英雄的移動速度並開始逐漸恢復生命值。移動中的英雄可恢復更多生命值。
 
 移動速度加成：15%
-生命值回復：18 + （5% 技能強度）點/秒
+生命值恢復：18 + （5% 技能強度）點/秒
 移動中的治療強化：在競技場上每 100 點移動速度使治療 +30%
 持續時間：8 秒
 
-冷卻：17 秒
+冷卻時間：17 秒
 ```
 
 每級變動：
@@ -196,7 +196,7 @@ call TimerStart(t2,0.20,true,function HeroQ45_Dmg)
 
 實作：
 
-`Hero45_Move`　war3map.j:60391
+`Hero45_Move`　war3map.j:61387
 ```jass
 function Hero45_Move takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -234,7 +234,7 @@ set u=null
 endfunction
 ```
 
-`Trig_HeroSkills45_Actions`　war3map.j:60583
+`Trig_HeroSkills45_Actions`　war3map.j:61579
 ```jass
 elseif Skill=='A08M' then
 set t=CreateTimer()
@@ -252,7 +252,7 @@ call SaveInteger(hash,Id,1,80)
 俄文原名：Дыхание дракона
 
 ```
-繼承裝備技能的加成。
+繼承觸發效果的加成。
 
 每第 7 次攻擊會朝被攻擊的敵人方向產生一道點燃的火焰波。
 
@@ -269,7 +269,7 @@ call SaveInteger(hash,Id,1,80)
 
 實作：
 
-`Trig_HeroTakeDamage_Actions`　war3map.j:19584
+`Trig_HeroTakeDamage_Actions`　war3map.j:20777
 ```jass
 if LoadInteger(hash,Id,'A08Y')==1 then
 if UnitAlive(d)then
@@ -278,7 +278,7 @@ endif
 endif
 ```
 
-`Trig_HeroAttack45_Actions`　war3map.j:60679
+`Trig_HeroAttack45_Actions`　war3map.j:61675
 ```jass
 if GetUnitAbilityLevel(u,'A08Y')>0 and LoadInteger(hash,GetHandleId(u),'B08Y')!=1 then
 set Id=LoadInteger(hash,u_Id,'A08Y')
@@ -307,7 +307,7 @@ call SaveUnitHandle(hash,GetHandleId(t),1,u)
 endif
 ```
 
-`HeroE45_Cd`　war3map.j:60633
+`HeroE45_Cd`　war3map.j:61629
 ```jass
 function HeroE45_Cd takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -332,7 +332,7 @@ endfunction
 對普通士兵使用：對目標造成 600 +（350% 力量與敏捷）點傷害；其中 30% 的傷害會作用於目標周圍的區域
 狀態施加：200% 機率施加易燃、虛弱、詛咒、易傷；附近的敵人有 30% 機率被施加虛弱
 
-冷卻：80 秒
+冷卻時間：80 秒
 ```
 
 物件欄位（原型 `ANcl`）：`Ncl1 = [0.4000000059604645, None, 1.0]`, `Ncl2 = [1, None]`, `Ncl3 = [1, None]`, `Ncl4 = [0.4000000059604645, None, 1.0]`, `Ncl5 = [0, None]`, `Ncl6 = ['chemicalrage', None, 'channel']`, `acdn = [80.0, None, 17.0]`, `alev = 1`, `amcs = [135, None, 80, 90, 100, 110, 120]`, `aran = [128.0, None, 700.0]`, `atar = ['air,ground,enemy,neutral,organic', None, 'air,ground,friend,neutral,self']`
@@ -341,7 +341,7 @@ endfunction
 
 實作：
 
-`Trig_HeroSkills45_Actions`　war3map.j:60592
+`Trig_HeroSkills45_Actions`　war3map.j:61588
 ```jass
 elseif Skill=='A08V' then
 set dmg=600+I2R(GetHeroStr(u,true)+GetHeroAgi(u,true))*3.50
@@ -384,7 +384,7 @@ endif
 
 實作：
 
-`Trig_ChangePoints_Actions`　war3map.j:17742
+`Trig_ChangePoints_Actions`　war3map.j:18929
 ```jass
 if GetSpellAbilityId()=='A03V' and GetUnitLevel(GetSpellTargetUnit())>0 then
 set udg_CTPoint[n]=GetSpellTargetUnit()
@@ -409,21 +409,21 @@ endif
 俄文原名：Пламенные клинки
 
 ```
-繼承裝備技能的加成。
+繼承觸發效果的加成。
 
 英雄的攻擊有機會造成額外的範圍傷害，並以較高的機率對敵人施加易燃。
 
 範圍傷害：20 +（40% 力量與敏捷）+（15% 技能強度）點
 「易燃」狀態：以 120% 機率施加於敵人
 
-冷卻：10 秒
+冷卻時間：10 秒
 ```
 
 呼叫共用引擎函式：`FlammabilityUnit` —— 完整內容見 `_engine.md`。
 
 實作：
 
-`Trig_HeroAttack45_Actions`　war3map.j:60658
+`Trig_HeroAttack45_Actions`　war3map.j:61654
 ```jass
 if LoadReal(hash,u_Id,'A08W')==0. then
 call StartModCooldown(u,u_Id,'A08W',10.)
@@ -455,7 +455,7 @@ endif
 這幾段不是靠技能 ID 分派的，而是直接用單位型號 `Npbm` 寫在共用函式的條件式裡
 （常見於寫進傷害管線的被動）。照技能抽取抓不到，所以單獨列出來。
 
-`Trig_RepickHero_Actions`　war3map.j:45703
+`Trig_RepickHero_Actions`　war3map.j:46376
 ```jass
 if GetUnitTypeId(udg_Hero[n])=='Npbm' then
 set t=LoadTimerHandle(hash,GetHandleId(udg_Hero[n]),'Npbm')
@@ -472,7 +472,7 @@ endif
 英雄的實作散在同編號的一組函式裡，上面按技能抽取時抓不到的補在這裡
 （常見的是決定門檻、結算加成、清理 buff 的那幾支）。
 
-`Trig_HeroAttack45_Conditions`　war3map.j:60630
+`Trig_HeroAttack45_Conditions`　war3map.j:61626
 ```jass
 function Trig_HeroAttack45_Conditions takes nothing returns boolean
 return GetUnitTypeId(GetAttacker())=='Npbm'
@@ -489,6 +489,6 @@ endfunction
 
 ---
 
-*由 `tools/build_dossier.py` 從 UD_v3.82fix 地圖檔產生。*
+*由 `tools/build_dossier.py` 從 UD test 24.09.27（合併版） 地圖檔產生。*
 *機制通則、配裝規則與輸出格式見 `tools/BUILD_BRIEF.md`；*
 *道具數值見 `data/dossier/_items.md`。*

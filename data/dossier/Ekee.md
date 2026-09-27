@@ -8,7 +8,7 @@
 | 敏捷 | 19 | 2.5 |
 | 智力 | 39 | 5 |
 
-> 沒有普通攻擊的法師，靠屏障控場並殲滅大量敵人，非常吃法力。
+> 沒有普通攻擊的法師，靠屏障控場並殲滅大量敵人，非常吃魔力。
 
 **縮放**：吃技能強度的技能 ['A0CT', 'A0KU', 'A0L0'] ／ ◈ 吃裝備技能威力 無 ／ ⊕ 給裝備技能威力 無
 
@@ -29,9 +29,9 @@
 ```
 朝指定方向發射一顆黑暗能量球。能量球會對附近的敵人造成週期性傷害。可透過「虛空引爆」引爆能量球。
 
-週期性傷害：40 + （15% 技能強度） + （10% 當前法力值）點/秒。
+週期性傷害：40 + （15% 技能強度） + （10% 當前魔力值）點/秒。
 
-冷卻：14 秒。
+冷卻時間：14 秒。
 ```
 
 每級變動：
@@ -42,7 +42,7 @@
 
 實作：
 
-`HeroQ54`　war3map.j:65122
+`HeroQ54`　war3map.j:66137
 ```jass
 function HeroQ54 takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -103,7 +103,7 @@ set ug=null
 endfunction
 ```
 
-`Trig_HeroSkills54_Actions`　war3map.j:65268
+`Trig_HeroSkills54_Actions`　war3map.j:66283
 ```jass
 if Skill=='A0KU' then
 set x=GetUnitX(u)
@@ -125,7 +125,7 @@ elseif Skill=='A0CT' then
 call HeroA54_Boom(u,LoadUnitHandle(hash,GetHandleId(u),'A0KU'))
 ```
 
-`HeroA54_Boom`　war3map.j:65024
+`HeroA54_Boom`　war3map.j:66039
 ```jass
 function HeroA54_Boom takes unit u,unit u2 returns nothing
 local real x=GetUnitX(u2)
@@ -174,7 +174,7 @@ endfunction
 首次撞擊的暈眩：100% 機率，3 秒。
 屏障持續時間：6 秒。
 
-冷卻：20 秒。
+冷卻時間：20 秒。
 ```
 
 每級變動：
@@ -184,7 +184,7 @@ endfunction
 
 實作：
 
-`Trig_HeroSkills54_Actions`　war3map.j:65286
+`Trig_HeroSkills54_Actions`　war3map.j:66301
 ```jass
 elseif Skill=='A0KV' then
 set x=GetUnitX(u)
@@ -212,7 +212,7 @@ set i=i+1
 endloop
 ```
 
-`RemoveDummy`　war3map.j:2746
+`RemoveDummy`　war3map.j:2949
 ```jass
 function RemoveDummy takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -246,7 +246,7 @@ set t=null
 endfunction
 ```
 
-`HeroW54`　war3map.j:65059
+`HeroW54`　war3map.j:66074
 ```jass
 function HeroW54 takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -318,14 +318,14 @@ endfunction
 俄文原名：Пространственный портал
 
 ```
-在英雄所在位置與指定地點之間建立傳送門。傳送門雙向運作，可讓你的部隊與友軍部隊通過。單位傳送之後會獲得強化，並在強化時間結束前無法再次傳送。建立傳送門時，英雄獲得 2 秒的傳送免疫。
+在英雄所在位置與指定地點之間建立傳送門。傳送門雙向運作，可讓你的部隊與盟友部隊通過。單位傳送之後會獲得強化，並在強化時間結束前無法再次傳送。建立傳送門時，英雄獲得 2 秒的傳送免疫。
 
-單位強化：+25% 攻擊速度與移動速度，受到負面狀態的機率降低 30%，50% 反傷防護，+25% 對英雄防護
+單位強化：+25% 攻擊速度與移動速度，受到負面狀態的機率降低 30%，50% 反彈傷害防護，+25% 對英雄防護
 強化持續時間：20 秒。
 施放距離：無限制
 持續時間：10 秒。
 
-冷卻：30 秒。
+冷卻時間：30 秒。
 ```
 
 每級變動：
@@ -335,7 +335,7 @@ endfunction
 
 實作：
 
-`Trig_HeroSkillCheck_Actions`　war3map.j:45641
+`Trig_HeroSkillCheck_Actions`　war3map.j:46314
 ```jass
 if Skill=='A0KY' then
 set x=GetSpellTargetX()
@@ -347,7 +347,7 @@ endif
 endif
 ```
 
-`HeroE54`　war3map.j:65197
+`HeroE54`　war3map.j:66212
 ```jass
 if UnitAlive(u3)and IsUnitAlly(u3,pl)and not IsUnitType(u3,UNIT_TYPE_STRUCTURE)and GetUnitPointValue(u3)!=0 and GetUnitAbilityLevel(u3,'B00W')!=1 and LoadInteger(hash,GetHandleId(u3),'A0KY')!=1 then
 call SetUnitX(u3,x2)
@@ -358,7 +358,7 @@ call PortalBuffUnit(u3)
 endif
 ```
 
-`HeroE54`　war3map.j:65212
+`HeroE54`　war3map.j:66227
 ```jass
 if UnitAlive(u3)and IsUnitAlly(u3,pl)and not IsUnitType(u3,UNIT_TYPE_STRUCTURE)and GetUnitPointValue(u3)!=0 and GetUnitAbilityLevel(u3,'B00W')!=1 and LoadInteger(hash,GetHandleId(u3),'A0KY')!=1 then
 call SetUnitX(u3,x)
@@ -369,7 +369,7 @@ call PortalBuffUnit(u3)
 endif
 ```
 
-`HeroE54_HeroImmune`　war3map.j:65237
+`HeroE54_HeroImmune`　war3map.j:66252
 ```jass
 function HeroE54_HeroImmune takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -384,7 +384,7 @@ set u=null
 endfunction
 ```
 
-`Trig_HeroSkills54_Actions`　war3map.j:65310
+`Trig_HeroSkills54_Actions`　war3map.j:66325
 ```jass
 elseif Skill=='A0KY' then
 set x=GetUnitX(u)
@@ -410,7 +410,7 @@ call SaveUnitHandle(hash,Id,1,u)
 call TimerStart(t,2.,false,function HeroE54_HeroImmune)
 ```
 
-`RemovePortalBuff`　war3map.j:64997
+`RemovePortalBuff`　war3map.j:66012
 ```jass
 function RemovePortalBuff takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -446,21 +446,21 @@ endfunction
 俄文原名：Опалесценция
 
 ```
-將星辰分解成大量光團，對作用範圍內的敵人造成傷害。每次傷害跳動都會吸收英雄的法力值以造成更高的傷害。
+將星辰分解成大量光團，對作用範圍內的敵人造成傷害。每次傷害跳動都會吸收英雄的魔力值以造成更高的傷害。
 
 傷害：30 + （5% 技能強度）點。
-每次跳動的額外傷害：英雄當前法力值的 3%，造成傷害後消耗當前法力值的 1.5%
+每次跳動的額外傷害：英雄當前魔力值的 3%，造成傷害後消耗當前魔力值的 1.5%
 跳動間隔：0.15 秒。
 持續時間：10 秒。
 
-冷卻：80 秒。
+冷卻時間：80 秒。
 ```
 
 物件欄位（原型 `ANcl`）：`Ncl1 = 0.10000000149011612`, `Ncl2 = 2`, `Ncl3 = 3`, `Ncl4 = 0.10000000149011612`, `Ncl5 = 0`, `Ncl6 = wispharvest`, `aare = 400.0`, `acap = `, `acdn = 80.0`, `alev = 1`, `amcs = 500`, `aran = 900.0`, `atar = player,structure`
 
 實作：
 
-`Opalescence_Actions`　war3map.j:3694
+`Opalescence_Actions`　war3map.j:4076
 ```jass
 function Opalescence_Actions takes nothing returns nothing
 local integer A=s__OpalescenceLib__OpalescenceS__allocate()
@@ -493,7 +493,7 @@ return GetSpellAbilityId()=='A0L0'
 endfunction
 ```
 
-`s__vector_deallocate`　war3map.j:1323
+`s__vector_deallocate`　war3map.j:1407
 ```jass
 function s__vector_deallocate takes integer this returns nothing
 if this==null then
@@ -506,7 +506,7 @@ set si__vector_F=this
 endfunction
 ```
 
-`s__OpalescenceLib__OpalescenceS_deallocate`　war3map.j:1346
+`s__OpalescenceLib__OpalescenceS_deallocate`　war3map.j:1477
 ```jass
 function s__OpalescenceLib__OpalescenceS_deallocate takes integer this returns nothing
 if this==null then
@@ -519,7 +519,7 @@ set si__OpalescenceLib__OpalescenceS_F=this
 endfunction
 ```
 
-`s__OpalescenceLib__OpalescenceMoveS_deallocate`　war3map.j:1370
+`s__OpalescenceLib__OpalescenceMoveS_deallocate`　war3map.j:1501
 ```jass
 function s__OpalescenceLib__OpalescenceMoveS_deallocate takes integer this returns nothing
 if this==null then
@@ -532,7 +532,7 @@ set si__OpalescenceLib__OpalescenceMoveS_F=this
 endfunction
 ```
 
-`OpalescenceLib__SetUnitPositionEx`　war3map.j:3412
+`OpalescenceLib__SetUnitPositionEx`　war3map.j:3794
 ```jass
 function OpalescenceLib__SetUnitPositionEx takes unit u,real x,real y returns nothing
 if x>OpalescenceLib__MaxX then
@@ -550,7 +550,7 @@ call SetUnitY(u,y)
 endfunction
 ```
 
-`s__vector_normalize`　war3map.j:3429
+`s__vector_normalize`　war3map.j:3811
 ```jass
 function s__vector_normalize takes integer this returns nothing
 local real l=s__vector_length(this)
@@ -563,7 +563,7 @@ set s__vector_z[this]=s__vector_z[this]/l
 endfunction
 ```
 
-`OpalescenceLib__OpalescenceMove`　war3map.j:3445
+`OpalescenceLib__OpalescenceMove`　war3map.j:3827
 ```jass
 function OpalescenceLib__OpalescenceMove takes nothing returns nothing
 local integer A=LoadInteger(hash,GetHandleId(GetExpiredTimer()),0)
@@ -852,24 +852,24 @@ endfunction
 ```
 引爆生效中的「虛空充能」，造成範圍傷害。內圈範圍造成全額傷害，外圈範圍造成 50% 傷害。
 
-全額傷害：50% 英雄當前法力值 + 100% 技能強度
+全額傷害：50% 英雄當前魔力值 + 100% 技能強度
 內圈範圍：225 點
 外圈範圍：450 點
 
-冷卻：10 秒。
+冷卻時間：10 秒。
 ```
 
 物件欄位（原型 `ANcl`）：`Ncl1 = 0.8999999761581421`, `Ncl2 = [None, 1]`, `Ncl3 = 1`, `Ncl4 = 0.8999999761581421`, `Ncl5 = 0`, `Ncl6 = ['drain', 'channel']`, `acap = `, `acdn = [10.0, 16.0]`, `aher = 0`, `alev = 1`, `amcs = [125, 95, 110, 140, 155, 170]`, `aran = [None, 100.0]`, `atar = air,ground,debris,enemy,neutral,organic`
 
 實作：
 
-`Trig_HeroSkills54_Actions`　war3map.j:65284
+`Trig_HeroSkills54_Actions`　war3map.j:66299
 ```jass
 elseif Skill=='A0CT' then
 call HeroA54_Boom(u,LoadUnitHandle(hash,GetHandleId(u),'A0KU'))
 ```
 
-`HeroA54_Boom`　war3map.j:65024
+`HeroA54_Boom`　war3map.j:66039
 ```jass
 function HeroA54_Boom takes unit u,unit u2 returns nothing
 local real x=GetUnitX(u2)
@@ -922,7 +922,7 @@ endfunction
 
 實作：
 
-`Trig_HeroSkills54_Actions`　war3map.j:65332
+`Trig_HeroSkills54_Actions`　war3map.j:66347
 ```jass
 elseif Skill=='A0YT' then
 set u3=GetSpellTargetUnit()
@@ -964,7 +964,7 @@ endif
 endif
 ```
 
-`Trig_SkillsInfo54_Actions`　war3map.j:65386
+`Trig_SkillsInfo54_Actions`　war3map.j:66401
 ```jass
 if GetUnitAbilityLevel(udg_Hero[n],'A0YT')!=1 then
 call UnitRemoveAbility(udg_Hero[n],LoadInteger(hash,pl_Id,'A0YT'))
@@ -1004,7 +1004,7 @@ endif
 
 
 ```
-英雄以及地圖上你所有的部隊與友軍獲得 1% 法力值回復。
+英雄以及地圖上你所有的部隊與盟友獲得 1% 魔力值恢復。
 ```
 
 物件欄位（原型 `ACba`）：`Hab1 = 0.009999999776482582`, `Hab2 = 1`, `aare = 99999.0`, `abuf = B00L`
@@ -1023,7 +1023,7 @@ endif
 
 實作：
 
-`Trig_ChangePoints_Actions`　war3map.j:17742
+`Trig_ChangePoints_Actions`　war3map.j:18929
 ```jass
 if GetSpellAbilityId()=='A03V' and GetUnitLevel(GetSpellTargetUnit())>0 then
 set udg_CTPoint[n]=GetSpellTargetUnit()
@@ -1061,6 +1061,6 @@ endif
 
 ---
 
-*由 `tools/build_dossier.py` 從 UD_v3.82fix 地圖檔產生。*
+*由 `tools/build_dossier.py` 從 UD test 24.09.27（合併版） 地圖檔產生。*
 *機制通則、配裝規則與輸出格式見 `tools/BUILD_BRIEF.md`；*
 *道具數值見 `data/dossier/_items.md`。*

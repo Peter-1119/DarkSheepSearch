@@ -27,14 +27,14 @@
 俄文原名：Стремительность
 
 ```
-英雄進入隱形並獲得移動速度加成。從隱形中發動的攻擊會對敵人造成額外魔法傷害，並為英雄回復生命值。
+英雄進入隱形並獲得移動速度加成。從隱形中發動的攻擊會對敵人造成額外魔法傷害，並為英雄恢復生命值。
 
 隱形攻擊傷害：100 +（400% 穿透）+（40% 技能強度）點
 魔法吸血：33%
 移動速度加成：10%
 持續時間：11 秒
 
-冷卻：11 秒
+冷卻時間：11 秒
 ```
 
 每級變動：
@@ -45,7 +45,7 @@
 
 實作：
 
-`Trig_HeroAttack53_Actions`　war3map.j:64417
+`Trig_HeroAttack53_Actions`　war3map.j:65435
 ```jass
 if GetUnitAbilityLevel(u,'BOwk')>=1 then
 call UnitRemoveAbility(u,'BOwk')
@@ -72,7 +72,7 @@ call SetTextTagFadepoint(text,2.00)
 穿透加成：20 +（10% 技能強度）點
 加成持續時間：10 秒
 
-冷卻：16 秒
+冷卻時間：16 秒
 ```
 
 每級變動：
@@ -83,7 +83,7 @@ call SetTextTagFadepoint(text,2.00)
 
 實作：
 
-`Trig_HeroSkills53_Actions`　war3map.j:64336
+`Trig_HeroSkills53_Actions`　war3map.j:65345
 ```jass
 if Skill=='ANbl' then
 set t=CreateTimer()
@@ -97,7 +97,7 @@ call SaveEffectHandle(hash,Id,2,AddSpecialEffectTarget("Radiance Royal.mdx",u,"o
 call SetUnitAnimation(u,"stand")
 ```
 
-`Hero53W_Buff`　war3map.j:64308
+`Hero53W_Buff`　war3map.j:65307
 ```jass
 function Hero53W_Buff takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -131,7 +131,7 @@ endfunction
 
 實作：
 
-`Hero53E_poison`　war3map.j:64384
+`Hero53E_poison`　war3map.j:65402
 ```jass
 function Hero53E_poison takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -156,7 +156,7 @@ set u2=null
 endfunction
 ```
 
-`Trig_HeroAttack53_Actions`　war3map.j:64429
+`Trig_HeroAttack53_Actions`　war3map.j:65447
 ```jass
 elseif GetUnitAbilityLevel(u,'A0X6')>=1 then
 set u_Id=GetHandleId(u3)
@@ -173,7 +173,7 @@ call SaveInteger(hash,u_Id,'A0X6',5)
 endif
 ```
 
-## 致命切割 `A0X7`　—　吃技能強度
+## 致命割裂 `A0X7`　—　吃技能強度
 
 俄文原名：Смертельный разрез
 
@@ -182,16 +182,31 @@ endif
 
 傷害：200 + （900% 穿透）+ （90% 技能強度）點
 
-冷卻：50 秒。
+冷卻時間：50 秒。
 ```
 
 物件欄位（原型 `ANcl`）：`Ncl1 = [0.6000000238418579, None, 1.0]`, `Ncl2 = [1, None]`, `Ncl3 = [1, None]`, `Ncl4 = [0.6000000238418579, None, 1.0]`, `Ncl5 = [0, None]`, `Ncl6 = ['chemicalrage', None, 'channel']`, `acap = `, `acdn = [50.0, None, 17.0]`, `alev = 1`, `amcs = [125, None, 80, 90, 100, 110, 120]`, `aran = [900.0, None, 700.0]`, `atar = ['air,ground,enemy,neutral,organic', None, 'air,ground,friend,neutral,self']`
 
 實作：
 
-`Trig_HeroSkills53_Actions`　war3map.j:64346
+`udP_RBack`　war3map.j:65319
+```jass
+function udP_RBack takes nothing returns nothing
+local timer t=GetExpiredTimer()
+local unit u=LoadUnitHandle(hash,GetHandleId(t),1)
+call UnitRemoveAbility(u,'A2UR')
+call SetPlayerAbilityAvailable(GetOwningPlayer(u),'A0X7',true)
+call FlushChildHashtable(hash,GetHandleId(t))
+call DestroyTimer(t)
+set t=null
+set u=null
+endfunction
+```
+
+`Trig_HeroSkills53_Actions`　war3map.j:65355
 ```jass
 elseif Skill=='A0X7' then
+set count=0
 set dmg=200.+udg_ItemBonusDMG[n]*0.90+LoadReal(hash,GetHandleId(u),16)*9.00
 call UnitAddAbility(u,'A0X8')
 set u2=GetSpellTargetUnit()
@@ -210,11 +225,19 @@ call UnitDamageTarget(u,u2,dmg,false,false,ATTACK_TYPE_NORMAL,DAMAGE_TYPE_MAGIC,
 call TriggerSleepAction(0.1)
 if not UnitAlive(u2)then
 call UnitResetCooldown(u)
+set count=1
 endif
 call TriggerSleepAction(0.1)
 call UnitRemoveAbility(u,'A0X8')
 call PauseUnit(u,false)
 call SetUnitAnimation(u,"stand")
+if count==1 then
+call SetPlayerAbilityAvailable(pl,'A0X7',false)
+call UnitAddAbility(u,'A2UR')
+set t=CreateTimer()
+call SaveUnitHandle(hash,GetHandleId(t),1,u)
+call TimerStart(t,8.,false,function udP_RBack)
+endif
 endif
 ```
 
@@ -229,7 +252,7 @@ endif
 
 受到傷害可為英雄帶來加成：
 
-每受到敵人 200 點傷害：生命值上限 +15 點，生命回復 +0.50；下一次強化所需的傷害 +30 點
+每受到敵人 200 點傷害：生命值上限 +15 點，生命恢復 +0.50；下一次強化所需的傷害 +30 點
 ```
 
 *（JASS 裡沒有對應實作 —— 這是原生技能，效果看上面的物件欄位）*
@@ -246,7 +269,7 @@ endif
 
 實作：
 
-`Trig_ChangePoints_Actions`　war3map.j:17742
+`Trig_ChangePoints_Actions`　war3map.j:18929
 ```jass
 if GetSpellAbilityId()=='A03V' and GetUnitLevel(GetSpellTargetUnit())>0 then
 set udg_CTPoint[n]=GetSpellTargetUnit()
@@ -273,7 +296,7 @@ endif
 這幾段不是靠技能 ID 分派的，而是直接用單位型號 `Hmgd` 寫在共用函式的條件式裡
 （常見於寫進傷害管線的被動）。照技能抽取抓不到，所以單獨列出來。
 
-`Trig_HeroTakeDamage_Actions`　war3map.j:20126
+`Trig_HeroTakeDamage_Actions`　war3map.j:21328
 ```jass
 if a_type=='Hmgd' then
 if IsUnitEnemy(d,GetOwningPlayer(a))then
@@ -319,7 +342,7 @@ endif
 英雄的實作散在同編號的一組函式裡，上面按技能抽取時抓不到的補在這裡
 （常見的是決定門檻、結算加成、清理 buff 的那幾支）。
 
-`Trig_HeroAttack53_Conditions`　war3map.j:64381
+`Trig_HeroAttack53_Conditions`　war3map.j:65399
 ```jass
 function Trig_HeroAttack53_Conditions takes nothing returns boolean
 return GetUnitTypeId(GetAttacker())=='Hmgd' and IsUnitEnemy(GetTriggerUnit(),GetOwningPlayer(GetAttacker()))
@@ -335,6 +358,6 @@ endfunction
 
 ---
 
-*由 `tools/build_dossier.py` 從 UD_v3.82fix 地圖檔產生。*
+*由 `tools/build_dossier.py` 從 UD test 24.09.27（合併版） 地圖檔產生。*
 *機制通則、配裝規則與輸出格式見 `tools/BUILD_BRIEF.md`；*
 *道具數值見 `data/dossier/_items.md`。*

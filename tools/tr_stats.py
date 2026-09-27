@@ -11,10 +11,10 @@ NUM = r'[-+]?\d+(?:\.\d+)?%?'
 
 # ---------------------------------------------------------------- simple stats
 _SIMPLE = [
-    ('HP regen', '生命回復', 'HP regen'), ('MP regen', '法力回復', 'MP regen'),
-    ('HP', '生命值', 'HP'), ('MP', '法力值', 'MP'),
+    ('HP regen', '生命恢復', 'HP regen'), ('MP regen', '魔力恢復', 'MP regen'),
+    ('HP', '生命值', 'HP'), ('MP', '魔力值', 'MP'),
     ('атаки', '攻擊力', 'attack'), ('атк', '攻擊力', 'attack'), ('atk', '攻擊力', 'attack'),
-    ('защиты', '護甲', 'armor'), ('защита', '護甲', 'armor'), ('armor', '護甲', 'armor'),
+    ('защиты', '防禦力', 'armor'), ('защита', '防禦力', 'armor'), ('armor', '防禦力', 'armor'),
     ('сила умений', '技能強度', 'spell power'), ('spell power', '技能強度', 'spell power'),
     ('скорость атаки', '攻擊速度', 'attack speed'), ('atk speed', '攻擊速度', 'attack speed'),
     ('скорость передвижения и атаки', '移動與攻擊速度', 'move & attack speed'),
@@ -30,10 +30,10 @@ _SIMPLE = [
     ('all stats', '全屬性', 'all stats'), ('main stat', '主屬性', 'main stat'),
     ('наносимый урон кроме статусов', '非狀態傷害', 'non-status damage'),
     ('получаемый урон кроме статусов', '受到的非狀態傷害', 'non-status damage taken'),
-    ('ответный урон', '反傷', 'thorns'),
-    ('усиление ответного урона', '反傷加成', 'thorns bonus'),
-    ('сила модификаторов', '裝備技能威力', 'mod power'),
-    ('перезарядка модификаторов', '裝備技能冷卻', 'mod cooldown'),
+    ('ответный урон', '反彈傷害', 'thorns'),
+    ('усиление ответного урона', '反彈傷害提升', 'thorns bonus'),
+    ('сила модификаторов', '觸發效果強度', 'mod power'),
+    ('перезарядка модификаторов', '觸發效果冷卻', 'mod cooldown'),
     ('увеличение перезарядки предметов (дебаф)', '物品冷卻時間（負面）',
      'item cooldown (debuff)'),
     ('время воскрешения', '復活時間', 'respawn time'),
@@ -45,29 +45,29 @@ _SIMPLE = [
     ('доход золота', '金幣收入', 'gold income'),
     ('ед./сек. прирост опыта героя', '英雄經驗成長（每秒）', 'hero XP per sec'),
     ('прирост опыта героя', '英雄經驗成長', 'hero XP gain'),
-    ('mag resist', '魔法傷害減免', 'magic resist'),
-    ('защиты от магического урона', '魔法傷害減免', 'magic resist'),
-    ('защита от магического урона', '魔法傷害減免', 'magic resist'),
-    ('защита от магии', '魔法傷害減免', 'magic resist'),
-    ('magic defence', '魔法傷害減免', 'magic resist'),
+    ('mag resist', '魔法防禦', 'magic resist'),
+    ('защиты от магического урона', '魔法防禦', 'magic resist'),
+    ('защита от магического урона', '魔法防禦', 'magic resist'),
+    ('защита от магии', '魔法防禦', 'magic resist'),
+    ('magic defence', '魔法防禦', 'magic resist'),
     ('dmg to melee units', '對近戰單位傷害', 'dmg to melee units'),
 ]
 _SIMPLE.sort(key=lambda x: -len(x[0]))
 
 FLAT = {
-    'сопротивление проклятиям': ('抵抗詛咒', 'curse resistance'),
-    'сопротивление поджогу': ('抵抗點燃', 'burn resistance'),
-    'сопротивление поджогу и горючести': ('抵抗點燃與易燃', 'burn & flammable resistance'),
-    'сопротивление кровотечению': ('抵抗流血', 'bleed resistance'),
-    'сопротивление заморозке': ('抵抗冰凍', 'freeze resistance'),
-    'сопротивление болезни': ('抵抗疾病', 'disease resistance'),
-    'сопротивление кровотечению и заморозке': ('抵抗流血與冰凍', 'bleed & freeze resistance'),
-    'кровотечению': ('抵抗流血', 'bleed resistance'),
-    'заморозке': ('抵抗冰凍', 'freeze resistance'),
-    'проклятиям': ('抵抗詛咒', 'curse resistance'),
-    'болезни': ('抵抗疾病', 'disease resistance'),
-    'поджогу': ('抵抗點燃', 'burn resistance'),
-    'иммунитет к ответному урону': ('免疫反傷', 'thorns immunity'),
+    'сопротивление проклятиям': ('詛咒抗性', 'curse resistance'),
+    'сопротивление поджогу': ('點燃抗性', 'burn resistance'),
+    'сопротивление поджогу и горючести': ('點燃與易燃抗性', 'burn & flammable resistance'),
+    'сопротивление кровотечению': ('流血抗性', 'bleed resistance'),
+    'сопротивление заморозке': ('冰凍抗性', 'freeze resistance'),
+    'сопротивление болезни': ('疾病抗性', 'disease resistance'),
+    'сопротивление кровотечению и заморозке': ('流血與冰凍抗性', 'bleed & freeze resistance'),
+    'кровотечению': ('流血抗性', 'bleed resistance'),
+    'заморозке': ('冰凍抗性', 'freeze resistance'),
+    'проклятиям': ('詛咒抗性', 'curse resistance'),
+    'болезни': ('疾病抗性', 'disease resistance'),
+    'поджогу': ('點燃抗性', 'burn resistance'),
+    'иммунитет к ответному урону': ('免疫反彈傷害', 'thorns immunity'),
     '-': ('', ''),
     '+10% получаемый урон и наносимый урон от атак и умений против героев':
         ('+10%對英雄的攻擊與技能受到及造成傷害',
@@ -79,9 +79,9 @@ FLAT = {
     '+15% защита от атак, умений и статусов':
         ('+15%攻擊、技能與狀態防禦', '+15% defence vs attacks, abilities and statuses'),
     'умений и статусов': ('', ''),
-    '+8% защита от урона не от статусов': ('+8%非狀態傷害減免', '+8% non-status damage reduction'),
+    '+8% защита от урона не от статусов': ('+8%非狀態防禦', '+8% non-status damage reduction'),
     '+20% увеличение перезарядки модификаторов':
-        ('+20%裝備技能冷卻時間（負面）', '+20% mod cooldown (debuff)'),
+        ('+20%觸發效果冷卻時間（負面）', '+20% mod cooldown (debuff)'),
     '+25% защита от кровотечения и поджога':
         ('+25%流血與點燃抗性', '+25% bleed and burn resistance'),
     '+2 ед./сек. прирост опыта героя': ('+2/秒英雄經驗成長', '+2/sec hero XP gain'),
@@ -164,7 +164,7 @@ def dmg_family(num, rest, lang):
     if lang == 'zh':
         zh = num
         if kind == '防禦' and not tgt and mod in STATUS_MODS:
-            return zh + mod + '傷害減免'
+            return zh + mod + '防禦'
         if tgt:
             zh += ('對' if kind in ('傷害', '防禦', '造成傷害', '傷害減免') else '受到') + tgt
             # 目標與限定詞同時存在時補「的」，否則會黏成一長串難斷句
@@ -223,6 +223,7 @@ def tr_one(part, lang):
 
 def tr_bonus(s, lang='zh'):
     s = (s or '').replace('НР', 'HP').replace('МР', 'MP').replace('МP', 'MP')
+    s = s.replace('(не действует на статусы)', 'кроме статусов')   # 新版寫法，同義
     sep = '，' if lang == 'zh' else ', '
     for ru, pair in FLAT.items():
         if ',' in ru and s.strip().lower().endswith(ru):

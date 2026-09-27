@@ -32,7 +32,7 @@
 
 傷害：60 + （25% 技能強度）點
 
-冷卻：10 秒
+冷卻時間：10 秒
 ```
 
 每級變動：
@@ -42,7 +42,7 @@
 
 實作：
 
-`Hero47Q`　war3map.j:60971
+`Hero47Q`　war3map.j:61967
 ```jass
 function Hero47Q takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -104,7 +104,7 @@ set ug=null
 endfunction
 ```
 
-`Trig_HeroSkills47_Actions`　war3map.j:61077
+`Trig_HeroSkills47_Actions`　war3map.j:62073
 ```jass
 if Skill=='A0EQ' then
 set x=GetUnitX(u)
@@ -147,7 +147,7 @@ call SaveReal(hash,Id,3,angle)
 call TimerStart(t,0.01,false,function Hero47Q)
 ```
 
-`Hero47Q_Buff`　war3map.j:61048
+`Hero47Q_Buff`　war3map.j:62044
 ```jass
 function Hero47Q_Buff takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -173,7 +173,7 @@ endfunction
 「衝勁」技能對敵方英雄的傷害：+40%
 持續時間：20 秒
 
-冷卻：35 秒
+冷卻時間：35 秒
 ```
 
 每級變動：
@@ -183,13 +183,13 @@ endfunction
 
 實作：
 
-`Hero47Q`　war3map.j:60999
+`Hero47Q`　war3map.j:61995
 ```jass
 if GetUnitAbilityLevel(u,'B03H')>0 and IsUnitType(u3,UNIT_TYPE_HERO)then
 call UnitDamageTarget(u,u3,dmg*(1.00+0.20+0.20*I2R(GetUnitAbilityLevel(u,'A0ER'))),false,false,ATTACK_TYPE_NORMAL,DAMAGE_TYPE_MAGIC,null)
 ```
 
-`Trig_HeroSkills47_Actions`　war3map.j:61116
+`Trig_HeroSkills47_Actions`　war3map.j:62112
 ```jass
 elseif Skill=='A0ER' then
 set t=CreateTimer()
@@ -214,7 +214,7 @@ call TimerStart(t,20,false,function Hero47W)
 endif
 ```
 
-`Hero47W`　war3map.j:61029
+`Hero47W`　war3map.j:62025
 ```jass
 function Hero47W takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -248,7 +248,7 @@ endfunction
 受到傷害提高：8%
 持續時間：6 秒
 
-冷卻：3.5 秒
+冷卻時間：3.5 秒
 ```
 
 每級變動：
@@ -260,7 +260,7 @@ endfunction
 
 實作：
 
-`Trig_HeroAttack47_Actions`　war3map.j:61188
+`Trig_HeroAttack47_Actions`　war3map.j:62184
 ```jass
 if(GetUnitTypeId(u2)=='Nngs' or GetUnitTypeId(u2)=='Nplh')and GetUnitAbilityLevel(u2,'Amgr')>=1 and LoadInteger(hash,GetHandleId(u2),20)!=1 then
 call SaveInteger(hash,GetHandleId(u2),20,1)
@@ -323,7 +323,7 @@ endif
 endif
 ```
 
-`HeroE47_Cd`　war3map.j:61148
+`HeroE47_Cd`　war3map.j:62144
 ```jass
 function HeroE47_Cd takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -359,17 +359,17 @@ endfunction
 俄文原名：Разрыв души
 
 ```
-英雄造成的擊殺可能生成 3 團黑暗能量，擊中附近的隨機敵人。
+英雄造成的擊殺可能生成 3 能量團，擊中附近的隨機敵人。
 
 能量團的傷害：50 + （75% 技能強度）點。
-冷卻：4 秒。
+冷卻時間：4 秒。
 ```
 
 物件欄位（原型 `Amgl`）：`aher = 1`
 
 實作：
 
-`HeroR47`　war3map.j:61263
+`HeroR47`　war3map.j:62259
 ```jass
 function HeroR47 takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -383,7 +383,7 @@ set u=null
 endfunction
 ```
 
-`Trig_HeroKills47_Actions`　war3map.j:61288
+`Trig_HeroKills47_Actions`　war3map.j:62284
 ```jass
 if GetUnitAbilityLevel(u,'A0F4')>0 then
 if LoadBoolean(hash,GetHandleId(u),'A0F4')==true then
@@ -413,7 +413,7 @@ endif
 ```
 將英雄傳送一小段距離。
 
-冷卻：30 秒。
+冷卻時間：30 秒。
 ```
 
 物件欄位（原型 `None`）：`aite = 0`, `amcs = 30`
@@ -430,9 +430,9 @@ endif
 
 **天賦選項**：
   - `A0F5` 黑暗信徒 [1/2]
-    對敵方英雄造成傷害會給予黑暗主教一系列加成：  每累積 500 點傷害：+1 點攻擊力，+15 HP；下一次強化所需的傷害增加 10 點  1000 點傷害：「受詛之刃」的持續時間 +1.5 秒  2000 點傷害：「衝勁」的傷害段數 +1  4000 點傷害：「黑暗強化」每秒回復 1% HP  6000 點傷害：當敵人身上累積 3 層效果時，「受詛之刃」額外造成 100 +（35% 技能強度）點傷害  8000 點傷害：「衝勁」的傷害段數 +1  11000 點傷害：「黑暗強化」的濺射效果範圍 +25%
+    對敵方英雄造成傷害會給予黑暗主教一系列加成：  每累積 500 點傷害：+1 點攻擊力，+15 HP；下一次強化所需的傷害增加 10 點  1000 點傷害：「受詛之刃」的持續時間 +1.5 秒  2000 點傷害：「衝勁」的傷害段數 +1  4000 點傷害：「黑暗強化」每秒恢復 1% HP  6000 點傷害：當敵人身上累積 3 層效果時，「受詛之刃」額外造成 100 +（35% 技能強度）點傷害  8000 點傷害：「衝勁」的傷害段數 +1  11000 點傷害：「黑暗強化」的濺射效果範圍 +25%
   - `A0FZ` 黑暗信徒 [2/2]
-    15000 點傷害：「衝勁」在 5 秒內將受到傷害的防護提高 25%  20000 點傷害：「受詛之刃」的冷卻降低 0.5 秒  27000 點傷害：「衝勁」的傷害段數 +1  35000 點傷害：「靈魂撕裂」可命中 5 個目標  45000 點傷害：「衝勁」的傷害段數 +1  60000 點傷害：「黑暗強化」使裝備技能威力提高 50%  80000 點傷害：「衝勁」的傷害段數 +1
+    15000 點傷害：「衝勁」在 5 秒內將受到傷害的防護提高 25%  20000 點傷害：「受詛之刃」的冷卻降低 0.5 秒  27000 點傷害：「衝勁」的傷害段數 +1  35000 點傷害：「靈魂撕裂」可命中 5 個目標  45000 點傷害：「衝勁」的傷害段數 +1  60000 點傷害：「黑暗強化」使觸發效果強度提高 50%  80000 點傷害：「衝勁」的傷害段數 +1
 
 物件欄位（原型 `Aspb`）：`aite = 0`, `spb1 = A0F5,A0FZ`, `spb2 = 0`, `spb3 = 2`, `spb4 = 2`
 
@@ -450,7 +450,7 @@ endif
 
 實作：
 
-`Trig_ChangePoints_Actions`　war3map.j:17742
+`Trig_ChangePoints_Actions`　war3map.j:18929
 ```jass
 if GetSpellAbilityId()=='A03V' and GetUnitLevel(GetSpellTargetUnit())>0 then
 set udg_CTPoint[n]=GetSpellTargetUnit()
@@ -483,7 +483,7 @@ endif
 
 2000 點傷害：「衝勁」的傷害段數 +1
 
-4000 點傷害：「黑暗強化」每秒回復 1% HP
+4000 點傷害：「黑暗強化」每秒恢復 1% HP
 
 6000 點傷害：當敵人身上累積 3 層效果時，「受詛之刃」額外造成 100 +（35% 技能強度）點傷害
 
@@ -509,7 +509,7 @@ endif
 
 45000 點傷害：「衝勁」的傷害段數 +1
 
-60000 點傷害：「黑暗強化」使裝備技能威力提高 50%
+60000 點傷害：「黑暗強化」使觸發效果強度提高 50%
 
 80000 點傷害：「衝勁」的傷害段數 +1
 ```
@@ -534,7 +534,7 @@ endif
 這幾段不是靠技能 ID 分派的，而是直接用單位型號 `Nngs` 寫在共用函式的條件式裡
 （常見於寫進傷害管線的被動）。照技能抽取抓不到，所以單獨列出來。
 
-`Trig_HeroTakeDamage_Actions`　war3map.j:20090
+`Trig_HeroTakeDamage_Actions`　war3map.j:21292
 ```jass
 if a_type=='Nngs' or a_type=='Nplh' then
 if IsUnitType(d,UNIT_TYPE_HERO)and IsUnitEnemy(d,GetOwningPlayer(a))then
@@ -561,7 +561,7 @@ endif
 
 ## 皮膚
 
-黑暗主教（男） `Nplh` —— 物件資料同本體，但 **JASS 有依單位型號分支**：`Trig_i_Actions`（16756）、`Trig_HeroTakeDamage_Actions`（20090）、`Trig_HeroPick_Actions`（45343）、`Trig_HeroAttack47_Actions`（61188）、`Trig_HeroKills47_Conditions`（61261）
+黑暗主教（男） `Nplh` —— 物件資料同本體，但 **JASS 有依單位型號分支**：`Trig_i_Actions`（17855）、`Trig_HeroTakeDamage_Actions`（21292）、`Trig_HeroPick_Actions`（46016）、`Trig_HeroAttack47_Actions`（62184）、`Trig_HeroKills47_Conditions`（62257）
 
 ---
 
@@ -570,7 +570,7 @@ endif
 英雄的實作散在同編號的一組函式裡，上面按技能抽取時抓不到的補在這裡
 （常見的是決定門檻、結算加成、清理 buff 的那幾支）。
 
-`HeroE47_EndDebuff`　war3map.j:61159
+`HeroE47_EndDebuff`　war3map.j:62155
 ```jass
 function HeroE47_EndDebuff takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -590,7 +590,7 @@ set u=null
 endfunction
 ```
 
-`Trig_HeroKills47_Conditions`　war3map.j:61260
+`Trig_HeroKills47_Conditions`　war3map.j:62256
 ```jass
 function Trig_HeroKills47_Conditions takes nothing returns boolean
 return(GetUnitTypeId(GetKillingUnit())=='Nngs' or GetUnitTypeId(GetKillingUnit())=='Nplh')and IsUnitEnemy(GetDyingUnit(),GetOwningPlayer(GetKillingUnit()))
@@ -609,6 +609,6 @@ endfunction
 
 ---
 
-*由 `tools/build_dossier.py` 從 UD_v3.82fix 地圖檔產生。*
+*由 `tools/build_dossier.py` 從 UD test 24.09.27（合併版） 地圖檔產生。*
 *機制通則、配裝規則與輸出格式見 `tools/BUILD_BRIEF.md`；*
 *道具數值見 `data/dossier/_items.md`。*

@@ -32,7 +32,7 @@
 
 傷害：100 + （40% 技能強度）點
 
-冷卻：10 秒
+冷卻時間：10 秒
 ```
 
 每級變動：
@@ -42,7 +42,7 @@
 
 實作：
 
-`Skill43Q`　war3map.j:59714
+`Skill43Q`　war3map.j:60710
 ```jass
 if B==true then
 set n=GetPlayerId(pl)+1
@@ -98,7 +98,7 @@ return
 endif
 ```
 
-`Skill43Q`　war3map.j:59768
+`Skill43Q`　war3map.j:60764
 ```jass
 if count==0 then
 set pl=GetOwningPlayer(u)
@@ -147,7 +147,7 @@ call DestroyTimer(t)
 call FlushChildHashtable(hash,Id)
 ```
 
-`Trig_HeroSkills43_Actions`　war3map.j:59839
+`Trig_HeroSkills43_Actions`　war3map.j:60835
 ```jass
 if Skill=='A01U' then
 set x=GetUnitX(u)
@@ -174,15 +174,15 @@ call SetUnitAnimation(u,"Stand Defend")
 俄文原名：Контрнаступление
 
 ```
-英雄以屏障護體，降低所受的傷害。屏障結束後，英雄附近的隨機敵人會受到傷害，英雄本身則獲得暫時的攻擊力與生命回復加成。
+英雄以屏障護體，降低所受的傷害。屏障結束後，英雄附近的隨機敵人會受到傷害，英雄本身則獲得暫時的攻擊力與生命恢復加成。
 
 屏障降低所受傷害：20%
 屏障持續時間：5 秒
 屏障結束後造成的傷害：對英雄附近 7 名隨機敵人造成 70 + （25% 技能強度）點
-屏障結束後的加成：攻擊力 +20 + （10% 技能強度），生命回復 +4 + （3% 技能強度）點
+屏障結束後的加成：攻擊力 +20 + （10% 技能強度），生命恢復 +4 + （3% 技能強度）點
 加成持續時間：8 秒
 
-冷卻：24 秒
+冷卻時間：24 秒
 ```
 
 每級變動：
@@ -194,14 +194,14 @@ call SetUnitAnimation(u,"Stand Defend")
 
 實作：
 
-`Trig_HeroTakeDamage_Actions`　war3map.j:19813
+`Trig_HeroTakeDamage_Actions`　war3map.j:21010
 ```jass
 if GetUnitAbilityLevel(d,'B03I')==1 then
 set DefCof=DefCof-(0.12+0.08*I2R(GetUnitAbilityLevel(d,'Absk')))
 endif
 ```
 
-`Skill43W`　war3map.j:59634
+`Skill43W`　war3map.j:60630
 ```jass
 function Skill43W takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -243,7 +243,7 @@ set e=null
 endfunction
 ```
 
-`Trig_HeroSkills43_Actions`　war3map.j:59857
+`Trig_HeroSkills43_Actions`　war3map.j:60853
 ```jass
 elseif Skill=='Absk' then
 set t=CreateTimer()
@@ -255,7 +255,7 @@ call SaveReal(hash,GetHandleId(u),4,LoadReal(hash,GetHandleId(u),4)+dmg)
 call SaveReal(hash,Id,1,dmg)
 ```
 
-`SetUnitExtraDamage`　war3map.j:3932
+`SetUnitExtraDamage`　war3map.j:4314
 ```jass
 function SetUnitExtraDamage takes unit u,integer a returns nothing
 local integer Id=GetHandleId(u)
@@ -266,8 +266,8 @@ if a>8191 then
 set a=8191
 endif
 loop
-call UnitRemoveAbility(u,setAttribute___abilityAddDamage[index])
-call UnitRemoveAbility(u,setAttribute___abilityRemoveDamage[index])
+call UnitRemoveAbility(u,setAttribute__abilityAddDamage[index])
+call UnitRemoveAbility(u,setAttribute__abilityRemoveDamage[index])
 exitwhen index==14
 set index=index+1
 endloop
@@ -278,7 +278,7 @@ exitwhen r<=0
 if R2I(Pow(2,p))>r then
 set p=p-1
 elseif R2I(Pow(2,p))<=r then
-call UnitAddAbility(u,setAttribute___abilityAddDamage[p])
+call UnitAddAbility(u,setAttribute__abilityAddDamage[p])
 set r=r-R2I(Pow(2,p))
 set p=p-1
 endif
@@ -290,7 +290,7 @@ exitwhen r<=0
 if R2I(Pow(2,p))>r then
 set p=p-1
 elseif R2I(Pow(2,p))<=r then
-call UnitAddAbility(u,setAttribute___abilityRemoveDamage[p])
+call UnitAddAbility(u,setAttribute__abilityRemoveDamage[p])
 set r=r-R2I(Pow(2,p))
 set p=p-1
 endif
@@ -300,7 +300,7 @@ call SaveInteger(hash,Id,34,a)
 endfunction
 ```
 
-`Skill43W2`　war3map.j:59618
+`Skill43W2`　war3map.j:60614
 ```jass
 function Skill43W2 takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -368,7 +368,7 @@ endfunction
 傷害：16 + （5% 技能強度）點/秒
 效果持續時間：10 秒
 
-效果冷卻：效果結束後 10 秒
+效果冷卻時間：效果結束後 10 秒
 ```
 
 每級變動：
@@ -378,7 +378,7 @@ endfunction
 
 實作：
 
-`Hero43E`　war3map.j:59895
+`Hero43E`　war3map.j:60891
 ```jass
 function Hero43E takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -425,7 +425,7 @@ set e=null
 endfunction
 ```
 
-`Trig_HeroAttack43_Actions`　war3map.j:59950
+`Trig_HeroAttack43_Actions`　war3map.j:60946
 ```jass
 if GetUnitAbilityLevel(u,'Amgl')>0 then
 if LoadInteger(hash,GetHandleId(u),28)!=1 then
@@ -442,7 +442,7 @@ endif
 endif
 ```
 
-`Hero43E2`　war3map.j:59885
+`Hero43E2`　war3map.j:60881
 ```jass
 function Hero43E2 takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -504,7 +504,7 @@ endfunction
 俄文原名：Обращение к Свету
 
 ```
-英雄對受到「灼燒印記」影響的敵人造成更多傷害，並在攻擊時有機率引爆敵人身上的印記，觸發生命回復效果並造成範圍傷害。此外，技能持續期間會提高對敵人附加印記的機率。
+英雄對受到「灼燒印記」影響的敵人造成更多傷害，並在攻擊時有機率引爆敵人身上的印記，觸發生命恢復效果並造成範圍傷害。此外，技能持續期間會提高對敵人附加印記的機率。
 
 對帶有印記的敵人造成額外傷害：+25%
 攻擊時引爆印記的機率：33%
@@ -512,14 +512,14 @@ endfunction
 附加印記機率提升：10% > 25%
 技能持續時間：22 秒
 
-冷卻：
+冷卻時間：
 ```
 
 物件欄位（原型 `ANcl`）：`Ncl1 = [0.5, None, 1.0]`, `Ncl3 = [1, None]`, `Ncl4 = [0.5, None, 1.0]`, `Ncl5 = [0, None]`, `Ncl6 = ['spies', None, 'channel']`, `acdn = [100.0, None, 30.0]`, `alev = 1`, `amcs = [185, None, 70, 80, 90, 100, 110]`, `aran = [800.0, None]`, `atar = ['air,ground,debris,enemy,neutral,organic', None]`
 
 實作：
 
-`Trig_HeroSkills43_Actions`　war3map.j:59865
+`Trig_HeroSkills43_Actions`　war3map.j:60861
 ```jass
 elseif Skill=='A01W' then
 call UnitAddAbility(u,'A01Y')
@@ -531,7 +531,7 @@ call TimerStart(t,22,true,function RemoveBuff)
 endif
 ```
 
-`RemoveBuff`　war3map.j:2875
+`RemoveBuff`　war3map.j:3078
 ```jass
 function RemoveBuff takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -552,10 +552,10 @@ endfunction
 俄文原名：Опаляющая метка
 
 ```
-攻擊英雄的敵人有 10% 機率獲得灼燒印記效果，持續 8 秒。此效果會提高該敵人受到英雄傷害的量。若敵人在印記效果下死亡，英雄會回復生命值。
+攻擊英雄的敵人有 10% 機率獲得灼燒印記效果，持續 8 秒。此效果會提高該敵人受到英雄傷害的量。若敵人在印記效果下死亡，英雄會恢復生命值。
 
 敵人受到英雄的傷害提高：+25%
-帶印記的敵人死亡時回復生命值：（65% 力量）點
+帶印記的敵人死亡時恢復生命值：（65% 力量）點
 ```
 
 *（JASS 裡沒有對應實作 —— 這是原生技能，效果看上面的物件欄位）*
@@ -572,7 +572,7 @@ endfunction
 
 實作：
 
-`Trig_ChangePoints_Actions`　war3map.j:17742
+`Trig_ChangePoints_Actions`　war3map.j:18929
 ```jass
 if GetSpellAbilityId()=='A03V' and GetUnitLevel(GetSpellTargetUnit())>0 then
 set udg_CTPoint[n]=GetSpellTargetUnit()
@@ -610,7 +610,7 @@ endif
 這幾段不是靠技能 ID 分派的，而是直接用單位型號 `Hmkg` 寫在共用函式的條件式裡
 （常見於寫進傷害管線的被動）。照技能抽取抓不到，所以單獨列出來。
 
-`Trig_HeroKills43_Actions`　war3map.j:60019
+`Trig_HeroKills43_Actions`　war3map.j:61015
 ```jass
 if GetUnitTypeId(u2)=='Hmkg' then
 set r=I2R(GetHeroStr(u2,true))*0.65
@@ -625,7 +625,7 @@ endif
 英雄的實作散在同編號的一組函式裡，上面按技能抽取時抓不到的補在這裡
 （常見的是決定門檻、結算加成、清理 buff 的那幾支）。
 
-`Trig_HeroKills43_Actions`　war3map.j:60014
+`Trig_HeroKills43_Actions`　war3map.j:61010
 ```jass
 function Trig_HeroKills43_Actions takes nothing returns nothing
 local unit u=GetDyingUnit()
@@ -655,6 +655,6 @@ endfunction
 
 ---
 
-*由 `tools/build_dossier.py` 從 UD_v3.82fix 地圖檔產生。*
+*由 `tools/build_dossier.py` 從 UD test 24.09.27（合併版） 地圖檔產生。*
 *機制通則、配裝規則與輸出格式見 `tools/BUILD_BRIEF.md`；*
 *道具數值見 `data/dossier/_items.md`。*

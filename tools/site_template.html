@@ -898,7 +898,7 @@ body[data-resizing="1"]{cursor:col-resize;user-select:none}
 .bd-meta .bm.ph1{color:#7BD3A0}.bd-meta .bm.ph2{color:#F2C46B}.bd-meta .bm.ph3{color:#E8737D}
 .hnote{font-size:var(--fs-sub);line-height:1.6;border-radius:8px;padding:8px 10px;
   margin-top:9px;border:1px solid var(--line)}
-/* ⊕ 是「裝備技能威力的來源」，跟 ◈「吃裝備技能威力」是相反的兩件事 */
+/* ⊕ 是「觸發效果強度的來源」，跟 ◈「吃觸發效果強度」是相反的兩件事 */
 .ha-g{color:#7BD3A0;font-weight:700}
 .hnote.give{color:#7BD3A0;border-color:color-mix(in srgb,#7BD3A0 40%,var(--line))}
 .hnote.mod{color:#F7E15C;border-color:color-mix(in srgb,#F7E15C 40%,var(--line));
@@ -1556,16 +1556,16 @@ const UI = {
       smAll:'對框內所有狀態：中招機率 +%s%',
       smNoAmp:'沒有專屬放大器', smResist:'抗性對照', smImmune:'免疫',
       smRules:'系統規則', smAllSt:'各狀態細節',
-      smIntro:'狀態彼此會互相放大。「易傷」提高所有狀態的中招機率，「電擊」加重三種持續傷害，'
+      smIntro:'狀態彼此會互相放大。「易傷」提高所有狀態的中招機率，「震擊」加重三種持續傷害，'
              +'另外三個狀態則各自對應一種持續傷害。點任一個狀態可以回到裝備清單看有哪些裝備會用到它。',
       smLgBox:'虛線框＝影響框內全部', smLgArrow:'箭頭＝一對一放大',
       smLgTap:'點狀態＝用它搜尋裝備',
       loHint:'點下方裝備加入欄位，最多 6 件', loClear:'清空', loFull:'欄位已滿',
-      loSum:'屬性總計', loMax:'減傷（同類取最高）', loAct:'主動技能',
+      loSum:'屬性總計', loMax:'防禦（同類取最高）', loAct:'主動技能',
       loCond:'條件加成', loFlag:'抗性與特性',
       loCondNote:'這些只在特定對象上生效（對英雄／亡靈／某等級…），所以不併入上面的總計；同條件之間才會相加',
       loPas:'被動效果', loSet:'觸發的套裝加成', loNone:'還沒放入任何裝備',
-      loNote:'減傷類同時帶多件不會疊加，這裡取最高值；其餘屬性直接相加',
+      loNote:'防禦類同時帶多件不會疊加，這裡取最高值；其餘屬性直接相加',
       loRelic:'另需任一件「聖物」類道具', loRemove:'移除',
       sgStatus:'狀態效果', sgKw:'常見關鍵字', sgFilter:'快速篩選',
       sgRank:'依數值排行', sgActive:'主動技能',
@@ -1577,8 +1577,8 @@ const UI = {
             +'強度等級與定位是地圖作者自己在英雄說明裡寫的。',
       hAttr_str:'力量', hAttr_agi:'敏捷', hAttr_int:'智力',
       hrAttr:'主屬性', hrRole:'定位', hrUnlock:'解鎖門檻', hrAll:'全部英雄',
-      hbcSee:'看裝備', hbcAttr_str:'主屬性：每點 +25 生命、+1 攻擊力', hbcAttr_agi:'主屬性：每點 +1% 攻速、+0.25 護甲、+1 攻擊力',
-      hbcAttr_int:'主屬性：每點 +15 法力、+1 攻擊力', hBuildHint2:'左邊是機制，中間是這隻哪幾招會用到它（從技能文字掃出來的）。點一列就跳到依那個屬性排序的裝備清單。',
+      hbcSee:'看裝備', hbcAttr_str:'主屬性：每點 +25 生命、+1 攻擊力', hbcAttr_agi:'主屬性：每點 +1% 攻速、+0.25 防禦力、+1 攻擊力',
+      hbcAttr_int:'主屬性：每點 +15 魔力、+1 攻擊力', hBuildHint2:'左邊是機制，中間是這隻哪幾招會用到它（從技能文字掃出來的）。點一列就跳到依那個屬性排序的裝備清單。',
       bdCost:'總價', bdPh1:'中期就能湊齊', bdPh2:'中後期', bdPh3:'後期成型', bdTalShort:'需要天賦',
       srList:'狀態', srSec:'章節', srMap:'關係圖', srResist:'抗性對照', srRules:'通則',
       hTier:'強度', hLate:'後期', hkUnlock:'解鎖', hkStart:'一開始',
@@ -1592,11 +1592,11 @@ const UI = {
       hSkinStat:'這個皮膚改了基礎數值', hSkinStatTag:'改數值', hSkinStatSwap:'另外還改了基礎數值',
       hSkinGuess:'本體沒有覆寫這個欄位、沿用原型，所以差多少無法從地圖資料確認',
       hSkinN:'數值', hSkinBase:'本體', hSkinSkin:'皮膚',
-      hSF:{ustr:'力量',ustp:'力量／級',uagi:'敏捷',uagp:'敏捷／級',uint:'智力',uinp:'智力／級',ua1c:'攻擊間隔',ua1r:'攻擊距離',ua1t:'攻擊類型',ua1w:'武器類型',udty:'護甲類型',umvs:'移動速度',udef:'基礎護甲'},
+      hSF:{ustr:'力量',ustp:'力量／級',uagi:'敏捷',uagp:'敏捷／級',uint:'智力',uinp:'智力／級',ua1c:'攻擊間隔',ua1r:'攻擊距離',ua1t:'攻擊類型',ua1w:'武器類型',udty:'防禦類型',umvs:'移動速度',udef:'基礎防禦力'},
       hBuilds:'推薦配裝', hNeedTalent:'需搭配天賦：',
       hBuildHint:'這些標籤是從該英雄的技能文字掃出來的機制，點一下就會帶你回裝備清單。',
-      hModYes:'◈ 這招會吃「裝備技能威力」：傷害 ×（1 + 威力）。沒有 ◈ 的技能不吃 —— 228 個英雄技能裡只有 4 個會（判定方式是看該技能的程式碼有沒有讀 hash key 18）。',
-      hGive:'⊕ 這招是「裝備技能威力」的來源 —— 它會提升你的威力值，讓道具觸發的傷害變強，但它自己的傷害不吃這個屬性。',
+      hModYes:'◈ 這招會吃「觸發效果強度」：傷害 ×（1 + 威力）。沒有 ◈ 的技能不吃 —— 228 個英雄技能裡只有 4 個會（判定方式是看該技能的程式碼有沒有讀 hash key 18）。',
+      hGive:'⊕ 這招是「觸發效果強度」的來源 —— 它會提升你的威力值，讓道具觸發的傷害變強，但它自己的傷害不吃這個屬性。',
       hSkillRu:'技能說明譯自地圖原文；數值、公式與換行結構均保留原樣。',
       ptAI:'AI 配裝', bdApply:'套用', bdWhy:'為什麼有效',
       ptHero:'英雄', ptAIFor:'%s 的配裝', ptAIAll:'通用配裝', ptAIAllN:'通用配裝 %s 套',
@@ -2378,7 +2378,7 @@ function heroBuilds(h, L, noHead){
 function skinBlock(h, L){
   if (!h.skins || !h.skins.length) return '';
   /* 三類：純外觀 / 只改數值 / 換技能。中間那類以前被歸進「純外觀」，
-     但 41 個皮膚裡有 11 個技能完全沒換、卻改了攻擊間隔、射程或屬性成長。 */
+     但 41 個皮膚裡有 11 個技能完全沒換、卻改了攻擊間隔、攻擊距離或屬性成長。 */
   const plain = h.skins.filter(s => !s.add && !s.rm && !(s.st && s.st.length));
   const swap  = h.skins.filter(s => s.add || s.rm || (s.st && s.st.length));
   const chip = s => `<span class="hsk-i${s.on ? '' : ' off'}"
@@ -2830,12 +2830,12 @@ function statusRows(keys){
   }).join('');
 }
 /* 狀態關係圖。
-   直覺會想畫成節點連線圖，但「易傷」會影響全部 7 個狀態、「電擊」影響 3 個 ——
+   直覺會想畫成節點連線圖，但「易傷」會影響全部 7 個狀態、「震擊」影響 3 個 ——
    14 條線交叉在一起只會變成義大利麵，反而更難懂。
    所以改用「範圍框」表達影響全體（框住誰就影響誰），
    箭頭只留給 1:1 的專屬放大關係，一眼就看得出結構：
      易傷  = 外框，框內全部的中招機率 +50%
-     電擊  = 右邊，對三種持續傷害的傷害 +100%
+     震擊  = 右邊，對三種持續傷害的傷害 +100%
      易燃／虛弱／詛咒 = 各自放大一種持續傷害（1:1 配對）
      冰凍  = 沒有專屬放大器，單獨放 */
 function statusMap(){
@@ -2876,7 +2876,7 @@ function statusMap(){
           <text x="${(LX+RX)/2}" y="${y-12}" text-anchor="middle" fill="${col(a)}"
             font-size="11.5">${esc(lab)}</text>`;
     g += node(a, LX, y) + node(b, RX, y);
-    // 電擊 -> 三種持續傷害
+    // 震擊 -> 三種持續傷害
     g += `<path d="M636 288 C 566 288, 540 ${y}, ${RX+48} ${y}"
             fill="none" stroke="${col('shock')}" stroke-width="2"
             marker-end="url(#ah-shock)" opacity=".85"/>`;
@@ -2900,7 +2900,7 @@ function statusMap(){
 
     ${g}
 
-    <!-- 電擊：對三種持續傷害 -->
+    <!-- 震擊：對三種持續傷害 -->
     ${node('shock', 690, 288)}
     <text x="690" y="242" text-anchor="middle" fill="${col('shock')}" font-size="12">${
       esc(t('smDmg') + ' +' + (dmgShock ? dmgShock[2] : 100) + '%')}</text>
@@ -2987,8 +2987,8 @@ function reveal(id){
 
 /* ---------------------------------------------------------------- 配裝模式
    六格背包的模擬。加成的處理分兩種：
-     · 一般屬性（力量、生命、護甲…）直接相加
-     · 減傷類（魔法傷害減免、狀態防護）同類不疊加，取最高 —— 見 DATA.nostack
+     · 一般屬性（力量、生命、防禦力…）直接相加
+     · 防禦類（魔法防禦、狀態防禦）同類不疊加，取最高 —— 見 DATA.nostack
    後者的規則寫在地圖觸發裡、匯出資料看不到，是玩家告知的，所以介面上標示出來。 */
 const NOSTACK = new Set(DATA.nostack || []);
 const MAXSLOT = 6;
@@ -3924,14 +3924,14 @@ const SUGG = [
     {l: ['流血','Bleed','Кровотечение'],  q: ['流血','bleed','кровотеч']},
     {l: ['疾病','Disease','Болезнь'],     q: ['疾病','disease','болезн']},
     {l: ['冰凍','Freeze','Заморозка'],    q: ['冰凍','freeze','заморозк']},
-    {l: ['電擊','Shock','Шок']},
+    {l: ['震擊','Shock','Шок']},
     {l: ['詛咒','Curse','Проклятие'],     q: ['詛咒','curse','проклят']},
     {l: ['虛弱','Weakness','Слабость'],   q: ['虛弱','weakness','слабост']},
     {l: ['易傷','Vulnerable','Уязвимость'], q: ['易傷','vulnerab','уязвим']}]},
   {t: 'kw', k: [
     {l: ['光環','Aura','Аура'],           q: ['光環','aura','аур']},
     {l: ['吸血','Lifesteal','Вампиризм'], q: ['吸血','lifesteal','вампириз']},
-    {l: ['反傷','Thorns','Ответный урон'],q: ['反傷','thorns','ответн']},
+    {l: ['反彈傷害','Thorns','Ответный урон'],q: ['反彈傷害','thorns','ответн']},
     {l: ['穿透','Penetration','Пробитие'],q: ['穿透','penetration','пробити']},
     {l: ['格擋','Block','Блокирует'],     q: ['格擋','block','блокир']},
     {l: ['範圍','Area','По области'],     q: ['範圍','area','област']},

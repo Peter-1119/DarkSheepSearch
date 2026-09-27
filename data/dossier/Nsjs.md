@@ -1,6 +1,6 @@
 # 超重型坦克 `Nsjs`（Сверхтяжёлый танк）
 
-主屬性 **力量** · 背包 **6 格** · 解鎖 4000000 · 定位 戰士/坦克 · **遠程**（攻擊距離 500） · 護甲類型 **強化（城牆）**（六種攻擊類型全部 ×1.00，比英雄護甲差）
+主屬性 **力量** · 背包 **6 格** · 解鎖 4000000 · 定位 戰士/坦克 · **遠程**（攻擊距離 500）
 
 | | 初始 | 每級 |
 |---|---|---|
@@ -36,7 +36,7 @@
 暈眩：3 秒（英雄 2 秒）
 英雄 25 級：每 8 秒一次，攻擊會發射一枚火箭，造成 50% 傷害並暈眩 2 秒（英雄 1 秒）
 
-冷卻：18 秒
+冷卻時間：18 秒
 ```
 
 每級變動：
@@ -48,7 +48,7 @@
 
 實作：
 
-`Trig_HeroSkills55_Actions`　war3map.j:64620
+`Trig_HeroSkills55_Actions`　war3map.j:65638
 ```jass
 if Skill=='A0XO' then
 set x2=GetSpellTargetX()
@@ -69,7 +69,7 @@ call SaveReal(hash,Id,4,235.)
 call TimerStart(t,0.03,true,function HeroQ55_Dmg)
 ```
 
-`RemoveDummy`　war3map.j:2746
+`RemoveDummy`　war3map.j:2949
 ```jass
 function RemoveDummy takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -103,7 +103,7 @@ set t=null
 endfunction
 ```
 
-`HeroQ55_Dmg`　war3map.j:64498
+`HeroQ55_Dmg`　war3map.j:65516
 ```jass
 function HeroQ55_Dmg takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -170,7 +170,7 @@ endfunction
 
 傷害：100 +（100% 力量）
 
-冷卻：20 秒
+冷卻時間：20 秒
 ```
 
 每級變動：
@@ -180,7 +180,7 @@ endfunction
 
 實作：
 
-`Trig_HeroSkills55_Actions`　war3map.j:64637
+`Trig_HeroSkills55_Actions`　war3map.j:65655
 ```jass
 elseif Skill=='A0XQ' then
 set dmg=50.+50.*I2R(lvl)+I2R(GetHeroStr(u,true))
@@ -199,7 +199,7 @@ call SaveGroupHandle(hash,Id,2,CreateGroup())
 call TimerStart(t,0.10,true,function HeroW55_Dmg)
 ```
 
-`HeroW55_Dmg`　war3map.j:64552
+`HeroW55_Dmg`　war3map.j:65570
 ```jass
 function HeroW55_Dmg takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -270,7 +270,7 @@ endfunction
 
 實作：
 
-`ProjectileMove`　war3map.j:3003
+`ProjectileMove`　war3map.j:3205
 ```jass
 elseif u2_Id=='o02C' then
 set i=GetUnitAbilityLevel(u,'A0XT')
@@ -280,7 +280,7 @@ endif
 endif
 ```
 
-`ProjectileMove`　war3map.j:3048
+`ProjectileMove`　war3map.j:3250
 ```jass
 elseif u2_Id=='o02C' then
 set i=GetUnitAbilityLevel(u,'A0XT')
@@ -301,14 +301,14 @@ endif
 點燃：50% 機率；50% 傷害
 施放距離：無限制
 
-冷卻：90 秒
+冷卻時間：90 秒
 ```
 
 物件欄位（原型 `ANcl`）：`Ncl1 = [0.20000000298023224, None, 1.0]`, `Ncl2 = [2, None, 1]`, `Ncl3 = [3, None, 1]`, `Ncl4 = [0.20000000298023224, None, 1.0]`, `Ncl5 = [0, None]`, `Ncl6 = ['darkportal', None, 'channel']`, `aare = 450.0`, `acap = `, `acdn = [90.0, None, 17.0]`, `alev = 1`, `amcs = [250, None, 80, 90, 100, 110, 120]`, `aran = [99999.0, None, 700.0]`, `atar = ['air,ground,friend,neutral,self', None]`
 
 實作：
 
-`Trig_HeroSkills55_Actions`　war3map.j:64652
+`Trig_HeroSkills55_Actions`　war3map.j:65670
 ```jass
 elseif Skill=='A0XS' then
 set x2=GetSpellTargetX()
@@ -323,7 +323,7 @@ call TimerStart(t,0.1,true,function HeroR55_Dmg)
 endif
 ```
 
-`HeroR55_Dmg`　war3map.j:64454
+`HeroR55_Dmg`　war3map.j:65472
 ```jass
 function HeroR55_Dmg takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -400,7 +400,7 @@ endfunction
 
 實作：
 
-`Trig_ChangePoints_Actions`　war3map.j:17742
+`Trig_ChangePoints_Actions`　war3map.j:18929
 ```jass
 if GetSpellAbilityId()=='A03V' and GetUnitLevel(GetSpellTargetUnit())>0 then
 set udg_CTPoint[n]=GetSpellTargetUnit()
@@ -427,7 +427,7 @@ endif
 這幾段不是靠技能 ID 分派的，而是直接用單位型號 `Nsjs` 寫在共用函式的條件式裡
 （常見於寫進傷害管線的被動）。照技能抽取抓不到，所以單獨列出來。
 
-`ResHero`　war3map.j:46438
+`ResHero`　war3map.j:47112
 ```jass
 if GetUnitTypeId(u)=='Nsjs' then
 set unit_global=u
@@ -435,7 +435,7 @@ call TriggerExecute(gg_trg_HeroTurretsActivate55)
 endif
 ```
 
-`Trig_DieHero_Actions`　war3map.j:46654
+`Trig_DieHero_Actions`　war3map.j:47329
 ```jass
 if GetUnitTypeId(u)=='Nsjs' then
 call PauseTimer(LoadTimerHandle(hash,GetHandleId(u),'TUR1'))
@@ -450,7 +450,7 @@ endif
 英雄的實作散在同編號的一組函式裡，上面按技能抽取時抓不到的補在這裡
 （常見的是決定門檻、結算加成、清理 buff 的那幾支）。
 
-`Trig_HeroTurretsActivate55_Actions`　war3map.j:64719
+`Trig_HeroTurretsActivate55_Actions`　war3map.j:65737
 ```jass
 function Trig_HeroTurretsActivate55_Actions takes nothing returns nothing
 local unit u=unit_global
@@ -487,14 +487,14 @@ set u=null
 endfunction
 ```
 
-`Trig_HeroKills55_Conditions`　war3map.j:64756
+`Trig_HeroKills55_Conditions`　war3map.j:65774
 ```jass
 function Trig_HeroKills55_Conditions takes nothing returns boolean
 return GetUnitTypeId(GetKillingUnit())=='Nsjs'
 endfunction
 ```
 
-`Trig_HeroKills55_Actions`　war3map.j:64759
+`Trig_HeroKills55_Actions`　war3map.j:65777
 ```jass
 function Trig_HeroKills55_Actions takes nothing returns nothing
 local unit u=GetKillingUnit()
@@ -526,6 +526,6 @@ endfunction
 
 ---
 
-*由 `tools/build_dossier.py` 從 UD_v3.82fix 地圖檔產生。*
+*由 `tools/build_dossier.py` 從 UD test 24.09.27（合併版） 地圖檔產生。*
 *機制通則、配裝規則與輸出格式見 `tools/BUILD_BRIEF.md`；*
 *道具數值見 `data/dossier/_items.md`。*

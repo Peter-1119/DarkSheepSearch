@@ -33,7 +33,7 @@
 
 傷害：50 +（25% 技能強度）點
 
-冷卻：13 秒
+冷卻時間：13 秒
 ```
 
 每級變動：
@@ -43,7 +43,7 @@
 
 實作：
 
-`Trig_HeroSkills48_Actions`　war3map.j:61584
+`Trig_HeroSkills48_Actions`　war3map.j:62580
 ```jass
 if Skill=='A0WR' then
 set x2=GetSpellTargetX()
@@ -75,7 +75,7 @@ exitwhen i==L
 endloop
 ```
 
-`HeroQ48`　war3map.j:61318
+`HeroQ48`　war3map.j:62314
 ```jass
 function HeroQ48 takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -188,9 +188,9 @@ endfunction
 俄文原名：Друид земли
 
 ```
-提升英雄附近建築的護甲。
+提升英雄附近建築的防禦力。
 
-護甲加成：3 點
+防禦力加成：3 點
 光環作用範圍：800
 ```
 
@@ -212,7 +212,7 @@ endfunction
 敵人減速：-30% 移動速度，-15% 攻擊速度
 持續時間：7 秒
 
-冷卻：25 秒
+冷卻時間：25 秒
 ```
 
 每級變動：
@@ -223,7 +223,7 @@ endfunction
 
 實作：
 
-`HeroW48_conditions`　war3map.j:61644
+`HeroW48_conditions`　war3map.j:62640
 ```jass
 function HeroW48_conditions takes nothing returns boolean
 return GetSpellAbilityId()=='A0WP'
@@ -292,7 +292,7 @@ set t=null
 endfunction
 ```
 
-`Trig_HeroW48_Stop_Conditions`　war3map.j:61714
+`Trig_HeroW48_Stop_Conditions`　war3map.j:62710
 ```jass
 function Trig_HeroW48_Stop_Conditions takes nothing returns boolean
 return GetSpellAbilityId()=='A0WP'
@@ -323,7 +323,7 @@ endfunction
 岩漿團的持續傷害：20 + （20% 智力）點/秒。
 點燃效果：20% 機率；持續傷害為所造成傷害的 25%
 
-冷卻：90 秒。
+冷卻時間：90 秒。
 ```
 
 物件欄位（原型 `ANcl`）：`Ncl1 = [1.0, None]`, `Ncl2 = [2, None, 1]`, `Ncl3 = [1, None]`, `Ncl4 = [1.0, None]`, `Ncl5 = [0, None]`, `Ncl6 = ['chemicalrage', None, 'channel']`, `acdn = [90.0, None, 17.0]`, `alev = 1`, `amcs = [250, None, 80, 90, 100, 110, 120]`, `aran = [800.0, None, 700.0]`, `atar = ['air,ground,friend,neutral,self', None]`
@@ -332,7 +332,7 @@ endfunction
 
 實作：
 
-`Trig_HeroSkills48_Actions`　war3map.j:61612
+`Trig_HeroSkills48_Actions`　war3map.j:62608
 ```jass
 elseif Skill=='A0WT' then
 set x2=GetSpellTargetX()
@@ -348,7 +348,7 @@ call SaveReal(hash,Id,3,y)
 call TimerStart(t,0.04,true,function Hero48R)
 ```
 
-`Hero48R_dmg`　war3map.j:61422
+`Hero48R_dmg`　war3map.j:62418
 ```jass
 function Hero48R_dmg takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -473,14 +473,14 @@ endfunction
 屏障強度：100 +（200% 智力）+（50% 技能強度）點
 屏障持續時間：無限制
 
-冷卻：20 秒
+冷卻時間：20 秒
 ```
 
 物件欄位（原型 `ANcl`）：`Ncl1 = 1.0`, `Ncl2 = 1`, `Ncl3 = 1`, `Ncl4 = 1.0`, `Ncl5 = 0`, `Ncl6 = cloudoffog`, `acap = `, `acdn = 20.0`, `aher = 0`, `alev = 1`, `amcs = 50`, `aran = 700.0`, `atar = friend,structure`
 
 實作：
 
-`Trig_ButtonChangePoints_Actions`　war3map.j:17782
+`Trig_ButtonChangePoints_Actions`　war3map.j:18969
 ```jass
 if b==udg_CTButton[9]then
 set n2=0
@@ -516,7 +516,7 @@ return
 endif
 ```
 
-`Trig_HeroTakeDamage_Actions`　war3map.j:19549
+`Trig_HeroTakeDamage_Actions`　war3map.j:20742
 ```jass
 elseif LoadInteger(hash,GetHandleId(d),'A0WS')==1 then
 set r=LoadReal(hash,GetHandleId(d),'A0WS')
@@ -542,7 +542,7 @@ return
 endif
 ```
 
-`Hero48D`　war3map.j:61533
+`Hero48D`　war3map.j:62529
 ```jass
 function Hero48D takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -577,7 +577,7 @@ set text=null
 endfunction
 ```
 
-`Trig_HeroSkills48_Actions`　war3map.j:61624
+`Trig_HeroSkills48_Actions`　war3map.j:62620
 ```jass
 elseif Skill=='A0WS' then
 call DestroyEffect(AddSpecialEffectTarget("Abilities\\Spells\\Items\\TomeOfRetraining\\TomeOfRetrainingCaster.mdl",u2,"origin"))
@@ -603,7 +603,7 @@ endif
 
 實作：
 
-`Trig_ChangePoints_Actions`　war3map.j:17742
+`Trig_ChangePoints_Actions`　war3map.j:18929
 ```jass
 if GetSpellAbilityId()=='A03V' and GetUnitLevel(GetSpellTargetUnit())>0 then
 set udg_CTPoint[n]=GetSpellTargetUnit()
@@ -663,7 +663,7 @@ endif
 英雄的實作散在同編號的一組函式裡，上面按技能抽取時抓不到的補在這裡
 （常見的是決定門檻、結算加成、清理 buff 的那幾支）。
 
-`Hero48R`　war3map.j:61463
+`Hero48R`　war3map.j:62459
 ```jass
 function Hero48R takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -737,7 +737,7 @@ set ug=null
 endfunction
 ```
 
-`HeroW48_Dmg`　war3map.j:61647
+`HeroW48_Dmg`　war3map.j:62643
 ```jass
 function HeroW48_Dmg takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -782,7 +782,7 @@ set ug=null
 endfunction
 ```
 
-`Trig_HeroW48_Actions`　war3map.j:61688
+`Trig_HeroW48_Actions`　war3map.j:62684
 ```jass
 function Trig_HeroW48_Actions takes nothing returns nothing
 local unit u=GetSpellAbilityUnit()
@@ -807,7 +807,7 @@ set t=null
 endfunction
 ```
 
-`Trig_HeroW48_Stop_Actions`　war3map.j:61717
+`Trig_HeroW48_Stop_Actions`　war3map.j:62713
 ```jass
 function Trig_HeroW48_Stop_Actions takes nothing returns nothing
 local unit u=GetSpellAbilityUnit()
@@ -834,6 +834,6 @@ endfunction
 
 ---
 
-*由 `tools/build_dossier.py` 從 UD_v3.82fix 地圖檔產生。*
+*由 `tools/build_dossier.py` 從 UD test 24.09.27（合併版） 地圖檔產生。*
 *機制通則、配裝規則與輸出格式見 `tools/BUILD_BRIEF.md`；*
 *道具數值見 `data/dossier/_items.md`。*

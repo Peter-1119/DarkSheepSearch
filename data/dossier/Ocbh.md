@@ -37,7 +37,7 @@
 火球大小（作用範圍）：150 +（80% 已吸收力量）點
 飛行距離：600 +（175% 已吸收力量）點
 
-冷卻：100 秒
+冷卻時間：100 秒
 ```
 
 物件欄位（原型 `ANcl`）：`Ncl1 = [10.0, None, 1.0]`, `Ncl2 = [2, None, 1]`, `Ncl3 = [1, None]`, `Ncl4 = [1.899999976158142, None, 1.0]`, `Ncl5 = [None, 0]`, `Ncl6 = ['darkportal', None, 'channel']`, `acap = `, `acdn = [100.0, None, 17.0]`, `alev = 1`, `amcs = [225, None, 80, 90, 100, 110, 120]`, `aran = [600.0, None, 700.0]`, `atar = ['air,ground,friend,neutral,self', None]`
@@ -46,14 +46,14 @@
 
 實作：
 
-`Hero52SkillsStart2_conditions`　war3map.j:64088
+`Hero52SkillsStart2_conditions`　war3map.j:65087
 ```jass
 function Hero52SkillsStart2_conditions takes nothing returns boolean
 return GetSpellAbilityId()=='A0MR'
 endfunction
 ```
 
-`Trig_Hero52SkillsStart2_Actions`　war3map.j:64141
+`Trig_Hero52SkillsStart2_Actions`　war3map.j:65140
 ```jass
 function Trig_Hero52SkillsStart2_Actions takes nothing returns nothing
 local unit u=GetSpellAbilityUnit()
@@ -79,14 +79,14 @@ set t=null
 endfunction
 ```
 
-`Hero52SkillsStop2_conditions`　war3map.j:64168
+`Hero52SkillsStop2_conditions`　war3map.j:65167
 ```jass
 function Hero52SkillsStop2_conditions takes nothing returns boolean
 return GetSpellAbilityId()=='A0MR'
 endfunction
 ```
 
-`Trig_Hero52SkillsStop2_Actions`　war3map.j:64231
+`Trig_Hero52SkillsStop2_Actions`　war3map.j:65230
 ```jass
 function Trig_Hero52SkillsStop2_Actions takes nothing returns nothing
 local unit u=GetSpellAbilityUnit()
@@ -141,7 +141,7 @@ set text=null
 endfunction
 ```
 
-`Hero52SkillsStart2_conditions`　war3map.j:64088
+`Hero52SkillsStart2_conditions`　war3map.j:65087
 ```jass
 function Hero52SkillsStart2_conditions takes nothing returns boolean
 return GetSpellAbilityId()=='A0MR'
@@ -220,7 +220,7 @@ set t=null
 endfunction
 ```
 
-`Hero52SkillsStop2_conditions`　war3map.j:64168
+`Hero52SkillsStop2_conditions`　war3map.j:65167
 ```jass
 function Hero52SkillsStop2_conditions takes nothing returns boolean
 return GetSpellAbilityId()=='A0MR'
@@ -352,7 +352,7 @@ endfunction
 減速持續時間（部隊）：6 秒
 減速持續時間（英雄）：3 秒
 
-冷卻：15 秒
+冷卻時間：15 秒
 
 額外加成資訊請見指令「-w」。
 ```
@@ -368,14 +368,14 @@ endfunction
 
 實作：
 
-`Trig_UKills_Actions`　war3map.j:21206
+`Trig_UKills_Actions`　war3map.j:22472
 ```jass
 if GetUnitAbilityLevel(u,'A0K7')>=1 then
 call SetUnitLifePercentBJ(u,UnitLifePercent(u)+1.00)
 endif
 ```
 
-`Trig_HeroSkills52_Actions`　war3map.j:63784
+`Trig_HeroSkills52_Actions`　war3map.j:64783
 ```jass
 elseif Skill=='A0K7' then
 call SaveReal(hash,GetHandleId(u),26,0)
@@ -456,7 +456,7 @@ call SetUnitState(u,UNIT_STATE_LIFE,GetUnitState(u,UNIT_STATE_LIFE)+(GetUnitStat
 endif
 ```
 
-`Hero52W_Buff`　war3map.j:63594
+`Hero52W_Buff`　war3map.j:64593
 ```jass
 function Hero52W_Buff takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -482,18 +482,18 @@ set t=null
 endfunction
 ```
 
-## 灼燒法球 `A06N`
+## 灼燒球體 `A06N`
 
 俄文原名：Выжигающая сфера
 
 ```
-在指定地點創造一顆火焰法球。法球會週期性地對附近隨機一名敵人造成傷害。此外法球還會額外灼燒身邊的敵人，造成 50% 傷害。
+在指定地點創造一顆火焰球體。球體會週期性地對附近隨機一名敵人造成傷害。此外球體還會額外灼燒身邊的敵人，造成 50% 傷害。
 
 傷害：30 +（30% 惡魔之力）點
 傷害觸發間隔：0.4 秒
 持續時間：11 秒
 
-冷卻：30 秒
+冷卻時間：30 秒
 
 額外加成資訊請見指令「-e」。
 ```
@@ -505,7 +505,7 @@ endfunction
 
 實作：
 
-`Trig_HeroSkills52_Actions`　war3map.j:63861
+`Trig_HeroSkills52_Actions`　war3map.j:64860
 ```jass
 elseif Skill=='A06N' then
 set x2=GetSpellTargetX()
@@ -546,7 +546,7 @@ endif
 endif
 ```
 
-`Hero52E_Buff`　war3map.j:63616
+`Hero52E_Buff`　war3map.j:64615
 ```jass
 function Hero52E_Buff takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -572,7 +572,7 @@ endfunction
 目標暈眩（部隊）：4 秒
 目標暈眩（英雄）：2 秒
 
-冷卻：18 秒
+冷卻時間：18 秒
 
 額外加成資訊請見指令「-q」。
 ```
@@ -588,7 +588,7 @@ endfunction
 
 實作：
 
-`Trig_HeroSkills52_Actions`　war3map.j:63689
+`Trig_HeroSkills52_Actions`　war3map.j:64688
 ```jass
 if Skill=='A04L' then
 set x=GetUnitX(u2)
@@ -687,7 +687,7 @@ call TimerStart(t,4,false,function Hero52Q_Dmg)
 endif
 ```
 
-`Hero52Q_Buff`　war3map.j:63584
+`Hero52Q_Buff`　war3map.j:64583
 ```jass
 function Hero52Q_Buff takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -701,7 +701,7 @@ set t=null
 endfunction
 ```
 
-`Hero52Q_Dmg`　war3map.j:63626
+`Hero52Q_Dmg`　war3map.j:64625
 ```jass
 function Hero52Q_Dmg takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -751,14 +751,14 @@ endfunction
 俄文原名：Накопление силы
 
 ```
-莫爾格開始蓄積「惡魔之力」，這股力量會在使用英雄其他技能時消耗。技能持續期間，英雄會回復自身生命值。
+莫爾格開始蓄積「惡魔之力」，這股力量會在使用英雄其他技能時消耗。技能持續期間，英雄會恢復自身生命值。
 
 惡魔之力蓄積速度：3 +（20% 智力）+（30% MP regen）點／秒
 惡魔之力上限：40 +（10*英雄等級）+（10% 技能強度）點
-生命值回復：每秒 1%
+生命值恢復：每秒 1%
 技能最長維持時間：30 秒
 
-冷卻：10 秒
+冷卻時間：10 秒
 
 額外加成資訊請見指令「-d」。
 ```
@@ -767,14 +767,14 @@ endfunction
 
 實作：
 
-`Hero52SkillsStart_conditions`　war3map.j:63910
+`Hero52SkillsStart_conditions`　war3map.j:64909
 ```jass
 function Hero52SkillsStart_conditions takes nothing returns boolean
 return GetSpellAbilityId()=='A01D'
 endfunction
 ```
 
-`Trig_Hero52SkillsStart_Actions`　war3map.j:64011
+`Trig_Hero52SkillsStart_Actions`　war3map.j:65010
 ```jass
 function Trig_Hero52SkillsStart_Actions takes nothing returns nothing
 local unit u=GetSpellAbilityUnit()
@@ -794,7 +794,7 @@ set t=null
 endfunction
 ```
 
-`Hero52SkillsStop_conditions`　war3map.j:64032
+`Hero52SkillsStop_conditions`　war3map.j:65031
 ```jass
 function Hero52SkillsStop_conditions takes nothing returns boolean
 return GetSpellAbilityId()=='A01D'
@@ -849,7 +849,7 @@ set text=null
 endfunction
 ```
 
-`Hero52SkillsStart_conditions`　war3map.j:63910
+`Hero52SkillsStart_conditions`　war3map.j:64909
 ```jass
 function Hero52SkillsStart_conditions takes nothing returns boolean
 return GetSpellAbilityId()=='A01D'
@@ -982,7 +982,7 @@ endfunction
 
 實作：
 
-`Trig_ChangePoints_Actions`　war3map.j:17742
+`Trig_ChangePoints_Actions`　war3map.j:18929
 ```jass
 if GetSpellAbilityId()=='A03V' and GetUnitLevel(GetSpellTargetUnit())>0 then
 set udg_CTPoint[n]=GetSpellTargetUnit()
@@ -1021,7 +1021,7 @@ endif
 英雄的實作散在同編號的一組函式裡，上面按技能抽取時抓不到的補在這裡
 （常見的是決定門檻、結算加成、清理 buff 的那幾支）。
 
-`Hero52W_Buff2`　war3map.j:63605
+`Hero52W_Buff2`　war3map.j:64604
 ```jass
 function Hero52W_Buff2 takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -1036,7 +1036,7 @@ set t=null
 endfunction
 ```
 
-`Hero52D`　war3map.j:63913
+`Hero52D`　war3map.j:64912
 ```jass
 function Hero52D takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -1138,7 +1138,7 @@ set text=null
 endfunction
 ```
 
-`Trig_Hero52SkillsStop_Actions`　war3map.j:64035
+`Trig_Hero52SkillsStop_Actions`　war3map.j:65034
 ```jass
 function Trig_Hero52SkillsStop_Actions takes nothing returns nothing
 local unit u=GetSpellAbilityUnit()
@@ -1190,7 +1190,7 @@ set text=null
 endfunction
 ```
 
-`Hero52R`　war3map.j:64091
+`Hero52R`　war3map.j:65090
 ```jass
 function Hero52R takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -1244,7 +1244,7 @@ set text=null
 endfunction
 ```
 
-`Hero52R_Move`　war3map.j:64171
+`Hero52R_Move`　war3map.j:65170
 ```jass
 function Hero52R_Move takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -1318,6 +1318,6 @@ endfunction
 
 ---
 
-*由 `tools/build_dossier.py` 從 UD_v3.82fix 地圖檔產生。*
+*由 `tools/build_dossier.py` 從 UD test 24.09.27（合併版） 地圖檔產生。*
 *機制通則、配裝規則與輸出格式見 `tools/BUILD_BRIEF.md`；*
 *道具數值見 `data/dossier/_items.md`。*

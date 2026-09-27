@@ -38,14 +38,14 @@
 
 實作：
 
-`Trig_HeroR2_Conditions`　war3map.j:47035
+`Trig_HeroR2_Conditions`　war3map.j:47710
 ```jass
 function Trig_HeroR2_Conditions takes nothing returns boolean
 return GetLearnedSkill()=='A07U'
 endfunction
 ```
 
-`Trig_HeroR2_Actions`　war3map.j:47064
+`Trig_HeroR2_Actions`　war3map.j:47739
 ```jass
 function Trig_HeroR2_Actions takes nothing returns nothing
 local timer t=CreateTimer()
@@ -58,7 +58,7 @@ set u=null
 endfunction
 ```
 
-`Trig_HeroR2_Conditions`　war3map.j:47035
+`Trig_HeroR2_Conditions`　war3map.j:47710
 ```jass
 function Trig_HeroR2_Conditions takes nothing returns boolean
 return GetLearnedSkill()=='A07U'
@@ -105,13 +105,13 @@ endfunction
 俄文原名：Щит веры
 
 ```
-暫時提升 700 點範圍內友軍的護甲，並少量治療部隊。處於「鼓舞」技能效果下的單位可獲得 600% 的治療量。
+暫時提升 700 點範圍內盟友的防禦力，並少量治療部隊。處於「鼓舞」技能效果下的單位可獲得 600% 的治療量。
 
-護甲加成：4 點
+防禦力加成：4 點
 加成持續時間：12 秒。
 治療：20 + （10% 技能強度）點
 
-冷卻：24 秒。
+冷卻時間：24 秒。
 ```
 
 每級變動：
@@ -122,7 +122,7 @@ endfunction
 
 實作：
 
-`Trig_HeroSkills2_Actions`　war3map.j:46997
+`Trig_HeroSkills2_Actions`　war3map.j:47672
 ```jass
 elseif Skill=='A01E' or Skill=='A0RM' then
 set x=GetUnitX(u)
@@ -157,14 +157,14 @@ endif
 俄文原名：Воодушевление
 
 ```
-提升指定目標的攻擊力。若目標為英雄，則額外降低該目標的裝備技能冷卻。一般部隊獲得 150% 的攻擊力加成。
+提升指定目標的攻擊力。若目標為英雄，則額外降低該目標的觸發效果冷卻。一般部隊獲得 150% 的攻擊力加成。
 
 攻擊力加成：15 + （12% 技能強度）點
-裝備技能冷卻（英雄）：-15%
+觸發效果冷卻（英雄）：-15%
 攻擊力加成（部隊）：
 持續時間：15 秒。
 
-冷卻：15 秒。
+冷卻時間：15 秒。
 ```
 
 每級變動：
@@ -175,7 +175,7 @@ endif
 
 實作：
 
-`Hero2Q`　war3map.j:46894
+`Hero2Q`　war3map.j:47569
 ```jass
 if count<=0 or not UnitAlive(u)then
 call SaveInteger(hash,GetHandleId(u),'A01C',LoadInteger(hash,GetHandleId(u),'A01C')-1)
@@ -190,7 +190,7 @@ call DestroyTimer(t)
 endif
 ```
 
-`Trig_HeroSkills2_Actions`　war3map.j:46945
+`Trig_HeroSkills2_Actions`　war3map.j:47620
 ```jass
 if Skill=='A01C' then
 set t=CreateTimer()
@@ -214,13 +214,13 @@ call SaveInteger(hash,Id,2,15)
 call TimerStart(t,1.,true,function Hero2Q)
 ```
 
-`Trig_HeroSkills2_Actions`　war3map.j:47013
+`Trig_HeroSkills2_Actions`　war3map.j:47688
 ```jass
 if LoadInteger(hash,GetHandleId(u2),'A01C')>=1 then
 call SetUnitState(u2,UNIT_STATE_LIFE,r+(dmg*6))
 ```
 
-`SetUnitExtraDamage`　war3map.j:3932
+`SetUnitExtraDamage`　war3map.j:4314
 ```jass
 function SetUnitExtraDamage takes unit u,integer a returns nothing
 local integer Id=GetHandleId(u)
@@ -231,8 +231,8 @@ if a>8191 then
 set a=8191
 endif
 loop
-call UnitRemoveAbility(u,setAttribute___abilityAddDamage[index])
-call UnitRemoveAbility(u,setAttribute___abilityRemoveDamage[index])
+call UnitRemoveAbility(u,setAttribute__abilityAddDamage[index])
+call UnitRemoveAbility(u,setAttribute__abilityRemoveDamage[index])
 exitwhen index==14
 set index=index+1
 endloop
@@ -243,7 +243,7 @@ exitwhen r<=0
 if R2I(Pow(2,p))>r then
 set p=p-1
 elseif R2I(Pow(2,p))<=r then
-call UnitAddAbility(u,setAttribute___abilityAddDamage[p])
+call UnitAddAbility(u,setAttribute__abilityAddDamage[p])
 set r=r-R2I(Pow(2,p))
 set p=p-1
 endif
@@ -255,7 +255,7 @@ exitwhen r<=0
 if R2I(Pow(2,p))>r then
 set p=p-1
 elseif R2I(Pow(2,p))<=r then
-call UnitAddAbility(u,setAttribute___abilityRemoveDamage[p])
+call UnitAddAbility(u,setAttribute__abilityRemoveDamage[p])
 set r=r-R2I(Pow(2,p))
 set p=p-1
 endif
@@ -277,7 +277,7 @@ endfunction
 減速時間（部隊）：5 秒。
 減速時間（英雄）：3 秒。
 
-冷卻：9 秒。
+冷卻時間：9 秒。
 ```
 
 每級變動：
@@ -289,7 +289,7 @@ endfunction
 
 實作：
 
-`Trig_HeroSkills2_Actions`　war3map.j:46965
+`Trig_HeroSkills2_Actions`　war3map.j:47640
 ```jass
 elseif Skill=='A01B' then
 if GetUnitAbilityLevel(u,'A0RI')==1 then
@@ -335,7 +335,7 @@ call SetTextTagFadepoint(text,2.00)
 
 實作：
 
-`PercentStatsRefresh`　war3map.j:21860
+`PercentStatsRefresh`　war3map.j:23117
 ```jass
 if GetUnitAbilityLevel(u,'A0Y5')==1 then
 set i=LoadInteger(hash,I_Id,1)
@@ -361,7 +361,7 @@ endif
 call SaveInteger(hash,I_Id,3,i2)
 ```
 
-`PercentStatsRefresh`　war3map.j:21906
+`PercentStatsRefresh`　war3map.j:23163
 ```jass
 if GetUnitAbilityLevel(u,'A0Y5')==1 then
 set i=LoadInteger(hash,I_Id,1)
@@ -387,7 +387,7 @@ endif
 call SaveInteger(hash,I_Id,3,i2)
 ```
 
-`PercentStatsRefresh`　war3map.j:21952
+`PercentStatsRefresh`　war3map.j:23209
 ```jass
 if GetUnitAbilityLevel(u,'A0Y5')==1 then
 set i=LoadInteger(hash,I_Id,1)
@@ -406,7 +406,7 @@ endif
 call SaveInteger(hash,I_Id,2,i2)
 ```
 
-`PercentStatsRefresh`　war3map.j:21984
+`PercentStatsRefresh`　war3map.j:23241
 ```jass
 if GetUnitAbilityLevel(u,'A0Y5')==1 then
 set i=LoadInteger(hash,I_Id,1)
@@ -418,7 +418,7 @@ endif
 call SaveInteger(hash,I_Id,1,i2)
 ```
 
-`PercentStatsRefresh`　war3map.j:22002
+`PercentStatsRefresh`　war3map.j:23259
 ```jass
 if GetUnitAbilityLevel(u,'A0Y5')==1 then
 set i=LoadInteger(hash,I_Id,1)
@@ -430,7 +430,7 @@ endif
 call SaveInteger(hash,I_Id,1,i2)
 ```
 
-`PercentStatsRefresh`　war3map.j:22020
+`PercentStatsRefresh`　war3map.j:23277
 ```jass
 if GetUnitAbilityLevel(u,'A0Y5')==1 then
 set i=LoadInteger(hash,I_Id,1)
@@ -442,7 +442,7 @@ endif
 call SaveInteger(hash,I_Id,1,i2)
 ```
 
-`PercentStatsRefresh`　war3map.j:22038
+`PercentStatsRefresh`　war3map.j:23295
 ```jass
 if GetUnitAbilityLevel(u,'A0Y5')==1 then
 set i=LoadInteger(hash,I_Id,1)
@@ -454,7 +454,7 @@ endif
 call SaveInteger(hash,I_Id,1,i2)
 ```
 
-`PercentStatsRefresh`　war3map.j:22056
+`PercentStatsRefresh`　war3map.j:23313
 ```jass
 if GetUnitAbilityLevel(u,'A0Y5')==1 then
 set r=LoadReal(hash,I_Id,1)
@@ -465,7 +465,7 @@ endif
 call SaveReal(hash,I_Id,1,r2)
 ```
 
-`PercentStatsRefresh`　war3map.j:22072
+`PercentStatsRefresh`　war3map.j:23329
 ```jass
 if GetUnitAbilityLevel(u,'A0Y5')==1 then
 set r=LoadReal(hash,I_Id,1)
@@ -476,7 +476,7 @@ endif
 call SaveReal(hash,I_Id,1,r2)
 ```
 
-`PercentStatsRefresh`　war3map.j:22088
+`PercentStatsRefresh`　war3map.j:23345
 ```jass
 if GetUnitAbilityLevel(u,'A0Y5')==1 then
 set i=LoadInteger(hash,I_Id,1)
@@ -488,7 +488,7 @@ endif
 call SaveInteger(hash,I_Id,1,i2)
 ```
 
-`SetUnitExtraDamage`　war3map.j:3932
+`SetUnitExtraDamage`　war3map.j:4314
 ```jass
 function SetUnitExtraDamage takes unit u,integer a returns nothing
 local integer Id=GetHandleId(u)
@@ -499,8 +499,8 @@ if a>8191 then
 set a=8191
 endif
 loop
-call UnitRemoveAbility(u,setAttribute___abilityAddDamage[index])
-call UnitRemoveAbility(u,setAttribute___abilityRemoveDamage[index])
+call UnitRemoveAbility(u,setAttribute__abilityAddDamage[index])
+call UnitRemoveAbility(u,setAttribute__abilityRemoveDamage[index])
 exitwhen index==14
 set index=index+1
 endloop
@@ -511,7 +511,7 @@ exitwhen r<=0
 if R2I(Pow(2,p))>r then
 set p=p-1
 elseif R2I(Pow(2,p))<=r then
-call UnitAddAbility(u,setAttribute___abilityAddDamage[p])
+call UnitAddAbility(u,setAttribute__abilityAddDamage[p])
 set r=r-R2I(Pow(2,p))
 set p=p-1
 endif
@@ -523,7 +523,7 @@ exitwhen r<=0
 if R2I(Pow(2,p))>r then
 set p=p-1
 elseif R2I(Pow(2,p))<=r then
-call UnitAddAbility(u,setAttribute___abilityRemoveDamage[p])
+call UnitAddAbility(u,setAttribute__abilityRemoveDamage[p])
 set r=r-R2I(Pow(2,p))
 set p=p-1
 endif
@@ -545,7 +545,7 @@ endfunction
 
 實作：
 
-`Trig_ChangePoints_Actions`　war3map.j:17742
+`Trig_ChangePoints_Actions`　war3map.j:18929
 ```jass
 if GetSpellAbilityId()=='A03V' and GetUnitLevel(GetSpellTargetUnit())>0 then
 set udg_CTPoint[n]=GetSpellTargetUnit()
@@ -575,15 +575,15 @@ endif
 
 **天賦選項**：
   - `A0RH` 挑釁者
-    強度等級：T2 屬性加成／每級屬性成長加成： +2 / +1 +1 / +0 +0 / +0  使用後迫使附近的敵人攻擊英雄。  被動效果： 「雷霆一擊」會移除敵人身上的正面效果，並移除英雄身上的負面效果與狀態。  英雄每次受到傷害時回復 1 點生命值。
+    強度等級：T2 屬性加成／每級屬性成長加成： +2 / +1 +1 / +0 +0 / +0  使用後迫使附近的敵人攻擊英雄。  被動效果： 「雷霆一擊」會移除敵人身上的正面效果，並移除英雄身上的負面效果與狀態。  英雄每次受到傷害時恢復 1 點生命值。
   - `A0Y2` 國王的祝福
-    強度等級：T3 屬性加成／每級屬性成長加成： +3 / +1 +1 / +0 +3 / +1  英雄每次提升等級時，生命值上限提高 100 點、攻擊力提高 10 點，但同時復活時間增加 1 秒。  英雄獲得點燃抗性、流血抗性以及 +20% 反傷加成。
+    強度等級：T3 屬性加成／每級屬性成長加成： +3 / +1 +1 / +0 +3 / +1  英雄每次提升等級時，生命值上限提高 100 點、攻擊力提高 10 點，但同時復活時間增加 1 秒。  英雄獲得點燃抗性、流血抗性以及 +20% 反彈傷害提升。
 
 物件欄位（原型 `Aspb`）：`aite = 0`, `spb1 = A0RH,A0Y2`, `spb2 = 0`, `spb3 = 2`, `spb4 = 2`
 
 實作：
 
-`Trig_HeroSkills2_Actions`　war3map.j:46924
+`Trig_HeroSkills2_Actions`　war3map.j:47599
 ```jass
 if Skill=='A0RH' then
 call SetHeroStr(u,GetHeroStr(u,false)+2,true)
@@ -624,14 +624,14 @@ endif
 被動效果：
 「雷霆一擊」會移除敵人身上的正面效果，並移除英雄身上的負面效果與狀態。
 
-英雄每次受到傷害時回復 1 點生命值。
+英雄每次受到傷害時恢復 1 點生命值。
 ```
 
 物件欄位（原型 `ANcl`）：`Ncl1 = [0.5, 0.8999999761581421]`, `Ncl2 = [None, 1]`, `Ncl3 = 1`, `Ncl4 = [0.5, 0.8999999761581421]`, `Ncl5 = 0`, `Ncl6 = ['acidbomb', 'channel']`, `acap = `, `acdn = [1.0, 16.0]`, `aher = 0`, `alev = 1`, `amcs = [None, 95, 110, 125, 140, 155, 170]`, `aran = 100.0`, `arqa = 15`, `atar = air,ground,debris,enemy,neutral,organic`
 
 實作：
 
-`Trig_HeroSkills2_Actions`　war3map.j:46924
+`Trig_HeroSkills2_Actions`　war3map.j:47599
 ```jass
 if Skill=='A0RH' then
 call SetHeroStr(u,GetHeroStr(u,false)+2,true)
@@ -655,14 +655,14 @@ call SaveInteger(hash,GetHandleId(pl),15,1)
 
 英雄每次提升等級時，生命值上限提高 100 點、攻擊力提高 10 點，但同時復活時間增加 1 秒。
 
-英雄獲得點燃抗性、流血抗性以及 +20% 反傷加成。
+英雄獲得點燃抗性、流血抗性以及 +20% 反彈傷害提升。
 ```
 
 物件欄位（原型 `ANcl`）：`Ncl1 = [0.5, 0.8999999761581421]`, `Ncl2 = [None, 1]`, `Ncl3 = 1`, `Ncl4 = [0.5, 0.8999999761581421]`, `Ncl5 = 0`, `Ncl6 = ['acolyteharvest', 'channel']`, `acap = `, `acdn = [1.0, 16.0]`, `aher = 0`, `alev = 1`, `amcs = [None, 95, 110, 125, 140, 155, 170]`, `aran = 100.0`, `arqa = 24`, `atar = air,ground,debris,enemy,neutral,organic`
 
 實作：
 
-`Trig_HeroSkills2_Actions`　war3map.j:46931
+`Trig_HeroSkills2_Actions`　war3map.j:47606
 ```jass
 elseif Skill=='A0Y2' then
 call SetHeroStr(u,GetHeroStr(u,false)+3,true)
@@ -687,7 +687,7 @@ endif
 這幾段不是靠技能 ID 分派的，而是直接用單位型號 `Hapm` 寫在共用函式的條件式裡
 （常見於寫進傷害管線的被動）。照技能抽取抓不到，所以單獨列出來。
 
-`Trig_HeroLvlUp_Actions`　war3map.j:45591
+`Trig_HeroLvlUp_Actions`　war3map.j:46264
 ```jass
 elseif GetUnitTypeId(u)=='Hapm' then
 if GetUnitAbilityLevel(u,'A0Y3')==1 then
@@ -697,7 +697,7 @@ call SaveReal(hash,u_Id,2,LoadReal(hash,u_Id,2)+1.)
 endif
 ```
 
-`Trig_DieHero_Actions`　war3map.j:46587
+`Trig_DieHero_Actions`　war3map.j:47262
 ```jass
 if GetUnitTypeId(u)=='Hapm' and GetUnitAbilityLevel(u,'A01H')==1 then
 set ug=CreateGroup()
@@ -724,7 +724,7 @@ endif
 英雄的實作散在同編號的一組函式裡，上面按技能抽取時抓不到的補在這裡
 （常見的是決定門檻、結算加成、清理 buff 的那幾支）。
 
-`Trig_EnemyHeroesSkill2_Actions`　war3map.j:32408
+`Trig_EnemyHeroesSkill2_Actions`　war3map.j:33070
 ```jass
 function Trig_EnemyHeroesSkill2_Actions takes nothing returns nothing
 local unit u=GetSpellAbilityUnit()
@@ -928,7 +928,7 @@ set u4=CreateUnit(pl,'o010',x,y,0.00)
 call UnitAddAbility(u4,'A05C')
 ```
 
-`Trig_CreateHero2_Actions`　war3map.j:35212
+`Trig_CreateHero2_Actions`　war3map.j:35874
 ```jass
 function Trig_CreateHero2_Actions takes nothing returns nothing
 local location p
@@ -1040,7 +1040,7 @@ set ug=null
 endfunction
 ```
 
-`Trig_CreateHero2_Hard_Actions`　war3map.j:35638
+`Trig_CreateHero2_Hard_Actions`　war3map.j:36300
 ```jass
 function Trig_CreateHero2_Hard_Actions takes nothing returns nothing
 local location p
@@ -1149,7 +1149,7 @@ set ug=null
 endfunction
 ```
 
-`HeroR2_check`　war3map.j:47038
+`HeroR2_check`　war3map.j:47713
 ```jass
 function HeroR2_check takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -1192,6 +1192,6 @@ endfunction
 
 ---
 
-*由 `tools/build_dossier.py` 從 UD_v3.82fix 地圖檔產生。*
+*由 `tools/build_dossier.py` 從 UD test 24.09.27（合併版） 地圖檔產生。*
 *機制通則、配裝規則與輸出格式見 `tools/BUILD_BRIEF.md`；*
 *道具數值見 `data/dossier/_items.md`。*

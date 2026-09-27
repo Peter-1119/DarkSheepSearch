@@ -10,6 +10,11 @@ w3a/w3q/w3d 的每筆改動多了「等級 + 欄位指標」兩個欄位，w3u/w
 """
 import struct, io
 
+# 技能等級的合理上限。只用來判斷「是不是解錯了」，不是格式限制。
+MAX_LEVEL = 100
+# 檔尾的結束標記位元組數（不屬於任何物件），自動判斷時允許剩這麼多沒讀。
+TAIL = 4
+
 
 def _cstr(b, p):
     e = b.index(b'\x00', p)
@@ -35,13 +40,27 @@ def parse(data, has_level=None):
     取能完整讀完緩衝區的那一種。
     """
     if has_level is None:
-        last = None
+        # 「沒丟例外」不等於「解對了」—— 用錯的格式讀 w3a，自訂物件那張表會被
+        # 當成垃圾跳過，安靜地回傳 2 個物件（正確是 288）。所以條件是
+        # **要把整個緩衝區讀完**，兩種都讀完才比物件數。
+        # 檔尾固定還有 4 個位元組的結束標記不屬於任何物件，所以允許差 4。
+        ok, last = [], None
         for guess in (False, True):
             try:
-                return parse(data, guess)
+                rec, end = _parse(data, guess)
             except Exception as e:
                 last = e
-        raise ValueError('w3obj: 兩種格式都解不開（%s）' % last)
+                continue
+            if 0 <= len(data) - end <= TAIL:
+                ok.append((len(rec), guess, rec))
+        if not ok:
+            raise ValueError('w3obj: 兩種格式都解不開（%s）' % last)
+        return max(ok)[2]
+    return _parse(data, has_level)[0]
+
+
+def _parse(data, has_level):
+    """實際解析；回傳 (結果, 讀到的位移)。位移用來確認有沒有剛好讀完。"""
     out = {}
     p = 0
     ver = struct.unpack_from('<i', data, p)[0]
@@ -76,6 +95,11 @@ def parse(data, has_level=None):
                     # 讀的人會以為是數值倒退的地圖 bug。
                     lvl = struct.unpack_from('<i', data, p)[0]
                     p += 8
+                    # has_level 傳錯時（例如拿 w3h 當 w3a 讀）這裡會讀到資料中段，
+                    # lvl 變成幾億。下面 while 補 None 是無界的，會直接吃光記憶體卡死。
+                    # 技能最多十幾級，超出就是解錯了 —— 丟例外讓自動判斷換另一種格式。
+                    if not 0 <= lvl <= MAX_LEVEL:
+                        raise ValueError('w3obj: 等級 %d 不合理，has_level 可能傳錯' % lvl)
                 if vt == 0:
                     v = struct.unpack_from('<i', data, p)[0]; p += 4
                 elif vt in (1, 2):
@@ -101,7 +125,7 @@ def parse(data, has_level=None):
                         rec[mid] = [rec[mid], v]
                 else:
                     rec[mid] = v
-    return out
+    return out, p
 
 
 if __name__ == '__main__':

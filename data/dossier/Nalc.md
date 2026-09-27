@@ -30,13 +30,13 @@
 ```
 英雄開始朝指定方向噴射火焰，對被波及的敵人造成傷害。
 
-傷害：火焰內每顆彈體 8 + （4% 星辰物質）點
-維持的法力消耗：14 點/秒，維持 8 秒後消耗每秒增加 20%
+傷害：火焰內每顆彈體 8 + （4% 星塵）點
+維持的魔力消耗：14 點/秒，維持 8 秒後消耗每秒增加 20%
 最大持續時間：無限制
 
-冷卻：20 秒
+冷卻時間：20 秒
 
-星辰物質可提升火焰的飛行距離。
+星塵可提升火焰的飛行距離。
 ```
 
 每級變動：
@@ -47,7 +47,7 @@
 
 實作：
 
-`HeroW50_Create`　war3map.j:62204
+`HeroW50_Create`　war3map.j:63200
 ```jass
 function HeroW50_Create takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -97,14 +97,14 @@ set pl=null
 endfunction
 ```
 
-`HeroQ50_conditions`　war3map.j:62495
+`HeroQ50_conditions`　war3map.j:63494
 ```jass
 function HeroQ50_conditions takes nothing returns boolean
 return GetSpellAbilityId()=='A0VS' or GetSpellAbilityId()=='A0VT'
 endfunction
 ```
 
-`HeroQ50_Create`　war3map.j:62584
+`HeroQ50_Create`　war3map.j:63583
 ```jass
 function HeroQ50_Create takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -141,8 +141,8 @@ call SaveReal(hash,GetHandleId(t2),4,degrees)
 call TimerStart(t2,0.03,true,function HeroQ50_Dmg)
 call SaveReal(hash,Id,4,count+0.01)
 set dmg=(10+4*I2R(GetUnitAbilityLevel(u,'A0VS')))*0.05
-if count>1.60 then
-set dmg=dmg*(count-0.60)
+if count>0.80 then
+set dmg=dmg*(count+0.20)
 endif
 if GetUnitState(u,UNIT_STATE_MANA)<dmg then
 call PauseTimer(t)
@@ -161,7 +161,7 @@ set pl=null
 endfunction
 ```
 
-`Trig_HeroQ50_Actions`　war3map.j:62647
+`Trig_HeroQ50_Actions`　war3map.j:63646
 ```jass
 if GetSpellAbilityId()=='A0VS' then
 set x2=GetSpellTargetX()
@@ -179,7 +179,7 @@ call SaveReal(hash,Id_t,4,0.)
 call TimerStart(t,0.05,true,function HeroQ50_Create)
 ```
 
-`Trig_HeroQ50_Stop_Conditions`　war3map.j:62678
+`Trig_HeroQ50_Stop_Conditions`　war3map.j:63677
 ```jass
 function Trig_HeroQ50_Stop_Conditions takes nothing returns boolean
 return GetSpellAbilityId()=='A0VS'
@@ -198,7 +198,7 @@ set t=null
 endfunction
 ```
 
-`HeroW50_Dmg`　war3map.j:62115
+`HeroW50_Dmg`　war3map.j:63111
 ```jass
 function HeroW50_Dmg takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -337,7 +337,7 @@ set pl=null
 endfunction
 ```
 
-`HeroQ50_conditions`　war3map.j:62495
+`HeroQ50_conditions`　war3map.j:63494
 ```jass
 function HeroQ50_conditions takes nothing returns boolean
 return GetSpellAbilityId()=='A0VS' or GetSpellAbilityId()=='A0VT'
@@ -463,8 +463,8 @@ call SaveReal(hash,GetHandleId(t2),4,degrees)
 call TimerStart(t2,0.03,true,function HeroQ50_Dmg)
 call SaveReal(hash,Id,4,count+0.01)
 set dmg=(10+4*I2R(GetUnitAbilityLevel(u,'A0VS')))*0.05
-if count>1.60 then
-set dmg=dmg*(count-0.60)
+if count>0.80 then
+set dmg=dmg*(count+0.20)
 endif
 if GetUnitState(u,UNIT_STATE_MANA)<dmg then
 call PauseTimer(t)
@@ -488,14 +488,14 @@ endfunction
 俄文原名：Космический полёт
 
 ```
-英雄向指定地點衝刺，飛行過程中回復生命值並散布魔法火焰，依「烈日吐息」技能的公式造成 X6 傷害。
+英雄向指定地點衝刺，飛行過程中恢復生命值並散布魔法火焰，依「烈日吐息」技能的公式造成 X6 傷害。
 
-治療：每 100 點距離 10 + （5% 星辰物質）點
+治療：每 100 點距離 10 + （5% 星塵）點
 施放距離：1000 點
 
-冷卻：15 秒
+冷卻時間：15 秒
 
-星辰物質可提升飛行過程中散發的火焰數量。
+星塵可提升飛行過程中散發的火焰數量。
 ```
 
 每級變動：
@@ -506,7 +506,7 @@ endfunction
 
 實作：
 
-`Trig_HeroSkillCheck_Actions`　war3map.j:45650
+`Trig_HeroSkillCheck_Actions`　war3map.j:46323
 ```jass
 if Skill=='A0VT' then
 set x=GetSpellTargetX()
@@ -518,7 +518,7 @@ endif
 endif
 ```
 
-`Skill50W`　war3map.j:62250
+`Skill50W`　war3map.j:63246
 ```jass
 function Skill50W takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -529,12 +529,13 @@ local real x=GetUnitX(u)
 local real y=GetUnitY(u)
 local real x2=LoadReal(hash,Id,2)
 local real y2=LoadReal(hash,Id,3)
+local integer count=LoadInteger(hash,Id,4)-1
 local real degrees=LoadReal(hash,Id,1)
 local real heal=(5.+5.*I2R(GetUnitAbilityLevel(u,'A0VT'))+LoadReal(hash,GetHandleId(u),'Nalc')*0.05)*0.35
 set x=x+35.*Cos(degrees*bj_DEGTORAD)
 set y=y+35.*Sin(degrees*bj_DEGTORAD)
 call SetUnitState(u,UNIT_STATE_LIFE,GetUnitState(u,UNIT_STATE_LIFE)+heal)
-if DistanceNative(x,y,x2,y2)<=40. then
+if DistanceNative(x,y,x2,y2)<=40. or count<=0 then
 call SetUnitX(u,x2)
 call SetUnitY(u,y2)
 set t2=LoadTimerHandle(hash,GetHandleId(u),'A0VT')
@@ -549,6 +550,7 @@ call PauseUnit(u,false)
 call SetUnitAnimation(u,"stand")
 call IssueImmediateOrderById(u,Order_stop)
 else
+call SaveInteger(hash,Id,4,count)
 call SetUnitX(u,x)
 call SetUnitY(u,y)
 endif
@@ -558,7 +560,7 @@ set u=null
 endfunction
 ```
 
-`Trig_HeroSkills50_Actions`　war3map.j:62442
+`Trig_HeroSkills50_Actions`　war3map.j:63440
 ```jass
 elseif Skill=='A0VT' then
 set x=GetUnitX(u)
@@ -573,6 +575,7 @@ call SaveUnitHandle(hash,Id,1,u)
 call SaveReal(hash,Id,1,x)
 call SaveReal(hash,Id,2,x2)
 call SaveReal(hash,Id,3,y2)
+call SaveInteger(hash,Id,4,55)
 call PauseUnit(u,true)
 call SetUnitFacing(u,x)
 call SetUnitAnimationByIndex(u,3)
@@ -584,14 +587,14 @@ set dmg=0.03*(1.+1./(LoadReal(hash,GetHandleId(u),'Nalc')*0.001+0.5))
 call TimerStart(t,dmg,true,function HeroW50_Create)
 ```
 
-`HeroQ50_conditions`　war3map.j:62495
+`HeroQ50_conditions`　war3map.j:63494
 ```jass
 function HeroQ50_conditions takes nothing returns boolean
 return GetSpellAbilityId()=='A0VS' or GetSpellAbilityId()=='A0VT'
 endfunction
 ```
 
-`Trig_HeroQ50_Actions`　war3map.j:62661
+`Trig_HeroQ50_Actions`　war3map.j:63660
 ```jass
 elseif GetSpellAbilityId()=='A0VT' then
 set x2=GetSpellTargetX()
@@ -603,7 +606,7 @@ endif
 endif
 ```
 
-`HeroW50_Dmg`　war3map.j:62115
+`HeroW50_Dmg`　war3map.j:63111
 ```jass
 function HeroW50_Dmg takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -749,12 +752,13 @@ local real x=GetUnitX(u)
 local real y=GetUnitY(u)
 local real x2=LoadReal(hash,Id,2)
 local real y2=LoadReal(hash,Id,3)
+local integer count=LoadInteger(hash,Id,4)-1
 local real degrees=LoadReal(hash,Id,1)
 local real heal=(5.+5.*I2R(GetUnitAbilityLevel(u,'A0VT'))+LoadReal(hash,GetHandleId(u),'Nalc')*0.05)*0.35
 set x=x+35.*Cos(degrees*bj_DEGTORAD)
 set y=y+35.*Sin(degrees*bj_DEGTORAD)
 call SetUnitState(u,UNIT_STATE_LIFE,GetUnitState(u,UNIT_STATE_LIFE)+heal)
-if DistanceNative(x,y,x2,y2)<=40. then
+if DistanceNative(x,y,x2,y2)<=40. or count<=0 then
 call SetUnitX(u,x2)
 call SetUnitY(u,y2)
 set t2=LoadTimerHandle(hash,GetHandleId(u),'A0VT')
@@ -769,6 +773,7 @@ call PauseUnit(u,false)
 call SetUnitAnimation(u,"stand")
 call IssueImmediateOrderById(u,Order_stop)
 else
+call SaveInteger(hash,Id,4,count)
 call SetUnitX(u,x)
 call SetUnitY(u,y)
 endif
@@ -785,12 +790,12 @@ endfunction
 ```
 奧瑞利安·索爾製造一個黑洞，緩慢將敵人拉向其中心，並在作用範圍內造成傷害。生命值在 10% 及以下的敵人受到黑洞 300% 的傷害。
 
-傷害：30 + （15% 星辰物質）點/秒
+傷害：30 + （15% 星塵）點/秒
 持續時間：12 秒
 
-冷卻：25 秒
+冷卻時間：25 秒
 
-星辰物質可提升作用範圍與吸引力度。
+星塵可提升作用範圍與牽引強度。
 ```
 
 每級變動：
@@ -800,7 +805,7 @@ endfunction
 
 實作：
 
-`Hero50E`　war3map.j:62041
+`Hero50E`　war3map.j:63037
 ```jass
 function Hero50E takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -878,7 +883,7 @@ set ug=null
 endfunction
 ```
 
-`Trig_HeroSkills50_Actions`　war3map.j:62464
+`Trig_HeroSkills50_Actions`　war3map.j:63463
 ```jass
 elseif Skill=='A0VP' then
 set x=GetSpellTargetX()
@@ -900,20 +905,20 @@ call TimerStart(t,0.5,true,function Hero50E)
 ```
 奧瑞利安．索爾朝指定區域降下一顆星辰，對敵人造成極大傷害並短暫暈眩敵人。
 
-傷害：300 + （100% 星辰物質）點
+傷害：300 + （100% 星塵）點
 暈眩（英雄）：4 秒
 暈眩（單位）：6 秒
 
-冷卻：120 秒
+冷卻時間：120 秒
 
-星辰物質會產生衝擊波，對被波及的敵人造成此技能傷害的 10%。衝擊波概略分為「波次」，每產生一個波次需要 125 點星辰物質。
+星塵會產生衝擊波，對被波及的敵人造成此技能傷害的 10%。衝擊波概略分為「波次」，每產生一個波次需要 125 點星塵。
 ```
 
 物件欄位（原型 `ANcl`）：`Ncl1 = [2.799999952316284, None, 1.0]`, `Ncl2 = [2, None, 1]`, `Ncl3 = [3, None, 1]`, `Ncl4 = [2.799999952316284, None, 1.0]`, `Ncl5 = [0, None]`, `Ncl6 = ['dismount', None, 'channel']`, `aare = 300.0`, `acap = `, `acdn = [120.0, None, 17.0]`, `alev = 1`, `amcs = [300, None, 80, 90, 100, 110, 120]`, `aran = [1200.0, None, 700.0]`, `atar = ['air,ground,friend,neutral,self', None]`
 
 實作：
 
-`Trig_HeroSkills50_Actions`　war3map.j:62475
+`Trig_HeroSkills50_Actions`　war3map.j:63474
 ```jass
 elseif Skill=='A0VU' then
 set x=GetSpellTargetX()
@@ -927,7 +932,7 @@ call SaveUnitHandle(hash,Id,2,u)
 endif
 ```
 
-`Hero50R_Wave`　war3map.j:62286
+`Hero50R_Wave`　war3map.j:63284
 ```jass
 function Hero50R_Wave takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -1075,7 +1080,7 @@ endfunction
 
 實作：
 
-`Trig_ChangePoints_Actions`　war3map.j:17742
+`Trig_ChangePoints_Actions`　war3map.j:18929
 ```jass
 if GetSpellAbilityId()=='A03V' and GetUnitLevel(GetSpellTargetUnit())>0 then
 set udg_CTPoint[n]=GetSpellTargetUnit()
@@ -1102,25 +1107,25 @@ endif
 ```
 被動效果：
 
-英雄的技能會因擁有「星辰物質」而變強。目前的星辰物質數量可透過指令「-i」查詢。
+英雄的技能會因擁有「星塵」而變強。目前的星塵數量可透過指令「-i」查詢。
 
-星辰物質累積：以英雄技能擊殺敵人可增加（敵人等級 * 0.20）點星辰物質。擊殺敵方英雄可獲得 8 點星辰物質
+星塵累積：以英雄技能擊殺敵人可增加（敵人等級 * 0.20）點星塵。擊殺敵方英雄可獲得 8 點星塵
 
 啟動時：
 
-英雄暫時獲得「星辰物質」。
+英雄暫時獲得「星塵」。
 
-星辰物質：100 + （X8 英雄等級） + （140% 技能強度）
-持續時間：4 秒後英雄會逐漸失去額外的星辰物質
+星塵：100 + （X8 英雄等級） + （140% 技能強度）
+持續時間：4 秒後英雄會逐漸失去額外的星塵
 
-冷卻：20 秒
+冷卻時間：20 秒
 ```
 
 物件欄位（原型 `ANcl`）：`Ncl1 = 0.8999999761581421`, `Ncl2 = [None, 1]`, `Ncl3 = 1`, `Ncl4 = 0.8999999761581421`, `Ncl5 = 0`, `Ncl6 = ['charm', 'channel']`, `acap = `, `acdn = [20.0, 16.0]`, `aher = 0`, `alev = 1`, `amcs = [75, 95, 110, 125, 140, 155, 170]`, `aran = [None, 100.0]`, `atar = air,ground,debris,enemy,neutral,organic`
 
 實作：
 
-`Trig_HeroSkills50_Actions`　war3map.j:62433
+`Trig_HeroSkills50_Actions`　war3map.j:63431
 ```jass
 if Skill=='A0VQ' then
 set dmg=100.+I2R(GetHeroLevel(u))*8.+udg_ItemBonusDMG[n]*1.40
@@ -1133,7 +1138,7 @@ call SaveEffectHandle(hash,GetHandleId(t),2,AddSpecialEffectTarget("war3mapImpor
 call TimerStart(t,0.04,true,function Hero50D)
 ```
 
-`Hero50D`　war3map.j:62002
+`Hero50D`　war3map.j:62998
 ```jass
 function Hero50D takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -1193,7 +1198,7 @@ endfunction
 英雄的實作散在同編號的一組函式裡，上面按技能抽取時抓不到的補在這裡
 （常見的是決定門檻、結算加成、清理 buff 的那幾支）。
 
-`Hero50R`　war3map.j:62350
+`Hero50R`　war3map.j:63348
 ```jass
 function Hero50R takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -1265,7 +1270,7 @@ set pl=null
 endfunction
 ```
 
-`HeroQ50_Dmg`　war3map.j:62498
+`HeroQ50_Dmg`　war3map.j:63497
 ```jass
 function HeroQ50_Dmg takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -1355,7 +1360,7 @@ set ug=null
 endfunction
 ```
 
-`Trig_HeroQ50_Stop_Actions`　war3map.j:62681
+`Trig_HeroQ50_Stop_Actions`　war3map.j:63680
 ```jass
 function Trig_HeroQ50_Stop_Actions takes nothing returns nothing
 local unit u=GetSpellAbilityUnit()
@@ -1382,6 +1387,6 @@ endfunction
 
 ---
 
-*由 `tools/build_dossier.py` 從 UD_v3.82fix 地圖檔產生。*
+*由 `tools/build_dossier.py` 從 UD test 24.09.27（合併版） 地圖檔產生。*
 *機制通則、配裝規則與輸出格式見 `tools/BUILD_BRIEF.md`；*
 *道具數值見 `data/dossier/_items.md`。*

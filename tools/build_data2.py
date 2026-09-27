@@ -136,6 +136,28 @@ def set_keys(r):
 # 那是「英雄施放技能時」觸發的被動，不是主動道具（女巫帽、法力催化劑那類）。
 ACT_TXT = re.compile(r'при использовании(?!\s+(?:умени|способност))', re.I)
 
+# 說明寫的數值與實際給的（InitItemDB 的 DB_Apply）不一致，改成實際值（與地圖 ud_itemfix 一致）
+STAT_FIX = {
+    'I007': [('+1 MP regen', '+1.25 MP regen')],
+    'I068': [('+5 all stats', '+3 all stats')],
+    'I0A5': [('+500 MP, +250 HP', '+250 MP, +500 HP')],
+    'fgun': [('+3 разума', '+1 разума')],
+    'nflg': [('+50 ответный', '+60 ответный')],
+    'rat3': [('+10 HP regen, +7.5 MP regen', '+7.5 HP regen, +10 MP regen')],
+    'silk': [('+3.5 MP regen', '+3 MP regen')],
+    'sman': [('+12 int', '+13 int')],
+    'asbl': [('+1.5 MP regen', '+3.25 MP regen')],
+}
+
+
+def bonus_of(i, r):
+    s = r['fields'].get('Бонусы', '')
+    for a, b in STAT_FIX.get(i, []):
+        assert a in s, ('STAT_FIX 對不到', i, a)
+        s = s.replace(a, b)
+    return s
+
+
 def is_active(i, r):
     if (_RAWDB.get(i, {}).get('cooldown_group') or '').strip():
         return True
@@ -208,8 +230,8 @@ for r in DB:
         'cls': cls, 'cls_ru': cls_ru or None, 'group': cls.split('＋')[0],
         'set': set_keys(r),
         'active': is_active(i, r),
-        'stats': tr_bonus(r['fields'].get('Бонусы', ''))[0],
-        'stats_ru': r['fields'].get('Бонусы', ''),
+        'stats': tr_bonus(bonus_of(i, r))[0],
+        'stats_ru': bonus_of(i, r),
         'effects': eff,
         'image': img,
         'icon_src': 'map' if src else ('temp' if i in lack
@@ -239,6 +261,12 @@ RECIPE_FIX = {
     'I00Q': ['I00D', 'sor3', 'sor3'],
     'I00O': ['I00D', 'sor4', 'sor4'],
     'I00E': ['I00D', 'sor5', 'sor5'],
+    # 淬火：原裝備 + 淬火卷軸（Trig_Mod_Actions）
+    'arsh': ['amrc', 'ofir'], 'envl': ['brag', 'ofir'], 'kgal': ['stwa', 'ofir'],
+    'thdm': ['gobm', 'ofir'], 'anfg': ['srtl', 'ofir'], 'schl': ['soul', 'ofir'],
+    'shen': ['rots', 'ofir'], 'oflg': ['uflg', 'ofir'], 'tlum': ['btst', 'ofir'],
+    'ocor': ['olig', 'ofir'], 'I01J': ['I019', 'ofir'],
+    'I01R': ['I01J', 'jdrn', 'stre'],   # 不祥之杖（新增）
 }
 for k, v in RECIPE_FIX.items():
     items[k]['recipe'] = v

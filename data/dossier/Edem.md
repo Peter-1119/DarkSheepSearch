@@ -1,4 +1,4 @@
-# 惡魔獵手 `Edem`（Охотник на демонов）
+# 惡魔獵人 `Edem`（Охотник на демонов）
 
 主屬性 **敏捷** · 背包 **6 格** · 解鎖 0 · 定位 刺客
 
@@ -34,7 +34,7 @@
 點燃效果：20% 機率，60% 傷害
 持續時間：12 秒
 
-冷卻：20 秒
+冷卻時間：20 秒
 ```
 
 每級變動：
@@ -47,7 +47,7 @@
 
 實作：
 
-`Trig_HeroQ1_Actions`　war3map.j:46764
+`Trig_HeroQ1_Actions`　war3map.j:47439
 ```jass
 function Trig_HeroQ1_Actions takes nothing returns nothing
 local unit u=GetAttacker()
@@ -154,14 +154,14 @@ endfunction
 魔法抗性：70%
 持續時間：20 秒
 
-冷卻：80 秒
+冷卻時間：80 秒
 ```
 
 物件欄位（原型 `ANcl`）：`Ncl1 = [0.5, None, 1.0]`, `Ncl3 = [1, None]`, `Ncl4 = [0.5, None, 1.0]`, `Ncl5 = [0, None]`, `Ncl6 = [None, 'channel']`, `acdn = [80.0, None, 30.0]`, `alev = 1`, `amcs = [115, None, 70, 80, 90, 100, 110]`, `aran = [800.0, None]`, `atar = ['air,ground,debris,enemy,neutral,organic', None]`
 
 實作：
 
-`Trig_HeroSkills1_Actions`　war3map.j:46738
+`Trig_HeroSkills1_Actions`　war3map.j:47413
 ```jass
 if Skill=='A04T' then
 set i=GetHeroAgi(u,false)
@@ -180,7 +180,7 @@ call SaveUnitHandle(hash,Id,1,u)
 endif
 ```
 
-`HeroR1_EndBuff`　war3map.j:46690
+`HeroR1_EndBuff`　war3map.j:47365
 ```jass
 function HeroR1_EndBuff takes nothing returns nothing
 local timer t=GetExpiredTimer()
@@ -215,7 +215,7 @@ endfunction
 分身受到傷害：180%
 持續時間：30 秒
 
-冷卻：30 秒
+冷卻時間：30 秒
 ```
 
 每級變動：
@@ -231,7 +231,7 @@ endfunction
 俄文原名：Ненасытность
 
 ```
-每次擊殺會為英雄回復 1% 的已失去生命值。
+每次擊殺會為英雄恢復 1% 的已失去生命值。
 ```
 
 *（JASS 裡沒有對應實作 —— 這是原生技能，效果看上面的物件欄位）*
@@ -248,13 +248,13 @@ endfunction
   - `A0RX` 虛空之刃
     強度等級：T2 屬性加成／每級屬性成長加成： +1 / +0 +1 / +1 +1 / +0  技能「燃燒之刃」失去點燃效果。擊殺敵人可使技能「燃燒之刃」的作用範圍提升 1 點。累積 200 次擊殺後，累積效果減弱為 0.5 點。
   - `A0YG` 精湛劍術
-    強度等級：T3 屬性加成／每級屬性成長加成： +2 / +1 +3 / +1 +1 / +0  英雄獲得 15% 攻擊閃避與 -20% 裝備技能冷卻。  技能「燃燒之刃」現在會額外以 30% 機率對敵人施加易傷。  技能「著魔」在持續期間會將閃避提升至 30%，額外降低 20% 裝備技能冷卻，並增加 +40% 裝備技能威力。
+    強度等級：T3 屬性加成／每級屬性成長加成： +2 / +1 +3 / +1 +1 / +0  英雄獲得 15% 攻擊閃避與 -20% 觸發效果冷卻。  技能「燃燒之刃」現在會額外以 30% 機率對敵人施加易傷。  技能「著魔」在持續期間會將閃避提升至 30%，額外降低 20% 觸發效果冷卻，並增加 +40% 觸發效果強度。
 
 物件欄位（原型 `Aspb`）：`aite = 0`, `spb1 = A0RX,A0YG`, `spb2 = 0`, `spb3 = 2`, `spb4 = 2`
 
 實作：
 
-`Trig_HeroSkills1_Actions`　war3map.j:46718
+`Trig_HeroSkills1_Actions`　war3map.j:47393
 ```jass
 if Skill=='A0RX' then
 call SetHeroStr(u,GetHeroStr(u,false)+1,true)
@@ -290,7 +290,7 @@ endif
 
 實作：
 
-`Trig_ChangePoints_Actions`　war3map.j:17742
+`Trig_ChangePoints_Actions`　war3map.j:18929
 ```jass
 if GetSpellAbilityId()=='A03V' and GetUnitLevel(GetSpellTargetUnit())>0 then
 set udg_CTPoint[n]=GetSpellTargetUnit()
@@ -328,7 +328,7 @@ endif
 
 實作：
 
-`Trig_HeroSkills1_Actions`　war3map.j:46718
+`Trig_HeroSkills1_Actions`　war3map.j:47393
 ```jass
 if Skill=='A0RX' then
 call SetHeroStr(u,GetHeroStr(u,false)+1,true)
@@ -351,18 +351,18 @@ call SaveInteger(hash,GetHandleId(pl),15,1)
 +3 / +1
 +1 / +0
 
-英雄獲得 15% 攻擊閃避與 -20% 裝備技能冷卻。
+英雄獲得 15% 攻擊閃避與 -20% 觸發效果冷卻。
 
 技能「燃燒之刃」現在會額外以 30% 機率對敵人施加易傷。
 
-技能「著魔」在持續期間會將閃避提升至 30%，額外降低 20% 裝備技能冷卻，並增加 +40% 裝備技能威力。
+技能「著魔」在持續期間會將閃避提升至 30%，額外降低 20% 觸發效果冷卻，並增加 +40% 觸發效果強度。
 ```
 
 物件欄位（原型 `ANcl`）：`Ncl1 = [0.5, 0.8999999761581421]`, `Ncl2 = [None, 1]`, `Ncl3 = 1`, `Ncl4 = [0.5, 0.8999999761581421]`, `Ncl5 = 0`, `Ncl6 = ['faeriefireon', 'channel']`, `acap = `, `acdn = [1.0, 16.0]`, `aher = 0`, `alev = 1`, `amcs = [None, 95, 110, 125, 140, 155, 170]`, `aran = 100.0`, `arqa = 24`, `atar = air,ground,debris,enemy,neutral,organic`
 
 實作：
 
-`Trig_HeroSkills1_Actions`　war3map.j:46726
+`Trig_HeroSkills1_Actions`　war3map.j:47401
 ```jass
 elseif Skill=='A0YG' then
 call SetHeroStr(u,GetHeroStr(u,false)+2,true)
@@ -382,8 +382,8 @@ endif
 
 ## 皮膚
 
-黑曜石獵手 `Eevi` —— 物件資料同本體，但 **JASS 有依單位型號分支**：`Trig_HeroPick_Actions`（44645）、`Trig_HeroQ1_Conditions`（46762）、`Trig_HeroQ1_Actions`（46777）、`Trig_HeroD1_Conditions`（46845）
-赤紅刺客 `Emns` —— 物件資料同本體，但 **JASS 有依單位型號分支**：`Trig_HeroPick_Actions`（44657）、`Trig_HeroD1_Conditions`（46845）、`Trig_HeroD1_Actions`（46864）
+黑曜石獵手 `Eevi` —— 物件資料同本體，但 **JASS 有依單位型號分支**：`Trig_HeroPick_Actions`（45321）、`Trig_HeroQ1_Conditions`（47437）、`Trig_HeroQ1_Actions`（47452）、`Trig_HeroD1_Conditions`（47520）
+赤紅刺客 `Emns` —— 物件資料同本體，但 **JASS 有依單位型號分支**：`Trig_HeroPick_Actions`（45333）、`Trig_HeroD1_Conditions`（47520）、`Trig_HeroD1_Actions`（47539）
 
 ---
 
@@ -392,7 +392,7 @@ endif
 英雄的實作散在同編號的一組函式裡，上面按技能抽取時抓不到的補在這裡
 （常見的是決定門檻、結算加成、清理 buff 的那幾支）。
 
-`Trig_CreateHero1_Actions`　war3map.j:34516
+`Trig_CreateHero1_Actions`　war3map.j:35178
 ```jass
 function Trig_CreateHero1_Actions takes nothing returns nothing
 local location p
@@ -424,7 +424,7 @@ set udg_EnemyHeroType[1]='U00H'
 set udg_EnemyHeroType[2]='U00K'
 endif
 set udg_EnemyHeroLvl=udg_EnemyHeroLvl+1
-set p=udg_SpawnPoints[GetRandomInt(1,2)]
+set p=udg_SpawnPoints[GetRandomInt(1,udC_L(2))]
 set u=CreateUnitAtLoc(AI[GetRandomInt(1,3)],udg_EnemyHeroType[GetRandomInt(1,2)],p,GetRandomReal(0.,360.))
 call SetHeroLevel(u,3+udg_EnemyHeroLvl,false)
 call PrepareEnemyHero(u)
@@ -488,7 +488,7 @@ set u=null
 endfunction
 ```
 
-`Trig_CreateHero1_Hard_Actions`　war3map.j:34915
+`Trig_CreateHero1_Hard_Actions`　war3map.j:35577
 ```jass
 function Trig_CreateHero1_Hard_Actions takes nothing returns nothing
 local location p
@@ -520,7 +520,7 @@ set udg_EnemyHeroType[1]='Opgh'
 set udg_EnemyHeroType[2]='Uwar'
 endif
 set udg_EnemyHeroLvl=udg_EnemyHeroLvl+1
-set p=udg_SpawnPoints[GetRandomInt(1,2)]
+set p=udg_SpawnPoints[GetRandomInt(1,udC_L(2))]
 set u=CreateUnitAtLoc(AI[GetRandomInt(1,3)],udg_EnemyHeroType[GetRandomInt(1,2)],p,GetRandomReal(0.,360.))
 call SetHeroLevel(u,3+udg_EnemyHeroLvl,false)
 call PrepareEnemyHero(u)
@@ -588,21 +588,21 @@ set u=null
 endfunction
 ```
 
-`Trig_HeroQ1_Conditions`　war3map.j:46761
+`Trig_HeroQ1_Conditions`　war3map.j:47436
 ```jass
 function Trig_HeroQ1_Conditions takes nothing returns boolean
 return GetUnitAbilityLevel(GetAttacker(),'B00C')>0 or GetUnitTypeId(GetAttacker())=='Eevi'
 endfunction
 ```
 
-`Trig_HeroD1_Conditions`　war3map.j:46844
+`Trig_HeroD1_Conditions`　war3map.j:47519
 ```jass
 function Trig_HeroD1_Conditions takes nothing returns boolean
 return GetUnitTypeId(GetKillingUnit())=='Edem' or GetUnitTypeId(GetKillingUnit())=='Eevi' or GetUnitTypeId(GetKillingUnit())=='Emns'
 endfunction
 ```
 
-`Trig_HeroD1_Actions`　war3map.j:46847
+`Trig_HeroD1_Actions`　war3map.j:47522
 ```jass
 function Trig_HeroD1_Actions takes nothing returns nothing
 local unit u=GetKillingUnit()
@@ -651,6 +651,6 @@ endfunction
 
 ---
 
-*由 `tools/build_dossier.py` 從 UD_v3.82fix 地圖檔產生。*
+*由 `tools/build_dossier.py` 從 UD test 24.09.27（合併版） 地圖檔產生。*
 *機制通則、配裝規則與輸出格式見 `tools/BUILD_BRIEF.md`；*
 *道具數值見 `data/dossier/_items.md`。*
