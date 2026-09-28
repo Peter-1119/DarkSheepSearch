@@ -148,6 +148,9 @@ for name, rect, dest, hero in PLACES:
     DEST_WRECT.append(((wr[0] + dx, wr[1] + dy, wr[2] + dx, wr[3] + dy), (dx, dy)))
     log('[搬移] %s：%d×%d 地格 → 新圖 (%d,%d)，世界位移 (%+.0f, %+.0f)；裝飾物 %d、地形裝飾 %d'
         % (name, rect[2] - rect[0], rect[3] - rect[1], dest[0], dest[1], dx, dy, len(items), len(sps)))
+# ---- 陵墓下層、冰霜森林改回 2.1.0 的地圖（ud_levels210）----
+import ud_levels210
+LV210_AREAS = ud_levels210.terrain(W3E_B, E2, WPM_B, SHD_B, DN, log)
 DOO_B = DN.pack()
 
 # ---- 預放單位：從 1.41 的腳本搬過來（不含掉寶觸發）----
@@ -249,6 +252,14 @@ for a_, b_ in (('function', 'endfunction'), ('loop', 'endloop'), ('if', 'endif')
     na = len(re.findall(r'^\s*%s\b' % a_, J, re.M)); nb = len(re.findall(r'^\s*%s\b' % b_, J, re.M))
     assert na == nb, (a_, na, nb)
 
+# ---- 陵墓下層、冰霜森林：預放單位照 2.1.0、出怪路數照 2.1.0（數量與陣容維持新版）----
+import w3obj
+J = ud_levels210.placed_units(J, J210, w3obj.parse(rd('ud_new', 'war3map.w3u'), False), log)
+J = ud_levels210.lanes(J, J210, log)
+for a_, b_ in (('function', 'endfunction'), ('loop', 'endloop'), ('if', 'endif')):
+    na = len(re.findall(r'^\s*%s\b' % a_, J, re.M)); nb = len(re.findall(r'^\s*%s\b' % b_, J, re.M))
+    assert na == nb, (a_, na, nb)
+
 # ================================================================ 階段 C：經典關卡
 import json
 import ud_stageC
@@ -292,6 +303,13 @@ log('[入侵] 一般難度第 11／12 波換回無序法師、大墓地之主（
 for _m, _n in ud_invasion.N4.items():
     log('[入侵] %s難度守右下王座的第 %s 波改四路：出怪點 %d 處、發怪區塊 %d 個、隨機點 %d 處'
         % (_m, '/'.join(map(str, ud_invasion.FOUR[_m][1])), _n['points'], _n['blocks'], _n['rand']))
+import ud_heroes2
+_BH = ud_heroes2.bunker_heroes(w3obj.parse(rd('ud_new', 'war3map.w3u'), False))
+J = ud_heroes2.patch_bunker(J, _BH)
+log('[改版] 長工碉堡：英雄不再隱藏（透明、無敵、不能動／攻擊），可選取、學技能、選天賦、轉移／拆除據點；其他技能與道具在碉堡內取消（%s）'
+    % '、'.join(sorted(_BH)))
+J = ud_heroes2.patch_naga_jass(J)
+log('[改版] 深淵神諭者：召喚樹人 → 召喚娜迦守衛（%s／%s），數量 1 +（每 400 技能強度 1 隻）；修正深淵守衛在技能強度 ≥1500 時召喚失敗' % (ud_heroes2.NAGA_SKILL, ud_heroes2.NAGA_UNIT))
 import ud_recipefix
 J = ud_recipefix.patch_jass(J)
 log('[對齊網站] 神器合成：水晶項鍊、鋼鐵奉獻、泰坦神拳 換回 3.82fix 的 4 件配方，價值 5400')
@@ -307,10 +325,12 @@ for f, lv in (('war3map.w3t', False), ('war3map.w3u', False), ('war3map.w3a', Tr
     src = MSRC.read(f)
     if f == 'war3map.w3a':
         src = ud_princess.patch_w3a(src)
+        src = ud_heroes2.patch_w3a(src)
     if f == 'war3map.w3t':
         src = ud_recipefix.patch_w3t(src)
     if f == 'war3map.w3u':
         src = ud_invasion.patch_w3u(src)
+        src = ud_heroes2.patch_w3u(src)
 
     def _fn(k, m, i, s, f=f):
         z = TR(s, strict=(f == 'war3map.w3t' or (f == 'war3map.w3a' and k in ITEM_ABIL)))
@@ -320,13 +340,14 @@ for f, lv in (('war3map.w3t', False), ('war3map.w3u', False), ('war3map.w3a', Tr
             z = ud_itemfix.apply(k, m, z)
         elif f == 'war3map.w3a':
             z = ud_princess.text(k, m, z)
-        return z
+        return ud_heroes2.text(f, k, m, z)
     data, n = rewrite(src, lv, _fn)
     OBJ_EDITS[f] = data
     log('[中文化] %s：改寫 %d 個字串' % (f, n))
 if not RU:
     log('[說明修正] 道具說明改成與程式一致：%d 處' % ud_itemfix.check())
     assert ud_princess.hits['r'] >= 2, '亡者公主 R 的說明沒改到'
+    assert ud_heroes2.hits['skin'] >= 1, '深淵神諭者造型說明沒改到'
 J, nj, sk = ud_translate.jass_strings(J, TR)
 import ud_menutidy
 J, _nt = (J, 0) if RU else ud_menutidy.tidy(J)
@@ -367,6 +388,7 @@ def fill(wx, wy):
             return p141[min(255, max(0, int(u))), min(255, max(0, int(v)))]
     return None                                             # 其餘新地：黑
 new_img = mm.remap(old_img, R0, R1, fill)
+new_img = ud_levels210.minimap(new_img, R1, mm, log)
 new_img.save(os.path.join(BASE, 'ud_build_minimap.png'))
 BLP_B = mm.blp1_palette(new_img)
 MMP_B = mm.remap_mmp(mpq.MPQ(SRC).read('war3map.mmp'), R0, R1)

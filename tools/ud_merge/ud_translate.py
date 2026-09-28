@@ -33,7 +33,8 @@ def latin_stats(v):
     return z
 
 
-_COUNT = re.compile(r'(數量：(?:(?!\|n|\n|\r).){0,30}?\d+(?:\.\d+)?)\s*點')
+# 「點」後面直接接中文的是真的點數（每 100 點技能強度、每 500 點當前魔力），不換
+_COUNT = re.compile(r'(數量：(?:(?!\|n|\n|\r).){0,30}?\d+(?:\.\d+)?)\s*點(?![一-鿿])')
 
 class Translator(object):
     def __init__(self, J_new=None, J_230=None):

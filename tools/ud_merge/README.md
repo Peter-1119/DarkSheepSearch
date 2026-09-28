@@ -26,6 +26,7 @@ python ud_build.py
 3. 經典關卡、分頁選單（`ud_stageC.py`）
 4. 修正與改版：詛咒者之弩、相位石、亡者公主 R（`ud_princess.py`）、神器配方對齊網站（`ud_recipefix.py`）、
    入侵對齊 2.1.0、右下王座四路（一般＋骨灰級）與軍械庫 +75%（`ud_invasion.py`）
+   陵墓下層、冰霜森林（一般＋骨灰）地形與預放單位換回 2.1.0，出怪只改路數（`ud_levels210.py`）
 5. 中文化（`ud_translate.py`）→ 道具說明校正（`ud_itemfix.py`）→ 選單格式（`ud_menutidy.py`）→ 介面與版本號（`ud_skin.py`）
 
 ## 翻譯
